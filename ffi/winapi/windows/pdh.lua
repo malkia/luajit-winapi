@@ -1,0 +1,62 @@
+require( "ffi/winapi/headers/windows" )
+local ffi = require( "ffi" )
+ffi.cdef [[
+  PDH_STATUS PdhAddCounter(                   PDH_HQUERY hQuery, LPCTSTR szFullCounterPath, DWORD_PTR dwUserData, PDH_HCOUNTER* phCounter);
+  PDH_STATUS PdhAddEnglishCounter(            PDH_HQUERY hQuery, LPCTSTR szFullCounterPath, DWORD_PTR dwUserData, PDH_HCOUNTER* phCounter);
+  PDH_STATUS PdhBindInputDataSource(          PDH_HLOG* phDataSource, LPCTSTR szLogFileNameList);
+  PDH_STATUS PdhBrowseCounters(               PPDH_BROWSE_DLG_CONFIG pBrowseDlgData);
+  PDH_STATUS PdhBrowseCountersH(              PPDH_BROWSE_DLG_CONFIG pBrowseDlgData);
+  PDH_STATUS PdhCalculateCounterFromRawValue( PDH_HCOUNTER hCounter, WINAPI_PdhFormatFlags dwFormat, PPDH_RAW_COUNTER rawValue1, PPDH_RAW_COUNTER rawValue2, PPDH_FMT_COUNTERVALUE fmtValue);
+  PDH_STATUS PdhCloseLog(                     PDH_HLOG hLog, DWORD dwFlags);
+  PDH_STATUS PdhCloseQuery(                   PDH_HQUERY hQuery);
+  PDH_STATUS PdhCollectQueryData(             PDH_HQUERY hQuery);
+  PDH_STATUS PdhCollectQueryDataEx(           PDH_HQUERY hQuery, DWORD dwIntervalTime, HANDLE hNewDataEvent);
+  PDH_STATUS PdhCollectQueryDataWithTime(     PDH_HQUERY hQuery, LONGLONG* pllTimeStamp);
+  PDH_STATUS PdhComputeCounterStatistics(     PDH_HCOUNTER hCounter, WINAPI_PdhFormatFlags dwFormat, DWORD dwFirstEntry, DWORD dwNumEntries, PPDH_RAW_COUNTER lpRawValueArray, PPDH_STATISTICS data);
+  PDH_STATUS PdhConnectMachine(               LPCTSTR szMachineName);
+  PDH_STATUS PdhEnumLogSetNames(              LPCTSTR szDataSource, LPTSTR mszLogSetNameList, LPDWORD pcchBufferLength);
+  PDH_STATUS PdhEnumMachines(                 LPCTSTR szDataSource, LPTSTR mszMachineNameList, LPDWORD pcchBufferLength);
+  PDH_STATUS PdhEnumMachinesH(                PDH_HLOG hDataSource, LPTSTR mszMachineNameList, LPDWORD pcchBufferLength);
+  PDH_STATUS PdhEnumObjectItems(              LPCTSTR szDataSource, LPCTSTR szMachineName, LPCTSTR szObjectName, LPTSTR mszCounterList, LPDWORD pcchCounterListLength, LPTSTR mszInstanceList, LPDWORD pcchInstanceListLength, WINAPI_PerfDetailLevel dwDetailLevel, DWORD dwFlags);
+  PDH_STATUS PdhEnumObjectItemsH(             PDH_HLOG hDataSource, LPCTSTR szMachineName, LPCTSTR szObjectName, LPTSTR mszCounterList, LPDWORD pcchCounterListLength, LPTSTR mszInstanceList, LPDWORD pcchInstanceListLength, WINAPI_PerfDetailLevel dwDetailLevel, DWORD dwFlags);
+  PDH_STATUS PdhEnumObjects(                  LPCTSTR szDataSource, LPCTSTR szMachineName, LPTSTR mszObjectList, LPDWORD pcchBufferLength, WINAPI_PerfDetailLevel dwDetailLevel, BOOL bRefresh);
+  PDH_STATUS PdhEnumObjectsH(                 PDH_HLOG hDataSource, LPCTSTR szMachineName, LPTSTR mszObjectList, LPDWORD pcchBufferLength, WINAPI_PerfDetailLevel dwDetailLevel, BOOL bRefresh);
+  PDH_STATUS PdhExpandCounterPath(            LPCTSTR szWildCardPath, LPTSTR mszExpandedPathList, LPDWORD pcchPathListLength);
+  PDH_STATUS PdhExpandWildCardPath(           LPCTSTR szDataSource, LPCTSTR szWildCardPath, LPTSTR mszExpandedPathList, LPDWORD pcchPathListLength, WINAPI_PdhExpandFlags dwFlags);
+  PDH_STATUS PdhExpandWildCardPathH(          PDH_HLOG hDataSource, LPCTSTR szWildCardPath, LPTSTR mszExpandedPathList, LPDWORD pcchPathListLength, WINAPI_PdhExpandFlags dwFlags);
+  PDH_STATUS PdhFormatFromRawValue(           DWORD dwCounterType, WINAPI_PdhFormatFlags dwFormat, LONGLONG* pTimeBase, PPDH_RAW_COUNTER rawValue1, PPDH_RAW_COUNTER rawValue2, PPDH_FMT_COUNTERVALUE fmtValue);
+  PDH_STATUS PdhGetCounterInfo(               PDH_HCOUNTER hCounter, BOOLEAN bRetrieveExplainText, LPDWORD pdwBufferSize, PPDH_COUNTER_INFO lpBuffer);
+  PDH_STATUS PdhGetCounterTimeBase(           PDH_HCOUNTER hCounter, LONGLONG* pTimeBase);
+  PDH_STATUS PdhGetDataSourceTimeRange(       LPCTSTR szDataSource, LPDWORD pdwNumEntries, PPDH_TIME_INFO pInfo, LPDWORD pdwBufferSize);
+  PDH_STATUS PdhGetDataSourceTimeRangeH(      PDH_HLOG hDataSource, LPDWORD pdwNumEntries, PPDH_TIME_INFO pInfo, LPDWORD pdwBufferSize);
+  PDH_STATUS PdhGetDefaultPerfCounter(        LPCTSTR szDataSource, LPCTSTR szMachineName, LPCTSTR szObjectName, LPTSTR szDefaultCounterName, LPDWORD pcchBufferSize);
+  PDH_STATUS PdhGetDefaultPerfCounterH(       PDH_HLOG hDataSource, LPCTSTR szMachineName, LPCTSTR szObjectName, LPTSTR szDefaultCounterName, LPDWORD pcchBufferSize);
+  PDH_STATUS PdhGetDefaultPerfObject(         LPCTSTR szDataSource, LPCTSTR szMachineName, LPTSTR szDefaultObjectName, LPDWORD pcchBufferSize);
+  PDH_STATUS PdhGetDefaultPerfObjectH(        PDH_HLOG hDataSource, LPCTSTR szMachineName, LPTSTR szDefaultObjectName, LPDWORD pcchBufferSize);
+  PDH_STATUS PdhGetDllVersion(                LPDWORD lpdwVersion);
+  PDH_STATUS PdhGetFormattedCounterArray(     PDH_HCOUNTER hCounter, WINAPI_PdhFormatFlags dwFormat, LPDWORD lpdwBufferSize, LPDWORD lpdwBufferCount, PPDH_FMT_COUNTERVALUE_ITEM ItemBuffer);
+  PDH_STATUS PdhGetFormattedCounterValue(     PDH_HCOUNTER hCounter, WINAPI_PdhFormatFlags dwFormat, LPDWORD lpdwType, PPDH_FMT_COUNTERVALUE pValue);
+  PDH_STATUS PdhGetLogFileSize(               PDH_HLOG hLog, LONGLONG* llSize);
+  PDH_STATUS PdhGetRawCounterArray(           PDH_HCOUNTER hCounter, LPDWORD lpdwBufferSize, LPDWORD lpdwItemCount, PPDH_RAW_COUNTER_ITEM ItemBuffer);
+  PDH_STATUS PdhGetRawCounterValue(           PDH_HCOUNTER hCounter, LPDWORD lpdwType, PPDH_RAW_COUNTER pValue);
+  BOOL       PdhIsRealTimeQuery(              PDH_HQUERY hQuery);
+  PDH_STATUS PdhLookupPerfIndexByName(        LPCTSTR szMachineName, LPCTSTR szNameBuffer, LPDWORD pdwIndex);
+  PDH_STATUS PdhLookupPerfNameByIndex(        LPCTSTR szMachineName, DWORD dwNameIndex, LPTSTR szNameBuffer, LPDWORD pcchNameBufferSize);
+  PDH_STATUS PdhMakeCounterPath(              PDH_COUNTER_PATH_ELEMENTS* pCounterPathElements, LPTSTR szFullPathBuffer, LPDWORD pcchBufferSize, WINAPI_PdhPathFlags dwFlags);
+  PDH_STATUS PdhOpenLog(                      LPCTSTR szLogFileName, WINAPI_PdhOpenLogFlags dwAccessFlags, WINAPI_PDH_LOG_TYPE* lpdwLogType, PDH_HQUERY hQuery, DWORD dwMaxSize, LPCTSTR szUserCaption, PDH_HLOG* phLog);
+  PDH_STATUS PdhOpenQuery(                    LPCTSTR szDataSource, DWORD_PTR dwUserData, PDH_HQUERY* phQuery);
+  PDH_STATUS PdhOpenQueryH(                   PDH_HLOG hDataSource, DWORD_PTR dwUserData, PDH_HQUERY* phQuery);
+  PDH_STATUS PdhParseCounterPath(             LPCTSTR szFullPathBuffer, PDH_COUNTER_PATH_ELEMENTS* pCounterPathElements, LPDWORD pdwBufferSize, DWORD dwFlags);
+  PDH_STATUS PdhParseInstanceName(            LPCTSTR szInstanceString, LPTSTR szInstanceName, LPDWORD pcchInstanceNameLength, LPTSTR szParentName, LPDWORD pcchParentNameLength, LPDWORD lpIndex);
+  PDH_STATUS PdhReadRawLogRecord(             PDH_HLOG hLog, FILETIME ftRecord, PPDH_RAW_LOG_RECORD pRawLogRecord, LPDWORD pdwBufferLength);
+  PDH_STATUS PdhRemoveCounter(                PDH_HCOUNTER hCounter);
+  PDH_STATUS PdhSelectDataSource(             HWND hWndOwner, DWORD dwFlags, LPTSTR szDataSource, LPDWORD pcchBufferLength);
+  PDH_STATUS PdhSetCounterScaleFactor(        PDH_HCOUNTER hCounter, LONG lFactor);
+  PDH_STATUS PdhSetDefaultRealTimeDataSource( DWORD dwDataSourceId);
+  PDH_STATUS PdhSetQueryTimeRange(            PDH_HQUERY hQuery, PPDH_TIME_INFO pInfo);
+  PDH_STATUS PdhUpdateLog(                    PDH_HLOG hLog, LPCTSTR szUserString);
+  PDH_STATUS PdhUpdateLogFileCatalog(         PDH_HLOG hLog);
+  PDH_STATUS PdhValidatePath(                 LPCTSTR szFullCounterPath);
+  PDH_STATUS PdhValidatePathEx(               PDH_HLOG hDataSource, LPCTSTR szFullPathBuffer);
+]]
+return ffi.load( "Pdh.dll" )
