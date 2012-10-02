@@ -5,6 +5,8 @@ local files = require( "etc/winapi-files" )
 local outdir = "../ffi/winapi/"
 
 if ffi.os == "Windows" then
+   -- API Monitor v12 alpha would install the 64-bit on 64-bit system
+   -- Haven't tried this on 32-bit Windows yet
    xmldir = (os.getenv("ProgramW6432") or os.getenv("ProgramFiles")).."/rohitab.com/API Monitor/API/"
 else
    xmldir = "/Users/malkia/Downloads/API Monitor (rohitab.com)/API/"
