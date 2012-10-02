@@ -87,10 +87,8 @@ local function parse(buffer, filename)
       local es = ffi.string(expat.XML_ErrorString(ec))
       local ln = expat.XML_GetCurrentLineNumber(parser)
       local cn = expat.XML_GetCurrentColumnNumber(parser)
-      print(
-	 "\nexpat error=" .. tonumber(ec) .. " '" .. es .. 
-	    "' in file: " .. filename .. ":" .. ln .. ":" .. cn ..
-	    "\n" ) --.. ffi.string(buffer)) 
+      print( "EXPAT ERROR: " .. tonumber(ec) .. " '" .. es .. 
+	     "' in file: " .. filename .. ":" .. ln .. ":" .. cn )
       return nil
    end
    assert(stack[2]==nil and stack[1][2]==nil)
@@ -170,7 +168,6 @@ local function process(var, luafile)
 	 local space = in_brackets:find(" ", 1, true)
 	 local before_space = (space and in_brackets:sub(1, space-1) or in_brackets)
 	 local after_space = (space and in_brackets:sub(space) or "0"):gsub(" ","")
-	 print('after_space', after_space)
 	 if tonumber(before_space) == nil then
 	    luafile:write(
 	       "  enum { " .. before_space .. " = " ..  tostring(var.Count - after_space) .. " };\n")
@@ -244,12 +241,14 @@ local function generate()
 
    local luadirs = {}
    for filename, cdef in pairs(cdef) do
+      local modname = filename:gsub("%..*$", "")
+
       local luaname = filename:gsub("%..*$", "%.lua")
       local luadir = dirname(luaname)
       if not luadirs[luadir] then
 	 luadirs[luadir] = true
 	 if ffi.os == "Windows" then
-	    os.execute( "md \"" .. outdir .. luadir .. "\"" )
+	    os.execute( "md \"" .. outdir .. luadir .. "\" 1>nul 2>nul" )
 	 else
 	    os.execute( "mkdir -p \"" .. outdir .. luadir .. "\"" )
 	 end
@@ -258,8 +257,10 @@ local function generate()
       local luafile = assert(io.open(outdir..luaname, "wt"))
 
       for _, depend in ipairs(cdef.Include or {}) do
+	 local dependFilename = depend.Filename:gsub("%..*$","")
+	 assert(modname~=dependFilename)
 	 luafile:write(
-	    "require( 'ffi/winapi/" .. depend.Filename:gsub("%..*$", "") .. "' )\n" )
+	    "require( 'ffi/winapi/" .. dependFilename .. "' )\n" )
       end
 
       luafile:write( "local ffi = require( 'ffi' )\n" ..
@@ -324,7 +325,7 @@ local function test()
    for _, filename in ipairs(files) do
       local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
       local status, error = pcall(require,lib)
-      print(status and "OK" or "ERR", error)
+      print(lib, error==true and "OK" or error)
    end
 end
 

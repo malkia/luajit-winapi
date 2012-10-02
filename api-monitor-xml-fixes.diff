@@ -1,0 +1,446 @@
+diff -r broken/API/Interfaces/CoreAudio/IAudioSessionControl.xml fixed/API/Interfaces/CoreAudio/IAudioSessionControl.xml
+51,100d50
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Include Filename="Interfaces\CoreAudio\coreaudio.h.xml" />
+<     <Interface Name="IAudioSessionControl" Id="{F4B1A599-7266-4319-A8CA-E70ACB11E8CD}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Audio and Video/Core Audio/Windows Audio Session">
+<         <Api Name="GetState">
+<             <Param Type="AudioSessionState*" Name="pRetVal" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="GetDisplayName">
+<             <Param Type="LPWSTR*" Name="pRetVal" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="SetDisplayName">
+<             <Param Type="LPCWSTR" Name="Value" />
+<             <Param Type="LPCGUID" Name="EventContext" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="GetIconPath">
+<             <Param Type="LPWSTR*" Name="pRetVal" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="SetIconPath">
+<             <Param Type="LPCWSTR" Name="Value" />
+<             <Param Type="LPCGUID" Name="EventContext" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="GetGroupingParam">
+<             <Param Type="GUID*" Name="pRetVal" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="SetGroupingParam">
+<             <Param Type="LPCGUID" Name="Override" />
+<             <Param Type="LPCGUID" Name="EventContext" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="RegisterAudioSessionNotification">
+<             <Param Type="IAudioSessionEvents*" Name="NewNotifications" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="UnregisterAudioSessionNotification">
+<             <Param Type="IAudioSessionEvents*" Name="NewNotifications" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/CoreAudio/IAudioSessionControl2.xml fixed/API/Interfaces/CoreAudio/IAudioSessionControl2.xml
+31,60d30
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\CoreAudio\IAudioSessionControl.xml" />
+<     <Include Filename="Interfaces\CoreAudio\coreaudio.h.xml" />
+<     <Interface Name="IAudioSessionControl2" Id="{bfb7ff88-7239-4fc9-8fa2-07c950be9c6d}" BaseInterface="IAudioSessionControl" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Audio and Video/Core Audio/Windows Audio Session">
+<         <Api Name="GetSessionIdentifier">
+<             <Param Type="LPWSTR*" Name="pRetVal" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="GetSessionInstanceIdentifier">
+<             <Param Type="LPWSTR*" Name="pRetVal" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="GetProcessId">
+<             <Param Type="DWORD*" Name="pRetVal" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="IsSystemSoundsSession">
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="SetDuckingPreference">
+<             <Param Type="BOOL" Name="optOut" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/CoreAudio/IAudioSessionEnumerator.xml fixed/API/Interfaces/CoreAudio/IAudioSessionEnumerator.xml
+21,40d20
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Include Filename="Interfaces\CoreAudio\coreaudio.h.xml" />
+<     <Interface Name="IAudioSessionEnumerator" Id="{E2F5BB11-0570-40CA-ACDD-3AA01277DEE8}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Audio and Video/Core Audio/Windows Audio Session">
+<         <Api Name="GetCount">
+<             <Param Type="int*" Name="SessionCount" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="GetSession">
+<             <Param Type="int" Name="SessionCount" />
+<             <Param Type="IAudioSessionControl**" Name="Session" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/CoreAudio/IAudioSessionEvents.xml fixed/API/Interfaces/CoreAudio/IAudioSessionEvents.xml
+48,94d47
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Include Filename="Interfaces\CoreAudio\coreaudio.h.xml" />
+<     <Interface Name="IAudioSessionEvents" Id="{24918ACC-64B3-37C1-8CA9-74A66E9957A8}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Audio and Video/Core Audio/Windows Audio Session">
+<         <Api Name="OnDisplayNameChanged">
+<             <Param Type="LPCWSTR" Name="NewDisplayName" />
+<             <Param Type="LPCGUID" Name="EventContext" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="OnIconPathChanged">
+<             <Param Type="LPCWSTR" Name="NewIconPath" />
+<             <Param Type="LPCGUID" Name="EventContext" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="OnSimpleVolumeChanged">
+<             <Param Type="float" Name="NewVolume" />
+<             <Param Type="BOOL" Name="NewMute" />
+<             <Param Type="LPCGUID" Name="EventContext" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="OnChannelVolumeChanged">
+<             <Param Type="DWORD" Name="ChannelCount" />
+<             <Param Type="float" Name="NewChannelVolumeArray" />
+<             <Param Type="DWORD" Name="ChangedChannel" />
+<             <Param Type="LPCGUID" Name="EventContext" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="OnGroupingParamChanged">
+<             <Param Type="LPCGUID" Name="NewGroupingParam" />
+<             <Param Type="LPCGUID" Name="EventContext" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="OnStateChanged">
+<             <Param Type="AudioSessionState" Name="NewState" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="OnSessionDisconnected">
+<             <Param Type="AudioSessionDisconnectReason" Name="DisconnectReason" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/CoreAudio/IAudioSessionManager.xml fixed/API/Interfaces/CoreAudio/IAudioSessionManager.xml
+24,46d23
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Include Filename="Interfaces\CoreAudio\coreaudio.h.xml" />
+<     <Interface Name="IAudioSessionManager" Id="{BFA971F1-4D5E-40BB-935E-967039BFBEE4}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Audio and Video/Core Audio/Windows Audio Session">
+<         <Api Name="GetAudioSessionControl">
+<             <Param Type="LPCGUID" Name="AudioSessionGuid" />
+<             <Param Type="DWORD" Name="StreamFlags" />
+<             <Param Type="IAudioSessionControl**" Name="SessionControl" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="GetSimpleAudioVolume">
+<             <Param Type="LPCGUID" Name="AudioSessionGuid" />
+<             <Param Type="DWORD" Name="StreamFlags" />
+<             <Param Type="ISimpleAudioVolume**" Name="AudioVolume" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/CoreAudio/IAudioSessionManager2.xml fixed/API/Interfaces/CoreAudio/IAudioSessionManager2.xml
+33,64d32
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\CoreAudio\IAudioSessionManager.xml" />
+<     <Include Filename="Interfaces\CoreAudio\coreaudio.h.xml" />
+<     <Interface Name="IAudioSessionManager2" Id="{77AA99A0-1BD6-484F-8BC7-2C654C9A9B6F}" BaseInterface="IAudioSessionManager" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Audio and Video/Core Audio/Windows Audio Session">
+<         <Api Name="GetSessionEnumerator">
+<             <Param Type="IAudioSessionEnumerator**" Name="SessionEnum" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="RegisterSessionNotification">
+<             <Param Type="IAudioSessionNotification*" Name="SessionNotification" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="UnregisterSessionNotification">
+<             <Param Type="IAudioSessionNotification*" Name="SessionNotification" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="RegisterDuckNotification">
+<             <Param Type="LPCWSTR" Name="sessionID" />
+<             <Param Type="IAudioVolumeDuckNotification*" Name="duckNotification" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="UnregisterDuckNotification">
+<             <Param Type="IAudioVolumeDuckNotification*" Name="duckNotification" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/CoreAudio/IAudioSessionNotification.xml fixed/API/Interfaces/CoreAudio/IAudioSessionNotification.xml
+16,30d15
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Include Filename="Interfaces\CoreAudio\coreaudio.h.xml" />
+<     <Interface Name="IAudioSessionNotification" Id="{641DD20B-4D41-49CC-ABA3-174B9477BB08}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Audio and Video/Core Audio/Windows Audio Session">
+<         <Api Name="OnSessionCreated">
+<             <Param Type="IAudioSessionControl*" Name="NewSession" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/CoreAudio/IAudioVolumeDuckNotification.xml fixed/API/Interfaces/CoreAudio/IAudioVolumeDuckNotification.xml
+21,40d20
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Include Filename="Interfaces\CoreAudio\coreaudio.h.xml" />
+<     <Interface Name="IAudioVolumeDuckNotification" Id="{C3B284D4-6D39-4359-B3CF-B56DDB3BB39C}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Audio and Video/Core Audio/Windows Audio Session">
+<         <Api Name="OnVolumeDuckNotification">
+<             <Param Type="LPCWSTR" Name="sessionID" />
+<             <Param Type="UINT32" Name="countCommunicationSessions" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<         <Api Name="OnVolumeUnduckNotification">
+<             <Param Type="LPCWSTR" Name="sessionID" />
+<             <Return Type="[AUDCLNT_HRESULT]" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/Shell/IShellImageData.xml fixed/API/Interfaces/Shell/IShellImageData.xml
+131,260d130
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Interface Name="IShellImageData" Id="{bfdeec12-8040-4403-a5ea-9e07dafcf530}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Windows Environment Development/Windows Shell/Interfaces">
+<         <Api Name="Decode">
+<             <Param Type="DWORD" Name="dwFlags" />
+<             <Param Type="ULONG" Name="cxDesired" />
+<             <Param Type="ULONG" Name="cyDesired" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="Draw">
+<             <Param Type="HDC" Name="hdc" />
+<             <Param Type="LPRECT" Name="prcDest" />
+<             <Param Type="LPRECT" Name="prcSrc" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="NextFrame">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="NextPage">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="PrevPage">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="IsTransparent">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="IsAnimated">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="IsVector">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="IsMultipage">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="IsEditable">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="IsPrintable">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="IsDecoded">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetCurrentPage">
+<             <Param Type="ULONG*" Name="pnPage" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetPageCount">
+<             <Param Type="ULONG*" Name="pcPages" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="SelectPage">
+<             <Param Type="ULONG" Name="iPage" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetSize">
+<             <Param Type="SIZE*" Name="pSize" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetRawDataFormat">
+<             <Param Type="GUID*" Name="pDataFormat" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetPixelFormat">
+<             <Param Type="PixelFormat*" Name="pFormat" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetDelay">
+<             <Param Type="DWORD*" Name="pdwDelay" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetProperties">
+<             <Param Type="DWORD" Name="dwMode" />
+<             <Param Type="IPropertySetStorage**" Name="ppPropSet" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="Rotate">
+<             <Param Type="DWORD" Name="dwAngle" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="Scale">
+<             <Param Type="ULONG" Name="cx" />
+<             <Param Type="ULONG" Name="cy" />
+<             <Param Type="InterpolationMode" Name="hints" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="DiscardEdit">
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="SetEncoderParams">
+<             <Param Type="IPropertyBag*" Name="pbagEnc" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="DisplayName">
+<             <Param Type="LPWSTR" Name="wszName" />
+<             <Param Type="UINT" Name="cch" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetResolution">
+<             <Param Type="ULONG*" Name="puResolutionX" />
+<             <Param Type="ULONG*" Name="puResolutionY" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetEncoderParams">
+<             <Param Type="GUID*" Name="pguidFmt" />
+<             <Param Type="EncoderParameters**" Name="ppEncParams" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="RegisterAbort">
+<             <Param Type="IShellImageDataAbort*" Name="pAbort" />
+<             <Param Type="IShellImageDataAbort**" Name="ppAbortPrev" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="CloneFrame">
+<             <Param Type="Image**" Name="ppImg" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="ReplaceFrame">
+<             <Param Type="Image*" Name="pImg" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/Shell/IShellImageDataAbort.xml fixed/API/Interfaces/Shell/IShellImageDataAbort.xml
+14,26d13
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Interface Name="IShellImageDataAbort" Id="{53fb8e58-50c0-4003-b4aa-0c8df28e7f3a}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Windows Environment Development/Windows Shell/Interfaces">
+<         <Api Name="QueryAbort">
+<             <Return Type="HRESULT" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/Interfaces/Shell/IShellImageDataFactory.xml fixed/API/Interfaces/Shell/IShellImageDataFactory.xml
+30,58d29
+< <!--
+<     API Monitor Definitions
+<     (c) 2011, Rohitab Batra <rohitab@rohitab.com>
+<     http://www.rohitab.com/apimonitor/
+< -->
+< <ApiMonitor>
+<     <Include Filename="Interfaces\IUnknown.xml" />
+<     <Interface Name="IShellImageDataFactory" Id="{9be8ed5c-edab-4d75-90f3-bd5bdbb21c82}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Windows Environment Development/Windows Shell/Interfaces">
+<         <Api Name="CreateIShellImageData">
+<             <Param Type="IShellImageData**" Name="ppshimg" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="CreateImageFromFile">
+<             <Param Type="LPCWSTR" Name="pszPath" />
+<             <Param Type="IShellImageData**" Name="ppshimg" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="CreateImageFromStream">
+<             <Param Type="IStream*" Name="pStream" />
+<             <Param Type="IShellImageData**" Name="ppshimg" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<         <Api Name="GetDataFormatFromPath">
+<             <Param Type="LPCWSTR" Name="pszPath" />
+<             <Param Type="GUID*" Name="pDataFormat" />
+<             <Return Type="HRESULT" />
+<         </Api>
+<     </Interface>
+< </ApiMonitor>
+diff -r broken/API/MAPI/IMAPISession.xml fixed/API/MAPI/IMAPISession.xml
+9c9
+<     <Interface Name="IMAPISession" Id="{00020300-0000-0000-C000-000000000046}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Office Development/Microsoft Office/Outlook/Outlook MAPI Reference/Interfaces" Category="Office Development/Microsoft Office/Outlook/Outlook MAPI Reference/Interfaces">
+---
+>     <Interface Name="IMAPISession" Id="{00020300-0000-0000-C000-000000000046}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Office Development/Microsoft Office/Outlook/Outlook MAPI Reference/Interfaces">
+diff -r broken/API/Windows/Netapi32.xml fixed/API/Windows/Netapi32.xml
+499c499
+<         <!-- TODO: DWORD return should be [ERROR_CODE]
+---
+>         <!-- TODO: DWORD return should be [ERROR_CODE] -->
+diff -r broken/API/Windows/Rpcrt4.xml fixed/API/Windows/Rpcrt4.xml
+979c979
+<             <Param Type="RPC_TSTR"n Name="StringUuid" />
+---
+>             <Param Type="RPC_TSTR" Name="StringUuid" />
