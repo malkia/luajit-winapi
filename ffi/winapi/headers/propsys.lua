@@ -20,7 +20,6 @@ ffi.cdef [[
   typedef void* IPropertySystem; //Interface
   typedef void* IPropertyUI; //Interface
   typedef HRESULT PSSTDAPI; //Alias
-  typedef LPVOID SERIALIZEDPROPSTORAGE*; //Alias
   typedef LPVOID PCUSERIALIZEDPROPSTORAGE; //Alias
   typedef enum PROPENUMTYPE {
     PET_DISCRETEVALUE = 0,
@@ -132,5 +131,4 @@ ffi.cdef [[
     PKA_APPEND = 1,
     PKA_DELETE = 2,
   } PKA_FLAGS;
-  typedef PKA_FLAGS *WINAPI_PKA_FLAGS*; //Pointer
 ]]

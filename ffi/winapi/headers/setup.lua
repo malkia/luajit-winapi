@@ -1,7 +1,7 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef TCHAR TCHAR [LINE_LEN]; //Array 256
+  enum { LINE_LEN = 256 };
   typedef DWORD WINAPI_DiDriverType; //Alias
   typedef struct SP_DRVINFO_DATA {
     DWORD cbSize;

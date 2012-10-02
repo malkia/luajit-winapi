@@ -2,7 +2,6 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID LPCPROPSHEETPAGE; //Alias
-  typedef LPVOID PROPSHEETHEADER*; //Alias
   typedef LPVOID LPCPROPSHEETHEADER; //Alias
   typedef LPVOID LPPROPSHEETHEADER; //Alias
   typedef void* IUnknown; //Interface
@@ -142,12 +141,10 @@ ffi.cdef [[
   typedef LPCWSTR LPOLESTR; //Alias
   typedef LPOLESTR WINAPI_LPOLESTR; //Alias
   typedef WCHAR OLECHAR; //Alias
-  typedef OLECHAR* WINAPI_OLECHAR*; //Alias
   typedef ULONG PROPID; //Alias
   typedef IOleObject* LPOLEOBJECT; //Alias
   typedef IMalloc* LPMALLOC; //Alias
   typedef GUID FMTID; //Alias
-  typedef FMTID *WINAPI_FMTID*; //Pointer
   typedef FMTID *REFFMTID; //Pointer
   typedef WORD CLIPFORMAT; //Alias
   typedef IBindCtx* LPBC; //Alias
@@ -158,17 +155,13 @@ ffi.cdef [[
   typedef IMoniker* LPMONIKER; //Alias
   typedef IStream* LPSTREAM; //Alias
   typedef IDataObject* LPDATAOBJECT; //Alias
-  typedef IStorage* struct IStorage*; //Alias
   typedef DWORD CPFLAGS; //Alias
   typedef LPOLESTR* SNB; //Alias
-  typedef LPVOID ALLOCATEMORE*; //Alias
   typedef HANDLE HTASK; //Alias
   typedef LPCRECT LPCBORDERWIDTHS; //Alias
   typedef HGLOBAL HOLEMENU; //Alias
   typedef unsigned long RPCOLEDATAREP; //Alias
   typedef HANDLE HMETAFILEPICT; //Alias
-  typedef void* void* [5]; //Array 5
-  typedef LONG LONG [6]; //Array 6
   typedef enum VARIANT_BOOL {
     VARIANT_TRUE = -1,
     VARIANT_FALSE = 0,
@@ -191,7 +184,6 @@ ffi.cdef [[
     WORD tdExtDevmodeOffset;
     BYTE tdData[1];
   } DVTARGETDEVICE;
-  typedef DVTARGETDEVICE *WINAPI_DVTARGETDEVICE*; //Pointer
   typedef struct SERIALIZEDPROPERTYVALUE {
     DWORD dwType;
     BYTE rgb[1];
@@ -217,15 +209,11 @@ ffi.cdef [[
     WINAPI_PALETTEENTRY_Flags peFlags;
   } PALETTEENTRY;
   typedef PALETTEENTRY *LPPALETTEENTRY; //Pointer
-  typedef PALETTEENTRY *WINAPI_PALETTEENTRY*; //Pointer
-  typedef PALETTEENTRY *WINAPI_PALETTEENTRY*; //Pointer
-  typedef PALETTEENTRY PALETTEENTRY [1]; //Array 1
   typedef struct LOGPALETTE {
     WORD palVersion;
     WORD palNumEntries;
     PALETTEENTRY palPalEntry[1];
   } LOGPALETTE;
-  typedef LOGPALETTE* *WINAPI_LOGPALETTE*; //Pointer
   typedef unsigned short VARTYPE; //Alias
   typedef struct WINAPI_BRECORD {
     PVOID* pvRecord;
@@ -246,12 +234,9 @@ ffi.cdef [[
     WINAPI_VARIANT_s ;
     ULONGLONG WINAPI_Other values are currently unsupported;
   } VARIANT;
-  typedef VARIANT *WINAPI_VARIANT*; //Pointer
   typedef VARIANT *LPVARIANT; //Pointer
   typedef VARIANT VARIANTARG; //Alias
-  typedef VARIANTARG *WINAPI_VARIANTARG*; //Pointer
   typedef VARIANT PROPVARIANT; //Alias
-  typedef PROPVARIANT* WINAPI_PROPVARIANT*; //Alias
   typedef PROPVARIANT* REFPROPVARIANT; //Alias
   typedef enum TYMED {
     TYMED_HGLOBAL = 1,
@@ -559,7 +544,6 @@ ffi.cdef [[
     WINAPI_STGMEDIUM_u u;
     IUnknown* pUnkForRelease;
   } STGMEDIUM;
-  typedef STGMEDIUM *WINAPI_STGMEDIUM*; //Pointer
   typedef STGMEDIUM *LPSTGMEDIUM; //Pointer
   typedef DWORD WINAPI_COINIT_FLAG; //Alias
   typedef USHORT WINAPI_FADF_FLAGS; //Alias
@@ -567,7 +551,6 @@ ffi.cdef [[
     ULONG cElements;
     LONG lLbound;
   } SAFEARRAYBOUND;
-  typedef SAFEARRAYBOUND SAFEARRAYBOUND [1]; //Array 1
   typedef struct SAFEARRAY {
     USHORT cDims;
     WINAPI_FADF_FLAGS fFeatures;

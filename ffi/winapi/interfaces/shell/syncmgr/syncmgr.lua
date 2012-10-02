@@ -28,7 +28,6 @@ ffi.cdef [[
   typedef void* ISyncMgrSyncItemInfo; //Interface
   typedef void* ISyncMgrSyncResult; //Interface
   typedef void* ISyncMgrUIOperation; //Interface
-  typedef byte byte [1]; //Array 1
   typedef DWORD SYNCMGR_ITEM_POLICIES; //Alias
   typedef DWORD SYNCMGR_EVENT_FLAGS; //Alias
   typedef DWORD SYNCMGR_RESOLUTION_ABILITIES_FLAGS; //Alias
@@ -108,7 +107,6 @@ ffi.cdef [[
     BYTE_BLOB* pblobID;
     BYTE_BLOB* pblobExtra;
   } SYNCMGR_CONFLICT_ID_INFO;
-  typedef SYNCMGR_CONFLICT_ID_INFO *WINAPI_SYNCMGR_CONFLICT_ID_INFO*; //Pointer
   typedef DWORD SYNCMGR_CONTROL_FLAGS; //Alias
   typedef DWORD SYNCMGR_ITEM_CAPABILITIES; //Alias
 ]]

@@ -4,8 +4,8 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID PSEC_WINNT_AUTH_IDENTITY_OPAQUE; //Alias
   typedef HANDLE SAFER_LEVEL_HANDLE; //Alias
-  typedef BYTE BYTE [SAFER_MAX_HASH_SIZE]; //Array 64
-  typedef CHAR CHAR [TOKEN_SOURCE_LENGTH]; //Array 8
+  enum { SAFER_MAX_HASH_SIZE = 64 };
+  enum { TOKEN_SOURCE_LENGTH = 8 };
   typedef DWORD WINAPI_AceFlags; //Alias
   typedef enum ACCESS_MODE {
     NOT_USED_ACCESS = 0,
@@ -129,7 +129,6 @@ ffi.cdef [[
     GUID AuditCategoryGuid;
   } AUDIT_POLICY_INFORMATION;
   typedef AUDIT_POLICY_INFORMATION *PCAUDIT_POLICY_INFORMATION; //Pointer
-  typedef PCAUDIT_POLICY_INFORMATION *PAUDIT_POLICY_INFORMATION*; //Pointer
   typedef enum WINAPI_AceType {
     ACCESS_ALLOWED = 0x0,
     ACCESS_DENIED = 0x1,
@@ -175,7 +174,7 @@ ffi.cdef [[
   } LUID_AND_ATTRIBUTES;
 # pragma pack( pop )
   typedef LUID_AND_ATTRIBUTES *PLUID_AND_ATTRIBUTES; //Pointer
-  typedef LUID_AND_ATTRIBUTES LUID_AND_ATTRIBUTES [ANYSIZE_ARRAY]; //Array 1
+  enum { ANYSIZE_ARRAY = 1 };
   typedef DWORD WINAPI_PRIVILEGE_SET; //Alias
   typedef struct PRIVILEGE_SET {
     DWORD PrivilegeCount;
@@ -305,15 +304,12 @@ ffi.cdef [[
     SecurityDelegation = 3,
   } SECURITY_IMPERSONATION_LEVEL;
   typedef int8_t SECURITY_CONTEXT_TRACKING_MODE; //Integer
-  const   int8_t SECURITY_DYNAMIC_TRACKING = 1;
-  const   int8_t SECURITY_STATIC_TRACKING = 0;
   typedef struct SECURITY_QUALITY_OF_SERVICE {
     DWORD Length;
     SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
     SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode;
     BOOLEAN EffectiveOnly;
   } SECURITY_QUALITY_OF_SERVICE;
-  typedef SECURITY_QUALITY_OF_SERVICE *WINAPI_SECURITY_QUALITY_OF_SERVICE*; //Pointer
   typedef SECURITY_QUALITY_OF_SERVICE *PSECURITY_QUALITY_OF_SERVICE; //Pointer
   typedef enum ACL_INFORMATION_CLASS {
     AclRevisionInformation = 1,
@@ -532,7 +528,7 @@ ffi.cdef [[
     DWORD Attributes;
   } SID_AND_ATTRIBUTES;
   typedef SID_AND_ATTRIBUTES *PSID_AND_ATTRIBUTES; //Pointer
-  typedef SID_AND_ATTRIBUTES SID_AND_ATTRIBUTES [ANYSIZE_ARRAY]; //Array 1
+  enum { ANYSIZE_ARRAY = 1 };
   typedef struct TOKEN_GROUPS {
     DWORD GroupCount;
     SID_AND_ATTRIBUTES Groups[ANYSIZE_ARRAY];
@@ -556,7 +552,6 @@ ffi.cdef [[
   typedef SECURITY_ATTRIBUTES *LPSECURITY_ATTRIBUTES; //Pointer
   typedef SECURITY_ATTRIBUTES *PSECURITY_ATTRIBUTES; //Pointer
   typedef SECURITY_ATTRIBUTES *WINAPI_LPSECURITY_ATTRIBUTES; //Pointer
-  typedef SECURITY_ATTRIBUTES *WINAPI_SECURITY_ATTRIBUTES*; //Pointer
   typedef struct SECURITY_DESCRIPTOR_RELATIVE {
     BYTE Revision;
     BYTE Sbz1;

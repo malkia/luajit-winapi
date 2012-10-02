@@ -33,10 +33,7 @@ ffi.cdef [[
   typedef void* IVssWMFiledesc; //Interface
   typedef void* IVssWriterComponentsExt; //Interface
   typedef void* IVssWriterImpl; //Interface
-  typedef LPVOID CVssWriter*; //Alias
-  typedef LPVOID CVssWriterEx*; //Alias
   typedef GUID VSS_ID; //Alias
-  typedef VSS_ID *WINAPI_VSS_ID*; //Pointer
   typedef WCHAR* VSS_PWSZ; //Alias
   typedef LONGLONG VSS_TIMESTAMP; //Alias
   typedef enum WINAPI_VSS_HRESULT {

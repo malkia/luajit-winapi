@@ -272,10 +272,8 @@ ffi.cdef [[
   typedef DATA_BLOB CERT_RDN_VALUE_BLOB; //Alias
   typedef CERT_RDN_VALUE_BLOB *PCERT_RDN_VALUE_BLOB; //Pointer
   typedef DATA_BLOB CRYPT_HASH_BLOB; //Alias
-  typedef CRYPT_HASH_BLOB *WINAPI_CRYPT_HASH_BLOB*; //Pointer
   typedef DATA_BLOB CRYPT_DATA_BLOB; //Alias
   typedef CRYPT_DATA_BLOB *PCRYPT_DATA_BLOB; //Pointer
-  typedef PCRYPT_DATA_BLOB *CRYPT_DATA_BLOB*; //Pointer
   typedef DATA_BLOB CRYPT_ATTR_BLOB; //Alias
   typedef DATA_BLOB CERT_BLOB; //Alias
   typedef CERT_BLOB *PCERT_BLOB; //Pointer
@@ -886,7 +884,6 @@ ffi.cdef [[
     WORD reserved;
     ALG_ID aiKeyAlg;
   } PUBLICKEYSTRUC;
-  typedef PUBLICKEYSTRUC *WINAPI_PUBLICKEYSTRUC*; //Pointer
   typedef struct CRYPT_OID_FUNC_ENTRY {
     LPCSTR pszOID;
     void* pvFuncAddr;

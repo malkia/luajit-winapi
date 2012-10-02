@@ -231,6 +231,5 @@ ffi.cdef [[
 # pragma pack( pop )
   typedef WAVEFORMATEX *LPWAVEFORMATEX; //Pointer
   typedef WAVEFORMATEX *LPCWAVEFORMATEX; //Pointer
-  typedef WAVEFORMATEX *WINAPI_WAVEFORMATEX*; //Pointer
   typedef DWORD WINAPI_SPEAKER_POSITION; //Alias
 ]]

@@ -25,26 +25,14 @@ ffi.cdef [[
   typedef void* IDWriteTextLayout; //Interface
   typedef void* IDWriteTextRenderer; //Interface
   typedef void* IDWriteTypography; //Interface
-  typedef IDWriteFontFile** IDWriteFontFile* const*; //Alias
   typedef void* IDWriteTextAnalysisSource; //Interface
   typedef void* IDWriteNumberSubstitution; //Interface
   typedef void* IDWriteGeometrySink; //Interface
   typedef void* IDWriteTextAnalysisSink; //Interface
-  typedef LPVOID DWRITE_CLUSTER_METRICS*; //Alias
-  typedef LPVOID DWRITE_SHAPING_TEXT_PROPERTIES*; //Alias
-  typedef LPVOID DWRITE_SHAPING_GLYPH_PROPERTIES*; //Alias
-  typedef LPVOID DWRITE_SHAPING_GLYPH_PROPERTIES const*; //Alias
-  typedef UINT16 *UINT16 const*; //Pointer
-  typedef UINT32 *UINT32 const*; //Pointer
-  typedef FLOAT *FLOAT const*; //Pointer
-  typedef void *void const*; //Pointer
-  typedef RECT *RECT const*; //Pointer
-  typedef LOGFONTW* LOGFONTW const*; //Alias
   typedef struct DWRITE_GLYPH_OFFSET {
     FLOAT advanceOffset;
     FLOAT ascenderOffset;
   } DWRITE_GLYPH_OFFSET;
-  typedef DWRITE_GLYPH_OFFSET *DWRITE_GLYPH_OFFSET const*; //Pointer
   typedef struct DWRITE_GLYPH_RUN {
     IDWriteFontFace* fontFace;
     FLOAT fontEmSize;
@@ -55,8 +43,6 @@ ffi.cdef [[
     BOOL isSideways;
     UINT32 bidiLevel;
   } DWRITE_GLYPH_RUN;
-  typedef DWRITE_GLYPH_RUN *WINAPI_DWRITE_GLYPH_RUN*; //Pointer
-  typedef DWRITE_GLYPH_RUN *DWRITE_GLYPH_RUN const*; //Pointer
   typedef enum DWRITE_FACTORY_TYPE {
     DWRITE_FACTORY_TYPE_SHARED = 0,
     DWRITE_FACTORY_TYPE_ISOLATED = 1,
@@ -69,7 +55,6 @@ ffi.cdef [[
     FLOAT dx;
     FLOAT dy;
   } DWRITE_MATRIX;
-  typedef DWRITE_MATRIX *DWRITE_MATRIX const*; //Pointer
   typedef enum DWRITE_FONT_FACE_TYPE {
     DWRITE_FONT_FACE_TYPE_CFF = 0,
     DWRITE_FONT_FACE_TYPE_TRUETYPE = 1,
@@ -197,7 +182,6 @@ ffi.cdef [[
     UINT16 script;
     DWRITE_SCRIPT_SHAPES shapes;
   } DWRITE_SCRIPT_ANALYSIS;
-  typedef DWRITE_SCRIPT_ANALYSIS *DWRITE_SCRIPT_ANALYSIS const*; //Pointer
   typedef enum DWRITE_TEXT_ALIGNMENT {
     DWRITE_TEXT_ALIGNMENT_LEADING = 0,
     DWRITE_TEXT_ALIGNMENT_TRAILING = 1,
@@ -229,7 +213,6 @@ ffi.cdef [[
     UINT32 delimiter;
     UINT32 delimiterCount;
   } DWRITE_TRIMMING;
-  typedef DWRITE_TRIMMING *DWRITE_TRIMMING const*; //Pointer
   typedef enum DWRITE_LINE_SPACING_METHOD {
     DWRITE_LINE_SPACING_METHOD_DEFAULT = 0,
     DWRITE_LINE_SPACING_METHOD_UNIFORM = 1,
@@ -283,7 +266,6 @@ ffi.cdef [[
     WCHAR const* localeName;
     DWRITE_MEASURING_MODE measuringMode;
   } DWRITE_UNDERLINE;
-  typedef DWRITE_UNDERLINE *DWRITE_UNDERLINE const*; //Pointer
   typedef struct DWRITE_STRIKETHROUGH {
     FLOAT width;
     FLOAT thickness;
@@ -293,7 +275,6 @@ ffi.cdef [[
     WCHAR const* localeName;
     DWRITE_MEASURING_MODE measuringMode;
   } DWRITE_STRIKETHROUGH;
-  typedef DWRITE_STRIKETHROUGH *DWRITE_STRIKETHROUGH const*; //Pointer
   typedef enum DWRITE_FONT_FEATURE_TAG {
     DWRITE_FONT_FEATURE_TAG_ALTERNATIVE_FRACTIONS = 0x63726661,
     DWRITE_FONT_FEATURE_TAG_PETITE_CAPITALS_FROM_CAPITALS = 0x63703263,
@@ -392,7 +373,6 @@ ffi.cdef [[
     DWRITE_FONT_FEATURE* features;
     UINT32 featureCount;
   } DWRITE_TYPOGRAPHIC_FEATURES;
-  typedef DWRITE_TYPOGRAPHIC_FEATURES* *DWRITE_TYPOGRAPHIC_FEATURES const**; //Pointer
   typedef struct DWRITE_GLYPH_RUN_DESCRIPTION {
     WCHAR const* localeName;
     WCHAR const* string;
@@ -400,5 +380,4 @@ ffi.cdef [[
     UINT16 const* clusterMap;
     UINT32 textPosition;
   } DWRITE_GLYPH_RUN_DESCRIPTION;
-  typedef DWRITE_GLYPH_RUN_DESCRIPTION *DWRITE_GLYPH_RUN_DESCRIPTION const*; //Pointer
 ]]

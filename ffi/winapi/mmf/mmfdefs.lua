@@ -132,14 +132,11 @@ ffi.cdef [[
   typedef void* IMFWorkQueueServices; //Interface
   typedef void* IDirect3DDevice9; //Interface
   typedef void* IDirect3DSurface9; //Interface
-  typedef UINT8 *WINAPI_UINT8*; //Pointer
   typedef ULONGLONG QWORD; //Alias
   typedef LONGLONG MFTIME; //Alias
   typedef unsigned __int64 TOPOID; //Alias
   typedef unsigned __int64 MFWORKITEM_KEY; //Alias
   typedef LPVOID MFPERIODICCALLBACK; //Alias
-  typedef VIDEOINFOHEADER *WINAPI_KS_VIDEOINFOHEADER*; //Pointer
-  typedef VIDEOINFOHEADER2 *WINAPI_KS_VIDEOINFOHEADER2*; //Pointer
   typedef enum MFSequencerElementId {
     MFSEQUENCER_INVALID_ELEMENT_ID = 0xffffffff,
   } MFSequencerElementId;
@@ -283,7 +280,6 @@ ffi.cdef [[
     BYTE* pbTicket;
     DWORD cbTicket;
   } MFINPUTTRUSTAUTHORITY_ACCESS_ACTION;
-  typedef MFINPUTTRUSTAUTHORITY_ACCESS_ACTION MFINPUTTRUSTAUTHORITY_ACCESS_ACTION [1]; //Array 1
   typedef struct MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS {
     DWORD dwSize;
     DWORD dwVer;
@@ -299,7 +295,6 @@ ffi.cdef [[
     GUID guidMajorType;
     GUID guidSubtype;
   } MFT_REGISTER_TYPE_INFO;
-  typedef MFT_REGISTER_TYPE_INFO *WINAPI_MFT_REGISTER_TYPE_INFO*; //Pointer
   typedef struct MFT_REGISTRATION_INFO {
     CLSID clsid;
     GUID guidCategory;
@@ -565,7 +560,6 @@ ffi.cdef [[
     MFARGB ARGB;
     MFAYUVSample AYCbCr;
   } MFPaletteEntry;
-  typedef MFPaletteEntry MFPaletteEntry [1]; //Array 1
   typedef struct MFVideoSurfaceInfo {
     DWORD Format;
     DWORD PaletteEntries;
@@ -583,7 +577,6 @@ ffi.cdef [[
     MFVideoCompressedInfo compressedInfo;
     MFVideoSurfaceInfo surfaceInfo;
   } MFVIDEOFORMAT;
-  typedef MFVIDEOFORMAT *WINAPI_MFVIDEOFORMAT*; //Pointer
   typedef struct ASF_INDEX_IDENTIFIER {
     GUID guidIndexType;
     WORD wStreamNumber;
@@ -654,7 +647,6 @@ ffi.cdef [[
     float right;
     float bottom;
   } MFVideoNormalizedRect;
-  typedef MFVideoNormalizedRect *WINAPI_MFVideoNormalizedRect*; //Pointer
   typedef enum MFP_EVENT_TYPE {
     MFP_EVENT_TYPE_PLAY = 0,
     MFP_EVENT_TYPE_PAUSE = 1,
@@ -694,7 +686,6 @@ ffi.cdef [[
     UINT UABProtectionLevel;
     UINT Reserved;
   } DXVA2_VideoDesc;
-  typedef DXVA2_VideoDesc *WINAPI_DXVA2_VideoDesc*; //Pointer
   typedef enum WINAPI_DXVA2_BufferType {
     DXVA2_PictureParametersBufferType = 0,
     DXVA2_MacroBlockControlBufferType = 1,
@@ -731,7 +722,6 @@ ffi.cdef [[
     DXVA2_DecodeBufferDesc* pCompressedBuffers;
     DXVA2_DecodeExtensionData* pExtensionData;
   } DXVA2_DecodeExecuteParams;
-  typedef DXVA2_DecodeExecuteParams *WINAPI_DXVA2_DecodeExecuteParams*; //Pointer
   typedef struct DXVA2_ConfigPictureDecode {
     GUID guidConfigBitstreamEncryption;
     GUID guidConfigMBcontrolEncryption;
@@ -751,7 +741,6 @@ ffi.cdef [[
     USHORT ConfigMinRenderTargetBuffCount;
     USHORT ConfigDecoderSpecific;
   } DXVA2_ConfigPictureDecode;
-  typedef DXVA2_ConfigPictureDecode *WINAPI_DXVA2_ConfigPictureDecode*; //Pointer
   typedef enum DXVA2_SurfaceType {
     DXVA2_SurfaceType_DecoderRenderTarget = 0,
     DXVA2_SurfaceType_ProcessorRenderTarget = 1,
@@ -822,14 +811,12 @@ ffi.cdef [[
     DXVA2_FilterValues DetailFilterChroma;
     WINAPI_DXVA2_DestData DestData;
   } DXVA2_VideoProcessBltParams;
-  typedef DXVA2_VideoProcessBltParams *WINAPI_DXVA2_VideoProcessBltParams*; //Pointer
   typedef struct DXVA2_AYUVSample8 {
     UCHAR Cr;
     UCHAR Cb;
     UCHAR Y;
     UCHAR Alpha;
   } DXVA2_AYUVSample8;
-  typedef DXVA2_AYUVSample8 DXVA2_AYUVSample8 [16]; //Array 16
   typedef struct DXVA2_VideoSample {
     REFERENCE_TIME Start;
     REFERENCE_TIME End;
@@ -841,14 +828,12 @@ ffi.cdef [[
     DXVA2_Fixed32 PlanarAlpha;
     DWORD SampleData;
   } DXVA2_VideoSample;
-  typedef DXVA2_VideoSample *WINAPI_DXVA2_VideoSample*; //Pointer
   typedef struct MPEG1VIDEOINFO {
     VIDEOINFOHEADER hdr;
     DWORD dwStartTimeCode;
     DWORD cbSequenceHeader;
     BYTE bSequenceHeader[1];
   } MPEG1VIDEOINFO;
-  typedef MPEG1VIDEOINFO *WINAPI_MPEG1VIDEOINFO*; //Pointer
   typedef enum AM_MPEG2Profile {
     AM_MPEG2Profile_Simple = 1,
     AM_MPEG2Profile_Main = 2,
@@ -872,7 +857,6 @@ ffi.cdef [[
     WINAPI_AMMPEG2_FLAGS dwFlags;
     DWORD dwSequenceHeader[1];
   } MPEG2VIDEOINFO;
-  typedef MPEG2VIDEOINFO *WINAPI_MPEG2VIDEOINFO*; //Pointer
   typedef enum DXVAHD_FILTER {
     DXVAHD_FILTER_BRIGHTNESS = 0,
     DXVAHD_FILTER_CONTRAST = 1,
@@ -970,5 +954,4 @@ ffi.cdef [[
     IDirect3DSurface9* pInputSurface;
     IDirect3DSurface9** ppFutureSurfaces;
   } DXVAHD_STREAM_DATA;
-  typedef DXVAHD_STREAM_DATA *WINAPI_DXVAHD_STREAM_DATA*; //Pointer
 ]]

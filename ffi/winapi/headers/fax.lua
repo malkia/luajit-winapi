@@ -4,15 +4,13 @@ ffi.cdef [[
   typedef LPVOID PFAX_RECIPIENT_CALLBACK; //Alias
   typedef LPVOID PFAX_ROUTING_INSTALLATION_CALLBACK; //Alias
   typedef DWORD HCALL; //Alias
-  typedef TCHAR TCHAR [MAX_COMPUTERNAME_LENGTH + 1]; //Array 16
-  typedef DWORD_PTR DWORD_PTR [3]; //Array 3
+  enum { MAX_COMPUTERNAME_LENGTH = 15 };
   typedef struct FAX_CONTEXT_INFO {
     DWORD SizeOfStruct;
     HDC hDC;
     TCHAR ServerName[MAX_COMPUTERNAME_LENGTH + 1];
   } FAX_CONTEXT_INFO;
   typedef FAX_CONTEXT_INFO *PFAX_CONTEXT_INFO; //Pointer
-  typedef FAX_CONTEXT_INFO *WINAPI_FAX_CONTEXT_INFO*; //Pointer
   typedef struct FAX_JOB_PARAM {
     DWORD SizeOfStruct;
     LPCTSTR RecipientNumber;
@@ -51,7 +49,6 @@ ffi.cdef [[
     LPCTSTR Reserved;
   } FAX_CONFIGURATION;
   typedef FAX_CONFIGURATION *PFAX_CONFIGURATION; //Pointer
-  typedef FAX_CONFIGURATION *WINAPI_FAX_CONFIGURATION*; //Pointer
   typedef struct FAX_GLOBAL_ROUTING_INFO {
     DWORD SizeOfStruct;
     DWORD Priority;
@@ -62,7 +59,6 @@ ffi.cdef [[
     LPCTSTR ExtensionFriendlyName;
   } FAX_GLOBAL_ROUTING_INFO;
   typedef FAX_GLOBAL_ROUTING_INFO *PFAX_GLOBAL_ROUTING_INFO; //Pointer
-  typedef FAX_GLOBAL_ROUTING_INFO *WINAPI_FAX_GLOBAL_ROUTING_INFO*; //Pointer
   typedef enum WINAPI_FaxLogCategory {
     FAXLOG_CATEGORY_INIT = 0,
     FAXLOG_CATEGORY_OUTBOUND = 1,
@@ -81,7 +77,6 @@ ffi.cdef [[
     WINAPI_FaxLogLevel Level;
   } FAX_LOG_CATEGORY;
   typedef FAX_LOG_CATEGORY *PFAX_LOG_CATEGORY; //Pointer
-  typedef FAX_LOG_CATEGORY *WINAPI_FAX_LOG_CATEGORY*; //Pointer
   typedef struct FAX_DEVICE_STATUS {
     DWORD SizeOfStruct;
     LPCTSTR CallerId;
@@ -117,7 +112,6 @@ ffi.cdef [[
     LPCTSTR Csid;
   } FAX_PORT_INFO;
   typedef FAX_PORT_INFO *PFAX_PORT_INFO; //Pointer
-  typedef FAX_PORT_INFO *WINAPI_FAX_PORT_INFO*; //Pointer
   typedef struct FAX_COVERPAGE_INFO {
     DWORD SizeOfStruct;
     LPCTSTR CoverPageName;
@@ -150,7 +144,6 @@ ffi.cdef [[
     DWORD PageCount;
   } FAX_COVERPAGE_INFO;
   typedef FAX_COVERPAGE_INFO *PFAX_COVERPAGE_INFO; //Pointer
-  typedef FAX_COVERPAGE_INFO *WINAPI_FAX_COVERPAGE_INFO*; //Pointer
   typedef struct FAX_PRINT_INFO {
     DWORD SizeOfStruct;
     LPCTSTR DocName;
@@ -164,7 +157,6 @@ ffi.cdef [[
     LPCTSTR DrEmailAddress;
     LPCTSTR OutputFileName;
   } FAX_PRINT_INFO;
-  typedef FAX_PRINT_INFO *WINAPI_FAX_PRINT_INFO*; //Pointer
   typedef struct FAX_JOB_ENTRY {
     DWORD SizeOfStruct;
     DWORD JobId;
@@ -188,7 +180,6 @@ ffi.cdef [[
     LPCTSTR DocumentName;
   } FAX_JOB_ENTRY;
   typedef FAX_JOB_ENTRY *PFAX_JOB_ENTRY; //Pointer
-  typedef FAX_JOB_ENTRY *WINAPI_FAX_JOB_ENTRY*; //Pointer
   typedef struct FAX_ROUTING_METHOD {
     DWORD SizeOfStruct;
     DWORD DeviceId;

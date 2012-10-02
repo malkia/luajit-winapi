@@ -54,8 +54,7 @@ ffi.cdef [[
   typedef void* IPerChannelDbLevel; //Interface
   typedef void* ISimpleAudioVolume; //Interface
   typedef void* ISubunit; //Interface
-  typedef WCHAR WCHAR [MAX_SINK_DESCRIPTION_NAME_LENGTH]; //Array 32
-  typedef float float [1]; //Array 1
+  enum { MAX_SINK_DESCRIPTION_NAME_LENGTH = 32 };
   typedef float *float []; //Pointer
   typedef enum WINAPI_AUDCLNT_HRESULT {
     AUDCLNT_E_NOT_INITIALIZED = 0x88890001,

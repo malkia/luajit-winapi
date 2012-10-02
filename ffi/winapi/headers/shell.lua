@@ -307,9 +307,7 @@ ffi.cdef [[
   typedef void* IPropertyStore; //Interface
   typedef HANDLE HDWP; //Alias
   typedef GUID SHELLVIEWID; //Alias
-  typedef SHELLVIEWID* WINAPI_SHELLVIEWID*; //Alias
   typedef GUID KNOWNFOLDERID; //Alias
-  typedef KNOWNFOLDERID *WINAPI_KNOWNFOLDERID*; //Pointer
   typedef KNOWNFOLDERID *REFKNOWNFOLDERID; //Pointer
   typedef GUID TASKOWNERID; //Alias
   typedef TASKOWNERID *REFTASKOWNERID; //Pointer
@@ -323,13 +321,9 @@ ffi.cdef [[
   typedef HANDLE HTHEME; //Alias
   typedef PROPERTYKEY SHCOLUMNID; //Alias
   typedef SHCOLUMNID *LPCSHCOLUMNID; //Pointer
-  typedef SHCOLUMNID *WINAPI_SHCOLUMNID*; //Pointer
   typedef LPVOID BFFCALLBACK; //Alias
   typedef double DATE; //Alias
   typedef BYTE Image; //Alias
-  typedef WCHAR WCHAR [80]; //Array 80
-  typedef WCHAR WCHAR [260]; //Array 260
-  typedef WCHAR WCHAR [2084]; //Array 2084
   typedef struct PREVIEWHANDLERFRAMEINFO {
     HACCEL haccel;
     UINT cAccelEntries;
@@ -390,12 +384,10 @@ ffi.cdef [[
     WINAPI_CSIDL csidl;
   } PERSIST_FOLDER_TARGET_INFO;
 # pragma pack( pop )
-  typedef PERSIST_FOLDER_TARGET_INFO *WINAPI_PERSIST_FOLDER_TARGET_INFO*; //Pointer
   typedef struct SHELL_ITEM_RESOURCE {
     GUID guidType;
     WCHAR szName[260];
   } SHELL_ITEM_RESOURCE;
-  typedef SHELL_ITEM_RESOURCE *WINAPI_SHELL_ITEM_RESOURCE*; //Pointer
   typedef DWORD CM_MASK; //Alias
   typedef DWORD CM_STATE; //Alias
   typedef enum CM_SET_WIDTH_VALUE {
@@ -411,7 +403,6 @@ ffi.cdef [[
     UINT uIdealWidth;
     WCHAR wszName[80];
   } CM_COLUMNINFO;
-  typedef CM_COLUMNINFO *WINAPI_CM_COLUMNINFO*; //Pointer
   typedef UINT CATEGORYINFO_FLAGS; //Alias
   typedef struct CATEGORY_INFO {
     CATEGORYINFO_FLAGS cif;
@@ -479,7 +470,6 @@ ffi.cdef [[
   } FOLDERSETTINGS;
   typedef FOLDERSETTINGS *LPFOLDERSETTINGS; //Pointer
   typedef FOLDERSETTINGS *LPCFOLDERSETTINGS; //Pointer
-  typedef FOLDERSETTINGS *WINAPI_FOLDERSETTINGS*; //Pointer
   typedef struct SV2CVW2_PARAMS {
     DWORD cbSize;
     IShellView* psvPrev;
@@ -512,7 +502,6 @@ ffi.cdef [[
     KF_DEFINITION_FLAGS kfdFlags;
     FOLDERTYPEID ftidType;
   } KNOWNFOLDER_DEFINITION;
-  typedef KNOWNFOLDER_DEFINITION *WINAPI_KNOWNFOLDER_DEFINITION*; //Pointer
   typedef enum SORTDIRECTION {
     SORT_DESCENDING = -1,
     SORT_ASCENDING = 1,
@@ -521,7 +510,6 @@ ffi.cdef [[
     PROPERTYKEY propkey;
     SORTDIRECTION direction;
   } SORTCOLUMN;
-  typedef SORTCOLUMN *WINAPI_SORTCOLUMN*; //Pointer
 # pragma pack( push, 8 )
   typedef struct BANDSITEINFO {
     DWORD dwMask;
@@ -529,7 +517,6 @@ ffi.cdef [[
     DWORD dwStyle;
   } BANDSITEINFO;
 # pragma pack( pop )
-  typedef BANDSITEINFO *WINAPI_BANDSITEINFO*; //Pointer
   typedef DWORD WINAPI_CMIC_Mask; //Alias
 # pragma pack( push, 8 )
   typedef struct CMINVOKECOMMANDINFO {
@@ -575,7 +562,6 @@ ffi.cdef [[
     LPCWSTR pszName;
     LPCWSTR pszSpec;
   } COMDLG_FILTERSPEC;
-  typedef COMDLG_FILTERSPEC *WINAPI_COMDLG_FILTERSPEC*; //Pointer
   typedef enum FDAP {
     FDAP_BOTTOM = 0,
     FDAP_TOP = 1,

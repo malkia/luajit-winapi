@@ -103,7 +103,6 @@ ffi.cdef [[
     LPTSTR lpServiceName;
     LPSERVICE_MAIN_FUNCTION lpServiceProc;
   } SERVICE_TABLE_ENTRY;
-  typedef SERVICE_TABLE_ENTRY *WINAPI_SERVICE_TABLE_ENTRY*; //Pointer
   typedef struct ENUM_SERVICE_STATUS {
     LPTSTR lpServiceName;
     LPTSTR lpDisplayName;

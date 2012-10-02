@@ -3,6 +3,50 @@ require( 'ffi/winapi/headers/ntstatus' )
 require( 'ffi/winapi/internal/internal' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+]]
+if ffi.arch == 'x86' then ffi.cdef[[
+  typedef struct IMAGE_OPTIONAL_HEADER {
+    WINAPI_IMAGE_OPTIONAL_MAGIC Magic;
+    BYTE MajorLinkerVersion;
+    BYTE MinorLinkerVersion;
+    DWORD SizeOfCode;
+    DWORD SizeOfInitializedData;
+    DWORD SizeOfUninitializedData;
+    DWORD AddressOfEntryPoint;
+    DWORD BaseOfCode;
+    DWORD BaseOfData;
+    DWORD ImageBase;
+    DWORD SectionAlignment;
+    DWORD FileAlignment;
+    WORD MajorOperatingSystemVersion;
+    WORD MinorOperatingSystemVersion;
+    WORD MajorImageVersion;
+    WORD MinorImageVersion;
+    WORD MajorSubsystemVersion;
+    WORD MinorSubsystemVersion;
+    DWORD Win32VersionValue;
+    DWORD SizeOfImage;
+    DWORD SizeOfHeaders;
+    DWORD CheckSum;
+    WINAPI_IMAGE_SUBSYSTEM Subsystem;
+    WINAPI_IMAGE_DLLCHARACTERISTICS DllCharacteristics;
+    DWORD SizeOfStackReserve;
+    DWORD SizeOfStackCommit;
+    DWORD SizeOfHeapReserve;
+    DWORD SizeOfHeapCommit;
+    DWORD LoaderFlags;
+    DWORD NumberOfRvaAndSizes;
+    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
+  } IMAGE_OPTIONAL_HEADER;
+]]
+end
+ffi.cdef[[
+]]
+if ffi.arch == 'x64' then ffi.cdef[[
+  typedef IMAGE_OPTIONAL_HEADER64 IMAGE_OPTIONAL_HEADER; //Alias
+]]
+end
+ffi.cdef[[
   typedef HMODULE HINSTANCE; //Alias
   typedef UINT_PTR WPARAM; //Alias
   typedef LONG_PTR LPARAM; //Alias
@@ -13,32 +57,27 @@ ffi.cdef [[
   typedef PVOID HDEVINFO; //Alias
   typedef LPVOID PIO_APC_ROUTINE; //Alias
   typedef LPVOID FARPROC; //Alias
-  typedef LPVOID SID*; //Alias
   typedef PVOID PSID; //Alias
   typedef LPVOID PVECTORED_EXCEPTION_HANDLER; //Alias
   typedef WORD ATOM; //Alias
   typedef LPVOID PSLIST_ENTRY; //Alias
   typedef ULONG_PTR KAFFINITY; //Alias
   typedef VOID STDAPI_(VOID); //Alias
-  typedef WCHAR WCHAR [32]; //Array 32
-  typedef CHAR CHAR [OFS_MAXPATHNAME]; //Array 128
-  typedef TCHAR TCHAR [CCHDEVICENAME]; //Array 32
-  typedef TCHAR TCHAR [CCHFORMNAME]; //Array 32
-  typedef TCHAR TCHAR [RAS_MaxEntryName + 1]; //Array 257
-  typedef ULONG_PTR ULONG_PTR [EXCEPTION_MAXIMUM_PARAMETERS]; //Array 15
+  enum { OFS_MAXPATHNAME = 128 };
+  enum { CCHDEVICENAME = 32 };
+  enum { CCHFORMNAME = 32 };
+  enum { RAS_MaxEntryName = 256 };
+  enum { EXCEPTION_MAXIMUM_PARAMETERS = 15 };
   typedef ULONG_PTR SCARDCONTEXT; //Alias
   typedef SCARDCONTEXT *LPSCARDCONTEXT; //Pointer
   typedef ULONG_PTR SCARDHANDLE; //Alias
   typedef SCARDHANDLE *LPSCARDHANDLE; //Pointer
   typedef void* IAddrBook; //Interface
   typedef IAddrBook* LPADRBOOK; //Alias
-  typedef LPVOID ALLOCATEBUFFER*; //Alias
-  typedef LPVOID FREEBUFFER*; //Alias
   typedef DWORD WLAN_REASON_CODE; //Alias
   typedef WLAN_REASON_CODE *PWLAN_REASON_CODE; //Pointer
   typedef void* IUnknown; //Interface
   typedef IUnknown* LPUNKNOWN; //Alias
-  typedef IUnknown* WINAPI_IUnknown*; //Alias
   typedef enum LCID {
     LOCALE_SYSTEM_DEFAULT = 0x0800,
     LOCALE_USER_DEFAULT = 0x0400,
@@ -56,14 +95,11 @@ ffi.cdef [[
   typedef LIST_ENTRY *PLIST_ENTRY; //Pointer
   typedef LPVOID PSLIST_HEADER; //Alias
   typedef LPVOID PCONTEXT; //Alias
-  typedef PCONTEXT WINAPI_CONTEXT*; //Alias
   typedef struct POINT {
     LONG x;
     LONG y;
   } POINT;
   typedef POINT WINAPI_POINT; //Alias
-  typedef POINT* WINAPI_POINT*; //Alias
-  typedef POINT* WINAPI_POINT*; //Alias
   typedef POINT* LPPOINT; //Alias
   typedef POINT POINTL; //Alias
   typedef enum WINAPI_DMORIENT {
@@ -328,7 +364,6 @@ ffi.cdef [[
     DWORD dmPanningWidth;
     DWORD dmPanningHeight;
   } DEVMODE;
-  typedef DEVMODE *WINAPI_DEVMODE*; //Pointer
   typedef DEVMODE *LPDEVMODE; //Pointer
   typedef DEVMODE *PDEVMODE; //Pointer
   typedef enum HANDLE {
@@ -336,12 +371,10 @@ ffi.cdef [[
   } HANDLE;
   typedef HANDLE *PHANDLE; //Pointer
   typedef HANDLE *LPHANDLE; //Pointer
-  typedef HANDLE *WINAPI_HANDLE*; //Pointer
   typedef HANDLE WINAPI_FILE_HANDLE; //Alias
   typedef HANDLE HACCEL; //Alias
   typedef HANDLE HRSRC; //Alias
   typedef HANDLE HWND; //Alias
-  typedef HWND *WINAPI_HWND*; //Pointer
   typedef HANDLE HGLOBAL; //Alias
   typedef HANDLE HKL; //Alias
   typedef HANDLE HBITMAP; //Alias
@@ -353,19 +386,6 @@ ffi.cdef [[
     GetCurrentThread() = -2,
   } WINAPI_ThreadHandle;
   typedef int32_t HRESULT; //Integer
-  const   int32_t S_OK = 0;
-  const   int32_t S_FALSE = 1;
-  const   int32_t E_ABORT = 0x80004004;
-  const   int32_t E_ACCESSDENIED = 0x80070005;
-  const   int32_t E_FAIL = 0x80004005;
-  const   int32_t E_HANDLE = 0x80070006;
-  const   int32_t E_INVALIDARG = 0x80070057;
-  const   int32_t E_NOINTERFACE = 0x80004002;
-  const   int32_t E_NOTIMPL = 0x80004001;
-  const   int32_t E_OUTOFMEMORY = 0x8007000E;
-  const   int32_t E_POINTER = 0x80004003;
-  const   int32_t E_UNEXPECTED = 0x8000FFFF;
-  const   int32_t CO_E_NOTINITIALIZED = 0x800401F0;
   typedef HRESULT STDAPI; //Alias
   typedef HRESULT SCODE; //Alias
   typedef struct WINAPI_LARGE_INTEGER_s {
@@ -377,8 +397,6 @@ ffi.cdef [[
     LONGLONG QuadPart;
   } LARGE_INTEGER;
   typedef LARGE_INTEGER *PLARGE_INTEGER; //Pointer
-  typedef PLARGE_INTEGER LARGE_INTEGER*; //Alias
-  typedef LARGE_INTEGER* WINAPI_LARGE_INTEGER*; //Alias
   typedef struct WINAPI_ULARGE_INTEGER_s {
     DWORD LowPart;
     LONG HighPart;
@@ -394,24 +412,17 @@ ffi.cdef [[
   } FILETIME;
   typedef FILETIME* PFILETIME; //Alias
   typedef FILETIME* LPFILETIME; //Alias
-  typedef FILETIME* WINAPI_FILETIME*; //Alias
-  typedef FILETIME* FILETIME const*; //Alias
   typedef struct GUID { DWORD Data1; WORD Data2, Data3; BYTE Data4[8]; } GUID;
   typedef GUID* PGUID; //Alias
-  typedef GUID* WINAPI_GUID*; //Alias
   typedef GUID* LPCGUID; //Alias
-  typedef GUID* WINAPI_GUID*; //Alias
   typedef GUID *LPGUID; //Pointer
   typedef LPGUID WINAPI_LPGUID; //Alias
   typedef GUID* REFGUID; //Alias
   typedef GUID CLSID; //Alias
   typedef CLSID* LPCLSID; //Alias
-  typedef CLSID* WINAPI_CLSID*; //Alias
   typedef CLSID *REFCLSID; //Pointer
   typedef GUID UUID; //Alias
-  typedef UUID* WINAPI_UUID*; //Alias
   typedef GUID IID; //Alias
-  typedef IID* WINAPI_IID*; //Alias
   typedef IID *REFIID; //Pointer
   typedef IID *LPIID; //Pointer
   typedef struct LUID {
@@ -420,8 +431,6 @@ ffi.cdef [[
   } LUID;
   typedef LUID* PLUID; //Alias
   typedef GUID SLID; //Alias
-  typedef SLID *WINAPI_SLID*; //Pointer
-  typedef SLID *WINAPI_SLID*; //Pointer
   typedef DWORD ACCESS_MASK; //Alias
   typedef ACCESS_MASK *PACCESS_MASK; //Pointer
   typedef ACCESS_MASK WINAPI_THREAD_ACCESS_MASK; //Alias
@@ -440,7 +449,6 @@ ffi.cdef [[
     WORD wMilliseconds;
   } SYSTEMTIME;
   typedef SYSTEMTIME WINAPI_SYSTEMTIME; //Alias
-  typedef SYSTEMTIME* WINAPI_SYSTEMTIME*; //Alias
   typedef SYSTEMTIME* PSYSTEMTIME; //Alias
   typedef PSYSTEMTIME LPSYSTEMTIME; //Alias
   typedef enum JOBOBJECTINFOCLASS {
@@ -583,14 +591,12 @@ ffi.cdef [[
   } UNICODE_STRING;
   typedef UNICODE_STRING *PUNICODE_STRING; //Pointer
   typedef UNICODE_STRING *PCUNICODE_STRING; //Pointer
-  typedef UNICODE_STRING *WINAPI_UNICODE_STRING*; //Pointer
   typedef struct STRING {
     USHORT Length;
     USHORT MaximumLength;
     PCHAR Buffer;
   } STRING;
   typedef STRING *PSTRING; //Pointer
-  typedef STRING *WINAPI_STRING*; //Pointer
   typedef STRING ANSI_STRING; //Alias
   typedef ANSI_STRING *PANSI_STRING; //Pointer
   typedef ANSI_STRING *PCANSI_STRING; //Pointer
@@ -873,7 +879,6 @@ ffi.cdef [[
     DWORD time;
     POINT pt;
   } MSG;
-  typedef MSG* WINAPI_MSG*; //Alias
   typedef MSG* LPMSG; //Alias
   typedef enum WINAPI_ImageType {
     IMAGE_BITMAP = 0,
@@ -935,10 +940,7 @@ ffi.cdef [[
   } RECT;
   typedef RECT *LPRECT; //Pointer
   typedef LPRECT WINAPI_LPRECT; //Alias
-  typedef LPRECT RECT*; //Alias
   typedef LPRECT LPCRECT; //Alias
-  typedef LPRECT WINAPI_RECT*; //Alias
-  typedef LPRECT WINAPI_RECT*; //Alias
   typedef RECT RECTL; //Alias
   typedef RECTL *LPCRECTL; //Pointer
   typedef enum WINAPI_CodePageEnum {
@@ -1143,7 +1145,6 @@ ffi.cdef [[
     WCHAR cFileName[MAX_PATH];
     WCHAR cAlternateFileName[14];
   } WIN32_FIND_DATAW;
-  typedef WIN32_FIND_DATAW *WINAPI_WIN32_FIND_DATAW*; //Pointer
   typedef struct TIME_ZONE_INFORMATION {
     LONG Bias;
     WCHAR StandardName[32];
@@ -1154,7 +1155,6 @@ ffi.cdef [[
     LONG DaylightBias;
   } TIME_ZONE_INFORMATION;
   typedef TIME_ZONE_INFORMATION *LPTIME_ZONE_INFORMATION; //Pointer
-  typedef TIME_ZONE_INFORMATION *WINAPI_TIME_ZONE_INFORMATION*; //Pointer
   typedef struct OFSTRUCT {
     BYTE cBytes;
     BYTE fFixedDisk;
@@ -1422,7 +1422,7 @@ ffi.cdef [[
     DWORD VirtualAddress;
     DWORD Size;
   } IMAGE_DATA_DIRECTORY;
-  typedef IMAGE_DATA_DIRECTORY IMAGE_DATA_DIRECTORY [IMAGE_NUMBEROF_DIRECTORY_ENTRIES]; //Array 16
+  enum { IMAGE_NUMBEROF_DIRECTORY_ENTRIES = 16 };
   typedef enum WINAPI_IMAGE_OPTIONAL_MAGIC {
     IMAGE_NT_OPTIONAL_HDR32_MAGIC = 0x10b,
     IMAGE_NT_OPTIONAL_HDR64_MAGIC = 0x20b,
@@ -1507,7 +1507,6 @@ ffi.cdef [[
     LPTSTR lpThousandSep;
     UINT NegativeOrder;
   } NUMBERFMT;
-  typedef NUMBERFMT *WINAPI_NUMBERFMT*; //Pointer
   typedef enum WINAPI_DwmWindowAttr {
     DWMWA_NCRENDERING_ENABLED = 1,
     DWMWA_NCRENDERING_POLICY = 2,

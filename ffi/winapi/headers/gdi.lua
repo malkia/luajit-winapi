@@ -23,17 +23,14 @@ ffi.cdef [[
   typedef LPVOID LPPRINTHOOKPROC; //Alias
   typedef LPVOID LPSETUPHOOKPROC; //Alias
   typedef LONGLONG REFERENCE_TIME; //Alias
-  typedef REFERENCE_TIME* WINAPI_REFERENCE_TIME*; //Alias
-  typedef TCHAR TCHAR [LF_FACESIZE]; //Array 32
-  typedef WCHAR WCHAR [LF_FACESIZE]; //Array 32
+  enum { LF_FACESIZE = 32 };
+  enum { LF_FACESIZE = 32 };
   typedef struct RGBQUAD {
     BYTE rgbBlue;
     BYTE rgbGreen;
     BYTE rgbRed;
     BYTE rgbReserved;
   } RGBQUAD;
-  typedef RGBQUAD *WINAPI_RGBQUAD*; //Pointer
-  typedef RGBQUAD RGBQUAD [1]; //Array 1
   typedef enum WINAPI_RegionType {
     RDH_RECTANGLES = 1,
   } WINAPI_RegionType;
@@ -48,19 +45,15 @@ ffi.cdef [[
     RGNDATAHEADER rdh;
     char Buffer;
   } RGNDATA;
-  typedef RGNDATA *WINAPI_RGNDATA*; //Pointer
-  typedef RGNDATA *WINAPI_RGNDATA*; //Pointer
   typedef RGNDATA *LPRGNDATA; //Pointer
   typedef enum COLORREF {
     CLR_INVALID = 0xFFFFFFFF,
   } COLORREF;
-  typedef COLORREF* WINAPI_COLORREF*; //Alias
   typedef struct SIZE {
     LONG cx;
     LONG cy;
   } SIZE;
   typedef SIZE* LPSIZE; //Alias
-  typedef SIZE* WINAPI_SIZE*; //Alias
   typedef SIZE* PSIZE; //Alias
   typedef SIZE SIZEL; //Alias
   typedef SIZEL *LPSIZEL; //Pointer
@@ -163,7 +156,6 @@ ffi.cdef [[
     TCHAR lfFaceName[LF_FACESIZE];
   } LOGFONT;
   typedef LOGFONT *LPLOGFONT; //Pointer
-  typedef LOGFONT *WINAPI_LOGFONT*; //Pointer
   typedef struct LOGFONTW {
     LONG lfHeight;
     LONG lfWidth;
@@ -180,7 +172,6 @@ ffi.cdef [[
     WINAPI_FontPitchAndFamily lfPitchAndFamily;
     WCHAR lfFaceName[LF_FACESIZE];
   } LOGFONTW;
-  typedef LOGFONTW *WINAPI_LOGFONTW*; //Pointer
   typedef struct CHOOSEFONT {
     DWORD lStructSize;
     HWND hwndOwner;
@@ -347,14 +338,12 @@ ffi.cdef [[
     int cyTopHeight;
     int cyBottomHeight;
   } MARGINS;
-  typedef MARGINS *WINAPI_MARGINS*; //Pointer
   typedef struct BLENDFUNCTION {
     BYTE BlendOp;
     BYTE BlendFlags;
     BYTE SourceConstantAlpha;
     BYTE AlphaFormat;
   } BLENDFUNCTION;
-  typedef BLENDFUNCTION *WINAPI_BLENDFUNCTION*; //Pointer
   typedef struct BITMAPINFOHEADER {
     DWORD biSize;
     LONG biWidth;
@@ -368,14 +357,12 @@ ffi.cdef [[
     DWORD biClrUsed;
     DWORD biClrImportant;
   } BITMAPINFOHEADER;
-  typedef BITMAPINFOHEADER *WINAPI_BITMAPINFOHEADER*; //Pointer
   typedef BITMAPINFOHEADER *LPBITMAPINFOHEADER; //Pointer
   typedef struct BITMAPINFO {
     BITMAPINFOHEADER bmiHeader;
     RGBQUAD bmiColors[1];
   } BITMAPINFO;
   typedef BITMAPINFO *LPBITMAPINFO; //Pointer
-  typedef BITMAPINFO *WINAPI_BITMAPINFO*; //Pointer
   typedef BYTE WINAPI_TEXTMETRIC_Pitch; //Alias
 # pragma pack( push, 4 )
   typedef struct TEXTMETRIC {
@@ -411,7 +398,6 @@ ffi.cdef [[
     REFERENCE_TIME AvgTimePerFrame;
     BITMAPINFOHEADER bmiHeader;
   } VIDEOINFOHEADER;
-  typedef VIDEOINFOHEADER *WINAPI_VIDEOINFOHEADER*; //Pointer
   typedef DWORD WINAPI_AMINTERLACE_FLAGS; //Alias
   typedef DWORD WINAPI_AMCOPYPROTECT_FLAGS; //Alias
   typedef DWORD WINAPI_AMCONTROL_FLAGS; //Alias
@@ -429,7 +415,6 @@ ffi.cdef [[
     DWORD dwReserved2;
     BITMAPINFOHEADER bmiHeader;
   } VIDEOINFOHEADER2;
-  typedef VIDEOINFOHEADER2 *WINAPI_VIDEOINFOHEADER2*; //Pointer
   typedef enum PixelFormat {
     PixelFormat4bppIndexed = 0x30402,
     PixelFormat8bppIndexed = 0x30803,
@@ -474,7 +459,6 @@ ffi.cdef [[
     EncoderParameterValueType Type;
     VOID* Value;
   } EncoderParameter;
-  typedef EncoderParameter EncoderParameter [1]; //Array 1
   typedef struct EncoderParameters {
     UINT Count;
     EncoderParameter Parameter[1];

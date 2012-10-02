@@ -1,15 +1,7 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID WINAPI_PRIOMethods*; //Alias
-  typedef LPVOID PRSocketOptionData*; //Alias
-  typedef LPVOID PRNetAddr*; //Alias
-  typedef LPVOID WINAPI_PRNetAddr*; //Alias
-  typedef LPVOID PRFileDesc*; //Alias
   typedef UINT_PTR PRUword; //Alias
-  typedef LPVOID PK11SlotInfo*; //Alias
-  typedef LPVOID CERTCertificateStr*; //Alias
-  typedef LPVOID CERTCertificate*; //Alias
   typedef UINT PRUintn; //Alias
   typedef INT PRIntn; //Alias
   typedef UINT16 PRUint16; //Alias
@@ -21,27 +13,11 @@ ffi.cdef [[
   typedef INT64 PRInt64; //Alias
   typedef double PRFloat64; //Alias
   typedef size_t PRSize; //Alias
-  typedef LPVOID PRThread*; //Alias
-  typedef LPVOID PRThreadStack*; //Alias
-  typedef LPVOID PRLibrary*; //Alias
-  typedef LPVOID PRLock*; //Alias
-  typedef LPVOID PRCondVar*; //Alias
-  typedef LPVOID PRMonitor*; //Alias
   typedef LPVOID PRThreadPrivateDTOR; //Alias
   typedef PRInt32 PROffset32; //Alias
   typedef PRInt64 PROffset64; //Alias
   typedef PRInt64 PRTime; //Alias
-  typedef LPVOID PRFileMap*; //Alias
-  typedef LPVOID PRDir*; //Alias
   typedef LPVOID PRTimeParamFn; //Alias
-  typedef LPVOID PRSharedMemory*; //Alias
-  typedef LPVOID PRProcessAttr*; //Alias
-  typedef LPVOID WINAPI_PRProcessAttr*; //Alias
-  typedef LPVOID PRSem*; //Alias
-  typedef LPVOID PRStack*; //Alias
-  typedef LPVOID PRStackElem*; //Alias
-  typedef LPVOID PRProcess*; //Alias
-  typedef char** char* const*; //Alias
   typedef LPVOID SSLHandshakeCallback; //Alias
   typedef ULONG CK_OBJECT_HANDLE; //Alias
   typedef LPVOID SSLGetClientAuthData; //Alias
@@ -157,7 +133,6 @@ ffi.cdef [[
     WINAPI_PRPollDesc_Flags in_flags;
     WINAPI_PRPollDesc_Flags out_flags;
   } PRPollDesc;
-  typedef PRPollDesc *WINAPI_PRPollDesc*; //Pointer
   typedef struct PRHostEnt {
     char* h_name;
     char** h_aliases;
@@ -165,7 +140,6 @@ ffi.cdef [[
     PRInt16 h_length;
     char** h_addr_list;
   } PRHostEnt;
-  typedef PRHostEnt *WINAPI_PRHostEnt*; //Pointer
   typedef struct PRProtoEnt {
     char* p_name;
     char** p_aliases;
@@ -276,5 +250,4 @@ ffi.cdef [[
     PRInt16 tm_yday;
     PRTimeParameters tm_params;
   } PRExplodedTime;
-  typedef PRExplodedTime *WINAPI_PRExplodedTime*; //Pointer
 ]]

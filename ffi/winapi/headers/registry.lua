@@ -13,7 +13,6 @@ ffi.cdef [[
     HKEY_DYN_DATA = -2147483642,
   } HKEY;
   typedef HKEY* PHKEY; //Alias
-  typedef HKEY* WINAPI_HKEY*; //Alias
   typedef DWORD REGSAM; //Alias
   typedef enum WINAPI_RegType {
     REG_NONE = 0,

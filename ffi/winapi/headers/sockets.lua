@@ -1,8 +1,48 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID WINAPI_SOCKET_PEER_TARGET_NAME*; //Alias
-  typedef LPVOID WINAPI_SOCKET_SECURITY_QUERY_TEMPLATE*; //Alias
+]]
+if ffi.arch == 'x86' then ffi.cdef[[
+  typedef struct WSADATA {
+    WORD wVersion;
+    WORD wHighVersion;
+    char szDescription[WSADESCRIPTION_LEN + 1];
+    char szSystemStatus[WSASYS_STATUS_LEN + 1];
+    unsigned short iMaxSockets;
+    unsigned short iMaxUdpDg;
+    WINAPI_LPVOID_char* lpVendorInfo;
+  } WSADATA;
+  typedef WSADATA *LPWSADATA; //Pointer
+  typedef struct servent {
+    char* s_name;
+    char** s_aliases;
+    short s_port;
+    char* s_proto;
+  } servent;
+]]
+end
+ffi.cdef[[
+]]
+if ffi.arch == 'x64' then ffi.cdef[[
+  typedef struct WSADATA {
+    WORD wVersion;
+    WORD wHighVersion;
+    unsigned short iMaxSockets;
+    unsigned short iMaxUdpDg;
+    WINAPI_LPVOID_char* lpVendorInfo;
+    char szDescription[WSADESCRIPTION_LEN + 1];
+    char szSystemStatus[WSASYS_STATUS_LEN + 1];
+  } WSADATA;
+  typedef WSADATA *LPWSADATA; //Pointer
+  typedef struct servent {
+    char* s_name;
+    char** s_aliases;
+    char* s_proto;
+    short s_port;
+  } servent;
+]]
+end
+ffi.cdef[[
   typedef OVERLAPPED WSAOVERLAPPED; //Alias
   typedef WSAOVERLAPPED *LPWSAOVERLAPPED; //Pointer
   typedef LPVOID LPWSAOVERLAPPED_COMPLETION_ROUTINE; //Alias
@@ -10,13 +50,12 @@ ffi.cdef [[
   typedef int socklen_t; //Alias
   typedef LPVOID LPCONDITIONPROC; //Alias
   typedef HANDLE WSAEVENT; //Alias
-  typedef WSAEVENT *WINAPI_WSAEVENT*; //Pointer
   typedef unsigned int u_int; //Alias
-  typedef int int [FD_MAX_EVENTS]; //Array 10
-  typedef TCHAR TCHAR [WSAPROTOCOL_LEN + 1]; //Array 256
-  typedef DWORD DWORD [MAX_PROTOCOL_CHAIN]; //Array 7
-  typedef char char [WSADESCRIPTION_LEN + 1]; //Array 257
-  typedef char char [WSASYS_STATUS_LEN + 1]; //Array 129
+  enum { FD_MAX_EVENTS = 10 };
+  enum { WSAPROTOCOL_LEN = 255 };
+  enum { MAX_PROTOCOL_CHAIN = 7 };
+  enum { WSADESCRIPTION_LEN = 256 };
+  enum { WSASYS_STATUS_LEN = 128 };
   typedef enum WINAPI_AddressFamily {
     AF_UNSPEC = 0,
     AF_UNIX = 1,
@@ -127,8 +166,6 @@ ffi.cdef [[
     ADDRESS_FAMILY sa_family;
     CHAR sa_data[14];
   } struct sockaddr;
-  typedef struct sockaddr *WINAPI_sockaddr*; //Pointer
-  typedef struct sockaddr *WINAPI_struct sockaddr*; //Pointer
   typedef UINT WINAPI_AI_FLAGS; //Alias
   typedef struct struct addrinfo {
     WINAPI_AI_FLAGS ai_flags;
@@ -140,7 +177,6 @@ ffi.cdef [[
     struct sockaddr* ai_addr;
     LPVOID ai_next;
   } struct addrinfo;
-  typedef struct addrinfo *WINAPI_struct addrinfo*; //Pointer
   typedef struct ADDRINFOW {
     WINAPI_AI_FLAGS ai_flags;
     WINAPI_AddressFamily ai_family;
@@ -151,7 +187,6 @@ ffi.cdef [[
     struct sockaddr* ai_addr;
     LPVOID ai_next;
   } ADDRINFOW;
-  typedef ADDRINFOW *WINAPI_ADDRINFOW*; //Pointer
   typedef ADDRINFOW *PADDRINFOW; //Pointer
   typedef struct ADDRINFOEX {
     WINAPI_AI_FLAGS ai_flags;
@@ -167,11 +202,10 @@ ffi.cdef [[
     LPVOID ai_next;
   } ADDRINFOEX;
   typedef ADDRINFOEX *PADDRINFOEX; //Pointer
-  typedef ADDRINFOEX *WINAPI_ADDRINFOEX*; //Pointer
   typedef enum SOCKET {
     INVALID_SOCKET = -1,
   } SOCKET;
-  typedef SOCKET SOCKET [FD_SETSIZE]; //Array 64
+  enum { FD_SETSIZE = 64 };
   typedef struct fd_set {
     u_int fd_count;
     SOCKET fd_array[FD_SETSIZE];
@@ -213,7 +247,6 @@ ffi.cdef [[
   } WSAPROTOCOL_INFO;
   typedef WSAPROTOCOL_INFO *LPWSAPROTOCOL_INFO; //Pointer
   typedef struct sockaddr SOCKADDR; //Alias
-  typedef SOCKADDR *WINAPI_SOCKADDR*; //Pointer
   typedef SOCKADDR *PSOCKADDR; //Pointer
   typedef SOCKADDR *LPSOCKADDR; //Pointer
   typedef union WINAPI_IN6_ADDR_u {
@@ -223,7 +256,6 @@ ffi.cdef [[
   typedef struct IN6_ADDR {
     WINAPI_IN6_ADDR_u u;
   } IN6_ADDR;
-  typedef IN6_ADDR *WINAPI_IN6_ADDR*; //Pointer
   typedef ULONG WINAPI_FDEvents; //Alias
   typedef struct WSANETWORKEVENTS {
     WINAPI_FDEvents lNetworkEvents;
@@ -248,7 +280,6 @@ ffi.cdef [[
   typedef struct IN_ADDR {
     WINAPI_IN_ADDR_u S_un;
   } IN_ADDR;
-  typedef IN_ADDR *WINAPI_IN_ADDR*; //Pointer
   typedef IN_ADDR struct in_addr; //Alias
   typedef enum SOCKET_SECURITY_PROTOCOL {
     SOCKET_SECURITY_PROTOCOL_DEFAULT = 0,
@@ -267,12 +298,10 @@ ffi.cdef [[
     SOCKET_SECURITY_PROTOCOL SecurityProtocol;
     WINAPI_SocketSecurityFlags SecurityFlags;
   } SOCKET_SECURITY_SETTINGS;
-  typedef SOCKET_SECURITY_SETTINGS *WINAPI_SOCKET_SECURITY_SETTINGS*; //Pointer
   typedef struct struct timeval {
     long tv_sec;
     long tv_usec;
   } struct timeval;
-  typedef struct timeval *WINAPI_struct timeval*; //Pointer
   typedef struct struct hostent {
     char* h_name;
     char** h_aliases;
@@ -290,8 +319,6 @@ ffi.cdef [[
     INT iSockaddrLength;
   } SOCKET_ADDRESS;
   typedef SOCKET_ADDRESS *PSOCKET_ADDRESS; //Pointer
-  typedef PSOCKET_ADDRESS *LPSOCKET_ADDRESS*; //Pointer
-  typedef SOCKET_ADDRESS SOCKET_ADDRESS [1]; //Array 1
   typedef struct SOCKET_ADDRESS_LIST {
     INT iAddressCount;
     SOCKET_ADDRESS Address[1];

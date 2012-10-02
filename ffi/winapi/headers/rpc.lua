@@ -8,20 +8,11 @@ ffi.cdef [[
   typedef void* RPC_AUTHZ_HANDLE; //Alias
   typedef void* RPC_AUTH_IDENTITY_HANDLE; //Alias
   typedef void* RPC_EP_INQ_HANDLE; //Alias
-  typedef LPVOID RPC_CLIENT_ALLOC*; //Alias
-  typedef LPVOID RPC_CLIENT_FREE*; //Alias
   typedef LPVOID RPC_MGMT_AUTHORIZATION_FN; //Alias
   typedef LPVOID RPC_OBJECT_INQ_FN; //Alias
-  typedef void* RPC_MGR_EPV*; //Alias
   typedef LPVOID RPC_AUTH_KEY_RETRIEVAL_FN; //Alias
-  typedef LPVOID RPC_IF_CALLBACK_FN*; //Alias
   typedef void* RPC_SS_THREAD_HANDLE; //Alias
   typedef LPVOID PFN_RPCNOTIFICATION_ROUTINE; //Alias
-  typedef UUID* UUID* [1]; //Array 1
-  typedef RPC_TSTR RPC_TSTR [1]; //Array 1
-  typedef LONG_PTR LONG_PTR [4]; //Array 4
-  typedef unsigned long unsigned long [1]; //Array 1
-  typedef RPC_BINDING_HANDLE RPC_BINDING_HANDLE [1]; //Array 1
   typedef struct RPC_PROTSEQ_VECTOR {
     unsigned int Count;
     RPC_TSTR Protseq[1];
@@ -115,7 +106,6 @@ ffi.cdef [[
     unsigned short VersMajor;
     unsigned short VersMinor;
   } RPC_IF_ID;
-  typedef RPC_IF_ID* RPC_IF_ID* [1]; //Array 1
   typedef struct RPC_IF_ID_VECTOR {
     unsigned long Count;
     RPC_IF_ID* IfId[1];
@@ -201,7 +191,7 @@ ffi.cdef [[
     ExtendedErrorParamTypes ParameterType;
     WINAPI_RPC_EE_INFO_PARAM_u u;
   } RPC_EE_INFO_PARAM;
-  typedef RPC_EE_INFO_PARAM RPC_EE_INFO_PARAM [MaxNumberOfEEInfoParams]; //Array 4
+  enum { MaxNumberOfEEInfoParams = 4 };
   typedef union WINAPI_RPC_EXTENDED_ERROR_INFO_u {
     SYSTEMTIME SystemTime;
     FILETIME FileTime;

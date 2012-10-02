@@ -8,7 +8,7 @@ ffi.cdef [[
     ULONG OldLength;
     ULONG NewLength;
   } WINAPI_PATCH_INTERLEAVE_MAP_s;
-  typedef WINAPI_PATCH_INTERLEAVE_MAP_s WINAPI_PATCH_INTERLEAVE_MAP_s] [1; //Array 1
+  enum {  = 1 };
   typedef struct PATCH_INTERLEAVE_MAP {
     ULONG CountRanges;
     WINAPI_PATCH_INTERLEAVE_MAP_s] Range[1;

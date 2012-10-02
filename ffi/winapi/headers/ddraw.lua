@@ -25,8 +25,8 @@ ffi.cdef [[
   typedef LPVOID LPDDENUMCALLBACKEX; //Alias
   typedef LPVOID LPDDENUMSURFACESCALLBACK; //Alias
   typedef LPVOID LPDDENUMMODESCALLBACK; //Alias
-  typedef DWORD DWORD [DD_ROP_SPACE]; //Array 8
-  typedef char char [MAX_DDDEVICEID_STRING]; //Array 512
+  enum { DD_ROP_SPACE = 8 };
+  enum { MAX_DDDEVICEID_STRING = 512 };
   typedef enum WINAPI_DD_HRESULT {
     DD_OK = 0x00000000,
     DD_FALSE = 0x00000001,

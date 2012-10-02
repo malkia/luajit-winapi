@@ -2,7 +2,7 @@ require( 'ffi/winapi/headers/security' )
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef BYTE BYTE [IMAGE_SIZEOF_SHORT_NAME]; //Array 8
+  enum { IMAGE_SIZEOF_SHORT_NAME = 8 };
   typedef union WINAPI_IMAGE_SECTION_HEADER_u {
     DWORD PhysicalAddress;
     DWORD VirtualSize;
@@ -82,7 +82,7 @@ ffi.cdef [[
     SIZE_T cbSize;
     PVOID lpValue;
   } PROC_THREAD_ATTRIBUTE_ENTRY;
-  typedef PROC_THREAD_ATTRIBUTE_ENTRY PROC_THREAD_ATTRIBUTE_ENTRY [ANYSIZE_ARRAY]; //Array 1
+  enum { ANYSIZE_ARRAY = 1 };
   typedef struct PROC_THREAD_ATTRIBUTE_LIST {
     WINAPI_ProcThreadAttributeFlags dwFlags;
     ULONG Size;

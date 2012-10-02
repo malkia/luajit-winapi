@@ -2,7 +2,6 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef ULONG IPAddr; //Alias
-  typedef IPAddr IPAddr [1]; //Array 1
   typedef UCHAR WINAPI_IpOptionFlags; //Alias
   typedef struct IP_OPTION_INFORMATION {
     UCHAR Ttl;
