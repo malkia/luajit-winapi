@@ -257,8 +257,8 @@ ffi.cdef [[
     HP_TLS1PRF_SEED = 0x0007,
   } WINAPI_CryptHashParam;
   typedef struct DATA_BLOB {
-    DWORD cbData,
-    BYTE* pbData,
+    DWORD cbData;
+    BYTE* pbData;
   } DATA_BLOB;
   typedef DATA_BLOB CRYPT_INTEGER_BLOB; //Alias
   typedef CRYPT_INTEGER_BLOB *PCRYPT_INTEGER_BLOB; //Pointer
@@ -282,310 +282,316 @@ ffi.cdef [[
   typedef DATA_BLOB CRL_BLOB; //Alias
   typedef CRL_BLOB *PCRL_BLOB; //Pointer
   typedef struct BCryptBuffer {
-    ULONG cbBuffer,
-    ULONG BufferType,
-    PVOID pvBuffer,
+    ULONG cbBuffer;
+    ULONG BufferType;
+    PVOID pvBuffer;
   } BCryptBuffer;
   typedef BCryptBuffer *PBCryptBuffer; //Pointer
   typedef struct BCryptBufferDesc {
-    ULONG ulVersion,
-    ULONG cBuffers,
-    PBCryptBuffer pBuffers,
+    ULONG ulVersion;
+    ULONG cBuffers;
+    PBCryptBuffer pBuffers;
   } BCryptBufferDesc;
   typedef struct CRYPT_ATTRIBUTE_TYPE_VALUE {
-    LPSTR pszObjId,
-    CRYPT_OBJID_BLOB Value,
+    LPSTR pszObjId;
+    CRYPT_OBJID_BLOB Value;
   } CRYPT_ATTRIBUTE_TYPE_VALUE;
   typedef struct CRYPT_ALGORITHM_IDENTIFIER {
-    LPSTR pszObjId,
-    CRYPT_OBJID_BLOB Parameters,
+    LPSTR pszObjId;
+    CRYPT_OBJID_BLOB Parameters;
   } CRYPT_ALGORITHM_IDENTIFIER;
   typedef CRYPT_ALGORITHM_IDENTIFIER *PCRYPT_ALGORITHM_IDENTIFIER; //Pointer
   typedef struct SIP_INDIRECT_DATA {
-    CRYPT_ATTRIBUTE_TYPE_VALUE Data,
-    CRYPT_ALGORITHM_IDENTIFIER DigestAlgorithm,
-    CRYPT_HASH_BLOB Digest,
+    CRYPT_ATTRIBUTE_TYPE_VALUE Data;
+    CRYPT_ALGORITHM_IDENTIFIER DigestAlgorithm;
+    CRYPT_HASH_BLOB Digest;
   } SIP_INDIRECT_DATA;
   typedef struct CERT_EXTENSION {
-    LPSTR pszObjId,
-    BOOL fCritical,
-    CRYPT_OBJID_BLOB Value,
+    LPSTR pszObjId;
+    BOOL fCritical;
+    CRYPT_OBJID_BLOB Value;
   } CERT_EXTENSION;
   typedef CERT_EXTENSION *PCERT_EXTENSION; //Pointer
   typedef CERT_EXTENSION *CERT_EXTENSION[]; //Pointer
   typedef struct CERT_EXTENSIONS {
-    DWORD cExtension,
-    PCERT_EXTENSION rgExtension,
+    DWORD cExtension;
+    PCERT_EXTENSION rgExtension;
   } CERT_EXTENSIONS;
   typedef CERT_EXTENSIONS *PCERT_EXTENSIONS; //Pointer
   typedef struct CRYPT_BIT_BLOB {
-    DWORD cbData,
-    BYTE* pbData,
-    DWORD cUnusedBits,
+    DWORD cbData;
+    BYTE* pbData;
+    DWORD cUnusedBits;
   } CRYPT_BIT_BLOB;
   typedef struct CERT_PUBLIC_KEY_INFO {
-    CRYPT_ALGORITHM_IDENTIFIER Algorithm,
-    CRYPT_BIT_BLOB PublicKey,
+    CRYPT_ALGORITHM_IDENTIFIER Algorithm;
+    CRYPT_BIT_BLOB PublicKey;
   } CERT_PUBLIC_KEY_INFO;
   typedef CERT_PUBLIC_KEY_INFO *PCERT_PUBLIC_KEY_INFO; //Pointer
   typedef struct CERT_INFO {
-    DWORD dwVersion,
-    CRYPT_INTEGER_BLOB SerialNumber,
-    CRYPT_ALGORITHM_IDENTIFIER SignatureAlgorithm,
-    CERT_NAME_BLOB Issuer,
-    FILETIME NotBefore,
-    FILETIME NotAfter,
-    CERT_NAME_BLOB Subject,
-    CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo,
-    CRYPT_BIT_BLOB IssuerUniqueId,
-    CRYPT_BIT_BLOB SubjectUniqueId,
-    DWORD cExtension,
-    PCERT_EXTENSION rgExtension,
+    DWORD dwVersion;
+    CRYPT_INTEGER_BLOB SerialNumber;
+    CRYPT_ALGORITHM_IDENTIFIER SignatureAlgorithm;
+    CERT_NAME_BLOB Issuer;
+    FILETIME NotBefore;
+    FILETIME NotAfter;
+    CERT_NAME_BLOB Subject;
+    CERT_PUBLIC_KEY_INFO SubjectPublicKeyInfo;
+    CRYPT_BIT_BLOB IssuerUniqueId;
+    CRYPT_BIT_BLOB SubjectUniqueId;
+    DWORD cExtension;
+    PCERT_EXTENSION rgExtension;
   } CERT_INFO;
   typedef CERT_INFO *PCERT_INFO; //Pointer
   typedef DWORD WINAPI_CertEncodingType; //Alias
   typedef struct CERT_CONTEXT {
-    WINAPI_CertEncodingType dwCertEncodingType,
-    BYTE* pbCertEncoded,
-    DWORD cbCertEncoded,
-    PCERT_INFO pCertInfo,
-    HCERTSTORE hCertStore,
+    WINAPI_CertEncodingType dwCertEncodingType;
+    BYTE* pbCertEncoded;
+    DWORD cbCertEncoded;
+    PCERT_INFO pCertInfo;
+    HCERTSTORE hCertStore;
   } CERT_CONTEXT;
   typedef CERT_CONTEXT *PCCERT_CONTEXT; //Pointer
   typedef struct SIGNER_CONTEXT {
-    DWORD cbSize,
-    DWORD cbBlob,
-    BYTE* pbBlob,
+    DWORD cbSize;
+    DWORD cbBlob;
+    BYTE* pbBlob;
   } SIGNER_CONTEXT;
   typedef struct CRYPT_ATTRIBUTE {
-    LPSTR pszObjId,
-    DWORD cValue,
-    PCRYPT_ATTR_BLOB rgValue,
+    LPSTR pszObjId;
+    DWORD cValue;
+    PCRYPT_ATTR_BLOB rgValue;
   } CRYPT_ATTRIBUTE;
   typedef CRYPT_ATTRIBUTE *PCRYPT_ATTRIBUTE; //Pointer
   typedef CRYPT_ATTRIBUTE *CRYPT_ATTRIBUTE[]; //Pointer
   typedef struct CRYPT_ATTRIBUTES {
-    DWORD cAttr,
-    PCRYPT_ATTRIBUTE rgAttr,
+    DWORD cAttr;
+    PCRYPT_ATTRIBUTE rgAttr;
   } CRYPT_ATTRIBUTES;
   typedef CRYPT_ATTRIBUTES *PCRYPT_ATTRIBUTES; //Pointer
+# pragma pack( push, 8 )
   typedef struct CRYPTCATMEMBER {
-    DWORD cbStruct,
-    LPWSTR pwszReferenceTag,
-    LPWSTR pwszFileName,
-    GUID gSubjectType,
-    DWORD fdwMemberFlags,
-    SIP_INDIRECT_DATA* pIndirectData,
-    DWORD dwCertVersion,
-    DWORD dwReserved,
-    HANDLE hReserved,
-    CRYPT_ATTR_BLOB sEncodedIndirectData,
-    CRYPT_ATTR_BLOB sEncodedMemberInfo,
+    DWORD cbStruct;
+    LPWSTR pwszReferenceTag;
+    LPWSTR pwszFileName;
+    GUID gSubjectType;
+    DWORD fdwMemberFlags;
+    SIP_INDIRECT_DATA* pIndirectData;
+    DWORD dwCertVersion;
+    DWORD dwReserved;
+    HANDLE hReserved;
+    CRYPT_ATTR_BLOB sEncodedIndirectData;
+    CRYPT_ATTR_BLOB sEncodedMemberInfo;
   } CRYPTCATMEMBER;
+# pragma pack( pop )
   typedef struct CRYPT_PROVUI_DATA {
-    DWORD cbStruct,
-    DWORD dwFinalError,
-    WCHAR* pYesButtonText,
-    WCHAR* pNoButtonText,
-    WCHAR* pMoreInfoButtonText,
-    WCHAR* pAdvancedLinkText,
-    WCHAR* pCopyActionText,
-    WCHAR* pCopyActionTextNoTS,
-    WCHAR* pCopyActionTextNotSigned,
+    DWORD cbStruct;
+    DWORD dwFinalError;
+    WCHAR* pYesButtonText;
+    WCHAR* pNoButtonText;
+    WCHAR* pMoreInfoButtonText;
+    WCHAR* pAdvancedLinkText;
+    WCHAR* pCopyActionText;
+    WCHAR* pCopyActionTextNoTS;
+    WCHAR* pCopyActionTextNotSigned;
   } CRYPT_PROVUI_DATA;
   typedef struct CRYPT_PROVUI_FUNCS {
-    DWORD cbStruct,
-    CRYPT_PROVUI_DATA* psUIData,
-    PFN_PROVUI_CALL pfnOnMoreInfoClick,
-    PFN_PROVUI_CALL pfnOnMoreInfoClickDefault,
-    PFN_PROVUI_CALL pfnOnAdvancedClick,
-    PFN_PROVUI_CALL pfnOnAdvancedClickDefault,
+    DWORD cbStruct;
+    CRYPT_PROVUI_DATA* psUIData;
+    PFN_PROVUI_CALL pfnOnMoreInfoClick;
+    PFN_PROVUI_CALL pfnOnMoreInfoClickDefault;
+    PFN_PROVUI_CALL pfnOnAdvancedClick;
+    PFN_PROVUI_CALL pfnOnAdvancedClickDefault;
   } CRYPT_PROVUI_FUNCS;
   typedef struct CRYPT_PROVIDER_FUNCTIONS {
-    DWORD cbStruct,
-    PFN_CPD_MEM_ALLOC pfnAlloc,
-    PFN_CPD_MEM_FREE pfnFree,
-    PFN_CPD_ADD_STORE pfnAddStore2Chain,
-    PFN_CPD_ADD_SGNR pfnAddSgnr2Chain,
-    PFN_CPD_ADD_CERT pfnAddCert2Chain,
-    PFN_CPD_ADD_PRIVDATA pfnAddPrivData2Chain,
-    PFN_PROVIDER_INIT_CALL pfnInitialize,
-    PFN_PROVIDER_OBJTRUST_CALL pfnObjectTrust,
-    PFN_PROVIDER_SIGTRUST_CALL pfnSignatureTrust,
-    PFN_PROVIDER_CERTTRUST_CALL pfnCertificateTrust,
-    PFN_PROVIDER_FINALPOLICY_CALL pfnFinalPolicy,
-    PFN_PROVIDER_CERTCHKPOLICY_CALL pfnCertCheckPolicy,
-    PFN_PROVIDER_TESTFINALPOLICY_CALL pfnTestFinalPolicy,
-    CRYPT_PROVUI_FUNCS* psUIpfns,
-    PFN_PROVIDER_CLEANUP_CALL pfnCleanupPolicy,
+    DWORD cbStruct;
+    PFN_CPD_MEM_ALLOC pfnAlloc;
+    PFN_CPD_MEM_FREE pfnFree;
+    PFN_CPD_ADD_STORE pfnAddStore2Chain;
+    PFN_CPD_ADD_SGNR pfnAddSgnr2Chain;
+    PFN_CPD_ADD_CERT pfnAddCert2Chain;
+    PFN_CPD_ADD_PRIVDATA pfnAddPrivData2Chain;
+    PFN_PROVIDER_INIT_CALL pfnInitialize;
+    PFN_PROVIDER_OBJTRUST_CALL pfnObjectTrust;
+    PFN_PROVIDER_SIGTRUST_CALL pfnSignatureTrust;
+    PFN_PROVIDER_CERTTRUST_CALL pfnCertificateTrust;
+    PFN_PROVIDER_FINALPOLICY_CALL pfnFinalPolicy;
+    PFN_PROVIDER_CERTCHKPOLICY_CALL pfnCertCheckPolicy;
+    PFN_PROVIDER_TESTFINALPOLICY_CALL pfnTestFinalPolicy;
+    CRYPT_PROVUI_FUNCS* psUIpfns;
+    PFN_PROVIDER_CLEANUP_CALL pfnCleanupPolicy;
   } CRYPT_PROVIDER_FUNCTIONS;
+# pragma pack( push, 8 )
   typedef struct CRYPTCATCDF {
-    DWORD cbStruct,
-    HANDLE hFile,
-    DWORD dwCurFilePos,
-    DWORD dwLastMemberOffset,
-    BOOL fEOF,
-    LPWSTR pwszResultDir,
-    HANDLE hCATStore,
+    DWORD cbStruct;
+    HANDLE hFile;
+    DWORD dwCurFilePos;
+    DWORD dwLastMemberOffset;
+    BOOL fEOF;
+    LPWSTR pwszResultDir;
+    HANDLE hCATStore;
   } CRYPTCATCDF;
+# pragma pack( pop )
   typedef DWORD WINAPI_CryptCatTypeAndAction; //Alias
+# pragma pack( push, 8 )
   typedef struct CRYPTCATATTRIBUTE {
-    DWORD cbStruct,
-    LPWSTR pwszReferenceTag,
-    WINAPI_CryptCatTypeAndAction dwAttrTypeAndAction,
-    DWORD cbValue,
-    BYTE* pbValue,
-    DWORD dwReserved,
+    DWORD cbStruct;
+    LPWSTR pwszReferenceTag;
+    WINAPI_CryptCatTypeAndAction dwAttrTypeAndAction;
+    DWORD cbValue;
+    BYTE* pbValue;
+    DWORD dwReserved;
   } CRYPTCATATTRIBUTE;
+# pragma pack( pop )
   typedef struct CRYPT_TRUST_REG_ENTRY {
-    DWORD cbStruct,
-    WCHAR* pwszDLLName,
-    WCHAR* pwszFunctionName,
+    DWORD cbStruct;
+    WCHAR* pwszDLLName;
+    WCHAR* pwszFunctionName;
   } CRYPT_TRUST_REG_ENTRY;
   typedef struct CRYPT_REGISTER_ACTIONID {
-    DWORD cbStruct,
-    CRYPT_TRUST_REG_ENTRY sInitProvider,
-    CRYPT_TRUST_REG_ENTRY sObjectProvider,
-    CRYPT_TRUST_REG_ENTRY sSignatureProvider,
-    CRYPT_TRUST_REG_ENTRY sCertificateProvider,
-    CRYPT_TRUST_REG_ENTRY sCertificatePolicyProvider,
-    CRYPT_TRUST_REG_ENTRY sFinalPolicyProvider,
-    CRYPT_TRUST_REG_ENTRY sTestPolicyProvider,
-    CRYPT_TRUST_REG_ENTRY sCleanupProvider,
+    DWORD cbStruct;
+    CRYPT_TRUST_REG_ENTRY sInitProvider;
+    CRYPT_TRUST_REG_ENTRY sObjectProvider;
+    CRYPT_TRUST_REG_ENTRY sSignatureProvider;
+    CRYPT_TRUST_REG_ENTRY sCertificateProvider;
+    CRYPT_TRUST_REG_ENTRY sCertificatePolicyProvider;
+    CRYPT_TRUST_REG_ENTRY sFinalPolicyProvider;
+    CRYPT_TRUST_REG_ENTRY sTestPolicyProvider;
+    CRYPT_TRUST_REG_ENTRY sCleanupProvider;
   } CRYPT_REGISTER_ACTIONID;
   typedef struct CRYPT_PROVIDER_PRIVDATA {
-    DWORD cbStruct,
-    GUID gProviderID,
-    DWORD cbProvData,
-    void* pvProvData,
+    DWORD cbStruct;
+    GUID gProviderID;
+    DWORD cbProvData;
+    void* pvProvData;
   } CRYPT_PROVIDER_PRIVDATA;
   typedef DWORD WINAPI_CERT_CONFIDENCE; //Alias
   typedef struct CTL_USAGE {
-    DWORD cUsageIdentifier,
-    LPSTR* rgpszUsageIdentifier,
+    DWORD cUsageIdentifier;
+    LPSTR* rgpszUsageIdentifier;
   } CTL_USAGE;
   typedef CTL_USAGE *PCTL_USAGE; //Pointer
   typedef struct CTL_ENTRY {
-    CRYPT_DATA_BLOB SubjectIdentifier,
-    DWORD cAttribute,
-    PCRYPT_ATTRIBUTE rgAttribute,
+    CRYPT_DATA_BLOB SubjectIdentifier;
+    DWORD cAttribute;
+    PCRYPT_ATTRIBUTE rgAttribute;
   } CTL_ENTRY;
   typedef CTL_ENTRY *PCTL_ENTRY; //Pointer
   typedef struct CTL_INFO {
-    DWORD dwVersion,
-    CTL_USAGE SubjectUsage,
-    CRYPT_DATA_BLOB ListIdentifier,
-    CRYPT_INTEGER_BLOB SequenceNumber,
-    FILETIME ThisUpdate,
-    FILETIME NextUpdate,
-    CRYPT_ALGORITHM_IDENTIFIER SubjectAlgorithm,
-    DWORD cCTLEntry,
-    PCTL_ENTRY rgCTLEntry,
-    DWORD cExtension,
-    PCERT_EXTENSION rgExtension,
+    DWORD dwVersion;
+    CTL_USAGE SubjectUsage;
+    CRYPT_DATA_BLOB ListIdentifier;
+    CRYPT_INTEGER_BLOB SequenceNumber;
+    FILETIME ThisUpdate;
+    FILETIME NextUpdate;
+    CRYPT_ALGORITHM_IDENTIFIER SubjectAlgorithm;
+    DWORD cCTLEntry;
+    PCTL_ENTRY rgCTLEntry;
+    DWORD cExtension;
+    PCERT_EXTENSION rgExtension;
   } CTL_INFO;
   typedef CTL_INFO *PCTL_INFO; //Pointer
   typedef struct CTL_CONTEXT {
-    DWORD dwMsgAndCertEncodingType,
-    BYTE* pbCtlEncoded,
-    DWORD cbCtlEncoded,
-    PCTL_INFO pCtlInfo,
-    HCERTSTORE hCertStore,
-    HCRYPTMSG hCryptMsg,
-    BYTE* pbCtlContent,
-    DWORD cbCtlContent,
+    DWORD dwMsgAndCertEncodingType;
+    BYTE* pbCtlEncoded;
+    DWORD cbCtlEncoded;
+    PCTL_INFO pCtlInfo;
+    HCERTSTORE hCertStore;
+    HCRYPTMSG hCryptMsg;
+    BYTE* pbCtlContent;
+    DWORD cbCtlContent;
   } CTL_CONTEXT;
   typedef CTL_CONTEXT *PCCTL_CONTEXT; //Pointer
   typedef DWORD WINAPI_CERT_TRUST_Error; //Alias
   typedef DWORD WINAPI_CERT_TRUST_Info; //Alias
   typedef struct CERT_TRUST_STATUS {
-    WINAPI_CERT_TRUST_Error dwErrorStatus,
-    WINAPI_CERT_TRUST_Info dwInfoStatus,
+    WINAPI_CERT_TRUST_Error dwErrorStatus;
+    WINAPI_CERT_TRUST_Info dwInfoStatus;
   } CERT_TRUST_STATUS;
   typedef struct CRL_ENTRY {
-    CRYPT_INTEGER_BLOB SerialNumber,
-    FILETIME RevocationDate,
-    DWORD cExtension,
-    PCERT_EXTENSION rgExtension,
+    CRYPT_INTEGER_BLOB SerialNumber;
+    FILETIME RevocationDate;
+    DWORD cExtension;
+    PCERT_EXTENSION rgExtension;
   } CRL_ENTRY;
   typedef CRL_ENTRY *PCRL_ENTRY; //Pointer
   typedef struct CRL_INFO {
-    DWORD dwVersion,
-    CRYPT_ALGORITHM_IDENTIFIER SignatureAlgorithm,
-    CERT_NAME_BLOB Issuer,
-    FILETIME ThisUpdate,
-    FILETIME NextUpdate,
-    DWORD cCRLEntry,
-    PCRL_ENTRY rgCRLEntry,
-    DWORD cExtension,
-    PCERT_EXTENSION rgExtension,
+    DWORD dwVersion;
+    CRYPT_ALGORITHM_IDENTIFIER SignatureAlgorithm;
+    CERT_NAME_BLOB Issuer;
+    FILETIME ThisUpdate;
+    FILETIME NextUpdate;
+    DWORD cCRLEntry;
+    PCRL_ENTRY rgCRLEntry;
+    DWORD cExtension;
+    PCERT_EXTENSION rgExtension;
   } CRL_INFO;
   typedef CRL_INFO *PCRL_INFO; //Pointer
   typedef struct CRL_CONTEXT {
-    DWORD dwCertEncodingType,
-    BYTE* pbCrlEncoded,
-    DWORD cbCrlEncoded,
-    PCRL_INFO pCrlInfo,
-    HCERTSTORE hCertStore,
+    DWORD dwCertEncodingType;
+    BYTE* pbCrlEncoded;
+    DWORD cbCrlEncoded;
+    PCRL_INFO pCrlInfo;
+    HCERTSTORE hCertStore;
   } CRL_CONTEXT;
   typedef CRL_CONTEXT *PCCRL_CONTEXT; //Pointer
   typedef struct CERT_REVOCATION_CRL_INFO {
-    DWORD cbSize,
-    PCCRL_CONTEXT pBaseCrlContext,
-    PCCRL_CONTEXT pDeltaCrlContext,
-    PCRL_ENTRY pCrlEntry,
-    BOOL fDeltaCrlEntry,
+    DWORD cbSize;
+    PCCRL_CONTEXT pBaseCrlContext;
+    PCCRL_CONTEXT pDeltaCrlContext;
+    PCRL_ENTRY pCrlEntry;
+    BOOL fDeltaCrlEntry;
   } CERT_REVOCATION_CRL_INFO;
   typedef CERT_REVOCATION_CRL_INFO *PCERT_REVOCATION_CRL_INFO; //Pointer
   typedef struct CERT_REVOCATION_INFO {
-    DWORD cbSize,
-    DWORD dwRevocationResult,
-    LPCSTR pszRevocationOid,
-    LPVOID pvOidSpecificInfo,
-    BOOL fHasFreshnessTime,
-    DWORD dwFreshnessTime,
-    PCERT_REVOCATION_CRL_INFO pCrlInfo,
+    DWORD cbSize;
+    DWORD dwRevocationResult;
+    LPCSTR pszRevocationOid;
+    LPVOID pvOidSpecificInfo;
+    BOOL fHasFreshnessTime;
+    DWORD dwFreshnessTime;
+    PCERT_REVOCATION_CRL_INFO pCrlInfo;
   } CERT_REVOCATION_INFO;
   typedef CERT_REVOCATION_INFO *PCERT_REVOCATION_INFO; //Pointer
   typedef CTL_USAGE CERT_ENHKEY_USAGE; //Alias
   typedef CERT_ENHKEY_USAGE *PCERT_ENHKEY_USAGE; //Pointer
   typedef struct CERT_CHAIN_ELEMENT {
-    DWORD cbSize,
-    PCCERT_CONTEXT pCertContext,
-    CERT_TRUST_STATUS TrustStatus,
-    PCERT_REVOCATION_INFO pRevocationInfo,
-    PCERT_ENHKEY_USAGE pIssuanceUsage,
-    PCERT_ENHKEY_USAGE pApplicationUsage,
-    LPCWSTR pwszExtendedErrorInfo,
+    DWORD cbSize;
+    PCCERT_CONTEXT pCertContext;
+    CERT_TRUST_STATUS TrustStatus;
+    PCERT_REVOCATION_INFO pRevocationInfo;
+    PCERT_ENHKEY_USAGE pIssuanceUsage;
+    PCERT_ENHKEY_USAGE pApplicationUsage;
+    LPCWSTR pwszExtendedErrorInfo;
   } CERT_CHAIN_ELEMENT;
   typedef CERT_CHAIN_ELEMENT *PCERT_CHAIN_ELEMENT; //Pointer
   typedef struct CRYPT_PROVIDER_CERT {
-    DWORD cbStruct,
-    PCCERT_CONTEXT pCert,
-    BOOL fCommercial,
-    BOOL fTrustedRoot,
-    BOOL fSelfSigned,
-    BOOL fTestCert,
-    DWORD dwRevokedReason,
-    WINAPI_CERT_CONFIDENCE dwConfidence,
-    DWORD dwError,
-    CTL_CONTEXT* pTrustListContext,
-    BOOL fTrustListSignerCert,
-    PCCTL_CONTEXT pCtlContext,
-    DWORD dwCtlError,
-    BOOL fIsCyclic,
-    PCERT_CHAIN_ELEMENT pChainElement,
+    DWORD cbStruct;
+    PCCERT_CONTEXT pCert;
+    BOOL fCommercial;
+    BOOL fTrustedRoot;
+    BOOL fSelfSigned;
+    BOOL fTestCert;
+    DWORD dwRevokedReason;
+    WINAPI_CERT_CONFIDENCE dwConfidence;
+    DWORD dwError;
+    CTL_CONTEXT* pTrustListContext;
+    BOOL fTrustListSignerCert;
+    PCCTL_CONTEXT pCtlContext;
+    DWORD dwCtlError;
+    BOOL fIsCyclic;
+    PCERT_CHAIN_ELEMENT pChainElement;
   } CRYPT_PROVIDER_CERT;
   typedef struct CRYPT_DECODE_PARA {
-    DWORD cbSize,
-    PFN_CRYPT_ALLOC pfnAlloc,
-    PFN_CRYPT_FREE pfnFree,
+    DWORD cbSize;
+    PFN_CRYPT_ALLOC pfnAlloc;
+    PFN_CRYPT_FREE pfnFree;
   } CRYPT_DECODE_PARA;
   typedef CRYPT_DECODE_PARA *PCRYPT_DECODE_PARA; //Pointer
   typedef struct CRYPT_ENCODE_PARA {
-    DWORD cbSize,
-    PFN_CRYPT_ALLOC pfnAlloc,
-    PFN_CRYPT_FREE pfnFree,
+    DWORD cbSize;
+    PFN_CRYPT_ALLOC pfnAlloc;
+    PFN_CRYPT_FREE pfnFree;
   } CRYPT_ENCODE_PARA;
   typedef CRYPT_ENCODE_PARA *PCRYPT_ENCODE_PARA; //Pointer
   typedef enum WINAPI_CryptPromptFlags {
@@ -596,54 +602,54 @@ ffi.cdef [[
     CRYPTPROTECT_PROMPT_REQUIRE_STRONG = 0x10,
   } WINAPI_CryptPromptFlags;
   typedef struct CRYPTPROTECT_PROMPTSTRUCT {
-    DWORD cbSize,
-    WINAPI_CryptPromptFlags dwPromptFlags,
-    HWND hwndApp,
-    LPCWSTR szPrompt,
+    DWORD cbSize;
+    WINAPI_CryptPromptFlags dwPromptFlags;
+    HWND hwndApp;
+    LPCWSTR szPrompt;
   } CRYPTPROTECT_PROMPTSTRUCT;
   typedef struct CERT_PHYSICAL_STORE_INFO {
-    DWORD cbSize,
-    LPSTR pszOpenStoreProvider,
-    DWORD dwOpenEncodingType,
-    DWORD dwOpenFlags,
-    CRYPT_DATA_BLOB OpenParameters,
-    DWORD dwFlags,
-    DWORD dwPriority,
+    DWORD cbSize;
+    LPSTR pszOpenStoreProvider;
+    DWORD dwOpenEncodingType;
+    DWORD dwOpenFlags;
+    CRYPT_DATA_BLOB OpenParameters;
+    DWORD dwFlags;
+    DWORD dwPriority;
   } CERT_PHYSICAL_STORE_INFO;
   typedef CERT_PHYSICAL_STORE_INFO *PCERT_PHYSICAL_STORE_INFO; //Pointer
   typedef struct CERT_SYSTEM_STORE_INFO {
-    DWORD cbSize,
+    DWORD cbSize;
   } CERT_SYSTEM_STORE_INFO;
   typedef CERT_SYSTEM_STORE_INFO *PCERT_SYSTEM_STORE_INFO; //Pointer
   typedef struct CERT_CREATE_CONTEXT_PARA {
-    DWORD cbSize,
-    PFN_CRYPT_FREE pfnFree,
-    void* pvFree,
-    PFN_CERT_CREATE_CONTEXT_SORT_FUNC pfnSort,
-    void* pvSort,
+    DWORD cbSize;
+    PFN_CRYPT_FREE pfnFree;
+    void* pvFree;
+    PFN_CERT_CREATE_CONTEXT_SORT_FUNC pfnSort;
+    void* pvSort;
   } CERT_CREATE_CONTEXT_PARA;
   typedef CERT_CREATE_CONTEXT_PARA *PCERT_CREATE_CONTEXT_PARA; //Pointer
   typedef struct CERT_SERVER_OCSP_RESPONSE_CONTEXT {
-    DWORD cbSize,
-    BYTE* pbEncodedOcspResponse,
-    DWORD cbEncodedOcspResponse,
+    DWORD cbSize;
+    BYTE* pbEncodedOcspResponse;
+    DWORD cbEncodedOcspResponse;
   } CERT_SERVER_OCSP_RESPONSE_CONTEXT;
   typedef CERT_SERVER_OCSP_RESPONSE_CONTEXT *PCCERT_SERVER_OCSP_RESPONSE_CONTEXT; //Pointer
   typedef struct CRYPT_KEY_PROV_PARAM {
-    DWORD dwParam,
-    BYTE* pbData,
-    DWORD cbData,
-    DWORD dwFlags,
+    DWORD dwParam;
+    BYTE* pbData;
+    DWORD cbData;
+    DWORD dwFlags;
   } CRYPT_KEY_PROV_PARAM;
   typedef CRYPT_KEY_PROV_PARAM *PCRYPT_KEY_PROV_PARAM; //Pointer
   typedef struct CRYPT_KEY_PROV_INFO {
-    LPWSTR pwszContainerName,
-    LPWSTR pwszProvName,
-    DWORD dwProvType,
-    DWORD dwFlags,
-    DWORD cProvParam,
-    PCRYPT_KEY_PROV_PARAM rgProvParam,
-    DWORD dwKeySpec,
+    LPWSTR pwszContainerName;
+    LPWSTR pwszProvName;
+    DWORD dwProvType;
+    DWORD dwFlags;
+    DWORD cProvParam;
+    PCRYPT_KEY_PROV_PARAM rgProvParam;
+    DWORD dwKeySpec;
   } CRYPT_KEY_PROV_INFO;
   typedef CRYPT_KEY_PROV_INFO *PCRYPT_KEY_PROV_INFO; //Pointer
   typedef enum WINAPI_USAGE_MATCH_TYPE {
@@ -651,247 +657,247 @@ ffi.cdef [[
     USAGE_MATCH_TYPE_OR = 0x00000001,
   } WINAPI_USAGE_MATCH_TYPE;
   typedef struct CERT_USAGE_MATCH {
-    WINAPI_USAGE_MATCH_TYPE dwType,
-    CERT_ENHKEY_USAGE Usage,
+    WINAPI_USAGE_MATCH_TYPE dwType;
+    CERT_ENHKEY_USAGE Usage;
   } CERT_USAGE_MATCH;
   typedef CERT_USAGE_MATCH *PCERT_USAGE_MATCH; //Pointer
   typedef struct CERT_CHAIN_PARA {
-    DWORD cbSize,
-    CERT_USAGE_MATCH RequestedUsage,
-    CERT_USAGE_MATCH RequestedIssuancePolicy,
-    DWORD dwUrlRetrievalTimeout,
-    BOOL fCheckRevocationFreshnessTime,
-    DWORD dwRevocationFreshnessTime,
-    LPFILETIME pftCacheResync,
+    DWORD cbSize;
+    CERT_USAGE_MATCH RequestedUsage;
+    CERT_USAGE_MATCH RequestedIssuancePolicy;
+    DWORD dwUrlRetrievalTimeout;
+    BOOL fCheckRevocationFreshnessTime;
+    DWORD dwRevocationFreshnessTime;
+    LPFILETIME pftCacheResync;
   } CERT_CHAIN_PARA;
   typedef CERT_CHAIN_PARA *PCERT_CHAIN_PARA; //Pointer
   typedef struct CERT_SELECT_CHAIN_PARA {
-    HCERTCHAINENGINE hChainEngine,
-    PFILETIME pTime,
-    HCERTSTORE hAdditionalStore,
-    PCERT_CHAIN_PARA pChainPara,
-    DWORD dwFlags,
+    HCERTCHAINENGINE hChainEngine;
+    PFILETIME pTime;
+    HCERTSTORE hAdditionalStore;
+    PCERT_CHAIN_PARA pChainPara;
+    DWORD dwFlags;
   } CERT_SELECT_CHAIN_PARA;
   typedef CERT_SELECT_CHAIN_PARA *PCCERT_SELECT_CHAIN_PARA; //Pointer
   typedef struct CERT_SELECT_CRITERIA {
-    DWORD dwType,
-    DWORD cPara,
-    void** ppPara,
+    DWORD dwType;
+    DWORD cPara;
+    void** ppPara;
   } CERT_SELECT_CRITERIA;
   typedef CERT_SELECT_CRITERIA *PCCERT_SELECT_CRITERIA; //Pointer
   typedef struct CTL_VERIFY_USAGE_PARA {
-    DWORD cbSize,
-    CRYPT_DATA_BLOB ListIdentifier,
-    DWORD cCtlStore,
-    HCERTSTORE* rghCtlStore,
-    DWORD cSignerStore,
-    HCERTSTORE* rghSignerStore,
+    DWORD cbSize;
+    CRYPT_DATA_BLOB ListIdentifier;
+    DWORD cCtlStore;
+    HCERTSTORE* rghCtlStore;
+    DWORD cSignerStore;
+    HCERTSTORE* rghSignerStore;
   } CTL_VERIFY_USAGE_PARA;
   typedef CTL_VERIFY_USAGE_PARA *PCTL_VERIFY_USAGE_PARA; //Pointer
   typedef struct CTL_VERIFY_USAGE_STATUS {
-    DWORD cbSize,
-    DWORD dwError,
-    DWORD dwFlags,
-    PCCTL_CONTEXT* ppCtl,
-    DWORD dwCtlEntryIndex,
-    PCCERT_CONTEXT* ppSigner,
-    DWORD dwSignerIndex,
+    DWORD cbSize;
+    DWORD dwError;
+    DWORD dwFlags;
+    PCCTL_CONTEXT* ppCtl;
+    DWORD dwCtlEntryIndex;
+    PCCERT_CONTEXT* ppSigner;
+    DWORD dwSignerIndex;
   } CTL_VERIFY_USAGE_STATUS;
   typedef CTL_VERIFY_USAGE_STATUS *PCTL_VERIFY_USAGE_STATUS; //Pointer
   typedef struct CERT_CHAIN_ENGINE_CONFIG {
-    DWORD cbSize,
-    HCERTSTORE hRestrictedRoot,
-    HCERTSTORE hRestrictedTrust,
-    HCERTSTORE hRestrictedOther,
-    DWORD cAdditionalStore,
-    HCERTSTORE* rghAdditionalStore,
-    DWORD dwFlags,
-    DWORD dwUrlRetrievalTimeout,
-    DWORD MaximumCachedCertificates,
-    DWORD CycleDetectionModulus,
-    HCERTSTORE hExclusiveRoot,
-    HCERTSTORE hExclusiveTrustedPeople,
+    DWORD cbSize;
+    HCERTSTORE hRestrictedRoot;
+    HCERTSTORE hRestrictedTrust;
+    HCERTSTORE hRestrictedOther;
+    DWORD cAdditionalStore;
+    HCERTSTORE* rghAdditionalStore;
+    DWORD dwFlags;
+    DWORD dwUrlRetrievalTimeout;
+    DWORD MaximumCachedCertificates;
+    DWORD CycleDetectionModulus;
+    HCERTSTORE hExclusiveRoot;
+    HCERTSTORE hExclusiveTrustedPeople;
   } CERT_CHAIN_ENGINE_CONFIG;
   typedef CERT_CHAIN_ENGINE_CONFIG *PCERT_CHAIN_ENGINE_CONFIG; //Pointer
   typedef struct CERT_CHAIN_POLICY_PARA {
-    DWORD cbSize,
-    DWORD dwFlags,
-    void* pvExtraPolicyPara,
+    DWORD cbSize;
+    DWORD dwFlags;
+    void* pvExtraPolicyPara;
   } CERT_CHAIN_POLICY_PARA;
   typedef CERT_CHAIN_POLICY_PARA *PCERT_CHAIN_POLICY_PARA; //Pointer
   typedef struct CERT_CHAIN_POLICY_STATUS {
-    DWORD cbSize,
-    DWORD dwError,
-    LONG lChainIndex,
-    LONG lElementIndex,
-    void* pvExtraPolicyStatus,
+    DWORD cbSize;
+    DWORD dwError;
+    LONG lChainIndex;
+    LONG lElementIndex;
+    void* pvExtraPolicyStatus;
   } CERT_CHAIN_POLICY_STATUS;
   typedef CERT_CHAIN_POLICY_STATUS *PCERT_CHAIN_POLICY_STATUS; //Pointer
   typedef struct CMSG_STREAM_INFO {
-    DWORD cbContent,
-    PFN_CMSG_STREAM_OUTPUT pfnStreamOutput,
-    void* pvArg,
+    DWORD cbContent;
+    PFN_CMSG_STREAM_OUTPUT pfnStreamOutput;
+    void* pvArg;
   } CMSG_STREAM_INFO;
   typedef CMSG_STREAM_INFO *PCMSG_STREAM_INFO; //Pointer
   typedef struct CRYPT_DECRYPT_MESSAGE_PARA {
-    DWORD cbSize,
-    DWORD dwMsgAndCertEncodingType,
-    DWORD cCertStore,
-    HCERTSTORE* rghCertStore,
-    DWORD dwFlags,
+    DWORD cbSize;
+    DWORD dwMsgAndCertEncodingType;
+    DWORD cCertStore;
+    HCERTSTORE* rghCertStore;
+    DWORD dwFlags;
   } CRYPT_DECRYPT_MESSAGE_PARA;
   typedef CRYPT_DECRYPT_MESSAGE_PARA *PCRYPT_DECRYPT_MESSAGE_PARA; //Pointer
   typedef struct CRYPT_VERIFY_MESSAGE_PARA {
-    DWORD cbSize,
-    DWORD dwMsgAndCertEncodingType,
-    HCRYPTPROV_LEGACY hCryptProv,
-    PFN_CRYPT_GET_SIGNER_CERTIFICATE pfnGetSignerCertificate,
-    void* pvGetArg,
+    DWORD cbSize;
+    DWORD dwMsgAndCertEncodingType;
+    HCRYPTPROV_LEGACY hCryptProv;
+    PFN_CRYPT_GET_SIGNER_CERTIFICATE pfnGetSignerCertificate;
+    void* pvGetArg;
   } CRYPT_VERIFY_MESSAGE_PARA;
   typedef CRYPT_VERIFY_MESSAGE_PARA *PCRYPT_VERIFY_MESSAGE_PARA; //Pointer
   typedef struct CRYPT_ENCRYPT_MESSAGE_PARA {
-    DWORD cbSize,
-    DWORD dwMsgEncodingType,
-    HCRYPTPROV_LEGACY hCryptProv,
-    CRYPT_ALGORITHM_IDENTIFIER ContentEncryptionAlgorithm,
-    void* pvEncryptionAuxInfo,
-    DWORD dwFlags,
-    DWORD dwInnerContentType,
+    DWORD cbSize;
+    DWORD dwMsgEncodingType;
+    HCRYPTPROV_LEGACY hCryptProv;
+    CRYPT_ALGORITHM_IDENTIFIER ContentEncryptionAlgorithm;
+    void* pvEncryptionAuxInfo;
+    DWORD dwFlags;
+    DWORD dwInnerContentType;
   } CRYPT_ENCRYPT_MESSAGE_PARA;
   typedef CRYPT_ENCRYPT_MESSAGE_PARA *PCRYPT_ENCRYPT_MESSAGE_PARA; //Pointer
   typedef struct CRYPT_HASH_MESSAGE_PARA {
-    DWORD cbSize,
-    DWORD dwMsgEncodingType,
-    HCRYPTPROV_LEGACY hCryptProv,
-    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm,
-    void* pvHashAuxInfo,
+    DWORD cbSize;
+    DWORD dwMsgEncodingType;
+    HCRYPTPROV_LEGACY hCryptProv;
+    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+    void* pvHashAuxInfo;
   } CRYPT_HASH_MESSAGE_PARA;
   typedef CRYPT_HASH_MESSAGE_PARA *PCRYPT_HASH_MESSAGE_PARA; //Pointer
   typedef struct CRYPT_SIGN_MESSAGE_PARA {
-    DWORD cbSize,
-    DWORD dwMsgEncodingType,
-    PCCERT_CONTEXT pSigningCert,
-    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm,
-    void* pvHashAuxInfo,
-    DWORD cMsgCert,
-    PCCERT_CONTEXT* rgpMsgCert,
-    DWORD cMsgCrl,
-    PCCRL_CONTEXT* rgpMsgCrl,
-    DWORD cAuthAttr,
-    PCRYPT_ATTRIBUTE rgAuthAttr,
-    DWORD cUnauthAttr,
-    PCRYPT_ATTRIBUTE rgUnauthAttr,
-    DWORD dwFlags,
-    DWORD dwInnerContentType,
-    CRYPT_ALGORITHM_IDENTIFIER HashEncryptionAlgorithm,
-    void* pvHashEncryptionAuxInfo,
+    DWORD cbSize;
+    DWORD dwMsgEncodingType;
+    PCCERT_CONTEXT pSigningCert;
+    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+    void* pvHashAuxInfo;
+    DWORD cMsgCert;
+    PCCERT_CONTEXT* rgpMsgCert;
+    DWORD cMsgCrl;
+    PCCRL_CONTEXT* rgpMsgCrl;
+    DWORD cAuthAttr;
+    PCRYPT_ATTRIBUTE rgAuthAttr;
+    DWORD cUnauthAttr;
+    PCRYPT_ATTRIBUTE rgUnauthAttr;
+    DWORD dwFlags;
+    DWORD dwInnerContentType;
+    CRYPT_ALGORITHM_IDENTIFIER HashEncryptionAlgorithm;
+    void* pvHashEncryptionAuxInfo;
   } CRYPT_SIGN_MESSAGE_PARA;
   typedef CRYPT_SIGN_MESSAGE_PARA *PCRYPT_SIGN_MESSAGE_PARA; //Pointer
   typedef struct CRYPT_KEY_VERIFY_MESSAGE_PARA {
-    DWORD cbSize,
-    DWORD dwMsgEncodingType,
-    HCRYPTPROV_LEGACY hCryptProv,
+    DWORD cbSize;
+    DWORD dwMsgEncodingType;
+    HCRYPTPROV_LEGACY hCryptProv;
   } CRYPT_KEY_VERIFY_MESSAGE_PARA;
   typedef CRYPT_KEY_VERIFY_MESSAGE_PARA *PCRYPT_KEY_VERIFY_MESSAGE_PARA; //Pointer
   typedef struct CERT_RDN_ATTR {
-    LPSTR pszObjId,
-    DWORD dwValueType,
-    CERT_RDN_VALUE_BLOB Value,
+    LPSTR pszObjId;
+    DWORD dwValueType;
+    CERT_RDN_VALUE_BLOB Value;
   } CERT_RDN_ATTR;
   typedef CERT_RDN_ATTR *PCERT_RDN_ATTR; //Pointer
   typedef struct CERT_RDN {
-    DWORD cRDNAttr,
-    PCERT_RDN_ATTR rgRDNAttr,
+    DWORD cRDNAttr;
+    PCERT_RDN_ATTR rgRDNAttr;
   } CERT_RDN;
   typedef CERT_RDN *PCERT_RDN; //Pointer
   typedef struct CERT_NAME_INFO {
-    DWORD cRDN,
-    PCERT_RDN rgRDN,
+    DWORD cRDN;
+    PCERT_RDN rgRDN;
   } CERT_NAME_INFO;
   typedef CERT_NAME_INFO *PCERT_NAME_INFO; //Pointer
   typedef struct CERT_REVOCATION_CHAIN_PARA {
-    DWORD cbSize,
-    HCERTCHAINENGINE hChainEngine,
-    HCERTSTORE hAdditionalStore,
-    DWORD dwChainFlags,
-    DWORD dwUrlRetrievalTimeout,
-    LPFILETIME pftCurrentTime,
-    LPFILETIME pftCacheResync,
-    DWORD cbMaxUrlRetrievalByteCount,
+    DWORD cbSize;
+    HCERTCHAINENGINE hChainEngine;
+    HCERTSTORE hAdditionalStore;
+    DWORD dwChainFlags;
+    DWORD dwUrlRetrievalTimeout;
+    LPFILETIME pftCurrentTime;
+    LPFILETIME pftCacheResync;
+    DWORD cbMaxUrlRetrievalByteCount;
   } CERT_REVOCATION_CHAIN_PARA;
   typedef CERT_REVOCATION_CHAIN_PARA *PCERT_REVOCATION_CHAIN_PARA; //Pointer
   typedef struct CERT_REVOCATION_PARA {
-    DWORD cbSize,
-    PCCERT_CONTEXT pIssuerCert,
-    DWORD cCertStore,
-    HCERTSTORE* rgCertStore,
-    HCERTSTORE hCrlStore,
-    LPFILETIME pftTimeToUse,
-    DWORD dwUrlRetrievalTimeout,
-    BOOL fCheckFreshnessTime,
-    DWORD dwFreshnessTime,
-    LPFILETIME pftCurrentTime,
-    PCERT_REVOCATION_CRL_INFO pCrlInfo,
-    LPFILETIME pftCacheResync,
-    PCERT_REVOCATION_CHAIN_PARA pChainPara,
+    DWORD cbSize;
+    PCCERT_CONTEXT pIssuerCert;
+    DWORD cCertStore;
+    HCERTSTORE* rgCertStore;
+    HCERTSTORE hCrlStore;
+    LPFILETIME pftTimeToUse;
+    DWORD dwUrlRetrievalTimeout;
+    BOOL fCheckFreshnessTime;
+    DWORD dwFreshnessTime;
+    LPFILETIME pftCurrentTime;
+    PCERT_REVOCATION_CRL_INFO pCrlInfo;
+    LPFILETIME pftCacheResync;
+    PCERT_REVOCATION_CHAIN_PARA pChainPara;
   } CERT_REVOCATION_PARA;
   typedef CERT_REVOCATION_PARA *PCERT_REVOCATION_PARA; //Pointer
   typedef struct CERT_REVOCATION_STATUS {
-    DWORD cbSize,
-    DWORD dwIndex,
-    DWORD dwError,
-    DWORD dwReason,
-    BOOL fHasFreshnessTime,
-    DWORD dwFreshnessTime,
+    DWORD cbSize;
+    DWORD dwIndex;
+    DWORD dwError;
+    DWORD dwReason;
+    BOOL fHasFreshnessTime;
+    DWORD dwFreshnessTime;
   } CERT_REVOCATION_STATUS;
   typedef CERT_REVOCATION_STATUS *PCERT_REVOCATION_STATUS; //Pointer
   typedef struct CRYPT_PKCS8_EXPORT_PARAMS {
-    HCRYPTPROV hCryptProv,
-    DWORD dwKeySpec,
-    LPSTR pszPrivateKeyObjId,
-    PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC pEncryptPrivateKeyFunc,
-    LPVOID pVoidEncryptFunc,
+    HCRYPTPROV hCryptProv;
+    DWORD dwKeySpec;
+    LPSTR pszPrivateKeyObjId;
+    PCRYPT_ENCRYPT_PRIVATE_KEY_FUNC pEncryptPrivateKeyFunc;
+    LPVOID pVoidEncryptFunc;
   } CRYPT_PKCS8_EXPORT_PARAMS;
   typedef struct SIP_ADD_NEWPROVIDER {
-    DWORD cbStruct,
-    GUID* pgSubject,
-    WCHAR* pwszDLLFileName,
-    WCHAR* pwszMagicNumber,
-    WCHAR* pwszIsFunctionName,
-    WCHAR* pwszGetFuncName,
-    WCHAR* pwszPutFuncName,
-    WCHAR* pwszCreateFuncName,
-    WCHAR* pwszVerifyFuncName,
-    WCHAR* pwszRemoveFuncName,
-    WCHAR* pwszIsFunctionNameFmt2,
+    DWORD cbStruct;
+    GUID* pgSubject;
+    WCHAR* pwszDLLFileName;
+    WCHAR* pwszMagicNumber;
+    WCHAR* pwszIsFunctionName;
+    WCHAR* pwszGetFuncName;
+    WCHAR* pwszPutFuncName;
+    WCHAR* pwszCreateFuncName;
+    WCHAR* pwszVerifyFuncName;
+    WCHAR* pwszRemoveFuncName;
+    WCHAR* pwszIsFunctionNameFmt2;
   } SIP_ADD_NEWPROVIDER;
   typedef struct SIP_DISPATCH_INFO {
-    DWORD cbSize,
-    HANDLE hSIP,
-    pCryptSIPGetSignedDataMsg pfGet,
-    pCryptSIPPutSignedDataMsg pfPut,
-    pCryptSIPCreateIndirectData pfCreate,
-    pCryptSIPVerifyIndirectData pfVerify,
-    pCryptSIPRemoveSignedDataMsg pfRemove,
+    DWORD cbSize;
+    HANDLE hSIP;
+    pCryptSIPGetSignedDataMsg pfGet;
+    pCryptSIPPutSignedDataMsg pfPut;
+    pCryptSIPCreateIndirectData pfCreate;
+    pCryptSIPVerifyIndirectData pfVerify;
+    pCryptSIPRemoveSignedDataMsg pfRemove;
   } SIP_DISPATCH_INFO;
   typedef struct PUBLICKEYSTRUC {
-    BYTE bType,
-    BYTE bVersion,
-    WORD reserved,
-    ALG_ID aiKeyAlg,
+    BYTE bType;
+    BYTE bVersion;
+    WORD reserved;
+    ALG_ID aiKeyAlg;
   } PUBLICKEYSTRUC;
   typedef PUBLICKEYSTRUC *WINAPI_PUBLICKEYSTRUC*; //Pointer
   typedef struct CRYPT_OID_FUNC_ENTRY {
-    LPCSTR pszOID,
-    void* pvFuncAddr,
+    LPCSTR pszOID;
+    void* pvFuncAddr;
   } CRYPT_OID_FUNC_ENTRY;
   typedef CRYPT_OID_FUNC_ENTRY *CRYPT_OID_FUNC_ENTRY[]; //Pointer
   typedef struct CRYPT_PKCS8_IMPORT_PARAMS {
-    CRYPT_DIGEST_BLOB PrivateKey,
-    PCRYPT_RESOLVE_HCRYPTPROV_FUNC pResolvehCryptProvFunc,
-    LPVOID pVoidResolveFunc,
-    PCRYPT_DECRYPT_PRIVATE_KEY_FUNC pDecryptPrivateKeyFunc,
-    LPVOID pVoidDecryptFunc,
+    CRYPT_DIGEST_BLOB PrivateKey;
+    PCRYPT_RESOLVE_HCRYPTPROV_FUNC pResolvehCryptProvFunc;
+    LPVOID pVoidResolveFunc;
+    PCRYPT_DECRYPT_PRIVATE_KEY_FUNC pDecryptPrivateKeyFunc;
+    LPVOID pVoidDecryptFunc;
   } CRYPT_PKCS8_IMPORT_PARAMS;
   typedef enum WINAPI_CertSelectFlags {
     CERT_SELECT_ALLOW_EXPIRED = 0x00000001,
@@ -1147,8 +1153,8 @@ ffi.cdef [[
     CRYPTPROTECTMEMORY_SAME_LOGON = 0x02,
   } WINAPI_CryptProtectMemoryFlags;
   typedef union WINAPI_HcryptNcryptUnion {
-    HCRYPTPROV hCryptProv,
-    NCRYPT_KEY_HANDLE hNCryptKey,
+    HCRYPTPROV hCryptProv;
+    NCRYPT_KEY_HANDLE hNCryptKey;
   } WINAPI_HcryptNcryptUnion;
   typedef enum WINAPI_CERT_ID_Choice {
     CERT_ID_ISSUER_SERIAL_NUMBER = 1,
@@ -1156,105 +1162,107 @@ ffi.cdef [[
     CERT_ID_SHA1_HASH = 3,
   } WINAPI_CERT_ID_Choice;
   typedef struct CERT_ISSUER_SERIAL_NUMBER {
-    CERT_NAME_BLOB Issuer,
-    CRYPT_INTEGER_BLOB SerialNumber,
+    CERT_NAME_BLOB Issuer;
+    CRYPT_INTEGER_BLOB SerialNumber;
   } CERT_ISSUER_SERIAL_NUMBER;
   typedef union WINAPI_CERT_ID_u {
-    CERT_ISSUER_SERIAL_NUMBER IssuerSerialNumber,
-    CRYPT_HASH_BLOB KeyId,
-    CRYPT_HASH_BLOB HashId,
+    CERT_ISSUER_SERIAL_NUMBER IssuerSerialNumber;
+    CRYPT_HASH_BLOB KeyId;
+    CRYPT_HASH_BLOB HashId;
   } WINAPI_CERT_ID_u;
   typedef struct CERT_ID {
-    WINAPI_CERT_ID_Choice dwIdChoice,
-    WINAPI_CERT_ID_u ,
+    WINAPI_CERT_ID_Choice dwIdChoice;
+    WINAPI_CERT_ID_u ;
   } CERT_ID;
   typedef struct CMSG_SIGNER_ENCODE_INFO {
-    DWORD cbSize,
-    PCERT_INFO pCertInfo,
-    WINAPI_HcryptNcryptUnion ,
-    WINAPI_CryptKeySpec dwKeySpec,
-    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm,
-    void* pvHashAuxInfo,
-    DWORD cAuthAttr,
-    PCRYPT_ATTRIBUTE rgAuthAttr,
-    DWORD cUnauthAttr,
-    PCRYPT_ATTRIBUTE rgUnauthAttr,
-    CERT_ID SignerId,
-    CRYPT_ALGORITHM_IDENTIFIER HashEncryptionAlgorithm,
-    void* pvHashEncryptionAuxInfo,
+    DWORD cbSize;
+    PCERT_INFO pCertInfo;
+    WINAPI_HcryptNcryptUnion ;
+    WINAPI_CryptKeySpec dwKeySpec;
+    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+    void* pvHashAuxInfo;
+    DWORD cAuthAttr;
+    PCRYPT_ATTRIBUTE rgAuthAttr;
+    DWORD cUnauthAttr;
+    PCRYPT_ATTRIBUTE rgUnauthAttr;
+    CERT_ID SignerId;
+    CRYPT_ALGORITHM_IDENTIFIER HashEncryptionAlgorithm;
+    void* pvHashEncryptionAuxInfo;
   } CMSG_SIGNER_ENCODE_INFO;
   typedef CMSG_SIGNER_ENCODE_INFO *PCMSG_SIGNER_ENCODE_INFO; //Pointer
   typedef struct CMSG_SIGNED_ENCODE_INFO {
-    DWORD cbSize,
-    DWORD cSigners,
-    PCMSG_SIGNER_ENCODE_INFO rgSigners,
-    DWORD cCertEncoded,
-    PCERT_BLOB rgCertEncoded,
-    DWORD cCrlEncoded,
-    PCRL_BLOB rgCrlEncoded,
-    DWORD cAttrCertEncoded,
-    PCERT_BLOB rgAttrCertEncoded,
+    DWORD cbSize;
+    DWORD cSigners;
+    PCMSG_SIGNER_ENCODE_INFO rgSigners;
+    DWORD cCertEncoded;
+    PCERT_BLOB rgCertEncoded;
+    DWORD cCrlEncoded;
+    PCRL_BLOB rgCrlEncoded;
+    DWORD cAttrCertEncoded;
+    PCERT_BLOB rgAttrCertEncoded;
   } CMSG_SIGNED_ENCODE_INFO;
   typedef CMSG_SIGNED_ENCODE_INFO *PCMSG_SIGNED_ENCODE_INFO; //Pointer
   typedef struct CRYPT_KEY_SIGN_MESSAGE_PARA {
-    DWORD cbSize,
-    DWORD dwMsgAndCertEncodingType,
-    WINAPI_HcryptNcryptUnion ,
-    DWORD dwKeySpec,
-    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm,
-    void* pvHashAuxInfo,
-    CRYPT_ALGORITHM_IDENTIFIER PubKeyAlgorithm,
+    DWORD cbSize;
+    DWORD dwMsgAndCertEncodingType;
+    WINAPI_HcryptNcryptUnion ;
+    DWORD dwKeySpec;
+    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+    void* pvHashAuxInfo;
+    CRYPT_ALGORITHM_IDENTIFIER PubKeyAlgorithm;
   } CRYPT_KEY_SIGN_MESSAGE_PARA;
   typedef CRYPT_KEY_SIGN_MESSAGE_PARA *PCRYPT_KEY_SIGN_MESSAGE_PARA; //Pointer
   typedef union WINAPI_CRYPT_OID_INFO_u {
-    DWORD dwValue,
-    ALG_ID Algid,
-    DWORD dwLength,
+    DWORD dwValue;
+    ALG_ID Algid;
+    DWORD dwLength;
   } WINAPI_CRYPT_OID_INFO_u;
   typedef struct CRYPT_OID_INFO {
-    DWORD cbSize,
-    LPCSTR pszOID,
-    LPCWSTR pwszName,
-    DWORD dwGroupId,
-    WINAPI_CRYPT_OID_INFO_u ,
-    CRYPT_DATA_BLOB ExtraInfo,
-    LPCWSTR pwszCNGAlgid,
-    LPCWSTR pwszCNGExtraAlgid,
+    DWORD cbSize;
+    LPCSTR pszOID;
+    LPCWSTR pwszName;
+    DWORD dwGroupId;
+    WINAPI_CRYPT_OID_INFO_u ;
+    CRYPT_DATA_BLOB ExtraInfo;
+    LPCWSTR pwszCNGAlgid;
+    LPCWSTR pwszCNGExtraAlgid;
   } CRYPT_OID_INFO;
   typedef CRYPT_OID_INFO *PCCRYPT_OID_INFO; //Pointer
   typedef struct MS_ADDINFO_FLAT {
-    DWORD cbStruct,
-    SIP_INDIRECT_DATA* pIndirectData,
+    DWORD cbStruct;
+    SIP_INDIRECT_DATA* pIndirectData;
   } MS_ADDINFO_FLAT;
   typedef DWORD WINAPI_CRYPTCAT_OPEN; //Alias
+# pragma pack( push, 8 )
   typedef struct CRYPTCATSTORE {
-    DWORD cbStruct,
-    DWORD dwPublicVersion,
-    LPWSTR pwszP7File,
-    HCRYPTPROV hProv,
-    WINAPI_CertEncodingType dwEncodingType,
-    WINAPI_CRYPTCAT_OPEN fdwStoreFlags,
-    HANDLE hReserved,
-    HANDLE hAttrs,
-    HCRYPTMSG hCryptMsg,
-    HANDLE hSorted,
+    DWORD cbStruct;
+    DWORD dwPublicVersion;
+    LPWSTR pwszP7File;
+    HCRYPTPROV hProv;
+    WINAPI_CertEncodingType dwEncodingType;
+    WINAPI_CRYPTCAT_OPEN fdwStoreFlags;
+    HANDLE hReserved;
+    HANDLE hAttrs;
+    HCRYPTMSG hCryptMsg;
+    HANDLE hSorted;
   } CRYPTCATSTORE;
+# pragma pack( pop )
   typedef struct MS_ADDINFO_CATALOGMEMBER {
-    DWORD cbStruct,
-    CRYPTCATSTORE* pStore,
-    CRYPTCATMEMBER* pMember,
+    DWORD cbStruct;
+    CRYPTCATSTORE* pStore;
+    CRYPTCATMEMBER* pMember;
   } MS_ADDINFO_CATALOGMEMBER;
   typedef struct MS_ADDINFO_BLOB {
-    DWORD cbStruct,
-    DWORD cbMemObject,
-    BYTE* pbMemObject,
-    DWORD cbMemSignedMsg,
-    BYTE* pbMemSignedMsg,
+    DWORD cbStruct;
+    DWORD cbMemObject;
+    BYTE* pbMemObject;
+    DWORD cbMemSignedMsg;
+    BYTE* pbMemSignedMsg;
   } MS_ADDINFO_BLOB;
   typedef union WINAPI_SIP_SUBJECTINFO_u {
-    MS_ADDINFO_FLAT* psFlat,
-    MS_ADDINFO_CATALOGMEMBER* psCatMember,
-    MS_ADDINFO_BLOB* psBlob,
+    MS_ADDINFO_FLAT* psFlat;
+    MS_ADDINFO_CATALOGMEMBER* psCatMember;
+    MS_ADDINFO_BLOB* psBlob;
   } WINAPI_SIP_SUBJECTINFO_u;
   typedef DWORD WINAPI_SPC_PE; //Alias
   typedef enum WINAPI_SIP_SUBJECTINFO_Choice {
@@ -1265,24 +1273,24 @@ ffi.cdef [[
     MSSIP_ADDINFO_NONMSSIP = 500,
   } WINAPI_SIP_SUBJECTINFO_Choice;
   typedef struct SIP_SUBJECTINFO {
-    DWORD cbSize,
-    GUID* pgSubjectType,
-    HANDLE hFile,
-    LPCWSTR pwsFileName,
-    LPCWSTR pwsDisplayName,
-    DWORD dwReserved1,
-    DWORD dwIntVersion,
-    HCRYPTPROV hProv,
-    CRYPT_ALGORITHM_IDENTIFIER DigestAlgorithm,
-    WINAPI_SPC_PE dwFlags,
-    WINAPI_CertEncodingType dwEncodingType,
-    DWORD dwReserved2,
-    DWORD fdwCAPISettings,
-    DWORD fdwSecuritySettings,
-    DWORD dwIndex,
-    WINAPI_SIP_SUBJECTINFO_Choice dwUnionChoice,
-    WINAPI_SIP_SUBJECTINFO_u ,
-    LPVOID pClientData,
+    DWORD cbSize;
+    GUID* pgSubjectType;
+    HANDLE hFile;
+    LPCWSTR pwsFileName;
+    LPCWSTR pwsDisplayName;
+    DWORD dwReserved1;
+    DWORD dwIntVersion;
+    HCRYPTPROV hProv;
+    CRYPT_ALGORITHM_IDENTIFIER DigestAlgorithm;
+    WINAPI_SPC_PE dwFlags;
+    WINAPI_CertEncodingType dwEncodingType;
+    DWORD dwReserved2;
+    DWORD fdwCAPISettings;
+    DWORD fdwSecuritySettings;
+    DWORD dwIndex;
+    WINAPI_SIP_SUBJECTINFO_Choice dwUnionChoice;
+    WINAPI_SIP_SUBJECTINFO_u ;
+    LPVOID pClientData;
   } SIP_SUBJECTINFO;
   typedef enum WINAPI_CPD_CHOICE {
     CPD_CHOICE_SIP = 1,
@@ -1295,13 +1303,13 @@ ffi.cdef [[
     CPD_UISTATE_MODE_MASK = 0x00000003,
   } WINAPI_CPD_UISTATE_MODE;
   typedef struct PROVDATA_SIP {
-    DWORD cbStruct,
-    GUID gSubject,
-    SIP_DISPATCH_INFO* pSip,
-    SIP_DISPATCH_INFO* pCATSip,
-    SIP_SUBJECTINFO* psSipSubjectInfo,
-    SIP_SUBJECTINFO* psSipCATSubjectInfo,
-    SIP_INDIRECT_DATA* psIndirectData,
+    DWORD cbStruct;
+    GUID gSubject;
+    SIP_DISPATCH_INFO* pSip;
+    SIP_DISPATCH_INFO* pCATSip;
+    SIP_SUBJECTINFO* psSipSubjectInfo;
+    SIP_SUBJECTINFO* psSipCATSubjectInfo;
+    SIP_INDIRECT_DATA* psIndirectData;
   } PROVDATA_SIP;
   typedef enum WINAPI_WTD_UI {
     WTD_UI_ALL = 1,
@@ -1317,66 +1325,78 @@ ffi.cdef [[
     WTD_CHOICE_SIGNER = 4,
     WTD_CHOICE_CERT = 5,
   } WINAPI_WTD_CHOICE;
+# pragma pack( push, 8 )
   typedef struct WINTRUST_FILE_INFO {
-    DWORD cbStruct,
-    LPCWSTR pcwszFilePath,
-    HANDLE hFile,
-    GUID* pgKnownSubject,
+    DWORD cbStruct;
+    LPCWSTR pcwszFilePath;
+    HANDLE hFile;
+    GUID* pgKnownSubject;
   } WINTRUST_FILE_INFO;
+# pragma pack( pop )
+# pragma pack( push, 8 )
   typedef struct WINTRUST_CATALOG_INFO {
-    DWORD cbStruct,
-    DWORD dwCatalogVersion,
-    LPCWSTR pcwszCatalogFilePath,
-    LPCWSTR pcwszMemberTag,
-    LPCWSTR pcwszMemberFilePath,
-    HANDLE hMemberFile,
-    BYTE* pbCalculatedFileHash,
-    DWORD cbCalculatedFileHash,
-    PCCTL_CONTEXT pcCatalogContext,
+    DWORD cbStruct;
+    DWORD dwCatalogVersion;
+    LPCWSTR pcwszCatalogFilePath;
+    LPCWSTR pcwszMemberTag;
+    LPCWSTR pcwszMemberFilePath;
+    HANDLE hMemberFile;
+    BYTE* pbCalculatedFileHash;
+    DWORD cbCalculatedFileHash;
+    PCCTL_CONTEXT pcCatalogContext;
   } WINTRUST_CATALOG_INFO;
+# pragma pack( pop )
+# pragma pack( push, 8 )
   typedef struct WINTRUST_BLOB_INFO {
-    DWORD cbStruct,
-    GUID gSubject,
-    LPCWSTR pcwszDisplayName,
-    DWORD cbMemObject,
-    BYTE* pbMemObject,
-    DWORD cbMemSignedMsg,
-    BYTE* pbMemSignedMsg,
+    DWORD cbStruct;
+    GUID gSubject;
+    LPCWSTR pcwszDisplayName;
+    DWORD cbMemObject;
+    BYTE* pbMemObject;
+    DWORD cbMemSignedMsg;
+    BYTE* pbMemSignedMsg;
   } WINTRUST_BLOB_INFO;
+# pragma pack( pop )
   typedef struct CMSG_SIGNER_INFO {
-    DWORD dwVersion,
-    CERT_NAME_BLOB Issuer,
-    CRYPT_INTEGER_BLOB SerialNumber,
-    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm,
-    CRYPT_ALGORITHM_IDENTIFIER HashEncryptionAlgorithm,
-    CRYPT_DATA_BLOB EncryptedHash,
-    CRYPT_ATTRIBUTES AuthAttrs,
-    CRYPT_ATTRIBUTES UnauthAttrs,
+    DWORD dwVersion;
+    CERT_NAME_BLOB Issuer;
+    CRYPT_INTEGER_BLOB SerialNumber;
+    CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
+    CRYPT_ALGORITHM_IDENTIFIER HashEncryptionAlgorithm;
+    CRYPT_DATA_BLOB EncryptedHash;
+    CRYPT_ATTRIBUTES AuthAttrs;
+    CRYPT_ATTRIBUTES UnauthAttrs;
   } CMSG_SIGNER_INFO;
+# pragma pack( push, 8 )
   typedef struct WINTRUST_SGNR_INFO {
-    DWORD cbStruct,
-    LPCWSTR pcwszDisplayName,
-    CMSG_SIGNER_INFO* psSignerInfo,
-    DWORD chStores,
-    HCERTSTORE* pahStores,
+    DWORD cbStruct;
+    LPCWSTR pcwszDisplayName;
+    CMSG_SIGNER_INFO* psSignerInfo;
+    DWORD chStores;
+    HCERTSTORE* pahStores;
   } WINTRUST_SGNR_INFO;
+# pragma pack( pop )
   typedef DWORD WINAPI_WINTRUST_CERT_INFO_FLAGS; //Alias
+# pragma pack( push, 8 )
   typedef struct WINTRUST_CERT_INFO {
-    DWORD cbStruct,
-    LPCWSTR pcwszDisplayName,
-    CERT_CONTEXT* psCertContext,
-    DWORD chStores,
-    HCERTSTORE* pahStores,
-    WINAPI_WINTRUST_CERT_INFO_FLAGS dwFlags,
-    FILETIME* psftVerifyAsOf,
+    DWORD cbStruct;
+    LPCWSTR pcwszDisplayName;
+    CERT_CONTEXT* psCertContext;
+    DWORD chStores;
+    HCERTSTORE* pahStores;
+    WINAPI_WINTRUST_CERT_INFO_FLAGS dwFlags;
+    FILETIME* psftVerifyAsOf;
   } WINTRUST_CERT_INFO;
+# pragma pack( pop )
+# pragma pack( push, 8 )
   typedef union WINAPI_WINTRUST_DATA_u {
-    WINTRUST_FILE_INFO* pFile,
-    WINTRUST_CATALOG_INFO* pCatalog,
-    WINTRUST_BLOB_INFO* pBlob,
-    WINTRUST_SGNR_INFO* pSgnr,
-    WINTRUST_CERT_INFO* pCert,
+    WINTRUST_FILE_INFO* pFile;
+    WINTRUST_CATALOG_INFO* pCatalog;
+    WINTRUST_BLOB_INFO* pBlob;
+    WINTRUST_SGNR_INFO* pSgnr;
+    WINTRUST_CERT_INFO* pCert;
   } WINAPI_WINTRUST_DATA_u;
+# pragma pack( pop )
   typedef enum WINAPI_WTD_STATEACTION {
     WTD_STATEACTION_IGNORE = 0x00000000,
     WTD_STATEACTION_VERIFY = 0x00000001,
@@ -1389,157 +1409,159 @@ ffi.cdef [[
     WTD_UICONTEXT_EXECUTE = 0,
     WTD_UICONTEXT_INSTALL = 1,
   } WINAPI_WTD_UICONTEXT;
+# pragma pack( push, 8 )
   typedef struct WINTRUST_DATA {
-    DWORD cbStruct,
-    LPVOID pPolicyCallbackData,
-    LPVOID pSIPClientData,
-    WINAPI_WTD_UI dwUIChoice,
-    WINAPI_WTD_REVOKE fdwRevocationChecks,
-    WINAPI_WTD_CHOICE dwUnionChoice,
-    WINAPI_WINTRUST_DATA_u ,
-    WINAPI_WTD_STATEACTION dwStateAction,
-    HANDLE hWVTStateData,
-    WCHAR* pwszURLReference,
-    WINAPI_WTD_PROV_FLAGS dwProvFlags,
-    WINAPI_WTD_UICONTEXT dwUIContext,
+    DWORD cbStruct;
+    LPVOID pPolicyCallbackData;
+    LPVOID pSIPClientData;
+    WINAPI_WTD_UI dwUIChoice;
+    WINAPI_WTD_REVOKE fdwRevocationChecks;
+    WINAPI_WTD_CHOICE dwUnionChoice;
+    WINAPI_WINTRUST_DATA_u ;
+    WINAPI_WTD_STATEACTION dwStateAction;
+    HANDLE hWVTStateData;
+    WCHAR* pwszURLReference;
+    WINAPI_WTD_PROV_FLAGS dwProvFlags;
+    WINAPI_WTD_UICONTEXT dwUIContext;
   } WINTRUST_DATA;
+# pragma pack( pop )
   typedef struct CERT_TRUST_LIST_INFO {
-    DWORD cbSize,
-    PCTL_ENTRY pCtlEntry,
-    PCCTL_CONTEXT pCtlContext,
+    DWORD cbSize;
+    PCTL_ENTRY pCtlEntry;
+    PCCTL_CONTEXT pCtlContext;
   } CERT_TRUST_LIST_INFO;
   typedef CERT_TRUST_LIST_INFO *PCERT_TRUST_LIST_INFO; //Pointer
   typedef struct CERT_SIMPLE_CHAIN {
-    DWORD cbSize,
-    CERT_TRUST_STATUS TrustStatus,
-    DWORD cElement,
-    PCERT_CHAIN_ELEMENT* rgpElement,
-    PCERT_TRUST_LIST_INFO pTrustListInfo,
-    BOOL fHasRevocationFreshnessTime,
-    DWORD dwRevocationFreshnessTime,
+    DWORD cbSize;
+    CERT_TRUST_STATUS TrustStatus;
+    DWORD cElement;
+    PCERT_CHAIN_ELEMENT* rgpElement;
+    PCERT_TRUST_LIST_INFO pTrustListInfo;
+    BOOL fHasRevocationFreshnessTime;
+    DWORD dwRevocationFreshnessTime;
   } CERT_SIMPLE_CHAIN;
   typedef CERT_SIMPLE_CHAIN *PCERT_SIMPLE_CHAIN; //Pointer
   typedef struct CERT_CHAIN_CONTEXT {
-    DWORD cbSize,
-    CERT_TRUST_STATUS TrustStatus,
-    DWORD cChain,
-    PCERT_SIMPLE_CHAIN* rgpChain,
-    DWORD cLowerQualityChainContext,
-    LPVOID rgpLowerQualityChainContext,
-    BOOL fHasRevocationFreshnessTime,
-    DWORD dwRevocationFreshnessTime,
-    DWORD dwCreateFlags,
-    GUID ChainId,
+    DWORD cbSize;
+    CERT_TRUST_STATUS TrustStatus;
+    DWORD cChain;
+    PCERT_SIMPLE_CHAIN* rgpChain;
+    DWORD cLowerQualityChainContext;
+    LPVOID rgpLowerQualityChainContext;
+    BOOL fHasRevocationFreshnessTime;
+    DWORD dwRevocationFreshnessTime;
+    DWORD dwCreateFlags;
+    GUID ChainId;
   } CERT_CHAIN_CONTEXT;
   typedef CERT_CHAIN_CONTEXT *PCCERT_CHAIN_CONTEXT; //Pointer
   typedef enum WINAPI_SGNR_TYPE {
     SGNR_TYPE_TIMESTAMP = 0x00000010,
   } WINAPI_SGNR_TYPE;
   typedef struct CRYPT_PROVIDER_SGNR {
-    DWORD cbStruct,
-    FILETIME sftVerifyAsOf,
-    DWORD csCertChain,
-    CRYPT_PROVIDER_CERT* pasCertChain,
-    WINAPI_SGNR_TYPE dwSignerType,
-    CMSG_SIGNER_INFO* psSigner,
-    DWORD dwError,
-    DWORD csCounterSigners,
-    LPVOID pasCounterSigners,
-    PCCERT_CHAIN_CONTEXT pChainContext,
+    DWORD cbStruct;
+    FILETIME sftVerifyAsOf;
+    DWORD csCertChain;
+    CRYPT_PROVIDER_CERT* pasCertChain;
+    WINAPI_SGNR_TYPE dwSignerType;
+    CMSG_SIGNER_INFO* psSigner;
+    DWORD dwError;
+    DWORD csCounterSigners;
+    LPVOID pasCounterSigners;
+    PCCERT_CHAIN_CONTEXT pChainContext;
   } CRYPT_PROVIDER_SGNR;
   typedef struct CRYPT_PROVIDER_DATA {
-    DWORD cbStruct,
-    WINTRUST_DATA* pWintrustData,
-    BOOL fOpenedFile,
-    HWND hWndParent,
-    GUID* pgActionID,
-    HCRYPTPROV hProv,
-    DWORD dwError,
-    DWORD dwRegSecuritySettings,
-    DWORD dwRegPolicySettings,
-    CRYPT_PROVIDER_FUNCTIONS* psPfns,
-    DWORD cdwTrustStepErrors,
-    DWORD* padwTrustStepErrors,
-    DWORD chStores,
-    HCERTSTORE* pahStores,
-    DWORD dwEncoding,
-    HCRYPTMSG hMsg,
-    DWORD csSigners,
-    CRYPT_PROVIDER_SGNR* pasSigners,
-    DWORD csProvPrivData,
-    CRYPT_PROVIDER_PRIVDATA* pasProvPrivData,
-    WINAPI_CPD_CHOICE dwSubjectChoice,
-    PROVDATA_SIP* pPDSip,
-    char* pszUsageOID,
-    BOOL fRecallWithState,
-    FILETIME sftSystemTime,
-    char* pszCTLSignerUsageOID,
-    WINAPI_CPD_PROV_FLAGS dwProvFlags,
-    DWORD dwFinalError,
-    PCERT_USAGE_MATCH pRequestUsage,
-    DWORD dwTrustPubSettings,
-    WINAPI_CPD_UISTATE_MODE dwUIStateFlags,
+    DWORD cbStruct;
+    WINTRUST_DATA* pWintrustData;
+    BOOL fOpenedFile;
+    HWND hWndParent;
+    GUID* pgActionID;
+    HCRYPTPROV hProv;
+    DWORD dwError;
+    DWORD dwRegSecuritySettings;
+    DWORD dwRegPolicySettings;
+    CRYPT_PROVIDER_FUNCTIONS* psPfns;
+    DWORD cdwTrustStepErrors;
+    DWORD* padwTrustStepErrors;
+    DWORD chStores;
+    HCERTSTORE* pahStores;
+    DWORD dwEncoding;
+    HCRYPTMSG hMsg;
+    DWORD csSigners;
+    CRYPT_PROVIDER_SGNR* pasSigners;
+    DWORD csProvPrivData;
+    CRYPT_PROVIDER_PRIVDATA* pasProvPrivData;
+    WINAPI_CPD_CHOICE dwSubjectChoice;
+    PROVDATA_SIP* pPDSip;
+    char* pszUsageOID;
+    BOOL fRecallWithState;
+    FILETIME sftSystemTime;
+    char* pszCTLSignerUsageOID;
+    WINAPI_CPD_PROV_FLAGS dwProvFlags;
+    DWORD dwFinalError;
+    PCERT_USAGE_MATCH pRequestUsage;
+    DWORD dwTrustPubSettings;
+    WINAPI_CPD_UISTATE_MODE dwUIStateFlags;
   } CRYPT_PROVIDER_DATA;
   typedef enum WINAPI_SIGNER_SIGNATURE_CHOICE {
     SIGNER_NO_ATTR = 0,
     SIGNER_AUTHCODE_ATTR = 1,
   } WINAPI_SIGNER_SIGNATURE_CHOICE;
   typedef struct SIGNER_ATTR_AUTHCODE {
-    DWORD cbSize,
-    BOOL fCommercial,
-    BOOL fIndividual,
-    LPCWSTR pwszName,
-    LPCWSTR pwszInfo,
+    DWORD cbSize;
+    BOOL fCommercial;
+    BOOL fIndividual;
+    LPCWSTR pwszName;
+    LPCWSTR pwszInfo;
   } SIGNER_ATTR_AUTHCODE;
   typedef struct SIGNER_SIGNATURE_INFO {
-    DWORD cbSize,
-    ALG_ID algidHash,
-    WINAPI_SIGNER_SIGNATURE_CHOICE dwAttrChoice,
-    SIGNER_ATTR_AUTHCODE* pAttrAuthcode,
-    PCRYPT_ATTRIBUTES psAuthenticated,
-    PCRYPT_ATTRIBUTES psUnauthenticated,
+    DWORD cbSize;
+    ALG_ID algidHash;
+    WINAPI_SIGNER_SIGNATURE_CHOICE dwAttrChoice;
+    SIGNER_ATTR_AUTHCODE* pAttrAuthcode;
+    PCRYPT_ATTRIBUTES psAuthenticated;
+    PCRYPT_ATTRIBUTES psUnauthenticated;
   } SIGNER_SIGNATURE_INFO;
   typedef enum WINAPI_PVK_TYPE {
     PVK_TYPE_FILE_NAME = 1,
     PVK_TYPE_KEYCONTAINER = 2,
   } WINAPI_PVK_TYPE;
   typedef union WINAPI_SIGNER_PROVIDER_INFO_u {
-    LPWSTR pwszPvkFileName,
-    LPWSTR pwszKeyContainer,
+    LPWSTR pwszPvkFileName;
+    LPWSTR pwszKeyContainer;
   } WINAPI_SIGNER_PROVIDER_INFO_u;
   typedef struct SIGNER_PROVIDER_INFO {
-    DWORD cbSize,
-    LPCWSTR pwszProviderName,
-    DWORD dwProviderType,
-    DWORD dwKeySpec,
-    WINAPI_PVK_TYPE dwPvkChoice,
-    WINAPI_SIGNER_PROVIDER_INFO_u ,
+    DWORD cbSize;
+    LPCWSTR pwszProviderName;
+    DWORD dwProviderType;
+    DWORD dwKeySpec;
+    WINAPI_PVK_TYPE dwPvkChoice;
+    WINAPI_SIGNER_PROVIDER_INFO_u ;
   } SIGNER_PROVIDER_INFO;
   typedef enum WINAPI_SIGNER_SUBJECT {
     SIGNER_SUBJECT_FILE = 1,
     SIGNER_SUBJECT_BLOB = 2,
   } WINAPI_SIGNER_SUBJECT;
   typedef struct SIGNER_FILE_INFO {
-    DWORD cbSize,
-    LPCWSTR pwszFileName,
-    HANDLE hFile,
+    DWORD cbSize;
+    LPCWSTR pwszFileName;
+    HANDLE hFile;
   } SIGNER_FILE_INFO;
   typedef struct SIGNER_BLOB_INFO {
-    DWORD cbSize,
-    GUID* pGuidSubject,
-    DWORD cbBlob,
-    BYTE* pbBlob,
-    LPCWSTR pwszDisplayName,
+    DWORD cbSize;
+    GUID* pGuidSubject;
+    DWORD cbBlob;
+    BYTE* pbBlob;
+    LPCWSTR pwszDisplayName;
   } SIGNER_BLOB_INFO;
   typedef union WINAPI_SIGNER_SUBJECT_INFO_u {
-    SIGNER_FILE_INFO* pSignerFileInfo,
-    SIGNER_BLOB_INFO* pSignerBlobInfo,
+    SIGNER_FILE_INFO* pSignerFileInfo;
+    SIGNER_BLOB_INFO* pSignerBlobInfo;
   } WINAPI_SIGNER_SUBJECT_INFO_u;
   typedef struct SIGNER_SUBJECT_INFO {
-    DWORD cbSize,
-    DWORD* pdwIndex,
-    WINAPI_SIGNER_SUBJECT dwSubjectChoice,
-    WINAPI_SIGNER_SUBJECT_INFO_u ,
+    DWORD cbSize;
+    DWORD* pdwIndex;
+    WINAPI_SIGNER_SUBJECT dwSubjectChoice;
+    WINAPI_SIGNER_SUBJECT_INFO_u ;
   } SIGNER_SUBJECT_INFO;
   typedef enum WINAPI_SIGNER_CERT_CHOICE {
     SIGNER_CERT_SPC_FILE = 1,
@@ -1548,26 +1570,26 @@ ffi.cdef [[
   } WINAPI_SIGNER_CERT_CHOICE;
   typedef DWORD WINAPI_SIGNER_CERT_POLICY; //Alias
   typedef struct SIGNER_CERT_STORE_INFO {
-    DWORD cbSize,
-    PCCERT_CONTEXT pSigningCert,
-    WINAPI_SIGNER_CERT_POLICY dwCertPolicy,
-    HCERTSTORE hCertStore,
+    DWORD cbSize;
+    PCCERT_CONTEXT pSigningCert;
+    WINAPI_SIGNER_CERT_POLICY dwCertPolicy;
+    HCERTSTORE hCertStore;
   } SIGNER_CERT_STORE_INFO;
   typedef struct SIGNER_SPC_CHAIN_INFO {
-    DWORD cbSize,
-    LPCWSTR pwszSpcFile,
-    WINAPI_SIGNER_CERT_POLICY dwCertPolicy,
-    HCERTSTORE hCertStore,
+    DWORD cbSize;
+    LPCWSTR pwszSpcFile;
+    WINAPI_SIGNER_CERT_POLICY dwCertPolicy;
+    HCERTSTORE hCertStore;
   } SIGNER_SPC_CHAIN_INFO;
   typedef union WINAPI_SIGNER_CERT_u {
-    LPCWSTR pwszSpcFile,
-    SIGNER_CERT_STORE_INFO* pCertStoreInfo,
-    SIGNER_SPC_CHAIN_INFO* pSpcChainInfo,
+    LPCWSTR pwszSpcFile;
+    SIGNER_CERT_STORE_INFO* pCertStoreInfo;
+    SIGNER_SPC_CHAIN_INFO* pSpcChainInfo;
   } WINAPI_SIGNER_CERT_u;
   typedef struct SIGNER_CERT {
-    DWORD cbSize,
-    WINAPI_SIGNER_CERT_CHOICE dwCertChoice,
-    WINAPI_SIGNER_CERT_u ,
-    HWND hwnd,
+    DWORD cbSize;
+    WINAPI_SIGNER_CERT_CHOICE dwCertChoice;
+    WINAPI_SIGNER_CERT_u ;
+    HWND hwnd;
   } SIGNER_CERT;
 ]]

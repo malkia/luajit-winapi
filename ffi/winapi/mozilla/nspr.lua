@@ -49,33 +49,33 @@ ffi.cdef [[
   typedef LPVOID SSLAuthCertificate; //Alias
   typedef PRInt32 PRErrorCode; //Alias
   typedef struct PLArena {
-    LPVOID next,
-    PRUword base,
-    PRUword limit,
-    PRUword avail,
+    LPVOID next;
+    PRUword base;
+    PRUword limit;
+    PRUword avail;
   } PLArena;
   typedef struct PLArenaStats {
-    LPVOID next,
-    char* name,
-    PRUint32 narenas,
-    PRUint32 nallocs,
-    PRUint32 nreclaims,
-    PRUint32 nmallocs,
-    PRUint32 ndeallocs,
-    PRUint32 ngrows,
-    PRUint32 ninplace,
-    PRUint32 nreleases,
-    PRUint32 nfastrels,
-    PRUint32 nbytes,
-    PRUint32 maxalloc,
-    PRFloat64 variance,
+    LPVOID next;
+    char* name;
+    PRUint32 narenas;
+    PRUint32 nallocs;
+    PRUint32 nreclaims;
+    PRUint32 nmallocs;
+    PRUint32 ndeallocs;
+    PRUint32 ngrows;
+    PRUint32 ninplace;
+    PRUint32 nreleases;
+    PRUint32 nfastrels;
+    PRUint32 nbytes;
+    PRUint32 maxalloc;
+    PRFloat64 variance;
   } PLArenaStats;
   typedef struct PLArenaPool {
-    PLArena first,
-    PLArena* current,
-    PRUint32 arenasize,
-    PRUword mask,
-    PLArenaStats stats,
+    PLArena first;
+    PLArena* current;
+    PRUint32 arenasize;
+    PRUword mask;
+    PLArenaStats stats;
   } PLArenaPool;
   typedef enum KeyType {
     nullKey = 0,
@@ -89,13 +89,13 @@ ffi.cdef [[
     rsaOaepKey = 8,
   } KeyType;
   typedef struct SECKEYPrivateKeyStr {
-    PLArenaPool* arena,
-    KeyType keyType,
-    PK11SlotInfo* pkcs11Slot,
-    CK_OBJECT_HANDLE pkcs11ID,
-    PRBool pkcs11IsTemp,
-    void* wincx,
-    PRUint32 staticflags,
+    PLArenaPool* arena;
+    KeyType keyType;
+    PK11SlotInfo* pkcs11Slot;
+    CK_OBJECT_HANDLE pkcs11ID;
+    PRBool pkcs11IsTemp;
+    void* wincx;
+    PRUint32 staticflags;
   } SECKEYPrivateKeyStr;
   typedef SECKEYPrivateKeyStr SECKEYPrivateKey; //Alias
   typedef enum SECItemType {
@@ -117,15 +117,15 @@ ffi.cdef [[
     siBMPString = 15,
   } SECItemType;
   typedef struct SECItem {
-    SECItemType type,
-    unsigned char* data,
-    unsigned int len,
+    SECItemType type;
+    unsigned char* data;
+    unsigned int len;
   } SECItem;
   typedef struct CERTDistNamesStr {
-    PLArenaPool* arena,
-    int nnames,
-    SECItem* names,
-    void* head,
+    PLArenaPool* arena;
+    int nnames;
+    SECItem* names;
+    void* head;
   } CERTDistNamesStr;
   typedef enum PRFileType {
     PR_FILE_FILE = 1,
@@ -133,51 +133,51 @@ ffi.cdef [[
     PR_FILE_OTHER = 3,
   } PRFileType;
   typedef struct PRFileInfo {
-    PRFileType type,
-    PROffset32 size,
-    PRTime creationTime,
-    PRTime modifyTime,
+    PRFileType type;
+    PROffset32 size;
+    PRTime creationTime;
+    PRTime modifyTime;
   } PRFileInfo;
   typedef struct PRFileInfo64 {
-    PRFileType type,
-    PROffset64 size,
-    PRTime creationTime,
-    PRTime modifyTime,
+    PRFileType type;
+    PROffset64 size;
+    PRTime creationTime;
+    PRTime modifyTime;
   } PRFileInfo64;
   typedef struct PRIOVec {
-    void* iov_base,
-    int iov_len,
+    void* iov_base;
+    int iov_len;
   } PRIOVec;
   typedef struct PRDirEntry {
-    WINAPI_char* name,
+    WINAPI_char* name;
   } PRDirEntry;
   typedef PRUint16 WINAPI_PRPollDesc_Flags; //Alias
   typedef struct PRPollDesc {
-    PRFileDesc* fd,
-    WINAPI_PRPollDesc_Flags in_flags,
-    WINAPI_PRPollDesc_Flags out_flags,
+    PRFileDesc* fd;
+    WINAPI_PRPollDesc_Flags in_flags;
+    WINAPI_PRPollDesc_Flags out_flags;
   } PRPollDesc;
   typedef PRPollDesc *WINAPI_PRPollDesc*; //Pointer
   typedef struct PRHostEnt {
-    char* h_name,
-    char** h_aliases,
-    PRInt16 h_addrtype,
-    PRInt16 h_length,
-    char** h_addr_list,
+    char* h_name;
+    char** h_aliases;
+    PRInt16 h_addrtype;
+    PRInt16 h_length;
+    char** h_addr_list;
   } PRHostEnt;
   typedef PRHostEnt *WINAPI_PRHostEnt*; //Pointer
   typedef struct PRProtoEnt {
-    char* p_name,
-    char** p_aliases,
-    PRInt16 p_num,
+    char* p_name;
+    char** p_aliases;
+    PRInt16 p_num;
   } PRProtoEnt;
   typedef enum PRStatus {
-    PR_FAILURE = WINAPI__1,
+    PR_FAILURE = -1,
     PR_SUCCESS = 0,
   } PRStatus;
   typedef enum SECStatus {
-    SECWouldBlock = WINAPI__2,
-    SECFailure = WINAPI__1,
+    SECWouldBlock = -2,
+    SECFailure = -1,
     SECSuccess = 0,
   } SECStatus;
   typedef enum SSLKEAType {
@@ -256,25 +256,25 @@ ffi.cdef [[
   } PRSpecialFD;
   typedef enum PRDescIdentity {
     PR_NSPR_IO_LAYER = 0,
-    PR_INVALID_IO_LAYER = WINAPI__1,
-    PR_TOP_IO_LAYER = WINAPI__2,
-    PR_IO_LAYER_HEAD = WINAPI__3,
+    PR_INVALID_IO_LAYER = -1,
+    PR_TOP_IO_LAYER = -2,
+    PR_IO_LAYER_HEAD = -3,
   } PRDescIdentity;
   typedef struct PRTimeParameters {
-    PRInt32 tp_gmt_offset,
-    PRInt32 tp_dst_offset,
+    PRInt32 tp_gmt_offset;
+    PRInt32 tp_dst_offset;
   } PRTimeParameters;
   typedef struct PRExplodedTime {
-    PRInt32 tm_usec,
-    PRInt32 tm_sec,
-    PRInt32 tm_min,
-    PRInt32 tm_hour,
-    PRInt32 tm_mday,
-    PRInt32 tm_month,
-    PRInt16 tm_year,
-    PRInt8 tm_wday,
-    PRInt16 tm_yday,
-    PRTimeParameters tm_params,
+    PRInt32 tm_usec;
+    PRInt32 tm_sec;
+    PRInt32 tm_min;
+    PRInt32 tm_hour;
+    PRInt32 tm_mday;
+    PRInt32 tm_month;
+    PRInt16 tm_year;
+    PRInt8 tm_wday;
+    PRInt16 tm_yday;
+    PRTimeParameters tm_params;
   } PRExplodedTime;
   typedef PRExplodedTime *WINAPI_PRExplodedTime*; //Pointer
 ]]

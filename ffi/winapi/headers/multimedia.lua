@@ -218,15 +218,17 @@ ffi.cdef [[
     WAVE_FORMAT_EXTENSIBLE = 0xFFFE,
     WAVE_FORMAT_DEVELOPMENT = 0xFFFF,
   } WINAPI_WaveFormat;
+# pragma pack( push, 1 )
   typedef struct WAVEFORMATEX {
-    WINAPI_WaveFormat wFormatTag,
-    WORD nChannels,
-    DWORD nSamplesPerSec,
-    DWORD nAvgBytesPerSec,
-    WORD nBlockAlign,
-    WORD wBitsPerSample,
-    WORD cbSize,
+    WINAPI_WaveFormat wFormatTag;
+    WORD nChannels;
+    DWORD nSamplesPerSec;
+    DWORD nAvgBytesPerSec;
+    WORD nBlockAlign;
+    WORD wBitsPerSample;
+    WORD cbSize;
   } WAVEFORMATEX;
+# pragma pack( pop )
   typedef WAVEFORMATEX *LPWAVEFORMATEX; //Pointer
   typedef WAVEFORMATEX *LPCWAVEFORMATEX; //Pointer
   typedef WAVEFORMATEX *WINAPI_WAVEFORMATEX*; //Pointer

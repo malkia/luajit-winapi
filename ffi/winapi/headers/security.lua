@@ -39,10 +39,10 @@ ffi.cdef [[
     TRUSTEE_IS_COMPUTER = 8,
   } TRUSTEE_TYPE;
   typedef struct OBJECTS_AND_SID {
-    DWORD ObjectsPresent,
-    GUID ObjectTypeGuid,
-    GUID InheritedObjectTypeGuid,
-    SID* pSid,
+    DWORD ObjectsPresent;
+    GUID ObjectTypeGuid;
+    GUID InheritedObjectTypeGuid;
+    SID* pSid;
   } OBJECTS_AND_SID;
   typedef OBJECTS_AND_SID *POBJECTS_AND_SID; //Pointer
   typedef enum SE_OBJECT_TYPE {
@@ -61,37 +61,37 @@ ffi.cdef [[
     SE_REGISTRY_WOW64_32KEY = 12,
   } SE_OBJECT_TYPE;
   typedef struct OBJECTS_AND_NAME {
-    DWORD ObjectsPresent,
-    SE_OBJECT_TYPE ObjectType,
-    LPTSTR ObjectTypeName,
-    LPTSTR InheritedObjectTypeName,
-    LPTSTR ptstrName,
+    DWORD ObjectsPresent;
+    SE_OBJECT_TYPE ObjectType;
+    LPTSTR ObjectTypeName;
+    LPTSTR InheritedObjectTypeName;
+    LPTSTR ptstrName;
   } OBJECTS_AND_NAME;
   typedef OBJECTS_AND_NAME *POBJECTS_AND_NAME; //Pointer
   typedef union WINAPI_TRUSTEE_u {
-    LPTSTR ptstrName,
-    SID* pSid,
-    OBJECTS_AND_SID* pObjectsAndSid,
-    OBJECTS_AND_NAME* pObjectsAndName,
+    LPTSTR ptstrName;
+    SID* pSid;
+    OBJECTS_AND_SID* pObjectsAndSid;
+    OBJECTS_AND_NAME* pObjectsAndName;
   } WINAPI_TRUSTEE_u;
   typedef struct TRUSTEE {
-    LPVOID pMultipleTrustee,
-    MULTIPLE_TRUSTEE_OPERATION MultipleTrusteeOperation,
-    TRUSTEE_FORM TrusteeForm,
-    TRUSTEE_TYPE TrusteeType,
-    WINAPI_TRUSTEE_u ,
+    LPVOID pMultipleTrustee;
+    MULTIPLE_TRUSTEE_OPERATION MultipleTrusteeOperation;
+    TRUSTEE_FORM TrusteeForm;
+    TRUSTEE_TYPE TrusteeType;
+    WINAPI_TRUSTEE_u ;
   } TRUSTEE;
   typedef TRUSTEE *PTRUSTEE; //Pointer
   typedef struct EXPLICIT_ACCESS {
-    ACCESS_MASK grfAccessPermissions,
-    ACCESS_MODE grfAccessMode,
-    WINAPI_AceFlags grfInheritance,
-    TRUSTEE Trustee,
+    ACCESS_MASK grfAccessPermissions;
+    ACCESS_MODE grfAccessMode;
+    WINAPI_AceFlags grfInheritance;
+    TRUSTEE Trustee;
   } EXPLICIT_ACCESS;
   typedef EXPLICIT_ACCESS *PEXPLICIT_ACCESS; //Pointer
   typedef struct TOKEN_SOURCE {
-    CHAR [TOKEN_SOURCE_LENGTH] SourceName,
-    LUID SourceIdentifier,
+    CHAR SourceName[TOKEN_SOURCE_LENGTH];
+    LUID SourceIdentifier;
   } TOKEN_SOURCE;
   typedef TOKEN_SOURCE *PTOKEN_SOURCE; //Pointer
   typedef DWORD WINAPI_SAFER_CRITERIA; //Alias
@@ -102,29 +102,31 @@ ffi.cdef [[
     URLZONE_INTERNET = 3,
     URLZONE_UNTRUSTED = 4,
   } URLZONE;
+# pragma pack( push, 8 )
   typedef struct SAFER_CODE_PROPERTIES {
-    DWORD cbSize,
-    WINAPI_SAFER_CRITERIA dwCheckFlags,
-    LPCWSTR ImagePath,
-    HANDLE hImageFileHandle,
-    URLZONE UrlZoneId,
-    BYTE [SAFER_MAX_HASH_SIZE] ImageHash,
-    DWORD dwImageHashSize,
-    LARGE_INTEGER ImageSize,
-    ALG_ID HashAlgorithm,
-    LPBYTE pByteBlock,
-    HWND hWndParent,
-    WINAPI_WTD_UI dwWVTUIChoice,
+    DWORD cbSize;
+    WINAPI_SAFER_CRITERIA dwCheckFlags;
+    LPCWSTR ImagePath;
+    HANDLE hImageFileHandle;
+    URLZONE UrlZoneId;
+    BYTE ImageHash[SAFER_MAX_HASH_SIZE];
+    DWORD dwImageHashSize;
+    LARGE_INTEGER ImageSize;
+    ALG_ID HashAlgorithm;
+    LPBYTE pByteBlock;
+    HWND hWndParent;
+    WINAPI_WTD_UI dwWVTUIChoice;
   } SAFER_CODE_PROPERTIES;
+# pragma pack( pop )
   typedef SAFER_CODE_PROPERTIES *PSAFER_CODE_PROPERTIES; //Pointer
   typedef struct SID_IDENTIFIER_AUTHORITY {
-    BYTE [6] Value,
+    BYTE Value[6];
   } SID_IDENTIFIER_AUTHORITY;
   typedef SID_IDENTIFIER_AUTHORITY *PSID_IDENTIFIER_AUTHORITY; //Pointer
   typedef struct AUDIT_POLICY_INFORMATION {
-    GUID AuditSubCategoryGuid,
-    ULONG AuditingInformation,
-    GUID AuditCategoryGuid,
+    GUID AuditSubCategoryGuid;
+    ULONG AuditingInformation;
+    GUID AuditCategoryGuid;
   } AUDIT_POLICY_INFORMATION;
   typedef AUDIT_POLICY_INFORMATION *PCAUDIT_POLICY_INFORMATION; //Pointer
   typedef PCAUDIT_POLICY_INFORMATION *PAUDIT_POLICY_INFORMATION*; //Pointer
@@ -150,100 +152,102 @@ ffi.cdef [[
   } WINAPI_AceType;
   typedef BYTE WINAPI_AceFlags_BYTE; //Alias
   typedef struct ACE_HEADER {
-    WINAPI_AceType AceType,
-    WINAPI_AceFlags_BYTE AceFlags,
-    WORD AceSize,
+    WINAPI_AceType AceType;
+    WINAPI_AceFlags_BYTE AceFlags;
+    WORD AceSize;
   } ACE_HEADER;
   typedef struct ACE {
-    ACE_HEADER Header,
-    ACCESS_MASK AccessMask,
+    ACE_HEADER Header;
+    ACCESS_MASK AccessMask;
   } ACE;
   typedef ACE *PACE; //Pointer
   typedef struct GENERIC_MAPPING {
-    ACCESS_MASK GenericRead,
-    ACCESS_MASK GenericWrite,
-    ACCESS_MASK GenericExecute,
-    ACCESS_MASK GenericAll,
+    ACCESS_MASK GenericRead;
+    ACCESS_MASK GenericWrite;
+    ACCESS_MASK GenericExecute;
+    ACCESS_MASK GenericAll;
   } GENERIC_MAPPING;
   typedef GENERIC_MAPPING *PGENERIC_MAPPING; //Pointer
+# pragma pack( push, 4 )
   typedef struct LUID_AND_ATTRIBUTES {
-    LUID Luid,
-    DWORD Attributes,
+    LUID Luid;
+    DWORD Attributes;
   } LUID_AND_ATTRIBUTES;
+# pragma pack( pop )
   typedef LUID_AND_ATTRIBUTES *PLUID_AND_ATTRIBUTES; //Pointer
   typedef LUID_AND_ATTRIBUTES LUID_AND_ATTRIBUTES [ANYSIZE_ARRAY]; //Array 1
   typedef DWORD WINAPI_PRIVILEGE_SET; //Alias
   typedef struct PRIVILEGE_SET {
-    DWORD PrivilegeCount,
-    WINAPI_PRIVILEGE_SET Control,
-    LUID_AND_ATTRIBUTES [ANYSIZE_ARRAY] Privilege,
+    DWORD PrivilegeCount;
+    WINAPI_PRIVILEGE_SET Control;
+    LUID_AND_ATTRIBUTES Privilege[ANYSIZE_ARRAY];
   } PRIVILEGE_SET;
   typedef PRIVILEGE_SET *PPRIVILEGE_SET; //Pointer
   typedef struct TOKEN_PRIVILEGES {
-    DWORD PrivilegeCount,
-    LUID_AND_ATTRIBUTES [ANYSIZE_ARRAY] Privileges,
+    DWORD PrivilegeCount;
+    LUID_AND_ATTRIBUTES Privileges[ANYSIZE_ARRAY];
   } TOKEN_PRIVILEGES;
   typedef TOKEN_PRIVILEGES *PTOKEN_PRIVILEGES; //Pointer
   typedef struct ACL {
-    BYTE AclRevision,
-    BYTE Sbz1,
-    WORD AclSize,
-    WORD AceCount,
-    WORD Sbz2,
+    BYTE AclRevision;
+    BYTE Sbz1;
+    WORD AclSize;
+    WORD AceCount;
+    WORD Sbz2;
   } ACL;
   typedef ACL *PACL; //Pointer
   typedef struct CREDENTIAL_ATTRIBUTE {
-    LPTSTR Keyword,
-    DWORD Flags,
-    DWORD ValueSize,
-    LPBYTE Value,
+    LPTSTR Keyword;
+    DWORD Flags;
+    DWORD ValueSize;
+    LPBYTE Value;
   } CREDENTIAL_ATTRIBUTE;
   typedef CREDENTIAL_ATTRIBUTE *PCREDENTIAL_ATTRIBUTE; //Pointer
   typedef struct CREDENTIAL {
-    DWORD Flags,
-    DWORD Type,
-    LPTSTR TargetName,
-    LPTSTR Comment,
-    FILETIME LastWritten,
-    DWORD CredentialBlobSize,
-    LPBYTE CredentialBlob,
-    DWORD Persist,
-    DWORD AttributeCount,
-    PCREDENTIAL_ATTRIBUTE Attributes,
-    LPTSTR TargetAlias,
-    LPTSTR UserName,
+    DWORD Flags;
+    DWORD Type;
+    LPTSTR TargetName;
+    LPTSTR Comment;
+    FILETIME LastWritten;
+    DWORD CredentialBlobSize;
+    LPBYTE CredentialBlob;
+    DWORD Persist;
+    DWORD AttributeCount;
+    PCREDENTIAL_ATTRIBUTE Attributes;
+    LPTSTR TargetAlias;
+    LPTSTR UserName;
   } CREDENTIAL;
   typedef CREDENTIAL *PCREDENTIAL; //Pointer
   typedef struct CREDENTIAL_TARGET_INFORMATION {
-    LPTSTR TargetName,
-    LPTSTR NetbiosServerName,
-    LPTSTR DnsServerName,
-    LPTSTR NetbiosDomainName,
-    LPTSTR DnsDomainName,
-    LPTSTR DnsTreeName,
-    LPTSTR PackageName,
-    ULONG Flags,
-    DWORD CredTypeCount,
-    LPDWORD CredTypes,
+    LPTSTR TargetName;
+    LPTSTR NetbiosServerName;
+    LPTSTR DnsServerName;
+    LPTSTR NetbiosDomainName;
+    LPTSTR DnsDomainName;
+    LPTSTR DnsTreeName;
+    LPTSTR PackageName;
+    ULONG Flags;
+    DWORD CredTypeCount;
+    LPDWORD CredTypes;
   } CREDENTIAL_TARGET_INFORMATION;
   typedef CREDENTIAL_TARGET_INFORMATION *PCREDENTIAL_TARGET_INFORMATION; //Pointer
   typedef struct POLICY_AUDIT_SID_ARRAY {
-    ULONG UsersCount,
-    PSID* UserSidArray,
+    ULONG UsersCount;
+    PSID* UserSidArray;
   } POLICY_AUDIT_SID_ARRAY;
   typedef POLICY_AUDIT_SID_ARRAY *PPOLICY_AUDIT_SID_ARRAY; //Pointer
   typedef struct QUOTA_LIMITS {
-    SIZE_T PagedPoolLimit,
-    SIZE_T NonPagedPoolLimit,
-    SIZE_T MinimumWorkingSetSize,
-    SIZE_T MaximumWorkingSetSize,
-    SIZE_T PagefileLimit,
-    LARGE_INTEGER TimeLimit,
+    SIZE_T PagedPoolLimit;
+    SIZE_T NonPagedPoolLimit;
+    SIZE_T MinimumWorkingSetSize;
+    SIZE_T MaximumWorkingSetSize;
+    SIZE_T PagefileLimit;
+    LARGE_INTEGER TimeLimit;
   } QUOTA_LIMITS;
   typedef QUOTA_LIMITS *PQUOTA_LIMITS; //Pointer
   typedef struct SecHandle {
-    ULONG_PTR dwLower,
-    ULONG_PTR dwUpper,
+    ULONG_PTR dwLower;
+    ULONG_PTR dwUpper;
   } SecHandle;
   typedef SecHandle *PCtxtHandle; //Pointer
   typedef WORD SECURITY_DESCRIPTOR_CONTROL; //Alias
@@ -300,15 +304,14 @@ ffi.cdef [[
     SecurityImpersonation = 2,
     SecurityDelegation = 3,
   } SECURITY_IMPERSONATION_LEVEL;
-  typedef enum SECURITY_CONTEXT_TRACKING_MODE {
-    SECURITY_DYNAMIC_TRACKING = 1,
-    SECURITY_STATIC_TRACKING = 0,
-  } SECURITY_CONTEXT_TRACKING_MODE;
+  typedef int8_t SECURITY_CONTEXT_TRACKING_MODE; //Integer
+  const   int8_t SECURITY_DYNAMIC_TRACKING = 1;
+  const   int8_t SECURITY_STATIC_TRACKING = 0;
   typedef struct SECURITY_QUALITY_OF_SERVICE {
-    DWORD Length,
-    SECURITY_IMPERSONATION_LEVEL ImpersonationLevel,
-    SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode,
-    BOOLEAN EffectiveOnly,
+    DWORD Length;
+    SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
+    SECURITY_CONTEXT_TRACKING_MODE ContextTrackingMode;
+    BOOLEAN EffectiveOnly;
   } SECURITY_QUALITY_OF_SERVICE;
   typedef SECURITY_QUALITY_OF_SERVICE *WINAPI_SECURITY_QUALITY_OF_SERVICE*; //Pointer
   typedef SECURITY_QUALITY_OF_SERVICE *PSECURITY_QUALITY_OF_SERVICE; //Pointer
@@ -519,49 +522,49 @@ ffi.cdef [[
     SEC_I_NO_RENEGOTIATION = 0x00090360,
   } SECURITY_STATUS;
   typedef struct OBJECT_TYPE_LIST {
-    WORD Level,
-    WORD Sbz,
-    GUID* ObjectType,
+    WORD Level;
+    WORD Sbz;
+    GUID* ObjectType;
   } OBJECT_TYPE_LIST;
   typedef OBJECT_TYPE_LIST *POBJECT_TYPE_LIST; //Pointer
   typedef struct SID_AND_ATTRIBUTES {
-    PSID Sid,
-    DWORD Attributes,
+    PSID Sid;
+    DWORD Attributes;
   } SID_AND_ATTRIBUTES;
   typedef SID_AND_ATTRIBUTES *PSID_AND_ATTRIBUTES; //Pointer
   typedef SID_AND_ATTRIBUTES SID_AND_ATTRIBUTES [ANYSIZE_ARRAY]; //Array 1
   typedef struct TOKEN_GROUPS {
-    DWORD GroupCount,
-    SID_AND_ATTRIBUTES [ANYSIZE_ARRAY] Groups,
+    DWORD GroupCount;
+    SID_AND_ATTRIBUTES Groups[ANYSIZE_ARRAY];
   } TOKEN_GROUPS;
   typedef TOKEN_GROUPS *PTOKEN_GROUPS; //Pointer
   typedef struct SECURITY_DESCRIPTOR {
-    BYTE Revision,
-    BYTE Sbz1,
-    SECURITY_DESCRIPTOR_CONTROL Control,
-    PSID Owner,
-    PSID Group,
-    PACL Sacl,
-    PACL Dacl,
+    BYTE Revision;
+    BYTE Sbz1;
+    SECURITY_DESCRIPTOR_CONTROL Control;
+    PSID Owner;
+    PSID Group;
+    PACL Sacl;
+    PACL Dacl;
   } SECURITY_DESCRIPTOR;
   typedef SECURITY_DESCRIPTOR *PSECURITY_DESCRIPTOR; //Pointer
   typedef struct SECURITY_ATTRIBUTES {
-    DWORD nLength,
-    PSECURITY_DESCRIPTOR lpSecurityDescriptor,
-    BOOL bInheritHandle,
+    DWORD nLength;
+    PSECURITY_DESCRIPTOR lpSecurityDescriptor;
+    BOOL bInheritHandle;
   } SECURITY_ATTRIBUTES;
   typedef SECURITY_ATTRIBUTES *LPSECURITY_ATTRIBUTES; //Pointer
   typedef SECURITY_ATTRIBUTES *PSECURITY_ATTRIBUTES; //Pointer
   typedef SECURITY_ATTRIBUTES *WINAPI_LPSECURITY_ATTRIBUTES; //Pointer
   typedef SECURITY_ATTRIBUTES *WINAPI_SECURITY_ATTRIBUTES*; //Pointer
   typedef struct SECURITY_DESCRIPTOR_RELATIVE {
-    BYTE Revision,
-    BYTE Sbz1,
-    SECURITY_DESCRIPTOR_CONTROL Control,
-    DWORD Owner,
-    DWORD Group,
-    DWORD Sacl,
-    DWORD Dacl,
+    BYTE Revision;
+    BYTE Sbz1;
+    SECURITY_DESCRIPTOR_CONTROL Control;
+    DWORD Owner;
+    DWORD Group;
+    DWORD Sacl;
+    DWORD Dacl;
   } SECURITY_DESCRIPTOR_RELATIVE;
   typedef SECURITY_DESCRIPTOR_RELATIVE *PSECURITY_DESCRIPTOR_RELATIVE; //Pointer
   typedef SECURITY_DESCRIPTOR_RELATIVE *PISECURITY_DESCRIPTOR_RELATIVE; //Pointer

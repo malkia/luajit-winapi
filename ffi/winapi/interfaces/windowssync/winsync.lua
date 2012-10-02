@@ -1,6 +1,60 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IAsynchronousDataRetriever; //Interface
+  typedef void* IChangeConflict; //Interface
+  typedef void* IChangeUnitException; //Interface
+  typedef void* IChangeUnitListFilterInfo; //Interface
+  typedef void* IClockVector; //Interface
+  typedef void* IClockVectorElement; //Interface
+  typedef void* IConstructReplicaKeyMap; //Interface
+  typedef void* ICoreFragment; //Interface
+  typedef void* ICoreFragmentInspector; //Interface
+  typedef void* IDataRetrieverCallback; //Interface
+  typedef void* IEnumChangeUnitExceptions; //Interface
+  typedef void* IEnumClockVector; //Interface
+  typedef void* IEnumFeedClockVector; //Interface
+  typedef void* IEnumRangeExceptions; //Interface
+  typedef void* IEnumSingleItemExceptions; //Interface
+  typedef void* IEnumSyncChanges; //Interface
+  typedef void* IEnumSyncChangeUnits; //Interface
+  typedef void* IFeedClockVector; //Interface
+  typedef void* IFeedClockVectorElement; //Interface
+  typedef void* IFilterRequestCallback; //Interface
+  typedef void* IForgottenKnowledge; //Interface
+  typedef void* IKnowledgeSyncProvider; //Interface
+  typedef void* ILoadChangeContext; //Interface
+  typedef void* IProviderConverter; //Interface
+  typedef void* IRangeException; //Interface
+  typedef void* IRecoverableError; //Interface
+  typedef void* IRecoverableErrorData; //Interface
+  typedef void* IReplicaKeyMap; //Interface
+  typedef void* IRequestFilteredSync; //Interface
+  typedef void* ISingleItemException; //Interface
+  typedef void* ISupportFilteredSync; //Interface
+  typedef void* ISupportLastWriteTime; //Interface
+  typedef void* ISyncCallback; //Interface
+  typedef void* ISyncCallback2; //Interface
+  typedef void* ISyncChange; //Interface
+  typedef void* ISyncChangeBatch; //Interface
+  typedef void* ISyncChangeBatchAdvanced; //Interface
+  typedef void* ISyncChangeBatchBase; //Interface
+  typedef void* ISyncChangeBatchBase2; //Interface
+  typedef void* ISyncChangeBatchWithPrerequisite; //Interface
+  typedef void* ISyncChangeBuilder; //Interface
+  typedef void* ISyncChangeUnit; //Interface
+  typedef void* ISyncChangeWithPrerequisite; //Interface
+  typedef void* ISyncFilterInfo; //Interface
+  typedef void* ISyncFilterInfo2; //Interface
+  typedef void* ISyncFullEnumerationChange; //Interface
+  typedef void* ISyncFullEnumerationChangeBatch; //Interface
+  typedef void* ISynchronousDataRetriever; //Interface
+  typedef void* ISyncKnowledge; //Interface
+  typedef void* ISyncKnowledge2; //Interface
+  typedef void* ISyncProvider; //Interface
+  typedef void* ISyncSessionExtendedErrorInfo; //Interface
+  typedef void* ISyncSessionState; //Interface
+  typedef void* ISyncSessionState2; //Interface
   typedef enum CONFLICT_RESOLUTION_POLICY {
     CRP_NONE = 0,
     CRP_DESTINATION_PROVIDER_WINS = 1,
@@ -44,31 +98,31 @@ ffi.cdef [[
     SYNC_STATISTICS_RANGE_COUNT = 0,
   } SYNC_STATISTICS;
   typedef struct ID_PARAMETER_PAIR {
-    BOOL fIsVariable,
-    USHORT cbIdSize,
+    BOOL fIsVariable;
+    USHORT cbIdSize;
   } ID_PARAMETER_PAIR;
   typedef struct ID_PARAMETERS {
-    DWORD dwSize,
-    ID_PARAMETER_PAIR replicaId,
-    ID_PARAMETER_PAIR itemId,
-    ID_PARAMETER_PAIR changeUnitId,
+    DWORD dwSize;
+    ID_PARAMETER_PAIR replicaId;
+    ID_PARAMETER_PAIR itemId;
+    ID_PARAMETER_PAIR changeUnitId;
   } ID_PARAMETERS;
   typedef struct SYNC_RANGE {
-    BYTE* pbClosedLowerBound,
-    BYTE* pbClosedUpperBound,
+    BYTE* pbClosedLowerBound;
+    BYTE* pbClosedUpperBound;
   } SYNC_RANGE;
   typedef SYNC_RANGE *WINAPI_SYNC_RANGE*; //Pointer
   typedef struct SYNC_SESSION_STATISTICS {
-    DWORD dwChangesApplied,
-    DWORD dwChangesFailed,
+    DWORD dwChangesApplied;
+    DWORD dwChangesFailed;
   } SYNC_SESSION_STATISTICS;
   typedef struct SYNC_TIME {
-    DWORD dwDate,
-    DWORD dwTime,
+    DWORD dwDate;
+    DWORD dwTime;
   } SYNC_TIME;
   typedef struct SYNC_VERSION {
-    DWORD dwLastUpdatingReplicaKey,
-    ULONGLONG ullTickCount,
+    DWORD dwLastUpdatingReplicaKey;
+    ULONGLONG ullTickCount;
   } SYNC_VERSION;
   typedef SYNC_VERSION *WINAPI_SYNC_VERSION*; //Pointer
 ]]

@@ -29,13 +29,16 @@ local function fixpath(name)
 end
 
 local function fixname(oid)
+   local num = tonumber(oid)
    local id = oid
-   id = id:gsub("-","_")
-   if id:sub(1,6):lower()=="const " then
-      id = id:sub(7)
-   end
-   if id:sub(1,1)=="[" and id:sub(-1)=="]" then
-      id = id:sub(2,-2)
+   if num == nil then
+      id = id:gsub("-","_")
+      if id:sub(1,6):lower()=="const " then
+	 id = id:sub(7)
+      end
+      if id:sub(1,1)=="[" and id:sub(-1)=="]" then
+	 id = id:sub(2,-2)
+      end
    end
    return (oid == id) and id or ("WINAPI_" .. id)
 end
@@ -136,19 +139,34 @@ local function main()
 
       luafile:write( "local ffi = require( 'ffi' )\n" ..
 		     "ffi.cdef [[\n" )
-      
+ 
       for _, header in ipairs(cdef.Headers or {}) do
 	 for _, var in ipairs(header.Variable or {}) do
 	    if false then
-
 	    elseif var.Enum then
-	       luafile:write( "  typedef enum " .. var.Name .. " {\n" )
-	       for _, enum in ipairs( var.Enum[1].Set ) do
+	       if var.Type=="Integer" or var.Size then
+		  assert(var.Type=="Integer" and var.Size)
+		  local type =
+		     ((var.Unsigned=="True") and "u" or "") ..
+		     "int" .. tostring( 8 * tonumber(var.Size)) .. "_t"
 		  luafile:write(
-		     "    " .. enum.Name .. " = " .. enum.Value .. ",\n" )
+		     "  typedef " .. type .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+		  -- handle BOOL and BOOLEAN's TRUE and FALSE
+		  local special_prefix =
+		     (var.Name == "BOOL" or var.Name == "BOOLEAN") and (var.Name .. "_") or ""
+		  for _, enum in ipairs( var.Enum[1].Set ) do
+		     luafile:write(
+			"  const   " .. type .. " " ..
+			   special_prefix .. enum.Name .. " = " .. enum.Value .. ";\n" )
+		  end
+	       else
+		  luafile:write( "  typedef enum " .. var.Name .. " {\n" )
+		  for _, enum in ipairs( var.Enum[1].Set ) do
+		     luafile:write(
+			"    " .. enum.Name .. " = " .. enum.Value .. ",\n" )
+		  end
+		  luafile:write( "  } " .. var.Name .. ";\n" )
 	       end
-	       luafile:write( "  } " .. var.Name .. ";\n" )
-
 	    elseif var.Type == "Pointer" or var.Type == "Alias" then
 	       if var.Base .. "*" ~= var.Name then
 		  luafile:write(
@@ -156,24 +174,63 @@ local function main()
 			((var.Type == "Pointer") and " *" or " ") ..
 			var.Name .. "; //" .. var.Type .. "\n" )
 	       end
-
+	    elseif var.Type == "Interface" then
+		  luafile:write(
+		     "  typedef void* " .. var.Name .. "; //" .. var.Type .. "\n" )
 	    elseif var.Type == "Array" then
 	       if var.Base .. "*" ~= var.Name then
 		  luafile:write(
 		     "  typedef " .. var.Base .. " " ..
 			var.Name .. "; //" .. var.Type .. " " .. var.Count .. "\n" )
 	       end
-
 	    elseif var.Type == "Struct" or var.Type == "Union" then
+	       if var.Pack then
+		  luafile:write("# pragma pack( push, " .. var.Pack .. " )\n")
+	       end
 	       luafile:write( "  typedef " .. var.Type:lower() .. " " .. var.Name .. " {\n");
 	       for _, enum in ipairs( var.Field ) do
-		  luafile:write(
-		     "    " .. (enum.Type or enum.TYPE) .. " " .. enum.Name .. ",\n" )
+		  local Type = (enum.Type or enum.TYPE)
+		  local Name = enum.Name
+		  local bracket = Type:find(" [", 1, true)
+		  if bracket then
+		     Name = Name .. Type:sub(bracket+1)
+		     Type = Type:sub(1,bracket-1)
+		  end
+		  luafile:write("    " .. Type .. " " .. Name .. ";\n") 
 	       end
 	       luafile:write( "  } " .. var.Name .. ";\n" )
-
+	       if var.Pack then
+		  luafile:write("# pragma pack( pop )\n")
+	       end
+	    elseif var.Type == "Integer" then
+	       local type =
+		  ((var.Unsigned=="True") and "u" or "") ..
+		  "int" .. tostring( 8 * tonumber(var.Size)) .. "_t"
+	       luafile:write(
+		  "  typedef " .. type .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+	    elseif var.Type == "Character" then
+	       assert(var.Name == "CHAR")
+	       luafile:write( "  typedef char CHAR;");
+	    elseif var.Type == "UnicodeCharacter" then
+	       assert(var.Name == "WCHAR")
+	       luafile:write( "  typedef wchar_t WCHAR;");
+	    elseif var.Type == "TCharacter" then
+	       assert(var.Name == "TCHAR")
+	       luafile:write( "  typedef char TCHAR;");
+	    elseif var.Type == "ModuleHandle" then
+	       luafile:write(
+		  "  typedef void* " .. var.Name .. "; //" .. var.Type .. "\n" )
+	    elseif var.Type == "Void" then
+	       assert(var.Name=="void")
+	    elseif var.Type == "Floating" then
+	       assert(var.Name=="float" and var.Size=="4" or
+		      var.Name=="double" and var.Size=="8")
+	    elseif var.Type == "Guid" then
+	       assert(var.Name=="GUID")
+	       luafile:write( "  typedef struct GUID { DWORD Data1; WORD Data2, Data3; BYTE Data4[8]; } GUID;\n")
+	    else
+	       luafile:write("//" .. dump(var).."\n")
 	    end
-	    --	 luafile:write(" /* " .. dump(var) .. " */\n")
 	 end
       end
 
@@ -214,4 +271,13 @@ local function main()
    end
 end
 
-main()
+local function test()
+   for _, filename in ipairs(files) do
+      local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
+      require( lib )
+      print(lib)
+   end
+end
+
+--main()
+test()

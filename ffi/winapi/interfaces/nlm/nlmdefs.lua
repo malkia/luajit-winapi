@@ -1,6 +1,14 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IEnumNetworkConnections; //Interface
+  typedef void* IEnumNetworks; //Interface
+  typedef void* INetwork; //Interface
+  typedef void* INetworkConnection; //Interface
+  typedef void* INetworkConnectionEvents; //Interface
+  typedef void* INetworkEvents; //Interface
+  typedef void* INetworkListManager; //Interface
+  typedef void* INetworkListManagerEvents; //Interface
   typedef enum NLM_ENUM_NETWORK {
     NLM_ENUM_NETWORK_CONNECTED = 0x1,
     NLM_ENUM_NETWORK_DISCONNECTED = 0x2,

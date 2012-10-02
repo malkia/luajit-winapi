@@ -30,11 +30,13 @@ ffi.cdef [[
   typedef SCARDCONTEXT *LPSCARDCONTEXT; //Pointer
   typedef ULONG_PTR SCARDHANDLE; //Alias
   typedef SCARDHANDLE *LPSCARDHANDLE; //Pointer
+  typedef void* IAddrBook; //Interface
   typedef IAddrBook* LPADRBOOK; //Alias
   typedef LPVOID ALLOCATEBUFFER*; //Alias
   typedef LPVOID FREEBUFFER*; //Alias
   typedef DWORD WLAN_REASON_CODE; //Alias
   typedef WLAN_REASON_CODE *PWLAN_REASON_CODE; //Pointer
+  typedef void* IUnknown; //Interface
   typedef IUnknown* LPUNKNOWN; //Alias
   typedef IUnknown* WINAPI_IUnknown*; //Alias
   typedef enum LCID {
@@ -48,16 +50,16 @@ ffi.cdef [[
   } LCID;
   typedef LCID *PLCID; //Pointer
   typedef struct LIST_ENTRY {
-    LPVOID Flink,
-    LPVOID Blink,
+    LPVOID Flink;
+    LPVOID Blink;
   } LIST_ENTRY;
   typedef LIST_ENTRY *PLIST_ENTRY; //Pointer
   typedef LPVOID PSLIST_HEADER; //Alias
   typedef LPVOID PCONTEXT; //Alias
   typedef PCONTEXT WINAPI_CONTEXT*; //Alias
   typedef struct POINT {
-    LONG x,
-    LONG y,
+    LONG x;
+    LONG y;
   } POINT;
   typedef POINT WINAPI_POINT; //Alias
   typedef POINT* WINAPI_POINT*; //Alias
@@ -204,20 +206,20 @@ ffi.cdef [[
     DMBIN_FORMSOURCE = 15,
   } WINAPI_DMBIN;
   typedef enum WINAPI_DMRES {
-    DMRES_DRAFT = WINAPI__1,
-    DMRES_LOW = WINAPI__2,
-    DMRES_MEDIUM = WINAPI__3,
-    DMRES_HIGH = WINAPI__4,
+    DMRES_DRAFT = -1,
+    DMRES_LOW = -2,
+    DMRES_MEDIUM = -3,
+    DMRES_HIGH = -4,
   } WINAPI_DMRES;
   typedef struct WINAPI_DEVMODE_u1_s1 {
-    WINAPI_DMORIENT dmOrientation,
-    WINAPI_DMPAPER dmPaperSize,
-    short dmPaperLength,
-    short dmPaperWidth,
-    short dmScale,
-    short dmCopies,
-    WINAPI_DMBIN dmDefaultSource,
-    WINAPI_DMRES dmPrintQuality,
+    WINAPI_DMORIENT dmOrientation;
+    WINAPI_DMPAPER dmPaperSize;
+    short dmPaperLength;
+    short dmPaperWidth;
+    short dmScale;
+    short dmCopies;
+    WINAPI_DMBIN dmDefaultSource;
+    WINAPI_DMRES dmPrintQuality;
   } WINAPI_DEVMODE_u1_s1;
   typedef enum WINAPI_DMDO {
     DMDO_DEFAULT = 0,
@@ -231,13 +233,13 @@ ffi.cdef [[
     DMDFO_CENTER = 2,
   } WINAPI_DMDFO;
   typedef struct WINAPI_DEVMODE_u1_s2 {
-    POINTL dmPosition,
-    WINAPI_DMDO dmDisplayOrientation,
-    WINAPI_DMDFO dmDisplayFixedOutput,
+    POINTL dmPosition;
+    WINAPI_DMDO dmDisplayOrientation;
+    WINAPI_DMDFO dmDisplayFixedOutput;
   } WINAPI_DEVMODE_u1_s2;
   typedef union WINAPI_DEVMODE_u1 {
-    WINAPI_DEVMODE_u1_s1 ,
-    WINAPI_DEVMODE_u1_s2 ,
+    WINAPI_DEVMODE_u1_s1 ;
+    WINAPI_DEVMODE_u1_s2 ;
   } WINAPI_DEVMODE_u1;
   typedef DWORD WINAPI_DMDISPLAYFLAGS; //Alias
   typedef enum WINAPI_DMNUP {
@@ -245,8 +247,8 @@ ffi.cdef [[
     DMNUP_ONEUP = 2,
   } WINAPI_DMNUP;
   typedef union WINAPI_DEVMODE_u2 {
-    WINAPI_DMDISPLAYFLAGS dmDisplayFlags,
-    WINAPI_DMNUP dmNup,
+    WINAPI_DMDISPLAYFLAGS dmDisplayFlags;
+    WINAPI_DMNUP dmNup;
   } WINAPI_DEVMODE_u2;
   typedef DWORD WINAPI_DM_Fields; //Alias
   typedef enum WINAPI_DMCOLOR {
@@ -298,33 +300,33 @@ ffi.cdef [[
     DMDITHER_GRAYSCALE = 10,
   } WINAPI_DMDITHER;
   typedef struct DEVMODE {
-    TCHAR [CCHDEVICENAME] dmDeviceName,
-    WORD dmSpecVersion,
-    WORD dmDriverVersion,
-    WORD dmSize,
-    WORD dmDriverExtra,
-    WINAPI_DM_Fields dmFields,
-    WINAPI_DEVMODE_u1 ,
-    WINAPI_DMCOLOR dmColor,
-    WINAPI_DMDUP dmDuplex,
-    short dmYResolution,
-    WINAPI_DMTT dmTTOption,
-    WINAPI_DMCOLLATE dmCollate,
-    TCHAR [CCHFORMNAME] dmFormName,
-    WORD dmLogPixels,
-    DWORD dmBitsPerPel,
-    DWORD dmPelsWidth,
-    DWORD dmPelsHeight,
-    WINAPI_DEVMODE_u2 ,
-    DWORD dmDisplayFrequency,
-    WINAPI_DMICMMETHOD dmICMMethod,
-    WINAPI_DMICM dmICMIntent,
-    WINAPI_DMMEDIA dmMediaType,
-    WINAPI_DMDITHER dmDitherType,
-    DWORD dmReserved1,
-    DWORD dmReserved2,
-    DWORD dmPanningWidth,
-    DWORD dmPanningHeight,
+    TCHAR dmDeviceName[CCHDEVICENAME];
+    WORD dmSpecVersion;
+    WORD dmDriverVersion;
+    WORD dmSize;
+    WORD dmDriverExtra;
+    WINAPI_DM_Fields dmFields;
+    WINAPI_DEVMODE_u1 ;
+    WINAPI_DMCOLOR dmColor;
+    WINAPI_DMDUP dmDuplex;
+    short dmYResolution;
+    WINAPI_DMTT dmTTOption;
+    WINAPI_DMCOLLATE dmCollate;
+    TCHAR dmFormName[CCHFORMNAME];
+    WORD dmLogPixels;
+    DWORD dmBitsPerPel;
+    DWORD dmPelsWidth;
+    DWORD dmPelsHeight;
+    WINAPI_DEVMODE_u2 ;
+    DWORD dmDisplayFrequency;
+    WINAPI_DMICMMETHOD dmICMMethod;
+    WINAPI_DMICM dmICMIntent;
+    WINAPI_DMMEDIA dmMediaType;
+    WINAPI_DMDITHER dmDitherType;
+    DWORD dmReserved1;
+    DWORD dmReserved2;
+    DWORD dmPanningWidth;
+    DWORD dmPanningHeight;
   } DEVMODE;
   typedef DEVMODE *WINAPI_DEVMODE*; //Pointer
   typedef DEVMODE *LPDEVMODE; //Pointer
@@ -345,56 +347,56 @@ ffi.cdef [[
   typedef HANDLE HBITMAP; //Alias
   typedef HANDLE HENHMETAFILE; //Alias
   typedef enum WINAPI_ProcessHandle {
-    GetCurrentProcess() = WINAPI__1,
+    GetCurrentProcess() = -1,
   } WINAPI_ProcessHandle;
   typedef enum WINAPI_ThreadHandle {
-    GetCurrentThread() = WINAPI__2,
+    GetCurrentThread() = -2,
   } WINAPI_ThreadHandle;
-  typedef enum HRESULT {
-    S_OK = 0,
-    S_FALSE = 1,
-    E_ABORT = 0x80004004,
-    E_ACCESSDENIED = 0x80070005,
-    E_FAIL = 0x80004005,
-    E_HANDLE = 0x80070006,
-    E_INVALIDARG = 0x80070057,
-    E_NOINTERFACE = 0x80004002,
-    E_NOTIMPL = 0x80004001,
-    E_OUTOFMEMORY = 0x8007000E,
-    E_POINTER = 0x80004003,
-    E_UNEXPECTED = 0x8000FFFF,
-    CO_E_NOTINITIALIZED = 0x800401F0,
-  } HRESULT;
+  typedef int32_t HRESULT; //Integer
+  const   int32_t S_OK = 0;
+  const   int32_t S_FALSE = 1;
+  const   int32_t E_ABORT = 0x80004004;
+  const   int32_t E_ACCESSDENIED = 0x80070005;
+  const   int32_t E_FAIL = 0x80004005;
+  const   int32_t E_HANDLE = 0x80070006;
+  const   int32_t E_INVALIDARG = 0x80070057;
+  const   int32_t E_NOINTERFACE = 0x80004002;
+  const   int32_t E_NOTIMPL = 0x80004001;
+  const   int32_t E_OUTOFMEMORY = 0x8007000E;
+  const   int32_t E_POINTER = 0x80004003;
+  const   int32_t E_UNEXPECTED = 0x8000FFFF;
+  const   int32_t CO_E_NOTINITIALIZED = 0x800401F0;
   typedef HRESULT STDAPI; //Alias
   typedef HRESULT SCODE; //Alias
   typedef struct WINAPI_LARGE_INTEGER_s {
-    DWORD LowPart,
-    LONG HighPart,
+    DWORD LowPart;
+    LONG HighPart;
   } WINAPI_LARGE_INTEGER_s;
   typedef union LARGE_INTEGER {
-    WINAPI_LARGE_INTEGER_s u,
-    LONGLONG QuadPart,
+    WINAPI_LARGE_INTEGER_s u;
+    LONGLONG QuadPart;
   } LARGE_INTEGER;
   typedef LARGE_INTEGER *PLARGE_INTEGER; //Pointer
   typedef PLARGE_INTEGER LARGE_INTEGER*; //Alias
   typedef LARGE_INTEGER* WINAPI_LARGE_INTEGER*; //Alias
   typedef struct WINAPI_ULARGE_INTEGER_s {
-    DWORD LowPart,
-    LONG HighPart,
+    DWORD LowPart;
+    LONG HighPart;
   } WINAPI_ULARGE_INTEGER_s;
   typedef union ULARGE_INTEGER {
-    WINAPI_ULARGE_INTEGER_s u,
-    ULONGLONG QuadPart,
+    WINAPI_ULARGE_INTEGER_s u;
+    ULONGLONG QuadPart;
   } ULARGE_INTEGER;
   typedef ULARGE_INTEGER *PULARGE_INTEGER; //Pointer
   typedef struct FILETIME {
-    DWORD dwLowDateTime,
-    DWORD dwHighDateTime,
+    DWORD dwLowDateTime;
+    DWORD dwHighDateTime;
   } FILETIME;
   typedef FILETIME* PFILETIME; //Alias
   typedef FILETIME* LPFILETIME; //Alias
   typedef FILETIME* WINAPI_FILETIME*; //Alias
   typedef FILETIME* FILETIME const*; //Alias
+  typedef struct GUID { DWORD Data1; WORD Data2, Data3; BYTE Data4[8]; } GUID;
   typedef GUID* PGUID; //Alias
   typedef GUID* WINAPI_GUID*; //Alias
   typedef GUID* LPCGUID; //Alias
@@ -413,8 +415,8 @@ ffi.cdef [[
   typedef IID *REFIID; //Pointer
   typedef IID *LPIID; //Pointer
   typedef struct LUID {
-    DWORD LowPart,
-    LONG HighPart,
+    DWORD LowPart;
+    LONG HighPart;
   } LUID;
   typedef LUID* PLUID; //Alias
   typedef GUID SLID; //Alias
@@ -428,14 +430,14 @@ ffi.cdef [[
   typedef UINT SECURITY_INFORMATION; //Alias
   typedef SECURITY_INFORMATION *PSECURITY_INFORMATION; //Pointer
   typedef struct SYSTEMTIME {
-    WORD wYear,
-    WORD wMonth,
-    WORD wDayOfWeek,
-    WORD wDay,
-    WORD wHour,
-    WORD wMinute,
-    WORD wSecond,
-    WORD wMilliseconds,
+    WORD wYear;
+    WORD wMonth;
+    WORD wDayOfWeek;
+    WORD wDay;
+    WORD wHour;
+    WORD wMinute;
+    WORD wSecond;
+    WORD wMilliseconds;
   } SYSTEMTIME;
   typedef SYSTEMTIME WINAPI_SYSTEMTIME; //Alias
   typedef SYSTEMTIME* WINAPI_SYSTEMTIME*; //Alias
@@ -575,17 +577,17 @@ ffi.cdef [[
     GetFileExInfoStandard = 0,
   } GET_FILEEX_INFO_LEVELS;
   typedef struct UNICODE_STRING {
-    USHORT Length,
-    USHORT MaximumLength,
-    PWSTR Buffer,
+    USHORT Length;
+    USHORT MaximumLength;
+    PWSTR Buffer;
   } UNICODE_STRING;
   typedef UNICODE_STRING *PUNICODE_STRING; //Pointer
   typedef UNICODE_STRING *PCUNICODE_STRING; //Pointer
   typedef UNICODE_STRING *WINAPI_UNICODE_STRING*; //Pointer
   typedef struct STRING {
-    USHORT Length,
-    USHORT MaximumLength,
-    PCHAR Buffer,
+    USHORT Length;
+    USHORT MaximumLength;
+    PCHAR Buffer;
   } STRING;
   typedef STRING *PSTRING; //Pointer
   typedef STRING *WINAPI_STRING*; //Pointer
@@ -864,12 +866,12 @@ ffi.cdef [[
     BM_SETDONTCLICK = 0x00F8,
   } WINAPI_WinMsg;
   typedef struct MSG {
-    HWND hwnd,
-    WINAPI_WinMsg message,
-    WPARAM wParam,
-    LPARAM lParam,
-    DWORD time,
-    POINT pt,
+    HWND hwnd;
+    WINAPI_WinMsg message;
+    WPARAM wParam;
+    LPARAM lParam;
+    DWORD time;
+    POINT pt;
   } MSG;
   typedef MSG* WINAPI_MSG*; //Alias
   typedef MSG* LPMSG; //Alias
@@ -926,10 +928,10 @@ ffi.cdef [[
   typedef UINT WINAPI_BorderEdge; //Alias
   typedef DWORD WINAPI_DrawTextFlags; //Alias
   typedef struct RECT {
-    LONG left,
-    LONG top,
-    LONG right,
-    LONG bottom,
+    LONG left;
+    LONG top;
+    LONG right;
+    LONG bottom;
   } RECT;
   typedef RECT *LPRECT; //Pointer
   typedef LPRECT WINAPI_LPRECT; //Alias
@@ -969,32 +971,32 @@ ffi.cdef [[
     EXCEPTION_NONCONTINUABLE_EXCEPTION = 0x1,
   } WINAPI_EXCEPTION_FLAGS;
   typedef struct EXCEPTION_RECORD {
-    WINAPI_ExceptionCode ExceptionCode,
-    DWORD ExceptionFlags,
-    LPVOID ExceptionRecord,
-    PVOID ExceptionAddress,
-    DWORD NumberParameters,
-    ULONG_PTR [EXCEPTION_MAXIMUM_PARAMETERS] ExceptionInformation,
+    WINAPI_ExceptionCode ExceptionCode;
+    DWORD ExceptionFlags;
+    LPVOID ExceptionRecord;
+    PVOID ExceptionAddress;
+    DWORD NumberParameters;
+    ULONG_PTR ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS];
   } EXCEPTION_RECORD;
   typedef EXCEPTION_RECORD *PEXCEPTION_RECORD; //Pointer
   typedef struct EXCEPTION_POINTERS {
-    PEXCEPTION_RECORD ExceptionRecord,
-    PCONTEXT ContextRecord,
+    PEXCEPTION_RECORD ExceptionRecord;
+    PCONTEXT ContextRecord;
   } EXCEPTION_POINTERS;
   typedef EXCEPTION_POINTERS *PEXCEPTION_POINTERS; //Pointer
   typedef EXCEPTION_POINTERS *LPEXCEPTION_POINTERS; //Pointer
   typedef struct SP_DEVINFO_DATA {
-    DWORD cbSize,
-    GUID ClassGuid,
-    DWORD DevInst,
-    ULONG_PTR Reserved,
+    DWORD cbSize;
+    GUID ClassGuid;
+    DWORD DevInst;
+    ULONG_PTR Reserved;
   } SP_DEVINFO_DATA;
   typedef SP_DEVINFO_DATA *PSP_DEVINFO_DATA; //Pointer
   typedef struct PROCESS_INFORMATION {
-    HANDLE hProcess,
-    HANDLE hThread,
-    DWORD dwProcessId,
-    DWORD dwThreadId,
+    HANDLE hProcess;
+    HANDLE hThread;
+    DWORD dwProcessId;
+    DWORD dwThreadId;
   } PROCESS_INFORMATION;
   typedef PROCESS_INFORMATION *LPPROCESS_INFORMATION; //Pointer
   typedef enum WINAPI_ShowWindowCmd {
@@ -1031,65 +1033,65 @@ ffi.cdef [[
   } WINAPI_STARTUPINFO_ShowWindow;
   typedef DWORD WINAPI_STARTUPINFO_Flags; //Alias
   typedef struct STARTUPINFO {
-    DWORD cb,
-    LPTSTR lpReserved,
-    LPTSTR lpDesktop,
-    LPTSTR lpTitle,
-    DWORD dwX,
-    DWORD dwY,
-    DWORD dwXSize,
-    DWORD dwYSize,
-    DWORD dwXCountChars,
-    DWORD dwYCountChars,
-    DWORD dwFillAttribute,
-    WINAPI_STARTUPINFO_Flags dwFlags,
-    WINAPI_STARTUPINFO_ShowWindow wShowWindow,
-    WORD cbReserved2,
-    LPBYTE lpReserved2,
-    HANDLE hStdInput,
-    HANDLE hStdOutput,
-    HANDLE hStdError,
+    DWORD cb;
+    LPTSTR lpReserved;
+    LPTSTR lpDesktop;
+    LPTSTR lpTitle;
+    DWORD dwX;
+    DWORD dwY;
+    DWORD dwXSize;
+    DWORD dwYSize;
+    DWORD dwXCountChars;
+    DWORD dwYCountChars;
+    DWORD dwFillAttribute;
+    WINAPI_STARTUPINFO_Flags dwFlags;
+    WINAPI_STARTUPINFO_ShowWindow wShowWindow;
+    WORD cbReserved2;
+    LPBYTE lpReserved2;
+    HANDLE hStdInput;
+    HANDLE hStdOutput;
+    HANDLE hStdError;
   } STARTUPINFO;
   typedef STARTUPINFO *LPSTARTUPINFO; //Pointer
   typedef struct STARTUPINFOW {
-    DWORD cb,
-    LPWSTR lpReserved,
-    LPWSTR lpDesktop,
-    LPWSTR lpTitle,
-    DWORD dwX,
-    DWORD dwY,
-    DWORD dwXSize,
-    DWORD dwYSize,
-    DWORD dwXCountChars,
-    DWORD dwYCountChars,
-    DWORD dwFillAttribute,
-    WINAPI_STARTUPINFO_Flags dwFlags,
-    WINAPI_STARTUPINFO_ShowWindow wShowWindow,
-    WORD cbReserved2,
-    LPBYTE lpReserved2,
-    HANDLE hStdInput,
-    HANDLE hStdOutput,
-    HANDLE hStdError,
+    DWORD cb;
+    LPWSTR lpReserved;
+    LPWSTR lpDesktop;
+    LPWSTR lpTitle;
+    DWORD dwX;
+    DWORD dwY;
+    DWORD dwXSize;
+    DWORD dwYSize;
+    DWORD dwXCountChars;
+    DWORD dwYCountChars;
+    DWORD dwFillAttribute;
+    WINAPI_STARTUPINFO_Flags dwFlags;
+    WINAPI_STARTUPINFO_ShowWindow wShowWindow;
+    WORD cbReserved2;
+    LPBYTE lpReserved2;
+    HANDLE hStdInput;
+    HANDLE hStdOutput;
+    HANDLE hStdError;
   } STARTUPINFOW;
   typedef STARTUPINFOW *LPSTARTUPINFOW; //Pointer
   typedef union FILE_SEGMENT_ELEMENT {
-    PVOID64 Buffer,
-    ULONGLONG Alignment,
+    PVOID64 Buffer;
+    ULONGLONG Alignment;
   } FILE_SEGMENT_ELEMENT;
   typedef FILE_SEGMENT_ELEMENT *FILE_SEGMENT_ELEMENT[]; //Pointer
   typedef struct WINAPI_OVERLAPPED_u_s {
-    DWORD Offset,
-    DWORD OffsetHigh,
+    DWORD Offset;
+    DWORD OffsetHigh;
   } WINAPI_OVERLAPPED_u_s;
   typedef union WINAPI_OVERLAPPED_u {
-    WINAPI_OVERLAPPED_u_s ,
-    PVOID Pointer,
+    WINAPI_OVERLAPPED_u_s ;
+    PVOID Pointer;
   } WINAPI_OVERLAPPED_u;
   typedef struct OVERLAPPED {
-    ULONG_PTR Internal,
-    ULONG_PTR InternalHigh,
-    WINAPI_OVERLAPPED_u ,
-    HANDLE hEvent,
+    ULONG_PTR Internal;
+    ULONG_PTR InternalHigh;
+    WINAPI_OVERLAPPED_u ;
+    HANDLE hEvent;
   } OVERLAPPED;
   typedef OVERLAPPED *LPOVERLAPPED; //Pointer
   typedef enum WINAPI_ReparsePoint {
@@ -1105,61 +1107,61 @@ ffi.cdef [[
   } WINAPI_ReparsePoint;
   typedef DWORD WINAPI_FileAttributes; //Alias
   typedef struct WIN32_FIND_DATA {
-    WINAPI_FileAttributes dwFileAttributes,
-    FILETIME ftCreationTime,
-    FILETIME ftLastAccessTime,
-    FILETIME ftLastWriteTime,
-    DWORD nFileSizeHigh,
-    DWORD nFileSizeLow,
-    WINAPI_ReparsePoint dwReserved0,
-    DWORD dwReserved1,
-    TCHAR [MAX_PATH] cFileName,
-    TCHAR [14] cAlternateFileName,
+    WINAPI_FileAttributes dwFileAttributes;
+    FILETIME ftCreationTime;
+    FILETIME ftLastAccessTime;
+    FILETIME ftLastWriteTime;
+    DWORD nFileSizeHigh;
+    DWORD nFileSizeLow;
+    WINAPI_ReparsePoint dwReserved0;
+    DWORD dwReserved1;
+    TCHAR cFileName[MAX_PATH];
+    TCHAR cAlternateFileName[14];
   } WIN32_FIND_DATA;
   typedef WIN32_FIND_DATA *LPWIN32_FIND_DATA; //Pointer
   typedef struct WIN32_FIND_DATAA {
-    WINAPI_FileAttributes dwFileAttributes,
-    FILETIME ftCreationTime,
-    FILETIME ftLastAccessTime,
-    FILETIME ftLastWriteTime,
-    DWORD nFileSizeHigh,
-    DWORD nFileSizeLow,
-    WINAPI_ReparsePoint dwReserved0,
-    DWORD dwReserved1,
-    CHAR [MAX_PATH] cFileName,
-    CHAR [14] cAlternateFileName,
+    WINAPI_FileAttributes dwFileAttributes;
+    FILETIME ftCreationTime;
+    FILETIME ftLastAccessTime;
+    FILETIME ftLastWriteTime;
+    DWORD nFileSizeHigh;
+    DWORD nFileSizeLow;
+    WINAPI_ReparsePoint dwReserved0;
+    DWORD dwReserved1;
+    CHAR cFileName[MAX_PATH];
+    CHAR cAlternateFileName[14];
   } WIN32_FIND_DATAA;
   typedef struct WIN32_FIND_DATAW {
-    WINAPI_FileAttributes dwFileAttributes,
-    FILETIME ftCreationTime,
-    FILETIME ftLastAccessTime,
-    FILETIME ftLastWriteTime,
-    DWORD nFileSizeHigh,
-    DWORD nFileSizeLow,
-    WINAPI_ReparsePoint dwReserved0,
-    DWORD dwReserved1,
-    WCHAR [MAX_PATH] cFileName,
-    WCHAR [14] cAlternateFileName,
+    WINAPI_FileAttributes dwFileAttributes;
+    FILETIME ftCreationTime;
+    FILETIME ftLastAccessTime;
+    FILETIME ftLastWriteTime;
+    DWORD nFileSizeHigh;
+    DWORD nFileSizeLow;
+    WINAPI_ReparsePoint dwReserved0;
+    DWORD dwReserved1;
+    WCHAR cFileName[MAX_PATH];
+    WCHAR cAlternateFileName[14];
   } WIN32_FIND_DATAW;
   typedef WIN32_FIND_DATAW *WINAPI_WIN32_FIND_DATAW*; //Pointer
   typedef struct TIME_ZONE_INFORMATION {
-    LONG Bias,
-    WCHAR [32] StandardName,
-    SYSTEMTIME StandardDate,
-    LONG StandardBias,
-    WCHAR [32] DaylightName,
-    SYSTEMTIME DaylightDate,
-    LONG DaylightBias,
+    LONG Bias;
+    WCHAR StandardName[32];
+    SYSTEMTIME StandardDate;
+    LONG StandardBias;
+    WCHAR DaylightName[32];
+    SYSTEMTIME DaylightDate;
+    LONG DaylightBias;
   } TIME_ZONE_INFORMATION;
   typedef TIME_ZONE_INFORMATION *LPTIME_ZONE_INFORMATION; //Pointer
   typedef TIME_ZONE_INFORMATION *WINAPI_TIME_ZONE_INFORMATION*; //Pointer
   typedef struct OFSTRUCT {
-    BYTE cBytes,
-    BYTE fFixedDisk,
-    WORD nErrCode,
-    WORD Reserved1,
-    WORD Reserved2,
-    CHAR [OFS_MAXPATHNAME] szPathName,
+    BYTE cBytes;
+    BYTE fFixedDisk;
+    WORD nErrCode;
+    WORD Reserved1;
+    WORD Reserved2;
+    CHAR szPathName[OFS_MAXPATHNAME];
   } OFSTRUCT;
   typedef OFSTRUCT *LPOFSTRUCT; //Pointer
   typedef enum WINAPI_PROCESSOR_ARCHITECTURE {
@@ -1331,21 +1333,21 @@ ffi.cdef [[
     VER_PLATFORM_WIN32_NT = 2,
   } WINAPI_VER_PLATFORM;
   typedef struct OSVERSIONINFO {
-    DWORD dwOSVersionInfoSize,
-    DWORD dwMajorVersion,
-    DWORD dwMinorVersion,
-    DWORD dwBuildNumber,
-    WINAPI_VER_PLATFORM dwPlatformId,
-    TCHAR [128] szCSDVersion,
+    DWORD dwOSVersionInfoSize;
+    DWORD dwMajorVersion;
+    DWORD dwMinorVersion;
+    DWORD dwBuildNumber;
+    WINAPI_VER_PLATFORM dwPlatformId;
+    TCHAR szCSDVersion[128];
   } OSVERSIONINFO;
   typedef OSVERSIONINFO *LPOSVERSIONINFO; //Pointer
   typedef struct RTL_OSVERSIONINFOW {
-    DWORD dwOSVersionInfoSize,
-    DWORD dwMajorVersion,
-    DWORD dwMinorVersion,
-    DWORD dwBuildNumber,
-    WINAPI_VER_PLATFORM dwPlatformId,
-    WCHAR [128] szCSDVersion,
+    DWORD dwOSVersionInfoSize;
+    DWORD dwMajorVersion;
+    DWORD dwMinorVersion;
+    DWORD dwBuildNumber;
+    WINAPI_VER_PLATFORM dwPlatformId;
+    WCHAR szCSDVersion[128];
   } RTL_OSVERSIONINFOW;
   typedef RTL_OSVERSIONINFOW *PRTL_OSVERSIONINFOW; //Pointer
   typedef WORD WINAPI_VER_SUITE; //Alias
@@ -1355,31 +1357,31 @@ ffi.cdef [[
     VER_NT_SERVER = 0x0000003,
   } WINAPI_VER_PRODUCT;
   typedef struct OSVERSIONINFOEX {
-    DWORD dwOSVersionInfoSize,
-    DWORD dwMajorVersion,
-    DWORD dwMinorVersion,
-    DWORD dwBuildNumber,
-    DWORD dwPlatformId,
-    TCHAR [128] szCSDVersion,
-    WORD wServicePackMajor,
-    WORD wServicePackMinor,
-    WINAPI_VER_SUITE wSuiteMask,
-    WINAPI_VER_PRODUCT wProductType,
-    BYTE wReserved,
+    DWORD dwOSVersionInfoSize;
+    DWORD dwMajorVersion;
+    DWORD dwMinorVersion;
+    DWORD dwBuildNumber;
+    DWORD dwPlatformId;
+    TCHAR szCSDVersion[128];
+    WORD wServicePackMajor;
+    WORD wServicePackMinor;
+    WINAPI_VER_SUITE wSuiteMask;
+    WINAPI_VER_PRODUCT wProductType;
+    BYTE wReserved;
   } OSVERSIONINFOEX;
   typedef OSVERSIONINFOEX *LPOSVERSIONINFOEX; //Pointer
   typedef struct RTL_OSVERSIONINFOEXW {
-    DWORD dwOSVersionInfoSize,
-    DWORD dwMajorVersion,
-    DWORD dwMinorVersion,
-    DWORD dwBuildNumber,
-    DWORD dwPlatformId,
-    WCHAR [128] szCSDVersion,
-    WORD wServicePackMajor,
-    WORD wServicePackMinor,
-    WINAPI_VER_SUITE wSuiteMask,
-    WINAPI_VER_PRODUCT wProductType,
-    BYTE wReserved,
+    DWORD dwOSVersionInfoSize;
+    DWORD dwMajorVersion;
+    DWORD dwMinorVersion;
+    DWORD dwBuildNumber;
+    DWORD dwPlatformId;
+    WCHAR szCSDVersion[128];
+    WORD wServicePackMajor;
+    WORD wServicePackMinor;
+    WINAPI_VER_SUITE wSuiteMask;
+    WINAPI_VER_PRODUCT wProductType;
+    BYTE wReserved;
   } RTL_OSVERSIONINFOEXW;
   typedef RTL_OSVERSIONINFOEXW *PRTL_OSVERSIONINFOEXW; //Pointer
   typedef enum SymTagEnum {
@@ -1417,8 +1419,8 @@ ffi.cdef [[
   } SymTagEnum;
   typedef SymTagEnum WINAPI_SymTagEnum_ULONG; //Alias
   typedef struct IMAGE_DATA_DIRECTORY {
-    DWORD VirtualAddress,
-    DWORD Size,
+    DWORD VirtualAddress;
+    DWORD Size;
   } IMAGE_DATA_DIRECTORY;
   typedef IMAGE_DATA_DIRECTORY IMAGE_DATA_DIRECTORY [IMAGE_NUMBEROF_DIRECTORY_ENTRIES]; //Array 16
   typedef enum WINAPI_IMAGE_OPTIONAL_MAGIC {
@@ -1451,59 +1453,59 @@ ffi.cdef [[
   } WINAPI_IMAGE_FILE_MACHINE;
   typedef WORD WINAPI_IMAGE_FILE_CHARACTERISTICS; //Alias
   typedef struct IMAGE_FILE_HEADER {
-    WINAPI_IMAGE_FILE_MACHINE Machine,
-    WORD NumberOfSections,
-    DWORD TimeDateStamp,
-    DWORD PointerToSymbolTable,
-    DWORD NumberOfSymbols,
-    WORD SizeOfOptionalHeader,
-    WINAPI_IMAGE_FILE_CHARACTERISTICS Characteristics,
+    WINAPI_IMAGE_FILE_MACHINE Machine;
+    WORD NumberOfSections;
+    DWORD TimeDateStamp;
+    DWORD PointerToSymbolTable;
+    DWORD NumberOfSymbols;
+    WORD SizeOfOptionalHeader;
+    WINAPI_IMAGE_FILE_CHARACTERISTICS Characteristics;
   } IMAGE_FILE_HEADER;
   typedef struct IMAGE_OPTIONAL_HEADER64 {
-    WINAPI_IMAGE_OPTIONAL_MAGIC Magic,
-    BYTE MajorLinkerVersion,
-    BYTE MinorLinkerVersion,
-    DWORD SizeOfCode,
-    DWORD SizeOfInitializedData,
-    DWORD SizeOfUninitializedData,
-    DWORD AddressOfEntryPoint,
-    DWORD BaseOfCode,
-    ULONGLONG ImageBase,
-    DWORD SectionAlignment,
-    DWORD FileAlignment,
-    WORD MajorOperatingSystemVersion,
-    WORD MinorOperatingSystemVersion,
-    WORD MajorImageVersion,
-    WORD MinorImageVersion,
-    WORD MajorSubsystemVersion,
-    WORD MinorSubsystemVersion,
-    DWORD Win32VersionValue,
-    DWORD SizeOfImage,
-    DWORD SizeOfHeaders,
-    DWORD CheckSum,
-    WINAPI_IMAGE_SUBSYSTEM Subsystem,
-    WINAPI_IMAGE_DLLCHARACTERISTICS DllCharacteristics,
-    ULONGLONG SizeOfStackReserve,
-    ULONGLONG SizeOfStackCommit,
-    ULONGLONG SizeOfHeapReserve,
-    ULONGLONG SizeOfHeapCommit,
-    DWORD LoaderFlags,
-    DWORD NumberOfRvaAndSizes,
-    IMAGE_DATA_DIRECTORY [IMAGE_NUMBEROF_DIRECTORY_ENTRIES] DataDirectory,
+    WINAPI_IMAGE_OPTIONAL_MAGIC Magic;
+    BYTE MajorLinkerVersion;
+    BYTE MinorLinkerVersion;
+    DWORD SizeOfCode;
+    DWORD SizeOfInitializedData;
+    DWORD SizeOfUninitializedData;
+    DWORD AddressOfEntryPoint;
+    DWORD BaseOfCode;
+    ULONGLONG ImageBase;
+    DWORD SectionAlignment;
+    DWORD FileAlignment;
+    WORD MajorOperatingSystemVersion;
+    WORD MinorOperatingSystemVersion;
+    WORD MajorImageVersion;
+    WORD MinorImageVersion;
+    WORD MajorSubsystemVersion;
+    WORD MinorSubsystemVersion;
+    DWORD Win32VersionValue;
+    DWORD SizeOfImage;
+    DWORD SizeOfHeaders;
+    DWORD CheckSum;
+    WINAPI_IMAGE_SUBSYSTEM Subsystem;
+    WINAPI_IMAGE_DLLCHARACTERISTICS DllCharacteristics;
+    ULONGLONG SizeOfStackReserve;
+    ULONGLONG SizeOfStackCommit;
+    ULONGLONG SizeOfHeapReserve;
+    ULONGLONG SizeOfHeapCommit;
+    DWORD LoaderFlags;
+    DWORD NumberOfRvaAndSizes;
+    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
   } IMAGE_OPTIONAL_HEADER64;
   typedef struct IMAGE_NT_HEADERS {
-    DWORD Signature,
-    IMAGE_FILE_HEADER FileHeader,
-    IMAGE_OPTIONAL_HEADER OptionalHeader,
+    DWORD Signature;
+    IMAGE_FILE_HEADER FileHeader;
+    IMAGE_OPTIONAL_HEADER OptionalHeader;
   } IMAGE_NT_HEADERS;
   typedef IMAGE_NT_HEADERS *PIMAGE_NT_HEADERS; //Pointer
   typedef struct NUMBERFMT {
-    UINT NumDigits,
-    UINT LeadingZero,
-    UINT Grouping,
-    LPTSTR lpDecimalSep,
-    LPTSTR lpThousandSep,
-    UINT NegativeOrder,
+    UINT NumDigits;
+    UINT LeadingZero;
+    UINT Grouping;
+    LPTSTR lpDecimalSep;
+    LPTSTR lpThousandSep;
+    UINT NegativeOrder;
   } NUMBERFMT;
   typedef NUMBERFMT *WINAPI_NUMBERFMT*; //Pointer
   typedef enum WINAPI_DwmWindowAttr {
@@ -1529,15 +1531,15 @@ ffi.cdef [[
   typedef DWORD WINAPI_LocaleMappingFlags; //Alias
   typedef DWORD WINAPI_ACTCTX_FLAG; //Alias
   typedef struct ACTCTX {
-    ULONG cbSize,
-    WINAPI_ACTCTX_FLAG dwFlags,
-    LPCTSTR lpSource,
-    WINAPI_PROCESSOR_ARCHITECTURE wProcessorArchitecture,
-    LANGID wLangId,
-    LPCTSTR lpAssemblyDirectory,
-    LPCTSTR lpResourceName,
-    LPCTSTR lpApplicationName,
-    HMODULE hModule,
+    ULONG cbSize;
+    WINAPI_ACTCTX_FLAG dwFlags;
+    LPCTSTR lpSource;
+    WINAPI_PROCESSOR_ARCHITECTURE wProcessorArchitecture;
+    LANGID wLangId;
+    LPCTSTR lpAssemblyDirectory;
+    LPCTSTR lpResourceName;
+    LPCTSTR lpApplicationName;
+    HMODULE hModule;
   } ACTCTX;
   typedef ACTCTX *PACTCTX; //Pointer
   typedef DWORD WINAPI_HEAP_FLAGS; //Alias
@@ -1574,9 +1576,9 @@ ffi.cdef [[
     WAIT_FAILED = 0xFFFFFFFF,
   } WINAPI_WAIT_RESULT;
   typedef struct PROCESSOR_NUMBER {
-    WORD Group,
-    BYTE Number,
-    BYTE Reserved,
+    WORD Group;
+    BYTE Number;
+    BYTE Reserved;
   } PROCESSOR_NUMBER;
   typedef PROCESSOR_NUMBER *PPROCESSOR_NUMBER; //Pointer
 ]]

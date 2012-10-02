@@ -5,11 +5,11 @@ ffi.cdef [[
   typedef IPAddr IPAddr [1]; //Array 1
   typedef UCHAR WINAPI_IpOptionFlags; //Alias
   typedef struct IP_OPTION_INFORMATION {
-    UCHAR Ttl,
-    UCHAR Tos,
-    WINAPI_IpOptionFlags Flags,
-    UCHAR OptionsSize,
-    PUCHAR OptionsData,
+    UCHAR Ttl;
+    UCHAR Tos;
+    WINAPI_IpOptionFlags Flags;
+    UCHAR OptionsSize;
+    PUCHAR OptionsData;
   } IP_OPTION_INFORMATION;
   typedef IP_OPTION_INFORMATION *PIP_OPTION_INFORMATION; //Pointer
 ]]

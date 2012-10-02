@@ -17,7 +17,7 @@ ffi.cdef [[
     BLUETOOTH_NULL_ADDRESS = 0,
   } BTH_ADDR;
   typedef struct BLUETOOTH_ADDRESS {
-    BTH_ADDR ullLong,
+    BTH_ADDR ullLong;
   } BLUETOOTH_ADDRESS;
   typedef enum WINAPI_BTH_MFG {
     BTH_MFG_ERICSSON = 0,
@@ -68,54 +68,54 @@ ffi.cdef [[
     BTH_MFG_INTERNAL_USE = 65535,
   } WINAPI_BTH_MFG;
   typedef struct BLUETOOTH_RADIO_INFO {
-    DWORD dwSize,
-    BLUETOOTH_ADDRESS address,
-    WCHAR [BLUETOOTH_MAX_NAME_SIZE] szName,
-    ULONG ulClassofDevice,
-    USHORT lmpSubversion,
-    WINAPI_BTH_MFG manufacturer,
+    DWORD dwSize;
+    BLUETOOTH_ADDRESS address;
+    WCHAR szName[BLUETOOTH_MAX_NAME_SIZE];
+    ULONG ulClassofDevice;
+    USHORT lmpSubversion;
+    WINAPI_BTH_MFG manufacturer;
   } BLUETOOTH_RADIO_INFO;
   typedef BLUETOOTH_RADIO_INFO *PBLUETOOTH_RADIO_INFO; //Pointer
   typedef struct BLUETOOTH_DEVICE_INFO {
-    DWORD dwSize,
-    BLUETOOTH_ADDRESS Address,
-    ULONG ulClassofDevice,
-    BOOL fConnected,
-    BOOL fRemembered,
-    BOOL fAuthenticated,
-    SYSTEMTIME stLastSeen,
-    SYSTEMTIME stLastUsed,
-    WCHAR [BLUETOOTH_MAX_NAME_SIZE] szName,
+    DWORD dwSize;
+    BLUETOOTH_ADDRESS Address;
+    ULONG ulClassofDevice;
+    BOOL fConnected;
+    BOOL fRemembered;
+    BOOL fAuthenticated;
+    SYSTEMTIME stLastSeen;
+    SYSTEMTIME stLastUsed;
+    WCHAR szName[BLUETOOTH_MAX_NAME_SIZE];
   } BLUETOOTH_DEVICE_INFO;
   typedef BLUETOOTH_DEVICE_INFO *PBLUETOOTH_DEVICE_INFO; //Pointer
   typedef BLUETOOTH_DEVICE_INFO *WINAPI_BLUETOOTH_DEVICE_INFO*; //Pointer
   typedef struct BLUETOOTH_LOCAL_SERVICE_INFO {
-    BOOL Enabled,
-    BLUETOOTH_ADDRESS btAddr,
-    WCHAR [BLUETOOTH_MAX_SERVICE_NAME_SIZE] szName,
-    WCHAR [BLUETOOTH_DEVICE_NAME_SIZE] szDeviceString,
+    BOOL Enabled;
+    BLUETOOTH_ADDRESS btAddr;
+    WCHAR szName[BLUETOOTH_MAX_SERVICE_NAME_SIZE];
+    WCHAR szDeviceString[BLUETOOTH_DEVICE_NAME_SIZE];
   } BLUETOOTH_LOCAL_SERVICE_INFO;
   typedef BLUETOOTH_LOCAL_SERVICE_INFO *WINAPI_BLUETOOTH_LOCAL_SERVICE_INFO*; //Pointer
   typedef struct BLUETOOTH_PIN_INFO {
-    UCHAR [BTH_MAX_PIN_SIZE] pin,
-    UCHAR pinLength,
+    UCHAR pin[BTH_MAX_PIN_SIZE];
+    UCHAR pinLength;
   } BLUETOOTH_PIN_INFO;
   typedef struct BLUETOOTH_OOB_DATA_INFO {
-    UCHAR [16] C,
-    UCHAR [16] R,
+    UCHAR C[16];
+    UCHAR R[16];
   } BLUETOOTH_OOB_DATA_INFO;
   typedef BLUETOOTH_OOB_DATA_INFO *PBLUETOOTH_OOB_DATA_INFO; //Pointer
   typedef struct BLUETOOTH_NUMERIC_COMPARISON_INFO {
-    ULONG NumericValue,
+    ULONG NumericValue;
   } BLUETOOTH_NUMERIC_COMPARISON_INFO;
   typedef struct BLUETOOTH_PASSKEY_INFO {
-    ULONG passkey,
+    ULONG passkey;
   } BLUETOOTH_PASSKEY_INFO;
   typedef union WINAPI_BLUETOOTH_AUTHENTICATE_RESPONSE_u {
-    BLUETOOTH_PIN_INFO pinInfo,
-    BLUETOOTH_OOB_DATA_INFO oobInfo,
-    BLUETOOTH_NUMERIC_COMPARISON_INFO numericCompInfo,
-    BLUETOOTH_PASSKEY_INFO passkeyInfo,
+    BLUETOOTH_PIN_INFO pinInfo;
+    BLUETOOTH_OOB_DATA_INFO oobInfo;
+    BLUETOOTH_NUMERIC_COMPARISON_INFO numericCompInfo;
+    BLUETOOTH_PASSKEY_INFO passkeyInfo;
   } WINAPI_BLUETOOTH_AUTHENTICATE_RESPONSE_u;
   typedef enum BLUETOOTH_AUTHENTICATION_METHOD {
     BLUETOOTH_AUTHENTICATION_METHOD_LEGACY = 1,
@@ -125,51 +125,51 @@ ffi.cdef [[
     BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY = 5,
   } BLUETOOTH_AUTHENTICATION_METHOD;
   typedef struct BLUETOOTH_AUTHENTICATE_RESPONSE {
-    BLUETOOTH_ADDRESS bthAddressRemote,
-    BLUETOOTH_AUTHENTICATION_METHOD authMethod,
-    WINAPI_BLUETOOTH_AUTHENTICATE_RESPONSE_u ,
-    UCHAR negativeResponse,
+    BLUETOOTH_ADDRESS bthAddressRemote;
+    BLUETOOTH_AUTHENTICATION_METHOD authMethod;
+    WINAPI_BLUETOOTH_AUTHENTICATE_RESPONSE_u ;
+    UCHAR negativeResponse;
   } BLUETOOTH_AUTHENTICATE_RESPONSE;
   typedef BLUETOOTH_AUTHENTICATE_RESPONSE *PBLUETOOTH_AUTHENTICATE_RESPONSE; //Pointer
   typedef struct SDP_STRING_TYPE_DATA {
-    USHORT encoding,
-    USHORT mibeNum,
-    USHORT attributeId,
+    USHORT encoding;
+    USHORT mibeNum;
+    USHORT attributeId;
   } SDP_STRING_TYPE_DATA;
   typedef SDP_STRING_TYPE_DATA *PSDP_STRING_TYPE_DATA; //Pointer
   typedef struct BLUETOOTH_FIND_RADIO_PARAMS {
-    DWORD dwSize,
+    DWORD dwSize;
   } BLUETOOTH_FIND_RADIO_PARAMS;
   typedef struct BLUETOOTH_DEVICE_SEARCH_PARAMS {
-    DWORD dwSize,
-    BOOL fReturnAuthenticated,
-    BOOL fReturnRemembered,
-    BOOL fReturnUnknown,
-    BOOL fReturnConnected,
-    BOOL fIssueInquiry,
-    UCHAR cTimeoutMultiplier,
-    HANDLE hRadio,
+    DWORD dwSize;
+    BOOL fReturnAuthenticated;
+    BOOL fReturnRemembered;
+    BOOL fReturnUnknown;
+    BOOL fReturnConnected;
+    BOOL fIssueInquiry;
+    UCHAR cTimeoutMultiplier;
+    HANDLE hRadio;
   } BLUETOOTH_DEVICE_SEARCH_PARAMS;
   typedef struct BLUETOOTH_COD_PAIRS {
-    ULONG ulCODMask,
-    LPCWSTR pcszDescription,
+    ULONG ulCODMask;
+    LPCWSTR pcszDescription;
   } BLUETOOTH_COD_PAIRS;
   typedef struct BLUETOOTH_SELECT_DEVICE_PARAMS {
-    DWORD dwSize,
-    ULONG cNumOfClasses,
-    BLUETOOTH_COD_PAIRS* prgClassOfDevices,
-    LPWSTR pszInfo,
-    HWND hwndParent,
-    BOOL fForceAuthentication,
-    BOOL fShowAuthenticated,
-    BOOL fShowRemembered,
-    BOOL fShowUnknown,
-    BOOL fAddNewDeviceWizard,
-    BOOL fSkipServicesPage,
-    PFN_DEVICE_CALLBACK pfnDeviceCallback,
-    LPVOID pvParam,
-    DWORD cNumDevices,
-    PBLUETOOTH_DEVICE_INFO pDevices,
+    DWORD dwSize;
+    ULONG cNumOfClasses;
+    BLUETOOTH_COD_PAIRS* prgClassOfDevices;
+    LPWSTR pszInfo;
+    HWND hwndParent;
+    BOOL fForceAuthentication;
+    BOOL fShowAuthenticated;
+    BOOL fShowRemembered;
+    BOOL fShowUnknown;
+    BOOL fAddNewDeviceWizard;
+    BOOL fSkipServicesPage;
+    PFN_DEVICE_CALLBACK pfnDeviceCallback;
+    LPVOID pvParam;
+    DWORD cNumDevices;
+    PBLUETOOTH_DEVICE_INFO pDevices;
   } BLUETOOTH_SELECT_DEVICE_PARAMS;
   typedef enum BLUETOOTH_AUTHENTICATION_REQUIREMENTS {
     MITMProtectionNotRequired = 0x00,
@@ -209,53 +209,53 @@ ffi.cdef [[
     SDP_ST_UUID128 = 0x0430,
   } SDP_SPECIFICTYPE;
   typedef struct WINAPI_SDP_ELEMENT_DATA_u_s1 {
-    LPBYTE value,
-    ULONG length,
+    LPBYTE value;
+    ULONG length;
   } WINAPI_SDP_ELEMENT_DATA_u_s1;
   typedef struct WINAPI_SDP_ELEMENT_DATA_u_s2 {
-    LPBYTE value,
-    ULONG length,
+    LPBYTE value;
+    ULONG length;
   } WINAPI_SDP_ELEMENT_DATA_u_s2;
   typedef struct WINAPI_SDP_ELEMENT_DATA_u_s3 {
-    LPBYTE value,
-    ULONG length,
+    LPBYTE value;
+    ULONG length;
   } WINAPI_SDP_ELEMENT_DATA_u_s3;
   typedef struct WINAPI_SDP_ELEMENT_DATA_u_s4 {
-    LPBYTE value,
-    ULONG length,
+    LPBYTE value;
+    ULONG length;
   } WINAPI_SDP_ELEMENT_DATA_u_s4;
   typedef struct SDP_LARGE_INTEGER_16 {
-    ULONGLONG LowPart,
-    LONGLONG HighPart,
+    ULONGLONG LowPart;
+    LONGLONG HighPart;
   } SDP_LARGE_INTEGER_16;
   typedef struct SDP_ULARGE_INTEGER_16 {
-    ULONGLONG LowPart,
-    ULONGLONG HighPart,
+    ULONGLONG LowPart;
+    ULONGLONG HighPart;
   } SDP_ULARGE_INTEGER_16;
   typedef union WINAPI_SDP_ELEMENT_DATA_u {
-    SDP_LARGE_INTEGER_16 int128,
-    LONGLONG int64,
-    LONG int32,
-    SHORT int16,
-    CHAR int8,
-    SDP_ULARGE_INTEGER_16 uint128,
-    ULONGLONG uint64,
-    ULONG uint32,
-    USHORT uint16,
-    UCHAR uint8,
-    UCHAR booleanVal,
-    GUID uuid128,
-    ULONG uuid32,
-    USHORT uuid16,
-    WINAPI_SDP_ELEMENT_DATA_u_s1 string,
-    WINAPI_SDP_ELEMENT_DATA_u_s2 url,
-    WINAPI_SDP_ELEMENT_DATA_u_s3 sequence,
-    WINAPI_SDP_ELEMENT_DATA_u_s4 alternative,
+    SDP_LARGE_INTEGER_16 int128;
+    LONGLONG int64;
+    LONG int32;
+    SHORT int16;
+    CHAR int8;
+    SDP_ULARGE_INTEGER_16 uint128;
+    ULONGLONG uint64;
+    ULONG uint32;
+    USHORT uint16;
+    UCHAR uint8;
+    UCHAR booleanVal;
+    GUID uuid128;
+    ULONG uuid32;
+    USHORT uuid16;
+    WINAPI_SDP_ELEMENT_DATA_u_s1 string;
+    WINAPI_SDP_ELEMENT_DATA_u_s2 url;
+    WINAPI_SDP_ELEMENT_DATA_u_s3 sequence;
+    WINAPI_SDP_ELEMENT_DATA_u_s4 alternative;
   } WINAPI_SDP_ELEMENT_DATA_u;
   typedef struct SDP_ELEMENT_DATA {
-    SDP_TYPE type,
-    SDP_SPECIFICTYPE specificType,
-    WINAPI_SDP_ELEMENT_DATA_u data,
+    SDP_TYPE type;
+    SDP_SPECIFICTYPE specificType;
+    WINAPI_SDP_ELEMENT_DATA_u data;
   } SDP_ELEMENT_DATA;
   typedef SDP_ELEMENT_DATA *PSDP_ELEMENT_DATA; //Pointer
 ]]

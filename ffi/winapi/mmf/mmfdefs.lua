@@ -4,6 +4,134 @@ require( 'ffi/winapi/headers/directx' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* INamedPropertyStore; //Interface
+  typedef void* IMediaBuffer; //Interface
+  typedef void* IDirect3DDeviceManager9; //Interface
+  typedef void* IDirectXVideoAccelerationService; //Interface
+  typedef void* IDirectXVideoDecoder; //Interface
+  typedef void* IDirectXVideoDecoderService; //Interface
+  typedef void* IDirectXVideoMemoryConfiguration; //Interface
+  typedef void* IDirectXVideoProcessor; //Interface
+  typedef void* IDirectXVideoProcessorService; //Interface
+  typedef void* IDXVAHD_Device; //Interface
+  typedef void* IDXVAHD_VideoProcessor; //Interface
+  typedef void* IMF2DBuffer; //Interface
+  typedef void* IMFActivate; //Interface
+  typedef void* IMFASFContentInfo; //Interface
+  typedef void* IMFASFIndexer; //Interface
+  typedef void* IMFASFMultiplexer; //Interface
+  typedef void* IMFASFMutualExclusion; //Interface
+  typedef void* IMFASFProfile; //Interface
+  typedef void* IMFASFSplitter; //Interface
+  typedef void* IMFASFStreamConfig; //Interface
+  typedef void* IMFASFStreamPrioritization; //Interface
+  typedef void* IMFASFStreamSelector; //Interface
+  typedef void* IMFAsyncCallback; //Interface
+  typedef void* IMFAsyncResult; //Interface
+  typedef void* IMFAttributes; //Interface
+  typedef void* IMFAudioMediaType; //Interface
+  typedef void* IMFAudioPolicy; //Interface
+  typedef void* IMFAudioStreamVolume; //Interface
+  typedef void* IMFByteStream; //Interface
+  typedef void* IMFByteStreamBuffering; //Interface
+  typedef void* IMFByteStreamCacheControl; //Interface
+  typedef void* IMFByteStreamHandler; //Interface
+  typedef void* IMFClock; //Interface
+  typedef void* IMFClockStateSink; //Interface
+  typedef void* IMFCollection; //Interface
+  typedef void* IMFContentEnabler; //Interface
+  typedef void* IMFContentProtectionManager; //Interface
+  typedef void* IMFDRMNetHelper; //Interface
+  typedef void* IMFFieldOfUseMFTUnlock; //Interface
+  typedef void* IMFFinalizableMediaSink; //Interface
+  typedef void* IMFGetService; //Interface
+  typedef void* IMFInputTrustAuthority; //Interface
+  typedef void* IMFLocalMFTRegistration; //Interface
+  typedef void* IMFMediaBuffer; //Interface
+  typedef void* IMFMediaEvent; //Interface
+  typedef void* IMFMediaEventGenerator; //Interface
+  typedef void* IMFMediaEventQueue; //Interface
+  typedef void* IMFMediaSession; //Interface
+  typedef void* IMFMediaSink; //Interface
+  typedef void* IMFMediaSinkPreroll; //Interface
+  typedef void* IMFMediaSource; //Interface
+  typedef void* IMFMediaSourcePresentationProvider; //Interface
+  typedef void* IMFMediaSourceTopologyProvider; //Interface
+  typedef void* IMFMediaStream; //Interface
+  typedef void* IMFMediaType; //Interface
+  typedef void* IMFMediaTypeHandler; //Interface
+  typedef void* IMFMetadata; //Interface
+  typedef void* IMFMetadataProvider; //Interface
+  typedef void* IMFNetCredential; //Interface
+  typedef void* IMFNetCredentialCache; //Interface
+  typedef void* IMFNetCredentialManager; //Interface
+  typedef void* IMFNetProxyLocator; //Interface
+  typedef void* IMFNetProxyLocatorFactory; //Interface
+  typedef void* IMFNetSchemeHandlerConfig; //Interface
+  typedef void* IMFObjectReferenceStream; //Interface
+  typedef void* IMFOutputPolicy; //Interface
+  typedef void* IMFOutputSchema; //Interface
+  typedef void* IMFOutputTrustAuthority; //Interface
+  typedef void* IMFPluginControl; //Interface
+  typedef void* IMFPMediaItem; //Interface
+  typedef void* IMFPMediaPlayer; //Interface
+  typedef void* IMFPMediaPlayerCallback; //Interface
+  typedef void* IMFPMPClient; //Interface
+  typedef void* IMFPMPHost; //Interface
+  typedef void* IMFPMPServer; //Interface
+  typedef void* IMFPresentationClock; //Interface
+  typedef void* IMFPresentationDescriptor; //Interface
+  typedef void* IMFPresentationTimeSource; //Interface
+  typedef void* IMFQualityAdvise; //Interface
+  typedef void* IMFQualityAdvise2; //Interface
+  typedef void* IMFQualityAdviseLimits; //Interface
+  typedef void* IMFQualityManager; //Interface
+  typedef void* IMFRateControl; //Interface
+  typedef void* IMFRateSupport; //Interface
+  typedef void* IMFReadWriteClassFactory; //Interface
+  typedef void* IMFRealTimeClient; //Interface
+  typedef void* IMFRemoteAsyncCallback; //Interface
+  typedef void* IMFRemoteDesktopPlugin; //Interface
+  typedef void* IMFRemoteProxy; //Interface
+  typedef void* IMFSAMIStyle; //Interface
+  typedef void* IMFSample; //Interface
+  typedef void* IMFSampleGrabberSinkCallback; //Interface
+  typedef void* IMFSampleGrabberSinkCallback2; //Interface
+  typedef void* IMFSampleProtection; //Interface
+  typedef void* IMFSaveJob; //Interface
+  typedef void* IMFSchemeHandler; //Interface
+  typedef void* IMFSecureChannel; //Interface
+  typedef void* IMFSequencerSource; //Interface
+  typedef void* IMFShutdown; //Interface
+  typedef void* IMFSimpleAudioVolume; //Interface
+  typedef void* IMFSinkWriter; //Interface
+  typedef void* IMFSinkWriterCallback; //Interface
+  typedef void* IMFSourceOpenMonitor; //Interface
+  typedef void* IMFSourceReader; //Interface
+  typedef void* IMFSourceReaderCallback; //Interface
+  typedef void* IMFSourceResolver; //Interface
+  typedef void* IMFSSLCertificateManager; //Interface
+  typedef void* IMFStreamDescriptor; //Interface
+  typedef void* IMFStreamingSinkConfig; //Interface
+  typedef void* IMFStreamSink; //Interface
+  typedef void* IMFTimecodeTranslate; //Interface
+  typedef void* IMFTimer; //Interface
+  typedef void* IMFTopoLoader; //Interface
+  typedef void* IMFTopology; //Interface
+  typedef void* IMFTopologyNode; //Interface
+  typedef void* IMFTopologyNodeAttributeEditor; //Interface
+  typedef void* IMFTranscodeProfile; //Interface
+  typedef void* IMFTranscodeSinkInfoProvider; //Interface
+  typedef void* IMFTransform; //Interface
+  typedef void* IMFTrustedInput; //Interface
+  typedef void* IMFTrustedOutput; //Interface
+  typedef void* IMFVideoMediaType; //Interface
+  typedef void* IMFVideoSampleAllocator; //Interface
+  typedef void* IMFVideoSampleAllocatorCallback; //Interface
+  typedef void* IMFVideoSampleAllocatorNotify; //Interface
+  typedef void* IMFWorkQueueServices; //Interface
+  typedef void* IDirect3DDevice9; //Interface
+  typedef void* IDirect3DSurface9; //Interface
   typedef UINT8 *WINAPI_UINT8*; //Pointer
   typedef ULONGLONG QWORD; //Alias
   typedef LONGLONG MFTIME; //Alias
@@ -121,18 +249,18 @@ ffi.cdef [[
   } MFRATE_DIRECTION;
   typedef UINT MF_FILE_FLAGS; //Alias
   typedef struct MF_LEAKY_BUCKET_PAIR {
-    DWORD dwBitrate,
-    DWORD msBufferWindow,
+    DWORD dwBitrate;
+    DWORD msBufferWindow;
   } MF_LEAKY_BUCKET_PAIR;
   typedef struct MFBYTESTREAM_BUFFERING_PARAMS {
-    QWORD cbTotalFileSize,
-    QWORD cbPlayableDataSize,
-    MF_LEAKY_BUCKET_PAIR* prgBuckets,
-    DWORD cBuckets,
-    QWORD qwNetBufferingTime,
-    QWORD qwExtraBufferingTimeDuringSeek,
-    QWORD qwPlayDuration,
-    float dRate,
+    QWORD cbTotalFileSize;
+    QWORD cbPlayableDataSize;
+    MF_LEAKY_BUCKET_PAIR* prgBuckets;
+    DWORD cBuckets;
+    QWORD qwNetBufferingTime;
+    QWORD qwExtraBufferingTimeDuringSeek;
+    QWORD qwPlayDuration;
+    float dRate;
   } MFBYTESTREAM_BUFFERING_PARAMS;
   typedef DWORD MFCLOCK_RELATIONAL_FLAGS; //Alias
   typedef enum WINAPI_MFCLOCK_JITTER {
@@ -143,44 +271,44 @@ ffi.cdef [[
     MFCLOCK_JITTER_PASSIVE = 10000,
   } WINAPI_MFCLOCK_JITTER;
   typedef struct MFCLOCK_PROPERTIES {
-    unsigned __int64 qwCorrelationRate,
-    GUID guidClockId,
-    MFCLOCK_RELATIONAL_FLAGS dwClockFlags,
-    unsigned __int64 qwClockFrequency,
-    DWORD dwClockTolerance,
-    WINAPI_MFCLOCK_JITTER dwClockJitter,
+    unsigned __int64 qwCorrelationRate;
+    GUID guidClockId;
+    MFCLOCK_RELATIONAL_FLAGS dwClockFlags;
+    unsigned __int64 qwClockFrequency;
+    DWORD dwClockTolerance;
+    WINAPI_MFCLOCK_JITTER dwClockJitter;
   } MFCLOCK_PROPERTIES;
   typedef struct MFINPUTTRUSTAUTHORITY_ACCESS_ACTION {
-    MFPOLICYMANAGER_ACTION Action,
-    BYTE* pbTicket,
-    DWORD cbTicket,
+    MFPOLICYMANAGER_ACTION Action;
+    BYTE* pbTicket;
+    DWORD cbTicket;
   } MFINPUTTRUSTAUTHORITY_ACCESS_ACTION;
   typedef MFINPUTTRUSTAUTHORITY_ACCESS_ACTION MFINPUTTRUSTAUTHORITY_ACCESS_ACTION [1]; //Array 1
   typedef struct MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS {
-    DWORD dwSize,
-    DWORD dwVer,
-    DWORD cbSignatureOffset,
-    DWORD cbSignatureSize,
-    DWORD cbExtensionOffset,
-    DWORD cbExtensionSize,
-    DWORD cActions,
-    MFINPUTTRUSTAUTHORITY_ACCESS_ACTION [1] rgOutputActions,
+    DWORD dwSize;
+    DWORD dwVer;
+    DWORD cbSignatureOffset;
+    DWORD cbSignatureSize;
+    DWORD cbExtensionOffset;
+    DWORD cbExtensionSize;
+    DWORD cActions;
+    MFINPUTTRUSTAUTHORITY_ACCESS_ACTION rgOutputActions[1];
   } MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS;
   typedef UINT32 MFT_ENUM_FLAG; //Alias
   typedef struct MFT_REGISTER_TYPE_INFO {
-    GUID guidMajorType,
-    GUID guidSubtype,
+    GUID guidMajorType;
+    GUID guidSubtype;
   } MFT_REGISTER_TYPE_INFO;
   typedef MFT_REGISTER_TYPE_INFO *WINAPI_MFT_REGISTER_TYPE_INFO*; //Pointer
   typedef struct MFT_REGISTRATION_INFO {
-    CLSID clsid,
-    GUID guidCategory,
-    MFT_ENUM_FLAG uiFlags,
-    LPCWSTR pszName,
-    DWORD cInTypes,
-    MFT_REGISTER_TYPE_INFO* pInTypes,
-    DWORD cOutTypes,
-    MFT_REGISTER_TYPE_INFO* pOutTypes,
+    CLSID clsid;
+    GUID guidCategory;
+    MFT_ENUM_FLAG uiFlags;
+    LPCWSTR pszName;
+    DWORD cInTypes;
+    MFT_REGISTER_TYPE_INFO* pInTypes;
+    DWORD cOutTypes;
+    MFT_REGISTER_TYPE_INFO* pOutTypes;
   } MFT_REGISTRATION_INFO;
   typedef enum MediaEventType {
     MEUnknown = 0,
@@ -283,38 +411,38 @@ ffi.cdef [[
     METransformMarker = 604,
   } MediaEventType;
   typedef struct MFNetCredentialManagerGetParam {
-    HRESULT hrOp,
-    BOOL fAllowLoggedOnUser,
-    BOOL fClearTextPackage,
-    LPCWSTR pszUrl,
-    LPCWSTR pszSite,
-    LPCWSTR pszRealm,
-    LPCWSTR pszPackage,
-    LONG nRetries,
+    HRESULT hrOp;
+    BOOL fAllowLoggedOnUser;
+    BOOL fClearTextPackage;
+    LPCWSTR pszUrl;
+    LPCWSTR pszSite;
+    LPCWSTR pszRealm;
+    LPCWSTR pszPackage;
+    LONG nRetries;
   } MFNetCredentialManagerGetParam;
   typedef struct MF_SINK_WRITER_STATISTICS {
-    DWORD cb,
-    LONGLONG llLastTimestampReceived,
-    LONGLONG llLastTimestampEncoded,
-    LONGLONG llLastTimestampProcessed,
-    LONGLONG llLastStreamTickReceived,
-    LONGLONG llLastSinkSampleRequest,
-    QWORD qwNumSamplesReceived,
-    QWORD qwNumSamplesEncoded,
-    QWORD qwNumSamplesProcessed,
-    QWORD qwNumStreamTicksReceived,
-    DWORD dwByteCountQueued,
-    QWORD qwByteCountProcessed,
-    DWORD dwNumOutstandingSinkSampleRequests,
-    DWORD dwAverageSampleRateReceived,
-    DWORD dwAverageSampleRateEncoded,
-    DWORD dwAverageSampleRateProcessed,
+    DWORD cb;
+    LONGLONG llLastTimestampReceived;
+    LONGLONG llLastTimestampEncoded;
+    LONGLONG llLastTimestampProcessed;
+    LONGLONG llLastStreamTickReceived;
+    LONGLONG llLastSinkSampleRequest;
+    QWORD qwNumSamplesReceived;
+    QWORD qwNumSamplesEncoded;
+    QWORD qwNumSamplesProcessed;
+    QWORD qwNumStreamTicksReceived;
+    DWORD dwByteCountQueued;
+    QWORD qwByteCountProcessed;
+    DWORD dwNumOutstandingSinkSampleRequests;
+    DWORD dwAverageSampleRateReceived;
+    DWORD dwAverageSampleRateEncoded;
+    DWORD dwAverageSampleRateProcessed;
   } MF_SINK_WRITER_STATISTICS;
   typedef struct MF_TRANSCODE_SINK_INFO {
-    DWORD dwVideoStreamID,
-    IMFMediaType* pVideoMediaType,
-    DWORD dwAudioStreamID,
-    IMFMediaType* pAudioMediaType,
+    DWORD dwVideoStreamID;
+    IMFMediaType* pVideoMediaType;
+    DWORD dwAudioStreamID;
+    IMFMediaType* pAudioMediaType;
   } MF_TRANSCODE_SINK_INFO;
   typedef enum MFNETSOURCE_PROTOCOL_TYPE {
     MFNETSOURCE_UNDEFINED = 0,
@@ -324,15 +452,15 @@ ffi.cdef [[
     MFNETSOURCE_MULTICAST = 0x4,
   } MFNETSOURCE_PROTOCOL_TYPE;
   typedef union WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u {
-    UINT32 u32,
-    UINT64 u64,
-    double d,
+    UINT32 u32;
+    UINT64 u64;
+    double d;
   } WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u;
   typedef struct MFTOPONODE_ATTRIBUTE_UPDATE {
-    TOPOID NodeId,
-    GUID guidAttributeKey,
-    MF_ATTRIBUTE_TYPE attrType,
-    WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u ,
+    TOPOID NodeId;
+    GUID guidAttributeKey;
+    MF_ATTRIBUTE_TYPE attrType;
+    WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u ;
   } MFTOPONODE_ATTRIBUTE_UPDATE;
   typedef UINT32 MFP_CREATION_OPTIONS; //Alias
   typedef enum MFVideoInterlaceMode {
@@ -392,77 +520,77 @@ ffi.cdef [[
   } MFNominalRange;
   typedef unsigned __int64 MFVideoFlags; //Alias
   typedef struct MFRatio {
-    DWORD Numerator,
-    DWORD Denominator,
+    DWORD Numerator;
+    DWORD Denominator;
   } MFRatio;
   typedef struct MFOffset {
-    WORD fract,
-    short value,
+    WORD fract;
+    short value;
   } MFOffset;
   typedef struct MFVideoArea {
-    MFOffset OffsetX,
-    MFOffset OffsetY,
-    SIZE Area,
+    MFOffset OffsetX;
+    MFOffset OffsetY;
+    SIZE Area;
   } MFVideoArea;
   typedef struct MFVideoInfo {
-    DWORD dwWidth,
-    DWORD dwHeight,
-    MFRatio PixelAspectRatio,
-    MFVideoChromaSubsampling SourceChromaSubsampling,
-    MFVideoInterlaceMode InterlaceMode,
-    MFVideoTransferFunction TransferFunction,
-    MFVideoPrimaries ColorPrimaries,
-    MFVideoTransferMatrix TransferMatrix,
-    MFVideoLighting SourceLighting,
-    MFRatio FramesPerSecond,
-    MFNominalRange NominalRange,
-    MFVideoArea GeometricAperture,
-    MFVideoArea MinimumDisplayAperture,
-    MFVideoArea PanScanAperture,
-    MFVideoFlags VideoFlags,
+    DWORD dwWidth;
+    DWORD dwHeight;
+    MFRatio PixelAspectRatio;
+    MFVideoChromaSubsampling SourceChromaSubsampling;
+    MFVideoInterlaceMode InterlaceMode;
+    MFVideoTransferFunction TransferFunction;
+    MFVideoPrimaries ColorPrimaries;
+    MFVideoTransferMatrix TransferMatrix;
+    MFVideoLighting SourceLighting;
+    MFRatio FramesPerSecond;
+    MFNominalRange NominalRange;
+    MFVideoArea GeometricAperture;
+    MFVideoArea MinimumDisplayAperture;
+    MFVideoArea PanScanAperture;
+    MFVideoFlags VideoFlags;
   } MFVideoInfo;
   typedef struct MFAYUVSample {
-    BYTE bCrValue,
-    BYTE bCbValue,
-    BYTE bYValue,
-    BYTE bSampleAlpha8,
+    BYTE bCrValue;
+    BYTE bCbValue;
+    BYTE bYValue;
+    BYTE bSampleAlpha8;
   } MFAYUVSample;
   typedef struct MFARGB {
-    BYTE rgbBlue,
-    BYTE rgbGreen,
-    BYTE rgbRed,
-    BYTE rgbAlpha,
+    BYTE rgbBlue;
+    BYTE rgbGreen;
+    BYTE rgbRed;
+    BYTE rgbAlpha;
   } MFARGB;
   typedef union MFPaletteEntry {
-    MFARGB ARGB,
-    MFAYUVSample AYCbCr,
+    MFARGB ARGB;
+    MFAYUVSample AYCbCr;
   } MFPaletteEntry;
   typedef MFPaletteEntry MFPaletteEntry [1]; //Array 1
   typedef struct MFVideoSurfaceInfo {
-    DWORD Format,
-    DWORD PaletteEntries,
-    MFPaletteEntry [1] Palette,
+    DWORD Format;
+    DWORD PaletteEntries;
+    MFPaletteEntry Palette[1];
   } MFVideoSurfaceInfo;
   typedef struct MFVideoCompressedInfo {
-    LONGLONG AvgBitrate,
-    LONGLONG AvgBitErrorRate,
-    DWORD MaxKeyFrameSpacing,
+    LONGLONG AvgBitrate;
+    LONGLONG AvgBitErrorRate;
+    DWORD MaxKeyFrameSpacing;
   } MFVideoCompressedInfo;
   typedef struct MFVIDEOFORMAT {
-    DWORD dwSize,
-    MFVideoInfo videoInfo,
-    GUID guidFormat,
-    MFVideoCompressedInfo compressedInfo,
-    MFVideoSurfaceInfo surfaceInfo,
+    DWORD dwSize;
+    MFVideoInfo videoInfo;
+    GUID guidFormat;
+    MFVideoCompressedInfo compressedInfo;
+    MFVideoSurfaceInfo surfaceInfo;
   } MFVIDEOFORMAT;
   typedef MFVIDEOFORMAT *WINAPI_MFVIDEOFORMAT*; //Pointer
   typedef struct ASF_INDEX_IDENTIFIER {
-    GUID guidIndexType,
-    WORD wStreamNumber,
+    GUID guidIndexType;
+    WORD wStreamNumber;
   } ASF_INDEX_IDENTIFIER;
   typedef struct ASF_MUX_STATISTICS {
-    DWORD cFramesWritten,
-    DWORD cFramesDropped,
+    DWORD cFramesWritten;
+    DWORD cFramesDropped;
   } ASF_MUX_STATISTICS;
   typedef enum ASF_SELECTION_STATUS {
     ASF_STATUS_NOTSELECTED = 0,
@@ -482,23 +610,23 @@ ffi.cdef [[
   } MFT_MESSAGE_TYPE;
   typedef DWORD MFT_INPUT_STREAM_INFO_FLAGS; //Alias
   typedef struct MFT_INPUT_STREAM_INFO {
-    LONGLONG hnsMaxLatency,
-    MFT_INPUT_STREAM_INFO_FLAGS dwFlags,
-    DWORD cbSize,
-    DWORD cbMaxLookahead,
-    DWORD cbAlignment,
+    LONGLONG hnsMaxLatency;
+    MFT_INPUT_STREAM_INFO_FLAGS dwFlags;
+    DWORD cbSize;
+    DWORD cbMaxLookahead;
+    DWORD cbAlignment;
   } MFT_INPUT_STREAM_INFO;
   typedef DWORD MFT_OUTPUT_STREAM_INFO_FLAGS; //Alias
   typedef struct MFT_OUTPUT_STREAM_INFO {
-    MFT_OUTPUT_STREAM_INFO_FLAGS dwFlags,
-    DWORD cbSize,
-    DWORD cbAlignment,
+    MFT_OUTPUT_STREAM_INFO_FLAGS dwFlags;
+    DWORD cbSize;
+    DWORD cbAlignment;
   } MFT_OUTPUT_STREAM_INFO;
   typedef struct MFT_OUTPUT_DATA_BUFFER {
-    DWORD dwStreamID,
-    IMFSample* pSample,
-    DWORD dwStatus,
-    IMFCollection* pEvents,
+    DWORD dwStreamID;
+    IMFSample* pSample;
+    DWORD dwStatus;
+    IMFCollection* pEvents;
   } MFT_OUTPUT_DATA_BUFFER;
   typedef enum MFStandardVideoFormat {
     MFStdVideoFormat_reserved = 0,
@@ -521,10 +649,10 @@ ffi.cdef [[
     MFP_MEDIAPLAYER_STATE_SHUTDOWN = 0x4,
   } MFP_MEDIAPLAYER_STATE;
   typedef struct MFVideoNormalizedRect {
-    float left,
-    float top,
-    float right,
-    float bottom,
+    float left;
+    float top;
+    float right;
+    float bottom;
   } MFVideoNormalizedRect;
   typedef MFVideoNormalizedRect *WINAPI_MFVideoNormalizedRect*; //Pointer
   typedef enum MFP_EVENT_TYPE {
@@ -543,28 +671,28 @@ ffi.cdef [[
     MFP_EVENT_TYPE_ACQUIRE_USER_CREDENTIAL = 12,
   } MFP_EVENT_TYPE;
   typedef struct MFP_EVENT_HEADER {
-    MFP_EVENT_TYPE eEventType,
-    HRESULT hrEvent,
-    IMFPMediaPlayer* pMediaPlayer,
-    MFP_MEDIAPLAYER_STATE eState,
-    IPropertyStore* pPropertyStore,
+    MFP_EVENT_TYPE eEventType;
+    HRESULT hrEvent;
+    IMFPMediaPlayer* pMediaPlayer;
+    MFP_MEDIAPLAYER_STATE eState;
+    IPropertyStore* pPropertyStore;
   } MFP_EVENT_HEADER;
   typedef union DXVA2_ExtendedFormat {
-    UINT value,
+    UINT value;
   } DXVA2_ExtendedFormat;
   typedef struct DXVA2_Frequency {
-    UINT Numerator,
-    UINT Denominator,
+    UINT Numerator;
+    UINT Denominator;
   } DXVA2_Frequency;
   typedef struct DXVA2_VideoDesc {
-    UINT SampleWidth,
-    UINT SampleHeight,
-    DXVA2_ExtendedFormat SampleFormat,
-    D3DFORMAT Format,
-    DXVA2_Frequency InputSampleFreq,
-    DXVA2_Frequency OutputFrameFreq,
-    UINT UABProtectionLevel,
-    UINT Reserved,
+    UINT SampleWidth;
+    UINT SampleHeight;
+    DXVA2_ExtendedFormat SampleFormat;
+    D3DFORMAT Format;
+    DXVA2_Frequency InputSampleFreq;
+    DXVA2_Frequency OutputFrameFreq;
+    UINT UABProtectionLevel;
+    UINT Reserved;
   } DXVA2_VideoDesc;
   typedef DXVA2_VideoDesc *WINAPI_DXVA2_VideoDesc*; //Pointer
   typedef enum WINAPI_DXVA2_BufferType {
@@ -579,49 +707,49 @@ ffi.cdef [[
     DXVA2_FilmGrainBuffer = 8,
   } WINAPI_DXVA2_BufferType;
   typedef struct DXVA2_DecodeBufferDesc {
-    WINAPI_DXVA2_BufferType CompressedBufferType,
-    UINT BufferIndex,
-    UINT DataOffset,
-    UINT DataSize,
-    UINT FirstMBaddress,
-    UINT NumMBsInBuffer,
-    UINT Width,
-    UINT Height,
-    UINT Stride,
-    UINT ReservedBits,
-    PVOID pvPVPState,
+    WINAPI_DXVA2_BufferType CompressedBufferType;
+    UINT BufferIndex;
+    UINT DataOffset;
+    UINT DataSize;
+    UINT FirstMBaddress;
+    UINT NumMBsInBuffer;
+    UINT Width;
+    UINT Height;
+    UINT Stride;
+    UINT ReservedBits;
+    PVOID pvPVPState;
   } DXVA2_DecodeBufferDesc;
   typedef struct DXVA2_DecodeExtensionData {
-    UINT Function,
-    PVOID pPrivateInputData,
-    UINT PrivateInputDataSize,
-    PVOID pPrivateOutputData,
-    UINT PrivateOutputDataSize,
+    UINT Function;
+    PVOID pPrivateInputData;
+    UINT PrivateInputDataSize;
+    PVOID pPrivateOutputData;
+    UINT PrivateOutputDataSize;
   } DXVA2_DecodeExtensionData;
   typedef struct DXVA2_DecodeExecuteParams {
-    UINT NumCompBuffers,
-    DXVA2_DecodeBufferDesc* pCompressedBuffers,
-    DXVA2_DecodeExtensionData* pExtensionData,
+    UINT NumCompBuffers;
+    DXVA2_DecodeBufferDesc* pCompressedBuffers;
+    DXVA2_DecodeExtensionData* pExtensionData;
   } DXVA2_DecodeExecuteParams;
   typedef DXVA2_DecodeExecuteParams *WINAPI_DXVA2_DecodeExecuteParams*; //Pointer
   typedef struct DXVA2_ConfigPictureDecode {
-    GUID guidConfigBitstreamEncryption,
-    GUID guidConfigMBcontrolEncryption,
-    GUID guidConfigResidDiffEncryption,
-    UINT ConfigBitstreamRaw,
-    UINT ConfigMBcontrolRasterOrder,
-    UINT ConfigResidDiffHost,
-    UINT ConfigSpatialResid8,
-    UINT ConfigResid8Subtraction,
-    UINT ConfigSpatialHost8or9Clipping,
-    UINT ConfigSpatialResidInterleaved,
-    UINT ConfigIntraResidUnsigned,
-    UINT ConfigResidDiffAccelerator,
-    UINT ConfigHostInverseScan,
-    UINT ConfigSpecificIDCT,
-    UINT Config4GroupedCoefs,
-    USHORT ConfigMinRenderTargetBuffCount,
-    USHORT ConfigDecoderSpecific,
+    GUID guidConfigBitstreamEncryption;
+    GUID guidConfigMBcontrolEncryption;
+    GUID guidConfigResidDiffEncryption;
+    UINT ConfigBitstreamRaw;
+    UINT ConfigMBcontrolRasterOrder;
+    UINT ConfigResidDiffHost;
+    UINT ConfigSpatialResid8;
+    UINT ConfigResid8Subtraction;
+    UINT ConfigSpatialHost8or9Clipping;
+    UINT ConfigSpatialResidInterleaved;
+    UINT ConfigIntraResidUnsigned;
+    UINT ConfigResidDiffAccelerator;
+    UINT ConfigHostInverseScan;
+    UINT ConfigSpecificIDCT;
+    UINT Config4GroupedCoefs;
+    USHORT ConfigMinRenderTargetBuffCount;
+    USHORT ConfigDecoderSpecific;
   } DXVA2_ConfigPictureDecode;
   typedef DXVA2_ConfigPictureDecode *WINAPI_DXVA2_ConfigPictureDecode*; //Pointer
   typedef enum DXVA2_SurfaceType {
@@ -636,89 +764,89 @@ ffi.cdef [[
   typedef UINT WINAPI_DXVA2_NoiseFilterTech; //Alias
   typedef UINT WINAPI_DXVA2_DetailFilterTech; //Alias
   typedef struct DXVA2_VideoProcessorCaps {
-    WINAPI_DXVA2_VPDev DeviceCaps,
-    D3DPOOL InputPool,
-    UINT NumForwardRefSamples,
-    UINT NumBackwardRefSamples,
-    UINT Reserved,
-    WINAPI_DXVA2_DeinterlaceTech DeinterlaceTechnology,
-    WINAPI_DXVA2_ProcAmp ProcAmpControlCaps,
-    WINAPI_DXVA2_VideoProcess VideoProcessorOperations,
-    WINAPI_DXVA2_NoiseFilterTech NoiseFilterTechnology,
-    WINAPI_DXVA2_DetailFilterTech DetailFilterTechnology,
+    WINAPI_DXVA2_VPDev DeviceCaps;
+    D3DPOOL InputPool;
+    UINT NumForwardRefSamples;
+    UINT NumBackwardRefSamples;
+    UINT Reserved;
+    WINAPI_DXVA2_DeinterlaceTech DeinterlaceTechnology;
+    WINAPI_DXVA2_ProcAmp ProcAmpControlCaps;
+    WINAPI_DXVA2_VideoProcess VideoProcessorOperations;
+    WINAPI_DXVA2_NoiseFilterTech NoiseFilterTechnology;
+    WINAPI_DXVA2_DetailFilterTech DetailFilterTechnology;
   } DXVA2_VideoProcessorCaps;
   typedef struct WINAPI_DXVA2_Fixed32_s {
-    USHORT Fraction,
-    SHORT Value,
+    USHORT Fraction;
+    SHORT Value;
   } WINAPI_DXVA2_Fixed32_s;
   typedef union DXVA2_Fixed32 {
-    WINAPI_DXVA2_Fixed32_s ,
-    LONG ll,
+    WINAPI_DXVA2_Fixed32_s ;
+    LONG ll;
   } DXVA2_Fixed32;
   typedef struct DXVA2_ValueRange {
-    DXVA2_Fixed32 MinValue,
-    DXVA2_Fixed32 MaxValue,
-    DXVA2_Fixed32 DefaultValue,
-    DXVA2_Fixed32 StepSize,
+    DXVA2_Fixed32 MinValue;
+    DXVA2_Fixed32 MaxValue;
+    DXVA2_Fixed32 DefaultValue;
+    DXVA2_Fixed32 StepSize;
   } DXVA2_ValueRange;
   typedef DWORD WINAPI_DXVA2_DestData; //Alias
   typedef struct DXVA2_AYUVSample16 {
-    USHORT Cr,
-    USHORT Cb,
-    USHORT Y,
-    USHORT Alpha,
+    USHORT Cr;
+    USHORT Cb;
+    USHORT Y;
+    USHORT Alpha;
   } DXVA2_AYUVSample16;
   typedef struct DXVA2_ProcAmpValues {
-    DXVA2_Fixed32 Brightness,
-    DXVA2_Fixed32 Contrast,
-    DXVA2_Fixed32 Hue,
-    DXVA2_Fixed32 Saturation,
+    DXVA2_Fixed32 Brightness;
+    DXVA2_Fixed32 Contrast;
+    DXVA2_Fixed32 Hue;
+    DXVA2_Fixed32 Saturation;
   } DXVA2_ProcAmpValues;
   typedef struct DXVA2_FilterValues {
-    DXVA2_Fixed32 Level,
-    DXVA2_Fixed32 Threshold,
-    DXVA2_Fixed32 Radius,
+    DXVA2_Fixed32 Level;
+    DXVA2_Fixed32 Threshold;
+    DXVA2_Fixed32 Radius;
   } DXVA2_FilterValues;
   typedef struct DXVA2_VideoProcessBltParams {
-    REFERENCE_TIME TargetFrame,
-    RECT TargetRect,
-    SIZE ConstrictionSize,
-    UINT StreamingFlags,
-    DXVA2_AYUVSample16 BackgroundColor,
-    DXVA2_ExtendedFormat DestFormat,
-    DXVA2_ProcAmpValues ProcAmpValues,
-    DXVA2_Fixed32 Alpha,
-    DXVA2_FilterValues NoiseFilterLuma,
-    DXVA2_FilterValues NoiseFilterChroma,
-    DXVA2_FilterValues DetailFilterLuma,
-    DXVA2_FilterValues DetailFilterChroma,
-    WINAPI_DXVA2_DestData DestData,
+    REFERENCE_TIME TargetFrame;
+    RECT TargetRect;
+    SIZE ConstrictionSize;
+    UINT StreamingFlags;
+    DXVA2_AYUVSample16 BackgroundColor;
+    DXVA2_ExtendedFormat DestFormat;
+    DXVA2_ProcAmpValues ProcAmpValues;
+    DXVA2_Fixed32 Alpha;
+    DXVA2_FilterValues NoiseFilterLuma;
+    DXVA2_FilterValues NoiseFilterChroma;
+    DXVA2_FilterValues DetailFilterLuma;
+    DXVA2_FilterValues DetailFilterChroma;
+    WINAPI_DXVA2_DestData DestData;
   } DXVA2_VideoProcessBltParams;
   typedef DXVA2_VideoProcessBltParams *WINAPI_DXVA2_VideoProcessBltParams*; //Pointer
   typedef struct DXVA2_AYUVSample8 {
-    UCHAR Cr,
-    UCHAR Cb,
-    UCHAR Y,
-    UCHAR Alpha,
+    UCHAR Cr;
+    UCHAR Cb;
+    UCHAR Y;
+    UCHAR Alpha;
   } DXVA2_AYUVSample8;
   typedef DXVA2_AYUVSample8 DXVA2_AYUVSample8 [16]; //Array 16
   typedef struct DXVA2_VideoSample {
-    REFERENCE_TIME Start,
-    REFERENCE_TIME End,
-    DXVA2_ExtendedFormat SampleFormat,
-    IDirect3DSurface9* SrcSurface,
-    RECT SrcRect,
-    RECT DstRect,
-    DXVA2_AYUVSample8 [16] Pal,
-    DXVA2_Fixed32 PlanarAlpha,
-    DWORD SampleData,
+    REFERENCE_TIME Start;
+    REFERENCE_TIME End;
+    DXVA2_ExtendedFormat SampleFormat;
+    IDirect3DSurface9* SrcSurface;
+    RECT SrcRect;
+    RECT DstRect;
+    DXVA2_AYUVSample8 Pal[16];
+    DXVA2_Fixed32 PlanarAlpha;
+    DWORD SampleData;
   } DXVA2_VideoSample;
   typedef DXVA2_VideoSample *WINAPI_DXVA2_VideoSample*; //Pointer
   typedef struct MPEG1VIDEOINFO {
-    VIDEOINFOHEADER hdr,
-    DWORD dwStartTimeCode,
-    DWORD cbSequenceHeader,
-    BYTE [1] bSequenceHeader,
+    VIDEOINFOHEADER hdr;
+    DWORD dwStartTimeCode;
+    DWORD cbSequenceHeader;
+    BYTE bSequenceHeader[1];
   } MPEG1VIDEOINFO;
   typedef MPEG1VIDEOINFO *WINAPI_MPEG1VIDEOINFO*; //Pointer
   typedef enum AM_MPEG2Profile {
@@ -736,13 +864,13 @@ ffi.cdef [[
   } AM_MPEG2Level;
   typedef DWORD WINAPI_AMMPEG2_FLAGS; //Alias
   typedef struct MPEG2VIDEOINFO {
-    VIDEOINFOHEADER2 hdr,
-    DWORD dwStartTimeCode,
-    DWORD cbSequenceHeader,
-    AM_MPEG2Profile dwProfile,
-    AM_MPEG2Level dwLevel,
-    WINAPI_AMMPEG2_FLAGS dwFlags,
-    DWORD [1] dwSequenceHeader,
+    VIDEOINFOHEADER2 hdr;
+    DWORD dwStartTimeCode;
+    DWORD cbSequenceHeader;
+    AM_MPEG2Profile dwProfile;
+    AM_MPEG2Level dwLevel;
+    WINAPI_AMMPEG2_FLAGS dwFlags;
+    DWORD dwSequenceHeader[1];
   } MPEG2VIDEOINFO;
   typedef MPEG2VIDEOINFO *WINAPI_MPEG2VIDEOINFO*; //Pointer
   typedef enum DXVAHD_FILTER {
@@ -798,49 +926,49 @@ ffi.cdef [[
   typedef UINT DXVAHD_FILTER_CAPS; //Alias
   typedef UINT DXVAHD_INPUT_FORMAT_CAPS; //Alias
   typedef struct DXVAHD_VPDEVCAPS {
-    DXVAHD_DEVICE_TYPE DeviceType,
-    DXVAHD_DEVICE_CAPS DeviceCaps,
-    DXVAHD_FEATURE_CAPS FeatureCaps,
-    DXVAHD_FILTER_CAPS FilterCaps,
-    DXVAHD_INPUT_FORMAT_CAPS InputFormatCaps,
-    D3DPOOL InputPool,
-    UINT OutputFormatCount,
-    UINT InputFormatCount,
-    UINT VideoProcessorCount,
-    UINT MaxInputStreams,
-    UINT MaxStreamStates,
+    DXVAHD_DEVICE_TYPE DeviceType;
+    DXVAHD_DEVICE_CAPS DeviceCaps;
+    DXVAHD_FEATURE_CAPS FeatureCaps;
+    DXVAHD_FILTER_CAPS FilterCaps;
+    DXVAHD_INPUT_FORMAT_CAPS InputFormatCaps;
+    D3DPOOL InputPool;
+    UINT OutputFormatCount;
+    UINT InputFormatCount;
+    UINT VideoProcessorCount;
+    UINT MaxInputStreams;
+    UINT MaxStreamStates;
   } DXVAHD_VPDEVCAPS;
   typedef UINT DXVAHD_PROCESSOR_CAPS; //Alias
   typedef UINT DXVAHD_ITELECINE_CAPS; //Alias
   typedef struct DXVAHD_VPCAPS {
-    GUID VPGuid,
-    UINT PastFrames,
-    UINT FutureFrames,
-    DXVAHD_PROCESSOR_CAPS ProcessorCaps,
-    DXVAHD_ITELECINE_CAPS ITelecineCaps,
-    UINT CustomRateCount,
+    GUID VPGuid;
+    UINT PastFrames;
+    UINT FutureFrames;
+    DXVAHD_PROCESSOR_CAPS ProcessorCaps;
+    DXVAHD_ITELECINE_CAPS ITelecineCaps;
+    UINT CustomRateCount;
   } DXVAHD_VPCAPS;
   typedef struct DXVAHD_CUSTOM_RATE_DATA {
-    DXVAHD_RATIONAL CustomRate,
-    UINT OutputFrames,
-    BOOL InputInterlaced,
-    UINT InputFramesOrFields,
+    DXVAHD_RATIONAL CustomRate;
+    UINT OutputFrames;
+    BOOL InputInterlaced;
+    UINT InputFramesOrFields;
   } DXVAHD_CUSTOM_RATE_DATA;
   typedef struct DXVAHD_FILTER_RANGE_DATA {
-    INT Minimum,
-    INT Maximum,
-    INT Default,
-    FLOAT Multiplier,
+    INT Minimum;
+    INT Maximum;
+    INT Default;
+    FLOAT Multiplier;
   } DXVAHD_FILTER_RANGE_DATA;
   typedef struct DXVAHD_STREAM_DATA {
-    BOOL Enable,
-    UINT OutputIndex,
-    UINT InputFrameOrField,
-    UINT PastFrames,
-    UINT FutureFrames,
-    IDirect3DSurface9** ppPastSurfaces,
-    IDirect3DSurface9* pInputSurface,
-    IDirect3DSurface9** ppFutureSurfaces,
+    BOOL Enable;
+    UINT OutputIndex;
+    UINT InputFrameOrField;
+    UINT PastFrames;
+    UINT FutureFrames;
+    IDirect3DSurface9** ppPastSurfaces;
+    IDirect3DSurface9* pInputSurface;
+    IDirect3DSurface9** ppFutureSurfaces;
   } DXVAHD_STREAM_DATA;
   typedef DXVAHD_STREAM_DATA *WINAPI_DXVAHD_STREAM_DATA*; //Pointer
 ]]

@@ -2,6 +2,58 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/multimedia' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IAudioAutoGainControl; //Interface
+  typedef void* IAudioBass; //Interface
+  typedef void* IAudioCaptureClient; //Interface
+  typedef void* IAudioChannelConfig; //Interface
+  typedef void* IAudioClient; //Interface
+  typedef void* IAudioClock; //Interface
+  typedef void* IAudioClock2; //Interface
+  typedef void* IAudioClockAdjustment; //Interface
+  typedef void* IAudioEndpointVolume; //Interface
+  typedef void* IAudioEndpointVolumeCallback; //Interface
+  typedef void* IAudioEndpointVolumeEx; //Interface
+  typedef void* IAudioInputSelector; //Interface
+  typedef void* IAudioLoudness; //Interface
+  typedef void* IAudioMeterInformation; //Interface
+  typedef void* IAudioMidrange; //Interface
+  typedef void* IAudioMute; //Interface
+  typedef void* IAudioOutputSelector; //Interface
+  typedef void* IAudioPeakMeter; //Interface
+  typedef void* IAudioRenderClient; //Interface
+  typedef void* IAudioSessionControl; //Interface
+  typedef void* IAudioSessionControl2; //Interface
+  typedef void* IAudioSessionEnumerator; //Interface
+  typedef void* IAudioSessionEvents; //Interface
+  typedef void* IAudioSessionManager; //Interface
+  typedef void* IAudioSessionManager2; //Interface
+  typedef void* IAudioSessionNotification; //Interface
+  typedef void* IAudioStreamVolume; //Interface
+  typedef void* IAudioTreble; //Interface
+  typedef void* IAudioVolumeDuckNotification; //Interface
+  typedef void* IAudioVolumeLevel; //Interface
+  typedef void* IChannelAudioVolume; //Interface
+  typedef void* IConnector; //Interface
+  typedef void* IControlChangeNotify; //Interface
+  typedef void* IControlInterface; //Interface
+  typedef void* IDeviceSpecificProperty; //Interface
+  typedef void* IDeviceTopology; //Interface
+  typedef void* IKsControl; //Interface
+  typedef void* IKsFormatSupport; //Interface
+  typedef void* IKsJackDescription; //Interface
+  typedef void* IKsJackDescription2; //Interface
+  typedef void* IKsJackSinkInformation; //Interface
+  typedef void* IMMDevice; //Interface
+  typedef void* IMMDeviceActivator; //Interface
+  typedef void* IMMDeviceCollection; //Interface
+  typedef void* IMMDeviceEnumerator; //Interface
+  typedef void* IMMEndpoint; //Interface
+  typedef void* IMMNotificationClient; //Interface
+  typedef void* IPart; //Interface
+  typedef void* IPartsList; //Interface
+  typedef void* IPerChannelDbLevel; //Interface
+  typedef void* ISimpleAudioVolume; //Interface
+  typedef void* ISubunit; //Interface
   typedef WCHAR WCHAR [MAX_SINK_DESCRIPTION_NAME_LENGTH]; //Array 32
   typedef float float [1]; //Array 1
   typedef float *float []; //Pointer
@@ -79,13 +131,13 @@ ffi.cdef [[
     Subunit = 1,
   } PartType;
   typedef struct WINAPI_KSIDENTIFIER_s {
-    GUID Set,
-    ULONG Id,
-    ULONG Flags,
+    GUID Set;
+    ULONG Id;
+    ULONG Flags;
   } WINAPI_KSIDENTIFIER_s;
   typedef union KSIDENTIFIER {
-    WINAPI_KSIDENTIFIER_s ,
-    LONGLONG Alignment,
+    WINAPI_KSIDENTIFIER_s ;
+    LONGLONG Alignment;
   } KSIDENTIFIER;
   typedef KSIDENTIFIER KSPROPERTY; //Alias
   typedef KSPROPERTY *PKSPROPERTY; //Pointer
@@ -94,13 +146,13 @@ ffi.cdef [[
   typedef KSIDENTIFIER KSEVENT; //Alias
   typedef KSEVENT *PKSEVENT; //Pointer
   typedef struct KSDATAFORMAT {
-    ULONG FormatSize,
-    ULONG Flags,
-    ULONG SampleSize,
-    ULONG Reserved,
-    GUID MajorFormat,
-    GUID SubFormat,
-    GUID Specifier,
+    ULONG FormatSize;
+    ULONG Flags;
+    ULONG SampleSize;
+    ULONG Reserved;
+    GUID MajorFormat;
+    GUID SubFormat;
+    GUID Specifier;
   } KSDATAFORMAT;
   typedef KSDATAFORMAT *PKSDATAFORMAT; //Pointer
   typedef enum EPcxConnectionType {
@@ -147,40 +199,40 @@ ffi.cdef [[
     ePortConnUnknown = 3,
   } EPxcPortConnection;
   typedef struct KSJACK_DESCRIPTION {
-    WINAPI_SPEAKER_POSITION ChannelMapping,
-    COLORREF Color,
-    EPcxConnectionType ConnectionType,
-    EPcxGeoLocation GeoLocation,
-    EPcxGenLocation GenLocation,
-    EPxcPortConnection PortConnection,
-    BOOL IsConnected,
+    WINAPI_SPEAKER_POSITION ChannelMapping;
+    COLORREF Color;
+    EPcxConnectionType ConnectionType;
+    EPcxGeoLocation GeoLocation;
+    EPcxGenLocation GenLocation;
+    EPxcPortConnection PortConnection;
+    BOOL IsConnected;
   } KSJACK_DESCRIPTION;
   typedef DWORD WINAPI_JACKDESC2_FLAGS; //Alias
   typedef struct KSJACK_DESCRIPTION2 {
-    DWORD DeviceStateInfo,
-    WINAPI_JACKDESC2_FLAGS JackCapabilities,
+    DWORD DeviceStateInfo;
+    WINAPI_JACKDESC2_FLAGS JackCapabilities;
   } KSJACK_DESCRIPTION2;
   typedef enum KSJACK_SINK_CONNECTIONTYPE {
     KSJACK_SINK_CONNECTIONTYPE_HDMI = 0,
     KSJACK_SINK_CONNECTIONTYPE_DISPLAYPORT = 1,
   } KSJACK_SINK_CONNECTIONTYPE;
   typedef struct KSJACK_SINK_INFORMATION {
-    KSJACK_SINK_CONNECTIONTYPE ConnType,
-    WORD ManufacturerId,
-    WORD ProductId,
-    WORD AudioLatency,
-    BOOL HDCPCapable,
-    BOOL AICapable,
-    UCHAR SinkDescriptionLength,
-    WCHAR [MAX_SINK_DESCRIPTION_NAME_LENGTH] SinkDescription,
-    LUID PortId,
+    KSJACK_SINK_CONNECTIONTYPE ConnType;
+    WORD ManufacturerId;
+    WORD ProductId;
+    WORD AudioLatency;
+    BOOL HDCPCapable;
+    BOOL AICapable;
+    UCHAR SinkDescriptionLength;
+    WCHAR SinkDescription[MAX_SINK_DESCRIPTION_NAME_LENGTH];
+    LUID PortId;
   } KSJACK_SINK_INFORMATION;
   typedef struct AUDIO_VOLUME_NOTIFICATION_DATA {
-    GUID guidEventContext,
-    BOOL bMuted,
-    float fMasterVolume,
-    UINT nChannels,
-    float [1] afChannelVolumes,
+    GUID guidEventContext;
+    BOOL bMuted;
+    float fMasterVolume;
+    UINT nChannels;
+    float afChannelVolumes[1];
   } AUDIO_VOLUME_NOTIFICATION_DATA;
   typedef AUDIO_VOLUME_NOTIFICATION_DATA *PAUDIO_VOLUME_NOTIFICATION_DATA; //Pointer
 ]]

@@ -23,21 +23,21 @@ ffi.cdef [[
   typedef unsigned long unsigned long [1]; //Array 1
   typedef RPC_BINDING_HANDLE RPC_BINDING_HANDLE [1]; //Array 1
   typedef struct RPC_PROTSEQ_VECTOR {
-    unsigned int Count,
-    RPC_TSTR [1] Protseq,
+    unsigned int Count;
+    RPC_TSTR Protseq[1];
   } RPC_PROTSEQ_VECTOR;
   typedef union WINAPI_RPC_BINDING_HANDLE_TEMPLATE_V1_u {
-    RPC_TSTR Reserved,
+    RPC_TSTR Reserved;
   } WINAPI_RPC_BINDING_HANDLE_TEMPLATE_V1_u;
   typedef unsigned long WINAPI_RPC_BHT; //Alias
   typedef struct RPC_BINDING_HANDLE_TEMPLATE_V1 {
-    unsigned long Version,
-    WINAPI_RPC_BHT Flags,
-    unsigned long ProtocolSequence,
-    RPC_TSTR NetworkAddress,
-    RPC_TSTR StringEndpoint,
-    WINAPI_RPC_BINDING_HANDLE_TEMPLATE_V1_u u1,
-    UUID ObjectUuid,
+    unsigned long Version;
+    WINAPI_RPC_BHT Flags;
+    unsigned long ProtocolSequence;
+    RPC_TSTR NetworkAddress;
+    RPC_TSTR StringEndpoint;
+    WINAPI_RPC_BINDING_HANDLE_TEMPLATE_V1_u u1;
+    UUID ObjectUuid;
   } RPC_BINDING_HANDLE_TEMPLATE_V1;
   typedef unsigned long WINAPI_RPC_C_QOS_CAPABILITIES; //Alias
   typedef enum WINAPI_RPC_C_QOS_IDENTITY {
@@ -52,10 +52,10 @@ ffi.cdef [[
     RPC_C_IMP_LEVEL_DELEGATE = 4,
   } WINAPI_RPC_C_IMP_LEVEL;
   typedef struct RPC_SECURITY_QOS {
-    unsigned long Version,
-    WINAPI_RPC_C_QOS_CAPABILITIES Capabilities,
-    WINAPI_RPC_C_QOS_IDENTITY IdentityTracking,
-    WINAPI_RPC_C_IMP_LEVEL ImpersonationType,
+    unsigned long Version;
+    WINAPI_RPC_C_QOS_CAPABILITIES Capabilities;
+    WINAPI_RPC_C_QOS_IDENTITY IdentityTracking;
+    WINAPI_RPC_C_IMP_LEVEL ImpersonationType;
   } RPC_SECURITY_QOS;
   typedef enum WINAPI_RPC_C_AUTHN_LEVEL {
     RPC_C_AUTHN_LEVEL_DEFAULT = 0,
@@ -83,72 +83,72 @@ ffi.cdef [[
   } WINAPI_RPC_C_AUTHN_SVC;
   typedef unsigned long WINAPI_SEC_WINNT_AUTH_IDENTITY; //Alias
   typedef struct SEC_WINNT_AUTH_IDENTITY {
-    RPC_TSTR User,
-    unsigned long UserLength,
-    RPC_TSTR Domain,
-    unsigned long DomainLength,
-    RPC_TSTR Password,
-    long PasswordLength,
-    WINAPI_SEC_WINNT_AUTH_IDENTITY Flags,
+    RPC_TSTR User;
+    unsigned long UserLength;
+    RPC_TSTR Domain;
+    unsigned long DomainLength;
+    RPC_TSTR Password;
+    long PasswordLength;
+    WINAPI_SEC_WINNT_AUTH_IDENTITY Flags;
   } SEC_WINNT_AUTH_IDENTITY;
   typedef struct RPC_BINDING_HANDLE_SECURITY_V1 {
-    unsigned long Version,
-    RPC_TSTR ServerPrincName,
-    WINAPI_RPC_C_AUTHN_LEVEL AuthnLevel,
-    WINAPI_RPC_C_AUTHN_SVC AuthnSvc,
-    SEC_WINNT_AUTH_IDENTITY* AuthIdentity,
-    RPC_SECURITY_QOS* SecurityQos,
+    unsigned long Version;
+    RPC_TSTR ServerPrincName;
+    WINAPI_RPC_C_AUTHN_LEVEL AuthnLevel;
+    WINAPI_RPC_C_AUTHN_SVC AuthnSvc;
+    SEC_WINNT_AUTH_IDENTITY* AuthIdentity;
+    RPC_SECURITY_QOS* SecurityQos;
   } RPC_BINDING_HANDLE_SECURITY_V1;
   typedef unsigned long WINAPI_RPC_BHO; //Alias
   typedef struct RPC_BINDING_HANDLE_OPTIONS_V1 {
-    unsigned long Version,
-    WINAPI_RPC_BHO Flags,
-    unsigned long ComTimeout,
-    unsigned long CallTimeout,
+    unsigned long Version;
+    WINAPI_RPC_BHO Flags;
+    unsigned long ComTimeout;
+    unsigned long CallTimeout;
   } RPC_BINDING_HANDLE_OPTIONS_V1;
   typedef struct RPC_BINDING_VECTOR {
-    unsigned long Count,
-    RPC_BINDING_HANDLE [1] BindingH,
+    unsigned long Count;
+    RPC_BINDING_HANDLE BindingH[1];
   } RPC_BINDING_VECTOR;
   typedef struct RPC_IF_ID {
-    UUID Uuid,
-    unsigned short VersMajor,
-    unsigned short VersMinor,
+    UUID Uuid;
+    unsigned short VersMajor;
+    unsigned short VersMinor;
   } RPC_IF_ID;
   typedef RPC_IF_ID* RPC_IF_ID* [1]; //Array 1
   typedef struct RPC_IF_ID_VECTOR {
-    unsigned long Count,
-    RPC_IF_ID* [1] IfId,
+    unsigned long Count;
+    RPC_IF_ID* IfId[1];
   } RPC_IF_ID_VECTOR;
   typedef struct RPC_STATS_VECTOR {
-    unsigned int Count,
-    unsigned long [1] Stats,
+    unsigned int Count;
+    unsigned long Stats[1];
   } RPC_STATS_VECTOR;
   typedef struct UUID_VECTOR {
-    unsigned long Count,
-    UUID* [1] Uuid,
+    unsigned long Count;
+    UUID* Uuid[1];
   } UUID_VECTOR;
   typedef struct RPC_VERSION {
-    unsigned short MajorVersion,
-    unsigned short MinorVersion,
+    unsigned short MajorVersion;
+    unsigned short MinorVersion;
   } RPC_VERSION;
   typedef struct RPC_SYNTAX_IDENTIFIER {
-    GUID SyntaxGUID,
-    RPC_VERSION SyntaxVersion,
+    GUID SyntaxGUID;
+    RPC_VERSION SyntaxVersion;
   } RPC_SYNTAX_IDENTIFIER;
   typedef RPC_SYNTAX_IDENTIFIER *PRPC_SYNTAX_IDENTIFIER; //Pointer
   typedef unsigned long WINAPI_RPC_POLICY_EndPoint; //Alias
   typedef unsigned long WINAPI_RPC_POLICY_Nic; //Alias
   typedef struct RPC_POLICY {
-    unsigned int Length,
-    WINAPI_RPC_POLICY_EndPoint EndpointFlags,
-    WINAPI_RPC_POLICY_Nic NICFlags,
+    unsigned int Length;
+    WINAPI_RPC_POLICY_EndPoint EndpointFlags;
+    WINAPI_RPC_POLICY_Nic NICFlags;
   } RPC_POLICY;
   typedef RPC_POLICY *PRPC_POLICY; //Pointer
   typedef struct RPC_ERROR_ENUM_HANDLE {
-    ULONG Signature,
-    void* CurrentPos,
-    void* Head,
+    ULONG Signature;
+    void* CurrentPos;
+    void* Head;
   } RPC_ERROR_ENUM_HANDLE;
   typedef enum RPC_NOTIFICATIONS {
     RpcNotificationCallNone = 0,
@@ -186,59 +186,59 @@ ffi.cdef [[
     eeptBinary = 7,
   } ExtendedErrorParamTypes;
   typedef struct BinaryParam {
-    void* Buffer,
-    short Size,
+    void* Buffer;
+    short Size;
   } BinaryParam;
   typedef union WINAPI_RPC_EE_INFO_PARAM_u {
-    LPSTR AnsiString,
-    LPWSTR UnicodeString,
-    long LVal,
-    short SVal,
-    ULONGLONG PVal,
-    BinaryParam BVal,
+    LPSTR AnsiString;
+    LPWSTR UnicodeString;
+    long LVal;
+    short SVal;
+    ULONGLONG PVal;
+    BinaryParam BVal;
   } WINAPI_RPC_EE_INFO_PARAM_u;
   typedef struct RPC_EE_INFO_PARAM {
-    ExtendedErrorParamTypes ParameterType,
-    WINAPI_RPC_EE_INFO_PARAM_u u,
+    ExtendedErrorParamTypes ParameterType;
+    WINAPI_RPC_EE_INFO_PARAM_u u;
   } RPC_EE_INFO_PARAM;
   typedef RPC_EE_INFO_PARAM RPC_EE_INFO_PARAM [MaxNumberOfEEInfoParams]; //Array 4
   typedef union WINAPI_RPC_EXTENDED_ERROR_INFO_u {
-    SYSTEMTIME SystemTime,
-    FILETIME FileTime,
+    SYSTEMTIME SystemTime;
+    FILETIME FileTime;
   } WINAPI_RPC_EXTENDED_ERROR_INFO_u;
   typedef USHORT WINAPI_RPC_EE_FLAGS; //Alias
   typedef struct RPC_EXTENDED_ERROR_INFO {
-    ULONG Version,
-    LPWSTR ComputerName,
-    ULONG ProcessID,
-    WINAPI_RPC_EXTENDED_ERROR_INFO_u u,
-    ULONG GeneratingComponent,
-    ULONG Status,
-    USHORT DetectionLocation,
-    WINAPI_RPC_EE_FLAGS Flags,
-    int NumberOfParameters,
-    RPC_EE_INFO_PARAM [MaxNumberOfEEInfoParams] Parameters,
+    ULONG Version;
+    LPWSTR ComputerName;
+    ULONG ProcessID;
+    WINAPI_RPC_EXTENDED_ERROR_INFO_u u;
+    ULONG GeneratingComponent;
+    ULONG Status;
+    USHORT DetectionLocation;
+    WINAPI_RPC_EE_FLAGS Flags;
+    int NumberOfParameters;
+    RPC_EE_INFO_PARAM Parameters[MaxNumberOfEEInfoParams];
   } RPC_EXTENDED_ERROR_INFO;
   typedef struct WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s1 {
-    PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine,
-    HANDLE hThread,
+    PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
+    HANDLE hThread;
   } WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s1;
   typedef struct WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s2 {
-    HANDLE hIOPort,
-    DWORD dwNumberOfBytesTransferred,
-    DWORD_PTR dwCompletionKey,
-    LPOVERLAPPED lpOverlapped,
+    HANDLE hIOPort;
+    DWORD dwNumberOfBytesTransferred;
+    DWORD_PTR dwCompletionKey;
+    LPOVERLAPPED lpOverlapped;
   } WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s2;
   typedef struct WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s3 {
-    HWND hWnd,
-    WINAPI_WinMsg Msg,
+    HWND hWnd;
+    WINAPI_WinMsg Msg;
   } WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s3;
   typedef union RPC_ASYNC_NOTIFICATION_INFO {
-    WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s1 APC,
-    WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s2 IOC,
-    WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s3 HWND,
-    HANDLE hEvent,
-    PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine,
+    WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s1 APC;
+    WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s2 IOC;
+    WINAPI_RPC_ASYNC_NOTIFICATION_INFO_s3 HWND;
+    HANDLE hEvent;
+    PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
   } RPC_ASYNC_NOTIFICATION_INFO;
   typedef unsigned long WINAPI_RPC_ASYNC_STATE_FLAGS; //Alias
   typedef enum RPC_ASYNC_EVENT {
@@ -257,17 +257,17 @@ ffi.cdef [[
     RpcNotificationTypeCallback = 5,
   } RPC_NOTIFICATION_TYPES;
   typedef struct RPC_ASYNC_STATE {
-    unsigned int Size,
-    unsigned long Signature,
-    long Lock,
-    WINAPI_RPC_ASYNC_STATE_FLAGS Flags,
-    void* StubInfo,
-    void* UserInfo,
-    void* RuntimeInfo,
-    RPC_ASYNC_EVENT Event,
-    RPC_NOTIFICATION_TYPES NotificationType,
-    RPC_ASYNC_NOTIFICATION_INFO u,
-    LONG_PTR [4] Reserved,
+    unsigned int Size;
+    unsigned long Signature;
+    long Lock;
+    WINAPI_RPC_ASYNC_STATE_FLAGS Flags;
+    void* StubInfo;
+    void* UserInfo;
+    void* RuntimeInfo;
+    RPC_ASYNC_EVENT Event;
+    RPC_NOTIFICATION_TYPES NotificationType;
+    RPC_ASYNC_NOTIFICATION_INFO u;
+    LONG_PTR Reserved[4];
   } RPC_ASYNC_STATE;
   typedef RPC_ASYNC_STATE *PRPC_ASYNC_STATE; //Pointer
 ]]

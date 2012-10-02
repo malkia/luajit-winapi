@@ -1,7 +1,35 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IDWriteBitmapRenderTarget; //Interface
+  typedef void* IDWriteFactory; //Interface
+  typedef void* IDWriteFont; //Interface
+  typedef void* IDWriteFontCollection; //Interface
+  typedef void* IDWriteFontCollectionLoader; //Interface
+  typedef void* IDWriteFontFace; //Interface
+  typedef void* IDWriteFontFamily; //Interface
+  typedef void* IDWriteFontFile; //Interface
+  typedef void* IDWriteFontFileEnumerator; //Interface
+  typedef void* IDWriteFontFileLoader; //Interface
+  typedef void* IDWriteFontFileStream; //Interface
+  typedef void* IDWriteFontList; //Interface
+  typedef void* IDWriteGdiInterop; //Interface
+  typedef void* IDWriteGlyphRunAnalysis; //Interface
+  typedef void* IDWriteInlineObject; //Interface
+  typedef void* IDWriteLocalFontFileLoader; //Interface
+  typedef void* IDWriteLocalizedStrings; //Interface
+  typedef void* IDWritePixelSnapping; //Interface
+  typedef void* IDWriteRenderingParams; //Interface
+  typedef void* IDWriteTextAnalyzer; //Interface
+  typedef void* IDWriteTextFormat; //Interface
+  typedef void* IDWriteTextLayout; //Interface
+  typedef void* IDWriteTextRenderer; //Interface
+  typedef void* IDWriteTypography; //Interface
   typedef IDWriteFontFile** IDWriteFontFile* const*; //Alias
+  typedef void* IDWriteTextAnalysisSource; //Interface
+  typedef void* IDWriteNumberSubstitution; //Interface
+  typedef void* IDWriteGeometrySink; //Interface
+  typedef void* IDWriteTextAnalysisSink; //Interface
   typedef LPVOID DWRITE_CLUSTER_METRICS*; //Alias
   typedef LPVOID DWRITE_SHAPING_TEXT_PROPERTIES*; //Alias
   typedef LPVOID DWRITE_SHAPING_GLYPH_PROPERTIES*; //Alias
@@ -13,19 +41,19 @@ ffi.cdef [[
   typedef RECT *RECT const*; //Pointer
   typedef LOGFONTW* LOGFONTW const*; //Alias
   typedef struct DWRITE_GLYPH_OFFSET {
-    FLOAT advanceOffset,
-    FLOAT ascenderOffset,
+    FLOAT advanceOffset;
+    FLOAT ascenderOffset;
   } DWRITE_GLYPH_OFFSET;
   typedef DWRITE_GLYPH_OFFSET *DWRITE_GLYPH_OFFSET const*; //Pointer
   typedef struct DWRITE_GLYPH_RUN {
-    IDWriteFontFace* fontFace,
-    FLOAT fontEmSize,
-    UINT32 glyphCount,
-    UINT16 const* glyphIndices,
-    FLOAT const* glyphAdvances,
-    DWRITE_GLYPH_OFFSET const* glyphOffsets,
-    BOOL isSideways,
-    UINT32 bidiLevel,
+    IDWriteFontFace* fontFace;
+    FLOAT fontEmSize;
+    UINT32 glyphCount;
+    UINT16 const* glyphIndices;
+    FLOAT const* glyphAdvances;
+    DWRITE_GLYPH_OFFSET const* glyphOffsets;
+    BOOL isSideways;
+    UINT32 bidiLevel;
   } DWRITE_GLYPH_RUN;
   typedef DWRITE_GLYPH_RUN *WINAPI_DWRITE_GLYPH_RUN*; //Pointer
   typedef DWRITE_GLYPH_RUN *DWRITE_GLYPH_RUN const*; //Pointer
@@ -34,12 +62,12 @@ ffi.cdef [[
     DWRITE_FACTORY_TYPE_ISOLATED = 1,
   } DWRITE_FACTORY_TYPE;
   typedef struct DWRITE_MATRIX {
-    FLOAT m11,
-    FLOAT m12,
-    FLOAT m21,
-    FLOAT m22,
-    FLOAT dx,
-    FLOAT dy,
+    FLOAT m11;
+    FLOAT m12;
+    FLOAT m21;
+    FLOAT m22;
+    FLOAT dx;
+    FLOAT dy;
   } DWRITE_MATRIX;
   typedef DWRITE_MATRIX *DWRITE_MATRIX const*; //Pointer
   typedef enum DWRITE_FONT_FACE_TYPE {
@@ -112,16 +140,16 @@ ffi.cdef [[
   } DWRITE_INFORMATIONAL_STRING_ID;
   typedef UINT DWRITE_FONT_SIMULATIONS; //Alias
   typedef struct DWRITE_FONT_METRICS {
-    UINT16 designUnitsPerEm,
-    UINT16 ascent,
-    UINT16 descent,
-    INT16 lineGap,
-    UINT16 capHeight,
-    UINT16 xHeight,
-    INT16 underlinePosition,
-    UINT16 underlineThickness,
-    INT16 strikethroughPosition,
-    UINT16 strikethroughThickness,
+    UINT16 designUnitsPerEm;
+    UINT16 ascent;
+    UINT16 descent;
+    INT16 lineGap;
+    UINT16 capHeight;
+    UINT16 xHeight;
+    INT16 underlinePosition;
+    UINT16 underlineThickness;
+    INT16 strikethroughPosition;
+    UINT16 strikethroughThickness;
   } DWRITE_FONT_METRICS;
   typedef enum DWRITE_RENDERING_MODE {
     DWRITE_RENDERING_MODE_DEFAULT = 0,
@@ -147,16 +175,16 @@ ffi.cdef [[
     DWRITE_TEXTURE_CLEARTYPE_3x1 = 1,
   } DWRITE_TEXTURE_TYPE;
   typedef struct DWRITE_INLINE_OBJECT_METRICS {
-    FLOAT width,
-    FLOAT height,
-    FLOAT baseline,
-    BOOL supportsSideways,
+    FLOAT width;
+    FLOAT height;
+    FLOAT baseline;
+    BOOL supportsSideways;
   } DWRITE_INLINE_OBJECT_METRICS;
   typedef struct DWRITE_OVERHANG_METRICS {
-    FLOAT left,
-    FLOAT top,
-    FLOAT right,
-    FLOAT bottom,
+    FLOAT left;
+    FLOAT top;
+    FLOAT right;
+    FLOAT bottom;
   } DWRITE_OVERHANG_METRICS;
   typedef enum DWRITE_BREAK_CONDITION {
     DWRITE_BREAK_CONDITION_NEUTRAL = 0,
@@ -166,8 +194,8 @@ ffi.cdef [[
   } DWRITE_BREAK_CONDITION;
   typedef UINT DWRITE_SCRIPT_SHAPES; //Alias
   typedef struct DWRITE_SCRIPT_ANALYSIS {
-    UINT16 script,
-    DWRITE_SCRIPT_SHAPES shapes,
+    UINT16 script;
+    DWRITE_SCRIPT_SHAPES shapes;
   } DWRITE_SCRIPT_ANALYSIS;
   typedef DWRITE_SCRIPT_ANALYSIS *DWRITE_SCRIPT_ANALYSIS const*; //Pointer
   typedef enum DWRITE_TEXT_ALIGNMENT {
@@ -197,9 +225,9 @@ ffi.cdef [[
     DWRITE_TRIMMING_GRANULARITY_WORD = 2,
   } DWRITE_TRIMMING_GRANULARITY;
   typedef struct DWRITE_TRIMMING {
-    DWRITE_TRIMMING_GRANULARITY granularity,
-    UINT32 delimiter,
-    UINT32 delimiterCount,
+    DWRITE_TRIMMING_GRANULARITY granularity;
+    UINT32 delimiter;
+    UINT32 delimiterCount;
   } DWRITE_TRIMMING;
   typedef DWRITE_TRIMMING *DWRITE_TRIMMING const*; //Pointer
   typedef enum DWRITE_LINE_SPACING_METHOD {
@@ -207,38 +235,38 @@ ffi.cdef [[
     DWRITE_LINE_SPACING_METHOD_UNIFORM = 1,
   } DWRITE_LINE_SPACING_METHOD;
   typedef struct DWRITE_TEXT_RANGE {
-    UINT32 startPosition,
-    UINT32 length,
+    UINT32 startPosition;
+    UINT32 length;
   } DWRITE_TEXT_RANGE;
   typedef struct DWRITE_LINE_METRICS {
-    UINT32 length,
-    UINT32 trailingWhitespaceLength,
-    UINT32 newlineLength,
-    FLOAT height,
-    FLOAT baseline,
-    BOOL isTrimmed,
+    UINT32 length;
+    UINT32 trailingWhitespaceLength;
+    UINT32 newlineLength;
+    FLOAT height;
+    FLOAT baseline;
+    BOOL isTrimmed;
   } DWRITE_LINE_METRICS;
   typedef struct DWRITE_TEXT_METRICS {
-    FLOAT left,
-    FLOAT top,
-    FLOAT width,
-    FLOAT widthIncludingTrailingWhitespace,
-    FLOAT height,
-    FLOAT layoutWidth,
-    FLOAT layoutHeight,
-    UINT32 maxBidiReorderingDepth,
-    UINT32 lineCount,
+    FLOAT left;
+    FLOAT top;
+    FLOAT width;
+    FLOAT widthIncludingTrailingWhitespace;
+    FLOAT height;
+    FLOAT layoutWidth;
+    FLOAT layoutHeight;
+    UINT32 maxBidiReorderingDepth;
+    UINT32 lineCount;
   } DWRITE_TEXT_METRICS;
   typedef struct DWRITE_HIT_TEST_METRICS {
-    UINT32 textPosition,
-    UINT32 length,
-    FLOAT left,
-    FLOAT top,
-    FLOAT width,
-    FLOAT height,
-    UINT32 bidiLevel,
-    BOOL isText,
-    BOOL isTrimmed,
+    UINT32 textPosition;
+    UINT32 length;
+    FLOAT left;
+    FLOAT top;
+    FLOAT width;
+    FLOAT height;
+    UINT32 bidiLevel;
+    BOOL isText;
+    BOOL isTrimmed;
   } DWRITE_HIT_TEST_METRICS;
   typedef enum DWRITE_MEASURING_MODE {
     DWRITE_MEASURING_MODE_NATURAL = 0,
@@ -246,24 +274,24 @@ ffi.cdef [[
     DWRITE_MEASURING_MODE_GDI_NATURAL = 2,
   } DWRITE_MEASURING_MODE;
   typedef struct DWRITE_UNDERLINE {
-    FLOAT width,
-    FLOAT thickness,
-    FLOAT offset,
-    FLOAT runHeight,
-    DWRITE_READING_DIRECTION readingDirection,
-    DWRITE_FLOW_DIRECTION flowDirection,
-    WCHAR const* localeName,
-    DWRITE_MEASURING_MODE measuringMode,
+    FLOAT width;
+    FLOAT thickness;
+    FLOAT offset;
+    FLOAT runHeight;
+    DWRITE_READING_DIRECTION readingDirection;
+    DWRITE_FLOW_DIRECTION flowDirection;
+    WCHAR const* localeName;
+    DWRITE_MEASURING_MODE measuringMode;
   } DWRITE_UNDERLINE;
   typedef DWRITE_UNDERLINE *DWRITE_UNDERLINE const*; //Pointer
   typedef struct DWRITE_STRIKETHROUGH {
-    FLOAT width,
-    FLOAT thickness,
-    FLOAT offset,
-    DWRITE_READING_DIRECTION readingDirection,
-    DWRITE_FLOW_DIRECTION flowDirection,
-    WCHAR const* localeName,
-    DWRITE_MEASURING_MODE measuringMode,
+    FLOAT width;
+    FLOAT thickness;
+    FLOAT offset;
+    DWRITE_READING_DIRECTION readingDirection;
+    DWRITE_FLOW_DIRECTION flowDirection;
+    WCHAR const* localeName;
+    DWRITE_MEASURING_MODE measuringMode;
   } DWRITE_STRIKETHROUGH;
   typedef DWRITE_STRIKETHROUGH *DWRITE_STRIKETHROUGH const*; //Pointer
   typedef enum DWRITE_FONT_FEATURE_TAG {
@@ -348,29 +376,29 @@ ffi.cdef [[
     DWRITE_FONT_FEATURE_TAG_SLASHED_ZERO = 0x6f72657a,
   } DWRITE_FONT_FEATURE_TAG;
   typedef struct DWRITE_FONT_FEATURE {
-    DWRITE_FONT_FEATURE_TAG nameTag,
-    UINT32 parameter,
+    DWRITE_FONT_FEATURE_TAG nameTag;
+    UINT32 parameter;
   } DWRITE_FONT_FEATURE;
   typedef struct DWRITE_GLYPH_METRICS {
-    INT32 leftSideBearing,
-    UINT32 advanceWidth,
-    INT32 rightSideBearing,
-    INT32 topSideBearing,
-    UINT32 advanceHeight,
-    INT32 bottomSideBearing,
-    INT32 verticalOriginY,
+    INT32 leftSideBearing;
+    UINT32 advanceWidth;
+    INT32 rightSideBearing;
+    INT32 topSideBearing;
+    UINT32 advanceHeight;
+    INT32 bottomSideBearing;
+    INT32 verticalOriginY;
   } DWRITE_GLYPH_METRICS;
   typedef struct DWRITE_TYPOGRAPHIC_FEATURES {
-    DWRITE_FONT_FEATURE* features,
-    UINT32 featureCount,
+    DWRITE_FONT_FEATURE* features;
+    UINT32 featureCount;
   } DWRITE_TYPOGRAPHIC_FEATURES;
   typedef DWRITE_TYPOGRAPHIC_FEATURES* *DWRITE_TYPOGRAPHIC_FEATURES const**; //Pointer
   typedef struct DWRITE_GLYPH_RUN_DESCRIPTION {
-    WCHAR const* localeName,
-    WCHAR const* string,
-    UINT32 stringLength,
-    UINT16 const* clusterMap,
-    UINT32 textPosition,
+    WCHAR const* localeName;
+    WCHAR const* string;
+    UINT32 stringLength;
+    UINT16 const* clusterMap;
+    UINT32 textPosition;
   } DWRITE_GLYPH_RUN_DESCRIPTION;
   typedef DWRITE_GLYPH_RUN_DESCRIPTION *DWRITE_GLYPH_RUN_DESCRIPTION const*; //Pointer
 ]]

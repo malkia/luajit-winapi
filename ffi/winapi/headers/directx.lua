@@ -5,10 +5,10 @@ ffi.cdef [[
   typedef DWORD D3DCOLOR; //Alias
   typedef LPVOID PDXVAHDSW_Plugin; //Alias
   typedef struct D3DCOLORVALUE {
-    float r,
-    float g,
-    float b,
-    float a,
+    float r;
+    float g;
+    float b;
+    float a;
   } D3DCOLORVALUE;
   typedef enum D3DPOOL {
     D3DPOOL_DEFAULT = 0,
@@ -84,9 +84,9 @@ ffi.cdef [[
     D3DFMT_BINARYBUFFER = 199,
   } D3DFORMAT;
   typedef struct D3DVECTOR {
-    float x,
-    float y,
-    float z,
+    float x;
+    float y;
+    float z;
   } D3DVECTOR;
   typedef enum DXGI_FORMAT {
     DXGI_FORMAT_UNKNOWN = 0,
@@ -196,17 +196,17 @@ ffi.cdef [[
     DXVAHD_FRAME_FORMAT_INTERLACED_BOTTOM_FIELD_FIRST = 2,
   } DXVAHD_FRAME_FORMAT;
   typedef struct DXVAHD_RATIONAL {
-    UINT Numerator,
-    UINT Denominator,
+    UINT Numerator;
+    UINT Denominator;
   } DXVAHD_RATIONAL;
   typedef struct DXVAHD_CONTENT_DESC {
-    DXVAHD_FRAME_FORMAT InputFrameFormat,
-    DXVAHD_RATIONAL InputFrameRate,
-    UINT InputWidth,
-    UINT InputHeight,
-    DXVAHD_RATIONAL OutputFrameRate,
-    UINT OutputWidth,
-    UINT OutputHeight,
+    DXVAHD_FRAME_FORMAT InputFrameFormat;
+    DXVAHD_RATIONAL InputFrameRate;
+    UINT InputWidth;
+    UINT InputHeight;
+    DXVAHD_RATIONAL OutputFrameRate;
+    UINT OutputWidth;
+    UINT OutputHeight;
   } DXVAHD_CONTENT_DESC;
   typedef DXVAHD_CONTENT_DESC *WINAPI_DXVAHD_CONTENT_DESC*; //Pointer
   typedef enum DXVAHD_DEVICE_USAGE {
@@ -474,57 +474,57 @@ ffi.cdef [[
     D3DPT_TRIANGLEFAN = 6,
   } D3DPRIMITIVETYPE;
   typedef struct D3DADAPTER_IDENTIFIER9 {
-    char [MAX_DEVICE_IDENTIFIER_STRING] Driver,
-    char [MAX_DEVICE_IDENTIFIER_STRING] Description,
-    char [32] DeviceName,
-    LARGE_INTEGER DriverVersion,
-    DWORD VendorId,
-    DWORD DeviceId,
-    DWORD SubSysId,
-    DWORD Revision,
-    GUID DeviceIdentifier,
-    DWORD WHQLLevel,
+    char Driver[MAX_DEVICE_IDENTIFIER_STRING];
+    char Description[MAX_DEVICE_IDENTIFIER_STRING];
+    char DeviceName[32];
+    LARGE_INTEGER DriverVersion;
+    DWORD VendorId;
+    DWORD DeviceId;
+    DWORD SubSysId;
+    DWORD Revision;
+    GUID DeviceIdentifier;
+    DWORD WHQLLevel;
   } D3DADAPTER_IDENTIFIER9;
   typedef struct D3D_OMAC {
-    BYTE [D3D_OMAC_SIZE] Omac,
+    BYTE Omac[D3D_OMAC_SIZE];
   } D3D_OMAC;
   typedef struct D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT {
-    D3D_OMAC omac,
-    GUID ConfigureType,
-    HANDLE hChannel,
-    UINT SequenceNumber,
-    HRESULT ReturnCode,
+    D3D_OMAC omac;
+    GUID ConfigureType;
+    HANDLE hChannel;
+    UINT SequenceNumber;
+    HRESULT ReturnCode;
   } D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;
   typedef struct D3DGAMMARAMP {
-    WORD [256] red,
-    WORD [256] green,
-    WORD [256] blue,
+    WORD red[256];
+    WORD green[256];
+    WORD blue[256];
   } D3DGAMMARAMP;
   typedef D3DGAMMARAMP *WINAPI_D3DGAMMARAMP*; //Pointer
   typedef struct D3DMATRIX {
-    float [4][4] m,
+    float m[4][4];
   } D3DMATRIX;
   typedef D3DMATRIX *WINAPI_D3DMATRIX*; //Pointer
   typedef struct D3DDISPLAYMODE {
-    UINT Width,
-    UINT Height,
-    UINT RefreshRate,
-    D3DFORMAT Format,
+    UINT Width;
+    UINT Height;
+    UINT RefreshRate;
+    D3DFORMAT Format;
   } D3DDISPLAYMODE;
   typedef DWORD WINAPI_D3DVS20CAPS; //Alias
   typedef struct D3DVSHADERCAPS2_0 {
-    WINAPI_D3DVS20CAPS Caps,
-    INT DynamicFlowControlDepth,
-    INT NumTemps,
-    INT StaticFlowControlDepth,
+    WINAPI_D3DVS20CAPS Caps;
+    INT DynamicFlowControlDepth;
+    INT NumTemps;
+    INT StaticFlowControlDepth;
   } D3DVSHADERCAPS2_0;
   typedef DWORD WINAPI_D3DPS20CAPS; //Alias
   typedef struct D3DPSHADERCAPS2_0 {
-    WINAPI_D3DPS20CAPS Caps,
-    INT DynamicFlowControlDepth,
-    INT NumTemps,
-    INT StaticFlowControlDepth,
-    INT NumInstructionSlots,
+    WINAPI_D3DPS20CAPS Caps;
+    INT DynamicFlowControlDepth;
+    INT NumTemps;
+    INT StaticFlowControlDepth;
+    INT NumInstructionSlots;
   } D3DPSHADERCAPS2_0;
   typedef DWORD WINAPI_D3DCAPS; //Alias
   typedef DWORD WINAPI_D3DCAPS2; //Alias
@@ -548,75 +548,75 @@ ffi.cdef [[
   typedef DWORD WINAPI_D3DDEVCAPS2; //Alias
   typedef DWORD WINAPI_D3DDTCAPS; //Alias
   typedef struct D3DCAPS9 {
-    D3DDEVTYPE DeviceType,
-    UINT AdapterOrdinal,
-    WINAPI_D3DCAPS Caps,
-    WINAPI_D3DCAPS2 Caps2,
-    WINAPI_D3DCAPS3 Caps3,
-    WINAPI_D3DPRESENT PresentationIntervals,
-    WINAPI_D3DCURSORCAPS CursorCaps,
-    WINAPI_D3DDEVCAPS DevCaps,
-    WINAPI_D3DPMISCCAPS PrimitiveMiscCaps,
-    WINAPI_D3DPRASTERCAPS RasterCaps,
-    WINAPI_D3DPCMPCAPS ZCmpCaps,
-    WINAPI_D3DPBLENDCAPS SrcBlendCaps,
-    WINAPI_D3DPBLENDCAPS DestBlendCaps,
-    WINAPI_D3DPCMPCAPS AlphaCmpCaps,
-    WINAPI_D3DPSHADECAPS ShadeCaps,
-    WINAPI_D3DPTEXTURECAPS TextureCaps,
-    WINAPI_D3DPTFILTERCAPS TextureFilterCaps,
-    WINAPI_D3DPTFILTERCAPS CubeTextureFilterCaps,
-    WINAPI_D3DPTFILTERCAPS VolumeTextureFilterCaps,
-    WINAPI_D3DPTADDRESSCAPS TextureAddressCaps,
-    WINAPI_D3DPTADDRESSCAPS VolumeTextureAddressCaps,
-    WINAPI_D3DLINECAPS LineCaps,
-    DWORD MaxTextureWidth,
-    DWORD MaxTextureHeight,
-    DWORD MaxVolumeExtent,
-    DWORD MaxTextureRepeat,
-    DWORD MaxTextureAspectRatio,
-    DWORD MaxAnisotropy,
-    float MaxVertexW,
-    float GuardBandLeft,
-    float GuardBandTop,
-    float GuardBandRight,
-    float GuardBandBottom,
-    float ExtentsAdjust,
-    WINAPI_D3DSTENCILCAPS StencilCaps,
-    WINAPI_D3DFVFCAPS FVFCaps,
-    WINAPI_D3DTEXOPCAPS TextureOpCaps,
-    DWORD MaxTextureBlendStages,
-    DWORD MaxSimultaneousTextures,
-    WINAPI_D3DVTXPCAPS VertexProcessingCaps,
-    DWORD MaxActiveLights,
-    DWORD MaxUserClipPlanes,
-    DWORD MaxVertexBlendMatrices,
-    DWORD MaxVertexBlendMatrixIndex,
-    float MaxPointSize,
-    DWORD MaxPrimitiveCount,
-    DWORD MaxVertexIndex,
-    DWORD MaxStreams,
-    DWORD MaxStreamStride,
-    DWORD VertexShaderVersion,
-    DWORD MaxVertexShaderConst,
-    DWORD PixelShaderVersion,
-    float PixelShader1xMaxValue,
-    WINAPI_D3DDEVCAPS2 DevCaps2,
-    float MaxNpatchTessellationLevel,
-    DWORD Reserved5,
-    UINT MasterAdapterOrdinal,
-    UINT AdapterOrdinalInGroup,
-    UINT NumberOfAdaptersInGroup,
-    WINAPI_D3DDTCAPS DeclTypes,
-    DWORD NumSimultaneousRTs,
-    WINAPI_D3DPTFILTERCAPS StretchRectFilterCaps,
-    D3DVSHADERCAPS2_0 VS20Caps,
-    D3DPSHADERCAPS2_0 PS20Caps,
-    WINAPI_D3DPTFILTERCAPS VertexTextureFilterCaps,
-    DWORD MaxVShaderInstructionsExecuted,
-    DWORD MaxPShaderInstructionsExecuted,
-    DWORD MaxVertexShader30InstructionSlots,
-    DWORD MaxPixelShader30InstructionSlots,
+    D3DDEVTYPE DeviceType;
+    UINT AdapterOrdinal;
+    WINAPI_D3DCAPS Caps;
+    WINAPI_D3DCAPS2 Caps2;
+    WINAPI_D3DCAPS3 Caps3;
+    WINAPI_D3DPRESENT PresentationIntervals;
+    WINAPI_D3DCURSORCAPS CursorCaps;
+    WINAPI_D3DDEVCAPS DevCaps;
+    WINAPI_D3DPMISCCAPS PrimitiveMiscCaps;
+    WINAPI_D3DPRASTERCAPS RasterCaps;
+    WINAPI_D3DPCMPCAPS ZCmpCaps;
+    WINAPI_D3DPBLENDCAPS SrcBlendCaps;
+    WINAPI_D3DPBLENDCAPS DestBlendCaps;
+    WINAPI_D3DPCMPCAPS AlphaCmpCaps;
+    WINAPI_D3DPSHADECAPS ShadeCaps;
+    WINAPI_D3DPTEXTURECAPS TextureCaps;
+    WINAPI_D3DPTFILTERCAPS TextureFilterCaps;
+    WINAPI_D3DPTFILTERCAPS CubeTextureFilterCaps;
+    WINAPI_D3DPTFILTERCAPS VolumeTextureFilterCaps;
+    WINAPI_D3DPTADDRESSCAPS TextureAddressCaps;
+    WINAPI_D3DPTADDRESSCAPS VolumeTextureAddressCaps;
+    WINAPI_D3DLINECAPS LineCaps;
+    DWORD MaxTextureWidth;
+    DWORD MaxTextureHeight;
+    DWORD MaxVolumeExtent;
+    DWORD MaxTextureRepeat;
+    DWORD MaxTextureAspectRatio;
+    DWORD MaxAnisotropy;
+    float MaxVertexW;
+    float GuardBandLeft;
+    float GuardBandTop;
+    float GuardBandRight;
+    float GuardBandBottom;
+    float ExtentsAdjust;
+    WINAPI_D3DSTENCILCAPS StencilCaps;
+    WINAPI_D3DFVFCAPS FVFCaps;
+    WINAPI_D3DTEXOPCAPS TextureOpCaps;
+    DWORD MaxTextureBlendStages;
+    DWORD MaxSimultaneousTextures;
+    WINAPI_D3DVTXPCAPS VertexProcessingCaps;
+    DWORD MaxActiveLights;
+    DWORD MaxUserClipPlanes;
+    DWORD MaxVertexBlendMatrices;
+    DWORD MaxVertexBlendMatrixIndex;
+    float MaxPointSize;
+    DWORD MaxPrimitiveCount;
+    DWORD MaxVertexIndex;
+    DWORD MaxStreams;
+    DWORD MaxStreamStride;
+    DWORD VertexShaderVersion;
+    DWORD MaxVertexShaderConst;
+    DWORD PixelShaderVersion;
+    float PixelShader1xMaxValue;
+    WINAPI_D3DDEVCAPS2 DevCaps2;
+    float MaxNpatchTessellationLevel;
+    DWORD Reserved5;
+    UINT MasterAdapterOrdinal;
+    UINT AdapterOrdinalInGroup;
+    UINT NumberOfAdaptersInGroup;
+    WINAPI_D3DDTCAPS DeclTypes;
+    DWORD NumSimultaneousRTs;
+    WINAPI_D3DPTFILTERCAPS StretchRectFilterCaps;
+    D3DVSHADERCAPS2_0 VS20Caps;
+    D3DPSHADERCAPS2_0 PS20Caps;
+    WINAPI_D3DPTFILTERCAPS VertexTextureFilterCaps;
+    DWORD MaxVShaderInstructionsExecuted;
+    DWORD MaxPShaderInstructionsExecuted;
+    DWORD MaxVertexShader30InstructionSlots;
+    DWORD MaxPixelShader30InstructionSlots;
   } D3DCAPS9;
   typedef enum D3DSWAPEFFECT {
     D3DSWAPEFFECT_DISCARD = 1,
@@ -627,50 +627,50 @@ ffi.cdef [[
   } D3DSWAPEFFECT;
   typedef DWORD WINAPI_D3DPRESENTFLAG; //Alias
   typedef struct D3DPRESENT_PARAMETERS {
-    UINT BackBufferWidth,
-    UINT BackBufferHeight,
-    D3DFORMAT BackBufferFormat,
-    UINT BackBufferCount,
-    D3DMULTISAMPLE_TYPE MultiSampleType,
-    DWORD MultiSampleQuality,
-    D3DSWAPEFFECT SwapEffect,
-    HWND hDeviceWindow,
-    BOOL Windowed,
-    BOOL EnableAutoDepthStencil,
-    D3DFORMAT AutoDepthStencilFormat,
-    WINAPI_D3DPRESENTFLAG Flags,
-    UINT FullScreen_RefreshRateInHz,
-    UINT PresentationInterval,
+    UINT BackBufferWidth;
+    UINT BackBufferHeight;
+    D3DFORMAT BackBufferFormat;
+    UINT BackBufferCount;
+    D3DMULTISAMPLE_TYPE MultiSampleType;
+    DWORD MultiSampleQuality;
+    D3DSWAPEFFECT SwapEffect;
+    HWND hDeviceWindow;
+    BOOL Windowed;
+    BOOL EnableAutoDepthStencil;
+    D3DFORMAT AutoDepthStencilFormat;
+    WINAPI_D3DPRESENTFLAG Flags;
+    UINT FullScreen_RefreshRateInHz;
+    UINT PresentationInterval;
   } D3DPRESENT_PARAMETERS;
   typedef DWORD WINAPI_D3DUSAGE; //Alias
   typedef struct D3DSURFACE_DESC {
-    D3DFORMAT Format,
-    D3DRESOURCETYPE Type,
-    WINAPI_D3DUSAGE Usage,
-    D3DPOOL Pool,
-    D3DMULTISAMPLE_TYPE MultiSampleType,
-    DWORD MultiSampleQuality,
-    UINT Width,
-    UINT Height,
+    D3DFORMAT Format;
+    D3DRESOURCETYPE Type;
+    WINAPI_D3DUSAGE Usage;
+    D3DPOOL Pool;
+    D3DMULTISAMPLE_TYPE MultiSampleType;
+    DWORD MultiSampleQuality;
+    UINT Width;
+    UINT Height;
   } D3DSURFACE_DESC;
   typedef struct D3DLOCKED_RECT {
-    INT Pitch,
-    void* pBits,
+    INT Pitch;
+    void* pBits;
   } D3DLOCKED_RECT;
   typedef struct D3DRASTER_STATUS {
-    BOOL InVBlank,
-    UINT ScanLine,
+    BOOL InVBlank;
+    UINT ScanLine;
   } D3DRASTER_STATUS;
   typedef BYTE D3DDECLUSAGE; //Alias
   typedef BYTE D3DDECLTYPE; //Alias
   typedef BYTE D3DDECLMETHOD; //Alias
   typedef struct D3DVERTEXELEMENT9 {
-    WORD Stream,
-    WORD Offset,
-    D3DDECLTYPE Type,
-    D3DDECLMETHOD Method,
-    D3DDECLUSAGE Usage,
-    BYTE UsageIndex,
+    WORD Stream;
+    WORD Offset;
+    D3DDECLTYPE Type;
+    D3DDECLMETHOD Method;
+    D3DDECLUSAGE Usage;
+    BYTE UsageIndex;
   } D3DVERTEXELEMENT9;
   typedef D3DVERTEXELEMENT9 *WINAPI_D3DVERTEXELEMENT9*; //Pointer
   typedef enum D3DSCANLINEORDERING {
@@ -679,112 +679,112 @@ ffi.cdef [[
     D3DSCANLINEORDERING_INTERLACED = 2,
   } D3DSCANLINEORDERING;
   typedef struct D3DDISPLAYMODEFILTER {
-    UINT Size,
-    D3DFORMAT Format,
-    D3DSCANLINEORDERING ScanLineOrdering,
+    UINT Size;
+    D3DFORMAT Format;
+    D3DSCANLINEORDERING ScanLineOrdering;
   } D3DDISPLAYMODEFILTER;
   typedef D3DDISPLAYMODEFILTER *WINAPI_D3DDISPLAYMODEFILTER*; //Pointer
   typedef struct D3DDISPLAYMODEEX {
-    UINT Size,
-    UINT Width,
-    UINT Height,
-    UINT RefreshRate,
-    D3DFORMAT Format,
-    D3DSCANLINEORDERING ScanLineOrdering,
+    UINT Size;
+    UINT Width;
+    UINT Height;
+    UINT RefreshRate;
+    D3DFORMAT Format;
+    D3DSCANLINEORDERING ScanLineOrdering;
   } D3DDISPLAYMODEEX;
   typedef UINT WINAPI_D3DOVERLAYCAPS; //Alias
   typedef struct D3DOVERLAYCAPS {
-    WINAPI_D3DOVERLAYCAPS Caps,
-    UINT MaxOverlayDisplayWidth,
-    UINT MaxOverlayDisplayHeight,
+    WINAPI_D3DOVERLAYCAPS Caps;
+    UINT MaxOverlayDisplayWidth;
+    UINT MaxOverlayDisplayHeight;
   } D3DOVERLAYCAPS;
   typedef struct D3DENCRYPTED_BLOCK_INFO {
-    UINT NumEncryptedBytesAtBeginning,
-    UINT NumBytesInSkipPattern,
-    UINT NumBytesInEncryptPattern,
+    UINT NumEncryptedBytesAtBeginning;
+    UINT NumBytesInSkipPattern;
+    UINT NumBytesInEncryptPattern;
   } D3DENCRYPTED_BLOCK_INFO;
   typedef struct D3DINDEXBUFFER_DESC {
-    D3DFORMAT Format,
-    D3DRESOURCETYPE Type,
-    WINAPI_D3DUSAGE Usage,
-    D3DPOOL Pool,
-    UINT Size,
+    D3DFORMAT Format;
+    D3DRESOURCETYPE Type;
+    WINAPI_D3DUSAGE Usage;
+    D3DPOOL Pool;
+    UINT Size;
   } D3DINDEXBUFFER_DESC;
   typedef struct D3DPRESENTSTATS {
-    UINT PresentCount,
-    UINT PresentRefreshCount,
-    UINT SyncRefreshCount,
-    LARGE_INTEGER SyncQPCTime,
-    LARGE_INTEGER SyncGPUTime,
+    UINT PresentCount;
+    UINT PresentRefreshCount;
+    UINT SyncRefreshCount;
+    LARGE_INTEGER SyncQPCTime;
+    LARGE_INTEGER SyncGPUTime;
   } D3DPRESENTSTATS;
   typedef struct D3DVERTEXBUFFER_DESC {
-    D3DFORMAT Format,
-    D3DRESOURCETYPE Type,
-    WINAPI_D3DUSAGE Usage,
-    D3DPOOL Pool,
-    UINT Size,
-    DWORD FVF,
+    D3DFORMAT Format;
+    D3DRESOURCETYPE Type;
+    WINAPI_D3DUSAGE Usage;
+    D3DPOOL Pool;
+    UINT Size;
+    DWORD FVF;
   } D3DVERTEXBUFFER_DESC;
   typedef struct D3DVOLUME_DESC {
-    D3DFORMAT Format,
-    D3DRESOURCETYPE Type,
-    DWORD Usage,
-    D3DPOOL Pool,
-    UINT Width,
-    UINT Height,
-    UINT Depth,
+    D3DFORMAT Format;
+    D3DRESOURCETYPE Type;
+    DWORD Usage;
+    D3DPOOL Pool;
+    UINT Width;
+    UINT Height;
+    UINT Depth;
   } D3DVOLUME_DESC;
   typedef struct D3DLOCKED_BOX {
-    INT RowPitch,
-    INT SlicePitch,
-    void* pBits,
+    INT RowPitch;
+    INT SlicePitch;
+    void* pBits;
   } D3DLOCKED_BOX;
   typedef struct D3DBOX {
-    UINT Left,
-    UINT Top,
-    UINT Right,
-    UINT Bottom,
-    UINT Front,
-    UINT Back,
+    UINT Left;
+    UINT Top;
+    UINT Right;
+    UINT Bottom;
+    UINT Front;
+    UINT Back;
   } D3DBOX;
   typedef D3DBOX *WINAPI_D3DBOX*; //Pointer
   typedef DWORD WINAPI_D3DCPCAPS; //Alias
   typedef struct D3DCONTENTPROTECTIONCAPS {
-    WINAPI_D3DCPCAPS Caps,
-    GUID KeyExchangeType,
-    UINT BufferAlignmentStart,
-    UINT BlockAlignmentSize,
-    ULONGLONG ProtectedMemorySize,
+    WINAPI_D3DCPCAPS Caps;
+    GUID KeyExchangeType;
+    UINT BufferAlignmentStart;
+    UINT BlockAlignmentSize;
+    ULONGLONG ProtectedMemorySize;
   } D3DCONTENTPROTECTIONCAPS;
   typedef DWORD WINAPI_D3DCREATE; //Alias
   typedef struct D3DDEVICE_CREATION_PARAMETERS {
-    UINT AdapterOrdinal,
-    D3DDEVTYPE DeviceType,
-    HWND hFocusWindow,
-    WINAPI_D3DCREATE BehaviorFlags,
+    UINT AdapterOrdinal;
+    D3DDEVTYPE DeviceType;
+    HWND hFocusWindow;
+    WINAPI_D3DCREATE BehaviorFlags;
   } D3DDEVICE_CREATION_PARAMETERS;
   typedef struct D3DRECT {
-    LONG x1,
-    LONG y1,
-    LONG x2,
-    LONG y2,
+    LONG x1;
+    LONG y1;
+    LONG x2;
+    LONG y2;
   } D3DRECT;
   typedef D3DRECT *WINAPI_D3DRECT*; //Pointer
   typedef struct D3DVIEWPORT9 {
-    DWORD X,
-    DWORD Y,
-    DWORD Width,
-    DWORD Height,
-    float MinZ,
-    float MaxZ,
+    DWORD X;
+    DWORD Y;
+    DWORD Width;
+    DWORD Height;
+    float MinZ;
+    float MaxZ;
   } D3DVIEWPORT9;
   typedef D3DVIEWPORT9 *WINAPI_D3DVIEWPORT9*; //Pointer
   typedef struct D3DMATERIAL9 {
-    D3DCOLORVALUE Diffuse,
-    D3DCOLORVALUE Ambient,
-    D3DCOLORVALUE Specular,
-    D3DCOLORVALUE Emissive,
-    float Power,
+    D3DCOLORVALUE Diffuse;
+    D3DCOLORVALUE Ambient;
+    D3DCOLORVALUE Specular;
+    D3DCOLORVALUE Emissive;
+    float Power;
   } D3DMATERIAL9;
   typedef D3DMATERIAL9 *WINAPI_D3DMATERIAL9*; //Pointer
   typedef enum D3DLIGHTTYPE {
@@ -793,25 +793,25 @@ ffi.cdef [[
     D3DLIGHT_DIRECTIONAL = 3,
   } D3DLIGHTTYPE;
   typedef struct D3DLIGHT9 {
-    D3DLIGHTTYPE Type,
-    D3DCOLORVALUE Diffuse,
-    D3DCOLORVALUE Specular,
-    D3DCOLORVALUE Ambient,
-    D3DVECTOR Position,
-    D3DVECTOR Direction,
-    float Range,
-    float Falloff,
-    float Attenuation0,
-    float Attenuation1,
-    float Attenuation2,
-    float Theta,
-    float Phi,
+    D3DLIGHTTYPE Type;
+    D3DCOLORVALUE Diffuse;
+    D3DCOLORVALUE Specular;
+    D3DCOLORVALUE Ambient;
+    D3DVECTOR Position;
+    D3DVECTOR Direction;
+    float Range;
+    float Falloff;
+    float Attenuation0;
+    float Attenuation1;
+    float Attenuation2;
+    float Theta;
+    float Phi;
   } D3DLIGHT9;
   typedef D3DLIGHT9 *WINAPI_D3DLIGHT9*; //Pointer
   typedef DWORD WINAPI_D3DCS; //Alias
   typedef struct D3DCLIPSTATUS9 {
-    WINAPI_D3DCS ClipUnion,
-    WINAPI_D3DCS ClipIntersection,
+    WINAPI_D3DCS ClipUnion;
+    WINAPI_D3DCS ClipIntersection;
   } D3DCLIPSTATUS9;
   typedef D3DCLIPSTATUS9 *WINAPI_D3DCLIPSTATUS9*; //Pointer
   typedef enum D3DBASISTYPE {
@@ -826,20 +826,20 @@ ffi.cdef [[
     D3DDEGREE_QUINTIC = 5,
   } D3DDEGREETYPE;
   typedef struct D3DRECTPATCH_INFO {
-    UINT StartVertexOffsetWidth,
-    UINT StartVertexOffsetHeight,
-    UINT Width,
-    UINT Height,
-    UINT Stride,
-    D3DBASISTYPE Basis,
-    D3DDEGREETYPE Degree,
+    UINT StartVertexOffsetWidth;
+    UINT StartVertexOffsetHeight;
+    UINT Width;
+    UINT Height;
+    UINT Stride;
+    D3DBASISTYPE Basis;
+    D3DDEGREETYPE Degree;
   } D3DRECTPATCH_INFO;
   typedef D3DRECTPATCH_INFO *WINAPI_D3DRECTPATCH_INFO*; //Pointer
   typedef struct D3DTRIPATCH_INFO {
-    UINT StartVertexOffset,
-    UINT NumVertices,
-    D3DBASISTYPE Basis,
-    D3DDEGREETYPE Degree,
+    UINT StartVertexOffset;
+    UINT NumVertices;
+    D3DBASISTYPE Basis;
+    D3DDEGREETYPE Degree;
   } D3DTRIPATCH_INFO;
   typedef D3DTRIPATCH_INFO *WINAPI_D3DTRIPATCH_INFO*; //Pointer
   typedef DWORD WINAPI_D3DCLEAR_FLAGS; //Alias

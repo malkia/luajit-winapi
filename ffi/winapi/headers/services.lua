@@ -68,64 +68,64 @@ ffi.cdef [[
   typedef DWORD WINAPI_ServiceNotifyMask; //Alias
   typedef DWORD WINAPI_ServiceFlags; //Alias
   typedef struct SERVICE_STATUS_PROCESS {
-    WINAPI_ServiceType dwServiceType,
-    WINAPI_ServiceCurrentState dwCurrentState,
-    WINAPI_ServiceAcceptControls dwControlsAccepted,
-    DWORD dwWin32ExitCode,
-    DWORD dwServiceSpecificExitCode,
-    DWORD dwCheckPoint,
-    DWORD dwWaitHint,
-    DWORD dwProcessId,
-    WINAPI_ServiceFlags dwServiceFlags,
+    WINAPI_ServiceType dwServiceType;
+    WINAPI_ServiceCurrentState dwCurrentState;
+    WINAPI_ServiceAcceptControls dwControlsAccepted;
+    DWORD dwWin32ExitCode;
+    DWORD dwServiceSpecificExitCode;
+    DWORD dwCheckPoint;
+    DWORD dwWaitHint;
+    DWORD dwProcessId;
+    WINAPI_ServiceFlags dwServiceFlags;
   } SERVICE_STATUS_PROCESS;
   typedef struct SERVICE_NOTIFY {
-    DWORD dwVersion,
-    PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback,
-    PVOID pContext,
-    DWORD dwNotificationStatus,
-    SERVICE_STATUS_PROCESS ServiceStatus,
-    DWORD dwNotificationTriggered,
-    LPTSTR pszServiceNames,
+    DWORD dwVersion;
+    PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback;
+    PVOID pContext;
+    DWORD dwNotificationStatus;
+    SERVICE_STATUS_PROCESS ServiceStatus;
+    DWORD dwNotificationTriggered;
+    LPTSTR pszServiceNames;
   } SERVICE_NOTIFY;
   typedef SERVICE_NOTIFY *PSERVICE_NOTIFY; //Pointer
   typedef struct SERVICE_STATUS {
-    WINAPI_ServiceType dwServiceType,
-    WINAPI_ServiceCurrentState dwCurrentState,
-    WINAPI_ServiceAcceptControls dwControlsAccepted,
-    DWORD dwWin32ExitCode,
-    DWORD dwServiceSpecificExitCode,
-    DWORD dwCheckPoint,
-    DWORD dwWaitHint,
+    WINAPI_ServiceType dwServiceType;
+    WINAPI_ServiceCurrentState dwCurrentState;
+    WINAPI_ServiceAcceptControls dwControlsAccepted;
+    DWORD dwWin32ExitCode;
+    DWORD dwServiceSpecificExitCode;
+    DWORD dwCheckPoint;
+    DWORD dwWaitHint;
   } SERVICE_STATUS;
   typedef SERVICE_STATUS *LPSERVICE_STATUS; //Pointer
   typedef LPVOID LPSERVICE_MAIN_FUNCTION; //Alias
   typedef struct SERVICE_TABLE_ENTRY {
-    LPTSTR lpServiceName,
-    LPSERVICE_MAIN_FUNCTION lpServiceProc,
+    LPTSTR lpServiceName;
+    LPSERVICE_MAIN_FUNCTION lpServiceProc;
   } SERVICE_TABLE_ENTRY;
   typedef SERVICE_TABLE_ENTRY *WINAPI_SERVICE_TABLE_ENTRY*; //Pointer
   typedef struct ENUM_SERVICE_STATUS {
-    LPTSTR lpServiceName,
-    LPTSTR lpDisplayName,
-    SERVICE_STATUS ServiceStatus,
+    LPTSTR lpServiceName;
+    LPTSTR lpDisplayName;
+    SERVICE_STATUS ServiceStatus;
   } ENUM_SERVICE_STATUS;
   typedef ENUM_SERVICE_STATUS *LPENUM_SERVICE_STATUS; //Pointer
   typedef struct QUERY_SERVICE_CONFIG {
-    WINAPI_ServiceType dwServiceType,
-    WINAPI_ServiceStartType dwStartType,
-    WINAPI_ServiceErrorControl dwErrorControl,
-    LPTSTR lpBinaryPathName,
-    LPTSTR lpLoadOrderGroup,
-    DWORD dwTagId,
-    LPTSTR lpDependencies,
-    LPTSTR lpServiceStartName,
-    LPTSTR lpDisplayName,
+    WINAPI_ServiceType dwServiceType;
+    WINAPI_ServiceStartType dwStartType;
+    WINAPI_ServiceErrorControl dwErrorControl;
+    LPTSTR lpBinaryPathName;
+    LPTSTR lpLoadOrderGroup;
+    DWORD dwTagId;
+    LPTSTR lpDependencies;
+    LPTSTR lpServiceStartName;
+    LPTSTR lpDisplayName;
   } QUERY_SERVICE_CONFIG;
   typedef QUERY_SERVICE_CONFIG *LPQUERY_SERVICE_CONFIG; //Pointer
   typedef struct QUERY_SERVICE_LOCK_STATUS {
-    DWORD fIsLocked,
-    LPTSTR lpLockOwner,
-    DWORD dwLockDuration,
+    DWORD fIsLocked;
+    LPTSTR lpLockOwner;
+    DWORD dwLockDuration;
   } QUERY_SERVICE_LOCK_STATUS;
   typedef QUERY_SERVICE_LOCK_STATUS *LPQUERY_SERVICE_LOCK_STATUS; //Pointer
 ]]

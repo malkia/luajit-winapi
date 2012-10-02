@@ -1,6 +1,65 @@
 require( 'ffi/winapi/headers/ole' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IEnumWbemClassObject; //Interface
+  typedef void* IMofCompiler; //Interface
+  typedef void* ISWbemDateTime; //Interface
+  typedef void* ISWbemEventSource; //Interface
+  typedef void* ISWbemLastError; //Interface
+  typedef void* ISWbemLocator; //Interface
+  typedef void* ISWbemMethod; //Interface
+  typedef void* ISWbemMethodSet; //Interface
+  typedef void* ISWbemNamedValue; //Interface
+  typedef void* ISWbemNamedValueSet; //Interface
+  typedef void* ISWbemObject; //Interface
+  typedef void* ISWbemObjectEx; //Interface
+  typedef void* ISWbemObjectPath; //Interface
+  typedef void* ISWbemObjectSet; //Interface
+  typedef void* ISWbemPrivilege; //Interface
+  typedef void* ISWbemPrivilegeSet; //Interface
+  typedef void* ISWbemProperty; //Interface
+  typedef void* ISWbemPropertySet; //Interface
+  typedef void* ISWbemQualifier; //Interface
+  typedef void* ISWbemQualifierSet; //Interface
+  typedef void* ISWbemRefreshableItem; //Interface
+  typedef void* ISWbemRefresher; //Interface
+  typedef void* ISWbemSecurity; //Interface
+  typedef void* ISWbemServices; //Interface
+  typedef void* ISWbemServicesEx; //Interface
+  typedef void* ISWbemSink; //Interface
+  typedef void* ISWbemSinkEvents; //Interface
+  typedef void* IUnsecuredApartment; //Interface
+  typedef void* IWbemBackupRestore; //Interface
+  typedef void* IWbemBackupRestoreEx; //Interface
+  typedef void* IWbemCallResult; //Interface
+  typedef void* IWbemClassObject; //Interface
+  typedef void* IWbemConfigureRefresher; //Interface
+  typedef void* IWbemContext; //Interface
+  typedef void* IWbemDecoupledBasicEventProvider; //Interface
+  typedef void* IWbemDecoupledRegistrar; //Interface
+  typedef void* IWbemEventConsumerProvider; //Interface
+  typedef void* IWbemEventProvider; //Interface
+  typedef void* IWbemEventProviderQuerySink; //Interface
+  typedef void* IWbemEventProviderSecurity; //Interface
+  typedef void* IWbemEventSink; //Interface
+  typedef void* IWbemHiPerfEnum; //Interface
+  typedef void* IWbemHiPerfProvider; //Interface
+  typedef void* IWbemLocator; //Interface
+  typedef void* IWbemObjectAccess; //Interface
+  typedef void* IWbemObjectSink; //Interface
+  typedef void* IWbemObjectTextSrc; //Interface
+  typedef void* IWbemPropertyProvider; //Interface
+  typedef void* IWbemProviderIdentity; //Interface
+  typedef void* IWbemProviderInit; //Interface
+  typedef void* IWbemProviderInitSink; //Interface
+  typedef void* IWbemQualifierSet; //Interface
+  typedef void* IWbemRefresher; //Interface
+  typedef void* IWbemServices; //Interface
+  typedef void* IWbemShutdown; //Interface
+  typedef void* IWbemStatusCodeText; //Interface
+  typedef void* IWbemUnboundObjectSink; //Interface
+  typedef void* IWbemUnsecuredApartment; //Interface
+  typedef void* IWMIExtension; //Interface
   typedef LPWSTR WBEM_WSTR; //Alias
   typedef LPCWSTR WBEM_CWSTR; //Alias
   typedef enum WBEMSTATUS {
@@ -197,12 +256,12 @@ ffi.cdef [[
     WBEMMOF_E_INVALID_DELETECLASS_SYNTAX = 0x80044031,
   } WBEMSTATUS;
   typedef struct WBEM_COMPILE_STATUS_INFO {
-    long lPhaseError,
-    HRESULT hRes,
-    long ObjectNum,
-    long FirstLine,
-    long LastLine,
-    DWORD dwOutFlags,
+    long lPhaseError;
+    HRESULT hRes;
+    long ObjectNum;
+    long FirstLine;
+    long LastLine;
+    DWORD dwOutFlags;
   } WBEM_COMPILE_STATUS_INFO;
   typedef enum WbemObjectTextFormatEnum {
     wbemObjectTextFormatCIMDTD20 = 1,

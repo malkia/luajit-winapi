@@ -2,6 +2,32 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/shell' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IEnumSyncMgrConflict; //Interface
+  typedef void* IEnumSyncMgrEvents; //Interface
+  typedef void* IEnumSyncMgrSyncItems; //Interface
+  typedef void* ISyncMgrConflict; //Interface
+  typedef void* ISyncMgrConflictFolder; //Interface
+  typedef void* ISyncMgrConflictItems; //Interface
+  typedef void* ISyncMgrConflictPresenter; //Interface
+  typedef void* ISyncMgrConflictResolutionItems; //Interface
+  typedef void* ISyncMgrConflictResolveInfo; //Interface
+  typedef void* ISyncMgrConflictStore; //Interface
+  typedef void* ISyncMgrControl; //Interface
+  typedef void* ISyncMgrEvent; //Interface
+  typedef void* ISyncMgrEventLinkUIOperation; //Interface
+  typedef void* ISyncMgrEventStore; //Interface
+  typedef void* ISyncMgrHandler; //Interface
+  typedef void* ISyncMgrHandlerCollection; //Interface
+  typedef void* ISyncMgrHandlerInfo; //Interface
+  typedef void* ISyncMgrResolutionHandler; //Interface
+  typedef void* ISyncMgrScheduleWizardUIOperation; //Interface
+  typedef void* ISyncMgrSessionCreator; //Interface
+  typedef void* ISyncMgrSyncCallback; //Interface
+  typedef void* ISyncMgrSyncItem; //Interface
+  typedef void* ISyncMgrSyncItemContainer; //Interface
+  typedef void* ISyncMgrSyncItemInfo; //Interface
+  typedef void* ISyncMgrSyncResult; //Interface
+  typedef void* ISyncMgrUIOperation; //Interface
   typedef byte byte [1]; //Array 1
   typedef DWORD SYNCMGR_ITEM_POLICIES; //Alias
   typedef DWORD SYNCMGR_EVENT_FLAGS; //Alias
@@ -59,28 +85,28 @@ ffi.cdef [[
     SYNCMGR_PNS_CANCEL = 2,
   } SYNCMGR_PRESENTER_NEXT_STEP;
   typedef struct CONFIRM_CONFLICT_RESULT_INFO {
-    LPWSTR pszNewName,
-    UINT iItemIndex,
+    LPWSTR pszNewName;
+    UINT iItemIndex;
   } CONFIRM_CONFLICT_RESULT_INFO;
   typedef enum SYNCMGR_CONFLICT_ITEM_TYPE {
     SYNCMGR_CIT_UPDATED = 0x1,
     SYNCMGR_CIT_DELETED = 0x2,
   } SYNCMGR_CONFLICT_ITEM_TYPE;
   typedef struct CONFIRM_CONFLICT_ITEM {
-    IShellItem2* pShellItem,
-    LPWSTR pszOriginalName,
-    LPWSTR pszAlternateName,
-    LPWSTR pszLocationShort,
-    LPWSTR pszLocationFull,
-    SYNCMGR_CONFLICT_ITEM_TYPE nType,
+    IShellItem2* pShellItem;
+    LPWSTR pszOriginalName;
+    LPWSTR pszAlternateName;
+    LPWSTR pszLocationShort;
+    LPWSTR pszLocationFull;
+    SYNCMGR_CONFLICT_ITEM_TYPE nType;
   } CONFIRM_CONFLICT_ITEM;
   typedef struct BYTE_BLOB {
-    unsigned long clSize,
-    byte [1] abData,
+    unsigned long clSize;
+    byte abData[1];
   } BYTE_BLOB;
   typedef struct SYNCMGR_CONFLICT_ID_INFO {
-    BYTE_BLOB* pblobID,
-    BYTE_BLOB* pblobExtra,
+    BYTE_BLOB* pblobID;
+    BYTE_BLOB* pblobExtra;
   } SYNCMGR_CONFLICT_ID_INFO;
   typedef SYNCMGR_CONFLICT_ID_INFO *WINAPI_SYNCMGR_CONFLICT_ID_INFO*; //Pointer
   typedef DWORD SYNCMGR_CONTROL_FLAGS; //Alias

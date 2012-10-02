@@ -3,6 +3,308 @@ require( 'ffi/winapi/headers/gdi' )
 require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* DFConstraint; //Interface
+  typedef void* DFConstraint; //Interface
+  typedef void* DShellFolderViewEvents; //Interface
+  typedef void* Folder; //Interface
+  typedef void* Folder2; //Interface
+  typedef void* Folder3; //Interface
+  typedef void* FolderItem; //Interface
+  typedef void* FolderItem2; //Interface
+  typedef void* FolderItems; //Interface
+  typedef void* FolderItems2; //Interface
+  typedef void* FolderItems3; //Interface
+  typedef void* FolderItemVerb; //Interface
+  typedef void* FolderItemVerbs; //Interface
+  typedef void* IAccessibleObject; //Interface
+  typedef void* IACList; //Interface
+  typedef void* IACList2; //Interface
+  typedef void* IActionProgress; //Interface
+  typedef void* IActionProgressDialog; //Interface
+  typedef void* IActiveDesktop; //Interface
+  typedef void* IActiveDesktopP; //Interface
+  typedef void* IADesktopP2; //Interface
+  typedef void* IApplicationAssociationRegistration; //Interface
+  typedef void* IApplicationAssociationRegistrationUI; //Interface
+  typedef void* IApplicationDestinations; //Interface
+  typedef void* IApplicationDocumentLists; //Interface
+  typedef void* IAssocHandler; //Interface
+  typedef void* IAssocHandlerInvoker; //Interface
+  typedef void* IAsyncOperation; //Interface
+  typedef void* IAttachmentExecute; //Interface
+  typedef void* IAutoComplete; //Interface
+  typedef void* IAutoComplete2; //Interface
+  typedef void* IAutoCompleteDropDown; //Interface
+  typedef void* IBandHost; //Interface
+  typedef void* IBandSite; //Interface
+  typedef void* IBanneredBar; //Interface
+  typedef void* IBrowserFrameOptions; //Interface
+  typedef void* ICategorizer; //Interface
+  typedef void* ICategoryProvider; //Interface
+  typedef void* ICDBurn; //Interface
+  typedef void* ICDBurnExt; //Interface
+  typedef void* IColumnManager; //Interface
+  typedef void* IColumnProvider; //Interface
+  typedef void* ICommDlgBrowser; //Interface
+  typedef void* ICommDlgBrowser2; //Interface
+  typedef void* ICommDlgBrowser3; //Interface
+  typedef void* IComputerInfoChangeNotify; //Interface
+  typedef void* IContextMenu; //Interface
+  typedef void* IContextMenu2; //Interface
+  typedef void* IContextMenu3; //Interface
+  typedef void* IContextMenuCB; //Interface
+  typedef void* IContextMenuSite; //Interface
+  typedef void* IControlMarkup; //Interface
+  typedef void* ICopyHookA; //Interface
+  typedef void* ICopyHookW; //Interface
+  typedef void* ICreateObject; //Interface
+  typedef void* ICurrentItem; //Interface
+  typedef void* ICurrentWorkingDirectory; //Interface
+  typedef void* ICustomDestinationList; //Interface
+  typedef void* IDefaultExtractIconInit; //Interface
+  typedef void* IDefViewFrame; //Interface
+  typedef void* IDelayedPropertyStoreFactory; //Interface
+  typedef void* IDelegateFolder; //Interface
+  typedef void* IDelegateItem; //Interface
+  typedef void* IDeskBand; //Interface
+  typedef void* IDeskBand2; //Interface
+  typedef void* IDeskBandInfo; //Interface
+  typedef void* IDeskBar; //Interface
+  typedef void* IDeskBarClient; //Interface
+  typedef void* IDesktopGadget; //Interface
+  typedef void* IDestinationStreamFactory; //Interface
+  typedef void* IDisplayItem; //Interface
+  typedef void* IDockingWindow; //Interface
+  typedef void* IDockingWindowFrame; //Interface
+  typedef void* IDockingWindowSite; //Interface
+  typedef void* IDocViewSite; //Interface
+  typedef void* IDragSourceHelper; //Interface
+  typedef void* IDragSourceHelper2; //Interface
+  typedef void* IDropTargetHelper; //Interface
+  typedef void* IDynamicHWHandler; //Interface
+  typedef void* IEmptyVolumeCache; //Interface
+  typedef void* IEmptyVolumeCache2; //Interface
+  typedef void* IEmptyVolumeCacheCallBack; //Interface
+  typedef void* IEnumACString; //Interface
+  typedef void* IEnumAssocHandlers; //Interface
+  typedef void* IEnumerableView; //Interface
+  typedef void* IEnumExplorerCommand; //Interface
+  typedef void* IEnumExtraSearch; //Interface
+  typedef void* IEnumFullIDList; //Interface
+  typedef void* IEnumIDList; //Interface
+  typedef void* IEnumObjects; //Interface
+  typedef void* IEnumReadyCallback; //Interface
+  typedef void* IEnumResources; //Interface
+  typedef void* IEnumShellImageStore; //Interface
+  typedef void* IEnumShellItems; //Interface
+  typedef void* IExecuteCommand; //Interface
+  typedef void* IExplorerBrowser; //Interface
+  typedef void* IExplorerBrowserEvents; //Interface
+  typedef void* IExplorerCommand; //Interface
+  typedef void* IExplorerCommandProvider; //Interface
+  typedef void* IExplorerCommandState; //Interface
+  typedef void* IExplorerPaneVisibility; //Interface
+  typedef void* IExtractIconA; //Interface
+  typedef void* IExtractIconW; //Interface
+  typedef void* IExtractImage; //Interface
+  typedef void* IExtractImage2; //Interface
+  typedef void* IFileDialog; //Interface
+  typedef void* IFileDialog2; //Interface
+  typedef void* IFileDialogControlEvents; //Interface
+  typedef void* IFileDialogCustomize; //Interface
+  typedef void* IFileDialogEvents; //Interface
+  typedef void* IFileIsInUse; //Interface
+  typedef void* IFileOpenDialog; //Interface
+  typedef void* IFileOperation; //Interface
+  typedef void* IFileOperationProgressSink; //Interface
+  typedef void* IFileSaveDialog; //Interface
+  typedef void* IFileSearchBand; //Interface
+  typedef void* IFileSystemBindData; //Interface
+  typedef void* IFileSystemBindData2; //Interface
+  typedef void* IFileViewerSite; //Interface
+  typedef void* IFolderBandPriv; //Interface
+  typedef void* IFolderFilter; //Interface
+  typedef void* IFolderFilterSite; //Interface
+  typedef void* IFolderView; //Interface
+  typedef void* IFolderView2; //Interface
+  typedef void* IFolderViewHost; //Interface
+  typedef void* IFolderViewOC; //Interface
+  typedef void* IFolderViewOptions; //Interface
+  typedef void* IFolderViewSettings; //Interface
+  typedef void* IHomeGroup; //Interface
+  typedef void* IHWEventHandler; //Interface
+  typedef void* IHWEventHandler2; //Interface
+  typedef void* IIdentityName; //Interface
+  typedef void* IImageRecompress; //Interface
+  typedef void* IInitializeCommand; //Interface
+  typedef void* IInitializeNetworkFolder; //Interface
+  typedef void* IInitializeObject; //Interface
+  typedef void* IInitializeWithBindCtx; //Interface
+  typedef void* IInitializeWithFile; //Interface
+  typedef void* IInitializeWithItem; //Interface
+  typedef void* IInitializeWithPropertyStore; //Interface
+  typedef void* IInitializeWithStream; //Interface
+  typedef void* IInputObject; //Interface
+  typedef void* IInputObject2; //Interface
+  typedef void* IInputObjectSite; //Interface
+  typedef void* IInsertItem; //Interface
+  typedef void* IIOCancelInformation; //Interface
+  typedef void* IItemNameLimits; //Interface
+  typedef void* IKnownFolder; //Interface
+  typedef void* IKnownFolderManager; //Interface
+  typedef void* IMarkupCallback; //Interface
+  typedef void* IMenuBand; //Interface
+  typedef void* IMenuPopup; //Interface
+  typedef void* IModalWindow; //Interface
+  typedef void* INamedPropertyBag; //Interface
+  typedef void* INamedPropertyStore; //Interface
+  typedef void* INameSpaceTreeAccessible; //Interface
+  typedef void* INameSpaceTreeControl; //Interface
+  typedef void* INameSpaceTreeControl2; //Interface
+  typedef void* INameSpaceTreeControlCustomDraw; //Interface
+  typedef void* INameSpaceTreeControlDropHandler; //Interface
+  typedef void* INameSpaceTreeControlEvents; //Interface
+  typedef void* INameSpaceTreeControlFolderCapabilities; //Interface
+  typedef void* INamespaceWalk; //Interface
+  typedef void* INamespaceWalkCB; //Interface
+  typedef void* INamespaceWalkCB2; //Interface
+  typedef void* INewMenuClient; //Interface
+  typedef void* INewShortcutHookA; //Interface
+  typedef void* INewShortcutHookW; //Interface
+  typedef void* INewWDEvents; //Interface
+  typedef void* INewWindowManager; //Interface
+  typedef void* IObjectArray; //Interface
+  typedef void* IObjectCollection; //Interface
+  typedef void* IObjectProvider; //Interface
+  typedef void* IObjectWithAppUserModelID; //Interface
+  typedef void* IObjectWithBackReferences; //Interface
+  typedef void* IObjectWithCancelEvent; //Interface
+  typedef void* IObjectWithFolderEnumMode; //Interface
+  typedef void* IObjectWithProgID; //Interface
+  typedef void* IObjectWithPropertyKey; //Interface
+  typedef void* IObjectWithSelection; //Interface
+  typedef void* IObjMgr; //Interface
+  typedef void* IOpenControlPanel; //Interface
+  typedef void* IOpenSearchSource; //Interface
+  typedef void* IOperationsProgressDialog; //Interface
+  typedef void* IParentAndItem; //Interface
+  typedef void* IParseAndCreateItem; //Interface
+  typedef void* IPersistFolder; //Interface
+  typedef void* IPersistFolder2; //Interface
+  typedef void* IPersistFolder3; //Interface
+  typedef void* IPersistIDList; //Interface
+  typedef void* IPersistSerializedPropStorage; //Interface
+  typedef void* IPersistSerializedPropStorage2; //Interface
+  typedef void* IPreviewHandler; //Interface
+  typedef void* IPreviewHandlerFrame; //Interface
+  typedef void* IPreviewHandlerVisuals; //Interface
+  typedef void* IPreviewItem; //Interface
+  typedef void* IPreviousVersionsInfo; //Interface
+  typedef void* IProfferService; //Interface
+  typedef void* IProgressDialog; //Interface
+  typedef void* IPropertySystemChangeNotify; //Interface
+  typedef void* IPublishingWizard; //Interface
+  typedef void* IQueryAssociations; //Interface
+  typedef void* IQueryCancelAutoPlay; //Interface
+  typedef void* IQueryCodePage; //Interface
+  typedef void* IQueryContinue; //Interface
+  typedef void* IQueryInfo; //Interface
+  typedef void* IRegTreeItem; //Interface
+  typedef void* IRelatedItem; //Interface
+  typedef void* IRemoteComputer; //Interface
+  typedef void* IResolveShellLink; //Interface
+  typedef void* IResultsFolder; //Interface
+  typedef void* IRunnableTask; //Interface
+  typedef void* ISearchBoxInfo; //Interface
+  typedef void* ISearchContext; //Interface
+  typedef void* ISearchFolderItemFactory; //Interface
+  typedef void* ISharedBitmap; //Interface
+  typedef void* ISharingConfigurationManager; //Interface
+  typedef void* IShellBrowser; //Interface
+  typedef void* IShellChangeNotify; //Interface
+  typedef void* IShellDetails; //Interface
+  typedef void* IShellDispatch; //Interface
+  typedef void* IShellDispatch2; //Interface
+  typedef void* IShellDispatch3; //Interface
+  typedef void* IShellDispatch4; //Interface
+  typedef void* IShellDispatch5; //Interface
+  typedef void* IShellExecuteHookA; //Interface
+  typedef void* IShellExecuteHookW; //Interface
+  typedef void* IShellExtInit; //Interface
+  typedef void* IShellFolder; //Interface
+  typedef void* IShellFolder2; //Interface
+  typedef void* IShellFolderBand; //Interface
+  typedef void* IShellFolderView; //Interface
+  typedef void* IShellFolderViewCB; //Interface
+  typedef void* IShellFolderViewDual; //Interface
+  typedef void* IShellFolderViewDual2; //Interface
+  typedef void* IShellFolderViewDual3; //Interface
+  typedef void* IShellIcon; //Interface
+  typedef void* IShellIconOverlay; //Interface
+  typedef void* IShellIconOverlayIdentifier; //Interface
+  typedef void* IShellIconOverlayManager; //Interface
+  typedef void* IShellImageData; //Interface
+  typedef void* IShellImageDataAbort; //Interface
+  typedef void* IShellImageDataFactory; //Interface
+  typedef void* IShellImageStore; //Interface
+  typedef void* IShellItem; //Interface
+  typedef void* IShellItem2; //Interface
+  typedef void* IShellItemArray; //Interface
+  typedef void* IShellItemFilter; //Interface
+  typedef void* IShellItemImageFactory; //Interface
+  typedef void* IShellItemResources; //Interface
+  typedef void* IShellLibrary; //Interface
+  typedef void* IShellLinkA; //Interface
+  typedef void* IShellLinkDataList; //Interface
+  typedef void* IShellLinkDual; //Interface
+  typedef void* IShellLinkDual2; //Interface
+  typedef void* IShellLinkW; //Interface
+  typedef void* IShellMenu; //Interface
+  typedef void* IShellMenuCallback; //Interface
+  typedef void* IShellPropSheetExt; //Interface
+  typedef void* IShellRunDll; //Interface
+  typedef void* IShellTaskScheduler; //Interface
+  typedef void* IShellView; //Interface
+  typedef void* IShellView2; //Interface
+  typedef void* IShellView3; //Interface
+  typedef void* IStartMenuPinnedList; //Interface
+  typedef void* IStreamAsync; //Interface
+  typedef void* IStreamUnbufferedInfo; //Interface
+  typedef void* ITaskbarList; //Interface
+  typedef void* ITaskbarList2; //Interface
+  typedef void* ITaskbarList3; //Interface
+  typedef void* ITaskbarList4; //Interface
+  typedef void* IThumbnailCache; //Interface
+  typedef void* IThumbnailCapture; //Interface
+  typedef void* IThumbnailHandlerFactory; //Interface
+  typedef void* IThumbnailProvider; //Interface
+  typedef void* ITranscodeImage; //Interface
+  typedef void* ITransferAdviseSink; //Interface
+  typedef void* ITransferDestination; //Interface
+  typedef void* ITransferMediumItem; //Interface
+  typedef void* ITransferSource; //Interface
+  typedef void* ITrayDeskBand; //Interface
+  typedef void* IUpdateIDList; //Interface
+  typedef void* IURLSearchHook; //Interface
+  typedef void* IURLSearchHook2; //Interface
+  typedef void* IUserAccountChangeCallback; //Interface
+  typedef void* IUserNotification; //Interface
+  typedef void* IUserNotification2; //Interface
+  typedef void* IUserNotificationCallback; //Interface
+  typedef void* IUseToBrowseItem; //Interface
+  typedef void* IViewStateIdentityItem; //Interface
+  typedef void* IVisualProperties; //Interface
+  typedef void* IWebWizardExtension; //Interface
+  typedef void* IWebWizardHost; //Interface
+  typedef void* IWizardExtension; //Interface
+  typedef void* IWizardSite; //Interface
+  typedef void* IObjectArray; //Interface
+  typedef void* IEnumGUID; //Interface
+  typedef void* IPropertyChangeArray; //Interface
+  typedef void* IXMLDOMDocument; //Interface
+  typedef void* ICondition; //Interface
+  typedef void* IPropertyDescriptionList; //Interface
+  typedef void* IPropertyStore; //Interface
   typedef HANDLE HDWP; //Alias
   typedef GUID SHELLVIEWID; //Alias
   typedef SHELLVIEWID* WINAPI_SHELLVIEWID*; //Alias
@@ -29,17 +331,21 @@ ffi.cdef [[
   typedef WCHAR WCHAR [260]; //Array 260
   typedef WCHAR WCHAR [2084]; //Array 2084
   typedef struct PREVIEWHANDLERFRAMEINFO {
-    HACCEL haccel,
-    UINT cAccelEntries,
+    HACCEL haccel;
+    UINT cAccelEntries;
   } PREVIEWHANDLERFRAMEINFO;
+# pragma pack( push, 1 )
   typedef struct SHITEMID {
-    USHORT cb,
-    BYTE [1] abID,
+    USHORT cb;
+    BYTE abID[1];
   } SHITEMID;
+# pragma pack( pop )
   typedef SHITEMID *LPSHITEMID; //Pointer
+# pragma pack( push, 1 )
   typedef struct ITEMIDLIST {
-    SHITEMID mkid,
+    SHITEMID mkid;
   } ITEMIDLIST;
+# pragma pack( pop )
   typedef ITEMIDLIST *LPITEMIDLIST; //Pointer
   typedef ITEMIDLIST *LPCITEMIDLIST; //Pointer
   typedef ITEMIDLIST *PIDLIST_ABSOLUTE; //Pointer
@@ -54,98 +360,108 @@ ffi.cdef [[
   typedef PCUIDLIST_RELATIVE *PCUIDLIST_RELATIVE_ARRAY; //Pointer
   typedef PCIDLIST_ABSOLUTE *PCIDLIST_ABSOLUTE_ARRAY; //Pointer
   typedef UINT STRRET_TYPE; //Alias
+# pragma pack( push, 8 )
   typedef union WINAPI_STRRET_u {
-    LPWSTR pOleStr,
-    UINT uOffset,
-    char [260] cStr,
+    LPWSTR pOleStr;
+    UINT uOffset;
+    char cStr[260];
   } WINAPI_STRRET_u;
+# pragma pack( pop )
+# pragma pack( push, 8 )
   typedef struct STRRET {
-    STRRET_TYPE uType,
-    WINAPI_STRRET_u ,
+    STRRET_TYPE uType;
+    WINAPI_STRRET_u ;
   } STRRET;
+# pragma pack( pop )
   typedef STRRET *LPSTRRET; //Pointer
   typedef UINT WINAPI_SHELLDETAILS_fmt; //Alias
   typedef struct SHELLDETAILS {
-    WINAPI_SHELLDETAILS_fmt fmt,
-    int cxChar,
-    STRRET str,
+    WINAPI_SHELLDETAILS_fmt fmt;
+    int cxChar;
+    STRRET str;
   } SHELLDETAILS;
   typedef UINT WINAPI_CSIDL; //Alias
+# pragma pack( push, 8 )
   typedef struct PERSIST_FOLDER_TARGET_INFO {
-    PIDLIST_ABSOLUTE pidlTargetFolder,
-    WCHAR [260] szTargetParsingName,
-    WCHAR [260] szNetworkProvider,
-    WINAPI_FileAttributes dwAttributes,
-    WINAPI_CSIDL csidl,
+    PIDLIST_ABSOLUTE pidlTargetFolder;
+    WCHAR szTargetParsingName[260];
+    WCHAR szNetworkProvider[260];
+    WINAPI_FileAttributes dwAttributes;
+    WINAPI_CSIDL csidl;
   } PERSIST_FOLDER_TARGET_INFO;
+# pragma pack( pop )
   typedef PERSIST_FOLDER_TARGET_INFO *WINAPI_PERSIST_FOLDER_TARGET_INFO*; //Pointer
   typedef struct SHELL_ITEM_RESOURCE {
-    GUID guidType,
-    WCHAR [260] szName,
+    GUID guidType;
+    WCHAR szName[260];
   } SHELL_ITEM_RESOURCE;
   typedef SHELL_ITEM_RESOURCE *WINAPI_SHELL_ITEM_RESOURCE*; //Pointer
   typedef DWORD CM_MASK; //Alias
   typedef DWORD CM_STATE; //Alias
   typedef enum CM_SET_WIDTH_VALUE {
-    CM_WIDTH_USEDEFAULT = WINAPI__1,
-    CM_WIDTH_AUTOSIZE = WINAPI__2,
+    CM_WIDTH_USEDEFAULT = -1,
+    CM_WIDTH_AUTOSIZE = -2,
   } CM_SET_WIDTH_VALUE;
   typedef struct CM_COLUMNINFO {
-    DWORD cbSize,
-    CM_MASK dwMask,
-    CM_STATE dwState,
-    UINT uWidth,
-    CM_SET_WIDTH_VALUE uDefaultWidth,
-    UINT uIdealWidth,
-    WCHAR [80] wszName,
+    DWORD cbSize;
+    CM_MASK dwMask;
+    CM_STATE dwState;
+    UINT uWidth;
+    CM_SET_WIDTH_VALUE uDefaultWidth;
+    UINT uIdealWidth;
+    WCHAR wszName[80];
   } CM_COLUMNINFO;
   typedef CM_COLUMNINFO *WINAPI_CM_COLUMNINFO*; //Pointer
   typedef UINT CATEGORYINFO_FLAGS; //Alias
   typedef struct CATEGORY_INFO {
-    CATEGORYINFO_FLAGS cif,
-    WCHAR [260] wszName,
+    CATEGORYINFO_FLAGS cif;
+    WCHAR wszName[260];
   } CATEGORY_INFO;
   typedef DWORD WINAPI_DBIM; //Alias
   typedef DWORD WINAPI_DBIMF; //Alias
+# pragma pack( push, 8 )
   typedef struct DESKBANDINFO {
-    WINAPI_DBIM dwMask,
-    POINTL ptMinSize,
-    POINTL ptMaxSize,
-    POINTL ptIntegral,
-    POINTL ptActual,
-    WCHAR [256] wszTitle,
-    WINAPI_DBIMF dwModeFlags,
-    COLORREF crBkgnd,
+    WINAPI_DBIM dwMask;
+    POINTL ptMinSize;
+    POINTL ptMaxSize;
+    POINTL ptIntegral;
+    POINTL ptActual;
+    WCHAR wszTitle[256];
+    WINAPI_DBIMF dwModeFlags;
+    COLORREF crBkgnd;
   } DESKBANDINFO;
+# pragma pack( pop )
   typedef struct EXTRASEARCH {
-    GUID guidSearch,
-    WCHAR [80] wszFriendlyName,
-    WCHAR [2084] wszUrl,
+    GUID guidSearch;
+    WCHAR wszFriendlyName[80];
+    WCHAR wszUrl[2084];
   } EXTRASEARCH;
   typedef DWORD THUMBBUTTONFLAGS; //Alias
   typedef DWORD THUMBBUTTONMASK; //Alias
+# pragma pack( push, 8 )
   typedef struct THUMBBUTTON {
-    THUMBBUTTONMASK dwMask,
-    UINT iId,
-    UINT iBitmap,
-    HICON hIcon,
-    WCHAR [260] szTip,
-    THUMBBUTTONFLAGS dwFlags,
+    THUMBBUTTONMASK dwMask;
+    UINT iId;
+    UINT iBitmap;
+    HICON hIcon;
+    WCHAR szTip[260];
+    THUMBBUTTONFLAGS dwFlags;
   } THUMBBUTTON;
+# pragma pack( pop )
   typedef THUMBBUTTON *LPTHUMBBUTTON; //Pointer
   typedef DWORD NSTCITEMSTATE; //Alias
   typedef struct NSTCCUSTOMDRAW {
-    IShellItem* psi,
-    UINT uItemState,
-    NSTCITEMSTATE nstcis,
-    LPCWSTR pszText,
-    int iImage,
-    HIMAGELIST himl,
-    int iLevel,
-    int iIndent,
+    IShellItem* psi;
+    UINT uItemState;
+    NSTCITEMSTATE nstcis;
+    LPCWSTR pszText;
+    int iImage;
+    HIMAGELIST himl;
+    int iLevel;
+    int iIndent;
   } NSTCCUSTOMDRAW;
   typedef enum FOLDERVIEWMODE {
-    FVM_AUTO = WINAPI__1,
+    FVM_AUTO = -1,
     FVM_FIRST = 1,
     FVM_ICON = 1,
     FVM_SMALLICON = 2,
@@ -158,20 +474,20 @@ ffi.cdef [[
   } FOLDERVIEWMODE;
   typedef UINT FOLDERFLAGS; //Alias
   typedef struct FOLDERSETTINGS {
-    FOLDERVIEWMODE ViewMode,
-    FOLDERFLAGS fFlags,
+    FOLDERVIEWMODE ViewMode;
+    FOLDERFLAGS fFlags;
   } FOLDERSETTINGS;
   typedef FOLDERSETTINGS *LPFOLDERSETTINGS; //Pointer
   typedef FOLDERSETTINGS *LPCFOLDERSETTINGS; //Pointer
   typedef FOLDERSETTINGS *WINAPI_FOLDERSETTINGS*; //Pointer
   typedef struct SV2CVW2_PARAMS {
-    DWORD cbSize,
-    IShellView* psvPrev,
-    LPCFOLDERSETTINGS pfs,
-    IShellBrowser* psbOwner,
-    RECT* prcView,
-    WINAPI_SHELLVIEWID* pvid,
-    HWND hwndView,
+    DWORD cbSize;
+    IShellView* psvPrev;
+    LPCFOLDERSETTINGS pfs;
+    IShellBrowser* psbOwner;
+    RECT* prcView;
+    WINAPI_SHELLVIEWID* pvid;
+    HWND hwndView;
   } SV2CVW2_PARAMS;
   typedef SV2CVW2_PARAMS *LPSV2CVW2_PARAMS; //Pointer
   typedef enum KF_CATEGORY {
@@ -182,74 +498,82 @@ ffi.cdef [[
   } KF_CATEGORY;
   typedef DWORD KF_DEFINITION_FLAGS; //Alias
   typedef struct KNOWNFOLDER_DEFINITION {
-    KF_CATEGORY category,
-    LPWSTR pszName,
-    LPWSTR pszDescription,
-    KNOWNFOLDERID fidParent,
-    LPWSTR pszRelativePath,
-    LPWSTR pszParsingName,
-    LPWSTR pszTooltip,
-    LPWSTR pszLocalizedName,
-    LPWSTR pszIcon,
-    LPWSTR pszSecurity,
-    DWORD dwAttributes,
-    KF_DEFINITION_FLAGS kfdFlags,
-    FOLDERTYPEID ftidType,
+    KF_CATEGORY category;
+    LPWSTR pszName;
+    LPWSTR pszDescription;
+    KNOWNFOLDERID fidParent;
+    LPWSTR pszRelativePath;
+    LPWSTR pszParsingName;
+    LPWSTR pszTooltip;
+    LPWSTR pszLocalizedName;
+    LPWSTR pszIcon;
+    LPWSTR pszSecurity;
+    DWORD dwAttributes;
+    KF_DEFINITION_FLAGS kfdFlags;
+    FOLDERTYPEID ftidType;
   } KNOWNFOLDER_DEFINITION;
   typedef KNOWNFOLDER_DEFINITION *WINAPI_KNOWNFOLDER_DEFINITION*; //Pointer
   typedef enum SORTDIRECTION {
-    SORT_DESCENDING = WINAPI__1,
+    SORT_DESCENDING = -1,
     SORT_ASCENDING = 1,
   } SORTDIRECTION;
   typedef struct SORTCOLUMN {
-    PROPERTYKEY propkey,
-    SORTDIRECTION direction,
+    PROPERTYKEY propkey;
+    SORTDIRECTION direction;
   } SORTCOLUMN;
   typedef SORTCOLUMN *WINAPI_SORTCOLUMN*; //Pointer
+# pragma pack( push, 8 )
   typedef struct BANDSITEINFO {
-    DWORD dwMask,
-    DWORD dwState,
-    DWORD dwStyle,
+    DWORD dwMask;
+    DWORD dwState;
+    DWORD dwStyle;
   } BANDSITEINFO;
+# pragma pack( pop )
   typedef BANDSITEINFO *WINAPI_BANDSITEINFO*; //Pointer
   typedef DWORD WINAPI_CMIC_Mask; //Alias
+# pragma pack( push, 8 )
   typedef struct CMINVOKECOMMANDINFO {
-    DWORD cbSize,
-    WINAPI_CMIC_Mask fMask,
-    HWND hwnd,
-    LPCSTR lpVerb,
-    LPCSTR lpParameters,
-    LPCSTR lpDirectory,
-    WINAPI_ShowWindowCmd nShow,
-    DWORD dwHotKey,
-    HANDLE hIcon,
+    DWORD cbSize;
+    WINAPI_CMIC_Mask fMask;
+    HWND hwnd;
+    LPCSTR lpVerb;
+    LPCSTR lpParameters;
+    LPCSTR lpDirectory;
+    WINAPI_ShowWindowCmd nShow;
+    DWORD dwHotKey;
+    HANDLE hIcon;
   } CMINVOKECOMMANDINFO;
+# pragma pack( pop )
+# pragma pack( push, 8 )
   typedef struct SHDRAGIMAGE {
-    SIZE sizeDragImage,
-    POINT ptOffset,
-    HBITMAP hbmpDragImage,
-    COLORREF crColorKey,
+    SIZE sizeDragImage;
+    POINT ptOffset;
+    HBITMAP hbmpDragImage;
+    COLORREF crColorKey;
   } SHDRAGIMAGE;
+# pragma pack( pop )
   typedef SHDRAGIMAGE *LPSHDRAGIMAGE; //Pointer
   typedef DWORD WINAPI_SMDATA_Mask; //Alias
+# pragma pack( push, 8 )
   typedef struct SMDATA {
-    WINAPI_SMDATA_Mask dwMask,
-    DWORD dwFlags,
-    HMENU hmenu,
-    HWND hwnd,
-    UINT uId,
-    UINT uIdParent,
-    UINT uIdAncestor,
-    IUnknown* punk,
-    PIDLIST_ABSOLUTE pidlFolder,
-    PUITEMID_CHILD pidlItem,
-    IShellFolder* psf,
-    void* pvUserData,
+    WINAPI_SMDATA_Mask dwMask;
+    DWORD dwFlags;
+    HMENU hmenu;
+    HWND hwnd;
+    UINT uId;
+    UINT uIdParent;
+    UINT uIdAncestor;
+    IUnknown* punk;
+    PIDLIST_ABSOLUTE pidlFolder;
+    PUITEMID_CHILD pidlItem;
+    IShellFolder* psf;
+    void* pvUserData;
   } SMDATA;
+# pragma pack( pop )
   typedef SMDATA *LPSMDATA; //Pointer
   typedef struct COMDLG_FILTERSPEC {
-    LPCWSTR pszName,
-    LPCWSTR pszSpec,
+    LPCWSTR pszName;
+    LPCWSTR pszSpec;
   } COMDLG_FILTERSPEC;
   typedef COMDLG_FILTERSPEC *WINAPI_COMDLG_FILTERSPEC*; //Pointer
   typedef enum FDAP {
@@ -337,7 +661,7 @@ ffi.cdef [[
   typedef UINT EXPLORERPANESTATE; //Alias
   typedef UINT FOLDERVIEWOPTIONS; //Alias
   typedef enum FOLDERLOGICALVIEWMODE {
-    FLVM_UNSPECIFIED = WINAPI__1,
+    FLVM_UNSPECIFIED = -1,
     FLVM_FIRST = 1,
     FLVM_DETAILS = 1,
     FLVM_TILES = 2,
@@ -422,7 +746,7 @@ ffi.cdef [[
     DEFSHAREID_PUBLIC = 2,
   } DEF_SHARE_ID;
   typedef enum SHARE_ROLE {
-    SHARE_ROLE_INVALID = WINAPI__1,
+    SHARE_ROLE_INVALID = -1,
     SHARE_ROLE_READER = 0,
     SHARE_ROLE_CONTRIBUTOR = 1,
     SHARE_ROLE_CO_OWNER = 2,
@@ -471,10 +795,10 @@ ffi.cdef [[
   typedef DWORD SV3CVW3_FLAGS; //Alias
   typedef UINT EXPLORER_BROWSER_OPTIONS; //Alias
   typedef enum PERCEIVED {
-    PERCEIVED_TYPE_FIRST = WINAPI__3,
-    PERCEIVED_TYPE_CUSTOM = WINAPI__3,
-    PERCEIVED_TYPE_UNSPECIFIED = WINAPI__2,
-    PERCEIVED_TYPE_FOLDER = WINAPI__1,
+    PERCEIVED_TYPE_FIRST = -3,
+    PERCEIVED_TYPE_CUSTOM = -3,
+    PERCEIVED_TYPE_UNSPECIFIED = -2,
+    PERCEIVED_TYPE_FOLDER = -1,
     PERCEIVED_TYPE_UNKNOWN = 0,
     PERCEIVED_TYPE_TEXT = 1,
     PERCEIVED_TYPE_IMAGE = 2,
@@ -504,8 +828,8 @@ ffi.cdef [[
     IDCONTINUE = 11,
   } WINAPI_MessageBoxResult;
   typedef union WINAPI_SHELLEXECUTEINFO_u {
-    HANDLE hIcon,
-    HANDLE hMonitor,
+    HANDLE hIcon;
+    HANDLE hMonitor;
   } WINAPI_SHELLEXECUTEINFO_u;
   typedef ULONG WINAPI_SEE_MASK; //Alias
   typedef enum WINAPI_SEE_HINSTANCE {
@@ -522,21 +846,21 @@ ffi.cdef [[
     SE_ERR_NOASSOC = 31,
   } WINAPI_SEE_HINSTANCE;
   typedef struct SHELLEXECUTEINFO {
-    DWORD cbSize,
-    WINAPI_SEE_MASK fMask,
-    HWND hwnd,
-    LPCTSTR lpVerb,
-    LPCTSTR lpFile,
-    LPCTSTR lpParameters,
-    LPCTSTR lpDirectory,
-    WINAPI_ShowWindowCmd nShow,
-    WINAPI_SEE_HINSTANCE hInstApp,
-    void* lpIDList,
-    LPCTSTR lpClass,
-    HKEY hkeyClass,
-    DWORD dwHotKey,
-    WINAPI_SHELLEXECUTEINFO_u ,
-    HANDLE hProcess,
+    DWORD cbSize;
+    WINAPI_SEE_MASK fMask;
+    HWND hwnd;
+    LPCTSTR lpVerb;
+    LPCTSTR lpFile;
+    LPCTSTR lpParameters;
+    LPCTSTR lpDirectory;
+    WINAPI_ShowWindowCmd nShow;
+    WINAPI_SEE_HINSTANCE hInstApp;
+    void* lpIDList;
+    LPCTSTR lpClass;
+    HKEY hkeyClass;
+    DWORD dwHotKey;
+    WINAPI_SHELLEXECUTEINFO_u ;
+    HANDLE hProcess;
   } SHELLEXECUTEINFO;
   typedef SHELLEXECUTEINFO *LPSHELLEXECUTEINFO; //Pointer
   typedef enum ASSOCF {
@@ -591,13 +915,13 @@ ffi.cdef [[
     ASSOCENUM_NONE = 0,
   } ASSOCENUM;
   typedef struct APPCATEGORYINFO {
-    LCID Locale,
-    LPWSTR pszDescription,
-    GUID AppCategoryId,
+    LCID Locale;
+    LPWSTR pszDescription;
+    GUID AppCategoryId;
   } APPCATEGORYINFO;
   typedef struct APPCATEGORYINFOLIST {
-    DWORD cCategory,
-    APPCATEGORYINFO* pCategoryInfo,
+    DWORD cCategory;
+    APPCATEGORYINFO* pCategoryInfo;
   } APPCATEGORYINFOLIST;
   typedef enum WTS_ALPHATYPE {
     WTSAT_UNKNOWN = 0,
@@ -606,7 +930,7 @@ ffi.cdef [[
   } WTS_ALPHATYPE;
   typedef DWORD WTS_FLAGS; //Alias
   typedef struct WTS_THUMBNAILID {
-    BYTE [16] rgbKey,
+    BYTE rgbKey[16];
   } WTS_THUMBNAILID;
   typedef DWORD WTS_CACHEFLAGS; //Alias
   typedef enum WINAPI_PROPSPEC_KIND {
@@ -614,12 +938,12 @@ ffi.cdef [[
     PRSPEC_PROPID = 1,
   } WINAPI_PROPSPEC_KIND;
   typedef union WINAPI_PROPSPEC_u {
-    PROPID propid,
-    LPOLESTR lpwstr,
+    PROPID propid;
+    LPOLESTR lpwstr;
   } WINAPI_PROPSPEC_u;
   typedef struct PROPSPEC {
-    WINAPI_PROPSPEC_KIND ulKind,
-    WINAPI_PROPSPEC_u ,
+    WINAPI_PROPSPEC_KIND ulKind;
+    WINAPI_PROPSPEC_u ;
   } PROPSPEC;
   typedef PROPSPEC *PROPSPEC const[]; //Pointer
   typedef enum WINAPI_SystemParametersInfoEnum {

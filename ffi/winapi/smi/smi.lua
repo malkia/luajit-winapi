@@ -1,6 +1,14 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IItemEnumerator; //Interface
+  typedef void* ISettingsContext; //Interface
+  typedef void* ISettingsEngine; //Interface
+  typedef void* ISettingsIdentity; //Interface
+  typedef void* ISettingsItem; //Interface
+  typedef void* ISettingsNamespace; //Interface
+  typedef void* ISettingsResult; //Interface
+  typedef void* ITargetInfo; //Interface
   typedef enum WcmTargetMode {
     OfflineMode = 1,
     OnlineMode = 2,

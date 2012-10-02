@@ -1,6 +1,38 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IVssAdmin; //Interface
+  typedef void* IVssAdminEx; //Interface
+  typedef void* IVssAsync; //Interface
+  typedef void* IVssBackupComponents; //Interface
+  typedef void* IVssBackupComponentsEx; //Interface
+  typedef void* IVssBackupComponentsEx2; //Interface
+  typedef void* IVssBackupComponentsEx3; //Interface
+  typedef void* IVssComponent; //Interface
+  typedef void* IVssComponentEx; //Interface
+  typedef void* IVssComponentEx2; //Interface
+  typedef void* IVssCreateExpressWriterMetadata; //Interface
+  typedef void* IVssCreateWriterMetadataEx; //Interface
+  typedef void* IVssDifferentialSoftwareSnapshotMgmt; //Interface
+  typedef void* IVssDifferentialSoftwareSnapshotMgmt2; //Interface
+  typedef void* IVssDifferentialSoftwareSnapshotMgmt3; //Interface
+  typedef void* IVssEnumMgmtObject; //Interface
+  typedef void* IVssEnumObject; //Interface
+  typedef void* IVssExamineWriterMetadata; //Interface
+  typedef void* IVssExamineWriterMetadataEx; //Interface
+  typedef void* IVssExamineWriterMetadataEx2; //Interface
+  typedef void* IVssExpressWriter; //Interface
+  typedef void* IVssHardwareSnapshotProvider; //Interface
+  typedef void* IVssHardwareSnapshotProviderEx; //Interface
+  typedef void* IVssProviderCreateSnapshotSet; //Interface
+  typedef void* IVssProviderNotifications; //Interface
+  typedef void* IVssSnapshotMgmt; //Interface
+  typedef void* IVssSnapshotMgmt2; //Interface
+  typedef void* IVssSoftwareSnapshotProvider; //Interface
+  typedef void* IVssWMComponent; //Interface
+  typedef void* IVssWMFiledesc; //Interface
+  typedef void* IVssWriterComponentsExt; //Interface
+  typedef void* IVssWriterImpl; //Interface
   typedef LPVOID CVssWriter*; //Alias
   typedef LPVOID CVssWriterEx*; //Alias
   typedef GUID VSS_ID; //Alias
@@ -298,102 +330,102 @@ ffi.cdef [[
   typedef DWORD VSS_COMPONENT_FLAGS; //Alias
   typedef DWORD VSS_RECOVERY_OPTIONS; //Alias
   typedef struct VSS_SNAPSHOT_PROP {
-    VSS_ID m_SnapshotId,
-    VSS_ID m_SnapshotSetId,
-    LONG m_lSnapshotsCount,
-    VSS_PWSZ m_pwszSnapshotDeviceObject,
-    VSS_PWSZ m_pwszOriginalVolumeName,
-    VSS_PWSZ m_pwszOriginatingMachine,
-    VSS_PWSZ m_pwszServiceMachine,
-    VSS_PWSZ m_pwszExposedName,
-    VSS_PWSZ m_pwszExposedPath,
-    VSS_ID m_ProviderId,
-    LONG m_lSnapshotAttributes,
-    VSS_TIMESTAMP m_tsCreationTimestamp,
-    VSS_SNAPSHOT_STATE m_eStatus,
+    VSS_ID m_SnapshotId;
+    VSS_ID m_SnapshotSetId;
+    LONG m_lSnapshotsCount;
+    VSS_PWSZ m_pwszSnapshotDeviceObject;
+    VSS_PWSZ m_pwszOriginalVolumeName;
+    VSS_PWSZ m_pwszOriginatingMachine;
+    VSS_PWSZ m_pwszServiceMachine;
+    VSS_PWSZ m_pwszExposedName;
+    VSS_PWSZ m_pwszExposedPath;
+    VSS_ID m_ProviderId;
+    LONG m_lSnapshotAttributes;
+    VSS_TIMESTAMP m_tsCreationTimestamp;
+    VSS_SNAPSHOT_STATE m_eStatus;
   } VSS_SNAPSHOT_PROP;
   typedef struct VSS_VOLUME_PROTECTION_INFO {
-    VSS_PROTECTION_LEVEL m_protectionLevel,
-    BOOL m_volumeIsOfflineForProtection,
-    VSS_PROTECTION_FAULT m_protectionFault,
-    LONG m_failureStatus,
-    BOOL m_volumeHasUnusedDiffArea,
-    DWORD m_reserved,
+    VSS_PROTECTION_LEVEL m_protectionLevel;
+    BOOL m_volumeIsOfflineForProtection;
+    VSS_PROTECTION_FAULT m_protectionFault;
+    LONG m_failureStatus;
+    BOOL m_volumeHasUnusedDiffArea;
+    DWORD m_reserved;
   } VSS_VOLUME_PROTECTION_INFO;
   typedef struct VSS_VOLUME_PROP {
-    VSS_PWSZ m_pwszVolumeName,
-    VSS_PWSZ m_pwszVolumeDisplayName,
+    VSS_PWSZ m_pwszVolumeName;
+    VSS_PWSZ m_pwszVolumeDisplayName;
   } VSS_VOLUME_PROP;
   typedef struct VSS_DIFF_VOLUME_PROP {
-    VSS_PWSZ m_pwszVolumeName,
-    VSS_PWSZ m_pwszVolumeDisplayName,
-    LONGLONG m_llVolumeFreeSpace,
-    LONGLONG m_llVolumeTotalSpace,
+    VSS_PWSZ m_pwszVolumeName;
+    VSS_PWSZ m_pwszVolumeDisplayName;
+    LONGLONG m_llVolumeFreeSpace;
+    LONGLONG m_llVolumeTotalSpace;
   } VSS_DIFF_VOLUME_PROP;
   typedef struct VSS_DIFF_AREA_PROP {
-    VSS_PWSZ m_pwszVolumeName,
-    VSS_PWSZ m_pwszDiffAreaVolumeName,
-    LONGLONG m_llMaximumDiffSpace,
-    LONGLONG m_llAllocatedDiffSpace,
-    LONGLONG m_llUsedDiffSpace,
+    VSS_PWSZ m_pwszVolumeName;
+    VSS_PWSZ m_pwszDiffAreaVolumeName;
+    LONGLONG m_llMaximumDiffSpace;
+    LONGLONG m_llAllocatedDiffSpace;
+    LONGLONG m_llUsedDiffSpace;
   } VSS_DIFF_AREA_PROP;
   typedef union VSS_MGMT_OBJECT_UNION {
-    VSS_VOLUME_PROP Vol,
-    VSS_DIFF_VOLUME_PROP DiffVol,
-    VSS_DIFF_AREA_PROP DiffArea,
+    VSS_VOLUME_PROP Vol;
+    VSS_DIFF_VOLUME_PROP DiffVol;
+    VSS_DIFF_AREA_PROP DiffArea;
   } VSS_MGMT_OBJECT_UNION;
   typedef struct VSS_MGMT_OBJECT_PROP {
-    VSS_MGMT_OBJECT_TYPE Type,
-    VSS_MGMT_OBJECT_UNION Obj,
+    VSS_MGMT_OBJECT_TYPE Type;
+    VSS_MGMT_OBJECT_UNION Obj;
   } VSS_MGMT_OBJECT_PROP;
   typedef struct VSS_PROVIDER_PROP {
-    VSS_ID m_ProviderId,
-    VSS_PWSZ m_pwszProviderName,
-    VSS_PROVIDER_TYPE m_eProviderType,
-    VSS_PWSZ m_pwszProviderVersion,
-    VSS_ID m_ProviderVersionId,
-    CLSID m_ClassId,
+    VSS_ID m_ProviderId;
+    VSS_PWSZ m_pwszProviderName;
+    VSS_PROVIDER_TYPE m_eProviderType;
+    VSS_PWSZ m_pwszProviderVersion;
+    VSS_ID m_ProviderVersionId;
+    CLSID m_ClassId;
   } VSS_PROVIDER_PROP;
   typedef union VSS_OBJECT_UNION {
-    VSS_SNAPSHOT_PROP Snap,
-    VSS_PROVIDER_PROP Prov,
+    VSS_SNAPSHOT_PROP Snap;
+    VSS_PROVIDER_PROP Prov;
   } VSS_OBJECT_UNION;
   typedef struct VSS_OBJECT_PROP {
-    VSS_OBJECT_TYPE Type,
-    VSS_OBJECT_UNION Obj,
+    VSS_OBJECT_TYPE Type;
+    VSS_OBJECT_UNION Obj;
   } VSS_OBJECT_PROP;
   typedef struct VDS_STORAGE_IDENTIFIER {
-    VDS_STORAGE_IDENTIFIER_CODE_SET m_CodeSet,
-    VDS_STORAGE_IDENTIFIER_TYPE m_Type,
-    ULONG m_cbIdentifier,
-    BYTE* m_rgbIdentifier,
+    VDS_STORAGE_IDENTIFIER_CODE_SET m_CodeSet;
+    VDS_STORAGE_IDENTIFIER_TYPE m_Type;
+    ULONG m_cbIdentifier;
+    BYTE* m_rgbIdentifier;
   } VDS_STORAGE_IDENTIFIER;
   typedef struct VDS_STORAGE_DEVICE_ID_DESCRIPTOR {
-    ULONG m_version,
-    ULONG m_cIdentifiers,
-    VDS_STORAGE_IDENTIFIER* m_rgIdentifiers,
+    ULONG m_version;
+    ULONG m_cIdentifiers;
+    VDS_STORAGE_IDENTIFIER* m_rgIdentifiers;
   } VDS_STORAGE_DEVICE_ID_DESCRIPTOR;
   typedef struct VDS_INTERCONNECT {
-    VDS_INTERCONNECT_ADDRESS_TYPE m_addressType,
-    ULONG m_cbPort,
-    BYTE* m_pbPort,
-    ULONG m_cbAddress,
-    BYTE* m_pbAddress,
+    VDS_INTERCONNECT_ADDRESS_TYPE m_addressType;
+    ULONG m_cbPort;
+    BYTE* m_pbPort;
+    ULONG m_cbAddress;
+    BYTE* m_pbAddress;
   } VDS_INTERCONNECT;
   typedef struct VDS_LUN_INFORMATION {
-    ULONG m_version,
-    BYTE m_DeviceType,
-    BYTE m_DeviceTypeModifier,
-    BOOL m_bCommandQueueing,
-    VDS_STORAGE_BUS_TYPE m_BusType,
-    char* m_szVendorId,
-    char* m_szProductId,
-    char* m_szProductRevision,
-    char* m_szSerialNumber,
-    GUID m_diskSignature,
-    VDS_STORAGE_DEVICE_ID_DESCRIPTOR m_deviceIdDescriptor,
-    ULONG m_cInterconnects,
-    VDS_INTERCONNECT* m_rgInterconnects,
+    ULONG m_version;
+    BYTE m_DeviceType;
+    BYTE m_DeviceTypeModifier;
+    BOOL m_bCommandQueueing;
+    VDS_STORAGE_BUS_TYPE m_BusType;
+    char* m_szVendorId;
+    char* m_szProductId;
+    char* m_szProductRevision;
+    char* m_szSerialNumber;
+    GUID m_diskSignature;
+    VDS_STORAGE_DEVICE_ID_DESCRIPTOR m_deviceIdDescriptor;
+    ULONG m_cInterconnects;
+    VDS_INTERCONNECT* m_rgInterconnects;
   } VDS_LUN_INFORMATION;
   typedef UINT VSS_VOLUME_SNAPSHOT_ATTRIBUTES; //Alias
 ]]

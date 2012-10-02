@@ -124,61 +124,61 @@ ffi.cdef [[
     IPPROTO_RAW = 255,
   } WINAPI_SocketProtocol;
   typedef struct struct sockaddr {
-    ADDRESS_FAMILY sa_family,
-    CHAR [14] sa_data,
+    ADDRESS_FAMILY sa_family;
+    CHAR sa_data[14];
   } struct sockaddr;
   typedef struct sockaddr *WINAPI_sockaddr*; //Pointer
   typedef struct sockaddr *WINAPI_struct sockaddr*; //Pointer
   typedef UINT WINAPI_AI_FLAGS; //Alias
   typedef struct struct addrinfo {
-    WINAPI_AI_FLAGS ai_flags,
-    WINAPI_AddressFamily ai_family,
-    WINAPI_SocketType ai_socktype,
-    WINAPI_SocketProtocol ai_protocol,
-    size_t ai_addrlen,
-    char* ai_canonname,
-    struct sockaddr* ai_addr,
-    LPVOID ai_next,
+    WINAPI_AI_FLAGS ai_flags;
+    WINAPI_AddressFamily ai_family;
+    WINAPI_SocketType ai_socktype;
+    WINAPI_SocketProtocol ai_protocol;
+    size_t ai_addrlen;
+    char* ai_canonname;
+    struct sockaddr* ai_addr;
+    LPVOID ai_next;
   } struct addrinfo;
   typedef struct addrinfo *WINAPI_struct addrinfo*; //Pointer
   typedef struct ADDRINFOW {
-    WINAPI_AI_FLAGS ai_flags,
-    WINAPI_AddressFamily ai_family,
-    WINAPI_SocketType ai_socktype,
-    WINAPI_SocketProtocol ai_protocol,
-    size_t ai_addrlen,
-    PWSTR ai_canonname,
-    struct sockaddr* ai_addr,
-    LPVOID ai_next,
+    WINAPI_AI_FLAGS ai_flags;
+    WINAPI_AddressFamily ai_family;
+    WINAPI_SocketType ai_socktype;
+    WINAPI_SocketProtocol ai_protocol;
+    size_t ai_addrlen;
+    PWSTR ai_canonname;
+    struct sockaddr* ai_addr;
+    LPVOID ai_next;
   } ADDRINFOW;
   typedef ADDRINFOW *WINAPI_ADDRINFOW*; //Pointer
   typedef ADDRINFOW *PADDRINFOW; //Pointer
   typedef struct ADDRINFOEX {
-    WINAPI_AI_FLAGS ai_flags,
-    WINAPI_AddressFamily ai_family,
-    WINAPI_SocketType ai_socktype,
-    WINAPI_SocketProtocol ai_protocol,
-    size_t ai_addrlen,
-    PCTSTR ai_canonname,
-    struct sockaddr* ai_addr,
-    void* ai_blob,
-    size_t ai_bloblen,
-    LPGUID ai_provider,
-    LPVOID ai_next,
+    WINAPI_AI_FLAGS ai_flags;
+    WINAPI_AddressFamily ai_family;
+    WINAPI_SocketType ai_socktype;
+    WINAPI_SocketProtocol ai_protocol;
+    size_t ai_addrlen;
+    PCTSTR ai_canonname;
+    struct sockaddr* ai_addr;
+    void* ai_blob;
+    size_t ai_bloblen;
+    LPGUID ai_provider;
+    LPVOID ai_next;
   } ADDRINFOEX;
   typedef ADDRINFOEX *PADDRINFOEX; //Pointer
   typedef ADDRINFOEX *WINAPI_ADDRINFOEX*; //Pointer
   typedef enum SOCKET {
-    INVALID_SOCKET = WINAPI__1,
+    INVALID_SOCKET = -1,
   } SOCKET;
   typedef SOCKET SOCKET [FD_SETSIZE]; //Array 64
   typedef struct fd_set {
-    u_int fd_count,
-    SOCKET [FD_SETSIZE] fd_array,
+    u_int fd_count;
+    SOCKET fd_array[FD_SETSIZE];
   } fd_set;
   typedef struct WSAPROTOCOLCHAIN {
-    int ChainLen,
-    DWORD [MAX_PROTOCOL_CHAIN] ChainEntries,
+    int ChainLen;
+    DWORD ChainEntries[MAX_PROTOCOL_CHAIN];
   } WSAPROTOCOLCHAIN;
   typedef DWORD WINAPI_WSA_PROVIDER_FLAGS; //Alias
   typedef DWORD WINAPI_WSA_SERVICE_FLAGS_1; //Alias
@@ -190,26 +190,26 @@ ffi.cdef [[
     SECURITY_PROTOCOL_NONE = 0x0000,
   } WINAPI_SecurityScheme;
   typedef struct WSAPROTOCOL_INFO {
-    WINAPI_WSA_SERVICE_FLAGS_1 dwServiceFlags1,
-    DWORD dwServiceFlags2,
-    DWORD dwServiceFlags3,
-    DWORD dwServiceFlags4,
-    WINAPI_WSA_PROVIDER_FLAGS dwProviderFlags,
-    GUID ProviderId,
-    DWORD dwCatalogEntryId,
-    WSAPROTOCOLCHAIN ProtocolChain,
-    int iVersion,
-    WINAPI_AddressFamily iAddressFamily,
-    int iMaxSockAddr,
-    int iMinSockAddr,
-    WINAPI_SocketType iSocketType,
-    WINAPI_SocketProtocol iProtocol,
-    int iProtocolMaxOffset,
-    WINAPI_NetworkByteOrder iNetworkByteOrder,
-    WINAPI_SecurityScheme iSecurityScheme,
-    DWORD dwMessageSize,
-    DWORD dwProviderReserved,
-    TCHAR [WSAPROTOCOL_LEN + 1] szProtocol,
+    WINAPI_WSA_SERVICE_FLAGS_1 dwServiceFlags1;
+    DWORD dwServiceFlags2;
+    DWORD dwServiceFlags3;
+    DWORD dwServiceFlags4;
+    WINAPI_WSA_PROVIDER_FLAGS dwProviderFlags;
+    GUID ProviderId;
+    DWORD dwCatalogEntryId;
+    WSAPROTOCOLCHAIN ProtocolChain;
+    int iVersion;
+    WINAPI_AddressFamily iAddressFamily;
+    int iMaxSockAddr;
+    int iMinSockAddr;
+    WINAPI_SocketType iSocketType;
+    WINAPI_SocketProtocol iProtocol;
+    int iProtocolMaxOffset;
+    WINAPI_NetworkByteOrder iNetworkByteOrder;
+    WINAPI_SecurityScheme iSecurityScheme;
+    DWORD dwMessageSize;
+    DWORD dwProviderReserved;
+    TCHAR szProtocol[WSAPROTOCOL_LEN + 1];
   } WSAPROTOCOL_INFO;
   typedef WSAPROTOCOL_INFO *LPWSAPROTOCOL_INFO; //Pointer
   typedef struct sockaddr SOCKADDR; //Alias
@@ -217,36 +217,36 @@ ffi.cdef [[
   typedef SOCKADDR *PSOCKADDR; //Pointer
   typedef SOCKADDR *LPSOCKADDR; //Pointer
   typedef union WINAPI_IN6_ADDR_u {
-    UCHAR [16] Byte,
-    USHORT [8] Word,
+    UCHAR Byte[16];
+    USHORT Word[8];
   } WINAPI_IN6_ADDR_u;
   typedef struct IN6_ADDR {
-    WINAPI_IN6_ADDR_u u,
+    WINAPI_IN6_ADDR_u u;
   } IN6_ADDR;
   typedef IN6_ADDR *WINAPI_IN6_ADDR*; //Pointer
   typedef ULONG WINAPI_FDEvents; //Alias
   typedef struct WSANETWORKEVENTS {
-    WINAPI_FDEvents lNetworkEvents,
-    int [FD_MAX_EVENTS] iErrorCode,
+    WINAPI_FDEvents lNetworkEvents;
+    int iErrorCode[FD_MAX_EVENTS];
   } WSANETWORKEVENTS;
   typedef WSANETWORKEVENTS *LPWSANETWORKEVENTS; //Pointer
   typedef struct WINAPI_IN_ADDR_u_s1 {
-    UCHAR s_b1,
-    UCHAR s_b2,
-    UCHAR s_b3,
-    UCHAR s_b4,
+    UCHAR s_b1;
+    UCHAR s_b2;
+    UCHAR s_b3;
+    UCHAR s_b4;
   } WINAPI_IN_ADDR_u_s1;
   typedef struct WINAPI_IN_ADDR_u_s2 {
-    USHORT s_w1,
-    USHORT s_w2,
+    USHORT s_w1;
+    USHORT s_w2;
   } WINAPI_IN_ADDR_u_s2;
   typedef union WINAPI_IN_ADDR_u {
-    WINAPI_IN_ADDR_u_s1 S_un_b,
-    WINAPI_IN_ADDR_u_s2 S_un_w,
-    ULONG S_addr,
+    WINAPI_IN_ADDR_u_s1 S_un_b;
+    WINAPI_IN_ADDR_u_s2 S_un_w;
+    ULONG S_addr;
   } WINAPI_IN_ADDR_u;
   typedef struct IN_ADDR {
-    WINAPI_IN_ADDR_u S_un,
+    WINAPI_IN_ADDR_u S_un;
   } IN_ADDR;
   typedef IN_ADDR *WINAPI_IN_ADDR*; //Pointer
   typedef IN_ADDR struct in_addr; //Alias
@@ -257,81 +257,81 @@ ffi.cdef [[
   } SOCKET_SECURITY_PROTOCOL;
   typedef ULONG WINAPI_SocketInfoFlags; //Alias
   typedef struct SOCKET_SECURITY_QUERY_INFO {
-    SOCKET_SECURITY_PROTOCOL SecurityProtocol,
-    WINAPI_SocketInfoFlags Flags,
-    UINT64 PeerApplicationAccessTokenHandle,
-    UINT64 PeerMachineAccessTokenHandle,
+    SOCKET_SECURITY_PROTOCOL SecurityProtocol;
+    WINAPI_SocketInfoFlags Flags;
+    UINT64 PeerApplicationAccessTokenHandle;
+    UINT64 PeerMachineAccessTokenHandle;
   } SOCKET_SECURITY_QUERY_INFO;
   typedef ULONG WINAPI_SocketSecurityFlags; //Alias
   typedef struct SOCKET_SECURITY_SETTINGS {
-    SOCKET_SECURITY_PROTOCOL SecurityProtocol,
-    WINAPI_SocketSecurityFlags SecurityFlags,
+    SOCKET_SECURITY_PROTOCOL SecurityProtocol;
+    WINAPI_SocketSecurityFlags SecurityFlags;
   } SOCKET_SECURITY_SETTINGS;
   typedef SOCKET_SECURITY_SETTINGS *WINAPI_SOCKET_SECURITY_SETTINGS*; //Pointer
   typedef struct struct timeval {
-    long tv_sec,
-    long tv_usec,
+    long tv_sec;
+    long tv_usec;
   } struct timeval;
   typedef struct timeval *WINAPI_struct timeval*; //Pointer
   typedef struct struct hostent {
-    char* h_name,
-    char** h_aliases,
-    WINAPI_ADDRESS_FAMILY_short h_addrtype,
-    short h_length,
-    char** h_addr_list,
+    char* h_name;
+    char** h_aliases;
+    WINAPI_ADDRESS_FAMILY_short h_addrtype;
+    short h_length;
+    char** h_addr_list;
   } struct hostent;
   typedef struct struct PROTOENT {
-    char* p_name,
-    char** p_aliases,
-    short p_proto,
+    char* p_name;
+    char** p_aliases;
+    short p_proto;
   } struct PROTOENT;
   typedef struct SOCKET_ADDRESS {
-    LPSOCKADDR lpSockaddr,
-    INT iSockaddrLength,
+    LPSOCKADDR lpSockaddr;
+    INT iSockaddrLength;
   } SOCKET_ADDRESS;
   typedef SOCKET_ADDRESS *PSOCKET_ADDRESS; //Pointer
   typedef PSOCKET_ADDRESS *LPSOCKET_ADDRESS*; //Pointer
   typedef SOCKET_ADDRESS SOCKET_ADDRESS [1]; //Array 1
   typedef struct SOCKET_ADDRESS_LIST {
-    INT iAddressCount,
-    SOCKET_ADDRESS [1] Address,
+    INT iAddressCount;
+    SOCKET_ADDRESS Address[1];
   } SOCKET_ADDRESS_LIST;
   typedef SOCKET_ADDRESS_LIST *PSOCKET_ADDRESS_LIST; //Pointer
   typedef struct WSANAMESPACE_INFO {
-    GUID NSProviderId,
-    DWORD dwNameSpace,
-    BOOL fActive,
-    DWORD dwVersion,
-    LPTSTR lpszIdentifier,
+    GUID NSProviderId;
+    DWORD dwNameSpace;
+    BOOL fActive;
+    DWORD dwVersion;
+    LPTSTR lpszIdentifier;
   } WSANAMESPACE_INFO;
   typedef WSANAMESPACE_INFO *LPWSANAMESPACE_INFO; //Pointer
   typedef struct BLOB {
-    ULONG cbSize,
-    BYTE* pBlobData,
+    ULONG cbSize;
+    BYTE* pBlobData;
   } BLOB;
   typedef BLOB *LPBLOB; //Pointer
   typedef struct WSANAMESPACE_INFOEX {
-    GUID NSProviderId,
-    DWORD dwNameSpace,
-    BOOL fActive,
-    DWORD dwVersion,
-    LPTSTR lpszIdentifier,
-    BLOB ProviderSpecific,
+    GUID NSProviderId;
+    DWORD dwNameSpace;
+    BOOL fActive;
+    DWORD dwVersion;
+    LPTSTR lpszIdentifier;
+    BLOB ProviderSpecific;
   } WSANAMESPACE_INFOEX;
   typedef WSANAMESPACE_INFOEX *LPWSANAMESPACE_INFOEX; //Pointer
   typedef struct WSANSCLASSINFO {
-    LPTSTR lpszName,
-    DWORD dwNameSpace,
-    DWORD dwValueType,
-    DWORD dwValueSize,
-    LPVOID lpValue,
+    LPTSTR lpszName;
+    DWORD dwNameSpace;
+    DWORD dwValueType;
+    DWORD dwValueSize;
+    LPVOID lpValue;
   } WSANSCLASSINFO;
   typedef WSANSCLASSINFO *LPWSANSCLASSINFO; //Pointer
   typedef struct WSASERVICECLASSINFO {
-    LPGUID lpServiceClassId,
-    LPTSTR lpszServiceClassName,
-    DWORD dwCount,
-    LPWSANSCLASSINFO lpClassInfos,
+    LPGUID lpServiceClassId;
+    LPTSTR lpszServiceClassName;
+    DWORD dwCount;
+    LPWSANSCLASSINFO lpClassInfos;
   } WSASERVICECLASSINFO;
   typedef WSASERVICECLASSINFO *LPWSASERVICECLASSINFO; //Pointer
   typedef enum WSAECOMPARATOR {
@@ -339,52 +339,52 @@ ffi.cdef [[
     COMP_NOTLESS = 1,
   } WSAECOMPARATOR;
   typedef struct WSAVERSION {
-    DWORD dwVersion,
-    WSAECOMPARATOR ecHow,
+    DWORD dwVersion;
+    WSAECOMPARATOR ecHow;
   } WSAVERSION;
   typedef WSAVERSION *LPWSAVERSION; //Pointer
   typedef struct AFPROTOCOLS {
-    INT iAddressFamily,
-    INT iProtocol,
+    INT iAddressFamily;
+    INT iProtocol;
   } AFPROTOCOLS;
   typedef AFPROTOCOLS *LPAFPROTOCOLS; //Pointer
   typedef struct CSADDR_INFO {
-    SOCKET_ADDRESS LocalAddr,
-    SOCKET_ADDRESS RemoteAddr,
-    INT iSocketType,
-    INT iProtocol,
+    SOCKET_ADDRESS LocalAddr;
+    SOCKET_ADDRESS RemoteAddr;
+    INT iSocketType;
+    INT iProtocol;
   } CSADDR_INFO;
   typedef CSADDR_INFO *LPCSADDR_INFO; //Pointer
   typedef struct WSAQUERYSET {
-    DWORD dwSize,
-    LPTSTR lpszServiceInstanceName,
-    LPGUID lpServiceClassId,
-    LPWSAVERSION lpVersion,
-    LPTSTR lpszComment,
-    DWORD dwNameSpace,
-    LPGUID lpNSProviderId,
-    LPTSTR lpszContext,
-    DWORD dwNumberOfProtocols,
-    LPAFPROTOCOLS lpafpProtocols,
-    LPTSTR lpszQueryString,
-    DWORD dwNumberOfCsAddrs,
-    LPCSADDR_INFO lpcsaBuffer,
-    DWORD dwOutputFlags,
-    LPBLOB lpBlob,
+    DWORD dwSize;
+    LPTSTR lpszServiceInstanceName;
+    LPGUID lpServiceClassId;
+    LPWSAVERSION lpVersion;
+    LPTSTR lpszComment;
+    DWORD dwNameSpace;
+    LPGUID lpNSProviderId;
+    LPTSTR lpszContext;
+    DWORD dwNumberOfProtocols;
+    LPAFPROTOCOLS lpafpProtocols;
+    LPTSTR lpszQueryString;
+    DWORD dwNumberOfCsAddrs;
+    LPCSADDR_INFO lpcsaBuffer;
+    DWORD dwOutputFlags;
+    LPBLOB lpBlob;
   } WSAQUERYSET;
   typedef WSAQUERYSET *LPWSAQUERYSET; //Pointer
   typedef struct WSABUF {
-    u_long len,
-    WINAPI_LPVOID_char* buf,
+    u_long len;
+    WINAPI_LPVOID_char* buf;
   } WSABUF;
   typedef WSABUF *LPWSABUF; //Pointer
   typedef struct WSAMSG {
-    LPSOCKADDR name,
-    INT namelen,
-    LPWSABUF lpBuffers,
-    ULONG dwBufferCount,
-    WSABUF Control,
-    ULONG dwFlags,
+    LPSOCKADDR name;
+    INT namelen;
+    LPWSABUF lpBuffers;
+    ULONG dwBufferCount;
+    WSABUF Control;
+    ULONG dwFlags;
   } WSAMSG;
   typedef WSAMSG *LPWSAMSG; //Pointer
   typedef enum WSAESETSERVICEOP {
@@ -398,19 +398,19 @@ ffi.cdef [[
   } GROUP;
   typedef ULONG SERVICETYPE; //Alias
   typedef struct FLOWSPEC {
-    ULONG TokenRate,
-    ULONG TokenBucketSize,
-    ULONG PeakBandwidth,
-    ULONG Latency,
-    ULONG DelayVariation,
-    SERVICETYPE ServiceType,
-    ULONG MaxSduSize,
-    ULONG MinimumPolicedSize,
+    ULONG TokenRate;
+    ULONG TokenBucketSize;
+    ULONG PeakBandwidth;
+    ULONG Latency;
+    ULONG DelayVariation;
+    SERVICETYPE ServiceType;
+    ULONG MaxSduSize;
+    ULONG MinimumPolicedSize;
   } FLOWSPEC;
   typedef struct QOS {
-    FLOWSPEC SendingFlowspec,
-    FLOWSPEC ReceivingFlowspec,
-    WSABUF ProviderSpecific,
+    FLOWSPEC SendingFlowspec;
+    FLOWSPEC ReceivingFlowspec;
+    WSABUF ProviderSpecific;
   } QOS;
   typedef QOS *LPQOS; //Pointer
   typedef enum WINAPI_SocketLevel {
@@ -426,10 +426,10 @@ ffi.cdef [[
   typedef DWORD WINAPI_SendRecvFlags; //Alias
   typedef UINT WINAPI_NI_Flags; //Alias
   typedef enum WINAPI_SocketCode_int {
-    SOCKET_ERROR = WINAPI__1,
+    SOCKET_ERROR = -1,
   } WINAPI_SocketCode_int;
   typedef enum WINAPI_SocketCode_INT {
-    SOCKET_ERROR = WINAPI__1,
+    SOCKET_ERROR = -1,
   } WINAPI_SocketCode_INT;
   typedef DWORD WINAPI_NameSpaceFlags; //Alias
   typedef DWORD WINAPI_ResolutionFlags; //Alias

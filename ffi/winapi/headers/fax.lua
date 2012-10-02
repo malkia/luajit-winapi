@@ -7,59 +7,59 @@ ffi.cdef [[
   typedef TCHAR TCHAR [MAX_COMPUTERNAME_LENGTH + 1]; //Array 16
   typedef DWORD_PTR DWORD_PTR [3]; //Array 3
   typedef struct FAX_CONTEXT_INFO {
-    DWORD SizeOfStruct,
-    HDC hDC,
-    TCHAR [MAX_COMPUTERNAME_LENGTH + 1] ServerName,
+    DWORD SizeOfStruct;
+    HDC hDC;
+    TCHAR ServerName[MAX_COMPUTERNAME_LENGTH + 1];
   } FAX_CONTEXT_INFO;
   typedef FAX_CONTEXT_INFO *PFAX_CONTEXT_INFO; //Pointer
   typedef FAX_CONTEXT_INFO *WINAPI_FAX_CONTEXT_INFO*; //Pointer
   typedef struct FAX_JOB_PARAM {
-    DWORD SizeOfStruct,
-    LPCTSTR RecipientNumber,
-    LPCTSTR RecipientName,
-    LPCTSTR Tsid,
-    LPCTSTR SenderName,
-    LPCTSTR SenderCompany,
-    LPCTSTR SenderDept,
-    LPCTSTR BillingCode,
-    DWORD ScheduleAction,
-    SYSTEMTIME ScheduleTime,
-    DWORD DeliveryReportType,
-    LPCTSTR DeliveryReportAddress,
-    LPCTSTR DocumentName,
-    HCALL CallHandle,
-    DWORD_PTR [3] Reserved,
+    DWORD SizeOfStruct;
+    LPCTSTR RecipientNumber;
+    LPCTSTR RecipientName;
+    LPCTSTR Tsid;
+    LPCTSTR SenderName;
+    LPCTSTR SenderCompany;
+    LPCTSTR SenderDept;
+    LPCTSTR BillingCode;
+    DWORD ScheduleAction;
+    SYSTEMTIME ScheduleTime;
+    DWORD DeliveryReportType;
+    LPCTSTR DeliveryReportAddress;
+    LPCTSTR DocumentName;
+    HCALL CallHandle;
+    DWORD_PTR Reserved[3];
   } FAX_JOB_PARAM;
   typedef FAX_JOB_PARAM *PFAX_JOB_PARAM; //Pointer
   typedef struct FAX_TIME {
-    WORD Hour,
-    WORD Minute,
+    WORD Hour;
+    WORD Minute;
   } FAX_TIME;
   typedef struct FAX_CONFIGURATION {
-    DWORD SizeOfStruct,
-    DWORD Retries,
-    DWORD RetryDelay,
-    DWORD DirtyDays,
-    BOOL Branding,
-    BOOL UseDeviceTsid,
-    BOOL ServerCp,
-    BOOL PauseServerQueue,
-    FAX_TIME StartCheapTime,
-    FAX_TIME StopCheapTime,
-    BOOL ArchiveOutgoingFaxes,
-    LPCTSTR ArchiveDirectory,
-    LPCTSTR Reserved,
+    DWORD SizeOfStruct;
+    DWORD Retries;
+    DWORD RetryDelay;
+    DWORD DirtyDays;
+    BOOL Branding;
+    BOOL UseDeviceTsid;
+    BOOL ServerCp;
+    BOOL PauseServerQueue;
+    FAX_TIME StartCheapTime;
+    FAX_TIME StopCheapTime;
+    BOOL ArchiveOutgoingFaxes;
+    LPCTSTR ArchiveDirectory;
+    LPCTSTR Reserved;
   } FAX_CONFIGURATION;
   typedef FAX_CONFIGURATION *PFAX_CONFIGURATION; //Pointer
   typedef FAX_CONFIGURATION *WINAPI_FAX_CONFIGURATION*; //Pointer
   typedef struct FAX_GLOBAL_ROUTING_INFO {
-    DWORD SizeOfStruct,
-    DWORD Priority,
-    LPCTSTR Guid,
-    LPCTSTR FriendlyName,
-    LPCTSTR FunctionName,
-    LPCTSTR ExtensionImageName,
-    LPCTSTR ExtensionFriendlyName,
+    DWORD SizeOfStruct;
+    DWORD Priority;
+    LPCTSTR Guid;
+    LPCTSTR FriendlyName;
+    LPCTSTR FunctionName;
+    LPCTSTR ExtensionImageName;
+    LPCTSTR ExtensionFriendlyName;
   } FAX_GLOBAL_ROUTING_INFO;
   typedef FAX_GLOBAL_ROUTING_INFO *PFAX_GLOBAL_ROUTING_INFO; //Pointer
   typedef FAX_GLOBAL_ROUTING_INFO *WINAPI_FAX_GLOBAL_ROUTING_INFO*; //Pointer
@@ -76,129 +76,129 @@ ffi.cdef [[
     FAXLOG_LEVEL_MAX = 3,
   } WINAPI_FaxLogLevel;
   typedef struct FAX_LOG_CATEGORY {
-    LPCTSTR Name,
-    WINAPI_FaxLogCategory Category,
-    WINAPI_FaxLogLevel Level,
+    LPCTSTR Name;
+    WINAPI_FaxLogCategory Category;
+    WINAPI_FaxLogLevel Level;
   } FAX_LOG_CATEGORY;
   typedef FAX_LOG_CATEGORY *PFAX_LOG_CATEGORY; //Pointer
   typedef FAX_LOG_CATEGORY *WINAPI_FAX_LOG_CATEGORY*; //Pointer
   typedef struct FAX_DEVICE_STATUS {
-    DWORD SizeOfStruct,
-    LPCTSTR CallerId,
-    LPCTSTR Csid,
-    DWORD CurrentPage,
-    DWORD DeviceId,
-    LPCTSTR DeviceName,
-    LPCTSTR DocumentName,
-    DWORD JobType,
-    LPCTSTR PhoneNumber,
-    LPCTSTR RoutingString,
-    LPCTSTR SenderName,
-    LPCTSTR RecipientName,
-    DWORD Size,
-    FILETIME StartTime,
-    DWORD Status,
-    LPCTSTR StatusString,
-    FILETIME SubmittedTime,
-    DWORD TotalPages,
-    LPCTSTR Tsid,
-    LPCTSTR UserName,
+    DWORD SizeOfStruct;
+    LPCTSTR CallerId;
+    LPCTSTR Csid;
+    DWORD CurrentPage;
+    DWORD DeviceId;
+    LPCTSTR DeviceName;
+    LPCTSTR DocumentName;
+    DWORD JobType;
+    LPCTSTR PhoneNumber;
+    LPCTSTR RoutingString;
+    LPCTSTR SenderName;
+    LPCTSTR RecipientName;
+    DWORD Size;
+    FILETIME StartTime;
+    DWORD Status;
+    LPCTSTR StatusString;
+    FILETIME SubmittedTime;
+    DWORD TotalPages;
+    LPCTSTR Tsid;
+    LPCTSTR UserName;
   } FAX_DEVICE_STATUS;
   typedef FAX_DEVICE_STATUS *PFAX_DEVICE_STATUS; //Pointer
   typedef struct FAX_PORT_INFO {
-    DWORD SizeOfStruct,
-    DWORD DeviceId,
-    DWORD State,
-    DWORD Flags,
-    DWORD Rings,
-    DWORD Priority,
-    LPCTSTR DeviceName,
-    LPCTSTR Tsid,
-    LPCTSTR Csid,
+    DWORD SizeOfStruct;
+    DWORD DeviceId;
+    DWORD State;
+    DWORD Flags;
+    DWORD Rings;
+    DWORD Priority;
+    LPCTSTR DeviceName;
+    LPCTSTR Tsid;
+    LPCTSTR Csid;
   } FAX_PORT_INFO;
   typedef FAX_PORT_INFO *PFAX_PORT_INFO; //Pointer
   typedef FAX_PORT_INFO *WINAPI_FAX_PORT_INFO*; //Pointer
   typedef struct FAX_COVERPAGE_INFO {
-    DWORD SizeOfStruct,
-    LPCTSTR CoverPageName,
-    BOOL UseServerCoverPage,
-    LPCTSTR RecName,
-    LPCTSTR RecFaxNumber,
-    LPCTSTR RecCompany,
-    LPCTSTR RecStreetAddress,
-    LPCTSTR RecCity,
-    LPCTSTR RecState,
-    LPCTSTR RecZip,
-    LPCTSTR RecCountry,
-    LPCTSTR RecTitle,
-    LPCTSTR RecDepartment,
-    LPCTSTR RecOfficeLocation,
-    LPCTSTR RecHomePhone,
-    LPCTSTR RecOfficePhone,
-    LPCTSTR SdrName,
-    LPCTSTR SdrFaxNumber,
-    LPCTSTR SdrCompany,
-    LPCTSTR SdrAddress,
-    LPCTSTR SdrTitle,
-    LPCTSTR SdrDepartment,
-    LPCTSTR SdrOfficeLocation,
-    LPCTSTR SdrHomePhone,
-    LPCTSTR SdrOfficePhone,
-    LPCTSTR Note,
-    LPCTSTR Subject,
-    SYSTEMTIME TimeSent,
-    DWORD PageCount,
+    DWORD SizeOfStruct;
+    LPCTSTR CoverPageName;
+    BOOL UseServerCoverPage;
+    LPCTSTR RecName;
+    LPCTSTR RecFaxNumber;
+    LPCTSTR RecCompany;
+    LPCTSTR RecStreetAddress;
+    LPCTSTR RecCity;
+    LPCTSTR RecState;
+    LPCTSTR RecZip;
+    LPCTSTR RecCountry;
+    LPCTSTR RecTitle;
+    LPCTSTR RecDepartment;
+    LPCTSTR RecOfficeLocation;
+    LPCTSTR RecHomePhone;
+    LPCTSTR RecOfficePhone;
+    LPCTSTR SdrName;
+    LPCTSTR SdrFaxNumber;
+    LPCTSTR SdrCompany;
+    LPCTSTR SdrAddress;
+    LPCTSTR SdrTitle;
+    LPCTSTR SdrDepartment;
+    LPCTSTR SdrOfficeLocation;
+    LPCTSTR SdrHomePhone;
+    LPCTSTR SdrOfficePhone;
+    LPCTSTR Note;
+    LPCTSTR Subject;
+    SYSTEMTIME TimeSent;
+    DWORD PageCount;
   } FAX_COVERPAGE_INFO;
   typedef FAX_COVERPAGE_INFO *PFAX_COVERPAGE_INFO; //Pointer
   typedef FAX_COVERPAGE_INFO *WINAPI_FAX_COVERPAGE_INFO*; //Pointer
   typedef struct FAX_PRINT_INFO {
-    DWORD SizeOfStruct,
-    LPCTSTR DocName,
-    LPCTSTR RecipientName,
-    LPCTSTR RecipientNumber,
-    LPCTSTR SenderName,
-    LPCTSTR SenderCompany,
-    LPCTSTR SenderDept,
-    LPCTSTR SenderBillingCode,
-    LPCTSTR Reserved,
-    LPCTSTR DrEmailAddress,
-    LPCTSTR OutputFileName,
+    DWORD SizeOfStruct;
+    LPCTSTR DocName;
+    LPCTSTR RecipientName;
+    LPCTSTR RecipientNumber;
+    LPCTSTR SenderName;
+    LPCTSTR SenderCompany;
+    LPCTSTR SenderDept;
+    LPCTSTR SenderBillingCode;
+    LPCTSTR Reserved;
+    LPCTSTR DrEmailAddress;
+    LPCTSTR OutputFileName;
   } FAX_PRINT_INFO;
   typedef FAX_PRINT_INFO *WINAPI_FAX_PRINT_INFO*; //Pointer
   typedef struct FAX_JOB_ENTRY {
-    DWORD SizeOfStruct,
-    DWORD JobId,
-    LPCTSTR UserName,
-    DWORD JobType,
-    DWORD QueueStatus,
-    DWORD Status,
-    DWORD Size,
-    DWORD PageCount,
-    LPCTSTR RecipientNumber,
-    LPCTSTR RecipientName,
-    LPCTSTR Tsid,
-    LPCTSTR SenderName,
-    LPCTSTR SenderCompany,
-    LPCTSTR SenderDept,
-    LPCTSTR BillingCode,
-    DWORD ScheduleAction,
-    SYSTEMTIME ScheduleTime,
-    DWORD DeliveryReportType,
-    LPCTSTR DeliveryReportAddress,
-    LPCTSTR DocumentName,
+    DWORD SizeOfStruct;
+    DWORD JobId;
+    LPCTSTR UserName;
+    DWORD JobType;
+    DWORD QueueStatus;
+    DWORD Status;
+    DWORD Size;
+    DWORD PageCount;
+    LPCTSTR RecipientNumber;
+    LPCTSTR RecipientName;
+    LPCTSTR Tsid;
+    LPCTSTR SenderName;
+    LPCTSTR SenderCompany;
+    LPCTSTR SenderDept;
+    LPCTSTR BillingCode;
+    DWORD ScheduleAction;
+    SYSTEMTIME ScheduleTime;
+    DWORD DeliveryReportType;
+    LPCTSTR DeliveryReportAddress;
+    LPCTSTR DocumentName;
   } FAX_JOB_ENTRY;
   typedef FAX_JOB_ENTRY *PFAX_JOB_ENTRY; //Pointer
   typedef FAX_JOB_ENTRY *WINAPI_FAX_JOB_ENTRY*; //Pointer
   typedef struct FAX_ROUTING_METHOD {
-    DWORD SizeOfStruct,
-    DWORD DeviceId,
-    BOOL Enabled,
-    LPCTSTR DeviceName,
-    LPCTSTR Guid,
-    LPCTSTR FriendlyName,
-    LPCTSTR FunctionName,
-    LPCTSTR ExtensionImageName,
-    LPCTSTR ExtensionFriendlyName,
+    DWORD SizeOfStruct;
+    DWORD DeviceId;
+    BOOL Enabled;
+    LPCTSTR DeviceName;
+    LPCTSTR Guid;
+    LPCTSTR FriendlyName;
+    LPCTSTR FunctionName;
+    LPCTSTR ExtensionImageName;
+    LPCTSTR ExtensionFriendlyName;
   } FAX_ROUTING_METHOD;
   typedef FAX_ROUTING_METHOD *PFAX_ROUTING_METHOD; //Pointer
 ]]

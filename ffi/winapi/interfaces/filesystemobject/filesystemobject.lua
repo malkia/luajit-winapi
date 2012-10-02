@@ -1,6 +1,17 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IDictionary; //Interface
+  typedef void* IDrive; //Interface
+  typedef void* IDriveCollection; //Interface
+  typedef void* IFile; //Interface
+  typedef void* IFileCollection; //Interface
+  typedef void* IFileSystem; //Interface
+  typedef void* IFileSystem3; //Interface
+  typedef void* IFolder; //Interface
+  typedef void* IFolderCollection; //Interface
+  typedef void* IScriptEncoder; //Interface
+  typedef void* ITextStream; //Interface
   typedef enum CompareMethod {
     BinaryCompare = 0,
     TextCompare = 1,
@@ -12,9 +23,9 @@ ffi.cdef [[
     ForAppending = 8,
   } IOMode;
   typedef enum Tristate {
-    TristateTrue = WINAPI__1,
+    TristateTrue = -1,
     TristateFalse = 0,
-    TristateUseDefault = WINAPI__2,
+    TristateUseDefault = -2,
   } Tristate;
   typedef UINT FileAttribute; //Alias
   typedef enum SpecialFolderConst {

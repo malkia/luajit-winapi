@@ -5,6 +5,50 @@ ffi.cdef [[
   typedef LPVOID LPSPropValue; //Alias
   typedef LPVOID LPNOTIFICATION; //Alias
   typedef LPVOID LPSRestriction; //Alias
+  typedef void* IABContainer; //Interface
+  typedef void* IABLogon; //Interface
+  typedef void* IABProvider; //Interface
+  typedef void* IAddrBook; //Interface
+  typedef void* IAttach; //Interface
+  typedef void* IDistList; //Interface
+  typedef void* IMailUser; //Interface
+  typedef void* IMAPIAdviseSink; //Interface
+  typedef void* IMAPIContainer; //Interface
+  typedef void* IMAPIControl; //Interface
+  typedef void* IMAPIFolder; //Interface
+  typedef void* IMAPIForm; //Interface
+  typedef void* IMAPIFormAdviseSink; //Interface
+  typedef void* IMAPIFormContainer; //Interface
+  typedef void* IMAPIFormFactory; //Interface
+  typedef void* IMAPIFormInfo; //Interface
+  typedef void* IMAPIFormMgr; //Interface
+  typedef void* IMAPIMessageSite; //Interface
+  typedef void* IMAPIProgress; //Interface
+  typedef void* IMAPIProp; //Interface
+  typedef void* IMAPISession; //Interface
+  typedef void* IMAPIStatus; //Interface
+  typedef void* IMAPISupport; //Interface
+  typedef void* IMAPITable; //Interface
+  typedef void* IMAPIViewAdviseSink; //Interface
+  typedef void* IMAPIViewContext; //Interface
+  typedef void* IMessage; //Interface
+  typedef void* IMsgServiceAdmin; //Interface
+  typedef void* IMsgStore; //Interface
+  typedef void* IMSLogon; //Interface
+  typedef void* IMSProvider; //Interface
+  typedef void* IPersistMessage; //Interface
+  typedef void* IProfAdmin; //Interface
+  typedef void* IProfSect; //Interface
+  typedef void* IPropData; //Interface
+  typedef void* IProviderAdmin; //Interface
+  typedef void* ISpoolerHook; //Interface
+  typedef void* ITableData; //Interface
+  typedef void* ITnef; //Interface
+  typedef void* IWABExtInit; //Interface
+  typedef void* IWABObject; //Interface
+  typedef void* IXPLogon; //Interface
+  typedef void* IXPProvider; //Interface
+  typedef void* IWABObject; //Interface
   typedef ITnef** LPITNEF*; //Alias
   typedef IXPProvider** LPXPPROVIDER*; //Alias
   typedef IWABObject* LPWABOBJECT; //Alias
@@ -64,20 +108,20 @@ ffi.cdef [[
   typedef ULONG WINAPI_FlagList_FLAGS; //Alias
   typedef WINAPI_FlagList_FLAGS WINAPI_FlagList_FLAGS [MAPI_DIM]; //Array 1
   typedef struct FlagList {
-    ULONG cFlags,
-    WINAPI_FlagList_FLAGS [MAPI_DIM] ulFlag,
+    ULONG cFlags;
+    WINAPI_FlagList_FLAGS ulFlag[MAPI_DIM];
   } FlagList;
   typedef FlagList *LPFlagList; //Pointer
   typedef BYTE WINAPI_ENTRYID_FLAGS; //Alias
   typedef WINAPI_ENTRYID_FLAGS WINAPI_ENTRYID_FLAGS [4]; //Array 4
   typedef struct ENTRYID {
-    WINAPI_ENTRYID_FLAGS [4] abFlags,
-    BYTE [MAPI_DIM] ab,
+    WINAPI_ENTRYID_FLAGS abFlags[4];
+    BYTE ab[MAPI_DIM];
   } ENTRYID;
   typedef ENTRYID *LPENTRYID; //Pointer
   typedef struct SMessageClassArray {
-    ULONG cValues,
-    LPCSTR [MAPI_DIM] aMessageClass,
+    ULONG cValues;
+    LPCSTR aMessageClass[MAPI_DIM];
   } SMessageClassArray;
   typedef SMessageClassArray *LPSMESSAGECLASSARRAY; //Pointer
   typedef enum WINAPI_MAPINAMEID_CHOICE {
@@ -85,151 +129,151 @@ ffi.cdef [[
     MNID_STRING = 1,
   } WINAPI_MAPINAMEID_CHOICE;
   typedef union WINAPI_MAPINAMEID_u {
-    LONG lID,
-    LPWSTR lpwstrName,
+    LONG lID;
+    LPWSTR lpwstrName;
   } WINAPI_MAPINAMEID_u;
   typedef struct MAPINAMEID {
-    LPGUID lpguid,
-    WINAPI_MAPINAMEID_CHOICE ulKind,
-    WINAPI_MAPINAMEID_u Kind,
+    LPGUID lpguid;
+    WINAPI_MAPINAMEID_CHOICE ulKind;
+    WINAPI_MAPINAMEID_u Kind;
   } MAPINAMEID;
   typedef MAPINAMEID *LPMAPINAMEID; //Pointer
   typedef struct SMAPIFormPropEnumVal {
-    LPTSTR pszDisplayName,
-    ULONG nVal,
+    LPTSTR pszDisplayName;
+    ULONG nVal;
   } SMAPIFormPropEnumVal;
   typedef SMAPIFormPropEnumVal *LPMAPIFORMPROPENUMVAL; //Pointer
   typedef struct WINAPI_SMAPIFormProp_u_s {
-    MAPINAMEID nmidIdx,
-    ULONG cfpevAvailable,
-    LPMAPIFORMPROPENUMVAL pfpevAvailable,
+    MAPINAMEID nmidIdx;
+    ULONG cfpevAvailable;
+    LPMAPIFORMPROPENUMVAL pfpevAvailable;
   } WINAPI_SMAPIFormProp_u_s;
   typedef union WINAPI_SMAPIFormProp_u {
-    WINAPI_SMAPIFormProp_u_s s1,
+    WINAPI_SMAPIFormProp_u_s s1;
   } WINAPI_SMAPIFormProp_u;
   typedef enum FORMPROPSPECIALTYPE {
     FPST_VANILLA = 0,
     FPST_ENUM_PROP = 1,
   } FORMPROPSPECIALTYPE;
   typedef struct SMAPIFormProp {
-    WINAPI_MapiUnicodeFlag ulFlags,
-    ULONG nPropType,
-    MAPINAMEID nmid,
-    LPTSTR pszDisplayName,
-    FORMPROPSPECIALTYPE nSpecialType,
-    WINAPI_SMAPIFormProp_u u,
+    WINAPI_MapiUnicodeFlag ulFlags;
+    ULONG nPropType;
+    MAPINAMEID nmid;
+    LPTSTR pszDisplayName;
+    FORMPROPSPECIALTYPE nSpecialType;
+    WINAPI_SMAPIFormProp_u u;
   } SMAPIFormProp;
   typedef SMAPIFormProp SMAPIFormProp [MAPI_DIM]; //Array 1
   typedef struct SMAPIFormPropArray {
-    ULONG cProps,
-    ULONG ulPad,
-    SMAPIFormProp [MAPI_DIM] aFormProp,
+    ULONG cProps;
+    ULONG ulPad;
+    SMAPIFormProp aFormProp[MAPI_DIM];
   } SMAPIFormPropArray;
   typedef SMAPIFormPropArray *LPMAPIFORMPROPARRAY; //Pointer
   typedef struct SMAPIFormInfoArray {
-    ULONG cForms,
-    LPMAPIFORMINFO [MAPI_DIM] aFormInfo,
+    ULONG cForms;
+    LPMAPIFORMINFO aFormInfo[MAPI_DIM];
   } SMAPIFormInfoArray;
   typedef SMAPIFormInfoArray *LPSMAPIFORMINFOARRAY; //Pointer
   typedef struct SMAPIVerb {
-    LONG lVerb,
-    LPTSTR szVerbname,
-    DWORD fuFlags,
-    DWORD grfAttribs,
-    WINAPI_MapiUnicodeFlag ulFlags,
+    LONG lVerb;
+    LPTSTR szVerbname;
+    DWORD fuFlags;
+    DWORD grfAttribs;
+    WINAPI_MapiUnicodeFlag ulFlags;
   } SMAPIVerb;
   typedef SMAPIVerb SMAPIVerb [MAPI_DIM]; //Array 1
   typedef struct SMAPIVerbArray {
-    ULONG cMAPIVerb,
-    SMAPIVerb [MAPI_DIM] aMAPIVerb,
+    ULONG cMAPIVerb;
+    SMAPIVerb aMAPIVerb[MAPI_DIM];
   } SMAPIVerbArray;
   typedef SMAPIVerbArray *LPMAPIVERBARRAY; //Pointer
   typedef struct NOTIFKEY {
-    ULONG cb,
-    BYTE [MAPI_DIM] ab,
+    ULONG cb;
+    BYTE ab[MAPI_DIM];
   } NOTIFKEY;
   typedef NOTIFKEY *LPNOTIFKEY; //Pointer
   typedef struct SPropTagArray {
-    ULONG cValues,
-    ULONG [MAPI_DIM] aulPropTag,
+    ULONG cValues;
+    ULONG aulPropTag[MAPI_DIM];
   } SPropTagArray;
   typedef SPropTagArray *LPSPropTagArray; //Pointer
   typedef struct SRow {
-    ULONG ulAdrEntryPad,
-    ULONG cValues,
-    LPSPropValue lpProps,
+    ULONG ulAdrEntryPad;
+    ULONG cValues;
+    LPSPropValue lpProps;
   } SRow;
   typedef SRow *LPSRow; //Pointer
   typedef SRow SRow [MAPI_DIM]; //Array 1
   typedef struct SRowSet {
-    ULONG cRows,
-    SRow [MAPI_DIM] aRow,
+    ULONG cRows;
+    SRow aRow[MAPI_DIM];
   } SRowSet;
   typedef SRowSet *LPSRowSet; //Pointer
   typedef ULONG WINAPI_TABLE_SORT; //Alias
   typedef struct SSortOrder {
-    ULONG ulPropTag,
-    WINAPI_TABLE_SORT ulOrder,
+    ULONG ulPropTag;
+    WINAPI_TABLE_SORT ulOrder;
   } SSortOrder;
   typedef SSortOrder SSortOrder [MAPI_DIM]; //Array 1
   typedef struct SSortOrderSet {
-    ULONG cSorts,
-    ULONG cCategories,
-    ULONG cExpanded,
-    SSortOrder [MAPI_DIM] aSort,
+    ULONG cSorts;
+    ULONG cCategories;
+    ULONG cExpanded;
+    SSortOrder aSort[MAPI_DIM];
   } SSortOrderSet;
   typedef SSortOrderSet *LPSSortOrderSet; //Pointer
   typedef struct ADRENTRY {
-    ULONG ulReserved1,
-    ULONG cValues,
-    LPSPropValue rgPropVals,
+    ULONG ulReserved1;
+    ULONG cValues;
+    LPSPropValue rgPropVals;
   } ADRENTRY;
   typedef ADRENTRY *LPADRENTRY; //Pointer
   typedef ADRENTRY ADRENTRY [MAPI_DIM]; //Array 1
   typedef struct ADRLIST {
-    ULONG cEntries,
-    ADRENTRY [MAPI_DIM] aEntries,
+    ULONG cEntries;
+    ADRENTRY aEntries[MAPI_DIM];
   } ADRLIST;
   typedef ADRLIST *LPADRLIST; //Pointer
   typedef ULONG WINAPI_PROPATTR_FLAGS; //Alias
   typedef WINAPI_PROPATTR_FLAGS WINAPI_PROPATTR_FLAGS [MAPI_DIM]; //Array 1
   typedef struct SPropAttrArray {
-    ULONG cValues,
-    WINAPI_PROPATTR_FLAGS [MAPI_DIM] aPropAttr,
+    ULONG cValues;
+    WINAPI_PROPATTR_FLAGS aPropAttr[MAPI_DIM];
   } SPropAttrArray;
   typedef SPropAttrArray *LPSPropAttrArray; //Pointer
   typedef union WINAPI_DTPAGE_u {
-    LPTSTR lpszComponent,
-    ULONG ulItemID,
+    LPTSTR lpszComponent;
+    ULONG ulItemID;
   } WINAPI_DTPAGE_u;
   typedef struct DTPAGE {
-    ULONG cctl,
-    LPTSTR lpszResourceName,
-    WINAPI_DTPAGE_u ,
-    LPDTCTL lpctl,
+    ULONG cctl;
+    LPTSTR lpszResourceName;
+    WINAPI_DTPAGE_u ;
+    LPDTCTL lpctl;
   } DTPAGE;
   typedef DTPAGE *LPDTPAGE; //Pointer
   typedef struct SPropProblem {
-    ULONG ulIndex,
-    ULONG ulPropTag,
-    SCODE scode,
+    ULONG ulIndex;
+    ULONG ulPropTag;
+    SCODE scode;
   } SPropProblem;
   typedef SPropProblem SPropProblem [MAPI_DIM]; //Array 1
   typedef struct SPropProblemArray {
-    ULONG cProblem,
-    SPropProblem [MAPI_DIM] aProblem,
+    ULONG cProblem;
+    SPropProblem aProblem[MAPI_DIM];
   } SPropProblemArray;
   typedef SPropProblemArray *LPSPropProblemArray*; //Pointer
   typedef struct STnefProblem {
-    ULONG ulComponent,
-    ULONG ulAttribute,
-    ULONG ulPropTag,
-    SCODE scode,
+    ULONG ulComponent;
+    ULONG ulAttribute;
+    ULONG ulPropTag;
+    SCODE scode;
   } STnefProblem;
   typedef STnefProblem STnefProblem [MAPI_DIM]; //Array 1
   typedef struct STnefProblemArray {
-    ULONG cProblem,
-    STnefProblem [MAPI_DIM] aProblem,
+    ULONG cProblem;
+    STnefProblem aProblem[MAPI_DIM];
   } STnefProblemArray;
   typedef STnefProblemArray *LPSTnefProblemArray*; //Pointer
   typedef UINT METHODS; //Alias
@@ -265,62 +309,62 @@ ffi.cdef [[
   } WINAPI_MapiTableStatus;
   typedef ULONG WINAPI_ADRPARM_Flags; //Alias
   typedef struct ADRPARM {
-    ULONG cbABContEntryID,
-    LPENTRYID lpABContEntryID,
-    WINAPI_ADRPARM_Flags ulFlags,
-    LPVOID lpReserved,
-    ULONG ulHelpContext,
-    LPTSTR lpszHelpFileName,
-    LPFNABSDI lpfnABSDI,
-    LPFNDISMISS lpfnDismiss,
-    LPVOID lpvDismissContext,
-    LPTSTR lpszCaption,
-    LPTSTR lpszNewEntryTitle,
-    LPTSTR lpszDestWellsTitle,
-    ULONG cDestFields,
-    ULONG nDestFieldFocus,
-    LPTSTR* lppszDestTitles,
-    ULONG* lpulDestComps,
-    LPSRestriction lpContRestriction,
-    LPSRestriction lpHierRestriction,
+    ULONG cbABContEntryID;
+    LPENTRYID lpABContEntryID;
+    WINAPI_ADRPARM_Flags ulFlags;
+    LPVOID lpReserved;
+    ULONG ulHelpContext;
+    LPTSTR lpszHelpFileName;
+    LPFNABSDI lpfnABSDI;
+    LPFNDISMISS lpfnDismiss;
+    LPVOID lpvDismissContext;
+    LPTSTR lpszCaption;
+    LPTSTR lpszNewEntryTitle;
+    LPTSTR lpszDestWellsTitle;
+    ULONG cDestFields;
+    ULONG nDestFieldFocus;
+    LPTSTR* lppszDestTitles;
+    ULONG* lpulDestComps;
+    LPSRestriction lpContRestriction;
+    LPSRestriction lpHierRestriction;
   } ADRPARM;
   typedef ADRPARM *LPADRPARM; //Pointer
   typedef struct FORMPRINTSETUP {
-    WINAPI_MapiUnicodeFlag ulFlags,
-    HGLOBAL hDevMode,
-    HGLOBAL hDevNames,
-    ULONG ulFirstPageNumber,
-    ULONG fPrintAttachments,
+    WINAPI_MapiUnicodeFlag ulFlags;
+    HGLOBAL hDevMode;
+    HGLOBAL hDevNames;
+    ULONG ulFirstPageNumber;
+    ULONG fPrintAttachments;
   } FORMPRINTSETUP;
   typedef FORMPRINTSETUP *LPFORMPRINTSETUP; //Pointer
   typedef ULONG WINAPI_WABEXTDISPLAY_Flags; //Alias
   typedef struct WABEXTDISPLAY {
-    ULONG cbSize,
-    LPWABOBJECT lpWABObject,
-    LPADRBOOK lpAdrBook,
-    LPMAPIPROP lpPropObj,
-    BOOL fReadOnly,
-    BOOL fDataChanged,
-    WINAPI_WABEXTDISPLAY_Flags ulFlags,
-    LPVOID lpv,
-    LPTSTR lpsz,
+    ULONG cbSize;
+    LPWABOBJECT lpWABObject;
+    LPADRBOOK lpAdrBook;
+    LPMAPIPROP lpPropObj;
+    BOOL fReadOnly;
+    BOOL fDataChanged;
+    WINAPI_WABEXTDISPLAY_Flags ulFlags;
+    LPVOID lpv;
+    LPTSTR lpsz;
   } WABEXTDISPLAY;
   typedef WABEXTDISPLAY *LPWABEXTDISPLAY; //Pointer
   typedef struct OPTIONDATA {
-    ULONG ulFlags,
-    LPGUID lpRecipGUID,
-    LPTSTR lpszAdrType,
-    LPTSTR lpszDLLName,
-    ULONG ulOrdinal,
-    ULONG cbOptionsData,
-    LPBYTE lpbOptionsData,
-    ULONG cOptionsProps,
-    LPSPropValue lpOptionsProps,
+    ULONG ulFlags;
+    LPGUID lpRecipGUID;
+    LPTSTR lpszAdrType;
+    LPTSTR lpszDLLName;
+    ULONG ulOrdinal;
+    ULONG cbOptionsData;
+    LPBYTE lpbOptionsData;
+    ULONG cOptionsProps;
+    LPSPropValue lpOptionsProps;
   } OPTIONDATA;
   typedef OPTIONDATA *LPOPTIONDATA*; //Pointer
   typedef struct SBinary {
-    ULONG cb,
-    LPBYTE lpb,
+    ULONG cb;
+    LPBYTE lpb;
   } SBinary;
   typedef enum HFRMREG {
     HFRMREG_DEFAULT = 0,
@@ -334,23 +378,23 @@ ffi.cdef [[
     BOOKMARK_END = 2,
   } BOOKMARK;
   typedef struct SBinaryArray {
-    ULONG cValues,
-    SBinary* lpbin,
+    ULONG cValues;
+    SBinary* lpbin;
   } SBinaryArray;
   typedef SBinaryArray *LPENTRYLIST; //Pointer
   typedef struct MAPIERROR {
-    ULONG ulVersion,
-    LPTSTR lpszError,
-    LPTSTR lpszComponent,
-    ULONG ulLowLevelError,
-    ULONG ulContext,
+    ULONG ulVersion;
+    LPTSTR lpszError;
+    LPTSTR lpszComponent;
+    ULONG ulLowLevelError;
+    ULONG ulContext;
   } MAPIERROR;
   typedef MAPIERROR *LPMAPIERROR; //Pointer
   typedef ULONG WINAPI_MapiInitVersion; //Alias
   typedef ULONG WINAPI_MapiInitFlags; //Alias
   typedef struct MAPIINIT_0 {
-    WINAPI_MapiInitVersion ulVersion,
-    WINAPI_MapiInitFlags ulFlags,
+    WINAPI_MapiInitVersion ulVersion;
+    WINAPI_MapiInitFlags ulFlags;
   } MAPIINIT_0;
   typedef MAPIINIT_0 *LPMAPIINIT_0; //Pointer
 ]]

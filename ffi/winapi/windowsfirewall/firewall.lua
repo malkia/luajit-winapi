@@ -1,6 +1,24 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* INetFwAuthorizedApplication; //Interface
+  typedef void* INetFwAuthorizedApplications; //Interface
+  typedef void* INetFwIcmpSettings; //Interface
+  typedef void* INetFwMgr; //Interface
+  typedef void* INetFwOpenPort; //Interface
+  typedef void* INetFwOpenPorts; //Interface
+  typedef void* INetFwPolicy; //Interface
+  typedef void* INetFwPolicy2; //Interface
+  typedef void* INetFwProduct; //Interface
+  typedef void* INetFwProducts; //Interface
+  typedef void* INetFwProfile; //Interface
+  typedef void* INetFwRemoteAdminSettings; //Interface
+  typedef void* INetFwRule; //Interface
+  typedef void* INetFwRule2; //Interface
+  typedef void* INetFwRules; //Interface
+  typedef void* INetFwService; //Interface
+  typedef void* INetFwServiceRestriction; //Interface
+  typedef void* INetFwServices; //Interface
   typedef enum NET_FW_IP_VERSION {
     NET_FW_IP_VERSION_V4 = 0,
     NET_FW_IP_VERSION_V6 = 1,

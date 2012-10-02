@@ -2,6 +2,13 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/shell' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IConnectableCredentialProviderCredential; //Interface
+  typedef void* ICredentialProvider; //Interface
+  typedef void* ICredentialProviderCredential; //Interface
+  typedef void* ICredentialProviderCredentialEvents; //Interface
+  typedef void* ICredentialProviderEvents; //Interface
+  typedef void* ICredentialProviderFilter; //Interface
+  typedef void* IQueryContinueWithStatus; //Interface
   typedef enum CREDENTIAL_PROVIDER_FIELD_STATE {
     CPFS_HIDDEN = 0,
     CPFS_DISPLAY_IN_SELECTED_TILE = 1,
@@ -34,10 +41,10 @@ ffi.cdef [[
     CPFIS_FOCUSED = 3,
   } CREDENTIAL_PROVIDER_FIELD_INTERACTIVE_STATE;
   typedef struct CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION {
-    ULONG ulAuthenticationPackage,
-    GUID clsidCredentialProvider,
-    ULONG cbSerialization,
-    byte* rgbSerialization,
+    ULONG ulAuthenticationPackage;
+    GUID clsidCredentialProvider;
+    ULONG cbSerialization;
+    byte* rgbSerialization;
   } CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION;
   typedef CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION *WINAPI_CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION*; //Pointer
   typedef enum CREDENTIAL_PROVIDER_FIELD_TYPE {
@@ -53,9 +60,9 @@ ffi.cdef [[
     CPFT_SUBMIT_BUTTON = 9,
   } CREDENTIAL_PROVIDER_FIELD_TYPE;
   typedef struct CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR {
-    DWORD dwFieldID,
-    CREDENTIAL_PROVIDER_FIELD_TYPE cpft,
-    LPWSTR pszLabel,
-    GUID guidFieldType,
+    DWORD dwFieldID;
+    CREDENTIAL_PROVIDER_FIELD_TYPE cpft;
+    LPWSTR pszLabel;
+    GUID guidFieldType;
   } CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR;
 ]]

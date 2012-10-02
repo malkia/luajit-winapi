@@ -2,6 +2,23 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/shell' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IPropertyChange; //Interface
+  typedef void* IPropertyChangeArray; //Interface
+  typedef void* IPropertyDescription; //Interface
+  typedef void* IPropertyDescription2; //Interface
+  typedef void* IPropertyDescriptionAliasInfo; //Interface
+  typedef void* IPropertyDescriptionList; //Interface
+  typedef void* IPropertyDescriptionRelatedPropertyInfo; //Interface
+  typedef void* IPropertyDescriptionSearchInfo; //Interface
+  typedef void* IPropertyEnumType; //Interface
+  typedef void* IPropertyEnumType2; //Interface
+  typedef void* IPropertyEnumTypeList; //Interface
+  typedef void* IPropertyStore; //Interface
+  typedef void* IPropertyStoreCache; //Interface
+  typedef void* IPropertyStoreCapabilities; //Interface
+  typedef void* IPropertyStoreFactory; //Interface
+  typedef void* IPropertySystem; //Interface
+  typedef void* IPropertyUI; //Interface
   typedef HRESULT PSSTDAPI; //Alias
   typedef LPVOID SERIALIZEDPROPSTORAGE*; //Alias
   typedef LPVOID PCUSERIALIZEDPROPSTORAGE; //Alias
