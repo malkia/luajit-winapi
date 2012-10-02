@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   ULONG TcAddFilter(           HANDLE FlowHandle, PTC_GEN_FILTER pGenericFilter, PHANDLE pFilterHandle);
   ULONG TcAddFlow(             HANDLE IfcHandle, HANDLE ClFlowCtx, ULONG Flags, PTC_GEN_FLOW pGenericFlow, PHANDLE pFlowHandle);
@@ -18,4 +18,4 @@ ffi.cdef [[
   ULONG TcSetFlow(             LPTSTR pFlowName, LPGUID pGuidParam, ULONG BufferSize, PVOID Buffer);
   ULONG TcSetInterface(        HANDLE IfcHandle, LPGUID pGuidParam, ULONG BufferSize, PVOID Buffer);
 ]]
-return ffi.load( "Traffic.dll" )
+return ffi.load( 'Traffic.dll' )

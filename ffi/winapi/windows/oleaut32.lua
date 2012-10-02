@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/ole" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/ole' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HCURSOR        OleIconToCursor(                 HINSTANCE hinstExe, HICON hIcon);
   HRESULT        OleCreateFontIndirect(           LPFONTDESC lpFontDesc, REFIID riid, LPVOID* lplpvObj);
@@ -68,7 +68,7 @@ ffi.cdef [[
   HRESULT        VarI1FromR4(                     FLOAT fltIn, CHAR* pcOut);
   HRESULT        VarI1FromR8(                     DOUBLE dblIn, CHAR* pcOut);
   HRESULT        VarI1FromCy(                     CY cyIn, CHAR* pcOut);
-  HRESULT        VarI1FromDec(                    DECIMAL* pdecIn, CHAR* pcOut);
+  HRESULT        VarI1FromDec(                    WINAPI_DECIMAL* pdecIn, CHAR* pcOut);
   HRESULT        VarI1FromDate(                   DATE dateIn, CHAR* pcOut);
   HRESULT        VarI1FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, CHAR* pcOut);
   HRESULT        VarI1FromDisp(                   IDispatch* pdispIn, LCID lcid, CHAR* pcOut);
@@ -83,7 +83,7 @@ ffi.cdef [[
   HRESULT        VarUI1FromR4(                    FLOAT fltIn, BYTE* pbOut);
   HRESULT        VarUI1FromR8(                    DOUBLE dblIn, BYTE* pbOut);
   HRESULT        VarUI1FromCy(                    CY cyIn, BYTE* pbOut);
-  HRESULT        VarUI1FromDec(                   DECIMAL* pdecIn, BYTE* pbOut);
+  HRESULT        VarUI1FromDec(                   WINAPI_DECIMAL* pdecIn, BYTE* pbOut);
   HRESULT        VarUI1FromDate(                  DATE dateIn, BYTE* pbOut);
   HRESULT        VarUI1FromStr(                   LPCOLESTR strIn, LCID lcid, ULONG dwFlags, BYTE* pbOut);
   HRESULT        VarUI1FromDisp(                  IDispatch* pdispIn, LCID lcid, BYTE* pbOut);
@@ -98,7 +98,7 @@ ffi.cdef [[
   HRESULT        VarI2FromR4(                     FLOAT fltIn, SHORT* psOut);
   HRESULT        VarI2FromR8(                     DOUBLE dblIn, SHORT* psOut);
   HRESULT        VarI2FromCy(                     CY cyIn, SHORT* psOut);
-  HRESULT        VarI2FromDec(                    DECIMAL* pdecIn, SHORT* psOut);
+  HRESULT        VarI2FromDec(                    WINAPI_DECIMAL* pdecIn, SHORT* psOut);
   HRESULT        VarI2FromDate(                   DATE dateIn, SHORT* psOut);
   HRESULT        VarI2FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, SHORT* psOut);
   HRESULT        VarI2FromDisp(                   IDispatch* pdispIn, LCID lcid, SHORT* psOut);
@@ -113,7 +113,7 @@ ffi.cdef [[
   HRESULT        VarUI2FromR4(                    FLOAT fltIn, USHORT* puiOut);
   HRESULT        VarUI2FromR8(                    DOUBLE dblIn, USHORT* puiOut);
   HRESULT        VarUI2FromCy(                    CY cyIn, USHORT* puiOut);
-  HRESULT        VarUI2FromDec(                   DECIMAL* pdecIn, USHORT* puiOut);
+  HRESULT        VarUI2FromDec(                   WINAPI_DECIMAL* pdecIn, USHORT* puiOut);
   HRESULT        VarUI2FromDate(                  DATE dateIn, USHORT* puiOut);
   HRESULT        VarUI2FromStr(                   LPCOLESTR strIn, LCID lcid, ULONG dwFlags, USHORT* puiOut);
   HRESULT        VarUI2FromDisp(                  IDispatch* pdispIn, LCID lcid, USHORT* puiOut);
@@ -128,7 +128,7 @@ ffi.cdef [[
   HRESULT        VarI4FromR4(                     FLOAT fltIn, LONG* plOut);
   HRESULT        VarI4FromR8(                     DOUBLE dblIn, LONG* plOut);
   HRESULT        VarI4FromCy(                     CY cyIn, LONG* plOut);
-  HRESULT        VarI4FromDec(                    DECIMAL* pdecIn, LONG* plOut);
+  HRESULT        VarI4FromDec(                    WINAPI_DECIMAL* pdecIn, LONG* plOut);
   HRESULT        VarI4FromDate(                   DATE dateIn, LONG* plOut);
   HRESULT        VarI4FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, LONG* plOut);
   HRESULT        VarI4FromDisp(                   IDispatch* pdispIn, LCID lcid, LONG* plOut);
@@ -143,7 +143,7 @@ ffi.cdef [[
   HRESULT        VarUI4FromR4(                    FLOAT fltIn, ULONG* pulOut);
   HRESULT        VarUI4FromR8(                    DOUBLE dblIn, ULONG* pulOut);
   HRESULT        VarUI4FromCy(                    CY cyIn, ULONG* pulOut);
-  HRESULT        VarUI4FromDec(                   DECIMAL* pdecIn, ULONG* pulOut);
+  HRESULT        VarUI4FromDec(                   WINAPI_DECIMAL* pdecIn, ULONG* pulOut);
   HRESULT        VarUI4FromDate(                  DATE dateIn, ULONG* pulOut);
   HRESULT        VarUI4FromStr(                   LPCOLESTR strIn, LCID lcid, ULONG dwFlags, ULONG* pulOut);
   HRESULT        VarUI4FromDisp(                  IDispatch* pdispIn, LCID lcid, ULONG* pulOut);
@@ -158,7 +158,7 @@ ffi.cdef [[
   HRESULT        VarR4FromI8(                     LONG64 i64In, FLOAT* pfltOut);
   HRESULT        VarR4FromR8(                     DOUBLE dblIn, FLOAT* pfltOut);
   HRESULT        VarR4FromCy(                     CY cyIn, FLOAT* pfltOut);
-  HRESULT        VarR4FromDec(                    DECIMAL* pdecIn, FLOAT* pfltOut);
+  HRESULT        VarR4FromDec(                    WINAPI_DECIMAL* pdecIn, FLOAT* pfltOut);
   HRESULT        VarR4FromDate(                   DATE dateIn, FLOAT* pfltOut);
   HRESULT        VarR4FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, FLOAT* pfltOut);
   HRESULT        VarR4FromDisp(                   IDispatch* pdispIn, LCID lcid, FLOAT* pfltOut);
@@ -173,7 +173,7 @@ ffi.cdef [[
   HRESULT        VarR8FromI8(                     LONG64 i64In, DOUBLE* pdblOut);
   HRESULT        VarR8FromR4(                     FLOAT fltIn, DOUBLE* pdblOut);
   HRESULT        VarR8FromCy(                     CY cyIn, DOUBLE* pdblOut);
-  HRESULT        VarR8FromDec(                    DECIMAL* pdecIn, DOUBLE* pdblOut);
+  HRESULT        VarR8FromDec(                    WINAPI_DECIMAL* pdecIn, DOUBLE* pdblOut);
   HRESULT        VarR8FromDate(                   DATE dateIn, DOUBLE* pdblOut);
   HRESULT        VarR8FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, DOUBLE* pdblOut);
   HRESULT        VarR8FromDisp(                   IDispatch* pdispIn, LCID lcid, DOUBLE* pdblOut);
@@ -189,7 +189,7 @@ ffi.cdef [[
   HRESULT        VarDateFromR4(                   FLOAT fltIn, DATE* pdateOut);
   HRESULT        VarDateFromR8(                   DOUBLE dblIn, DATE* pdateOut);
   HRESULT        VarDateFromCy(                   CY cyIn, DATE* pdateOut);
-  HRESULT        VarDateFromDec(                  DECIMAL* pdecIn, DATE* pdateOut);
+  HRESULT        VarDateFromDec(                  WINAPI_DECIMAL* pdecIn, DATE* pdateOut);
   HRESULT        VarDateFromStr(                  LPCOLESTR strIn, LCID lcid, ULONG dwFlags, DATE* pdateOut);
   HRESULT        VarDateFromDisp(                 IDispatch* pdispIn, LCID lcid, DATE* pdateOut);
   HRESULT        VarDateFromBool(                 VARIANT_BOOL boolIn, DATE* pdateOut);
@@ -203,7 +203,7 @@ ffi.cdef [[
   HRESULT        VarCyFromI8(                     LONG64 i64In, CY* pcyOut);
   HRESULT        VarCyFromR4(                     FLOAT fltIn, CY* pcyOut);
   HRESULT        VarCyFromR8(                     DOUBLE dblIn, CY* pcyOut);
-  HRESULT        VarCyFromDec(                    DECIMAL* pdecIn, CY* pcyOut);
+  HRESULT        VarCyFromDec(                    WINAPI_DECIMAL* pdecIn, CY* pcyOut);
   HRESULT        VarCyFromDate(                   DATE dateIn, CY* pcyOut);
   HRESULT        VarCyFromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, CY* pcyOut);
   HRESULT        VarCyFromDisp(                   IDispatch* pdispIn, LCID lcid, CY* pcyOut);
@@ -219,7 +219,7 @@ ffi.cdef [[
   HRESULT        VarBstrFromR4(                   FLOAT fltIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromR8(                   DOUBLE dblIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromCy(                   CY cyIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
-  HRESULT        VarBstrFromDec(                  DECIMAL* pdecIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
+  HRESULT        VarBstrFromDec(                  WINAPI_DECIMAL* pdecIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromDate(                 DATE dateIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromDisp(                 IDispatch* pdispIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromBool(                 VARIANT_BOOL boolIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
@@ -234,7 +234,7 @@ ffi.cdef [[
   HRESULT        VarBoolFromR4(                   FLOAT fltIn, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromR8(                   DOUBLE dblIn, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromCy(                   CY cyIn, VARIANT_BOOL* pboolOut);
-  HRESULT        VarBoolFromDec(                  DECIMAL* pdecIn, VARIANT_BOOL* pboolOut);
+  HRESULT        VarBoolFromDec(                  WINAPI_DECIMAL* pdecIn, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromDate(                 DATE dateIn, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromStr(                  LPCOLESTR strIn, LCID lcid, ULONG dwFlags, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromDisp(                 IDispatch* pdispIn, LCID lcid, VARIANT_BOOL* pboolOut);
@@ -256,7 +256,7 @@ ffi.cdef [[
   HRESULT        VarI8FromBool(                   VARIANT_BOOL boolIn, LONG64* pi64Out);
   HRESULT        VarI8FromCy(                     CY cyIn, LONG64* pi64Out);
   HRESULT        VarI8FromDate(                   DATE dateIn, LONG64* pi64Out);
-  HRESULT        VarI8FromDec(                    DECIMAL* pdecIn, LONG64* pi64Out);
+  HRESULT        VarI8FromDec(                    WINAPI_DECIMAL* pdecIn, LONG64* pi64Out);
   HRESULT        VarI8FromDisp(                   IDispatch* pdispIn, LCID lcid, LONG64* pi64Out);
   HRESULT        VarI8FromI1(                     CHAR cIn, LONG64* pi64Out);
   HRESULT        VarI8FromI2(                     SHORT sIn, LONG64* pi64Out);
@@ -270,7 +270,7 @@ ffi.cdef [[
   HRESULT        VarUI8FromBool(                  VARIANT_BOOL boolIn, ULONG64* pi64Out);
   HRESULT        VarUI8FromCy(                    CY cyIn, ULONG64* pi64Out);
   HRESULT        VarUI8FromDate(                  DATE dateIn, ULONG64* pi64Out);
-  HRESULT        VarUI8FromDec(                   DECIMAL* pdecIn, ULONG64* pi64Out);
+  HRESULT        VarUI8FromDec(                   WINAPI_DECIMAL* pdecIn, ULONG64* pi64Out);
   HRESULT        VarUI8FromDisp(                  IDispatch* pdispIn, LCID lcid, ULONG64* pi64Out);
   HRESULT        VarUI8FromI1(                    CHAR cIn, ULONG64* pi64Out);
   HRESULT        VarUI8FromI2(                    SHORT sIn, ULONG64* pi64Out);
@@ -310,9 +310,9 @@ ffi.cdef [[
   unsigned long  BSTR_UserSize64(                 unsigned long* pFlags, unsigned long Offset, BSTR* pBstr);
   unsigned char* BSTR_UserUnmarshal(              unsigned long* pFlags, unsigned char* pBuffer, BSTR* pBstr);
   unsigned char* BSTR_UserUnmarshal64(            unsigned long* pFlags, unsigned char* pBuffer, BSTR* pBstr);
-  unsigned char* LPSAFEARRAY_Marshal(             unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray, IID* piid);
-  unsigned long  LPSAFEARRAY_Size(                unsigned long* pFlags, unsigned long Offset, LPSAFEARRAY* ppSafeArray, IID* piid);
-  unsigned char* LPSAFEARRAY_Unmarshal(           unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray, IID* piid);
+  unsigned char* LPSAFEARRAY_Marshal(             unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray, WINAPI_IID* piid);
+  unsigned long  LPSAFEARRAY_Size(                unsigned long* pFlags, unsigned long Offset, LPSAFEARRAY* ppSafeArray, WINAPI_IID* piid);
+  unsigned char* LPSAFEARRAY_Unmarshal(           unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray, WINAPI_IID* piid);
   void           LPSAFEARRAY_UserFree(            unsigned long* pFlags, LPSAFEARRAY* ppSafeArray);
   unsigned char* LPSAFEARRAY_UserMarshal(         unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray);
   unsigned long  LPSAFEARRAY_UserSize(            unsigned long* pFlags, unsigned long Offset, LPSAFEARRAY* ppSafeArray);
@@ -325,12 +325,12 @@ ffi.cdef [[
   unsigned long  VARIANT_UserSize64(              unsigned long* pFlags, unsigned long Offset, VARIANT* pVariant);
   unsigned char* VARIANT_UserUnmarshal(           unsigned long* pFlags, unsigned char* pBuffer, VARIANT* pVariant);
   unsigned char* VARIANT_UserUnmarshal64(         unsigned long* pFlags, unsigned char* pBuffer, VARIANT* pVariant);
-  BSTR           SysAllocString(                  OLECHAR* psz);
+  BSTR           SysAllocString(                  WINAPI_OLECHAR* psz);
   BSTR           SysAllocStringByteLen(           LPCSTR psz, UINT len);
-  BSTR           SysAllocStringLen(               OLECHAR* strIn, UINT ui);
+  BSTR           SysAllocStringLen(               WINAPI_OLECHAR* strIn, UINT ui);
   void           SysFreeString(                   BSTR bstrString);
-  INT            SysReAllocString(                BSTR* pbstr, OLECHAR* psz);
-  INT            SysReAllocStringLen(             BSTR* pbstr, OLECHAR* psz, unsigned int len);
+  INT            SysReAllocString(                BSTR* pbstr, WINAPI_OLECHAR* psz);
+  INT            SysReAllocStringLen(             BSTR* pbstr, WINAPI_OLECHAR* psz, unsigned int len);
   UINT           SysStringByteLen(                BSTR bstr);
   UINT           SysStringLen(                    BSTR bstr);
   HRESULT        VarAbs(                          LPVARIANT pvarIn, LPVARIANT pvarResult);
@@ -356,11 +356,11 @@ ffi.cdef [[
   HRESULT        VarRound(                        LPVARIANT pvarIn, int cDecimals, LPVARIANT pvarResult);
   HRESULT        VarSub(                          LPVARIANT pvarLeft, LPVARIANT pvarRight, LPVARIANT pvarResult);
   HRESULT        VarXor(                          LPVARIANT pvarLeft, LPVARIANT pvarRight, LPVARIANT pvarResult);
-  HRESULT        VariantChangeType(               VARIANTARG* pvargDest, VARIANTARG* pvarSrc, USHORT wFlags, VARTYPE vt);
-  HRESULT        VariantChangeTypeEx(             VARIANTARG* pvargDest, VARIANTARG* pvarSrc, LCID lcid, USHORT wFlags, VARTYPE vt);
+  HRESULT        VariantChangeType(               VARIANTARG* pvargDest, WINAPI_VARIANTARG* pvarSrc, USHORT wFlags, VARTYPE vt);
+  HRESULT        VariantChangeTypeEx(             VARIANTARG* pvargDest, WINAPI_VARIANTARG* pvarSrc, LCID lcid, USHORT wFlags, VARTYPE vt);
   HRESULT        VariantClear(                    VARIANTARG* pvarg);
-  HRESULT        VariantCopy(                     VARIANTARG* pvargDest, VARIANTARG* pvargSrc);
-  HRESULT        VariantCopyInd(                  VARIANT* pvarDest, VARIANTARG* pvargSrc);
+  HRESULT        VariantCopy(                     VARIANTARG* pvargDest, WINAPI_VARIANTARG* pvargSrc);
+  HRESULT        VariantCopyInd(                  VARIANT* pvarDest, WINAPI_VARIANTARG* pvargSrc);
   void           VariantInit(                     VARIANTARG* pvarg);
   HRESULT        CreateDispTypeInfo(              INTERFACEDATA* pidata, LCID lcid, ITypeInfo** pptinfo);
   HRESULT        CreateStdDispatch(               IUnknown* punkOuter, void* pvThis, ITypeInfo* ptinfo, IUnknown** ppunkStdDisp);
@@ -390,7 +390,7 @@ ffi.cdef [[
   HRESULT        CreateTypeLib2(                  SYSKIND syskind, LPCOLESTR szFile, ICreateTypeLib2** ppctlib);
   HRESULT        OACreateTypeLib2(                SYSKIND syskind, LPCOLESTR szFile, ICreateTypeLib2** ppctlib);
   ULONG          OaBuildVersion(                  );
-  ULONG          LHashValOfNameSys(               SYSKIND syskind, LCID lcid, OLECHAR* szName);
+  ULONG          LHashValOfNameSys(               SYSKIND syskind, LCID lcid, WINAPI_OLECHAR* szName);
   ULONG          LHashValOfNameSysA(              SYSKIND syskind, LCID lcid, LPCSTR szName);
   HRESULT        LoadRegTypeLib(                  REFGUID rguid, WORD wVerMajor, WORD wVerMinor, LCID lcid, ITypeLib** pptlib);
   HRESULT        LoadTypeLib(                     LPCOLESTR szFile, ITypeLib** pptlib);
@@ -405,4 +405,4 @@ ffi.cdef [[
   HRESULT        GetRecordInfoFromGuids(          REFGUID rGuidTypeLib, ULONG uVerMajor, ULONG uVerMinor, LCID lcid, REFGUID rGuidTypeInfo, IRecordInfo** ppRecInfo);
   HRESULT        GetRecordInfoFromTypeInfo(       ITypeInfo* pTypeInfo, IRecordInfo** ppRecInfo);
 ]]
-return ffi.load( "OleAut32.dll" )
+return ffi.load( 'OleAut32.dll' )

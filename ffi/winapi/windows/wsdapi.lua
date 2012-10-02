@@ -1,12 +1,12 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   void*   WSDAllocateLinkedMemory(           void* pParent, size_t cbSize);
   void    WSDAttachLinkedMemory(             void* pParent, void* pChild);
-  HRESULT WSDCreateDeviceHost(               WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceHost** ppDeviceHost);
-  HRESULT WSDCreateDeviceHostAdvanced(       WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDAddress** ppHostAddresses, DWORD dwHostAddressCount, IWSDDeviceHost** ppDeviceHost);
-  HRESULT WSDCreateDeviceProxy(              WCHAR* pszDeviceId, WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
-  HRESULT WSDCreateDeviceProxyAdvanced(      WCHAR* pszDeviceId, IWSDAddress* pDeviceAddress, WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
+  HRESULT WSDCreateDeviceHost(               WINAPI_WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceHost** ppDeviceHost);
+  HRESULT WSDCreateDeviceHostAdvanced(       WINAPI_WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDAddress** ppHostAddresses, DWORD dwHostAddressCount, IWSDDeviceHost** ppDeviceHost);
+  HRESULT WSDCreateDeviceProxy(              WINAPI_WCHAR* pszDeviceId, WINAPI_WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
+  HRESULT WSDCreateDeviceProxyAdvanced(      WINAPI_WCHAR* pszDeviceId, IWSDAddress* pDeviceAddress, WINAPI_WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
   HRESULT WSDCreateDiscoveryProvider(        IWSDXMLContext* pContext, IWSDiscoveryProvider** ppProvider);
   HRESULT WSDCreateDiscoveryProvider2(       IWSDXMLContext* pContext, WSD_CONFIG_PARAM* pConfigParams, DWORD dwConfigParamCount, IWSDiscoveryProvider** ppProvider);
   HRESULT WSDCreateDiscoveryPublisher(       IWSDXMLContext* pContext, IWSDiscoveryPublisher** ppPublisher);
@@ -30,6 +30,6 @@ ffi.cdef [[
   HRESULT WSDXMLCleanupElement(              WSDXML_ELEMENT* pAny);
   HRESULT WSDXMLCreateContext(               IWSDXMLContext** ppContext);
   HRESULT WSDXMLGetNameFromBuiltinNamespace( LPCWSTR pszNamespace, LPCWSTR pszName, WSDXML_NAME** ppName);
-  HRESULT WSDXMLGetValueFromAny(             WCHAR* pszNamespace, WCHAR* pszName, WSDXML_ELEMENT* pAny, LPCWSTR* ppszValue);
+  HRESULT WSDXMLGetValueFromAny(             WINAPI_WCHAR* pszNamespace, WINAPI_WCHAR* pszName, WSDXML_ELEMENT* pAny, LPCWSTR* ppszValue);
 ]]
-return ffi.load( "Wsdapi.dll" )
+return ffi.load( 'Wsdapi.dll' )

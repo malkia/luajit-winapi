@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL      EcClose(                        EC_HANDLE Object);
   BOOL      EcDeleteSubscription(           LPCWSTR SubscriptionName, DWORD Flags);
@@ -17,4 +17,4 @@ ffi.cdef [[
   BOOL      EcRemoveObjectArrayElement(     EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, DWORD ArrayIndex);
   BOOL      EcRetrySubscription(            LPCWSTR SubscriptionName, LPCWSTR EventSourceName, DWORD Flags);
 ]]
-return ffi.load( "Wecapi.dll" )
+return ffi.load( 'Wecapi.dll' )

@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   EVT_HANDLE EvtOpenSession(                  EVT_LOGIN_CLASS LoginClass, PVOID Login, DWORD Timeout, DWORD Flags);
   BOOL       EvtClose(                        EVT_HANDLE Object);
@@ -36,4 +36,4 @@ ffi.cdef [[
   BOOL       EvtGetObjectArraySize(           EVT_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, PDWORD ObjectArraySize);
   BOOL       EvtGetObjectArrayProperty(       EVT_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, DWORD PropertyId, DWORD ArrayIndex, DWORD Flags, DWORD PropertyValueBufferSize, PEVT_VARIANT PropertyValueBuffer, PDWORD PropertyValueBufferUsed);
 ]]
-return ffi.load( "Wevtapi.dll" )
+return ffi.load( 'Wevtapi.dll' )

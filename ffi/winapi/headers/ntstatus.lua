@@ -1,4 +1,4 @@
-local ffi = require( "ffi" )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum NTSTATUS {
     STATUS_SUCCESS = 0x00000000,
@@ -2009,5 +2009,5 @@ ffi.cdef [[
     STATUS_DIS_UNRECOGNIZED_ATTRIBUTE = 0xC03C0003,
     STATUS_DIS_PARTIAL_DATA = 0xC03C0004,
   } NTSTATUS;
-  typedef NTSTATUS PNTSTATUS;
+  typedef NTSTATUS *PNTSTATUS; //Pointer
 ]]

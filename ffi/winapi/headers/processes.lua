@@ -1,14 +1,13 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID PENUM_PAGE_CALLBACK;
+  typedef LPVOID PENUM_PAGE_CALLBACK; //Alias
   typedef struct MODULEINFO {
     LPVOID lpBaseOfDll,
     DWORD SizeOfImage,
     LPVOID EntryPoint,
   } MODULEINFO;
-
-  typedef MODULEINFO LPMODULEINFO;
+  typedef MODULEINFO *LPMODULEINFO; //Pointer
   typedef struct PERFORMANCE_INFORMATION {
     DWORD cb,
     SIZE_T CommitTotal,
@@ -25,8 +24,7 @@ ffi.cdef [[
     DWORD ProcessCount,
     DWORD ThreadCount,
   } PERFORMANCE_INFORMATION;
-
-  typedef PERFORMANCE_INFORMATION PPERFORMANCE_INFORMATION;
+  typedef PERFORMANCE_INFORMATION *PPERFORMANCE_INFORMATION; //Pointer
   typedef struct PROCESS_MEMORY_COUNTERS {
     DWORD cb,
     DWORD PageFaultCount,
@@ -39,20 +37,17 @@ ffi.cdef [[
     SIZE_T PagefileUsage,
     SIZE_T PeakPagefileUsage,
   } PROCESS_MEMORY_COUNTERS;
-
-  typedef PROCESS_MEMORY_COUNTERS PPROCESS_MEMORY_COUNTERS;
+  typedef PROCESS_MEMORY_COUNTERS *PPROCESS_MEMORY_COUNTERS; //Pointer
   typedef struct PSAPI_WS_WATCH_INFORMATION {
     LPVOID FaultingPc,
     LPVOID FaultingVa,
   } PSAPI_WS_WATCH_INFORMATION;
-
-  typedef PSAPI_WS_WATCH_INFORMATION PPSAPI_WS_WATCH_INFORMATION;
+  typedef PSAPI_WS_WATCH_INFORMATION *PPSAPI_WS_WATCH_INFORMATION; //Pointer
   typedef struct PSAPI_WS_WATCH_INFORMATION_EX {
     PSAPI_WS_WATCH_INFORMATION BasicInfo,
     ULONG_PTR FaultingThreadId,
     ULONG_PTR Flags,
   } PSAPI_WS_WATCH_INFORMATION_EX;
-
-  typedef PSAPI_WS_WATCH_INFORMATION_EX PPSAPI_WS_WATCH_INFORMATION_EX;
-  typedef DWORD WINAPI_CreateProcessFlags;
+  typedef PSAPI_WS_WATCH_INFORMATION_EX *PPSAPI_WS_WATCH_INFORMATION_EX; //Pointer
+  typedef DWORD WINAPI_CreateProcessFlags; //Alias
 ]]

@@ -1,4 +1,4 @@
-local ffi = require( "ffi" )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum WINAPI_ExceptionCode {
     EXCEPTION_ACCESS_VIOLATION = 0xC0000005,

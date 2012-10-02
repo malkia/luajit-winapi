@@ -1,10 +1,10 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/processes" )
-require( "ffi/winapi/headers/native" )
-require( "ffi/winapi/headers/gdi" )
-require( "ffi/winapi/headers/ioctl" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/processes' )
+require( 'ffi/winapi/headers/native' )
+require( 'ffi/winapi/headers/gdi' )
+require( 'ffi/winapi/headers/ioctl' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL                         CheckRemoteDebuggerPresent(              WINAPI_ProcessHandle hProcess, PBOOL pbDebuggerPresent);
   BOOL                         ContinueDebugEvent(                      DWORD dwProcessId, DWORD dwThreadId, WINAPI_ContinueStatusFlag dwContinueStatus);
@@ -28,11 +28,11 @@ ffi.cdef [[
   void                         OutputDebugString(                       LPCTSTR lpOutputString);
   BOOL                         ReadProcessMemory(                       WINAPI_ProcessHandle hProcess, LPCVOID lpBaseAddress, LPVOID lpBuffer, SIZE_T nSize, SIZE_T* lpNumberOfBytesRead);
   VOID                         SetExtendedFeaturesMask(                 PCONTEXT_EX ContextEx, DWORD64 FeatureMask);
-  BOOL                         SetThreadContext(                        WINAPI_ThreadHandle hThread, CONTEXT* lpContext);
+  BOOL                         SetThreadContext(                        WINAPI_ThreadHandle hThread, WINAPI_CONTEXT* lpContext);
   BOOL                         WaitForDebugEvent(                       LPDEBUG_EVENT lpDebugEvent, WINAPI_WaitTimeout dwMilliseconds);
   BOOL                         Wow64GetThreadContext(                   WINAPI_ThreadHandle hThread, PWOW64_CONTEXT lpContext);
   BOOL                         Wow64GetThreadSelectorEntry(             WINAPI_ThreadHandle hThread, DWORD dwSelector, PWOW64_LDT_ENTRY lpSelectorEntry);
-  BOOL                         Wow64SetThreadContext(                   WINAPI_ThreadHandle hThread, CONST WOW64_CONTEXT* lpContext);
+  BOOL                         Wow64SetThreadContext(                   WINAPI_ThreadHandle hThread, WINAPI_WOW64_CONTEXT* lpContext);
   BOOL                         WriteProcessMemory(                      WINAPI_ProcessHandle hProcess, LPVOID lpBaseAddress, LPCVOID lpBuffer, SIZE_T nSize, SIZE_T* lpNumberOfBytesWritten);
   BOOL                         DisableThreadLibraryCalls(               HMODULE hModule);
   BOOL                         FreeLibrary(                             HMODULE hModule);
@@ -247,7 +247,7 @@ ffi.cdef [[
   BOOL                         GlobalUnlock(                            HGLOBAL hMem);
   BOOL                         LocalUnlock(                             HLOCAL hMem);
   BOOL                         IsBadCodePtr(                            FARPROC lpfn);
-  BOOL                         IsBadReadPtr(                            VOID* lp, UINT_PTR ucb);
+  BOOL                         IsBadReadPtr(                            WINAPI_VOID* lp, UINT_PTR ucb);
   BOOL                         IsBadStringPtr(                          LPCTSTR lpsz, UINT_PTR ucchMax);
   BOOL                         IsBadWritePtr(                           LPVOID lp, UINT_PTR ucb);
   void                         GlobalMemoryStatus(                      LPMEMORYSTATUS lpBuffer);
@@ -309,7 +309,7 @@ ffi.cdef [[
   BOOL                         QueryThreadCycleTime(                    HANDLE ThreadHandle, PULONG64 CycleTime);
   DWORD                        ResumeThread(                            WINAPI_ThreadHandle hThread);
   DWORD_PTR                    SetThreadAffinityMask(                   WINAPI_ThreadHandle hThread, DWORD_PTR dwThreadAffinityMask);
-  BOOL                         SetThreadGroupAffinity(                  WINAPI_ThreadHandle hThread, GROUP_AFFINITY* GroupAffinity);
+  BOOL                         SetThreadGroupAffinity(                  WINAPI_ThreadHandle hThread, WINAPI_GROUP_AFFINITY* GroupAffinity);
   DWORD                        SetThreadIdealProcessor(                 WINAPI_ThreadHandle hThread, DWORD dwIdealProcessor);
   BOOL                         SetThreadIdealProcessorEx(               WINAPI_ThreadHandle hThread, PPROCESSOR_NUMBER lpIdealProcessor, PPROCESSOR_NUMBER lpPreviousIdealProcessor);
   BOOL                         SetThreadPriority(                       WINAPI_ThreadHandle hThread, WINAPI_ThreadPriority nPriority);
@@ -424,8 +424,8 @@ ffi.cdef [[
   void                         AddRefActCtx(                            HANDLE hActCtx);
   HANDLE                       CreateActCtx(                            PACTCTX pActCtx);
   BOOL                         DeactivateActCtx(                        WINAPI_DeactivateActCtxFlags dwFlags, ULONG_PTR ulCookie);
-  BOOL                         FindActCtxSectionGuid(                   WINAPI_FIND_ACTCTX_SECTION_FLAGS dwFlags, GUID* lpExtensionGuid, WINAPI_ACTIVATION_CONTEXT_SECTION ulSectionId, GUID* lpGuidToFind, PACTCTX_SECTION_KEYED_DATA ReturnedData);
-  BOOL                         FindActCtxSectionString(                 WINAPI_FIND_ACTCTX_SECTION_FLAGS dwFlags, GUID* lpExtensionGuid, WINAPI_ACTIVATION_CONTEXT_SECTION ulSectionId, LPCTSTR lpStringToFind, PACTCTX_SECTION_KEYED_DATA ReturnedData);
+  BOOL                         FindActCtxSectionGuid(                   WINAPI_FIND_ACTCTX_SECTION_FLAGS dwFlags, WINAPI_GUID* lpExtensionGuid, WINAPI_ACTIVATION_CONTEXT_SECTION ulSectionId, WINAPI_GUID* lpGuidToFind, PACTCTX_SECTION_KEYED_DATA ReturnedData);
+  BOOL                         FindActCtxSectionString(                 WINAPI_FIND_ACTCTX_SECTION_FLAGS dwFlags, WINAPI_GUID* lpExtensionGuid, WINAPI_ACTIVATION_CONTEXT_SECTION ulSectionId, LPCTSTR lpStringToFind, PACTCTX_SECTION_KEYED_DATA ReturnedData);
   BOOL                         GetCurrentActCtx(                        HANDLE* lphActCtx);
   BOOL                         QueryActCtxW(                            WINAPI_QueryActCtxFlags dwFlags, HANDLE hActCtx, PVOID pvSubInstance, WINAPI_ActivationContextInfoClass ulInfoClass, PVOID pvBuffer, SIZE_T cbBuffer, SIZE_T* pcbWrittenOrRequired);
   BOOL                         QueryActCtxSettingsW(                    DWORD dwFlags, HANDLE hActCtx, PCWSTR settingsNameSpace, PCWSTR settingName, PWSTR pvBuffer, SIZE_T dwBuffer, SIZE_T* pdwWrittenOrRequired);
@@ -466,7 +466,7 @@ ffi.cdef [[
   BOOL                         AddConsoleAlias(                         LPCTSTR Source, LPCTSTR Target, LPCTSTR ExeName);
   BOOL                         AllocConsole(                            );
   BOOL                         AttachConsole(                           DWORD dwProcessId);
-  HANDLE                       CreateConsoleScreenBuffer(               DWORD dwDesiredAccess, DWORD dwShareMode, SECURITY_ATTRIBUTES* lpSecurityAttributes, DWORD dwFlags, LPVOID lpScreenBufferData);
+  HANDLE                       CreateConsoleScreenBuffer(               DWORD dwDesiredAccess, DWORD dwShareMode, WINAPI_SECURITY_ATTRIBUTES* lpSecurityAttributes, DWORD dwFlags, LPVOID lpScreenBufferData);
   BOOL                         FillConsoleOutputAttribute(              HANDLE hConsoleOutput, WINAPI_ConsoleAttribute wAttribute, DWORD nLength, COORD dwWriteCoord, LPDWORD lpNumberOfAttrsWritten);
   BOOL                         FillConsoleOutputCharacter(              HANDLE hConsoleOutput, TCHAR cCharacter, DWORD nLength, COORD dwWriteCoord, LPDWORD lpNumberOfCharsWritten);
   BOOL                         FlushConsoleInputBuffer(                 HANDLE hConsoleInput);
@@ -503,11 +503,11 @@ ffi.cdef [[
   BOOL                         ReadConsoleOutput(                       HANDLE hConsoleOutput, PCHAR_INFO lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, PSMALL_RECT lpReadRegion);
   BOOL                         ReadConsoleOutputAttribute(              HANDLE hConsoleOutput, WINAPI_ConsoleAttribute* lpAttribute, DWORD nLength, COORD dwReadCoord, LPDWORD lpNumberOfAttrsRead);
   BOOL                         ReadConsoleOutputCharacter(              HANDLE hConsoleOutput, LPTSTR lpCharacter, DWORD nLength, COORD dwReadCoord, LPDWORD lpNumberOfCharsRead);
-  BOOL                         ScrollConsoleScreenBuffer(               HANDLE hConsoleOutput, SMALL_RECT* lpScrollRectangle, SMALL_RECT* lpClipRectangle, COORD dwDestinationOrigin, CHAR_INFO* lpFill);
+  BOOL                         ScrollConsoleScreenBuffer(               HANDLE hConsoleOutput, WINAPI_SMALL_RECT* lpScrollRectangle, WINAPI_SMALL_RECT* lpClipRectangle, COORD dwDestinationOrigin, WINAPI_CHAR_INFO* lpFill);
   BOOL                         SetConsoleActiveScreenBuffer(            HANDLE hConsoleOutput);
   BOOL                         SetConsoleCP(                            WINAPI_CodePageEnum wCodePageID);
   BOOL                         SetConsoleCtrlHandler(                   PHANDLER_ROUTINE HandlerRoutine, BOOL Add);
-  BOOL                         SetConsoleCursorInfo(                    HANDLE hConsoleOutput, CONSOLE_CURSOR_INFO* lpConsoleCursorInfo);
+  BOOL                         SetConsoleCursorInfo(                    HANDLE hConsoleOutput, WINAPI_CONSOLE_CURSOR_INFO* lpConsoleCursorInfo);
   BOOL                         SetConsoleCursorPosition(                HANDLE hConsoleOutput, COORD dwCursorPosition);
   BOOL                         SetConsoleDisplayMode(                   HANDLE hConsoleOutput, DWORD dwFlags, PCOORD lpNewScreenBufferDimensions);
   BOOL                         SetConsoleHistoryInfo(                   PCONSOLE_HISTORY_INFO lpConsoleHistoryInfo);
@@ -517,12 +517,12 @@ ffi.cdef [[
   BOOL                         SetConsoleScreenBufferSize(              HANDLE hConsoleOutput, COORD dwSize);
   BOOL                         SetConsoleTextAttribute(                 HANDLE hConsoleOutput, WINAPI_ConsoleAttribute wAttributes);
   BOOL                         SetConsoleTitle(                         LPCTSTR lpConsoleTitle);
-  BOOL                         SetConsoleWindowInfo(                    HANDLE hConsoleOutput, BOOL bAbsolute, SMALL_RECT* lpConsoleWindow);
+  BOOL                         SetConsoleWindowInfo(                    HANDLE hConsoleOutput, BOOL bAbsolute, WINAPI_SMALL_RECT* lpConsoleWindow);
   BOOL                         SetCurrentConsoleFontEx(                 HANDLE hConsoleOutput, BOOL bMaximumWindow, PCONSOLE_FONT_INFOEX lpConsoleCurrentFontEx);
   BOOL                         SetStdHandle(                            WINAPI_StdHandle nStdHandle, HANDLE hHandle);
   BOOL                         WriteConsole(                            HANDLE hConsoleOutput, LPCTSTR lpBuffer, DWORD nNumberOfCharsToWrite, LPDWORD lpNumberOfCharsWritten, LPVOID lpReserved);
-  BOOL                         WriteConsoleInput(                       HANDLE hConsoleInput, INPUT_RECORD* lpBuffer, DWORD nLength, LPDWORD lpNumberOfEventsWritten);
-  BOOL                         WriteConsoleOutput(                      HANDLE hConsoleOutput, CHAR_INFO* lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, PSMALL_RECT lpWriteRegion);
+  BOOL                         WriteConsoleInput(                       HANDLE hConsoleInput, WINAPI_INPUT_RECORD* lpBuffer, DWORD nLength, LPDWORD lpNumberOfEventsWritten);
+  BOOL                         WriteConsoleOutput(                      HANDLE hConsoleOutput, WINAPI_CHAR_INFO* lpBuffer, COORD dwBufferSize, COORD dwBufferCoord, PSMALL_RECT lpWriteRegion);
   BOOL                         WriteConsoleOutputAttribute(             HANDLE hConsoleOutput, WINAPI_ConsoleAttribute* lpAttribute, DWORD nLength, COORD dwWriteCoord, LPDWORD lpNumberOfAttrsWritten);
   BOOL                         WriteConsoleOutputCharacter(             HANDLE hConsoleOutput, LPCTSTR lpCharacter, DWORD nLength, COORD dwWriteCoord, LPDWORD lpNumberOfCharsWritten);
   BOOL                         DeviceIoControl(                         HANDLE hDevice, WINAPI_IOCTL dwIoControlCode, LPVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned, LPOVERLAPPED lpOverlapped);
@@ -547,9 +547,9 @@ ffi.cdef [[
   BOOL                         SetMailslotInfo(                         HANDLE hMailslot, DWORD lReadTimeout);
   BOOL                         AdjustCalendarDate(                      LPCALDATETIME lpCalDateTime, CALDATETIME_DATEUNIT calUnit, INT amount);
   int                          CompareStringOrdinal(                    LPCWSTR lpString1, int cchCount1, LPCWSTR lpString2, int cchCount2, BOOL bIgnoreCase);
-  BOOL                         ConvertCalDateTimeToSystemTime(          LPCALDATETIME lpCalDateTime, SYSTEMTIME* lpSysTime);
+  BOOL                         ConvertCalDateTimeToSystemTime(          WINAPI_LPCALDATETIME lpCalDateTime, SYSTEMTIME* lpSysTime);
   LCID                         ConvertDefaultLocale(                    LCID Locale);
-  BOOL                         ConvertSystemTimeToCalDateTime(          SYSTEMTIME lpSysTime, CALID calId, LPCALDATETIME lpCalDateTime);
+  BOOL                         ConvertSystemTimeToCalDateTime(          WINAPI_SYSTEMTIME lpSysTime, CALID calId, LPCALDATETIME lpCalDateTime);
   BOOL                         EnumCalendarInfo(                        CALINFO_ENUMPROC pCalInfoEnumProc, LCID Locale, CALID Calendar, CALTYPE CalType);
   BOOL                         EnumCalendarInfoEx(                      CALINFO_ENUMPROCEX pCalInfoEnumProcEx, LCID Locale, CALID Calendar, CALTYPE CalType);
   BOOL                         EnumCalendarInfoExEx(                    CALINFO_ENUMPROCEXEX pCalInfoEnumProcExEx, LPCWSTR lpLocaleName, CALID Calendar, LPCWSTR lpReserved, CALTYPE CalType, LPARAM lParam);
@@ -569,33 +569,33 @@ ffi.cdef [[
   int                          FindStringOrdinal(                       DWORD dwFindStringOrdinalFlags, LPCWSTR lpStringSource, int cchSource, LPCWSTR lpStringValue, int cchValue, BOOL bIgnoreCase);
   int                          FoldString(                              WINAPI_MappingFlags dwMapFlags, LPCTSTR lpSrcStr, int cchSrc, LPTSTR lpDestStr, int cchDest);
   UINT                         GetACP(                                  );
-  BOOL                         GetCalendarDateFormatEx(                 LPCWSTR lpszLocale, DWORD dwFlags, LPCALDATETIME lpCalDateTime, LPCWSTR lpFormat, LPWSTR lpDateStr, int cchDate);
+  BOOL                         GetCalendarDateFormatEx(                 LPCWSTR lpszLocale, DWORD dwFlags, WINAPI_LPCALDATETIME lpCalDateTime, LPCWSTR lpFormat, LPWSTR lpDateStr, int cchDate);
   int                          GetCalendarInfo(                         LCID Locale, CALID Calendar, CALTYPE CalType, LPTSTR lpCalData, int cchData, LPDWORD lpValue);
   int                          GetCalendarInfoEx(                       LPCWSTR lpLocaleName, CALID Calendar, LPCWSTR lpReserved, CALTYPE CalType, LPWSTR lpCalData, int cchData, LPDWORD lpValue);
   BOOL                         GetCalendarSupportedDateRange(           CALID Calendar, LPCALDATETIME lpCalMinDateTime, LPCALDATETIME lpCalMaxDateTime);
   BOOL                         GetCPInfo(                               WINAPI_CodePageEnum CodePage, LPCPINFO lpCPInfo);
   BOOL                         GetCPInfoEx(                             WINAPI_CodePageEnum CodePage, DWORD dwFlags, LPCPINFOEX lpCPInfoEx);
-  int                          GetCurrencyFormat(                       LCID Locale, DWORD dwFlags, LPCTSTR lpValue, CURRENCYFMT* lpFormat, LPTSTR lpCurrencyStr, int cchCurrency);
-  int                          GetCurrencyFormatEx(                     LPCWSTR lpLocaleName, DWORD dwFlags, LPCWSTR lpValue, CURRENCYFMT* lpFormat, LPWSTR lpCurrencyStr, int cchCurrency);
-  int                          GetDateFormat(                           LCID Locale, WINAPI_GetDateFormatFlags dwFlags, SYSTEMTIME* lpDate, LPCTSTR lpFormat, LPTSTR lpDateStr, int cchDate);
-  int                          GetDateFormatEx(                         LPCWSTR lpLocaleName, WINAPI_GetDateFormatFlags dwFlags, SYSTEMTIME* lpDate, LPCWSTR lpFormat, LPWSTR lpDateStr, int cchDate, LPCWSTR lpCalendar);
-  int                          GetDurationFormat(                       LCID Locale, DWORD dwFlags, SYSTEMTIME* lpDuration, ULONGLONG ullDuration, LPCWSTR lpFormat, LPWSTR lpDurationStr, int cchDuration);
-  int                          GetDurationFormatEx(                     LPCWSTR lpLocaleName, DWORD dwFlags, SYSTEMTIME* lpDuration, ULONGLONG ullDuration, LPCWSTR lpFormat, LPWSTR lpDurationStr, int cchDuration);
+  int                          GetCurrencyFormat(                       LCID Locale, DWORD dwFlags, LPCTSTR lpValue, WINAPI_CURRENCYFMT* lpFormat, LPTSTR lpCurrencyStr, int cchCurrency);
+  int                          GetCurrencyFormatEx(                     LPCWSTR lpLocaleName, DWORD dwFlags, LPCWSTR lpValue, WINAPI_CURRENCYFMT* lpFormat, LPWSTR lpCurrencyStr, int cchCurrency);
+  int                          GetDateFormat(                           LCID Locale, WINAPI_GetDateFormatFlags dwFlags, WINAPI_SYSTEMTIME* lpDate, LPCTSTR lpFormat, LPTSTR lpDateStr, int cchDate);
+  int                          GetDateFormatEx(                         LPCWSTR lpLocaleName, WINAPI_GetDateFormatFlags dwFlags, WINAPI_SYSTEMTIME* lpDate, LPCWSTR lpFormat, LPWSTR lpDateStr, int cchDate, LPCWSTR lpCalendar);
+  int                          GetDurationFormat(                       LCID Locale, DWORD dwFlags, WINAPI_SYSTEMTIME* lpDuration, ULONGLONG ullDuration, LPCWSTR lpFormat, LPWSTR lpDurationStr, int cchDuration);
+  int                          GetDurationFormatEx(                     LPCWSTR lpLocaleName, DWORD dwFlags, WINAPI_SYSTEMTIME* lpDuration, ULONGLONG ullDuration, LPCWSTR lpFormat, LPWSTR lpDurationStr, int cchDuration);
   int                          GetGeoInfo(                              GEOID Location, GEOTYPE GeoType, LPTSTR lpGeoData, int cchData, LANGID LangId);
   int                          GetLocaleInfo(                           LCID Locale, LCTYPE LCType, LPTSTR lpLCData, int cchData);
   int                          GetLocaleInfoEx(                         LPCWSTR lpLocaleName, LCTYPE LCType, LPWSTR lpLCData, int cchData);
   BOOL                         GetNLSVersion(                           NLS_FUNCTION Function, LCID Locale, LPNLSVERSIONINFO lpVersionInformation);
   BOOL                         GetNLSVersionEx(                         NLS_FUNCTION function, LPCWSTR lpLocaleName, LPNLSVERSIONINFOEX lpVersionInformation);
-  int                          GetNumberFormat(                         LCID Locale, WINAPI_GetNumberFormatFlags dwFlags, LPCTSTR lpValue, NUMBERFMT* lpFormat, LPTSTR lpNumberStr, int cchNumber);
-  int                          GetNumberFormatEx(                       LPCWSTR lpLocaleName, WINAPI_GetNumberFormatFlags dwFlags, LPCWSTR lpValue, NUMBERFMT* lpFormat, LPWSTR lpNumberStr, int cchNumber);
+  int                          GetNumberFormat(                         LCID Locale, WINAPI_GetNumberFormatFlags dwFlags, LPCTSTR lpValue, WINAPI_NUMBERFMT* lpFormat, LPTSTR lpNumberStr, int cchNumber);
+  int                          GetNumberFormatEx(                       LPCWSTR lpLocaleName, WINAPI_GetNumberFormatFlags dwFlags, LPCWSTR lpValue, WINAPI_NUMBERFMT* lpFormat, LPWSTR lpNumberStr, int cchNumber);
   UINT                         GetOEMCP(                                );
   int                          GetStringScripts(                        DWORD dwFlags, LPCWSTR lpString, int cchString, LPWSTR lpScripts, int cchScripts);
   LANGID                       GetSystemDefaultLangID(                  );
   LCID                         GetSystemDefaultLCID(                    );
   int                          GetSystemDefaultLocaleName(              LPWSTR lpLocaleName, int cchLocaleName);
   LCID                         GetThreadLocale(                         );
-  int                          GetTimeFormat(                           LCID Locale, WINAPI_GetTimeFormatFlags dwFlags, SYSTEMTIME* lpTime, LPCTSTR lpFormat, LPTSTR lpTimeStr, int cchTime);
-  int                          GetTimeFormatEx(                         LPCWSTR lpLocaleName, WINAPI_GetTimeFormatFlags dwFlags, SYSTEMTIME* lpTime, LPCWSTR lpFormat, LPWSTR lpTimeStr, int cchTime);
+  int                          GetTimeFormat(                           LCID Locale, WINAPI_GetTimeFormatFlags dwFlags, WINAPI_SYSTEMTIME* lpTime, LPCTSTR lpFormat, LPTSTR lpTimeStr, int cchTime);
+  int                          GetTimeFormatEx(                         LPCWSTR lpLocaleName, WINAPI_GetTimeFormatFlags dwFlags, WINAPI_SYSTEMTIME* lpTime, LPCWSTR lpFormat, LPWSTR lpTimeStr, int cchTime);
   LANGID                       GetUserDefaultLangID(                    );
   LCID                         GetUserDefaultLCID(                      );
   int                          GetUserDefaultLocaleName(                LPWSTR lpLocaleName, int cchLocaleName);
@@ -738,16 +738,16 @@ ffi.cdef [[
   DWORD                        SignalObjectAndWait(                     HANDLE hObjectToSignal, HANDLE hObjectToWaitOn, WINAPI_WaitTimeout dwMilliseconds, BOOL bAlertable);
   BOOL                         UnregisterWait(                          HANDLE WaitHandle);
   BOOL                         UnregisterWaitEx(                        HANDLE WaitHandle, HANDLE CompletionEvent);
-  WINAPI_WAIT_RESULT           WaitForMultipleObjects(                  DWORD nCount, HANDLE* lpHandles, BOOL bWaitAll, WINAPI_WaitTimeout dwMilliseconds);
-  WINAPI_WAIT_RESULT           WaitForMultipleObjectsEx(                DWORD nCount, HANDLE* lpHandles, BOOL bWaitAll, WINAPI_WaitTimeout dwMilliseconds, BOOL bAlertable);
+  WINAPI_WAIT_RESULT           WaitForMultipleObjects(                  DWORD nCount, WINAPI_HANDLE* lpHandles, BOOL bWaitAll, WINAPI_WaitTimeout dwMilliseconds);
+  WINAPI_WAIT_RESULT           WaitForMultipleObjectsEx(                DWORD nCount, WINAPI_HANDLE* lpHandles, BOOL bWaitAll, WINAPI_WaitTimeout dwMilliseconds, BOOL bAlertable);
   WINAPI_WAIT_RESULT           WaitForSingleObject(                     HANDLE hHandle, WINAPI_WaitTimeout dwMilliseconds);
   WINAPI_WAIT_RESULT           WaitForSingleObjectEx(                   HANDLE hHandle, WINAPI_WaitTimeout dwMilliseconds, BOOL bAlertable);
   BOOL                         CancelWaitableTimer(                     HANDLE hTimer);
   HANDLE                       CreateWaitableTimer(                     LPSECURITY_ATTRIBUTES lpTimerAttributes, BOOL bManualReset, LPCTSTR lpTimerName);
   HANDLE                       CreateWaitableTimerEx(                   LPSECURITY_ATTRIBUTES lpTimerAttributes, LPCTSTR lpTimerName, DWORD dwFlags, WINAPI_TimerAccessRights dwDesiredAccess);
   HANDLE                       OpenWaitableTimer(                       WINAPI_TimerAccessRights dwDesiredAccess, BOOL bInheritHandle, LPCTSTR lpTimerName);
-  BOOL                         SetWaitableTimer(                        HANDLE hTimer, LARGE_INTEGER* pDueTime, LONG lPeriod, PTIMERAPCROUTINE pfnCompletionRoutine, LPVOID lpArgToCompletionRoutine, BOOL fResume);
-  BOOL                         SetWaitableTimerEx(                      HANDLE hTimer, LARGE_INTEGER* lpDueTime, LONG lPeriod, PTIMERAPCROUTINE pfnCompletionRoutine, LPVOID lpArgToCompletionRoutine, PREASON_CONTEXT WakeContext, ULONG TolerableDelay);
+  BOOL                         SetWaitableTimer(                        HANDLE hTimer, WINAPI_LARGE_INTEGER* pDueTime, LONG lPeriod, PTIMERAPCROUTINE pfnCompletionRoutine, LPVOID lpArgToCompletionRoutine, BOOL fResume);
+  BOOL                         SetWaitableTimerEx(                      HANDLE hTimer, WINAPI_LARGE_INTEGER* lpDueTime, LONG lPeriod, PTIMERAPCROUTINE pfnCompletionRoutine, LPVOID lpArgToCompletionRoutine, PREASON_CONTEXT WakeContext, ULONG TolerableDelay);
   BOOL                         DnsHostnameToComputerName(               LPCTSTR Hostname, LPTSTR ComputerName, LPDWORD nSize);
   UINT                         EnumSystemFirmwareTables(                DWORD FirmwareTableProviderSignature, PVOID pFirmwareTableBuffer, DWORD BufferSize);
   DWORD                        ExpandEnvironmentStrings(                LPCTSTR lpSrc, LPTSTR lpDst, DWORD nSize);
@@ -787,27 +787,27 @@ ffi.cdef [[
   DWORD                        WTSGetActiveConsoleSessionId(            );
   void                         GetSystemTime(                           LPSYSTEMTIME lpSystemTime);
   BOOL                         GetSystemTimeAdjustment(                 PDWORD lpTimeAdjustment, PDWORD lpTimeIncrement, PBOOL lpTimeAdjustmentDisabled);
-  BOOL                         SetSystemTime(                           SYSTEMTIME* lpSystemTime);
+  BOOL                         SetSystemTime(                           WINAPI_SYSTEMTIME* lpSystemTime);
   BOOL                         SetSystemTimeAdjustment(                 DWORD dwTimeAdjustment, BOOL bTimeAdjustmentDisabled);
-  BOOL                         FileTimeToLocalFileTime(                 FILETIME* lpFileTime, LPFILETIME lpLocalFileTime);
+  BOOL                         FileTimeToLocalFileTime(                 WINAPI_FILETIME* lpFileTime, LPFILETIME lpLocalFileTime);
   DWORD                        GetDynamicTimeZoneInformation(           PDYNAMIC_TIME_ZONE_INFORMATION pTimeZoneInformation);
   void                         GetLocalTime(                            LPSYSTEMTIME lpSystemTime);
   DWORD                        GetTimeZoneInformation(                  LPTIME_ZONE_INFORMATION lpTimeZoneInformation);
   BOOL                         GetTimeZoneInformationForYear(           USHORT wYear, PDYNAMIC_TIME_ZONE_INFORMATION pdtzi, LPTIME_ZONE_INFORMATION ptzi);
-  BOOL                         SetDynamicTimeZoneInformation(           DYNAMIC_TIME_ZONE_INFORMATION* lpTimeZoneInformation);
-  BOOL                         SetLocalTime(                            SYSTEMTIME* lpSystemTime);
-  BOOL                         SetTimeZoneInformation(                  TIME_ZONE_INFORMATION* lpTimeZoneInformation);
+  BOOL                         SetDynamicTimeZoneInformation(           WINAPI_DYNAMIC_TIME_ZONE_INFORMATION* lpTimeZoneInformation);
+  BOOL                         SetLocalTime(                            WINAPI_SYSTEMTIME* lpSystemTime);
+  BOOL                         SetTimeZoneInformation(                  WINAPI_TIME_ZONE_INFORMATION* lpTimeZoneInformation);
   BOOL                         SystemTimeToTzSpecificLocalTime(         LPTIME_ZONE_INFORMATION lpTimeZone, LPSYSTEMTIME lpUniversalTime, LPSYSTEMTIME lpLocalTime);
   BOOL                         TzSpecificLocalTimeToSystemTime(         LPTIME_ZONE_INFORMATION lpTimeZoneInformation, LPSYSTEMTIME lpLocalTime, LPSYSTEMTIME lpUniversalTime);
-  LONG                         CompareFileTime(                         FILETIME* lpFileTime1, FILETIME* lpFileTime2);
-  BOOL                         FileTimeToSystemTime(                    FILETIME* lpFileTime, LPSYSTEMTIME lpSystemTime);
+  LONG                         CompareFileTime(                         WINAPI_FILETIME* lpFileTime1, WINAPI_FILETIME* lpFileTime2);
+  BOOL                         FileTimeToSystemTime(                    WINAPI_FILETIME* lpFileTime, LPSYSTEMTIME lpSystemTime);
   BOOL                         GetFileTime(                             HANDLE hFile, LPFILETIME lpCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime);
   void                         GetSystemTimeAsFileTime(                 LPFILETIME lpSystemTimeAsFileTime);
-  BOOL                         LocalFileTimeToFileTime(                 FILETIME* lpLocalFileTime, LPFILETIME lpFileTime);
-  BOOL                         SetFileTime(                             HANDLE hFile, FILETIME* lpCreationTime, FILETIME* lpLastAccessTime, FILETIME* lpLastWriteTime);
-  BOOL                         SystemTimeToFileTime(                    SYSTEMTIME* lpSystemTime, LPFILETIME lpFileTime);
+  BOOL                         LocalFileTimeToFileTime(                 WINAPI_FILETIME* lpLocalFileTime, LPFILETIME lpFileTime);
+  BOOL                         SetFileTime(                             HANDLE hFile, WINAPI_FILETIME* lpCreationTime, WINAPI_FILETIME* lpLastAccessTime, WINAPI_FILETIME* lpLastWriteTime);
+  BOOL                         SystemTimeToFileTime(                    WINAPI_SYSTEMTIME* lpSystemTime, LPFILETIME lpFileTime);
   BOOL                         DosDateTimeToFileTime(                   WORD wFatDate, WORD wFatTime, LPFILETIME lpFileTime);
-  BOOL                         FileTimeToDosDateTime(                   FILETIME* lpFileTime, LPWORD lpFatDate, LPWORD lpFatTime);
+  BOOL                         FileTimeToDosDateTime(                   WINAPI_FILETIME* lpFileTime, LPWORD lpFatDate, LPWORD lpFatTime);
   BOOL                         GetSystemTimes(                          LPFILETIME lpIdleTime, LPFILETIME lpKernelTime, LPFILETIME lpUserTime);
   DWORD                        GetTickCount(                            );
   ULONGLONG                    GetTickCount64(                          );
@@ -895,4 +895,4 @@ ffi.cdef [[
   PVOID                        EncodeSystemPointer(                     PVOID Ptr);
   int                          MulDiv(                                  int nNumber, int nNumerator, int nDenominator);
 ]]
-return ffi.load( "Kernel32.dll" )
+return ffi.load( 'Kernel32.dll' )

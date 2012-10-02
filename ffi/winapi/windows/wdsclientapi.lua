@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT WdsCliAuthorizeSession(                 HANDLE hSession, PWDS_CLI_CRED pCred);
   HRESULT WdsCliCancelTransfer(                   HANDLE hTransfer);
@@ -33,4 +33,4 @@ ffi.cdef [[
   HRESULT WdsCliTransferImage(                    HANDLE hImage, PWSTR pwszLocalPath, DWORD dwFlags, DWORD dwReserved, PFN_WdsCliCallback pfnWdsCliCallback, PVOID pvUserData, PHANDLE phTransfer);
   HRESULT WdsCliWaitForTransfer(                  HANDLE hTransfer);
 ]]
-return ffi.load( "WdsClientAPI.dll" )
+return ffi.load( 'WdsClientAPI.dll' )

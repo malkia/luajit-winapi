@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/ole" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/ole' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   STDAPI CIState(                 WCHAR const* pwcsCat, WCHAR const* pwcsMachine, CI_STATE* pCiState);
   STDAPI LocateCatalogs(          TCHAR const* pwszScope, ULONG iBmk, TCHAR* pwszMachine, ULONG* pcMachine, TCHAR* pwszCat, ULONG* pcCat);
@@ -18,4 +18,4 @@ ffi.cdef [[
   STDAPI BindIFilterFromStorage(  IStorage* pStg, IUnknown* pUnkOuter, void** ppIUnk);
   STDAPI BindIFilterFromStream(   IStream* pStm, IUnknown* pUnkOuter, void** ppIUnk);
 ]]
-return ffi.load( "query.dll" )
+return ffi.load( 'query.dll' )

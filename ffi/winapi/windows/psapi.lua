@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/processes" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/processes' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL  EmptyWorkingSet(             WINAPI_ProcessHandle hProcess);
   BOOL  EnumDeviceDrivers(           LPVOID* lpImageBase, DWORD cb, LPDWORD lpcbNeeded);
@@ -23,4 +23,4 @@ ffi.cdef [[
   BOOL  QueryWorkingSet(             WINAPI_ProcessHandle hProcess, PVOID pv, DWORD cb);
   BOOL  QueryWorkingSetEx(           WINAPI_ProcessHandle hProcess, PVOID pv, DWORD cb);
 ]]
-return ffi.load( "Psapi.dll" )
+return ffi.load( 'Psapi.dll' )

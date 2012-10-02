@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/registry" )
-require( "ffi/winapi/windows/srclient" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/registry' )
+require( 'ffi/winapi/windows/srclient' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL  SfcIsFileProtected(        HANDLE RpcHandle, LPCWSTR ProtFileName);
   BOOL  SfcIsKeyProtected(         HKEY hKey, LPCWSTR lpSubKey, REGSAM samDesired);
@@ -13,4 +13,4 @@ ffi.cdef [[
   BOOL  SRSetRestorePointA(        PRESTOREPOINTINFOA pRestorePtSpec, PSTATEMGRSTATUS pSMgrStatus);
   BOOL  SRSetRestorePointW(        PRESTOREPOINTINFOW pRestorePtSpec, PSTATEMGRSTATUS pSMgrStatus);
 ]]
-return ffi.load( "sfc.dll" )
+return ffi.load( 'sfc.dll' )

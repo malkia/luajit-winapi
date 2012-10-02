@@ -1,12 +1,12 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/registry" )
-require( "ffi/winapi/headers/events" )
-require( "ffi/winapi/headers/services" )
-require( "ffi/winapi/headers/cryptography" )
-require( "ffi/winapi/headers/security" )
-require( "ffi/winapi/headers/native" )
-require( "ffi/winapi/headers/network" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/registry' )
+require( 'ffi/winapi/headers/events' )
+require( 'ffi/winapi/headers/services' )
+require( 'ffi/winapi/headers/cryptography' )
+require( 'ffi/winapi/headers/security' )
+require( 'ffi/winapi/headers/native' )
+require( 'ffi/winapi/headers/network' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT WinBioAcquireFocus(               );
   HRESULT WinBioCancel(                     WINBIO_SESSION_HANDLE SessionHandle);
@@ -48,4 +48,4 @@ ffi.cdef [[
   HRESULT WinBioVerifyWithCallback(         WINBIO_SESSION_HANDLE SessionHandle, WINBIO_IDENTITY* Identity, WINBIO_BIOMETRIC_SUBTYPE SubFactor, PWINBIO_VERIFY_CALLBACK VerifyCallback, PVOID VerifyCallbackContext);
   HRESULT WinBioWait(                       WINBIO_SESSION_HANDLE SessionHandle);
 ]]
-return ffi.load( "Winbio.dll" )
+return ffi.load( 'Winbio.dll' )

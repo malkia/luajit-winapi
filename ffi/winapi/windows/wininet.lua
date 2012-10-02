@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/internet" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/internet' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOLAPI                  CommitUrlCacheEntry(                    LPCTSTR lpszUrlName, LPCTSTR lpszLocalFileName, FILETIME ExpireTime, FILETIME LastModifiedTime, WINAPI_CacheEntryType CacheEntryType, LPVOID lpHeaderInfo, DWORD dwHeaderSize, LPCTSTR lpszFileExtension, LPCTSTR lpszOriginalUrl);
   BOOL                     CreateMD5SSOHash(                       PWSTR pszChallengeInfo, PWSTR pwszRealm, PWSTR pwszTarget, PBYTE pbHexHash);
@@ -75,7 +75,7 @@ ffi.cdef [[
   DWORD                    InternetSetFilePointer(                 HINTERNET hFile, LONG lDistanceToMove, PVOID pReserved, DWORD dwMoveMethod, DWORD_PTR dwContext);
   BOOL                     InternetSetOption(                      HINTERNET hInternet, WINAPI_InternetOption dwOption, LPVOID lpBuffer, DWORD dwBufferLength);
   INTERNET_STATUS_CALLBACK InternetSetStatusCallback(              HINTERNET hInternet, INTERNET_STATUS_CALLBACK lpfnInternetCallback);
-  BOOL                     InternetTimeFromSystemTime(             SYSTEMTIME* pst, DWORD dwRFC, LPTSTR lpszTime, DWORD cbTime);
+  BOOL                     InternetTimeFromSystemTime(             WINAPI_SYSTEMTIME* pst, DWORD dwRFC, LPTSTR lpszTime, DWORD cbTime);
   BOOL                     InternetTimeToSystemTime(               LPCTSTR lpszTime, SYSTEMTIME* pst, DWORD dwReserved);
   BOOLAPI                  InternetUnlockRequestFile(              HANDLE hLockRequestInfo);
   BOOL                     InternetWriteFile(                      HINTERNET hFile, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite, LPDWORD lpdwNumberOfBytesWritten);
@@ -95,4 +95,4 @@ ffi.cdef [[
   DWORD                    PrivacyGetZonePreferenceW(              DWORD dwZone, DWORD dwType, LPDWORD pdwTemplate, LPWSTR pszBuffer, LPDWORD pdwBufferLength);
   DWORD                    PrivacySetZonePreferenceW(              DWORD dwZone, DWORD dwType, DWORD dwTemplate, LPCWSTR pszPreference);
 ]]
-return ffi.load( "Wininet.dll" )
+return ffi.load( 'Wininet.dll' )

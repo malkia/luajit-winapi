@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   PVOID   WdsTransportServerAllocateBuffer(   HANDLE hProvider, ULONG ulBufferSize);
   HRESULT WdsTransportServerCompleteRead(     HANDLE hProvider, ULONG ulBytesRead, PVOID pvUserData, HRESULT hReadResult);
@@ -8,4 +8,4 @@ ffi.cdef [[
   HRESULT WdsTransportServerTrace(            HANDLE hProvider, WDS_MC_SEVERITY Severity, LPCWSTR pwszFormat);
   HRESULT WdsTransportServerTraceV(           HANDLE hProvider, WDS_MC_SEVERITY Severity, LPCWSTR pwszFormat, va_list Params);
 ]]
-return ffi.load( "Wdsmc.dll" )
+return ffi.load( 'Wdsmc.dll' )

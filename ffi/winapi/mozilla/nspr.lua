@@ -1,60 +1,59 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID PRIOMethods*;
-  typedef LPVOID PRSocketOptionData*;
-  typedef LPVOID PRNetAddr*;
-  typedef LPVOID PRNetAddr*;
-  typedef LPVOID PRFileDesc*;
-  typedef UINT_PTR PRUword;
-  typedef LPVOID PK11SlotInfo*;
-  typedef LPVOID CERTCertificateStr*;
-  typedef LPVOID CERTCertificate*;
-  typedef UINT PRUintn;
-  typedef INT PRIntn;
-  typedef UINT16 PRUint16;
-  typedef UINT32 PRUint32;
-  typedef BOOL PRBool;
-  typedef INT8 PRInt8;
-  typedef INT16 PRInt16;
-  typedef INT32 PRInt32;
-  typedef INT64 PRInt64;
-  typedef double PRFloat64;
-  typedef size_t PRSize;
-  typedef LPVOID PRThread*;
-  typedef LPVOID PRThreadStack*;
-  typedef LPVOID PRLibrary*;
-  typedef LPVOID PRLock*;
-  typedef LPVOID PRCondVar*;
-  typedef LPVOID PRMonitor*;
-  typedef LPVOID PRThreadPrivateDTOR;
-  typedef PRInt32 PROffset32;
-  typedef PRInt64 PROffset64;
-  typedef PRInt64 PRTime;
-  typedef LPVOID PRFileMap*;
-  typedef LPVOID PRDir*;
-  typedef LPVOID PRTimeParamFn;
-  typedef LPVOID PRSharedMemory*;
-  typedef LPVOID PRProcessAttr*;
-  typedef LPVOID PRProcessAttr*;
-  typedef LPVOID PRSem*;
-  typedef LPVOID PRStack*;
-  typedef LPVOID PRStackElem*;
-  typedef LPVOID PRProcess*;
-  typedef char** char* const*;
-  typedef LPVOID SSLHandshakeCallback;
-  typedef ULONG CK_OBJECT_HANDLE;
-  typedef LPVOID SSLGetClientAuthData;
-  typedef LPVOID SSLBadCertHandler;
-  typedef LPVOID SSLAuthCertificate;
-  typedef PRInt32 PRErrorCode;
+  typedef LPVOID WINAPI_PRIOMethods*; //Alias
+  typedef LPVOID PRSocketOptionData*; //Alias
+  typedef LPVOID PRNetAddr*; //Alias
+  typedef LPVOID WINAPI_PRNetAddr*; //Alias
+  typedef LPVOID PRFileDesc*; //Alias
+  typedef UINT_PTR PRUword; //Alias
+  typedef LPVOID PK11SlotInfo*; //Alias
+  typedef LPVOID CERTCertificateStr*; //Alias
+  typedef LPVOID CERTCertificate*; //Alias
+  typedef UINT PRUintn; //Alias
+  typedef INT PRIntn; //Alias
+  typedef UINT16 PRUint16; //Alias
+  typedef UINT32 PRUint32; //Alias
+  typedef BOOL PRBool; //Alias
+  typedef INT8 PRInt8; //Alias
+  typedef INT16 PRInt16; //Alias
+  typedef INT32 PRInt32; //Alias
+  typedef INT64 PRInt64; //Alias
+  typedef double PRFloat64; //Alias
+  typedef size_t PRSize; //Alias
+  typedef LPVOID PRThread*; //Alias
+  typedef LPVOID PRThreadStack*; //Alias
+  typedef LPVOID PRLibrary*; //Alias
+  typedef LPVOID PRLock*; //Alias
+  typedef LPVOID PRCondVar*; //Alias
+  typedef LPVOID PRMonitor*; //Alias
+  typedef LPVOID PRThreadPrivateDTOR; //Alias
+  typedef PRInt32 PROffset32; //Alias
+  typedef PRInt64 PROffset64; //Alias
+  typedef PRInt64 PRTime; //Alias
+  typedef LPVOID PRFileMap*; //Alias
+  typedef LPVOID PRDir*; //Alias
+  typedef LPVOID PRTimeParamFn; //Alias
+  typedef LPVOID PRSharedMemory*; //Alias
+  typedef LPVOID PRProcessAttr*; //Alias
+  typedef LPVOID WINAPI_PRProcessAttr*; //Alias
+  typedef LPVOID PRSem*; //Alias
+  typedef LPVOID PRStack*; //Alias
+  typedef LPVOID PRStackElem*; //Alias
+  typedef LPVOID PRProcess*; //Alias
+  typedef char** char* const*; //Alias
+  typedef LPVOID SSLHandshakeCallback; //Alias
+  typedef ULONG CK_OBJECT_HANDLE; //Alias
+  typedef LPVOID SSLGetClientAuthData; //Alias
+  typedef LPVOID SSLBadCertHandler; //Alias
+  typedef LPVOID SSLAuthCertificate; //Alias
+  typedef PRInt32 PRErrorCode; //Alias
   typedef struct PLArena {
     LPVOID next,
     PRUword base,
     PRUword limit,
     PRUword avail,
   } PLArena;
-
   typedef struct PLArenaStats {
     LPVOID next,
     char* name,
@@ -71,7 +70,6 @@ ffi.cdef [[
     PRUint32 maxalloc,
     PRFloat64 variance,
   } PLArenaStats;
-
   typedef struct PLArenaPool {
     PLArena first,
     PLArena* current,
@@ -79,7 +77,6 @@ ffi.cdef [[
     PRUword mask,
     PLArenaStats stats,
   } PLArenaPool;
-
   typedef enum KeyType {
     nullKey = 0,
     rsaKey = 1,
@@ -100,8 +97,7 @@ ffi.cdef [[
     void* wincx,
     PRUint32 staticflags,
   } SECKEYPrivateKeyStr;
-
-  typedef SECKEYPrivateKeyStr SECKEYPrivateKey;
+  typedef SECKEYPrivateKeyStr SECKEYPrivateKey; //Alias
   typedef enum SECItemType {
     siBuffer = 0,
     siClearDataBuffer = 1,
@@ -125,14 +121,12 @@ ffi.cdef [[
     unsigned char* data,
     unsigned int len,
   } SECItem;
-
   typedef struct CERTDistNamesStr {
     PLArenaPool* arena,
     int nnames,
     SECItem* names,
     void* head,
   } CERTDistNamesStr;
-
   typedef enum PRFileType {
     PR_FILE_FILE = 1,
     PR_FILE_DIRECTORY = 2,
@@ -144,30 +138,26 @@ ffi.cdef [[
     PRTime creationTime,
     PRTime modifyTime,
   } PRFileInfo;
-
   typedef struct PRFileInfo64 {
     PRFileType type,
     PROffset64 size,
     PRTime creationTime,
     PRTime modifyTime,
   } PRFileInfo64;
-
   typedef struct PRIOVec {
     void* iov_base,
     int iov_len,
   } PRIOVec;
-
   typedef struct PRDirEntry {
-    char* name,
+    WINAPI_char* name,
   } PRDirEntry;
-
-  typedef PRUint16 WINAPI_PRPollDesc_Flags;
+  typedef PRUint16 WINAPI_PRPollDesc_Flags; //Alias
   typedef struct PRPollDesc {
     PRFileDesc* fd,
     WINAPI_PRPollDesc_Flags in_flags,
     WINAPI_PRPollDesc_Flags out_flags,
   } PRPollDesc;
-
+  typedef PRPollDesc *WINAPI_PRPollDesc*; //Pointer
   typedef struct PRHostEnt {
     char* h_name,
     char** h_aliases,
@@ -175,20 +165,19 @@ ffi.cdef [[
     PRInt16 h_length,
     char** h_addr_list,
   } PRHostEnt;
-
+  typedef PRHostEnt *WINAPI_PRHostEnt*; //Pointer
   typedef struct PRProtoEnt {
     char* p_name,
     char** p_aliases,
     PRInt16 p_num,
   } PRProtoEnt;
-
   typedef enum PRStatus {
-    PR_FAILURE = _1,
+    PR_FAILURE = WINAPI__1,
     PR_SUCCESS = 0,
   } PRStatus;
   typedef enum SECStatus {
-    SECWouldBlock = _2,
-    SECFailure = _1,
+    SECWouldBlock = WINAPI__2,
+    SECFailure = WINAPI__1,
     SECSuccess = 0,
   } SECStatus;
   typedef enum SSLKEAType {
@@ -235,7 +224,7 @@ ffi.cdef [[
     PR_DESC_LAYERED = 4,
     PR_DESC_PIPE = 5,
   } PRDescType;
-  typedef UINT PRDirFlags;
+  typedef UINT PRDirFlags; //Alias
   typedef enum PRShutdownHow {
     PR_SHUTDOWN_RCV = 0,
     PR_SHUTDOWN_SEND = 1,
@@ -267,15 +256,14 @@ ffi.cdef [[
   } PRSpecialFD;
   typedef enum PRDescIdentity {
     PR_NSPR_IO_LAYER = 0,
-    PR_INVALID_IO_LAYER = _1,
-    PR_TOP_IO_LAYER = _2,
-    PR_IO_LAYER_HEAD = _3,
+    PR_INVALID_IO_LAYER = WINAPI__1,
+    PR_TOP_IO_LAYER = WINAPI__2,
+    PR_IO_LAYER_HEAD = WINAPI__3,
   } PRDescIdentity;
   typedef struct PRTimeParameters {
     PRInt32 tp_gmt_offset,
     PRInt32 tp_dst_offset,
   } PRTimeParameters;
-
   typedef struct PRExplodedTime {
     PRInt32 tm_usec,
     PRInt32 tm_sec,
@@ -288,5 +276,5 @@ ffi.cdef [[
     PRInt16 tm_yday,
     PRTimeParameters tm_params,
   } PRExplodedTime;
-
+  typedef PRExplodedTime *WINAPI_PRExplodedTime*; //Pointer
 ]]

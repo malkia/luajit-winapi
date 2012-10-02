@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/native" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/native' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   PCSR_THREAD CsrAddStaticServerThread(    HANDLE hThread, PCLIENT_ID ClientId, ULONG ThreadFlags);
   NTSTATUS    CsrCallServerFromServer(     PCSR_API_MESSAGE ReceiveMsg, PCSR_API_MESSAGE ReplyMsg);
@@ -38,4 +38,4 @@ ffi.cdef [[
   BOOLEAN     CsrValidateMessageBuffer(    PCSR_API_MESSAGE ApiMessage, PVOID* Buffer, ULONG ArgumentSize, ULONG ArgumentCount);
   BOOLEAN     CsrValidateMessageString(    PCSR_API_MESSAGE ApiMessage, LPWSTR* MessageString);
 ]]
-return ffi.load( "CsrSrv.dll" )
+return ffi.load( 'CsrSrv.dll' )

@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT IECancelSaveFile(                HANDLE hState);
   BOOL    IECreateDirectory(               LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
@@ -18,12 +18,12 @@ ffi.cdef [[
   HRESULT IERefreshElevationPolicy(        );
   HRESULT IERegCreateKeyEx(                LPCWSTR lpSubKey, DWORD reserved, LPWSTR lpClass, DWORD dwOptions, REGSAM samDesired, LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, LPDWORD lpdwDisposition);
   HRESULT IERegisterWritableRegistryKey(   GUID guid, LPCWSTR lpSubkey, BOOL fSubkeyAllowed);
-  HRESULT IERegisterWritableRegistryValue( GUID guid, LPCWSTR lpPath, LPCWSTR lpValueName, DWORD dwType, BYTE* lpData, DWORD cbMaxData);
-  HRESULT IERegSetValueEx(                 LPCWSTR lpSubKey, LPCWSTR lpValueName, DWORD Reserved, DWORD dwType, BYTE* lpData, DWORD cbData);
+  HRESULT IERegisterWritableRegistryValue( GUID guid, LPCWSTR lpPath, LPCWSTR lpValueName, DWORD dwType, WINAPI_BYTE* lpData, DWORD cbMaxData);
+  HRESULT IERegSetValueEx(                 LPCWSTR lpSubKey, LPCWSTR lpValueName, DWORD Reserved, DWORD dwType, WINAPI_BYTE* lpData, DWORD cbData);
   BOOL    IERemoveDirectory(               LPCWSTR lpPathName);
   HRESULT IESaveFile(                      HANDLE hState, LPWSTR lpwstrSourceFile);
   HRESULT IESetProtectedModeCookie(        LPCWSTR lpszURL, LPCWSTR lpszCookieName, LPWSTR pszCookieData, DWORD dwFlags);
   HRESULT IEShowSaveFileDialog(            HWND hwnd, LPWSTR lpwstrInitialFileName, LPWSTR lpwstrInitialDir, LPCWSTR lpwstrFilter, LPCWSTR lpwstrDefExt, DWORD dwFilterIndex, DWORD dwFlags, LPWSTR* lppwstrDestinationFilePath, HANDLE* phState);
   HRESULT IEUnregisterWritableRegistry(    GUID guid);
 ]]
-return ffi.load( "ieframe.dll" )
+return ffi.load( 'ieframe.dll' )

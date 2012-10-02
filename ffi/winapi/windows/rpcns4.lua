@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/rpc" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/rpc' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   RPC_STATUS RpcNsBindingExport(       unsigned long EntryNameSyntax, unsigned char* EntryName, RPC_IF_HANDLE IfSpec, RPC_BINDING_VECTOR* BindingVec, UUID_VECTOR* ObjectUuidVec);
   RPC_STATUS RpcNsBindingExportPnP(    unsigned long EntryNameSyntax, unsigned char* EntryName, RPC_IF_HANDLE IfSpec, UUID_VECTOR* ObjectUuidVec);
@@ -37,4 +37,4 @@ ffi.cdef [[
   RPC_STATUS RpcNsProfileEltInqNext(   RPC_NS_HANDLE InquiryContext, RPC_IF_ID* IfId, unsigned char** MemberName, unsigned long* Priority, unsigned char** Annotation);
   RPC_STATUS RpcNsProfileEltRemove(    unsigned long ProfileNameSyntax, unsigned char* ProfileName, RPC_IF_ID* IfId, unsigned long MemberNameSyntax, unsigned char* MemberName);
 ]]
-return ffi.load( "Rpcns4.dll" )
+return ffi.load( 'Rpcns4.dll' )

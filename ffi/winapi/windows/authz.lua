@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/security" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/security' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL AuthzAccessCheck(                       WINAPI_AuthzAccessCheckFlags flags, AUTHZ_CLIENT_CONTEXT_HANDLE AuthzClientContext, PAUTHZ_ACCESS_REQUEST pRequest, AUTHZ_AUDIT_EVENT_HANDLE AuditInfo, PSECURITY_DESCRIPTOR pSecurityDescriptor, PSECURITY_DESCRIPTOR* OptionalSecurityDescriptorArray, DWORD OptionalSecurityDescriptorCount, PAUTHZ_ACCESS_REPLY pReply, PAUTHZ_ACCESS_CHECK_RESULTS_HANDLE pAuthzHandle);
   BOOL AuthzAddSidsToContext(                  AUTHZ_CLIENT_CONTEXT_HANDLE OrigClientContext, PSID_AND_ATTRIBUTES Sids, DWORD SidCount, PSID_AND_ATTRIBUTES RestrictedSids, DWORD RestrictedSidCount, PAUTHZ_CLIENT_CONTEXT_HANDLE pNewClientContext);
@@ -25,4 +25,4 @@ ffi.cdef [[
   BOOL AuthzUnregisterSecurityEventSource(     DWORD dwFlags, PAUTHZ_SECURITY_EVENT_PROVIDER_HANDLE phEventProvider);
   BOOL AuthzModifySecurityAttributes(          AUTHZ_CLIENT_CONTEXT_HANDLE AuthzClientContext, PAUTHZ_SECURITY_ATTRIBUTE_OPERATION pOperations, PAUTHZ_SECURITY_ATTRIBUTES_INFORMATION pAttributes);
 ]]
-return ffi.load( "Authz.dll" )
+return ffi.load( 'Authz.dll' )

@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/security" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/security' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOLEAN                GetComputerObjectName(                 EXTENDED_NAME_FORMAT NameFormat, LPTSTR lpNameBuffer, PULONG lpnSize);
   BOOLEAN                GetUserNameEx(                         EXTENDED_NAME_FORMAT NameFormat, LPTSTR lpNameBuffer, PULONG lpnSize);
@@ -50,4 +50,4 @@ ffi.cdef [[
   NTSTATUS               LsaRegisterPolicyChangeNotification(   POLICY_NOTIFICATION_INFORMATION_CLASS InformationClass, HANDLE NotificationEventHandle);
   NTSTATUS               LsaUnregisterPolicyChangeNotification( POLICY_NOTIFICATION_INFORMATION_CLASS InformationClass, HANDLE NotificationEventHandle);
 ]]
-return ffi.load( "Secur32.dll" )
+return ffi.load( 'Secur32.dll' )

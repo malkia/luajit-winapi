@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/mapi/mapi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/mapi/mapi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   WINAPI_MapiErrorCode MAPIAddress(       LHANDLE lhSession, ULONG_PTR ulUIParam, LPSTR lpszCaption, ULONG nEditFields, LPSTR lpszLabels, ULONG nRecips, lpMapiRecipDesc lpRecips, FLAGS flFlags, ULONG ulReserved, LPULONG lpnNewRecips, lpMapiRecipDesc* lppNewRecips);
   WINAPI_MapiErrorCode MAPIDeleteMail(    LHANDLE lhSession, ULONG_PTR ulUIParam, LPSTR lpszMessageID, FLAGS flFlags, ULONG ulReserved);
@@ -15,4 +15,4 @@ ffi.cdef [[
   WINAPI_MapiErrorCode MAPISendDocuments( ULONG_PTR ulUIParam, LPSTR lpszDelimChar, LPSTR lpszFilePaths, LPSTR lpszFileNames, ULONG ulReserved);
   WINAPI_MapiErrorCode MAPISendMail(      LHANDLE lhSession, ULONG_PTR ulUIParam, lpMapiMessage lpMessage, FLAGS flFlags, ULONG ulReserved);
 ]]
-return ffi.load( "Mapi32.dll" )
+return ffi.load( 'Mapi32.dll' )

@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/gdi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/gdi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL    ChooseColor(          LPCHOOSECOLOR lpcc);
   BOOL    ChooseFont(           LPCHOOSEFONT lpcf);
@@ -14,4 +14,4 @@ ffi.cdef [[
   HRESULT PrintDlgEx(           LPPRINTDLGEX lppd);
   HWND    ReplaceText(          LPFINDREPLACE lpfr);
 ]]
-return ffi.load( "comdlg32.dll" )
+return ffi.load( 'comdlg32.dll' )

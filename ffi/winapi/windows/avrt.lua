@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL   AvQuerySystemResponsiveness(     HANDLE AvrtHandle, PULONG SystemResponsivenessValue);
   BOOL   AvRtCreateThreadOrderingGroup(   PHANDLE Context, PLARGE_INTEGER Period, GUID* ThreadOrderingGuid, PLARGE_INTEGER Timeout);
@@ -13,4 +13,4 @@ ffi.cdef [[
   HANDLE AvSetMmThreadCharacteristics(    LPCTSTR TaskName, LPDWORD TaskIndex);
   BOOL   AvSetMmThreadPriority(           HANDLE AvrtHandle, AVRT_PRIORITY Priority);
 ]]
-return ffi.load( "Avrt.dll" )
+return ffi.load( 'Avrt.dll' )

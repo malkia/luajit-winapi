@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/multimedia" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/multimedia' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   MMRESULT acmDriverAdd(             LPHACMDRIVERID phadid, HINSTANCE hinstModule, LPARAM lParam, DWORD dwPriority, DWORD fdwAdd);
   MMRESULT acmDriverClose(           HACMDRIVER had, DWORD fdwClose);
@@ -33,4 +33,4 @@ ffi.cdef [[
   MMRESULT acmStreamSize(            HACMSTREAM has, DWORD cbInput, LPDWORD pdwOutputBytes, DWORD fdwSize);
   MMRESULT acmStreamUnprepareHeader( HACMSTREAM has, LPACMSTREAMHEADER pash, DWORD fdwUnprepare);
 ]]
-return ffi.load( "msacm32.dll" )
+return ffi.load( 'msacm32.dll' )

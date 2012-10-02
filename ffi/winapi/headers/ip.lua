@@ -1,8 +1,9 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef ULONG IPAddr;
-  typedef UCHAR WINAPI_IpOptionFlags;
+  typedef ULONG IPAddr; //Alias
+  typedef IPAddr IPAddr [1]; //Array 1
+  typedef UCHAR WINAPI_IpOptionFlags; //Alias
   typedef struct IP_OPTION_INFORMATION {
     UCHAR Ttl,
     UCHAR Tos,
@@ -10,6 +11,5 @@ ffi.cdef [[
     UCHAR OptionsSize,
     PUCHAR OptionsData,
   } IP_OPTION_INFORMATION;
-
-  typedef IP_OPTION_INFORMATION PIP_OPTION_INFORMATION;
+  typedef IP_OPTION_INFORMATION *PIP_OPTION_INFORMATION; //Pointer
 ]]

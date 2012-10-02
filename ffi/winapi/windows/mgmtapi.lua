@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/snmp" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/snmp' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL               SnmpMgrClose(      LPSNMP_MGR_SESSION session);
   BOOL               SnmpMgrCtl(        LPSNMP_MGR_SESSION session, DWORD dwCtlCode, LPVOID lpvInBuffer, DWORD cbInBuffer, LPVOID lpvOutBuffer, DWORD cbOutBuffer, LPDWORD lpcbBytesReturned);
@@ -12,4 +12,4 @@ ffi.cdef [[
   BOOL               SnmpMgrStrToOid(   LPSTR string, AsnObjectIdentifier* oid);
   BOOL               SnmpMgrTrapListen( HANDLE* phTrapAvailable);
 ]]
-return ffi.load( "Mgmtapi.dll" )
+return ffi.load( 'Mgmtapi.dll' )

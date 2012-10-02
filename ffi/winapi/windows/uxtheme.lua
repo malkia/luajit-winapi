@@ -1,25 +1,25 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/shell" )
-require( "ffi/winapi/headers/gdi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/shell' )
+require( 'ffi/winapi/headers/gdi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  HANIMATIONBUFFER BeginBufferedAnimation(                HWND hwnd, HDC hdcTarget, RECT* rcTarget, BP_BUFFERFORMAT dwFormat, BP_PAINTPARAMS* pPaintParams, BP_ANIMATIONPARAMS* pAnimationParams, HDC* phdcFrom, HDC* phdcTo);
-  HPAINTBUFFER     BeginBufferedPaint(                    HDC hdcTarget, RECT* prcTarget, BP_BUFFERFORMAT dwFormat, BP_PAINTPARAMS* pPaintParams, HDC* phdc);
-  HRESULT          BufferedPaintClear(                    HPAINTBUFFER hBufferedPaint, RECT* prc);
+  HANIMATIONBUFFER BeginBufferedAnimation(                HWND hwnd, HDC hdcTarget, WINAPI_RECT* rcTarget, BP_BUFFERFORMAT dwFormat, BP_PAINTPARAMS* pPaintParams, BP_ANIMATIONPARAMS* pAnimationParams, HDC* phdcFrom, HDC* phdcTo);
+  HPAINTBUFFER     BeginBufferedPaint(                    HDC hdcTarget, WINAPI_RECT* prcTarget, BP_BUFFERFORMAT dwFormat, BP_PAINTPARAMS* pPaintParams, HDC* phdc);
+  HRESULT          BufferedPaintClear(                    HPAINTBUFFER hBufferedPaint, WINAPI_RECT* prc);
   HRESULT          BufferedPaintInit(                     );
   BOOL             BufferedPaintRenderAnimation(          HWND hwnd, HDC hdcTarget);
-  HRESULT          BufferedPaintSetAlpha(                 HPAINTBUFFER hBufferedPaint, RECT* prc, BYTE alpha);
+  HRESULT          BufferedPaintSetAlpha(                 HPAINTBUFFER hBufferedPaint, WINAPI_RECT* prc, BYTE alpha);
   HRESULT          BufferedPaintStopAllAnimations(        HWND hwnd);
   HRESULT          BufferedPaintUnInit(                   );
   HRESULT          CloseThemeData(                        HTHEME hTheme);
-  HRESULT          DrawThemeBackground(                   HTHEME hTheme, HDC hdc, int iPartId, int iStateId, RECT* pRect, RECT* pClipRect);
-  HRESULT          DrawThemeBackgroundEx(                 HTHEME hTheme, HDC hdc, int iPartId, int iStateId, RECT* pRect, DTBGOPTS* pOptions);
+  HRESULT          DrawThemeBackground(                   HTHEME hTheme, HDC hdc, int iPartId, int iStateId, WINAPI_RECT* pRect, WINAPI_RECT* pClipRect);
+  HRESULT          DrawThemeBackgroundEx(                 HTHEME hTheme, HDC hdc, int iPartId, int iStateId, WINAPI_RECT* pRect, WINAPI_DTBGOPTS* pOptions);
   HRESULT          DrawThemeEdge(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pDestRect, WINAPI_BorderEdge uEdge, WINAPI_BorderFlag uFlags, LPRECT pContentRect);
   HRESULT          DrawThemeIcon(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pRect, HIMAGELIST himl, int iImageIndex);
-  HRESULT          DrawThemeParentBackground(             HWND hwnd, HDC hdc, RECT* prc);
-  HRESULT          DrawThemeParentBackgroundEx(           HWND hwnd, HDC hdc, WINAPI_DrawThemeParentBackgroundFlags dwFlags, RECT* prc);
+  HRESULT          DrawThemeParentBackground(             HWND hwnd, HDC hdc, WINAPI_RECT* prc);
+  HRESULT          DrawThemeParentBackgroundEx(           HWND hwnd, HDC hdc, WINAPI_DrawThemeParentBackgroundFlags dwFlags, WINAPI_RECT* prc);
   HRESULT          DrawThemeText(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwTextFlags, DWORD dwTextFlags2, LPCRECT pRect);
-  HRESULT          DrawThemeTextEx(                       HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwFlags, LPRECT pRect, DTTOPTS* pOptions);
+  HRESULT          DrawThemeTextEx(                       HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwFlags, LPRECT pRect, WINAPI_DTTOPTS* pOptions);
   HRESULT          EnableThemeDialogTexture(              HWND hwnd, WINAPI_EnableThemeDialogTextureFlags dwFlags);
   HRESULT          EnableTheming(                         BOOL fEnable);
   HRESULT          EndBufferedAnimation(                  HANIMATIONBUFFER hbpAnimation, BOOL fUpdateTarget);
@@ -77,4 +77,4 @@ ffi.cdef [[
   BOOL             EndPanningFeedback(                    HWND hwnd, BOOL fAnimateBack);
   BOOL             UpdatePanningFeedback(                 HWND hwnd, LONG lTotalOverpanOffsetX, LONG lTotalOverpanOffsetY, BOOL fInInertia);
 ]]
-return ffi.load( "UxTheme.dll" )
+return ffi.load( 'UxTheme.dll' )

@@ -1,14 +1,14 @@
-require( "ffi/winapi/mozilla/nspr" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/mozilla/nspr' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   SECStatus        SSL_OptionSetDefault(           WINAPI_SSLOption option, PRBool on);
   SECStatus        SSL_OptionGetDefault(           WINAPI_SSLOption option, PRBool* on);
   SECStatus        SSL_CipherPrefSetDefault(       WINAPI_SSLCipher cipher, PRBool enabled);
   SECStatus        SSL_CipherPrefGetDefault(       WINAPI_SSLCipher cipher, PRBool* enabled);
   void             SSL_ClearSessionCache(          );
-  SECStatus        SSL_ConfigServerSessionIDCache( int maxCacheEntries, PRUint32 timeout, PRUint32 ssl3_timeout, char* directory);
-  SECStatus        SSL_ConfigMPServerSIDCache(     int maxCacheEntries, PRUint32 timeout, PRUint32 ssl3_timeout, char* directory);
-  SECStatus        SSL_InheritMPServerSIDCache(    char* envString);
+  SECStatus        SSL_ConfigServerSessionIDCache( int maxCacheEntries, PRUint32 timeout, PRUint32 ssl3_timeout, WINAPI_char* directory);
+  SECStatus        SSL_ConfigMPServerSIDCache(     int maxCacheEntries, PRUint32 timeout, PRUint32 ssl3_timeout, WINAPI_char* directory);
+  SECStatus        SSL_InheritMPServerSIDCache(    WINAPI_char* envString);
   SECStatus        NSS_SetDomesticPolicy(          );
   SECStatus        NSS_SetExportPolicy(            );
   SECStatus        NSS_SetFrancePolicy(            );
@@ -40,4 +40,4 @@ ffi.cdef [[
   SECStatus        SSL_ReHandshake(                PRFileDesc* fd, PRBool flushCache);
   SECStatus        SSL_ResetHandshake(             PRFileDesc* fd, PRBool asServer);
 ]]
-return ffi.load( "SSL3.DLL" )
+return ffi.load( 'SSL3.DLL' )

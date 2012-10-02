@@ -1,17 +1,19 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef IDirectDraw* LPDIRECTDRAW;
-  typedef IDirectDraw7* LPDIRECTDRAW7;
-  typedef IDirectDrawSurface* LPDIRECTDRAWSURFACE;
-  typedef IDirectDrawSurface4* LPDIRECTDRAWSURFACE4;
-  typedef IDirectDrawSurface7* LPDIRECTDRAWSURFACE7;
-  typedef IDirectDrawPalette* LPDIRECTDRAWPALETTE;
-  typedef IDirectDrawClipper* LPDIRECTDRAWCLIPPER;
-  typedef LPVOID LPDDENUMCALLBACK;
-  typedef LPVOID LPDDENUMCALLBACKEX;
-  typedef LPVOID LPDDENUMSURFACESCALLBACK;
-  typedef LPVOID LPDDENUMMODESCALLBACK;
+  typedef IDirectDraw* LPDIRECTDRAW; //Alias
+  typedef IDirectDraw7* LPDIRECTDRAW7; //Alias
+  typedef IDirectDrawSurface* LPDIRECTDRAWSURFACE; //Alias
+  typedef IDirectDrawSurface4* LPDIRECTDRAWSURFACE4; //Alias
+  typedef IDirectDrawSurface7* LPDIRECTDRAWSURFACE7; //Alias
+  typedef IDirectDrawPalette* LPDIRECTDRAWPALETTE; //Alias
+  typedef IDirectDrawClipper* LPDIRECTDRAWCLIPPER; //Alias
+  typedef LPVOID LPDDENUMCALLBACK; //Alias
+  typedef LPVOID LPDDENUMCALLBACKEX; //Alias
+  typedef LPVOID LPDDENUMSURFACESCALLBACK; //Alias
+  typedef LPVOID LPDDENUMMODESCALLBACK; //Alias
+  typedef DWORD DWORD [DD_ROP_SPACE]; //Array 8
+  typedef char char [MAX_DDDEVICEID_STRING]; //Array 512
   typedef enum WINAPI_DD_HRESULT {
     DD_OK = 0x00000000,
     DD_FALSE = 0x00000001,
@@ -137,13 +139,12 @@ ffi.cdef [[
     DDERR_DEVICEDOESNTOWNSURFACE = 0x887602bb,
     DDERR_NOTINITIALIZED = 0x800401f0,
   } WINAPI_DD_HRESULT;
-  typedef DWORD WINAPI_DDSD_FLAGS;
+  typedef DWORD WINAPI_DDSD_FLAGS; //Alias
   typedef struct DDCOLORKEY {
     DWORD dwColorSpaceLowValue,
     DWORD dwColorSpaceHighValue,
   } DDCOLORKEY;
-
-  typedef DDCOLORKEY LPDDCOLORKEY;
+  typedef DDCOLORKEY *LPDDCOLORKEY; //Pointer
   typedef union WINAPI_DDPIXELFORMAT_u1 {
     DWORD dwRGBBitCount,
     DWORD dwYUVBitCount,
@@ -153,7 +154,6 @@ ffi.cdef [[
     DWORD dwBumpBitCount,
     DWORD dwPrivateFormatBitCount,
   } WINAPI_DDPIXELFORMAT_u1;
-
   typedef union WINAPI_DDPIXELFORMAT_u2 {
     DWORD dwRBitMask,
     DWORD dwYBitMask,
@@ -162,12 +162,10 @@ ffi.cdef [[
     DWORD dwBumpDuBitMask,
     DWORD dwOperations,
   } WINAPI_DDPIXELFORMAT_u2;
-
   typedef struct WINAPI_DDPIXELFORMAT_u3_s {
     WORD wFlipMSTypes,
     WORD wBltMSTypes,
   } WINAPI_DDPIXELFORMAT_u3_s;
-
   typedef union WINAPI_DDPIXELFORMAT_u3 {
     DWORD dwGBitMask,
     DWORD dwUBitMask,
@@ -175,14 +173,12 @@ ffi.cdef [[
     DWORD dwBumpDvBitMask,
     WINAPI_DDPIXELFORMAT_u3_s MultiSampleCaps,
   } WINAPI_DDPIXELFORMAT_u3;
-
   typedef union WINAPI_DDPIXELFORMAT_u4 {
     DWORD dwBBitMask,
     DWORD dwVBitMask,
     DWORD dwStencilBitMask,
     DWORD dwBumpLuminanceBitMask,
   } WINAPI_DDPIXELFORMAT_u4;
-
   typedef union WINAPI_DDPIXELFORMAT_u5 {
     DWORD dwRGBAlphaBitMask,
     DWORD dwYUVAlphaBitMask,
@@ -190,8 +186,7 @@ ffi.cdef [[
     DWORD dwRGBZBitMask,
     DWORD dwYUVZBitMask,
   } WINAPI_DDPIXELFORMAT_u5;
-
-  typedef DWORD WINAPI_DDPIXELFORMAT_FLAGS;
+  typedef DWORD WINAPI_DDPIXELFORMAT_FLAGS; //Alias
   typedef struct DDPIXELFORMAT {
     DWORD dwSize,
     WINAPI_DDPIXELFORMAT_FLAGS dwFlags,
@@ -202,25 +197,21 @@ ffi.cdef [[
     WINAPI_DDPIXELFORMAT_u4 ,
     WINAPI_DDPIXELFORMAT_u5 ,
   } DDPIXELFORMAT;
-
-  typedef DDPIXELFORMAT LPDDPIXELFORMAT;
-  typedef DWORD WINAPI_DDSCAPS_FLAGS;
+  typedef DDPIXELFORMAT *LPDDPIXELFORMAT; //Pointer
+  typedef DWORD WINAPI_DDSCAPS_FLAGS; //Alias
   typedef struct DDSCAPS {
     WINAPI_DDSCAPS_FLAGS dwCaps,
   } DDSCAPS;
-
-  typedef DDSCAPS LPDDSCAPS;
+  typedef DDSCAPS *LPDDSCAPS; //Pointer
   typedef union WINAPI_DDSURFACEDESC_u1 {
     LONG lPitch,
     DWORD dwLinearSize,
   } WINAPI_DDSURFACEDESC_u1;
-
   typedef union WINAPI_DDSURFACEDESC_u2 {
     DWORD dwMipMapCount,
     DWORD dwZBufferBitDepth,
     DWORD dwRefreshRate,
   } WINAPI_DDSURFACEDESC_u2;
-
   typedef struct DDSURFACEDESC {
     DWORD dwSize,
     WINAPI_DDSD_FLAGS dwFlags,
@@ -239,30 +230,27 @@ ffi.cdef [[
     DDPIXELFORMAT ddpfPixelFormat,
     DDSCAPS ddsCaps,
   } DDSURFACEDESC;
-
-  typedef DDSURFACEDESC LPDDSURFACEDESC;
-  typedef DWORD WINAPI_DDCAPS_FLAGS;
-  typedef DWORD WINAPI_DDCAPS2_FLAGS;
-  typedef DWORD WINAPI_DDCKEYCAPS_FLAGS;
-  typedef DWORD WINAPI_DDFXCAPS_FLAGS;
-  typedef DWORD WINAPI_DDFXALPHACAPS_FLAGS;
-  typedef DWORD WINAPI_DDPCAPS_FLAGS;
-  typedef DWORD WINAPI_DDSVCAPS_FLAGS;
-  typedef DWORD WINAPI_DDBD_FLAGS;
-  typedef DWORD WINAPI_DDSCAPS2_FLAGS;
-  typedef DWORD WINAPI_DDSCAPS3_FLAGS;
+  typedef DDSURFACEDESC *LPDDSURFACEDESC; //Pointer
+  typedef DWORD WINAPI_DDCAPS_FLAGS; //Alias
+  typedef DWORD WINAPI_DDCAPS2_FLAGS; //Alias
+  typedef DWORD WINAPI_DDCKEYCAPS_FLAGS; //Alias
+  typedef DWORD WINAPI_DDFXCAPS_FLAGS; //Alias
+  typedef DWORD WINAPI_DDFXALPHACAPS_FLAGS; //Alias
+  typedef DWORD WINAPI_DDPCAPS_FLAGS; //Alias
+  typedef DWORD WINAPI_DDSVCAPS_FLAGS; //Alias
+  typedef DWORD WINAPI_DDBD_FLAGS; //Alias
+  typedef DWORD WINAPI_DDSCAPS2_FLAGS; //Alias
+  typedef DWORD WINAPI_DDSCAPS3_FLAGS; //Alias
   typedef union WINAPI_DDSCAPS2_u {
     DWORD dwCaps4,
     DWORD dwVolumeDepth,
   } WINAPI_DDSCAPS2_u;
-
   typedef struct DDSCAPS2 {
     WINAPI_DDSCAPS_FLAGS dwCaps,
     WINAPI_DDSCAPS2_FLAGS dwCaps2,
     WINAPI_DDSCAPS3_FLAGS dwCaps3,
     WINAPI_DDSCAPS2_u ,
   } DDSCAPS2;
-
   typedef struct DDCAPS {
     DWORD dwSize,
     WINAPI_DDCAPS_FLAGS dwCaps,
@@ -322,8 +310,7 @@ ffi.cdef [[
     DWORD [DD_ROP_SPACE] dwNLVBRops,
     DDSCAPS2 ddsCaps,
   } DDCAPS;
-
-  typedef DDCAPS LPDDCAPS;
+  typedef DDCAPS *LPDDCAPS; //Pointer
   typedef struct DDDEVICEIDENTIFIER {
     char [MAX_DDDEVICEID_STRING] szDriver,
     char [MAX_DDDEVICEID_STRING] szDescription,
@@ -334,9 +321,8 @@ ffi.cdef [[
     DWORD dwRevision,
     GUID guidDeviceIdentifier,
   } DDDEVICEIDENTIFIER;
-
-  typedef DDDEVICEIDENTIFIER LPDDDEVICEIDENTIFIER;
-  typedef DWORD WINAPI_DDCOLOR_FLAGS;
+  typedef DDDEVICEIDENTIFIER *LPDDDEVICEIDENTIFIER; //Pointer
+  typedef DWORD WINAPI_DDCOLOR_FLAGS; //Alias
   typedef struct DDCOLORCONTROL {
     DWORD dwSize,
     WINAPI_DDCOLOR_FLAGS dwFlags,
@@ -349,43 +335,36 @@ ffi.cdef [[
     LONG lColorEnable,
     DWORD dwReserved1,
   } DDCOLORCONTROL;
-
-  typedef DDCOLORCONTROL LPDDCOLORCONTROL;
+  typedef DDCOLORCONTROL *LPDDCOLORCONTROL; //Pointer
   typedef struct DDGAMMARAMP {
     WORD [256] red,
     WORD [256] green,
     WORD [256] blue,
   } DDGAMMARAMP;
-
-  typedef DDGAMMARAMP LPDDGAMMARAMP;
-  typedef DWORD WINAPI_DDBLTFX_FLAGS;
+  typedef DDGAMMARAMP *LPDDGAMMARAMP; //Pointer
+  typedef DWORD WINAPI_DDBLTFX_FLAGS; //Alias
   typedef union WINAPI_DDBLTFX_u1 {
     DWORD dwZDestConst,
     LPDIRECTDRAWSURFACE lpDDSZBufferDest,
   } WINAPI_DDBLTFX_u1;
-
   typedef union WINAPI_DDBLTFX_u2 {
     DWORD dwZSrcConst,
     LPDIRECTDRAWSURFACE lpDDSZBufferSrc,
   } WINAPI_DDBLTFX_u2;
-
   typedef union WINAPI_DDBLTFX_u3 {
     DWORD dwAlphaDestConst,
     LPDIRECTDRAWSURFACE lpDDSAlphaDest,
   } WINAPI_DDBLTFX_u3;
-
   typedef union WINAPI_DDBLTFX_u4 {
     DWORD dwAlphaSrcConst,
     LPDIRECTDRAWSURFACE lpDDSAlphaSrc,
   } WINAPI_DDBLTFX_u4;
-
   typedef union WINAPI_DDBLTFX_u5 {
     DWORD dwFillColor,
     DWORD dwFillDepth,
     DWORD dwFillPixel,
     LPDIRECTDRAWSURFACE lpDDSPattern,
   } WINAPI_DDBLTFX_u5;
-
   typedef struct DDBLTFX {
     DWORD dwSize,
     WINAPI_DDBLTFX_FLAGS dwDDFX,
@@ -411,9 +390,8 @@ ffi.cdef [[
     DDCOLORKEY ddckDestColorkey,
     DDCOLORKEY ddckSrcColorkey,
   } DDBLTFX;
-
-  typedef DDBLTFX LPDDBLTFX;
-  typedef DWORD WINAPI_DDBLT_FLAGS;
+  typedef DDBLTFX *LPDDBLTFX; //Pointer
+  typedef DWORD WINAPI_DDBLT_FLAGS; //Alias
   typedef struct DDBLTBATCH {
     LPRECT lprDest,
     LPDIRECTDRAWSURFACE lpDDSSrc,
@@ -421,19 +399,16 @@ ffi.cdef [[
     WINAPI_DDBLT_FLAGS dwFlags,
     LPDDBLTFX lpDDBltFx,
   } DDBLTBATCH;
-
-  typedef DDBLTBATCH LPDDBLTBATCH;
+  typedef DDBLTBATCH *LPDDBLTBATCH; //Pointer
   typedef union WINAPI_DDOVERLAYFX_u1 {
     DWORD dwAlphaDestConst,
     LPDIRECTDRAWSURFACE lpDDSAlphaDest,
   } WINAPI_DDOVERLAYFX_u1;
-
   typedef union WINAPI_DDOVERLAYFX_u2 {
     DWORD dwAlphaSrcConst,
     LPDIRECTDRAWSURFACE lpDDSAlphaSrc,
   } WINAPI_DDOVERLAYFX_u2;
-
-  typedef DWORD WINAPI_DDOVERFX_FLAGS;
+  typedef DWORD WINAPI_DDOVERFX_FLAGS; //Alias
   typedef struct DDOVERLAYFX {
     DWORD dwSize,
     DWORD dwAlphaEdgeBlendBitDepth,
@@ -448,22 +423,21 @@ ffi.cdef [[
     DWORD dwDDFX,
     WINAPI_DDOVERFX_FLAGS dwFlags,
   } DDOVERLAYFX;
-
-  typedef DDOVERLAYFX LPDDOVERLAYFX;
-  typedef DWORD WINAPI_DDEDM_FLAGS;
-  typedef DWORD WINAPI_DDENUMSURFACES_FLAGS;
+  typedef DDOVERLAYFX *LPDDOVERLAYFX; //Pointer
+  typedef DWORD WINAPI_DDEDM_FLAGS; //Alias
+  typedef DWORD WINAPI_DDENUMSURFACES_FLAGS; //Alias
   typedef enum WINAPI_DDEM_FLAGS {
     DDEM_MODEPASSED = 0x00000001,
     DDEM_MODEFAILED = 0x00000002,
   } WINAPI_DDEM_FLAGS;
-  typedef DWORD WINAPI_DDSCL_FLAGS;
-  typedef DWORD WINAPI_DDWAITVB_FLAGS;
-  typedef DWORD WINAPI_DDSDM_FLAGS;
-  typedef DWORD WINAPI_DDGDI_FLAGS;
-  typedef DWORD WINAPI_DDSMT_FLAGS;
-  typedef DWORD WINAPI_DDSGR_FLAGS;
-  typedef DWORD WINAPI_DDENUM_FLAGS;
-  typedef DWORD WINAPI_DDSPD_FLAGS;
+  typedef DWORD WINAPI_DDSCL_FLAGS; //Alias
+  typedef DWORD WINAPI_DDWAITVB_FLAGS; //Alias
+  typedef DWORD WINAPI_DDSDM_FLAGS; //Alias
+  typedef DWORD WINAPI_DDGDI_FLAGS; //Alias
+  typedef DWORD WINAPI_DDSMT_FLAGS; //Alias
+  typedef DWORD WINAPI_DDSGR_FLAGS; //Alias
+  typedef DWORD WINAPI_DDENUM_FLAGS; //Alias
+  typedef DWORD WINAPI_DDSPD_FLAGS; //Alias
   typedef enum WINAPI_DDBLTFAST_TYPE {
     DDBLTFAST_NOCOLORKEY = 0x00000000,
     DDBLTFAST_SRCCOLORKEY = 0x00000001,
@@ -475,12 +449,12 @@ ffi.cdef [[
     DDENUMOVERLAYZ_BACKTOFRONT = 0x00000000,
     DDENUMOVERLAYZ_FRONTTOBACK = 0x00000001,
   } WINAPI_DDENUMOVERLAYZ_TYPE;
-  typedef DWORD WINAPI_DDFLIP_FLAGS;
-  typedef DWORD WINAPI_DDGBS_FLAGS;
-  typedef DWORD WINAPI_DDCKEY_FLAGS;
-  typedef DWORD WINAPI_DDGFS_FLAGS;
-  typedef DWORD WINAPI_DDLOCK_FLAGS;
-  typedef DWORD WINAPI_DDOVER_FLAGS;
+  typedef DWORD WINAPI_DDFLIP_FLAGS; //Alias
+  typedef DWORD WINAPI_DDGBS_FLAGS; //Alias
+  typedef DWORD WINAPI_DDCKEY_FLAGS; //Alias
+  typedef DWORD WINAPI_DDGFS_FLAGS; //Alias
+  typedef DWORD WINAPI_DDLOCK_FLAGS; //Alias
+  typedef DWORD WINAPI_DDOVER_FLAGS; //Alias
   typedef enum WINAPI_DDOVERZ_ORDER {
     DDOVERZ_SENDTOFRONT = 0x00000000,
     DDOVERZ_SENDTOBACK = 0x00000001,

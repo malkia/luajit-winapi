@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/patch" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/patch' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL CreatePatchFile(                   LPCTSTR OldFileName, LPCTSTR NewFileName, LPCTSTR PatchFileName, WINAPI_PatchOptionFlags OptionFlags, PPATCH_OPTION_DATA OptionData);
   BOOL CreatePatchFileByHandles(          HANDLE OldFileHandle, HANDLE NewFileHandle, HANDLE PatchFileHandle, WINAPI_PatchOptionFlags OptionFlags, PPATCH_OPTION_DATA OptionData);
@@ -13,4 +13,4 @@ ffi.cdef [[
   BOOL GetFilePatchSignatureByHandle(     HANDLE FileHandle, WINAPI_PatchOptionFlags OptionFlags, PVOID OptionData, ULONG IgnoreRangeCount, PPATCH_IGNORE_RANGE IgnoreRangeArray, ULONG RetainRangeCount, PPATCH_RETAIN_RANGE RetainRangeArray, ULONG SignatureBufferSize, PVOID SignatureBuffer);
   BOOL NormalizeFileForPatchSignature(    PVOID FileBuffer, ULONG FileSize, ULONG OptionFlags, PATCH_OPTION_DATA* OptionData, ULONG NewFileCoffBase, ULONG NewFileCoffTime, ULONG IgnoreRangeCount, PPATCH_IGNORE_RANGE IgnoreRangeArray, ULONG RetainRangeCount, PPATCH_RETAIN_RANGE RetainRangeArray);
 ]]
-return ffi.load( "mspatchc.dll" )
+return ffi.load( 'mspatchc.dll' )

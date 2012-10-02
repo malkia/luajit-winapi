@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/ole" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/ole' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT PTConvertPrintTicketToDevMode( HPTPROVIDER hProvider, IStream* pPrintTicket, EDefaultDevmodeType baseDevmodeType, EPrintTicketScope scope, ULONG* pcbDevmode, PDEVMODE* ppDevmode, BSTR* pbstrErrorMessage);
   HRESULT PTConvertDevModeToPrintTicket( HPTPROVIDER hProvider, ULONG cbDevmode, PDEVMODE pDevmode, EPrintTicketScope scope, IStream* pPrintTicket);
@@ -12,4 +12,4 @@ ffi.cdef [[
   HRESULT PTCloseProvider(               HPTPROVIDER hProvider);
   HRESULT PTQuerySchemaVersionSupport(   PCWSTR pszPrinterName, DWORD* pMaxVersion);
 ]]
-return ffi.load( "Prntvpt.dll" )
+return ffi.load( 'Prntvpt.dll' )

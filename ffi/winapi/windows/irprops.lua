@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/bluetooth" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/bluetooth' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   DWORD                  BluetoothAuthenticateDevice(          HWND hwndParent, HANDLE hRadio, BLUETOOTH_DEVICE_INFO* pbtdi, PWCHAR pszPasskey, ULONG ulPasskeyLength);
   DWORD                  BluetoothAuthenticateMultipleDevices( HWND hwndParent, HANDLE hRadio, DWORD cDevices, BLUETOOTH_DEVICE_INFO* pbtdi);
@@ -32,4 +32,4 @@ ffi.cdef [[
   BOOL                   BluetoothUnregisterAuthentication(    HBLUETOOTH_AUTHENTICATION_REGISTRATION hRegHandle);
   DWORD                  BluetoothUpdateDeviceRecord(          BLUETOOTH_DEVICE_INFO* pbtdi);
 ]]
-return ffi.load( "irprops.cpl" )
+return ffi.load( 'irprops.cpl' )

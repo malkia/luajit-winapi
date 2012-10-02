@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT WdsBpAddOption(       HANDLE hHandle, ULONG uOption, ULONG uValueLen, PVOID pValue);
   HRESULT WdsBpCloseHandle(     HANDLE hHandle);
@@ -8,4 +8,4 @@ ffi.cdef [[
   HRESULT WdsBpParseInitialize( PVOID pPacket, ULONG uPacketLen, PBYTE pbPacketType, HANDLE* phHandle);
   HRESULT WdsBpQueryOption(     HANDLE hHandle, ULONG uOption, ULONG uValueLen, PVOID pValue, PULONG puBytes);
 ]]
-return ffi.load( "Wdsbp.dll" )
+return ffi.load( 'Wdsbp.dll' )

@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/patch" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/patch' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL ApplyPatchToFile(               LPCTSTR PatchFileName, LPCTSTR OldFileName, LPCTSTR NewFileName, WINAPI_ApplyOptionFlags ApplyOptionFlags);
   BOOL ApplyPatchToFileByBuffers(      PBYTE PatchFileMapped, ULONG PatchFileSize, PBYTE OldFileMapped, ULONG OldFileSize, PBYTE* NewFileBuffer, ULONG NewFileBufferSize, ULONG* NewFileActualSize, FILETIME* NewFileTime, WINAPI_ApplyOptionFlags ApplyOptionFlags, PPATCH_PROGRESS_CALLBACK ProgressCallback, PVOID CallbackContext);
@@ -15,4 +15,4 @@ ffi.cdef [[
   BOOL TestApplyPatchToFileByBuffers(  PBYTE PatchFileBuffer, ULONG PatchFileSize, PBYTE OldFileBuffer, ULONG OldFileSize, ULONG* NewFileSize);
   BOOL TestApplyPatchToFileByHandles(  HANDLE PatchFileHandle, HANDLE OldFileHandle, WINAPI_ApplyOptionFlags ApplyOptionFlags);
 ]]
-return ffi.load( "mspatcha.dll" )
+return ffi.load( 'mspatcha.dll' )

@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/native" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/native' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL                     EnumDirTree(                        WINAPI_ProcessHandle hProcess, PCTSTR RootPath, PCTSTR InputPathName, PTSTR OutputPathBuffer, PENUMDIRTREE_CALLBACK Callback, PVOID CallbackData);
   LPAPI_VERSION            ImagehlpApiVersion(                 );
@@ -31,7 +31,7 @@ ffi.cdef [[
   BOOL                     SymEnumProcesses(                   PSYM_ENUMPROCESSES_CALLBACK EnumProcessesCallback, PVOID UserContext);
   BOOL                     SymEnumSourceFiles(                 WINAPI_ProcessHandle hProcess, ULONG64 ModBase, PCTSTR Mask, PSYM_ENUMSOURCEFILES_CALLBACK EnumSymbolsCallback, PVOID UserContext);
   BOOL                     SymEnumSourceLines(                 WINAPI_ProcessHandle hProcess, ULONG64 Base, PCTSTR Obj, PCTSTR File, DWORD Line, WINAPI_ESLFLAG Flags, PSYM_ENUMLINES_CALLBACK EnumLinesCallback, PVOID UserContext);
-  BOOL                     SymEnumSymbols(                     WINAPI_ProcessHandle hProcess, ULONG64 BaseOfDll, PCTSTR Mask, PSYM_ENUMERATESYMBOLS_CALLBACK EnumSymbolsCallback, PVOID UserContext);
+  BOOL                     SymEnumSymbols(                     WINAPI_ProcessHandle hProcess, ULONG64 BaseOfDll, PCTSTR Mask, PSYM_ENUMERATESYMBOLS_CALLBACK EnumSymbolsCallback, WINAPI_PVOID UserContext);
   BOOL                     SymEnumSymbolsForAddr(              WINAPI_ProcessHandle hProcess, DWORD64 Address, PSYM_ENUMERATESYMBOLS_CALLBACK EnumSymbolsCallback, PVOID UserContext);
   BOOL                     SymEnumTypes(                       WINAPI_ProcessHandle hProcess, ULONG64 BaseOfDll, PSYM_ENUMERATESYMBOLS_CALLBACK EnumSymbolsCallback, PVOID UserContext);
   BOOL                     SymEnumTypesByName(                 WINAPI_ProcessHandle hProcess, ULONG64 BaseOfDll, PCSTR mask, PSYM_ENUMERATESYMBOLS_CALLBACK EnumSymbolsCallback, PVOID UserContext);
@@ -91,7 +91,7 @@ ffi.cdef [[
   PCTSTR                   SymSrvGetSupplement(                WINAPI_ProcessHandle hProcess, PCTSTR SymPath, PCTSTR Node, PCTSTR File);
   BOOL                     SymSrvIsStore(                      WINAPI_ProcessHandle hProcess, PCTSTR path);
   PCTSTR                   SymSrvStoreFile(                    WINAPI_ProcessHandle hProcess, PCTSTR SrvPath, PCTSTR File, DWORD Flags);
-  PCTSTR                   SymSrvStoreSupplement(              WINAPI_ProcessHandle hProcess, PCTSTR SymPath, PCTSTR Node, PCTSTR File, DWORD Flags);
+  PCTSTR                   SymSrvStoreSupplement(              WINAPI_ProcessHandle hProcess, WINAPI_PCTSTR SymPath, PCTSTR Node, PCTSTR File, DWORD Flags);
   BOOL                     MiniDumpReadDumpStream(             PVOID BaseOfDump, ULONG StreamNumber, PMINIDUMP_DIRECTORY* Dir, PVOID* StreamPointer, ULONG* StreamSize);
   BOOL                     MiniDumpWriteDump(                  WINAPI_ProcessHandle hProcess, DWORD ProcessId, HANDLE hFile, MINIDUMP_TYPE DumpType, PMINIDUMP_EXCEPTION_INFORMATION ExceptionParam, PMINIDUMP_USER_STREAM_INFORMATION UserStreamParam, PMINIDUMP_CALLBACK_INFORMATION CallbackParam);
   BOOL                     SymGetSourceFile(                   WINAPI_ProcessHandle hProcess, ULONG64 Base, PCTSTR Params, PCTSTR FileSpec, PTSTR FilePath, DWORD Size);
@@ -107,4 +107,4 @@ ffi.cdef [[
   BOOL                     SymGetSymPrev64(                    WINAPI_ProcessHandle hProcess, PIMAGEHLP_SYMBOL64 Symbol);
   BOOL                     UnmapDebugInformation(              PIMAGE_DEBUG_INFORMATION DebugInfo);
 ]]
-return ffi.load( "DbgHelp.dll" )
+return ffi.load( 'DbgHelp.dll' )

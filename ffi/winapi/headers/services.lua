@@ -1,15 +1,15 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID PFN_SC_NOTIFY_CALLBACK;
-  typedef HANDLE SERVICE_STATUS_HANDLE;
-  typedef HANDLE SC_HANDLE;
-  typedef LPVOID SC_LOCK;
+  typedef LPVOID PFN_SC_NOTIFY_CALLBACK; //Alias
+  typedef HANDLE SERVICE_STATUS_HANDLE; //Alias
+  typedef HANDLE SC_HANDLE; //Alias
+  typedef LPVOID SC_LOCK; //Alias
   typedef enum SC_STATUS_TYPE {
     SC_STATUS_PROCESS_INFO = 0,
   } SC_STATUS_TYPE;
-  typedef DWORD WINAPI_ServiceType;
-  typedef DWORD WINAPI_ServiceState;
+  typedef DWORD WINAPI_ServiceType; //Alias
+  typedef DWORD WINAPI_ServiceState; //Alias
   typedef enum WINAPI_ServiceCurrentState {
     SERVICE_STOPPED = 0x00000001,
     SERVICE_START_PENDING = 0x00000002,
@@ -45,8 +45,8 @@ ffi.cdef [[
     SERVICE_CONFIG_TRIGGER_INFO = 8,
     SERVICE_CONFIG_PREFERRED_NODE = 9,
   } WINAPI_ServiceInfoLevel;
-  typedef DWORD WINAPI_SCManagerAccess;
-  typedef DWORD WINAPI_ServiceAccess;
+  typedef DWORD WINAPI_SCManagerAccess; //Alias
+  typedef DWORD WINAPI_ServiceAccess; //Alias
   typedef enum WINAPI_ServiceControl {
     SERVICE_CONTROL_STOP = 0x00000001,
     SERVICE_CONTROL_PAUSE = 0x00000002,
@@ -64,9 +64,9 @@ ffi.cdef [[
     SERVICE_CONTROL_SESSIONCHANGE = 0x0000000E,
     SERVICE_CONTROL_PRESHUTDOWN = 0x0000000F,
   } WINAPI_ServiceControl;
-  typedef DWORD WINAPI_ServiceAcceptControls;
-  typedef DWORD WINAPI_ServiceNotifyMask;
-  typedef DWORD WINAPI_ServiceFlags;
+  typedef DWORD WINAPI_ServiceAcceptControls; //Alias
+  typedef DWORD WINAPI_ServiceNotifyMask; //Alias
+  typedef DWORD WINAPI_ServiceFlags; //Alias
   typedef struct SERVICE_STATUS_PROCESS {
     WINAPI_ServiceType dwServiceType,
     WINAPI_ServiceCurrentState dwCurrentState,
@@ -78,7 +78,6 @@ ffi.cdef [[
     DWORD dwProcessId,
     WINAPI_ServiceFlags dwServiceFlags,
   } SERVICE_STATUS_PROCESS;
-
   typedef struct SERVICE_NOTIFY {
     DWORD dwVersion,
     PFN_SC_NOTIFY_CALLBACK pfnNotifyCallback,
@@ -88,8 +87,7 @@ ffi.cdef [[
     DWORD dwNotificationTriggered,
     LPTSTR pszServiceNames,
   } SERVICE_NOTIFY;
-
-  typedef SERVICE_NOTIFY PSERVICE_NOTIFY;
+  typedef SERVICE_NOTIFY *PSERVICE_NOTIFY; //Pointer
   typedef struct SERVICE_STATUS {
     WINAPI_ServiceType dwServiceType,
     WINAPI_ServiceCurrentState dwCurrentState,
@@ -99,21 +97,19 @@ ffi.cdef [[
     DWORD dwCheckPoint,
     DWORD dwWaitHint,
   } SERVICE_STATUS;
-
-  typedef SERVICE_STATUS LPSERVICE_STATUS;
-  typedef LPVOID LPSERVICE_MAIN_FUNCTION;
+  typedef SERVICE_STATUS *LPSERVICE_STATUS; //Pointer
+  typedef LPVOID LPSERVICE_MAIN_FUNCTION; //Alias
   typedef struct SERVICE_TABLE_ENTRY {
     LPTSTR lpServiceName,
     LPSERVICE_MAIN_FUNCTION lpServiceProc,
   } SERVICE_TABLE_ENTRY;
-
+  typedef SERVICE_TABLE_ENTRY *WINAPI_SERVICE_TABLE_ENTRY*; //Pointer
   typedef struct ENUM_SERVICE_STATUS {
     LPTSTR lpServiceName,
     LPTSTR lpDisplayName,
     SERVICE_STATUS ServiceStatus,
   } ENUM_SERVICE_STATUS;
-
-  typedef ENUM_SERVICE_STATUS LPENUM_SERVICE_STATUS;
+  typedef ENUM_SERVICE_STATUS *LPENUM_SERVICE_STATUS; //Pointer
   typedef struct QUERY_SERVICE_CONFIG {
     WINAPI_ServiceType dwServiceType,
     WINAPI_ServiceStartType dwStartType,
@@ -125,13 +121,11 @@ ffi.cdef [[
     LPTSTR lpServiceStartName,
     LPTSTR lpDisplayName,
   } QUERY_SERVICE_CONFIG;
-
-  typedef QUERY_SERVICE_CONFIG LPQUERY_SERVICE_CONFIG;
+  typedef QUERY_SERVICE_CONFIG *LPQUERY_SERVICE_CONFIG; //Pointer
   typedef struct QUERY_SERVICE_LOCK_STATUS {
     DWORD fIsLocked,
     LPTSTR lpLockOwner,
     DWORD dwLockDuration,
   } QUERY_SERVICE_LOCK_STATUS;
-
-  typedef QUERY_SERVICE_LOCK_STATUS LPQUERY_SERVICE_LOCK_STATUS;
+  typedef QUERY_SERVICE_LOCK_STATUS *LPQUERY_SERVICE_LOCK_STATUS; //Pointer
 ]]

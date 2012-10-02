@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/ole" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/ole' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT ADsBuildEnumerator(  IADsContainer* pADsContainer, IEnumVARIANT** ppEnumVariant);
   HRESULT ADsBuildVarArrayInt( LPDWORD lpdwObjectTypes, DWORD dwObjectTypes, VARIANT* pVar);
@@ -19,4 +19,4 @@ ffi.cdef [[
   LPVOID  ReallocADsMem(       LPVOID pOldMem, DWORD cbOld, DWORD cbNew);
   BOOL    ReallocADsStr(       LPWSTR* ppStr, LPWSTR pStr);
 ]]
-return ffi.load( "Activeds.dll" )
+return ffi.load( 'Activeds.dll' )

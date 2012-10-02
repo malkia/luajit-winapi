@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/odbc" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/odbc' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL    SQLConfigDataSource(          HWND hwndParent, WINAPI_ODBC_DSN_REQUEST fRequest, LPCTSTR lpszDriver, LPCTSTR lpszAttributes);
   BOOL    SQLConfigDriver(              HWND hwndParent, WINAPI_ODBC_DRIVER_REQUEST fRequest, LPCTSTR lpszDriver, LPCTSTR lpszArgs, LPTSTR lpszMsg, WORD cbMsgMax, WORD* pcbMsgOut);
@@ -26,4 +26,4 @@ ffi.cdef [[
   BOOL    SQLWriteFileDSN(              LPCTSTR lpszFileName, LPCTSTR lpszAppName, LPCTSTR lpszKeyName, LPCTSTR lpszString);
   BOOL    SQLWritePrivateProfileString( LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszString, LPCTSTR lpszFilename);
 ]]
-return ffi.load( "ODBCCP32.DLL" )
+return ffi.load( 'ODBCCP32.DLL' )

@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/gdi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/gdi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL    DegaussMonitor(                                  HANDLE hMonitor);
   BOOL    GetMonitorBrightness(                            HANDLE hMonitor, LPDWORD pdwMinimumBrightness, LPDWORD pdwCurrentBrightness, LPDWORD pdwMaximumBrightness);
@@ -36,6 +36,6 @@ ffi.cdef [[
   BOOL    GetPhysicalMonitorsFromIDirect3DDevice9(         IDirect3DDevice9* pDirect3DDevice9, DWORD dwPhysicalMonitorArraySize, LPPHYSICAL_MONITOR pPhysicalMonitorArray);
   HRESULT DXVA2CreateDirect3DDeviceManager9(               UINT* pResetToken, IDirect3DDeviceManager9** ppDXVAManager);
   HRESULT DXVA2CreateVideoService(                         IDirect3DDevice9* pDD, REFIID riid, void** ppService);
-  HRESULT DXVAHD_CreateDevice(                             IDirect3DDevice9Ex* pD3DDevice, DXVAHD_CONTENT_DESC* pContentDesc, DXVAHD_DEVICE_USAGE Usage, PDXVAHDSW_Plugin pPlugin, IDXVAHD_Device** ppDevice);
+  HRESULT DXVAHD_CreateDevice(                             IDirect3DDevice9Ex* pD3DDevice, WINAPI_DXVAHD_CONTENT_DESC* pContentDesc, DXVAHD_DEVICE_USAGE Usage, PDXVAHDSW_Plugin pPlugin, IDXVAHD_Device** ppDevice);
 ]]
-return ffi.load( "dxva2.dll" )
+return ffi.load( 'dxva2.dll' )

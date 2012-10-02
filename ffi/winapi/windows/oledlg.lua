@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/ole" )
-require( "ffi/winapi/headers/gdi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/ole' )
+require( 'ffi/winapi/headers/gdi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL OleUIAddVerbMenu(            LPOLEOBJECT lpOleObj, LPCTSTR lpszShortType, HMENU hMenu, UINT uPos, UINT uIDVerbMin, UINT uIDVerbMax, BOOL bAddConvert, UINT idConvert, HMENU* lphMenu);
   UINT OleUIBusy(                   LPOLEUIBUSY lpBZ);
@@ -16,4 +16,4 @@ ffi.cdef [[
   int  OleUIPromptUser(             int nTemplate, HWND hwndParent);
   BOOL OleUIUpdateLinks(            LPOLEUILINKCONTAINER lpOleUILinkCntr, HWND hwndParent, LPTSTR lpszTitle, int cLinks);
 ]]
-return ffi.load( "OleDlg.dll" )
+return ffi.load( 'OleDlg.dll' )

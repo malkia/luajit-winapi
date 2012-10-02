@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL    DllMain(               HINSTANCE hinstDLL, WINAPI_DLLMAIN_REASON fdwReason, LPVOID lpvReserved);
   HRESULT DllGetClassObject(     REFCLSID rclsid, REFIID riid, LPVOID* ppv);
@@ -11,4 +11,4 @@ ffi.cdef [[
   HRESULT DllGetVersion(         DLLVERSIONINFO* pdvi);
   HRESULT DllInstall(            BOOL bInstall, PCWSTR pszCmdLine);
 ]]
-return ffi.load( "*" )
+return ffi.load( '*' )

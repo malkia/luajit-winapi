@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef DWORD FOURCC;
+  typedef DWORD FOURCC; //Alias
   typedef enum MMRESULT {
     MMSYSERR_NOERROR = 0,
     MMSYSERR_ERROR = 1,
@@ -227,8 +227,8 @@ ffi.cdef [[
     WORD wBitsPerSample,
     WORD cbSize,
   } WAVEFORMATEX;
-
-  typedef WAVEFORMATEX LPWAVEFORMATEX;
-  typedef WAVEFORMATEX LPCWAVEFORMATEX;
-  typedef DWORD WINAPI_SPEAKER_POSITION;
+  typedef WAVEFORMATEX *LPWAVEFORMATEX; //Pointer
+  typedef WAVEFORMATEX *LPCWAVEFORMATEX; //Pointer
+  typedef WAVEFORMATEX *WINAPI_WAVEFORMATEX*; //Pointer
+  typedef DWORD WINAPI_SPEAKER_POSITION; //Alias
 ]]

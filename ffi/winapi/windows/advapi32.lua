@@ -1,20 +1,20 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/registry" )
-require( "ffi/winapi/headers/events" )
-require( "ffi/winapi/headers/services" )
-require( "ffi/winapi/headers/cryptography" )
-require( "ffi/winapi/headers/security" )
-require( "ffi/winapi/headers/native" )
-require( "ffi/winapi/headers/network" )
-require( "ffi/winapi/headers/processes" )
-require( "ffi/winapi/headers/shell" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/registry' )
+require( 'ffi/winapi/headers/events' )
+require( 'ffi/winapi/headers/services' )
+require( 'ffi/winapi/headers/cryptography' )
+require( 'ffi/winapi/headers/security' )
+require( 'ffi/winapi/headers/native' )
+require( 'ffi/winapi/headers/network' )
+require( 'ffi/winapi/headers/processes' )
+require( 'ffi/winapi/headers/shell' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   WINAPI_REG_ERROR          RegCloseKey(                                         HKEY hKey);
   WINAPI_REG_ERROR          RegConnectRegistry(                                  LPCTSTR lpMachineName, HKEY hKey, PHKEY phkResult);
   WINAPI_REG_ERROR          RegCopyTree(                                         HKEY hKeySrc, LPCTSTR lpSubKey, HKEY hKeyDest);
   WINAPI_REG_ERROR          RegCreateKeyEx(                                      HKEY hKey, LPCTSTR lpSubKey, DWORD Reserved, LPTSTR lpClass, WINAPI_RegOptions dwOptions, REGSAM samDesired, LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, WINAPI_RegDisposition* lpdwDisposition);
-  WINAPI_REG_ERROR          RegCreateKeyTransacted(                              HKEY hKey, LPCTSTR lpSubKey, DWORD Reserved, LPTSTR lpClass, WINAPI_RegOptions dwOptions, REGSAM samDesired, LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, WINAPI_RegDisposition* lpdwDisposition, HANDLE hTransaction, PVOID pExtendedParemeter);
+  WINAPI_REG_ERROR          RegCreateKeyTransacted(                              HKEY hKey, LPCTSTR lpSubKey, DWORD Reserved, LPTSTR lpClass, WINAPI_RegOptions dwOptions, REGSAM samDesired, WINAPI_LPSECURITY_ATTRIBUTES lpSecurityAttributes, PHKEY phkResult, WINAPI_RegDisposition* lpdwDisposition, HANDLE hTransaction, PVOID pExtendedParemeter);
   WINAPI_REG_ERROR          RegDeleteKey(                                        HKEY hKey, LPCTSTR lpSubKey);
   WINAPI_REG_ERROR          RegDeleteKeyEx(                                      HKEY hKey, LPCTSTR lpSubKey, REGSAM samDesired, DWORD Reserved);
   WINAPI_REG_ERROR          RegDeleteKeyTransacted(                              HKEY hKey, LPCTSTR lpSubKey, REGSAM samDesired, DWORD Reserved, HANDLE hTransaction, PVOID pExtendedParameter);
@@ -46,7 +46,7 @@ ffi.cdef [[
   WINAPI_REG_ERROR          RegSaveKey(                                          HKEY hKey, LPCTSTR lpFile, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
   WINAPI_REG_ERROR          RegSaveKeyEx(                                        HKEY hKey, LPCTSTR lpFile, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD Flags);
   WINAPI_REG_ERROR          RegSetKeyValue(                                      HKEY hKey, LPCTSTR lpSubKey, LPCTSTR lpValueName, WINAPI_RegType dwType, LPCVOID lpData, DWORD cbData);
-  WINAPI_REG_ERROR          RegSetValueEx(                                       HKEY hKey, LPCTSTR lpValueName, DWORD Reserved, WINAPI_RegType dwType, BYTE* lpData, DWORD cbData);
+  WINAPI_REG_ERROR          RegSetValueEx(                                       HKEY hKey, LPCTSTR lpValueName, DWORD Reserved, WINAPI_RegType dwType, WINAPI_BYTE* lpData, DWORD cbData);
   WINAPI_REG_ERROR          RegUnLoadKey(                                        HKEY hKey, LPCTSTR lpSubKey);
   WINAPI_REG_ERROR          RegCreateKey(                                        HKEY hKey, LPCTSTR lpSubKey, PHKEY phkResult);
   WINAPI_REG_ERROR          RegEnumKey(                                          HKEY hKey, DWORD dwIndex, LPTSTR lpName, DWORD cchName);
@@ -56,7 +56,7 @@ ffi.cdef [[
   WINAPI_ERROR_CODE         AddUsersToEncryptedFile(                             LPCWSTR lpFileName, PENCRYPTION_CERTIFICATE_LIST pUsers);
   void                      CloseEncryptedFileRaw(                               PVOID pvContext);
   BOOL                      DecryptFile(                                         LPCTSTR lpFileName, DWORD dwReserved);
-  WINAPI_ERROR_CODE         DuplicateEncryptionInfoFile(                         LPCTSTR SrcFileName, LPCTSTR DstFileName, DWORD dwCreationDistribution, DWORD dwAttributes, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+  WINAPI_ERROR_CODE         DuplicateEncryptionInfoFile(                         LPCTSTR SrcFileName, LPCTSTR DstFileName, DWORD dwCreationDistribution, DWORD dwAttributes, WINAPI_LPSECURITY_ATTRIBUTES lpSecurityAttributes);
   BOOL                      EncryptFile(                                         LPCTSTR lpFileName);
   BOOL                      EncryptionDisable(                                   LPCWSTR DirPath, BOOL Disable);
   BOOL                      FileEncryptionStatus(                                LPCTSTR lpFileName, LPDWORD lpStatus);
@@ -111,7 +111,7 @@ ffi.cdef [[
   SERVICE_STATUS_HANDLE     RegisterServiceCtrlHandlerEx(                        LPCTSTR lpServiceName, LPHANDLER_FUNCTION_EX lpHandlerProc, LPVOID lpContext);
   BOOL                      SetServiceBits(                                      SERVICE_STATUS_HANDLE hServiceStatus, DWORD dwServiceBits, BOOL bSetBitsOn, BOOL bUpdateImmediately);
   BOOL                      SetServiceStatus(                                    SERVICE_STATUS_HANDLE hServiceStatus, LPSERVICE_STATUS lpServiceStatus);
-  BOOL                      StartServiceCtrlDispatcher(                          SERVICE_TABLE_ENTRY* lpServiceTable);
+  BOOL                      StartServiceCtrlDispatcher(                          WINAPI_SERVICE_TABLE_ENTRY* lpServiceTable);
   BOOL                      ChangeServiceConfig(                                 SC_HANDLE hService, WINAPI_ServiceType dwServiceType, WINAPI_ServiceStartType dwStartType, WINAPI_ServiceErrorControl dwErrorControl, LPCTSTR lpBinaryPathName, LPCTSTR lpLoadOrderGroup, LPDWORD lpdwTagId, LPCTSTR lpDependencies, LPCTSTR lpServiceStartName, LPCTSTR lpPassword, LPCTSTR lpDisplayName);
   BOOL                      ChangeServiceConfig2(                                SC_HANDLE hService, WINAPI_ServiceInfoLevel dwInfoLevel, LPVOID lpInfo);
   BOOL                      CloseServiceHandle(                                  SC_HANDLE hSCObject);
@@ -138,7 +138,7 @@ ffi.cdef [[
   BOOL                      UnlockServiceDatabase(                               SC_LOCK ScLock);
   BOOL                      GetCurrentHwProfile(                                 LPHW_PROFILE_INFO lpHwProfileInfo);
   BOOL                      GetUserName(                                         LPTSTR lpBuffer, LPDWORD lpnSize);
-  BOOL                      IsTextUnicode(                                       VOID* lpv, int iSize, WINAPI_IsTextUnicodeFlags* lpiResult);
+  BOOL                      IsTextUnicode(                                       WINAPI_VOID* lpv, int iSize, WINAPI_IsTextUnicodeFlags* lpiResult);
   BOOL                      CryptAcquireContext(                                 HCRYPTPROV* phProv, LPCTSTR pszContainer, LPCTSTR pszProvider, WINAPI_CryptProv dwProvType, WINAPI_CryptAcquireContextFlags dwFlags);
   BOOL                      CryptContextAddRef(                                  HCRYPTPROV hProv, DWORD* pdwReserved, DWORD dwFlags);
   BOOL                      CryptEnumProviders(                                  DWORD dwIndex, DWORD* pdwReserved, DWORD dwFlags, WINAPI_CryptProv* pdwProvType, LPTSTR pszProvName, DWORD* pcbProvName);
@@ -148,7 +148,7 @@ ffi.cdef [[
   BOOL                      CryptReleaseContext(                                 HCRYPTPROV hProv, DWORD dwFlags);
   BOOL                      CryptSetProvider(                                    LPCTSTR pszProvName, WINAPI_CryptProv dwProvType);
   BOOL                      CryptSetProviderEx(                                  LPCTSTR pszProvName, WINAPI_CryptProv dwProvType, DWORD* pdwReserved, DWORD dwFlags);
-  BOOL                      CryptSetProvParam(                                   HCRYPTPROV hProv, WINAPI_CryptSetProvParam dwParam, BYTE* pbData, DWORD dwFlags);
+  BOOL                      CryptSetProvParam(                                   HCRYPTPROV hProv, WINAPI_CryptSetProvParam dwParam, WINAPI_BYTE* pbData, DWORD dwFlags);
   BOOL                      CryptDeriveKey(                                      HCRYPTPROV hProv, ALG_ID Algid, HCRYPTHASH hBaseData, DWORD dwFlags, HCRYPTKEY* phKey);
   BOOL                      CryptDestroyKey(                                     HCRYPTKEY hKey);
   BOOL                      CryptDuplicateKey(                                   HCRYPTKEY hKey, DWORD* pdwReserved, DWORD dwFlags, HCRYPTKEY* phKey);
@@ -158,7 +158,7 @@ ffi.cdef [[
   BOOL                      CryptGetKeyParam(                                    HCRYPTKEY hKey, WINAPI_CryptKeyParam dwParam, BYTE* pbData, DWORD* pdwDataLen, DWORD dwFlags);
   BOOL                      CryptGetUserKey(                                     HCRYPTPROV hProv, WINAPI_CryptKeySpec dwKeySpec, HCRYPTKEY* phUserKey);
   BOOL                      CryptImportKey(                                      HCRYPTPROV hProv, BYTE* pbData, DWORD dwDataLen, HCRYPTKEY hPubKey, WINAPI_CryptImportKeyFlags dwFlags, HCRYPTKEY* phKey);
-  BOOL                      CryptSetKeyParam(                                    HCRYPTKEY hKey, WINAPI_CryptKeyParam dwParam, BYTE* pbData, DWORD dwFlags);
+  BOOL                      CryptSetKeyParam(                                    HCRYPTKEY hKey, WINAPI_CryptKeyParam dwParam, WINAPI_BYTE* pbData, DWORD dwFlags);
   BOOL                      CryptDecrypt(                                        HCRYPTKEY hKey, HCRYPTHASH hHash, BOOL Final, DWORD dwFlags, BYTE* pbData, DWORD* pdwDataLen);
   BOOL                      CryptEncrypt(                                        HCRYPTKEY hKey, HCRYPTHASH hHash, BOOL Final, DWORD dwFlags, BYTE* pbData, DWORD* pdwDataLen, DWORD dwBufLen);
   BOOL                      CryptCreateHash(                                     HCRYPTPROV hProv, ALG_ID Algid, HCRYPTKEY hKey, WINAPI_CryptCreateHashFlags dwFlags, HCRYPTHASH* phHash);
@@ -167,7 +167,7 @@ ffi.cdef [[
   BOOL                      CryptGetHashParam(                                   HCRYPTHASH hHash, WINAPI_CryptHashParam dwParam, BYTE* pbData, DWORD* pdwDataLen, DWORD dwFlags);
   BOOL                      CryptHashData(                                       HCRYPTHASH hHash, BYTE* pbData, DWORD dwDataLen, WINAPI_CryptHashDataFlags dwFlags);
   BOOL                      CryptHashSessionKey(                                 HCRYPTHASH hHash, HCRYPTKEY hKey, DWORD dwFlags);
-  BOOL                      CryptSetHashParam(                                   HCRYPTHASH hHash, WINAPI_CryptHashParam dwParam, BYTE* pbData, DWORD dwFlags);
+  BOOL                      CryptSetHashParam(                                   HCRYPTHASH hHash, WINAPI_CryptHashParam dwParam, WINAPI_BYTE* pbData, DWORD dwFlags);
   BOOL                      CryptSignHash(                                       HCRYPTHASH hHash, WINAPI_CryptKeySpec dwKeySpec, LPCTSTR sDescription, WINAPI_CryptSignFlags dwFlags, BYTE* pbSignature, DWORD* pdwSigLen);
   BOOL                      CryptVerifySignature(                                HCRYPTHASH hHash, BYTE* pbSignature, DWORD dwSigLen, HCRYPTKEY hPubKey, LPCTSTR sDescription, WINAPI_CryptSignFlags dwFlags);
   WINAPI_ERROR_CODE_ULONG   ControlTrace(                                        TRACEHANDLE SessionHandle, LPCTSTR SessionName, PEVENT_TRACE_PROPERTIES Properties, ULONG ControlCode);
@@ -342,19 +342,19 @@ ffi.cdef [[
   BOOL                      SetSecurityDescriptorOwner(                          PSECURITY_DESCRIPTOR pSecurityDescriptor, PSID pOwner, BOOL bOwnerDefaulted);
   BOOL                      SetSecurityDescriptorSacl(                           PSECURITY_DESCRIPTOR pSecurityDescriptor, BOOL bSaclPresent, PACL pSacl, BOOL bSaclDefaulted);
   BOOL                      SetServiceObjectSecurity(                            SC_HANDLE hService, SECURITY_INFORMATION dwSecurityInformation, PSECURITY_DESCRIPTOR lpSecurityDescriptor);
-  BOOLEAN                   AuditComputeEffectivePolicyBySid(                    PSID pSid, GUID* pSubCategoryGuids, ULONG PolicyCount, PAUDIT_POLICY_INFORMATION* ppAuditPolicy);
-  BOOLEAN                   AuditComputeEffectivePolicyByToken(                  HANDLE hTokenHandle, GUID* pSubCategoryGuids, ULONG PolicyCount, PAUDIT_POLICY_INFORMATION* ppAuditPolicy);
+  BOOLEAN                   AuditComputeEffectivePolicyBySid(                    WINAPI_PSID pSid, WINAPI_GUID* pSubCategoryGuids, ULONG PolicyCount, PAUDIT_POLICY_INFORMATION* ppAuditPolicy);
+  BOOLEAN                   AuditComputeEffectivePolicyByToken(                  HANDLE hTokenHandle, WINAPI_GUID* pSubCategoryGuids, ULONG PolicyCount, PAUDIT_POLICY_INFORMATION* ppAuditPolicy);
   BOOLEAN                   AuditEnumerateCategories(                            GUID** ppAuditCategoriesArray, PULONG pCountReturned);
   BOOLEAN                   AuditEnumeratePerUserPolicy(                         PPOLICY_AUDIT_SID_ARRAY* ppAuditSidArray);
-  BOOLEAN                   AuditEnumerateSubCategories(                         GUID* pAuditCategoryGuid, BOOLEAN bRetrieveAllSubCategories, GUID** ppAuditSubCategoriesArray, PULONG pCountReturned);
+  BOOLEAN                   AuditEnumerateSubCategories(                         WINAPI_GUID* pAuditCategoryGuid, BOOLEAN bRetrieveAllSubCategories, GUID** ppAuditSubCategoriesArray, PULONG pCountReturned);
   VOID                      AuditFree(                                           PVOID Buffer);
   BOOLEAN                   AuditLookupCategoryGuidFromCategoryId(               POLICY_AUDIT_EVENT_TYPE AuditCategoryId, GUID* pAuditCategoryGuid);
-  BOOLEAN                   AuditLookupCategoryIdFromCategoryGuid(               GUID* pAuditCategoryGuid, PPOLICY_AUDIT_EVENT_TYPE pAuditCategoryId);
-  BOOLEAN                   AuditLookupCategoryName(                             GUID* pAuditCategoryGuid, PTSTR* ppszCategoryName);
-  BOOLEAN                   AuditLookupSubCategoryName(                          GUID* pAuditSubCategoryGuid, PTSTR* ppszSubCategoryName);
-  BOOLEAN                   AuditQueryPerUserPolicy(                             PSID pSid, GUID* pSubCategoryGuids, ULONG PolicyCount, PAUDIT_POLICY_INFORMATION* ppAuditPolicy);
-  BOOLEAN                   AuditQuerySystemPolicy(                              GUID* pSubCategoryGuids, ULONG PolicyCount, PAUDIT_POLICY_INFORMATION* ppAuditPolicy);
-  BOOLEAN                   AuditSetPerUserPolicy(                               PSID pSid, PCAUDIT_POLICY_INFORMATION pAuditPolicy, ULONG PolicyCount);
+  BOOLEAN                   AuditLookupCategoryIdFromCategoryGuid(               WINAPI_GUID* pAuditCategoryGuid, PPOLICY_AUDIT_EVENT_TYPE pAuditCategoryId);
+  BOOLEAN                   AuditLookupCategoryName(                             WINAPI_GUID* pAuditCategoryGuid, PTSTR* ppszCategoryName);
+  BOOLEAN                   AuditLookupSubCategoryName(                          WINAPI_GUID* pAuditSubCategoryGuid, PTSTR* ppszSubCategoryName);
+  BOOLEAN                   AuditQueryPerUserPolicy(                             WINAPI_PSID pSid, WINAPI_GUID* pSubCategoryGuids, ULONG PolicyCount, PAUDIT_POLICY_INFORMATION* ppAuditPolicy);
+  BOOLEAN                   AuditQuerySystemPolicy(                              WINAPI_GUID* pSubCategoryGuids, ULONG PolicyCount, PAUDIT_POLICY_INFORMATION* ppAuditPolicy);
+  BOOLEAN                   AuditSetPerUserPolicy(                               WINAPI_PSID pSid, PCAUDIT_POLICY_INFORMATION pAuditPolicy, ULONG PolicyCount);
   BOOLEAN                   AuditSetSystemPolicy(                                PCAUDIT_POLICY_INFORMATION pAuditPolicy, ULONG PolicyCount);
   BOOLEAN                   AuditQuerySecurity(                                  SECURITY_INFORMATION SecurityInformation, PSECURITY_DESCRIPTOR* ppSecurityDescriptor);
   BOOLEAN                   AuditSetSecurity(                                    SECURITY_INFORMATION SecurityInformation, PSECURITY_DESCRIPTOR pSecurityDescriptor);
@@ -421,4 +421,4 @@ ffi.cdef [[
   NTSTATUS                  LsaSetDomainInformationPolicy(                       LSA_HANDLE PolicyHandle, POLICY_DOMAIN_INFORMATION_CLASS InformationClass, PVOID Buffer);
   NTSTATUS                  LsaSetForestTrustInformation(                        LSA_HANDLE PolicyHandle, PLSA_UNICODE_STRING TrustedDomainName, PLSA_FOREST_TRUST_INFORMATION ForestTrustInfo, BOOLEAN CheckOnly, PLSA_FOREST_TRUST_COLLISION_INFORMATION* CollisionInfo);
 ]]
-return ffi.load( "Advapi32.dll" )
+return ffi.load( 'Advapi32.dll' )

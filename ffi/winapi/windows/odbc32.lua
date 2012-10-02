@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/odbc" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/odbc' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   SQLRETURN SQLAllocConnect(     SQLHENV EnvironmentHandle, SQLHDBC* ConnectionHandle);
   SQLRETURN SQLAllocEnv(         SQLHENV* EnvironmentHandle);
@@ -118,4 +118,4 @@ ffi.cdef [[
   SQLRETURN SQLTables(           SQLHSTMT StatementHandle, SQLTCHAR* CatalogName, SQLSMALLINT NameLength1, SQLTCHAR* SchemaName, SQLSMALLINT NameLength2, SQLTCHAR* TableName, SQLSMALLINT NameLength3, SQLTCHAR* TableType, SQLSMALLINT NameLength4);
   SQLRETURN SQLTransact(         SQLHENV EnvironmentHandle, SQLHDBC ConnectionHandle, SQLUSMALLINT CompletionType);
 ]]
-return ffi.load( "ODBC32.DLL" )
+return ffi.load( 'ODBC32.DLL' )

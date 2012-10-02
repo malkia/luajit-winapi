@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/sockets" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/sockets' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   WINAPI_SocketCode_INT EnumProtocols(        LPINT lpiProtocols, LPVOID lpProtocolBuffer, LPDWORD lpdwBufferLength);
   void                  GetAcceptExSockaddrs( PVOID lpOutputBuffer, DWORD dwReceiveDataLength, DWORD dwLocalAddressLength, DWORD dwRemoteAddressLength, LPSOCKADDR* LocalSockaddr, LPINT LocalSockaddrLength, LPSOCKADDR* RemoteSockaddr, LPINT RemoteSockaddrLength);
@@ -13,4 +13,4 @@ ffi.cdef [[
   BOOL                  TransmitFile(         SOCKET hSocket, HANDLE hFile, DWORD nNumberOfBytesToWrite, DWORD nNumberOfBytesPerSend, LPOVERLAPPED lpOverlapped, LPTRANSMIT_FILE_BUFFERS lpTransmitBuffers, WINAPI_TransmitFile_Flags dwFlags);
   WINAPI_SocketCode_int WSARecvEx(            SOCKET s, char* buf, int len, int* flags);
 ]]
-return ffi.load( "Mswsock.dll" )
+return ffi.load( 'Mswsock.dll' )

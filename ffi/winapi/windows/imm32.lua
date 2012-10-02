@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/gdi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/gdi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HIMC    ImmAssociateContext(        HWND hWnd, HIMC hIMC);
   BOOL    ImmAssociateContextEx(      HWND hWnd, HIMC hIMC, DWORD dwFlags);
@@ -48,4 +48,4 @@ ffi.cdef [[
   BOOL    ImmSimulateHotKey(          HWND hWnd, DWORD dwHotKeyID);
   BOOL    ImmUnregisterWord(          HKL hKL, LPCTSTR lpszReading, DWORD dwStyle, LPCTSTR lpszUnregister);
 ]]
-return ffi.load( "Imm32.dll" )
+return ffi.load( 'Imm32.dll' )

@@ -1,32 +1,30 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef INT SNMPAPI;
-  typedef PVOID LPSNMP_MGR_SESSION;
-  typedef LONG AsnInteger;
-  typedef ULONG AsnTimeticks;
-  typedef LONG AsnInteger32;
-  typedef ULONG AsnUnsigned32;
-  typedef ULARGE_INTEGER AsnCounter64;
-  typedef AsnUnsigned32 AsnCounter32;
-  typedef AsnUnsigned32 AsnGauge32;
+  typedef INT SNMPAPI; //Alias
+  typedef PVOID LPSNMP_MGR_SESSION; //Alias
+  typedef LONG AsnInteger; //Alias
+  typedef ULONG AsnTimeticks; //Alias
+  typedef LONG AsnInteger32; //Alias
+  typedef ULONG AsnUnsigned32; //Alias
+  typedef ULARGE_INTEGER AsnCounter64; //Alias
+  typedef AsnUnsigned32 AsnCounter32; //Alias
+  typedef AsnUnsigned32 AsnGauge32; //Alias
   typedef struct AsnObjectIdentifier {
     UINT idLength,
     UINT* ids,
   } AsnObjectIdentifier;
-
-  typedef AsnObjectIdentifier AsnObjectName;
+  typedef AsnObjectIdentifier AsnObjectName; //Alias
   typedef struct AsnOctetString {
     BYTE* stream,
     UINT length,
     BOOL dynamic,
   } AsnOctetString;
-
-  typedef AsnOctetString AsnNetworkAddress;
-  typedef AsnOctetString AsnBits;
-  typedef AsnOctetString AsnSequence;
-  typedef AsnOctetString AsnIPAddress;
-  typedef AsnOctetString AsnOpaque;
+  typedef AsnOctetString AsnNetworkAddress; //Alias
+  typedef AsnOctetString AsnBits; //Alias
+  typedef AsnOctetString AsnSequence; //Alias
+  typedef AsnOctetString AsnIPAddress; //Alias
+  typedef AsnOctetString AsnOpaque; //Alias
   typedef enum WINAPI_ASN_TYPE {
     ASN_INTEGER = 0x02,
     ASN_BITS = 0x03,
@@ -59,21 +57,17 @@ ffi.cdef [[
     AsnTimeticks ticks,
     AsnOpaque arbitrary,
   } WINAPI_AsnAny_u;
-
   typedef struct AsnAny {
     WINAPI_ASN_TYPE asnType,
     WINAPI_AsnAny_u asnValue,
   } AsnAny;
-
-  typedef AsnAny AsnObjectSyntax;
+  typedef AsnAny AsnObjectSyntax; //Alias
   typedef struct SnmpVarBind {
     AsnObjectName name,
     AsnObjectSyntax value,
   } SnmpVarBind;
-
   typedef struct SnmpVarBindList {
     SnmpVarBind* list,
     UINT len,
   } SnmpVarBindList;
-
 ]]

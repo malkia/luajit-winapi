@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/mmf/mmfdefs" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/mmf/mmfdefs' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT CreateNamedPropertyStore(                     INamedPropertyStore** ppStore);
   HRESULT MFCreate3GPMediaSink(                         IMFByteStream* pIByteStream, IMFMediaType* pVideoMediaType, IMFMediaType* pAudioMediaType, IMFMediaSink** ppIMediaSink);
@@ -57,4 +57,4 @@ ffi.cdef [[
   HRESULT MFShutdownObject(                             IUnknown* pUnk);
   HRESULT MFTranscodeGetAudioOutputAvailableTypes(      REFGUID guidSubType, DWORD dwMFTFlags, IMFAttributes* pCodecConfig, IMFCollection** ppAvailableTypes);
 ]]
-return ffi.load( "Mf.dll" )
+return ffi.load( 'Mf.dll' )

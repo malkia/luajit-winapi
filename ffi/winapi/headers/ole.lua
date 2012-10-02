@@ -1,43 +1,46 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID LPCPROPSHEETPAGE;
-  typedef LPVOID PROPSHEETHEADER*;
-  typedef LPVOID LPCPROPSHEETHEADER;
-  typedef LPVOID LPPROPSHEETHEADER;
-  typedef IDispatch* LPDISPATCH;
-  typedef STDAPI WINOLEAPI;
-  typedef LPVOID HPROPSHEETPAGE;
-  typedef LPCWSTR LPCOLESTR;
-  typedef LPCWSTR LPOLESTR;
-  typedef LPOLESTR LPOLESTR;
-  typedef WCHAR OLECHAR;
-  typedef OLECHAR* OLECHAR*;
-  typedef ULONG PROPID;
-  typedef IOleObject* LPOLEOBJECT;
-  typedef IMalloc* LPMALLOC;
-  typedef GUID FMTID;
-  typedef FMTID REFFMTID;
-  typedef WORD CLIPFORMAT;
-  typedef IBindCtx* LPBC;
-  typedef IBindCtx* LPBINDCTX;
-  typedef IClassFactory* LPCLASSFACTORY;
-  typedef IStorage* LPSTORAGE;
-  typedef IOleClientSite* LPOLECLIENTSITE;
-  typedef IMoniker* LPMONIKER;
-  typedef IStream* LPSTREAM;
-  typedef IDataObject* LPDATAOBJECT;
-  typedef IStorage* struct IStorage*;
-  typedef DWORD CPFLAGS;
-  typedef LPOLESTR* SNB;
-  typedef LPVOID ALLOCATEMORE*;
-  typedef HANDLE HTASK;
-  typedef LPCRECT LPCBORDERWIDTHS;
-  typedef HGLOBAL HOLEMENU;
-  typedef unsigned long RPCOLEDATAREP;
-  typedef HANDLE HMETAFILEPICT;
+  typedef LPVOID LPCPROPSHEETPAGE; //Alias
+  typedef LPVOID PROPSHEETHEADER*; //Alias
+  typedef LPVOID LPCPROPSHEETHEADER; //Alias
+  typedef LPVOID LPPROPSHEETHEADER; //Alias
+  typedef IDispatch* LPDISPATCH; //Alias
+  typedef STDAPI WINOLEAPI; //Alias
+  typedef LPVOID HPROPSHEETPAGE; //Alias
+  typedef LPCWSTR LPCOLESTR; //Alias
+  typedef LPCWSTR LPOLESTR; //Alias
+  typedef LPOLESTR WINAPI_LPOLESTR; //Alias
+  typedef WCHAR OLECHAR; //Alias
+  typedef OLECHAR* WINAPI_OLECHAR*; //Alias
+  typedef ULONG PROPID; //Alias
+  typedef IOleObject* LPOLEOBJECT; //Alias
+  typedef IMalloc* LPMALLOC; //Alias
+  typedef GUID FMTID; //Alias
+  typedef FMTID *WINAPI_FMTID*; //Pointer
+  typedef FMTID *REFFMTID; //Pointer
+  typedef WORD CLIPFORMAT; //Alias
+  typedef IBindCtx* LPBC; //Alias
+  typedef IBindCtx* LPBINDCTX; //Alias
+  typedef IClassFactory* LPCLASSFACTORY; //Alias
+  typedef IStorage* LPSTORAGE; //Alias
+  typedef IOleClientSite* LPOLECLIENTSITE; //Alias
+  typedef IMoniker* LPMONIKER; //Alias
+  typedef IStream* LPSTREAM; //Alias
+  typedef IDataObject* LPDATAOBJECT; //Alias
+  typedef IStorage* struct IStorage*; //Alias
+  typedef DWORD CPFLAGS; //Alias
+  typedef LPOLESTR* SNB; //Alias
+  typedef LPVOID ALLOCATEMORE*; //Alias
+  typedef HANDLE HTASK; //Alias
+  typedef LPCRECT LPCBORDERWIDTHS; //Alias
+  typedef HGLOBAL HOLEMENU; //Alias
+  typedef unsigned long RPCOLEDATAREP; //Alias
+  typedef HANDLE HMETAFILEPICT; //Alias
+  typedef void* void* [5]; //Array 5
+  typedef LONG LONG [6]; //Array 6
   typedef enum VARIANT_BOOL {
-    VARIANT_TRUE = _1,
+    VARIANT_TRUE = WINAPI__1,
     VARIANT_FALSE = 0,
   } VARIANT_BOOL;
   typedef enum MSHLFLAGS {
@@ -58,12 +61,11 @@ ffi.cdef [[
     WORD tdExtDevmodeOffset,
     BYTE [1] tdData,
   } DVTARGETDEVICE;
-
+  typedef DVTARGETDEVICE *WINAPI_DVTARGETDEVICE*; //Pointer
   typedef struct SERIALIZEDPROPERTYVALUE {
     DWORD dwType,
     BYTE [1] rgb,
   } SERIALIZEDPROPERTYVALUE;
-
   typedef struct RPCOLEMESSAGE {
     void* reserved1,
     RPCOLEDATAREP dataRepresentation,
@@ -73,40 +75,36 @@ ffi.cdef [[
     void* [5] reserved2,
     ULONG rpcFlags,
   } RPCOLEMESSAGE;
-
   typedef struct OLEMENUGROUPWIDTHS {
     LONG [6] width,
   } OLEMENUGROUPWIDTHS;
-
-  typedef OLEMENUGROUPWIDTHS LPOLEMENUGROUPWIDTHS;
-  typedef BYTE WINAPI_PALETTEENTRY_Flags;
+  typedef OLEMENUGROUPWIDTHS *LPOLEMENUGROUPWIDTHS; //Pointer
+  typedef BYTE WINAPI_PALETTEENTRY_Flags; //Alias
   typedef struct PALETTEENTRY {
     BYTE peRed,
     BYTE peGreen,
     BYTE peBlue,
     WINAPI_PALETTEENTRY_Flags peFlags,
   } PALETTEENTRY;
-
-  typedef PALETTEENTRY LPPALETTEENTRY;
-  typedef PALETTEENTRY CONST PALETTEENTRY*;
+  typedef PALETTEENTRY *LPPALETTEENTRY; //Pointer
+  typedef PALETTEENTRY *WINAPI_PALETTEENTRY*; //Pointer
+  typedef PALETTEENTRY *WINAPI_PALETTEENTRY*; //Pointer
+  typedef PALETTEENTRY PALETTEENTRY [1]; //Array 1
   typedef struct LOGPALETTE {
     WORD palVersion,
     WORD palNumEntries,
     PALETTEENTRY [1] palPalEntry,
   } LOGPALETTE;
-
-  typedef LOGPALETTE* LOGPALETTE*;
-  typedef unsigned short VARTYPE;
+  typedef LOGPALETTE* *WINAPI_LOGPALETTE*; //Pointer
+  typedef unsigned short VARTYPE; //Alias
   typedef struct WINAPI_BRECORD {
     PVOID* pvRecord,
     IRecordInfo* pRecInfo,
   } WINAPI_BRECORD;
-
   typedef union WINAPI_VARIANT_s_u {
-    nil lVal,
-    nil ,
+    LONG lVal,
+    WINAPI_BRECORD ,
   } WINAPI_VARIANT_s_u;
-
   typedef struct WINAPI_VARIANT_s {
     VARTYPE vt,
     WORD wReserved1,
@@ -114,17 +112,17 @@ ffi.cdef [[
     WORD wReserved3,
     WINAPI_VARIANT_s_u ,
   } WINAPI_VARIANT_s;
-
   typedef union VARIANT {
-    nil ,
-    nil WINAPI_Other values are currently unsupported,
+    WINAPI_VARIANT_s ,
+    ULONGLONG WINAPI_Other values are currently unsupported,
   } VARIANT;
-
-  typedef VARIANT LPVARIANT;
-  typedef VARIANT VARIANTARG;
-  typedef VARIANT PROPVARIANT;
-  typedef PROPVARIANT* PROPVARIANT*;
-  typedef PROPVARIANT* REFPROPVARIANT;
+  typedef VARIANT *WINAPI_VARIANT*; //Pointer
+  typedef VARIANT *LPVARIANT; //Pointer
+  typedef VARIANT VARIANTARG; //Alias
+  typedef VARIANTARG *WINAPI_VARIANTARG*; //Pointer
+  typedef VARIANT PROPVARIANT; //Alias
+  typedef PROPVARIANT* WINAPI_PROPVARIANT*; //Alias
+  typedef PROPVARIANT* REFPROPVARIANT; //Alias
   typedef enum TYMED {
     TYMED_HGLOBAL = 1,
     TYMED_FILE = 2,
@@ -135,7 +133,7 @@ ffi.cdef [[
     TYMED_ENHMF = 64,
     TYMED_NULL = 0,
   } TYMED;
-  typedef DWORD DVASPECT;
+  typedef DWORD DVASPECT; //Alias
   typedef struct FORMATETC {
     CLIPFORMAT cfFormat,
     DVTARGETDEVICE* ptd,
@@ -143,23 +141,20 @@ ffi.cdef [[
     LONG lindex,
     TYMED tymed,
   } FORMATETC;
-
-  typedef FORMATETC LPFORMATETC;
-  typedef UINT GETPROPERTYSTOREFLAGS;
+  typedef FORMATETC *LPFORMATETC; //Pointer
+  typedef UINT GETPROPERTYSTOREFLAGS; //Alias
   typedef struct PROPERTYKEY {
     GUID fmtid,
     DWORD pid,
   } PROPERTYKEY;
-
-  typedef PROPERTYKEY REFPROPERTYKEY;
-  typedef PROPERTYKEY PROPERTYKEY;
+  typedef PROPERTYKEY *REFPROPERTYKEY; //Pointer
+  typedef PROPERTYKEY WINAPI_PROPERTYKEY; //Alias
   typedef struct CSPLATFORM {
     DWORD dwPlatformId,
     DWORD dwVersionHi,
     DWORD dwVersionLo,
     DWORD dwProcessorArch,
   } CSPLATFORM;
-
   typedef struct QUERYCONTEXT {
     DWORD dwContext,
     CSPLATFORM Platform,
@@ -167,14 +162,12 @@ ffi.cdef [[
     DWORD dwVersionHi,
     DWORD dwVersionLo,
   } QUERYCONTEXT;
-
   typedef struct MULTI_QI {
-    IID* pIID,
+    WINAPI_IID* pIID,
     IUnknown* pItf,
     HRESULT hr,
   } MULTI_QI;
-
-  typedef DWORD WINAPI_STGM_FLAGS;
+  typedef DWORD WINAPI_STGM_FLAGS; //Alias
   typedef enum THDTYPE {
     THDTYPE_BLOCKMESSAGES = 0,
     THDTYPE_PROCESSMESSAGES = 1,
@@ -196,10 +189,10 @@ ffi.cdef [[
     IdleShutdown = 0,
     ForcedShutdown = 1,
   } ShutdownType;
-  typedef DWORD LOCKTYPE;
-  typedef DWORD ADVF;
+  typedef DWORD LOCKTYPE; //Alias
+  typedef DWORD ADVF; //Alias
   typedef enum APTTYPE {
-    APTTYPE_CURRENT = _1,
+    APTTYPE_CURRENT = WINAPI__1,
     APTTYPE_STA = 0,
     APTTYPE_MTA = 1,
     APTTYPE_NA = 2,
@@ -214,107 +207,107 @@ ffi.cdef [[
     APTTYPEQUALIFIER_NA_ON_MAINSTA = 5,
   } APTTYPEQUALIFIER;
   typedef enum DISPID {
-    DISPID_UNKNOWN = _1,
+    DISPID_UNKNOWN = WINAPI__1,
     DISPID_VALUE = 0,
-    DISPID_PROPERTYPUT = _3,
-    DISPID_NEWENUM = _4,
-    DISPID_EVALUATE = _5,
-    DISPID_CONSTRUCTOR = _6,
-    DISPID_DESTRUCTOR = _7,
-    DISPID_COLLECT = _8,
-    DISPID_AUTOSIZE = _500,
-    DISPID_BACKCOLOR = _501,
-    DISPID_BACKSTYLE = _502,
-    DISPID_BORDERCOLOR = _503,
-    DISPID_BORDERSTYLE = _504,
-    DISPID_BORDERWIDTH = _505,
-    DISPID_DRAWMODE = _507,
-    DISPID_DRAWSTYLE = _508,
-    DISPID_DRAWWIDTH = _509,
-    DISPID_FILLCOLOR = _510,
-    DISPID_FILLSTYLE = _511,
-    DISPID_FONT = _512,
-    DISPID_FORECOLOR = _513,
-    DISPID_ENABLED = _514,
-    DISPID_HWND = _515,
-    DISPID_TABSTOP = _516,
-    DISPID_TEXT = _517,
-    DISPID_CAPTION = _518,
-    DISPID_BORDERVISIBLE = _519,
-    DISPID_APPEARANCE = _520,
-    DISPID_MOUSEPOINTER = _521,
-    DISPID_MOUSEICON = _522,
-    DISPID_PICTURE = _523,
-    DISPID_VALID = _524,
-    DISPID_READYSTATE = _525,
-    DISPID_LISTINDEX = _526,
-    DISPID_SELECTED = _527,
-    DISPID_LIST = _528,
-    DISPID_COLUMN = _529,
-    DISPID_LISTCOUNT = _531,
-    DISPID_MULTISELECT = _532,
-    DISPID_MAXLENGTH = _533,
-    DISPID_PASSWORDCHAR = _534,
-    DISPID_SCROLLBARS = _535,
-    DISPID_WORDWRAP = _536,
-    DISPID_MULTILINE = _537,
-    DISPID_NUMBEROFROWS = _538,
-    DISPID_NUMBEROFCOLUMNS = _539,
-    DISPID_DISPLAYSTYLE = _540,
-    DISPID_GROUPNAME = _541,
-    DISPID_IMEMODE = _542,
-    DISPID_ACCELERATOR = _543,
-    DISPID_ENTERKEYBEHAVIOR = _544,
-    DISPID_TABKEYBEHAVIOR = _545,
-    DISPID_SELTEXT = _546,
-    DISPID_SELSTART = _547,
-    DISPID_SELLENGTH = _548,
-    DISPID_REFRESH = _550,
-    DISPID_DOCLICK = _551,
-    DISPID_ABOUTBOX = _552,
-    DISPID_ADDITEM = _553,
-    DISPID_CLEAR = _554,
-    DISPID_REMOVEITEM = _555,
-    DISPID_CLICK = _600,
-    DISPID_DBLCLICK = _601,
-    DISPID_KEYDOWN = _602,
-    DISPID_KEYPRESS = _603,
-    DISPID_KEYUP = _604,
-    DISPID_MOUSEDOWN = _605,
-    DISPID_MOUSEMOVE = _606,
-    DISPID_MOUSEUP = _607,
-    DISPID_ERROREVENT = _608,
-    DISPID_READYSTATECHANGE = _609,
-    DISPID_CLICK_VALUE = _610,
-    DISPID_RIGHTTOLEFT = _611,
-    DISPID_TOPTOBOTTOM = _612,
-    DISPID_THIS = _613,
-    DISPID_AMBIENT_BACKCOLOR = _701,
-    DISPID_AMBIENT_DISPLAYNAME = _702,
-    DISPID_AMBIENT_FONT = _703,
-    DISPID_AMBIENT_FORECOLOR = _704,
-    DISPID_AMBIENT_LOCALEID = _705,
-    DISPID_AMBIENT_MESSAGEREFLECT = _706,
-    DISPID_AMBIENT_SCALEUNITS = _707,
-    DISPID_AMBIENT_TEXTALIGN = _708,
-    DISPID_AMBIENT_USERMODE = _709,
-    DISPID_AMBIENT_UIDEAD = _710,
-    DISPID_AMBIENT_SHOWGRABHANDLES = _711,
-    DISPID_AMBIENT_SHOWHATCHING = _712,
-    DISPID_AMBIENT_DISPLAYASDEFAULT = _713,
-    DISPID_AMBIENT_SUPPORTSMNEMONICS = _714,
-    DISPID_AMBIENT_AUTOCLIP = _715,
-    DISPID_AMBIENT_APPEARANCE = _716,
-    DISPID_AMBIENT_CODEPAGE = _725,
-    DISPID_AMBIENT_PALETTE = _726,
-    DISPID_AMBIENT_CHARSET = _727,
-    DISPID_AMBIENT_TRANSFERPRIORITY = _728,
-    DISPID_AMBIENT_RIGHTTOLEFT = _732,
-    DISPID_AMBIENT_TOPTOBOTTOM = _733,
-    DISPID_Name = _800,
-    DISPID_Delete = _801,
-    DISPID_Object = _802,
-    DISPID_Parent = _803,
+    DISPID_PROPERTYPUT = WINAPI__3,
+    DISPID_NEWENUM = WINAPI__4,
+    DISPID_EVALUATE = WINAPI__5,
+    DISPID_CONSTRUCTOR = WINAPI__6,
+    DISPID_DESTRUCTOR = WINAPI__7,
+    DISPID_COLLECT = WINAPI__8,
+    DISPID_AUTOSIZE = WINAPI__500,
+    DISPID_BACKCOLOR = WINAPI__501,
+    DISPID_BACKSTYLE = WINAPI__502,
+    DISPID_BORDERCOLOR = WINAPI__503,
+    DISPID_BORDERSTYLE = WINAPI__504,
+    DISPID_BORDERWIDTH = WINAPI__505,
+    DISPID_DRAWMODE = WINAPI__507,
+    DISPID_DRAWSTYLE = WINAPI__508,
+    DISPID_DRAWWIDTH = WINAPI__509,
+    DISPID_FILLCOLOR = WINAPI__510,
+    DISPID_FILLSTYLE = WINAPI__511,
+    DISPID_FONT = WINAPI__512,
+    DISPID_FORECOLOR = WINAPI__513,
+    DISPID_ENABLED = WINAPI__514,
+    DISPID_HWND = WINAPI__515,
+    DISPID_TABSTOP = WINAPI__516,
+    DISPID_TEXT = WINAPI__517,
+    DISPID_CAPTION = WINAPI__518,
+    DISPID_BORDERVISIBLE = WINAPI__519,
+    DISPID_APPEARANCE = WINAPI__520,
+    DISPID_MOUSEPOINTER = WINAPI__521,
+    DISPID_MOUSEICON = WINAPI__522,
+    DISPID_PICTURE = WINAPI__523,
+    DISPID_VALID = WINAPI__524,
+    DISPID_READYSTATE = WINAPI__525,
+    DISPID_LISTINDEX = WINAPI__526,
+    DISPID_SELECTED = WINAPI__527,
+    DISPID_LIST = WINAPI__528,
+    DISPID_COLUMN = WINAPI__529,
+    DISPID_LISTCOUNT = WINAPI__531,
+    DISPID_MULTISELECT = WINAPI__532,
+    DISPID_MAXLENGTH = WINAPI__533,
+    DISPID_PASSWORDCHAR = WINAPI__534,
+    DISPID_SCROLLBARS = WINAPI__535,
+    DISPID_WORDWRAP = WINAPI__536,
+    DISPID_MULTILINE = WINAPI__537,
+    DISPID_NUMBEROFROWS = WINAPI__538,
+    DISPID_NUMBEROFCOLUMNS = WINAPI__539,
+    DISPID_DISPLAYSTYLE = WINAPI__540,
+    DISPID_GROUPNAME = WINAPI__541,
+    DISPID_IMEMODE = WINAPI__542,
+    DISPID_ACCELERATOR = WINAPI__543,
+    DISPID_ENTERKEYBEHAVIOR = WINAPI__544,
+    DISPID_TABKEYBEHAVIOR = WINAPI__545,
+    DISPID_SELTEXT = WINAPI__546,
+    DISPID_SELSTART = WINAPI__547,
+    DISPID_SELLENGTH = WINAPI__548,
+    DISPID_REFRESH = WINAPI__550,
+    DISPID_DOCLICK = WINAPI__551,
+    DISPID_ABOUTBOX = WINAPI__552,
+    DISPID_ADDITEM = WINAPI__553,
+    DISPID_CLEAR = WINAPI__554,
+    DISPID_REMOVEITEM = WINAPI__555,
+    DISPID_CLICK = WINAPI__600,
+    DISPID_DBLCLICK = WINAPI__601,
+    DISPID_KEYDOWN = WINAPI__602,
+    DISPID_KEYPRESS = WINAPI__603,
+    DISPID_KEYUP = WINAPI__604,
+    DISPID_MOUSEDOWN = WINAPI__605,
+    DISPID_MOUSEMOVE = WINAPI__606,
+    DISPID_MOUSEUP = WINAPI__607,
+    DISPID_ERROREVENT = WINAPI__608,
+    DISPID_READYSTATECHANGE = WINAPI__609,
+    DISPID_CLICK_VALUE = WINAPI__610,
+    DISPID_RIGHTTOLEFT = WINAPI__611,
+    DISPID_TOPTOBOTTOM = WINAPI__612,
+    DISPID_THIS = WINAPI__613,
+    DISPID_AMBIENT_BACKCOLOR = WINAPI__701,
+    DISPID_AMBIENT_DISPLAYNAME = WINAPI__702,
+    DISPID_AMBIENT_FONT = WINAPI__703,
+    DISPID_AMBIENT_FORECOLOR = WINAPI__704,
+    DISPID_AMBIENT_LOCALEID = WINAPI__705,
+    DISPID_AMBIENT_MESSAGEREFLECT = WINAPI__706,
+    DISPID_AMBIENT_SCALEUNITS = WINAPI__707,
+    DISPID_AMBIENT_TEXTALIGN = WINAPI__708,
+    DISPID_AMBIENT_USERMODE = WINAPI__709,
+    DISPID_AMBIENT_UIDEAD = WINAPI__710,
+    DISPID_AMBIENT_SHOWGRABHANDLES = WINAPI__711,
+    DISPID_AMBIENT_SHOWHATCHING = WINAPI__712,
+    DISPID_AMBIENT_DISPLAYASDEFAULT = WINAPI__713,
+    DISPID_AMBIENT_SUPPORTSMNEMONICS = WINAPI__714,
+    DISPID_AMBIENT_AUTOCLIP = WINAPI__715,
+    DISPID_AMBIENT_APPEARANCE = WINAPI__716,
+    DISPID_AMBIENT_CODEPAGE = WINAPI__725,
+    DISPID_AMBIENT_PALETTE = WINAPI__726,
+    DISPID_AMBIENT_CHARSET = WINAPI__727,
+    DISPID_AMBIENT_TRANSFERPRIORITY = WINAPI__728,
+    DISPID_AMBIENT_RIGHTTOLEFT = WINAPI__732,
+    DISPID_AMBIENT_TOPTOBOTTOM = WINAPI__733,
+    DISPID_Name = WINAPI__800,
+    DISPID_Delete = WINAPI__801,
+    DISPID_Object = WINAPI__802,
+    DISPID_Parent = WINAPI__803,
   } DISPID;
   typedef struct BIND_OPTS {
     DWORD cbStruct,
@@ -322,7 +315,6 @@ ffi.cdef [[
     DWORD grfMode,
     DWORD dwTickCountDeadline,
   } BIND_OPTS;
-
   typedef struct STATSTG {
     LPOLESTR pwcsName,
     DWORD type,
@@ -336,14 +328,12 @@ ffi.cdef [[
     DWORD grfStateBits,
     DWORD reserved,
   } STATSTG;
-
   typedef struct INTERFACEINFO {
     IUnknown* pUnk,
     IID iid,
     WORD wMethod,
   } INTERFACEINFO;
-
-  typedef INTERFACEINFO LPINTERFACEINFO;
+  typedef INTERFACEINFO *LPINTERFACEINFO; //Pointer
   typedef struct OLEINPLACEFRAMEINFO {
     UINT cb,
     BOOL fMDIApp,
@@ -351,37 +341,32 @@ ffi.cdef [[
     HACCEL haccel,
     UINT cAccelEntries,
   } OLEINPLACEFRAMEINFO;
-
-  typedef OLEINPLACEFRAMEINFO LPOLEINPLACEFRAMEINFO;
+  typedef OLEINPLACEFRAMEINFO *LPOLEINPLACEFRAMEINFO; //Pointer
   typedef struct OLEVERB {
     LONG lVerb,
     LPOLESTR lpszVerbName,
     DWORD fuFlags,
     DWORD grfAttribs,
   } OLEVERB;
-
-  typedef OLEVERB LPOLEVERB;
+  typedef OLEVERB *LPOLEVERB; //Pointer
   typedef struct STATDATA {
     FORMATETC formatetc,
     DWORD advf,
     IAdviseSink* pAdvSink,
     DWORD dwConnection,
   } STATDATA;
-
   typedef struct ContextProperty {
     GUID policyId,
     CPFLAGS flags,
     IUnknown* pUnk,
   } ContextProperty;
-
   typedef struct StorageLayout {
     DWORD LayoutType,
     OLECHAR* pwcsElementName,
     LARGE_INTEGER cOffset,
     LARGE_INTEGER cBytes,
   } StorageLayout;
-
-  typedef DWORD OLECMDF;
+  typedef DWORD OLECMDF; //Alias
   typedef enum PROPBAG2_TYPE {
     PROPBAG2_TYPE_UNDEFINED = 0,
     PROPBAG2_TYPE_DATA = 1,
@@ -399,18 +384,15 @@ ffi.cdef [[
     LPOLESTR pstrName,
     CLSID clsid,
   } PROPBAG2;
-
-  typedef DWORD WINAPI_CLSCTX;
+  typedef DWORD WINAPI_CLSCTX; //Alias
   typedef struct WINAPI_uCLSSPEC_u_s1 {
     LPOLESTR pPackageName,
     GUID PolicyId,
   } WINAPI_uCLSSPEC_u_s1;
-
   typedef struct WINAPI_uCLSSPEC_u_s2 {
     GUID ObjectId,
     GUID PolicyId,
   } WINAPI_uCLSSPEC_u_s2;
-
   typedef union WINAPI_uCLSSPEC_u {
     CLSID clsid,
     LPOLESTR pFileExt,
@@ -420,7 +402,6 @@ ffi.cdef [[
     WINAPI_uCLSSPEC_u_s1 ByName,
     WINAPI_uCLSSPEC_u_s2 ByObjectId,
   } WINAPI_uCLSSPEC_u;
-
   typedef enum TYSPEC {
     TYSPEC_CLSID = 0,
     TYSPEC_FILEEXT = 1,
@@ -434,7 +415,6 @@ ffi.cdef [[
     TYSPEC tyspec,
     WINAPI_uCLSSPEC_u tagged_union,
   } uCLSSPEC;
-
   typedef union WINAPI_STGMEDIUM_u {
     HBITMAP hBitmap,
     HMETAFILEPICT hMetaFilePict,
@@ -444,21 +424,20 @@ ffi.cdef [[
     IStream* pstm,
     IStorage* pstg,
   } WINAPI_STGMEDIUM_u;
-
   typedef struct STGMEDIUM {
     TYMED tymed,
     WINAPI_STGMEDIUM_u u,
     IUnknown* pUnkForRelease,
   } STGMEDIUM;
-
-  typedef STGMEDIUM LPSTGMEDIUM;
-  typedef DWORD WINAPI_COINIT_FLAG;
-  typedef USHORT WINAPI_FADF_FLAGS;
+  typedef STGMEDIUM *WINAPI_STGMEDIUM*; //Pointer
+  typedef STGMEDIUM *LPSTGMEDIUM; //Pointer
+  typedef DWORD WINAPI_COINIT_FLAG; //Alias
+  typedef USHORT WINAPI_FADF_FLAGS; //Alias
   typedef struct SAFEARRAYBOUND {
     ULONG cElements,
     LONG lLbound,
   } SAFEARRAYBOUND;
-
+  typedef SAFEARRAYBOUND SAFEARRAYBOUND [1]; //Array 1
   typedef struct SAFEARRAY {
     USHORT cDims,
     WINAPI_FADF_FLAGS fFeatures,
@@ -467,21 +446,18 @@ ffi.cdef [[
     PVOID pvData,
     SAFEARRAYBOUND [1] rgsabound,
   } SAFEARRAY;
-
-  typedef SAFEARRAY LPSAFEARRAY;
+  typedef SAFEARRAY *LPSAFEARRAY; //Pointer
   typedef struct CUSTDATAITEM {
     GUID guid,
     VARIANTARG varValue,
   } CUSTDATAITEM;
-
-  typedef CUSTDATAITEM LPCUSTDATAITEM;
+  typedef CUSTDATAITEM *LPCUSTDATAITEM; //Pointer
   typedef struct CUSTDATA {
     DWORD cCustData,
     LPCUSTDATAITEM prgCustData,
   } CUSTDATA;
-
-  typedef CUSTDATA LPCUSTDATA;
-  typedef WORD WINAPI_InvokeFlags;
+  typedef CUSTDATA *LPCUSTDATA; //Pointer
+  typedef WORD WINAPI_InvokeFlags; //Alias
   typedef enum CALLCONV {
     CC_FASTCALL = 0,
     CC_CDECL = 1,
@@ -498,5 +474,5 @@ ffi.cdef [[
     STATFLAG_NONAME = 1,
     STATFLAG_NOOPEN = 2,
   } STATFLAG;
-  typedef DWORD STGC;
+  typedef DWORD STGC; //Alias
 ]]

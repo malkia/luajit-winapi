@@ -1,10 +1,10 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/ole" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/ole' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT SetInputScope(                      HWND hwnd, InputScope inputscope);
-  HRESULT SetInputScopes(                     HWND hwnd, InputScope* pInputScopes, UINT cInputScopes, WCHAR** ppszPhraseList, UINT cPhrases, WCHAR* pszRegExp, WCHAR* pszSRGS);
-  HRESULT SetInputScopes2(                    HWND hwnd, InputScope* pInputScopes, UINT cInputScopes, IEnumString* pEnumString, WCHAR* pszRegExp, WCHAR* pszSRGS);
+  HRESULT SetInputScopes(                     HWND hwnd, WINAPI_InputScope* pInputScopes, UINT cInputScopes, WCHAR** ppszPhraseList, UINT cPhrases, WCHAR* pszRegExp, WCHAR* pszSRGS);
+  HRESULT SetInputScopes2(                    HWND hwnd, WINAPI_InputScope* pInputScopes, UINT cInputScopes, IEnumString* pEnumString, WCHAR* pszRegExp, WCHAR* pszSRGS);
   void    SetInputScopeXML(                   );
   HRESULT TF_CreateCategoryMgr(               ITfCategoryMgr** ppcat);
   HRESULT TF_CreateDisplayAttributeMgr(       ITfDisplayAttributeMgr** ppdam);
@@ -16,4 +16,4 @@ ffi.cdef [[
   HRESULT TF_InvalidAssemblyListCacheIfExist( );
   BOOL    MsimtfIsWindowFiltered(             HWND hwnd);
 ]]
-return ffi.load( "msctf.dll" )
+return ffi.load( 'msctf.dll' )

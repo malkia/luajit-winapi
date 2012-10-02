@@ -1,8 +1,8 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/shell" )
-require( "ffi/winapi/headers/gdi" )
-require( "ffi/winapi/headers/security" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/shell' )
+require( 'ffi/winapi/headers/gdi' )
+require( 'ffi/winapi/headers/security' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HWND                        CreateDialogIndirectParam(          HINSTANCE hInstance, LPCDLGTEMPLATE lpTemplate, HWND hWndParent, DLGPROC lpDialogFunc, LPARAM lParamInit);
   HWND                        CreateDialogParam(                  HINSTANCE hInstance, LPCTSTR lpTemplateName, HWND hWndParent, DLGPROC lpDialogFunc, LPARAM lParamInit);
@@ -21,14 +21,14 @@ ffi.cdef [[
   BOOL                        MapDialogRect(                      HWND hDlg, LPRECT lpRect);
   WINAPI_MessageBoxResult     MessageBox(                         HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, WINAPI_MessageBoxType uType);
   WINAPI_MessageBoxResult     MessageBoxEx(                       HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, WINAPI_MessageBoxType uType, WORD wLanguageId);
-  int                         MessageBoxIndirect(                 LPMSGBOXPARAMS lpMsgBoxParams);
+  int                         MessageBoxIndirect(                 WINAPI_LPMSGBOXPARAMS lpMsgBoxParams);
   WINAPI_MessageBoxResult     MessageBoxTimeout(                  HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, WINAPI_MessageBoxType uType, WORD wLanguageId, WINAPI_WaitTimeout dwMilliseconds);
   LRESULT                     SendDlgItemMessage(                 HWND hDlg, int nIDDlgItem, WINAPI_WinMsg Msg, WPARAM wParam, LPARAM lParam);
   BOOL                        SetDlgItemInt(                      HWND hDlg, int nIDDlgItem, UINT uValue, BOOL bSigned);
   BOOL                        SetDlgItemText(                     HWND hDlg, int nIDDlgItem, LPCTSTR lpString);
   long                        BroadcastSystemMessage(             DWORD dwFlags, LPDWORD lpdwRecipients, UINT uiMessage, WPARAM wParam, LPARAM lParam);
   long                        BroadcastSystemMessageEx(           DWORD dwFlags, LPDWORD lpdwRecipients, UINT uiMessage, WPARAM wParam, LPARAM lParam, PBSMINFO pBSMInfo);
-  LRESULT                     DispatchMessage(                    MSG* lpmsg);
+  LRESULT                     DispatchMessage(                    WINAPI_MSG* lpmsg);
   BOOL                        GetInputState(                      );
   BOOL                        GetMessage(                         LPMSG lpMsg, HWND hWnd, UINT wMsgFilterMin, UINT wMsgFilterMax);
   LPARAM                      GetMessageExtraInfo(                );
@@ -48,7 +48,7 @@ ffi.cdef [[
   LRESULT                     SendMessageTimeout(                 HWND hWnd, WINAPI_WinMsg Msg, WPARAM wParam, LPARAM lParam, WINAPI_SendMessageTimeoutFlags fuFlags, UINT uTimeout, PDWORD_PTR lpdwResult);
   BOOL                        SendNotifyMessage(                  HWND hWnd, WINAPI_WinMsg Msg, WPARAM wParam, LPARAM lParam);
   LPARAM                      SetMessageExtraInfo(                LPARAM lParam);
-  BOOL                        TranslateMessage(                   MSG* lpMsg);
+  BOOL                        TranslateMessage(                   WINAPI_MSG* lpMsg);
   BOOL                        WaitMessage(                        );
   DWORD                       GetGuiResources(                    WINAPI_ProcessHandle hProcess, DWORD uiFlags);
   BOOL                        AttachThreadInput(                  DWORD idAttach, DWORD idAttachTo, BOOL fAttach);
@@ -64,8 +64,8 @@ ffi.cdef [[
   UINT                        ArrangeIconicWindows(               HWND hWnd);
   HDWP                        BeginDeferWindowPos(                int nNumWindows);
   BOOL                        BringWindowToTop(                   HWND hWnd);
-  BOOL                        CalculatePopupWindowPosition(       POINT* anchorPoint, SIZE* windowSize, WINAPI_TrackPopupMenuFlags flags, RECT* excludeRect, RECT* popupWindowPosition);
-  WORD                        CascadeWindows(                     HWND hwndParent, UINT wHow, RECT* lpRect, UINT cKids, HWND* lpKids);
+  BOOL                        CalculatePopupWindowPosition(       WINAPI_POINT* anchorPoint, WINAPI_SIZE* windowSize, WINAPI_TrackPopupMenuFlags flags, RECT* excludeRect, RECT* popupWindowPosition);
+  WORD                        CascadeWindows(                     HWND hwndParent, UINT wHow, WINAPI_RECT* lpRect, UINT cKids, WINAPI_HWND* lpKids);
   BOOL                        ChangeWindowMessageFilter(          UINT message, WINAPI_WindowMessageFilterEnum dwFlag);
   BOOL                        ChangeWindowMessageFilterEx(        HWND hWnd, UINT message, DWORD action, PCHANGEFILTERSTRUCT pChangeFilterStruct);
   HWND                        ChildWindowFromPoint(               HWND hWndParent, POINT Point);
@@ -137,9 +137,9 @@ ffi.cdef [[
   BOOL                        ShowWindowAsync(                    HWND hWnd, int nCmdShow);
   BOOL                        SoundSentry(                        );
   VOID                        SwitchToThisWindow(                 HWND hWnd, BOOL fAltTab);
-  WORD                        TileWindows(                        HWND hwndParent, UINT wHow, RECT* lpRect, UINT cKids, HWND* lpKids);
+  WORD                        TileWindows(                        HWND hwndParent, UINT wHow, RECT* lpRect, UINT cKids, WINAPI_HWND* lpKids);
   BOOL                        UpdateLayeredWindow(                HWND hwnd, HDC hdcDst, POINT* pptDst, SIZE* psize, HDC hdcSrc, POINT* pptSrc, COLORREF crKey, BLENDFUNCTION* pblend, WINAPI_UpdateLayeredWindowFlags dwFlags);
-  BOOL                        UpdateLayeredWindowIndirect(        HWND hwnd, UPDATELAYEREDWINDOWINFO* pULWInfo);
+  BOOL                        UpdateLayeredWindowIndirect(        HWND hwnd, WINAPI_UPDATELAYEREDWINDOWINFO* pULWInfo);
   HWND                        WindowFromPhysicalPoint(            POINT Point);
   HWND                        WindowFromPoint(                    POINT Point);
   BOOL                        ExitWindowsEx(                      WINAPI_ExitWindowsExFlags uFlags, WINAPI_ExitWindowsExReason dwReason);
@@ -186,9 +186,9 @@ ffi.cdef [[
   BOOL                        ClientToScreen(                     HWND hWnd, LPPOINT lpPoint);
   int                         MapWindowPoints(                    HWND hWndFrom, HWND hWndTo, LPPOINT lpPoints, UINT cPoints);
   BOOL                        ScreenToClient(                     HWND hWnd, LPPOINT lpPoint);
-  BOOL                        ClipCursor(                         RECT* lpRect);
+  BOOL                        ClipCursor(                         WINAPI_RECT* lpRect);
   HCURSOR                     CopyCursor(                         HCURSOR pcur);
-  HCURSOR                     CreateCursor(                       HINSTANCE hInst, int xHotSpot, int yHotSpot, int nWidth, int nHeight, VOID* pvANDPlane, VOID* pvXORPlane);
+  HCURSOR                     CreateCursor(                       HINSTANCE hInst, int xHotSpot, int yHotSpot, int nWidth, int nHeight, WINAPI_VOID* pvANDPlane, WINAPI_VOID* pvXORPlane);
   BOOL                        DestroyCursor(                      HCURSOR hCursor);
   BOOL                        GetClipCursor(                      LPRECT lpRect);
   HCURSOR                     GetCursor(                          );
@@ -212,7 +212,7 @@ ffi.cdef [[
   int                         ReleaseDC(                          HWND hWnd, HDC hDC);
   HDEVNOTIFY                  RegisterDeviceNotification(         HANDLE hRecipient, LPVOID NotificationFilter, WINAPI_DeviceNotificationFlags Flags);
   BOOL                        UnregisterDeviceNotification(       HDEVNOTIFY Handle);
-  BOOL                        DdeSetQualityOfService(             HWND hwndClient, SECURITY_QUALITY_OF_SERVICE* pqosNew, PSECURITY_QUALITY_OF_SERVICE pqosPrev);
+  BOOL                        DdeSetQualityOfService(             HWND hwndClient, WINAPI_SECURITY_QUALITY_OF_SERVICE* pqosNew, PSECURITY_QUALITY_OF_SERVICE pqosPrev);
   BOOL                        FreeDDElParam(                      UINT msg, LPARAM lParam);
   BOOL                        ImpersonateDdeClientWindow(         HWND hWndClient, HWND hWndServer);
   LPARAM                      PackDDElParam(                      UINT msg, UINT_PTR uiLo, UINT_PTR uiHi);
@@ -250,19 +250,19 @@ ffi.cdef [[
   BOOL                        FlashWindowEx(                      PFLASHWINFO pfwi);
   BOOL                        MessageBeep(                        UINT uType);
   void                        SetLastErrorEx(                     WINAPI_ERROR_CODE dwErrCode, WINAPI_SET_LAST_ERROR_EX_TYPE dwType);
-  int                         FillRect(                           HDC hDC, RECT* lprc, HBRUSH hbr);
-  int                         FrameRect(                          HDC hDC, RECT* lprc, HBRUSH hbr);
-  BOOL                        InvertRect(                         HDC hDC, RECT* lprc);
+  int                         FillRect(                           HDC hDC, WINAPI_RECT* lprc, HBRUSH hbr);
+  int                         FrameRect(                          HDC hDC, WINAPI_RECT* lprc, HBRUSH hbr);
+  BOOL                        InvertRect(                         HDC hDC, WINAPI_RECT* lprc);
   int                         DrawText(                           HDC hDC, LPCTSTR lpchText, int nCount, LPRECT lpRect, WINAPI_DrawTextFlags uFormat);
   int                         DrawTextEx(                         HDC hdc, LPTSTR lpchText, int cchText, LPRECT lprc, WINAPI_DrawTextFlags dwDTFormat, LPDRAWTEXTPARAMS lpDTParams);
-  DWORD                       GetTabbedTextExtent(                HDC hDC, LPCTSTR lpString, int nCount, int nTabPositions, LPINT lpnTabStopPositions);
-  LONG                        TabbedTextOut(                      HDC hDC, int X, int Y, LPCTSTR lpString, int nCount, int nTabPositions, LPINT lpnTabStopPositions, int nTabOrigin);
+  DWORD                       GetTabbedTextExtent(                HDC hDC, LPCTSTR lpString, int nCount, int nTabPositions, WINAPI_LPINT lpnTabStopPositions);
+  LONG                        TabbedTextOut(                      HDC hDC, int X, int Y, LPCTSTR lpString, int nCount, int nTabPositions, WINAPI_LPINT lpnTabStopPositions, int nTabOrigin);
   BOOL                        CallMsgFilter(                      LPMSG lpMsg, int nCode);
   LRESULT                     CallNextHookEx(                     HHOOK hhk, int nCode, WPARAM wParam, LPARAM lParam);
   HHOOK                       SetWindowsHookEx(                   WINAPI_WindowsHook idHook, HOOKPROC lpfn, HINSTANCE hMod, DWORD dwThreadId);
   BOOL                        UnhookWindowsHookEx(                HHOOK hhk);
   HICON                       CopyIcon(                           HICON hIcon);
-  HICON                       CreateIcon(                         HINSTANCE hInstance, int nWidth, int nHeight, BYTE cPlanes, BYTE cBitsPixel, BYTE* lpbANDbits, BYTE* lpbXORbits);
+  HICON                       CreateIcon(                         HINSTANCE hInstance, int nWidth, int nHeight, BYTE cPlanes, BYTE cBitsPixel, WINAPI_BYTE* lpbANDbits, WINAPI_BYTE* lpbXORbits);
   HICON                       CreateIconFromResource(             PBYTE presbits, DWORD dwResSize, BOOL fIcon, DWORD dwVer);
   HICON                       CreateIconFromResourceEx(           PBYTE pbIconBits, DWORD cbIconBits, BOOL fIcon, DWORD dwVersion, int cxDesired, int cyDesired, UINT uFlags);
   HICON                       CreateIconIndirect(                 PICONINFO piconinfo);
@@ -307,8 +307,8 @@ ffi.cdef [[
   BOOL                        SetKeyboardState(                   LPBYTE lpKeyState);
   int                         ToAscii(                            UINT uVirtKey, UINT uScanCode, PBYTE lpKeyState, LPWORD lpChar, UINT uFlags);
   int                         ToAsciiEx(                          UINT uVirtKey, UINT uScanCode, PBYTE lpKeyState, LPWORD lpChar, UINT uFlags, HKL dwhkl);
-  int                         ToUnicode(                          UINT wVirtKey, UINT wScanCode, PBYTE lpKeyState, LPWSTR pwszBuff, int cchBuff, UINT wFlags);
-  int                         ToUnicodeEx(                        UINT wVirtKey, UINT wScanCode, PBYTE lpKeyState, LPWSTR pwszBuff, int cchBuff, UINT wFlags, HKL dwhkl);
+  int                         ToUnicode(                          UINT wVirtKey, UINT wScanCode, WINAPI_PBYTE lpKeyState, LPWSTR pwszBuff, int cchBuff, UINT wFlags);
+  int                         ToUnicodeEx(                        UINT wVirtKey, UINT wScanCode, WINAPI_PBYTE lpKeyState, LPWSTR pwszBuff, int cchBuff, UINT wFlags, HKL dwhkl);
   BOOL                        UnloadKeyboardLayout(               HKL hkl);
   BOOL                        UnregisterHotKey(                   HWND hWnd, int id);
   SHORT                       VkKeyScan(                          TCHAR ch);
@@ -344,7 +344,7 @@ ffi.cdef [[
   BOOL                        InsertMenuItem(                     HMENU hMenu, UINT uItem, BOOL fByPosition, LPCMENUITEMINFO lpmii);
   BOOL                        IsMenu(                             HMENU hMenu);
   HMENU                       LoadMenu(                           HINSTANCE hInstance, LPCTSTR lpMenuName);
-  HMENU                       LoadMenuIndirect(                   CONST MENUTEMPLATE* lpMenuTemplate);
+  HMENU                       LoadMenuIndirect(                   WINAPI_MENUTEMPLATE* lpMenuTemplate);
   int                         MenuItemFromPoint(                  HWND hWnd, HMENU hMenu, POINT ptScreen);
   BOOL                        ModifyMenu(                         HMENU hMnu, UINT uPosition, UINT uFlags, UINT_PTR uIDNewItem, LPCTSTR lpNewItem);
   BOOL                        RemoveMenu(                         HMENU hMenu, UINT uPosition, WINAPI_MenuCommandPosFlag uFlags);
@@ -353,7 +353,7 @@ ffi.cdef [[
   BOOL                        SetMenuInfo(                        HMENU hmenu, LPCMENUINFO lpcmi);
   BOOL                        SetMenuItemBitmaps(                 HMENU hMenu, UINT uPosition, UINT uFlags, HBITMAP hBitmapUnchecked, HBITMAP hBitmapChecked);
   BOOL                        SetMenuItemInfo(                    HMENU hMenu, UINT uItem, BOOL fByPosition, LPMENUITEMINFO lpmii);
-  BOOL                        TrackPopupMenu(                     HMENU hMenu, WINAPI_TrackPopupMenuFlags uFlags, int x, int y, int nReserved, HWND hWnd, CONST RECT* prcRect);
+  BOOL                        TrackPopupMenu(                     HMENU hMenu, WINAPI_TrackPopupMenuFlags uFlags, int x, int y, int nReserved, HWND hWnd, WINAPI_RECT* prcRect);
   BOOL                        TrackPopupMenuEx(                   HMENU hmenu, WINAPI_TrackPopupMenuFlags fuFlags, int x, int y, HWND hwnd, LPTPMPARAMS lptpm);
   BOOL                        DragDetect(                         HWND hwnd, POINT pt);
   HWND                        GetCapture(                         );
@@ -375,13 +375,13 @@ ffi.cdef [[
   LRESULT                     DefMDIChildProc(                    HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
   BOOL                        TranslateMDISysAccel(               HWND hWndClient, LPMSG lpMsg);
   HDC                         BeginPaint(                         HWND hwnd, LPPAINTSTRUCT lpPaint);
-  BOOL                        DrawAnimatedRects(                  HWND hwnd, int idAni, RECT* lprcFrom, RECT* lprcTo);
+  BOOL                        DrawAnimatedRects(                  HWND hwnd, int idAni, WINAPI_RECT* lprcFrom, WINAPI_RECT* lprcTo);
   BOOL                        DrawCaption(                        HWND hwnd, HDC hdc, LPCRECT lprc, UINT uFlags);
   BOOL                        DrawEdge(                           HDC hdc, LPRECT qrc, WINAPI_BorderEdge edge, WINAPI_BorderFlag grfFlags);
-  BOOL                        DrawFocusRect(                      HDC hDC, RECT* lprc);
+  BOOL                        DrawFocusRect(                      HDC hDC, WINAPI_RECT* lprc);
   BOOL                        DrawFrameControl(                   HDC hdc, LPRECT lprc, UINT uType, UINT uState);
   BOOL                        DrawState(                          HDC hdc, HBRUSH hbr, DRAWSTATEPROC lpOutputFunc, LPARAM lData, WPARAM wData, int x, int y, int cx, int cy, WINAPI_DrawStateFlags fuFlags);
-  BOOL                        EndPaint(                           HWND hWnd, PAINTSTRUCT* lpPaint);
+  BOOL                        EndPaint(                           HWND hWnd, WINAPI_PAINTSTRUCT* lpPaint);
   WINAPI_WindowRegion         ExcludeUpdateRgn(                   HDC hDC, HWND hWnd);
   BOOL                        GetUpdateRect(                      HWND hWnd, LPRECT lpRect, BOOL bErase);
   WINAPI_WindowRegion         GetUpdateRgn(                       HWND hWnd, HRGN hRgn, BOOL bErase);
@@ -389,14 +389,14 @@ ffi.cdef [[
   WINAPI_WindowRegion         GetWindowRgn(                       HWND hWnd, HRGN hRgn);
   WINAPI_WindowRegion         GetWindowRgnBox(                    HWND hWnd, LPRECT lprc);
   BOOL                        GrayString(                         HDC hDC, HBRUSH hBrush, GRAYSTRINGPROC lpOutputFunc, LPARAM lpData, int nCount, int X, int Y, int nWidth, int nHeight);
-  BOOL                        InvalidateRect(                     HWND hWnd, RECT* lpRect, BOOL bErase);
+  BOOL                        InvalidateRect(                     HWND hWnd, WINAPI_RECT* lpRect, BOOL bErase);
   BOOL                        InvalidateRgn(                      HWND hWnd, HRGN hRgn, BOOL bErase);
   BOOL                        LockWindowUpdate(                   HWND hWndLock);
   BOOL                        PaintDesktop(                       HDC hdc);
-  BOOL                        RedrawWindow(                       HWND hWnd, RECT* lprcUpdate, HRGN hrgnUpdate, WINAPI_RedrawWindowFlags flags);
+  BOOL                        RedrawWindow(                       HWND hWnd, WINAPI_RECT* lprcUpdate, HRGN hrgnUpdate, WINAPI_RedrawWindowFlags flags);
   int                         SetWindowRgn(                       HWND hWnd, HRGN hRgn, BOOL bRedraw);
   BOOL                        UpdateWindow(                       HWND hWnd);
-  BOOL                        ValidateRect(                       HWND hWnd, RECT* lpRect);
+  BOOL                        ValidateRect(                       HWND hWnd, WINAPI_RECT* lpRect);
   BOOL                        ValidateRgn(                        HWND hWnd, HRGN hRgn);
   HWND                        WindowFromDC(                       HDC hDC);
   HPOWERNOTIFY                RegisterPowerSettingNotification(   HANDLE hRecipient, LPCGUID PowerSettingGuid, WINAPI_DeviceNotificationFlags Flags);
@@ -409,17 +409,17 @@ ffi.cdef [[
   UINT                        GetRawInputDeviceList(              PRAWINPUTDEVICELIST pRawInputDeviceList, PUINT puiNumDevices, UINT cbSize);
   UINT                        GetRegisteredRawInputDevices(       PRAWINPUTDEVICE pRawInputDevices, PUINT puiNumDevices, UINT cbSize);
   BOOL                        RegisterRawInputDevices(            PCRAWINPUTDEVICE pRawInputDevices, UINT uiNumDevices, UINT cbSize);
-  BOOL                        CopyRect(                           LPRECT lprcDst, RECT* lprcSrc);
-  BOOL                        EqualRect(                          RECT* lprc1, RECT* lprc2);
+  BOOL                        CopyRect(                           LPRECT lprcDst, WINAPI_RECT* lprcSrc);
+  BOOL                        EqualRect(                          WINAPI_RECT* lprc1, WINAPI_RECT* lprc2);
   BOOL                        InflateRect(                        LPRECT lprc, int dx, int dy);
-  BOOL                        IntersectRect(                      LPRECT lprcDst, RECT* lprcSrc1, RECT* lprcSrc2);
-  BOOL                        IsRectEmpty(                        RECT* lprc);
+  BOOL                        IntersectRect(                      LPRECT lprcDst, WINAPI_RECT* lprcSrc1, WINAPI_RECT* lprcSrc2);
+  BOOL                        IsRectEmpty(                        WINAPI_RECT* lprc);
   BOOL                        OffsetRect(                         LPRECT lprc, int dx, int dy);
-  BOOL                        PtInRect(                           RECT* lprc, POINT pt);
+  BOOL                        PtInRect(                           WINAPI_RECT* lprc, POINT pt);
   BOOL                        SetRect(                            LPRECT lprc, int xLeft, int yTop, int xRight, int yBottom);
   BOOL                        SetRectEmpty(                       LPRECT lprc);
-  BOOL                        SubtractRect(                       LPRECT lprcDst, RECT* lprcSrc1, RECT* lprcSrc2);
-  BOOL                        UnionRect(                          LPRECT lprcDst, RECT* lprcSrc1, RECT* lprcSrc2);
+  BOOL                        SubtractRect(                       LPRECT lprcDst, WINAPI_RECT* lprcSrc1, WINAPI_RECT* lprcSrc2);
+  BOOL                        UnionRect(                          LPRECT lprcDst, WINAPI_RECT* lprcSrc1, WINAPI_RECT* lprcSrc2);
   HANDLE                      CopyImage(                          HANDLE hImage, WINAPI_ImageType uType, int cxDesired, int cyDesired, WINAPI_LRFlags fuFlags);
   HANDLE                      LoadImage(                          HINSTANCE hinst, WINAPI_LoadImageString/LPCTSTR lpszName, WINAPI_ImageType uType, int cxDesired, int cyDesired, WINAPI_LRFlags fuLoad);
   BOOL                        EnableScrollBar(                    HWND hWnd, UINT wSBflags, UINT wArrows);
@@ -427,9 +427,9 @@ ffi.cdef [[
   BOOL                        GetScrollInfo(                      HWND hwnd, WINAPI_SBType fnBar, LPSCROLLINFO lpsi);
   int                         GetScrollPos(                       HWND hWnd, WINAPI_SBType nBar);
   BOOL                        GetScrollRange(                     HWND hWnd, WINAPI_SBType nBar, LPINT lpMinPos, LPINT lpMaxPos);
-  BOOL                        ScrollDC(                           HDC hDC, int dx, int dy, RECT* lprcScroll, RECT* lprcClip, HRGN hrgnUpdate, LPRECT lprcUpdate);
-  BOOL                        ScrollWindow(                       HWND hWnd, int XAmount, int YAmount, RECT* lpRect, RECT* lpClipRect);
-  int                         ScrollWindowEx(                     HWND hWnd, int dx, int dy, RECT* prcScroll, RECT* prcClip, HRGN hrgnUpdate, LPRECT prcUpdate, WINAPI_ScrollWindowFlags flags);
+  BOOL                        ScrollDC(                           HDC hDC, int dx, int dy, WINAPI_RECT* lprcScroll, WINAPI_RECT* lprcClip, HRGN hrgnUpdate, LPRECT lprcUpdate);
+  BOOL                        ScrollWindow(                       HWND hWnd, int XAmount, int YAmount, WINAPI_RECT* lpRect, WINAPI_RECT* lpClipRect);
+  int                         ScrollWindowEx(                     HWND hWnd, int dx, int dy, WINAPI_RECT* prcScroll, WINAPI_RECT* prcClip, HRGN hrgnUpdate, LPRECT prcUpdate, WINAPI_ScrollWindowFlags flags);
   int                         SetScrollInfo(                      HWND hwnd, WINAPI_SBType fnBar, LPCSCROLLINFO lpsi, BOOL fRedraw);
   int                         SetScrollPos(                       HWND hWnd, WINAPI_SBType nBar, int nPos, BOOL bRedraw);
   BOOL                        SetScrollRange(                     HWND hWnd, WINAPI_SBType nBar, int nMinPos, int nMaxPos, BOOL bRedraw);
@@ -453,12 +453,12 @@ ffi.cdef [[
   BOOL                        OemToCharBuff(                      LPCTSTR lpszSrc, LPTSTR lpszDst, DWORD cchDstLength);
   int                         wsprintf(                           LPTSTR lpOut, LPCTSTR lpFmt);
   int                         wvsprintf(                          LPTSTR lpOutput, LPCTSTR lpFmt, va_list arglist);
-  WINAPI_WAIT_RESULT          MsgWaitForMultipleObjects(          DWORD nCount, HANDLE* pHandles, BOOL bWaitAll, WINAPI_WaitTimeout dwMilliseconds, WINAPI_QueueStatusFlag dwWakeMask);
-  WINAPI_WAIT_RESULT          MsgWaitForMultipleObjectsEx(        DWORD nCount, HANDLE* pHandles, WINAPI_WaitTimeout dwMilliseconds, WINAPI_QueueStatusFlag dwWakeMask, WINAPI_MsgWaitForMultipleObjectsFlags dwFlags);
+  WINAPI_WAIT_RESULT          MsgWaitForMultipleObjects(          DWORD nCount, WINAPI_HANDLE* pHandles, BOOL bWaitAll, WINAPI_WaitTimeout dwMilliseconds, WINAPI_QueueStatusFlag dwWakeMask);
+  WINAPI_WAIT_RESULT          MsgWaitForMultipleObjectsEx(        DWORD nCount, WINAPI_HANDLE* pHandles, WINAPI_WaitTimeout dwMilliseconds, WINAPI_QueueStatusFlag dwWakeMask, WINAPI_MsgWaitForMultipleObjectsFlags dwFlags);
   int                         GetKeyboardType(                    int nTypeFlag);
   DWORD                       GetSysColor(                        WINAPI_SysColorIndex nIndex);
   int                         GetSystemMetrics(                   WINAPI_SystemMetricIndex nIndex);
-  BOOL                        SetSysColors(                       int cElements, INT* lpaElements, COLORREF* lpaRgbValues);
+  BOOL                        SetSysColors(                       int cElements, WINAPI_INT* lpaElements, WINAPI_COLORREF* lpaRgbValues);
   BOOL                        SystemParametersInfo(               WINAPI_SystemParametersInfoEnum uiAction, UINT uiParam, PVOID pvParam, WINAPI_SystemParametersInfoFlags fWinIni);
   BOOL                        KillTimer(                          HWND hWnd, UINT_PTR uIDEvent);
   UINT_PTR                    SetTimer(                           HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC lpTimerFunc);
@@ -468,8 +468,8 @@ ffi.cdef [[
   int                         GetClassName(                       HWND hWnd, LPTSTR lpClassName, int nMaxCount);
   WORD                        GetClassWord(                       HWND hWnd, WINAPI_ClassLongIndex nIndex);
   LONG                        GetWindowLong(                      HWND hWnd, WINAPI_WindowLongIndex nIndex);
-  ATOM                        RegisterClass(                      CONST WNDCLASS* lpWndClass);
-  ATOM                        RegisterClassEx(                    CONST WNDCLASSEX* lpwcx);
+  ATOM                        RegisterClass(                      WINAPI_WNDCLASS* lpWndClass);
+  ATOM                        RegisterClassEx(                    WINAPI_WNDCLASSEX* lpwcx);
   DWORD                       SetClassLong(                       HWND hWnd, WINAPI_ClassLongIndex nIndex, LONG dwNewLong);
   WORD                        SetClassWord(                       HWND hWnd, WINAPI_ClassLongIndex nIndex, WORD wNewWord);
   LONG                        SetWindowLong(                      HWND hWnd, WINAPI_WindowLongIndex nIndex, LONG dwNewLong);
@@ -535,4 +535,4 @@ ffi.cdef [[
   BOOL                        QuerySendMessage(                   MSG* pMsg);
   BOOL                        SetWindowCompositionAttribute(      HWND hwnd, WINCOMPATTRDATA* pAttrData);
 ]]
-return ffi.load( "User32.dll" )
+return ffi.load( 'User32.dll' )

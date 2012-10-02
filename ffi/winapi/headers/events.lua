@@ -1,26 +1,23 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID PEVENT_CALLBACK;
-  typedef LPVOID PEVENT_TRACE_BUFFER_CALLBACK;
-  typedef LPVOID PEVENT_RECORD_CALLBACK;
+  typedef LPVOID PEVENT_CALLBACK; //Alias
+  typedef LPVOID PEVENT_TRACE_BUFFER_CALLBACK; //Alias
+  typedef LPVOID PEVENT_RECORD_CALLBACK; //Alias
   typedef struct WINAPI_WNODE_HEADER_u1_s {
     ULONG Version,
     ULONG Linkage,
   } WINAPI_WNODE_HEADER_u1_s;
-
   typedef union WINAPI_WNODE_HEADER_u1 {
     ULONG64 HistoricalContext,
     WINAPI_WNODE_HEADER_u1_s ,
   } WINAPI_WNODE_HEADER_u1;
-
   typedef union WINAPI_WNODE_HEADER_u2 {
     ULONG CountLost,
     HANDLE KernelHandle,
     LARGE_INTEGER TimeStamp,
   } WINAPI_WNODE_HEADER_u2;
-
-  typedef ULONG WINAPI_WNODE_HEADER_Flags;
+  typedef ULONG WINAPI_WNODE_HEADER_Flags; //Alias
   typedef struct WNODE_HEADER {
     ULONG BufferSize,
     ULONG ProviderId,
@@ -30,9 +27,8 @@ ffi.cdef [[
     ULONG ClientContext,
     WINAPI_WNODE_HEADER_Flags Flags,
   } WNODE_HEADER;
-
-  typedef ULONG WINAPI_EventLogFileMode;
-  typedef ULONG WINAPI_EventEnableFlags;
+  typedef ULONG WINAPI_EventLogFileMode; //Alias
+  typedef ULONG WINAPI_EventEnableFlags; //Alias
   typedef struct EVENT_TRACE_PROPERTIES {
     WNODE_HEADER Wnode,
     ULONG BufferSize,
@@ -53,18 +49,15 @@ ffi.cdef [[
     ULONG LogFileNameOffset,
     ULONG LoggerNameOffset,
   } EVENT_TRACE_PROPERTIES;
-
-  typedef EVENT_TRACE_PROPERTIES PEVENT_TRACE_PROPERTIES;
+  typedef EVENT_TRACE_PROPERTIES *PEVENT_TRACE_PROPERTIES; //Pointer
   typedef struct WINAPI_EVENT_TRACE_HEADER_u1_s {
     UCHAR HeaderType,
     UCHAR MarkerFlags,
   } WINAPI_EVENT_TRACE_HEADER_u1_s;
-
   typedef union WINAPI_EVENT_TRACE_HEADER_u1 {
     USHORT FieldTypeFlags,
     WINAPI_EVENT_TRACE_HEADER_u1_s ,
   } WINAPI_EVENT_TRACE_HEADER_u1;
-
   typedef enum WINAPI_EVENT_TRACE_TYPE {
     EVENT_TRACE_TYPE_INFO = 0x00,
     EVENT_TRACE_TYPE_START = 0x01,
@@ -98,33 +91,27 @@ ffi.cdef [[
     WINAPI_TRACE_LEVEL Level,
     USHORT Version,
   } WINAPI_EVENT_TRACE_HEADER_u2_s;
-
   typedef union WINAPI_EVENT_TRACE_HEADER_u2 {
     ULONG Version,
     WINAPI_EVENT_TRACE_HEADER_u2_s Class,
   } WINAPI_EVENT_TRACE_HEADER_u2;
-
   typedef union WINAPI_EVENT_TRACE_HEADER_u3 {
     GUID Guid,
     ULONGLONG GuidPtr,
   } WINAPI_EVENT_TRACE_HEADER_u3;
-
   typedef struct WINAPI_EVENT_TRACE_HEADER_u4_s1 {
     ULONG KernelTime,
     ULONG UserTime,
   } WINAPI_EVENT_TRACE_HEADER_u4_s1;
-
   typedef struct WINAPI_EVENT_TRACE_HEADER_u4_s2 {
     ULONG ClientContext,
     WINAPI_WNODE_HEADER_Flags Flags,
   } WINAPI_EVENT_TRACE_HEADER_u4_s2;
-
   typedef union WINAPI_EVENT_TRACE_HEADER_u4 {
     WINAPI_EVENT_TRACE_HEADER_u4_s1 ,
     ULONG64 ProcessorTime,
     WINAPI_EVENT_TRACE_HEADER_u4_s2 ,
   } WINAPI_EVENT_TRACE_HEADER_u4;
-
   typedef struct EVENT_TRACE_HEADER {
     USHORT Size,
     WINAPI_EVENT_TRACE_HEADER_u1 ,
@@ -135,19 +122,16 @@ ffi.cdef [[
     WINAPI_EVENT_TRACE_HEADER_u3 ,
     WINAPI_EVENT_TRACE_HEADER_u4 ,
   } EVENT_TRACE_HEADER;
-
-  typedef EVENT_TRACE_HEADER PEVENT_TRACE_HEADER;
+  typedef EVENT_TRACE_HEADER *PEVENT_TRACE_HEADER; //Pointer
   typedef struct WINAPI_EVENT_INSTANCE_HEADER_u1_s {
     ULONG EventId,
     WINAPI_WNODE_HEADER_Flags Flags,
   } WINAPI_EVENT_INSTANCE_HEADER_u1_s;
-
   typedef union WINAPI_EVENT_INSTANCE_HEADER_u {
     WINAPI_EVENT_TRACE_HEADER_u4_s1 ,
     ULONG64 ProcessorTime,
     WINAPI_EVENT_INSTANCE_HEADER_u1_s ,
   } WINAPI_EVENT_INSTANCE_HEADER_u;
-
   typedef struct EVENT_INSTANCE_HEADER {
     USHORT Size,
     WINAPI_EVENT_TRACE_HEADER_u1 ,
@@ -161,30 +145,25 @@ ffi.cdef [[
     WINAPI_EVENT_INSTANCE_HEADER_u ,
     ULONGLONG ParentRegHandle,
   } EVENT_INSTANCE_HEADER;
-
-  typedef EVENT_INSTANCE_HEADER PEVENT_INSTANCE_HEADER;
-  typedef ULONG WINAPI_ProcessTraceMode;
+  typedef EVENT_INSTANCE_HEADER *PEVENT_INSTANCE_HEADER; //Pointer
+  typedef ULONG WINAPI_ProcessTraceMode; //Alias
   typedef union WINAPI_EVENT_TRACE_LOGFILE_u1 {
     WINAPI_EventLogFileMode LogFileMode,
     WINAPI_ProcessTraceMode ProcessTraceMode,
   } WINAPI_EVENT_TRACE_LOGFILE_u1;
-
   typedef union WINAPI_EVENT_TRACE_LOGFILE_u2 {
     PEVENT_CALLBACK EventCallback,
     PEVENT_RECORD_CALLBACK EventRecordCallback,
   } WINAPI_EVENT_TRACE_LOGFILE_u2;
-
   typedef struct ETW_BUFFER_CONTEXT {
     UCHAR ProcessorNumber,
     UCHAR Alignment,
     USHORT LoggerId,
   } ETW_BUFFER_CONTEXT;
-
   typedef union WINAPI_EVENT_TRACE_u {
     ULONG ClientContext,
     ETW_BUFFER_CONTEXT BufferContext,
   } WINAPI_EVENT_TRACE_u;
-
   typedef struct EVENT_TRACE {
     EVENT_TRACE_HEADER Header,
     ULONG InstanceId,
@@ -194,31 +173,26 @@ ffi.cdef [[
     ULONG MofLength,
     WINAPI_EVENT_TRACE_u ,
   } EVENT_TRACE;
-
   typedef struct WINAPI_TRACE_LOGFILE_HEADER_u1_s {
     UCHAR MajorVersion,
     UCHAR MinorVersion,
     UCHAR SubVersion,
     UCHAR SubMinorVersion,
   } WINAPI_TRACE_LOGFILE_HEADER_u1_s;
-
   typedef union WINAPI_TRACE_LOGFILE_HEADER_u1 {
     ULONG Version,
     WINAPI_TRACE_LOGFILE_HEADER_u1_s VersionDetail,
   } WINAPI_TRACE_LOGFILE_HEADER_u1;
-
   typedef struct WINAPI_TRACE_LOGFILE_HEADER_u2_s {
     ULONG StartBuffers,
     ULONG PointerSize,
     ULONG EventsLost,
     ULONG CpuSpeedInMHz,
   } WINAPI_TRACE_LOGFILE_HEADER_u2_s;
-
   typedef union WINAPI_TRACE_LOGFILE_HEADER_u2 {
     GUID LogInstanceGuid,
     WINAPI_TRACE_LOGFILE_HEADER_u2_s ,
   } WINAPI_TRACE_LOGFILE_HEADER_u2;
-
   typedef struct TRACE_LOGFILE_HEADER {
     ULONG BufferSize,
     WINAPI_TRACE_LOGFILE_HEADER_u1 ,
@@ -239,7 +213,6 @@ ffi.cdef [[
     ULONG ReservedFlags,
     ULONG BuffersLost,
   } TRACE_LOGFILE_HEADER;
-
   typedef struct EVENT_TRACE_LOGFILE {
     LPTSTR LogFileName,
     LPTSTR LoggerName,
@@ -256,14 +229,12 @@ ffi.cdef [[
     ULONG IsKernelTrace,
     PVOID Context,
   } EVENT_TRACE_LOGFILE;
-
-  typedef EVENT_TRACE_LOGFILE PEVENT_TRACE_LOGFILE;
+  typedef EVENT_TRACE_LOGFILE *PEVENT_TRACE_LOGFILE; //Pointer
   typedef struct EVENT_INSTANCE_INFO {
     HANDLE RegHandle,
     ULONG InstanceId,
   } EVENT_INSTANCE_INFO;
-
-  typedef EVENT_INSTANCE_INFO PEVENT_INSTANCE_INFO;
+  typedef EVENT_INSTANCE_INFO *PEVENT_INSTANCE_INFO; //Pointer
   typedef struct EVENT_DESCRIPTOR {
     USHORT Id,
     UCHAR Version,
@@ -273,15 +244,13 @@ ffi.cdef [[
     USHORT Task,
     ULONGLONG Keyword,
   } EVENT_DESCRIPTOR;
-
-  typedef EVENT_DESCRIPTOR PCEVENT_DESCRIPTOR;
+  typedef EVENT_DESCRIPTOR *PCEVENT_DESCRIPTOR; //Pointer
   typedef struct EVENT_DATA_DESCRIPTOR {
     ULONGLONG Ptr,
     ULONG Size,
     ULONG Reserved,
   } EVENT_DATA_DESCRIPTOR;
-
-  typedef EVENT_DATA_DESCRIPTOR PEVENT_DATA_DESCRIPTOR;
+  typedef EVENT_DATA_DESCRIPTOR *PEVENT_DATA_DESCRIPTOR; //Pointer
   typedef enum WINAPI_EventLogType {
     EVENTLOG_SUCCESS = 0x0000,
     EVENTLOG_ERROR_TYPE = 0x0001,

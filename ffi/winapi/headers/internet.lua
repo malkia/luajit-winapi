@@ -1,11 +1,15 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID HINTERNET;
-  typedef LONGLONG GROUPID;
-  typedef LPVOID WINHTTP_STATUS_CALLBACK;
-  typedef LPVOID GOPHER_ATTRIBUTE_ENUMERATOR;
-  typedef LPVOID INTERNET_STATUS_CALLBACK;
+  typedef LPVOID HINTERNET; //Alias
+  typedef LONGLONG GROUPID; //Alias
+  typedef LPVOID WINHTTP_STATUS_CALLBACK; //Alias
+  typedef LPVOID GOPHER_ATTRIBUTE_ENUMERATOR; //Alias
+  typedef LPVOID INTERNET_STATUS_CALLBACK; //Alias
+  typedef DWORD DWORD [GROUP_OWNER_STORAGE_SIZE]; //Array 4
+  typedef TCHAR TCHAR [GROUPNAME_MAX_LENGTH]; //Array 120
+  typedef TCHAR TCHAR [MAX_GOPHER_DISPLAY_TEXT + 1]; //Array 129
+  typedef TCHAR TCHAR [MAX_GOPHER_LOCATOR_LENGTH + 1]; //Array 653
   typedef struct INTERNET_CACHE_ENTRY_INFO {
     DWORD dwStructSize,
     LPTSTR lpszSourceUrlName,
@@ -24,10 +28,9 @@ ffi.cdef [[
     LPTSTR lpszFileExtension,
     DWORD dwExemptDelta,
   } INTERNET_CACHE_ENTRY_INFO;
-
-  typedef INTERNET_CACHE_ENTRY_INFO LPINTERNET_CACHE_ENTRY_INFO;
-  typedef DWORD WINAPI_CACHEGROUP_FLAG;
-  typedef DWORD WINAPI_CACHEGROUP_TYPE;
+  typedef INTERNET_CACHE_ENTRY_INFO *LPINTERNET_CACHE_ENTRY_INFO; //Pointer
+  typedef DWORD WINAPI_CACHEGROUP_FLAG; //Alias
+  typedef DWORD WINAPI_CACHEGROUP_TYPE; //Alias
   typedef struct INTERNET_CACHE_GROUP_INFO {
     DWORD dwGroupSize,
     WINAPI_CACHEGROUP_FLAG dwGroupFlags,
@@ -37,9 +40,8 @@ ffi.cdef [[
     DWORD [GROUP_OWNER_STORAGE_SIZE] dwOwnerStorage,
     TCHAR [GROUPNAME_MAX_LENGTH] szGroupName,
   } INTERNET_CACHE_GROUP_INFO;
-
-  typedef INTERNET_CACHE_GROUP_INFO LPINTERNET_CACHE_GROUP_INFO;
-  typedef DWORD WINAPI_GopherType;
+  typedef INTERNET_CACHE_GROUP_INFO *LPINTERNET_CACHE_GROUP_INFO; //Pointer
+  typedef DWORD WINAPI_GopherType; //Alias
   typedef struct GOPHER_FIND_DATA {
     TCHAR [MAX_GOPHER_DISPLAY_TEXT + 1] DisplayString,
     WINAPI_GopherType GopherType,
@@ -48,8 +50,7 @@ ffi.cdef [[
     FILETIME LastModificationTime,
     TCHAR [MAX_GOPHER_LOCATOR_LENGTH + 1] Locator,
   } GOPHER_FIND_DATA;
-
-  typedef GOPHER_FIND_DATA LPGOPHER_FIND_DATA;
+  typedef GOPHER_FIND_DATA *LPGOPHER_FIND_DATA; //Pointer
   typedef enum WINAPI_ProxyAccessType {
     WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = 0,
     WINHTTP_ACCESS_TYPE_NO_PROXY = 1,
@@ -60,16 +61,14 @@ ffi.cdef [[
     LPWSTR lpszProxy,
     LPWSTR lpszProxyBypass,
   } WINHTTP_PROXY_INFO;
-
   typedef struct WINHTTP_CURRENT_USER_IE_PROXY_CONFIG {
     BOOL fAutoDetect,
     LPWSTR lpszAutoConfigUrl,
     LPWSTR lpszProxy,
     LPWSTR lpszProxyBypass,
   } WINHTTP_CURRENT_USER_IE_PROXY_CONFIG;
-
-  typedef DWORD WINAPI_AutoProxyFlags;
-  typedef DWORD WINAPI_AutoDetectFlags;
+  typedef DWORD WINAPI_AutoProxyFlags; //Alias
+  typedef DWORD WINAPI_AutoDetectFlags; //Alias
   typedef struct WINHTTP_AUTOPROXY_OPTIONS {
     WINAPI_AutoProxyFlags dwFlags,
     WINAPI_AutoDetectFlags dwAutoDetectFlags,
@@ -78,7 +77,6 @@ ffi.cdef [[
     DWORD dwReserved,
     BOOL fAutoLogonIfChallenged,
   } WINHTTP_AUTOPROXY_OPTIONS;
-
   typedef enum INTERNET_PORT {
     INTERNET_DEFAULT_FTP_PORT = 21,
     INTERNET_DEFAULT_GOPHER_PORT = 70,
@@ -88,8 +86,8 @@ ffi.cdef [[
     INTERNET_INVALID_PORT_NUMBER = 0,
   } INTERNET_PORT;
   typedef enum INTERNET_SCHEME {
-    INTERNET_SCHEME_PARTIAL = _2,
-    INTERNET_SCHEME_UNKNOWN = _1,
+    INTERNET_SCHEME_PARTIAL = WINAPI__2,
+    INTERNET_SCHEME_UNKNOWN = WINAPI__1,
     INTERNET_SCHEME_DEFAULT = 0,
     INTERNET_SCHEME_FTP = 1,
     INTERNET_SCHEME_GOPHER = 2,
@@ -120,8 +118,7 @@ ffi.cdef [[
     LPTSTR lpszExtraInfo,
     DWORD dwExtraInfoLength,
   } URL_COMPONENTS;
-
-  typedef URL_COMPONENTS LPURL_COMPONENTS;
+  typedef URL_COMPONENTS *LPURL_COMPONENTS; //Pointer
   typedef enum WINAPI_InternetSchemeWinHttp {
     INTERNET_SCHEME_HTTP = 1,
     INTERNET_SCHEME_HTTPS = 2,
@@ -143,10 +140,9 @@ ffi.cdef [[
     LPWSTR lpszExtraInfo,
     DWORD dwExtraInfoLength,
   } URL_COMPONENTSW;
-
-  typedef URL_COMPONENTSW LPURL_COMPONENTSW;
-  typedef DWORD WINAPI_InternetCanonicalizeUrlFlags;
-  typedef DWORD WINAPI_InternetCrackUrlFlags;
+  typedef URL_COMPONENTSW *LPURL_COMPONENTSW; //Pointer
+  typedef DWORD WINAPI_InternetCanonicalizeUrlFlags; //Alias
+  typedef DWORD WINAPI_InternetCrackUrlFlags; //Alias
   typedef struct INTERNET_BUFFERS {
     DWORD dwStructSize,
     LPVOID Next,
@@ -159,6 +155,5 @@ ffi.cdef [[
     DWORD dwOffsetLow,
     DWORD dwOffsetHigh,
   } INTERNET_BUFFERS;
-
-  typedef INTERNET_BUFFERS LPINTERNET_BUFFERS;
+  typedef INTERNET_BUFFERS *LPINTERNET_BUFFERS; //Pointer
 ]]

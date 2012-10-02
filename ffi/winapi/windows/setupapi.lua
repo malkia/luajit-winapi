@@ -1,8 +1,8 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/setup" )
-require( "ffi/winapi/headers/gdi" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/setup' )
+require( 'ffi/winapi/headers/gdi' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   VOID         InstallHinfSection(                         HWND hwnd, HINSTANCE ModuleHandle, PCTSTR CmdLineBuffer, INT nCmdShow);
   BOOL         SetupAddInstallSectionToDiskSpaceList(      HDSKSPC DiskSpace, HINF InfHandle, HINF LayoutInfHandle, PCTSTR SectionName, PVOID Reserved1, UINT Reserved2);
@@ -143,10 +143,10 @@ ffi.cdef [[
   BOOL         SetupDiGetClassImageList(                   PSP_CLASSIMAGELIST_DATA ClassImageListData);
   BOOL         SetupDiGetClassImageListEx(                 PSP_CLASSIMAGELIST_DATA ClassImageListData, PCTSTR MachineName, PVOID Reserved);
   BOOL         SetupDiGetClassInstallParams(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_CLASSINSTALL_HEADER ClassInstallParams, DWORD ClassInstallParamsSize, PDWORD RequiredSize);
-  BOOL         SetupDiGetClassPropertyW(                   CONST GUID* ClassGuid, CONST DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, WINAPI_DiClassPropertyFlags Flags);
-  BOOL         SetupDiGetClassPropertyExW(                 CONST GUID* ClassGuid, CONST DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, WINAPI_DiClassPropertyFlags Flags, PCWSTR MachineName, PVOID Reserved);
-  BOOL         SetupDiGetClassPropertyKeys(                CONST GUID* ClassGuid, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, WINAPI_DiClassPropertyFlags Flags);
-  BOOL         SetupDiGetClassPropertyKeysExW(             CONST GUID* ClassGuid, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, WINAPI_DiClassPropertyFlags Flags, PCWSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiGetClassPropertyW(                   WINAPI_GUID* ClassGuid, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, WINAPI_DiClassPropertyFlags Flags);
+  BOOL         SetupDiGetClassPropertyExW(                 WINAPI_GUID* ClassGuid, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, WINAPI_DiClassPropertyFlags Flags, PCWSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiGetClassPropertyKeys(                WINAPI_GUID* ClassGuid, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, WINAPI_DiClassPropertyFlags Flags);
+  BOOL         SetupDiGetClassPropertyKeysExW(             WINAPI_GUID* ClassGuid, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, WINAPI_DiClassPropertyFlags Flags, PCWSTR MachineName, PVOID Reserved);
   BOOL         SetupDiGetClassRegistryProperty(            LPGUID ClassGuid, DWORD Property, WINAPI_RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, PCTSTR MachineName, PVOID Reserved);
   BOOL         SetupDiGetCustomDeviceProperty(             HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PCTSTR CustomPropertyName, WINAPI_GetCustomDevicePropertyFlags Flags, WINAPI_RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize);
   BOOL         SetupDiGetDeviceInfoListClass(              HDEVINFO DeviceInfoSet, LPGUID ClassGuid);
@@ -155,9 +155,9 @@ ffi.cdef [[
   BOOL         SetupDiGetDeviceInstanceId(                 HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PTSTR DeviceInstanceId, DWORD DeviceInstanceIdSize, PDWORD RequiredSize);
   BOOL         SetupDiGetDeviceInterfaceAlias(             HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, LPGUID AliasInterfaceClassGuid, PSP_DEVICE_INTERFACE_DATA AliasDeviceInterfaceData);
   BOOL         SetupDiGetDeviceInterfaceDetail(            HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, PSP_DEVICE_INTERFACE_DETAIL_DATA DeviceInterfaceDetailData, DWORD DeviceInterfaceDetailDataSize, PDWORD RequiredSize, PSP_DEVINFO_DATA DeviceInfoData);
-  BOOL         SetupDiGetDeviceInterfacePropertyW(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, CONST DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags);
+  BOOL         SetupDiGetDeviceInterfacePropertyW(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags);
   BOOL         SetupDiGetDeviceInterfacePropertyKeys(      HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, DWORD Flags);
-  BOOL         SetupDiGetDevicePropertyW(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, CONST DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags);
+  BOOL         SetupDiGetDevicePropertyW(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags);
   BOOL         SetupDiGetDevicePropertyKeys(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, DWORD Flags);
   BOOL         SetupDiGetDeviceRegistryProperty(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_SetupDeviceRegistryProperty Property, WINAPI_RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize);
   BOOL         SetupDiGetDriverInfoDetail(                 HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DRVINFO_DATA DriverInfoData, PSP_DRVINFO_DETAIL_DATA DriverInfoDetailData, DWORD DriverInfoDetailDataSize, PDWORD RequiredSize);
@@ -191,14 +191,14 @@ ffi.cdef [[
   BOOL         SetupDiSelectDevice(                        HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiSelectOEMDrv(                        HWND hwndParent, HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiSetClassInstallParams(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_CLASSINSTALL_HEADER ClassInstallParams, DWORD ClassInstallParamsSize);
-  BOOL         SetupDiSetClassPropertyW(                   CONST GUID* ClassGuid, CONST DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, CONST PBYTE PropertyBuffer, DWORD PropertyBufferSize, WINAPI_DiClassPropertyFlags Flags);
-  BOOL         SetupDiSetClassPropertyExW(                 CONST GUID* ClassGuid, CONST DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, CONST BYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags, PVOID Reserved);
-  BOOL         SetupDiSetClassRegistryProperty(            LPGUID ClassGuid, DWORD Property, CONST BYTE* PropertyBuffer, DWORD PropertyBufferSize, PCTSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiSetClassPropertyW(                   WINAPI_GUID* ClassGuid, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, WINAPI_PBYTE PropertyBuffer, DWORD PropertyBufferSize, WINAPI_DiClassPropertyFlags Flags);
+  BOOL         SetupDiSetClassPropertyExW(                 WINAPI_GUID* ClassGuid, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, WINAPI_BYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags, PVOID Reserved);
+  BOOL         SetupDiSetClassRegistryProperty(            LPGUID ClassGuid, DWORD Property, WINAPI_BYTE* PropertyBuffer, DWORD PropertyBufferSize, PCTSTR MachineName, PVOID Reserved);
   BOOL         SetupDiSetDeviceInstallParams(              HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DEVINSTALL_PARAMS DeviceInstallParams);
   BOOL         SetupDiSetDeviceInterfaceDefault(           HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DWORD Flags, PVOID Reserved);
-  BOOL         SetupDiSetDeviceInterfacePropertyW(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, CONST DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, CONST PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags);
-  BOOL         SetupDiSetDevicePropertyW(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, CONST DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, CONST PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags);
-  BOOL         SetupDiSetDeviceRegistryProperty(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_SetupDeviceRegistryProperty Property, CONST BYTE* PropertyBuffer, DWORD PropertyBufferSize);
+  BOOL         SetupDiSetDeviceInterfacePropertyW(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, WINAPI_PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags);
+  BOOL         SetupDiSetDevicePropertyW(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, WINAPI_PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags);
+  BOOL         SetupDiSetDeviceRegistryProperty(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_SetupDeviceRegistryProperty Property, WINAPI_BYTE* PropertyBuffer, DWORD PropertyBufferSize);
   BOOL         SetupDiSetDriverInstallParams(              HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DRVINFO_DATA DriverInfoData, PSP_DRVINSTALL_PARAMS DriverInstallParams);
   BOOL         SetupDiSetSelectedDevice(                   HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiSetSelectedDriver(                   HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DRVINFO_DATA DriverInfoData);
@@ -289,4 +289,4 @@ ffi.cdef [[
   CONFIGRET    CM_Setup_DevNode(                           DEVINST dnDevInst, ULONG ulFlags);
   DWORD        CMP_WaitNoPendingInstallEvents(             DWORD dwTimeout);
 ]]
-return ffi.load( "Setupapi.dll" )
+return ffi.load( 'Setupapi.dll' )

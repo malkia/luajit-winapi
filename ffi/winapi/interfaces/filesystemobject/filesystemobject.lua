@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum CompareMethod {
     BinaryCompare = 0,
@@ -12,11 +12,11 @@ ffi.cdef [[
     ForAppending = 8,
   } IOMode;
   typedef enum Tristate {
-    TristateTrue = _1,
+    TristateTrue = WINAPI__1,
     TristateFalse = 0,
-    TristateUseDefault = _2,
+    TristateUseDefault = WINAPI__2,
   } Tristate;
-  typedef UINT FileAttribute;
+  typedef UINT FileAttribute; //Alias
   typedef enum SpecialFolderConst {
     WindowsFolder = 0,
     SystemFolder = 1,

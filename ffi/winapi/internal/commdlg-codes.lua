@@ -1,4 +1,4 @@
-local ffi = require( "ffi" )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum WINAPI_CommDlgErrorCode {
     CDERR_DIALOGFAILURE: The dialog box could not be created. The common dialog box function's call to the DialogBox function failed. For example, this error occurs if the common dialog box call specifies an invalid window handle. = 0xFFFF,

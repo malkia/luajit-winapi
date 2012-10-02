@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   DWORD RmAddFilter(         DWORD dwSessionHandle, LPCWSTR strFilename, RM_UNIQUE_PROCESS* Application, LPCWSTR strShortServiceName, RM_FILTER_ACTION ActionType);
   DWORD RmStartSession(      DWORD* pSessionHandle, DWORD dwSessionFlags);
@@ -13,4 +13,4 @@ ffi.cdef [[
   DWORD RmRestart(           DWORD dwSessionHandle, DWORD dwRestartFlags, RM_WRITE_STATUS_CALLBACK fnStatus);
   DWORD RmCancelCurrentTask( DWORD dwSessionHandle);
 ]]
-return ffi.load( "Rstrtmgr.dll" )
+return ffi.load( 'Rstrtmgr.dll' )

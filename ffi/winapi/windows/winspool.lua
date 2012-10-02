@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL              AddJob(                               HANDLE hPrinter, DWORD Level, LPBYTE pData, DWORD cbBuf, LPDWORD pcbNeeded);
   BOOL              AddMonitor(                           LPTSTR pName, DWORD Level, LPBYTE pMonitors);
@@ -52,7 +52,7 @@ ffi.cdef [[
   BOOL              SetPrinter(                           HANDLE hPrinter, DWORD Level, LPBYTE pPrinter, WINAPI_PrinterControl Command);
   WINAPI_ERROR_CODE SetPrinterData(                       HANDLE hPrinter, LPTSTR pValueName, WINAPI_RegType Type, LPBYTE pData, DWORD cbData);
   WINAPI_ERROR_CODE SetPrinterDataEx(                     HANDLE hPrinter, LPCTSTR pKeyName, LPCTSTR pValueName, WINAPI_RegType Type, LPBYTE pData, DWORD cbData);
-  DWORD             DeviceCapabilities(                   LPCTSTR pDevice, LPCTSTR pPort, WINAPI_DeviceCapability fwCapability, LPTSTR pOutput, DEVMODE* pDevMode);
+  DWORD             DeviceCapabilities(                   LPCTSTR pDevice, LPCTSTR pPort, WINAPI_DeviceCapability fwCapability, LPTSTR pOutput, WINAPI_DEVMODE* pDevMode);
   HRESULT           CorePrinterDriverInstalled(           LPCTSTR pszServer, LPCTSTR pszEnvironment, GUID CoreDriverGUID, FILETIME ftDriverDate, DWORDLONG dwlDriverVersion, BOOL* pbDriverInstalled);
   HRESULT           DeletePrinterDriverPackage(           LPCTSTR pszServer, LPCTSTR pszInfPath, LPCTSTR pszEnvironment);
   HRESULT           GetCorePrinterDrivers(                LPCTSTR pszServer, LPCTSTR pszEnvironment, LPCTSTR pszzCoreDriverDependencies, DWORD cCorePrinterDrivers, PCORE_PRINTER_DRIVER pCorePrinterDrivers);
@@ -87,4 +87,4 @@ ffi.cdef [[
   HRESULT           UnRegisterForPrintAsyncNotifications( HANDLE hRegistrationHandler);
   BOOL              WritePrinter(                         HANDLE hPrinter, LPVOID pBuf, DWORD cbBuf, LPDWORD pcWritten);
 ]]
-return ffi.load( "Winspool.drv" )
+return ffi.load( 'Winspool.drv' )

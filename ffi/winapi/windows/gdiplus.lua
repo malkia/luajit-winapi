@@ -1,8 +1,8 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/gdi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/gdi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  GpStatus GdiplusStartup(                                   ULONG_PTR* token, GdiplusStartupInput* input, GdiplusStartupOutput* output);
+  GpStatus GdiplusStartup(                                   ULONG_PTR* token, WINAPI_GdiplusStartupInput* input, GdiplusStartupOutput* output);
   void     GdiplusShutdown(                                  ULONG_PTR token);
   GpStatus GdipCreatePath(                                   GpFillMode brushMode, GpPath** path);
   GpStatus GdipCreatePath2(                                  GDIPCONST GpPointF* points, GDIPCONST BYTE* types, INT count, GpFillMode fillMode, GpPath** path);
@@ -622,8 +622,8 @@ ffi.cdef [[
   GpStatus GdipTestControl(                                  GpTestControlEnum control, void* param);
   GpStatus GdiplusNotificationHook(                          ULONG_PTR* token);
   VOID     GdiplusNotificationUnhook(                        ULONG_PTR token);
-  GpStatus GdipConvertToEmfPlus(                             GpGraphics* refGraphics, GpMetafile* metafile, INT* conversionFailureFlag, EmfType emfType, WCHAR* description, GpMetafile** out_metafile);
-  GpStatus GdipConvertToEmfPlusToFile(                       GpGraphics* refGraphics, GpMetafile* metafile, INT* conversionFailureFlag, WCHAR* filename, EmfType emfType, WCHAR* description, GpMetafile** out_metafile);
-  GpStatus GdipConvertToEmfPlusToStream(                     GpGraphics* refGraphics, GpMetafile* metafile, INT* conversionFailureFlag, IStream* stream, EmfType emfType, WCHAR* description, GpMetafile** out_metafile);
+  GpStatus GdipConvertToEmfPlus(                             WINAPI_GpGraphics* refGraphics, GpMetafile* metafile, INT* conversionFailureFlag, EmfType emfType, WINAPI_WCHAR* description, GpMetafile** out_metafile);
+  GpStatus GdipConvertToEmfPlusToFile(                       WINAPI_GpGraphics* refGraphics, GpMetafile* metafile, INT* conversionFailureFlag, WINAPI_WCHAR* filename, EmfType emfType, WINAPI_WCHAR* description, GpMetafile** out_metafile);
+  GpStatus GdipConvertToEmfPlusToStream(                     WINAPI_GpGraphics* refGraphics, GpMetafile* metafile, INT* conversionFailureFlag, IStream* stream, EmfType emfType, WINAPI_WCHAR* description, GpMetafile** out_metafile);
 ]]
-return ffi.load( "gdiplus.dll" )
+return ffi.load( 'gdiplus.dll' )

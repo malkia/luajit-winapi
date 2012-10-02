@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/multimedia" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/multimedia' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   STDAPI             AVIBuildFilter(             LPTSTR lpszFilter, LONG cbFilter, BOOL fSaving);
   STDAPI             AVIClearClipboard(          );
@@ -53,4 +53,4 @@ ffi.cdef [[
   STDAPI             EditStreamSetInfo(          PAVISTREAM pavi, AVISTREAMINFO* lpInfo, LONG cbInfo);
   STDAPI             EditStreamSetName(          PAVISTREAM pavi, LPCTSTR lpszName);
 ]]
-return ffi.load( "avifil32.dll" )
+return ffi.load( 'avifil32.dll' )

@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/internet" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/internet' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL                    WinHttpAddRequestHeaders(              HINTERNET hRequest, LPCWSTR pwszHeaders, DWORD dwHeadersLength, WINAPI_WinHttpAddReqFlag dwModifiers);
   BOOL                    WinHttpCheckPlatform(                  );
@@ -30,4 +30,4 @@ ffi.cdef [[
   BOOL                    WinHttpTimeToSystemTime(               LPCWSTR pwszTime, SYSTEMTIME* pst);
   BOOL                    WinHttpWriteData(                      HINTERNET hRequest, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite, LPDWORD lpdwNumberOfBytesWritten);
 ]]
-return ffi.load( "Winhttp.dll" )
+return ffi.load( 'Winhttp.dll' )

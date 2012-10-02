@@ -1,9 +1,9 @@
-require( "ffi/winapi/interfaces/directx/11/id3d11device" )
-require( "ffi/winapi/interfaces/directx/11/id3d11devicecontext" )
-require( "ffi/winapi/interfaces/directx/dxgi/idxgiadapter" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/interfaces/directx/11/id3d11device' )
+require( 'ffi/winapi/interfaces/directx/11/id3d11devicecontext' )
+require( 'ffi/winapi/interfaces/directx/dxgi/idxgiadapter' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  HRESULT D3D11CreateDevice(             IDXGIAdapter* pAdapter, D3D_DRIVER_TYPE DriverType, HMODULE Software, D3D11_CREATE_DEVICE_FLAG Flags, D3D_FEATURE_LEVEL* pFeatureLevels, UINT FeatureLevels, UINT SDKVersion, ID3D11Device** ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext** ppImmediateContext);
-  HRESULT D3D11CreateDeviceAndSwapChain( IDXGIAdapter* pAdapter, D3D_DRIVER_TYPE DriverType, HMODULE Software, D3D11_CREATE_DEVICE_FLAG Flags, D3D_FEATURE_LEVEL* pFeatureLevels, UINT FeatureLevels, UINT SDKVersion, DXGI_SWAP_CHAIN_DESC* pSwapChainDesc, IDXGISwapChain** ppSwapChain, ID3D11Device** ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext** ppImmediateContext);
+  HRESULT D3D11CreateDevice(             IDXGIAdapter* pAdapter, D3D_DRIVER_TYPE DriverType, HMODULE Software, D3D11_CREATE_DEVICE_FLAG Flags, WINAPI_D3D_FEATURE_LEVEL* pFeatureLevels, UINT FeatureLevels, UINT SDKVersion, ID3D11Device** ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext** ppImmediateContext);
+  HRESULT D3D11CreateDeviceAndSwapChain( IDXGIAdapter* pAdapter, D3D_DRIVER_TYPE DriverType, HMODULE Software, D3D11_CREATE_DEVICE_FLAG Flags, WINAPI_D3D_FEATURE_LEVEL* pFeatureLevels, UINT FeatureLevels, UINT SDKVersion, WINAPI_DXGI_SWAP_CHAIN_DESC* pSwapChainDesc, IDXGISwapChain** ppSwapChain, ID3D11Device** ppDevice, D3D_FEATURE_LEVEL* pFeatureLevel, ID3D11DeviceContext** ppImmediateContext);
 ]]
-return ffi.load( "d3d11.dll" )
+return ffi.load( 'd3d11.dll' )

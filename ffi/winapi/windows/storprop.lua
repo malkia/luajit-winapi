@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   LONG CdromDisableDigitalPlayback(   HDEVINFO DevInfo, PSP_DEVINFO_DATA DevInfoData);
   LONG CdromEnableDigitalPlayback(    HDEVINFO DevInfo, PSP_DEVINFO_DATA DevInfoData, BOOLEAN ForceUnknown);
@@ -7,4 +7,4 @@ ffi.cdef [[
   BOOL CdromKnownGoodDigitalPlayback( HDEVINFO DevInfo, PSP_DEVINFO_DATA DevInfoData);
   BOOL DvdLauncher(                   HWND HWnd, CHAR DriveLetter);
 ]]
-return ffi.load( "Storprop.dll" )
+return ffi.load( 'Storprop.dll' )

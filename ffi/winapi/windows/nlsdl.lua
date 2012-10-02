@@ -1,9 +1,9 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   LCID DownlevelGetParentLocaleLCID( LCID Locale);
   int  DownlevelGetParentLocaleName( LCID Locale, LPWSTR lpName, int cchName);
   int  DownlevelLCIDToLocaleName(    LCID Locale, LPWSTR lpName, int cchName, DWORD dwFlags);
   LCID DownlevelLocaleNameToLCID(    LPWSTR lpName, DWORD dwFlags);
 ]]
-return ffi.load( "Nlsdl.dll" )
+return ffi.load( 'Nlsdl.dll' )

@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/ole" )
-require( "ffi/winapi/headers/gdi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/ole' )
+require( 'ffi/winapi/headers/gdi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   STDAPI  AccessibleChildren(         IAccessible* paccContainer, LONG iChildStart, LONG cChildren, VARIANT* rgvarChildren, LONG* pcObtained);
   STDAPI  AccessibleObjectFromEvent(  HWND hwnd, DWORD dwObjectID, DWORD dwChildID, IAccessible** ppacc, VARIANT* pvarChild);
@@ -17,4 +17,4 @@ ffi.cdef [[
   LRESULT LresultFromObject(          REFIID riid, WPARAM wParam, LPUNKNOWN pAcc);
   STDAPI  ObjectFromLresult(          LRESULT lResult, REFIID riid, WPARAM wParam, void** ppvObject);
 ]]
-return ffi.load( "Oleacc.dll" )
+return ffi.load( 'Oleacc.dll' )

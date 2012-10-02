@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   PDH_STATUS PdhAddCounter(                   PDH_HQUERY hQuery, LPCTSTR szFullCounterPath, DWORD_PTR dwUserData, PDH_HCOUNTER* phCounter);
   PDH_STATUS PdhAddEnglishCounter(            PDH_HQUERY hQuery, LPCTSTR szFullCounterPath, DWORD_PTR dwUserData, PDH_HCOUNTER* phCounter);
@@ -59,4 +59,4 @@ ffi.cdef [[
   PDH_STATUS PdhValidatePath(                 LPCTSTR szFullCounterPath);
   PDH_STATUS PdhValidatePathEx(               PDH_HLOG hDataSource, LPCTSTR szFullPathBuffer);
 ]]
-return ffi.load( "Pdh.dll" )
+return ffi.load( 'Pdh.dll' )

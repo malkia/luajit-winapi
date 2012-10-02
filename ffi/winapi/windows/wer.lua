@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT WerAddExcludedApplication(    PCWSTR pwzExeName, BOOL bAllUsers);
   HRESULT WerRemoveExcludedApplication( PCWSTR pwzExeName, BOOL bAllUsers);
@@ -11,4 +11,4 @@ ffi.cdef [[
   HRESULT WerReportSetUIOption(         HREPORT hReportHandle, WER_REPORT_UI repUITypeID, PCWSTR pwzValue);
   HRESULT WerReportSubmit(              HREPORT hReportHandle, WER_CONSENT consent, DWORD dwFlags, PWER_SUBMIT_RESULT pSubmitResult);
 ]]
-return ffi.load( "Wer.dll" )
+return ffi.load( 'Wer.dll' )

@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/sockets" )
-require( "ffi/winapi/headers/cryptography" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/sockets' )
+require( 'ffi/winapi/headers/cryptography' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   ULONG HttpCreateHttpHandle(           PHANDLE pReqQueueHandle, ULONG Reserved);
   ULONG HttpInitialize(                 HTTPAPI_VERSION Version, WINAPI_HttpInitializeFlags Flags, PVOID pReserved);
@@ -35,4 +35,4 @@ ffi.cdef [[
   ULONG HttpSetRequestQueueProperty(    HANDLE Handle, HTTP_SERVER_PROPERTY Property, PVOID pPropertyInformation, ULONG PropertyInformationLength, ULONG Reserved, PVOID pReserved);
   ULONG HttpWaitForDemandStart(         HANDLE ReqQueueHandle, LPOVERLAPPED pOverlapped);
 ]]
-return ffi.load( "Httpapi.dll" )
+return ffi.load( 'Httpapi.dll' )

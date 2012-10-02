@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/gdi" )
-require( "ffi/winapi/headers/multimedia" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/gdi' )
+require( 'ffi/winapi/headers/multimedia' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL     DrawDibBegin(            HDRAWDIB hdd, HDC hdc, int dxDest, int dyDest, LPBITMAPINFOHEADER lpbi, int dxSrc, int dySrc, UINT wFlags);
   BOOL     DrawDibChangePalette(    HDRAWDIB hdd, int iStart, int iLen, LPPALETTEENTRY lppe);
@@ -44,4 +44,4 @@ ffi.cdef [[
   BOOL     MCIWndRegisterClass(     HINSTANCE hInstance);
   void     StretchDIB(              LPBITMAPINFOHEADER biDst, LPVOID lpvDst, int DstX, int DstY, int DstXE, int DstYE, LPBITMAPINFOHEADER biSrc, LPVOID lpvSrc, int SrcX, int SrcY, int SrcXE, int SrcYE);
 ]]
-return ffi.load( "msvfw32.dll" )
+return ffi.load( 'msvfw32.dll' )

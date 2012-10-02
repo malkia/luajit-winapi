@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum NLM_ENUM_NETWORK {
     NLM_ENUM_NETWORK_CONNECTED = 0x1,
@@ -14,7 +14,7 @@ ffi.cdef [[
     NLM_NETWORK_CATEGORY_PRIVATE = 0x1,
     NLM_NETWORK_CATEGORY_DOMAIN_AUTHENTICATED = 0x2,
   } NLM_NETWORK_CATEGORY;
-  typedef UINT NLM_CONNECTIVITY;
+  typedef UINT NLM_CONNECTIVITY; //Alias
   typedef enum NLM_DOMAIN_TYPE {
     NLM_DOMAIN_TYPE_NON_DOMAIN_NETWORK = 0,
     NLM_DOMAIN_TYPE_DOMAIN_NETWORK = 0x1,

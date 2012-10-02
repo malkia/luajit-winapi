@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum CONFLICT_RESOLUTION_POLICY {
     CRP_NONE = 0,
@@ -47,32 +47,28 @@ ffi.cdef [[
     BOOL fIsVariable,
     USHORT cbIdSize,
   } ID_PARAMETER_PAIR;
-
   typedef struct ID_PARAMETERS {
     DWORD dwSize,
     ID_PARAMETER_PAIR replicaId,
     ID_PARAMETER_PAIR itemId,
     ID_PARAMETER_PAIR changeUnitId,
   } ID_PARAMETERS;
-
   typedef struct SYNC_RANGE {
     BYTE* pbClosedLowerBound,
     BYTE* pbClosedUpperBound,
   } SYNC_RANGE;
-
+  typedef SYNC_RANGE *WINAPI_SYNC_RANGE*; //Pointer
   typedef struct SYNC_SESSION_STATISTICS {
     DWORD dwChangesApplied,
     DWORD dwChangesFailed,
   } SYNC_SESSION_STATISTICS;
-
   typedef struct SYNC_TIME {
     DWORD dwDate,
     DWORD dwTime,
   } SYNC_TIME;
-
   typedef struct SYNC_VERSION {
     DWORD dwLastUpdatingReplicaKey,
     ULONGLONG ullTickCount,
   } SYNC_VERSION;
-
+  typedef SYNC_VERSION *WINAPI_SYNC_VERSION*; //Pointer
 ]]

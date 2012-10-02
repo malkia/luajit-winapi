@@ -1,77 +1,76 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/gdi" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/gdi' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef HANDLE HDWP;
-  typedef GUID SHELLVIEWID;
-  typedef SHELLVIEWID* SHELLVIEWID*;
-  typedef GUID KNOWNFOLDERID;
-  typedef KNOWNFOLDERID REFKNOWNFOLDERID;
-  typedef GUID TASKOWNERID;
-  typedef TASKOWNERID REFTASKOWNERID;
-  typedef GUID FOLDERTYPEID;
-  typedef FOLDERTYPEID REFFOLDERTYPEID;
-  typedef GUID EXPLORERPANE;
-  typedef EXPLORERPANE REFEXPLORERPANE;
-  typedef HRESULT DEPRECATED_HRESULT;
-  typedef LPARAM LPFNSVADDPROPSHEETPAGE;
-  typedef LPARAM LPTBBUTTONSB;
-  typedef HANDLE HTHEME;
-  typedef PROPERTYKEY SHCOLUMNID;
-  typedef SHCOLUMNID LPCSHCOLUMNID;
-  typedef LPVOID BFFCALLBACK;
-  typedef double DATE;
-  typedef BYTE Image;
+  typedef HANDLE HDWP; //Alias
+  typedef GUID SHELLVIEWID; //Alias
+  typedef SHELLVIEWID* WINAPI_SHELLVIEWID*; //Alias
+  typedef GUID KNOWNFOLDERID; //Alias
+  typedef KNOWNFOLDERID *WINAPI_KNOWNFOLDERID*; //Pointer
+  typedef KNOWNFOLDERID *REFKNOWNFOLDERID; //Pointer
+  typedef GUID TASKOWNERID; //Alias
+  typedef TASKOWNERID *REFTASKOWNERID; //Pointer
+  typedef GUID FOLDERTYPEID; //Alias
+  typedef FOLDERTYPEID *REFFOLDERTYPEID; //Pointer
+  typedef GUID EXPLORERPANE; //Alias
+  typedef EXPLORERPANE *REFEXPLORERPANE; //Pointer
+  typedef HRESULT DEPRECATED_HRESULT; //Alias
+  typedef LPARAM LPFNSVADDPROPSHEETPAGE; //Alias
+  typedef LPARAM LPTBBUTTONSB; //Alias
+  typedef HANDLE HTHEME; //Alias
+  typedef PROPERTYKEY SHCOLUMNID; //Alias
+  typedef SHCOLUMNID *LPCSHCOLUMNID; //Pointer
+  typedef SHCOLUMNID *WINAPI_SHCOLUMNID*; //Pointer
+  typedef LPVOID BFFCALLBACK; //Alias
+  typedef double DATE; //Alias
+  typedef BYTE Image; //Alias
+  typedef WCHAR WCHAR [80]; //Array 80
+  typedef WCHAR WCHAR [260]; //Array 260
+  typedef WCHAR WCHAR [2084]; //Array 2084
   typedef struct PREVIEWHANDLERFRAMEINFO {
     HACCEL haccel,
     UINT cAccelEntries,
   } PREVIEWHANDLERFRAMEINFO;
-
   typedef struct SHITEMID {
     USHORT cb,
     BYTE [1] abID,
   } SHITEMID;
-
-  typedef SHITEMID LPSHITEMID;
+  typedef SHITEMID *LPSHITEMID; //Pointer
   typedef struct ITEMIDLIST {
     SHITEMID mkid,
   } ITEMIDLIST;
-
-  typedef ITEMIDLIST LPITEMIDLIST;
-  typedef ITEMIDLIST LPCITEMIDLIST;
-  typedef ITEMIDLIST PIDLIST_ABSOLUTE;
-  typedef ITEMIDLIST PCIDLIST_ABSOLUTE;
-  typedef ITEMIDLIST PIDLIST_RELATIVE;
-  typedef ITEMIDLIST PUIDLIST_RELATIVE;
-  typedef ITEMIDLIST PCUIDLIST_RELATIVE;
-  typedef ITEMIDLIST PUITEMID_CHILD;
-  typedef ITEMIDLIST PITEMID_CHILD;
-  typedef ITEMIDLIST PCUITEMID_CHILD;
-  typedef PCUITEMID_CHILD PCUITEMID_CHILD_ARRAY;
-  typedef PCUIDLIST_RELATIVE PCUIDLIST_RELATIVE_ARRAY;
-  typedef PCIDLIST_ABSOLUTE PCIDLIST_ABSOLUTE_ARRAY;
-  typedef UINT STRRET_TYPE;
+  typedef ITEMIDLIST *LPITEMIDLIST; //Pointer
+  typedef ITEMIDLIST *LPCITEMIDLIST; //Pointer
+  typedef ITEMIDLIST *PIDLIST_ABSOLUTE; //Pointer
+  typedef ITEMIDLIST *PCIDLIST_ABSOLUTE; //Pointer
+  typedef ITEMIDLIST *PIDLIST_RELATIVE; //Pointer
+  typedef ITEMIDLIST *PUIDLIST_RELATIVE; //Pointer
+  typedef ITEMIDLIST *PCUIDLIST_RELATIVE; //Pointer
+  typedef ITEMIDLIST *PUITEMID_CHILD; //Pointer
+  typedef ITEMIDLIST *PITEMID_CHILD; //Pointer
+  typedef ITEMIDLIST *PCUITEMID_CHILD; //Pointer
+  typedef PCUITEMID_CHILD *PCUITEMID_CHILD_ARRAY; //Pointer
+  typedef PCUIDLIST_RELATIVE *PCUIDLIST_RELATIVE_ARRAY; //Pointer
+  typedef PCIDLIST_ABSOLUTE *PCIDLIST_ABSOLUTE_ARRAY; //Pointer
+  typedef UINT STRRET_TYPE; //Alias
   typedef union WINAPI_STRRET_u {
     LPWSTR pOleStr,
     UINT uOffset,
     char [260] cStr,
   } WINAPI_STRRET_u;
-
   typedef struct STRRET {
     STRRET_TYPE uType,
     WINAPI_STRRET_u ,
   } STRRET;
-
-  typedef STRRET LPSTRRET;
-  typedef UINT WINAPI_SHELLDETAILS_fmt;
+  typedef STRRET *LPSTRRET; //Pointer
+  typedef UINT WINAPI_SHELLDETAILS_fmt; //Alias
   typedef struct SHELLDETAILS {
     WINAPI_SHELLDETAILS_fmt fmt,
     int cxChar,
     STRRET str,
   } SHELLDETAILS;
-
-  typedef UINT WINAPI_CSIDL;
+  typedef UINT WINAPI_CSIDL; //Alias
   typedef struct PERSIST_FOLDER_TARGET_INFO {
     PIDLIST_ABSOLUTE pidlTargetFolder,
     WCHAR [260] szTargetParsingName,
@@ -79,17 +78,17 @@ ffi.cdef [[
     WINAPI_FileAttributes dwAttributes,
     WINAPI_CSIDL csidl,
   } PERSIST_FOLDER_TARGET_INFO;
-
+  typedef PERSIST_FOLDER_TARGET_INFO *WINAPI_PERSIST_FOLDER_TARGET_INFO*; //Pointer
   typedef struct SHELL_ITEM_RESOURCE {
     GUID guidType,
     WCHAR [260] szName,
   } SHELL_ITEM_RESOURCE;
-
-  typedef DWORD CM_MASK;
-  typedef DWORD CM_STATE;
+  typedef SHELL_ITEM_RESOURCE *WINAPI_SHELL_ITEM_RESOURCE*; //Pointer
+  typedef DWORD CM_MASK; //Alias
+  typedef DWORD CM_STATE; //Alias
   typedef enum CM_SET_WIDTH_VALUE {
-    CM_WIDTH_USEDEFAULT = _1,
-    CM_WIDTH_AUTOSIZE = _2,
+    CM_WIDTH_USEDEFAULT = WINAPI__1,
+    CM_WIDTH_AUTOSIZE = WINAPI__2,
   } CM_SET_WIDTH_VALUE;
   typedef struct CM_COLUMNINFO {
     DWORD cbSize,
@@ -100,15 +99,14 @@ ffi.cdef [[
     UINT uIdealWidth,
     WCHAR [80] wszName,
   } CM_COLUMNINFO;
-
-  typedef UINT CATEGORYINFO_FLAGS;
+  typedef CM_COLUMNINFO *WINAPI_CM_COLUMNINFO*; //Pointer
+  typedef UINT CATEGORYINFO_FLAGS; //Alias
   typedef struct CATEGORY_INFO {
     CATEGORYINFO_FLAGS cif,
     WCHAR [260] wszName,
   } CATEGORY_INFO;
-
-  typedef DWORD WINAPI_DBIM;
-  typedef DWORD WINAPI_DBIMF;
+  typedef DWORD WINAPI_DBIM; //Alias
+  typedef DWORD WINAPI_DBIMF; //Alias
   typedef struct DESKBANDINFO {
     WINAPI_DBIM dwMask,
     POINTL ptMinSize,
@@ -119,15 +117,13 @@ ffi.cdef [[
     WINAPI_DBIMF dwModeFlags,
     COLORREF crBkgnd,
   } DESKBANDINFO;
-
   typedef struct EXTRASEARCH {
     GUID guidSearch,
     WCHAR [80] wszFriendlyName,
     WCHAR [2084] wszUrl,
   } EXTRASEARCH;
-
-  typedef DWORD THUMBBUTTONFLAGS;
-  typedef DWORD THUMBBUTTONMASK;
+  typedef DWORD THUMBBUTTONFLAGS; //Alias
+  typedef DWORD THUMBBUTTONMASK; //Alias
   typedef struct THUMBBUTTON {
     THUMBBUTTONMASK dwMask,
     UINT iId,
@@ -136,9 +132,8 @@ ffi.cdef [[
     WCHAR [260] szTip,
     THUMBBUTTONFLAGS dwFlags,
   } THUMBBUTTON;
-
-  typedef THUMBBUTTON LPTHUMBBUTTON;
-  typedef DWORD NSTCITEMSTATE;
+  typedef THUMBBUTTON *LPTHUMBBUTTON; //Pointer
+  typedef DWORD NSTCITEMSTATE; //Alias
   typedef struct NSTCCUSTOMDRAW {
     IShellItem* psi,
     UINT uItemState,
@@ -149,9 +144,8 @@ ffi.cdef [[
     int iLevel,
     int iIndent,
   } NSTCCUSTOMDRAW;
-
   typedef enum FOLDERVIEWMODE {
-    FVM_AUTO = _1,
+    FVM_AUTO = WINAPI__1,
     FVM_FIRST = 1,
     FVM_ICON = 1,
     FVM_SMALLICON = 2,
@@ -162,32 +156,31 @@ ffi.cdef [[
     FVM_THUMBSTRIP = 7,
     FVM_CONTENT = 8,
   } FOLDERVIEWMODE;
-  typedef UINT FOLDERFLAGS;
+  typedef UINT FOLDERFLAGS; //Alias
   typedef struct FOLDERSETTINGS {
     FOLDERVIEWMODE ViewMode,
     FOLDERFLAGS fFlags,
   } FOLDERSETTINGS;
-
-  typedef FOLDERSETTINGS LPFOLDERSETTINGS;
-  typedef FOLDERSETTINGS LPCFOLDERSETTINGS;
+  typedef FOLDERSETTINGS *LPFOLDERSETTINGS; //Pointer
+  typedef FOLDERSETTINGS *LPCFOLDERSETTINGS; //Pointer
+  typedef FOLDERSETTINGS *WINAPI_FOLDERSETTINGS*; //Pointer
   typedef struct SV2CVW2_PARAMS {
     DWORD cbSize,
     IShellView* psvPrev,
     LPCFOLDERSETTINGS pfs,
     IShellBrowser* psbOwner,
     RECT* prcView,
-    SHELLVIEWID* pvid,
+    WINAPI_SHELLVIEWID* pvid,
     HWND hwndView,
   } SV2CVW2_PARAMS;
-
-  typedef SV2CVW2_PARAMS LPSV2CVW2_PARAMS;
+  typedef SV2CVW2_PARAMS *LPSV2CVW2_PARAMS; //Pointer
   typedef enum KF_CATEGORY {
     KF_CATEGORY_VIRTUAL = 1,
     KF_CATEGORY_FIXED = 2,
     KF_CATEGORY_COMMON = 3,
     KF_CATEGORY_PERUSER = 4,
   } KF_CATEGORY;
-  typedef DWORD KF_DEFINITION_FLAGS;
+  typedef DWORD KF_DEFINITION_FLAGS; //Alias
   typedef struct KNOWNFOLDER_DEFINITION {
     KF_CATEGORY category,
     LPWSTR pszName,
@@ -203,23 +196,23 @@ ffi.cdef [[
     KF_DEFINITION_FLAGS kfdFlags,
     FOLDERTYPEID ftidType,
   } KNOWNFOLDER_DEFINITION;
-
+  typedef KNOWNFOLDER_DEFINITION *WINAPI_KNOWNFOLDER_DEFINITION*; //Pointer
   typedef enum SORTDIRECTION {
-    SORT_DESCENDING = _1,
+    SORT_DESCENDING = WINAPI__1,
     SORT_ASCENDING = 1,
   } SORTDIRECTION;
   typedef struct SORTCOLUMN {
     PROPERTYKEY propkey,
     SORTDIRECTION direction,
   } SORTCOLUMN;
-
+  typedef SORTCOLUMN *WINAPI_SORTCOLUMN*; //Pointer
   typedef struct BANDSITEINFO {
     DWORD dwMask,
     DWORD dwState,
     DWORD dwStyle,
   } BANDSITEINFO;
-
-  typedef DWORD WINAPI_CMIC_Mask;
+  typedef BANDSITEINFO *WINAPI_BANDSITEINFO*; //Pointer
+  typedef DWORD WINAPI_CMIC_Mask; //Alias
   typedef struct CMINVOKECOMMANDINFO {
     DWORD cbSize,
     WINAPI_CMIC_Mask fMask,
@@ -231,16 +224,14 @@ ffi.cdef [[
     DWORD dwHotKey,
     HANDLE hIcon,
   } CMINVOKECOMMANDINFO;
-
   typedef struct SHDRAGIMAGE {
     SIZE sizeDragImage,
     POINT ptOffset,
     HBITMAP hbmpDragImage,
     COLORREF crColorKey,
   } SHDRAGIMAGE;
-
-  typedef SHDRAGIMAGE LPSHDRAGIMAGE;
-  typedef DWORD WINAPI_SMDATA_Mask;
+  typedef SHDRAGIMAGE *LPSHDRAGIMAGE; //Pointer
+  typedef DWORD WINAPI_SMDATA_Mask; //Alias
   typedef struct SMDATA {
     WINAPI_SMDATA_Mask dwMask,
     DWORD dwFlags,
@@ -255,18 +246,17 @@ ffi.cdef [[
     IShellFolder* psf,
     void* pvUserData,
   } SMDATA;
-
-  typedef SMDATA LPSMDATA;
+  typedef SMDATA *LPSMDATA; //Pointer
   typedef struct COMDLG_FILTERSPEC {
     LPCWSTR pszName,
     LPCWSTR pszSpec,
   } COMDLG_FILTERSPEC;
-
+  typedef COMDLG_FILTERSPEC *WINAPI_COMDLG_FILTERSPEC*; //Pointer
   typedef enum FDAP {
     FDAP_BOTTOM = 0,
     FDAP_TOP = 1,
   } FDAP;
-  typedef DWORD SHCOLSTATEF;
+  typedef DWORD SHCOLSTATEF; //Alias
   typedef enum FVTEXTTYPE {
     FVST_EMPTYTEXT = 0,
   } FVTEXTTYPE;
@@ -286,8 +276,8 @@ ffi.cdef [[
     SPACTION_FORMATTING = 12,
     SPACTION_COPY_MOVING = 13,
   } SPACTION;
-  typedef UINT SPBEGINF;
-  typedef UINT SPINITF;
+  typedef UINT SPBEGINF; //Alias
+  typedef UINT SPINITF; //Alias
   typedef enum ASSOCIATIONTYPE {
     AT_FILEEXTENSION = 0,
     AT_URLPROTOCOL = 1,
@@ -318,22 +308,22 @@ ffi.cdef [[
     ATTACHMENT_ACTION_SAVE = 0x1,
     ATTACHMENT_ACTION_EXEC = 0x2,
   } ATTACHMENT_ACTION;
-  typedef UINT BROWSERFRAMEOPTIONS;
-  typedef UINT CDBE_ACTIONS;
-  typedef UINT CATSORT_FLAGS;
-  typedef UINT CM_ENUM_FLAGS;
+  typedef UINT BROWSERFRAMEOPTIONS; //Alias
+  typedef UINT CDBE_ACTIONS; //Alias
+  typedef UINT CATSORT_FLAGS; //Alias
+  typedef UINT CM_ENUM_FLAGS; //Alias
   typedef enum KNOWNDESTCATEGORY {
     KDC_FREQUENT = 1,
     KDC_RECENT = 2,
   } KNOWNDESTCATEGORY;
-  typedef UINT EXPCMDSTATE;
-  typedef UINT FILEOPENDIALOGOPTIONS;
+  typedef UINT EXPCMDSTATE; //Alias
+  typedef UINT FILEOPENDIALOGOPTIONS; //Alias
   typedef enum FDE_OVERWRITE_RESPONSE {
     FDEOR_DEFAULT = 0,
     FDEOR_ACCEPT = 1,
     FDEOR_REFUSE = 2,
   } FDE_OVERWRITE_RESPONSE;
-  typedef UINT CDCONTROLSTATEF;
+  typedef UINT CDCONTROLSTATEF; //Alias
   typedef enum FDE_SHAREVIOLATION_RESPONSE {
     FDESVR_DEFAULT = 0,
     FDESVR_ACCEPT = 1,
@@ -344,10 +334,10 @@ ffi.cdef [[
     FUT_EDITING = 1,
     FUT_GENERIC = 2,
   } FILE_USAGE_TYPE;
-  typedef UINT EXPLORERPANESTATE;
-  typedef UINT FOLDERVIEWOPTIONS;
+  typedef UINT EXPLORERPANESTATE; //Alias
+  typedef UINT FOLDERVIEWOPTIONS; //Alias
   typedef enum FOLDERLOGICALVIEWMODE {
-    FLVM_UNSPECIFIED = _1,
+    FLVM_UNSPECIFIED = WINAPI__1,
     FLVM_FIRST = 1,
     FLVM_DETAILS = 1,
     FLVM_TILES = 2,
@@ -355,8 +345,8 @@ ffi.cdef [[
     FLVM_LIST = 4,
     FLVM_CONTENT = 5,
   } FOLDERLOGICALVIEWMODE;
-  typedef UINT NSTCSTYLE;
-  typedef UINT NSTCSTYLE2;
+  typedef UINT NSTCSTYLE; //Alias
+  typedef UINT NSTCSTYLE2; //Alias
   typedef enum PDOPSTATUS {
     PDOPS_RUNNING = 1,
     PDOPS_PAUSED = 2,
@@ -364,29 +354,29 @@ ffi.cdef [[
     PDOPS_STOPPED = 4,
     PDOPS_ERRORS = 5,
   } PDOPSTATUS;
-  typedef DWORD PDMODE;
-  typedef UINT NSTCEHITTEST;
-  typedef UINT NSTCFOLDERCAPABILITIES;
-  typedef UINT NMCII_FLAGS;
+  typedef DWORD PDMODE; //Alias
+  typedef UINT NSTCEHITTEST; //Alias
+  typedef UINT NSTCFOLDERCAPABILITIES; //Alias
+  typedef UINT NMCII_FLAGS; //Alias
   typedef enum FOLDER_ENUM_MODE {
     FEM_VIEWRESULT = 0,
     FEM_NAVIGATION = 1,
   } FOLDER_ENUM_MODE;
-  typedef UINT TRANSFER_ADVISE_STATE;
+  typedef UINT TRANSFER_ADVISE_STATE; //Alias
   typedef enum NSTCECLICKTYPE {
     NSTCECT_LBUTTON = 0x1,
     NSTCECT_MBUTTON = 0x2,
     NSTCECT_RBUTTON = 0x3,
     NSTCECT_DBLCLICK = 0x4,
   } NSTCECLICKTYPE;
-  typedef UINT TRANSFER_SOURCE_FLAGS;
-  typedef UINT TBPFLAG;
+  typedef UINT TRANSFER_SOURCE_FLAGS; //Alias
+  typedef UINT TBPFLAG; //Alias
   typedef enum LIBRARYFOLDERFILTER {
     LFF_FORCEFILESYSTEM = 1,
     LFF_STORAGEITEMS = 2,
     LFF_ALLITEMS = 3,
   } LIBRARYFOLDERFILTER;
-  typedef UINT SIATTRIBFLAGS;
+  typedef UINT SIATTRIBFLAGS; //Alias
   typedef enum VPWATERMARKFLAGS {
     VPWF_DEFAULT = 0,
     VPWF_ALPHABLEND = 0x1,
@@ -398,7 +388,7 @@ ffi.cdef [[
     VPCF_SUBTEXT = 4,
     VPCF_TEXTBACKGROUND = 5,
   } VPCOLORFLAGS;
-  typedef UINT STPFLAG;
+  typedef UINT STPFLAG; //Alias
   typedef enum EXPPS {
     EXPPS_FILETYPES = 0x1,
   } EXPPS;
@@ -411,7 +401,7 @@ ffi.cdef [[
     LOF_DEFAULT = 0,
     LOF_PINNEDTONAVPANE = 0x1,
   } LIBRARYOPTIONFLAGS;
-  typedef UINT LIBRARYSAVEFLAGS;
+  typedef UINT LIBRARYSAVEFLAGS; //Alias
   typedef enum SIGDN {
     SIGDN_NORMALDISPLAY = 0,
     SIGDN_PARENTRELATIVEPARSING = 0x80018001,
@@ -423,16 +413,16 @@ ffi.cdef [[
     SIGDN_PARENTRELATIVEFORADDRESSBAR = 0x8007c001,
     SIGDN_PARENTRELATIVE = 0x80080001,
   } SIGDN;
-  typedef DWORD SFGAOF;
-  typedef DWORD SICHINTF;
-  typedef UINT SHCONTF;
-  typedef UINT SHGDNF;
+  typedef DWORD SFGAOF; //Alias
+  typedef DWORD SICHINTF; //Alias
+  typedef UINT SHCONTF; //Alias
+  typedef UINT SHGDNF; //Alias
   typedef enum DEF_SHARE_ID {
     DEFSHAREID_USERS = 1,
     DEFSHAREID_PUBLIC = 2,
   } DEF_SHARE_ID;
   typedef enum SHARE_ROLE {
-    SHARE_ROLE_INVALID = _1,
+    SHARE_ROLE_INVALID = WINAPI__1,
     SHARE_ROLE_READER = 0,
     SHARE_ROLE_CONTRIBUTOR = 1,
     SHARE_ROLE_CO_OWNER = 2,
@@ -444,18 +434,18 @@ ffi.cdef [[
     PUIFNF_DEFAULT = 0,
     PUIFNF_MNEMONIC = 0x1,
   } PROPERTYUI_NAME_FLAGS;
-  typedef UINT PROPERTYUI_FLAGS;
-  typedef UINT PROPERTYUI_FORMAT_FLAGS;
-  typedef UINT HOMEGROUPSHARINGCHOICES;
-  typedef UINT EXPCMDFLAGS;
-  typedef UINT EXPLORER_BROWSER_FILL_FLAGS;
-  typedef UINT KF_REDIRECTION_CAPABILITIES;
-  typedef UINT NSTCROOTSTYLE;
+  typedef UINT PROPERTYUI_FLAGS; //Alias
+  typedef UINT PROPERTYUI_FORMAT_FLAGS; //Alias
+  typedef UINT HOMEGROUPSHARINGCHOICES; //Alias
+  typedef UINT EXPCMDFLAGS; //Alias
+  typedef UINT EXPLORER_BROWSER_FILL_FLAGS; //Alias
+  typedef UINT KF_REDIRECTION_CAPABILITIES; //Alias
+  typedef UINT NSTCROOTSTYLE; //Alias
   typedef enum CPVIEW {
     CPVIEW_CLASSIC = 0,
     CPVIEW_CATEGORY = 1,
   } CPVIEW;
-  typedef UINT OPPROGDLGF;
+  typedef UINT OPPROGDLGF; //Alias
   typedef enum FFFP_MODE {
     FFFP_EXACTMATCH = 0,
     FFFP_NEARESTPARENTMATCH = 1,
@@ -470,21 +460,21 @@ ffi.cdef [[
     NSTCGNI_FIRSTVISIBLE = 6,
     NSTCGNI_LASTVISIBLE = 7,
   } NSTCGNI;
-  typedef UINT KF_REDIRECT_FLAGS;
+  typedef UINT KF_REDIRECT_FLAGS; //Alias
   typedef enum NMCSAEI_FLAGS {
     NMCSAEI_SELECT = 0,
     NMCSAEI_EDIT = 0x1,
   } NMCSAEI_FLAGS;
-  typedef UINT SIIGBF;
-  typedef UINT MP_POPUPFLAGS;
-  typedef UINT SVSIF;
-  typedef DWORD SV3CVW3_FLAGS;
-  typedef UINT EXPLORER_BROWSER_OPTIONS;
+  typedef UINT SIIGBF; //Alias
+  typedef UINT MP_POPUPFLAGS; //Alias
+  typedef UINT SVSIF; //Alias
+  typedef DWORD SV3CVW3_FLAGS; //Alias
+  typedef UINT EXPLORER_BROWSER_OPTIONS; //Alias
   typedef enum PERCEIVED {
-    PERCEIVED_TYPE_FIRST = _3,
-    PERCEIVED_TYPE_CUSTOM = _3,
-    PERCEIVED_TYPE_UNSPECIFIED = _2,
-    PERCEIVED_TYPE_FOLDER = _1,
+    PERCEIVED_TYPE_FIRST = WINAPI__3,
+    PERCEIVED_TYPE_CUSTOM = WINAPI__3,
+    PERCEIVED_TYPE_UNSPECIFIED = WINAPI__2,
+    PERCEIVED_TYPE_FOLDER = WINAPI__1,
     PERCEIVED_TYPE_UNKNOWN = 0,
     PERCEIVED_TYPE_TEXT = 1,
     PERCEIVED_TYPE_IMAGE = 2,
@@ -497,11 +487,11 @@ ffi.cdef [[
     PERCEIVED_TYPE_GAMEMEDIA = 9,
     PERCEIVED_TYPE_CONTACTS = 10,
   } PERCEIVED;
-  typedef DWORD PERCEIVEDFLAG;
-  typedef WORD FILEOP_FLAGS;
-  typedef UINT WINAPI_GIL_INPUT_FLAGS;
-  typedef UINT WINAPI_GIL_OUTPUT_FLAGS;
-  typedef UINT WINAPI_MessageBoxType;
+  typedef DWORD PERCEIVEDFLAG; //Alias
+  typedef WORD FILEOP_FLAGS; //Alias
+  typedef UINT WINAPI_GIL_INPUT_FLAGS; //Alias
+  typedef UINT WINAPI_GIL_OUTPUT_FLAGS; //Alias
+  typedef UINT WINAPI_MessageBoxType; //Alias
   typedef enum WINAPI_MessageBoxResult {
     IDOK = 1,
     IDCANCEL = 2,
@@ -517,8 +507,7 @@ ffi.cdef [[
     HANDLE hIcon,
     HANDLE hMonitor,
   } WINAPI_SHELLEXECUTEINFO_u;
-
-  typedef ULONG WINAPI_SEE_MASK;
+  typedef ULONG WINAPI_SEE_MASK; //Alias
   typedef enum WINAPI_SEE_HINSTANCE {
     SE_ERR_FNF = 2,
     SE_ERR_PNF = 3,
@@ -549,8 +538,7 @@ ffi.cdef [[
     WINAPI_SHELLEXECUTEINFO_u ,
     HANDLE hProcess,
   } SHELLEXECUTEINFO;
-
-  typedef SHELLEXECUTEINFO LPSHELLEXECUTEINFO;
+  typedef SHELLEXECUTEINFO *LPSHELLEXECUTEINFO; //Pointer
   typedef enum ASSOCF {
     ASSOCF_INIT_NOREMAPCLSID = 0x00000001,
     ASSOCF_INIT_BYEXENAME = 0x00000002,
@@ -607,23 +595,20 @@ ffi.cdef [[
     LPWSTR pszDescription,
     GUID AppCategoryId,
   } APPCATEGORYINFO;
-
   typedef struct APPCATEGORYINFOLIST {
     DWORD cCategory,
     APPCATEGORYINFO* pCategoryInfo,
   } APPCATEGORYINFOLIST;
-
   typedef enum WTS_ALPHATYPE {
     WTSAT_UNKNOWN = 0,
     WTSAT_RGB = 1,
     WTSAT_ARGB = 2,
   } WTS_ALPHATYPE;
-  typedef DWORD WTS_FLAGS;
+  typedef DWORD WTS_FLAGS; //Alias
   typedef struct WTS_THUMBNAILID {
     BYTE [16] rgbKey,
   } WTS_THUMBNAILID;
-
-  typedef DWORD WTS_CACHEFLAGS;
+  typedef DWORD WTS_CACHEFLAGS; //Alias
   typedef enum WINAPI_PROPSPEC_KIND {
     PRSPEC_LPWSTR = 0,
     PRSPEC_PROPID = 1,
@@ -632,13 +617,11 @@ ffi.cdef [[
     PROPID propid,
     LPOLESTR lpwstr,
   } WINAPI_PROPSPEC_u;
-
   typedef struct PROPSPEC {
     WINAPI_PROPSPEC_KIND ulKind,
     WINAPI_PROPSPEC_u ,
   } PROPSPEC;
-
-  typedef PROPSPEC PROPSPEC const[];
+  typedef PROPSPEC *PROPSPEC const[]; //Pointer
   typedef enum WINAPI_SystemParametersInfoEnum {
     SPI_GETBEEP = 0x0001,
     SPI_SETBEEP = 0x0002,
@@ -827,5 +810,5 @@ ffi.cdef [[
     SPI_GETMESSAGEDURATION = 0x2016,
     SPI_SETMESSAGEDURATION = 0x2017,
   } WINAPI_SystemParametersInfoEnum;
-  typedef UINT WINAPI_SystemParametersInfoFlags;
+  typedef UINT WINAPI_SystemParametersInfoFlags; //Alias
 ]]

@@ -1,10 +1,10 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/shell" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/shell' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef HRESULT PSSTDAPI;
-  typedef LPVOID SERIALIZEDPROPSTORAGE*;
-  typedef LPVOID PCUSERIALIZEDPROPSTORAGE;
+  typedef HRESULT PSSTDAPI; //Alias
+  typedef LPVOID SERIALIZEDPROPSTORAGE*; //Alias
+  typedef LPVOID PCUSERIALIZEDPROPSTORAGE; //Alias
   typedef enum PROPENUMTYPE {
     PET_DISCRETEVALUE = 0,
     PET_RANGEDVALUE = 1,
@@ -65,8 +65,8 @@ ffi.cdef [[
     PDCOT_BOOLEAN = 4,
     PDCOT_NUMBER = 5,
   } PROPDESC_CONDITION_TYPE;
-  typedef DWORD PROPDESC_TYPE_FLAGS;
-  typedef DWORD PERSIST_SPROPSTORE_FLAGS;
+  typedef DWORD PROPDESC_TYPE_FLAGS; //Alias
+  typedef DWORD PERSIST_SPROPSTORE_FLAGS; //Alias
   typedef enum CONDITION_OPERATION {
     COP_IMPLICIT = 0,
     COP_EQUAL = 1,
@@ -107,12 +107,13 @@ ffi.cdef [[
     PDEF_INFULLTEXTQUERY = 5,
     PDEF_COLUMN = 6,
   } PROPDESC_ENUMFILTER;
-  typedef DWORD PROPDESC_SEARCHINFO_FLAGS;
-  typedef DWORD PROPDESC_VIEW_FLAGS;
-  typedef DWORD PROPDESC_FORMAT_FLAGS;
+  typedef DWORD PROPDESC_SEARCHINFO_FLAGS; //Alias
+  typedef DWORD PROPDESC_VIEW_FLAGS; //Alias
+  typedef DWORD PROPDESC_FORMAT_FLAGS; //Alias
   typedef enum PKA_FLAGS {
     PKA_SET = 0,
     PKA_APPEND = 1,
     PKA_DELETE = 2,
   } PKA_FLAGS;
+  typedef PKA_FLAGS *WINAPI_PKA_FLAGS*; //Pointer
 ]]

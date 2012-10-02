@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/mmf/mmfdefs" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/mmf/mmfdefs' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT MFCreateDXSurfaceBuffer(        REFIID riid, IUnknown* punkSurface, BOOL fBottomUpWhenLinear, IMFMediaBuffer** ppBuffer);
   HRESULT MFCreateVideoMixer(             IUnknown* pOwner, REFIID riidDevice, REFIID riid, void** ppVideoMixer);
@@ -10,4 +10,4 @@ ffi.cdef [[
   HRESULT MFCreateVideoSampleFromSurface( IUnknown* pUnkSurface, IMFSample** ppSample);
   BOOL    MFIsFormatYUV(                  DWORD Format);
 ]]
-return ffi.load( "Evr.dll" )
+return ffi.load( 'Evr.dll' )

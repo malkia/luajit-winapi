@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   LDAP*           cldap_open(                 PCHAR HostName, ULONG PortNumber);
   LDAP*           cldap_open(                 PTCHAR HostName, ULONG PortNumber);
@@ -13,8 +13,8 @@ ffi.cdef [[
   ULONG           ldap_simple_bind(           LDAP* ld, PTCHAR dn, PTCHAR passwd);
   ULONG           ldap_simple_bind_s(         LDAP* ld, PCHAR dn, PCHAR passwd);
   ULONG           ldap_simple_bind_s(         LDAP* ld, PTCHAR dn, PTCHAR passwd);
-  ULONG           ldap_sasl_bind(             LDAP* ExternalHandle, PCHAR DistName, PCHAR AuthMechanism, BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, int* MessageNumber);
-  ULONG           ldap_sasl_bind_s(           LDAP* ExternalHandle, PCHAR DistName, PCHAR AuthMechanism, BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, PBERVAL* ServerData);
+  ULONG           ldap_sasl_bind(             LDAP* ExternalHandle, WINAPI_PCHAR DistName, WINAPI_PCHAR AuthMechanism, WINAPI_BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, int* MessageNumber);
+  ULONG           ldap_sasl_bind_s(           LDAP* ExternalHandle, WINAPI_PCHAR DistName, WINAPI_PCHAR AuthMechanism, WINAPI_BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, PBERVAL* ServerData);
   ULONG           ldap_connect(               LDAP* ld, LDAP_TIMEVAL* timeout);
   LDAP*           ldap_init(                  PCHAR HostName, ULONG PortNumber);
   LDAP*           ldap_init(                  PTCHAR HostName, ULONG PortNumber);
@@ -164,4 +164,4 @@ ffi.cdef [[
   INT             ber_printf(                 BerElement* pBerElement, PCHAR fmt);
   INT             ber_scanf(                  BerElement* pBerElement, PCHAR fmt);
 ]]
-return ffi.load( "Wldap32.dll" )
+return ffi.load( 'Wldap32.dll' )

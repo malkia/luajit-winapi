@@ -1,7 +1,8 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef DWORD WINAPI_DiDriverType;
+  typedef TCHAR TCHAR [LINE_LEN]; //Array 256
+  typedef DWORD WINAPI_DiDriverType; //Alias
   typedef struct SP_DRVINFO_DATA {
     DWORD cbSize,
     WINAPI_DiDriverType DriverType,
@@ -12,6 +13,5 @@ ffi.cdef [[
     FILETIME DriverDate,
     DWORDLONG DriverVersion,
   } SP_DRVINFO_DATA;
-
-  typedef SP_DRVINFO_DATA PSP_DRVINFO_DATA;
+  typedef SP_DRVINFO_DATA *PSP_DRVINFO_DATA; //Pointer
 ]]

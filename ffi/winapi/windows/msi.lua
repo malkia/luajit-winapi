@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/cryptography" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/cryptography' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   INSTALLUILEVEL    MsiSetInternalUI(               INSTALLUILEVEL dwUILevel, HWND* phWnd);
   INSTALLUI_HANDLER MsiSetExternalUI(               INSTALLUI_HANDLER puiHandler, WINAPI_MsiInstallLogMode dwMessageFilter, LPVOID pvContext);
@@ -152,4 +152,4 @@ ffi.cdef [[
   WINAPI_MSI_ERROR  MsiPreviewBillboard(            MSIHANDLE hPreview, LPCTSTR szControlName, LPCTSTR szBillboard);
   WINAPI_MSI_ERROR  MsiPreviewDialog(               MSIHANDLE hPreview, LPCTSTR szDialogName);
 ]]
-return ffi.load( "Msi.dll" )
+return ffi.load( 'Msi.dll' )

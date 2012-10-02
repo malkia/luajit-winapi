@@ -1,11 +1,12 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPVOID CVssWriter*;
-  typedef LPVOID CVssWriterEx*;
-  typedef GUID VSS_ID;
-  typedef WCHAR* VSS_PWSZ;
-  typedef LONGLONG VSS_TIMESTAMP;
+  typedef LPVOID CVssWriter*; //Alias
+  typedef LPVOID CVssWriterEx*; //Alias
+  typedef GUID VSS_ID; //Alias
+  typedef VSS_ID *WINAPI_VSS_ID*; //Pointer
+  typedef WCHAR* VSS_PWSZ; //Alias
+  typedef LONGLONG VSS_TIMESTAMP; //Alias
   typedef enum WINAPI_VSS_HRESULT {
     VSS_E_BAD_STATE = 0x80042301,
     VSS_E_UNEXPECTED = 0x80042302,
@@ -293,9 +294,9 @@ ffi.cdef [[
     VDSStorageIdTypeMD5LogicalUnitIdentifier = 7,
     VDSStorageIdTypeScsiNameString = 8,
   } VDS_STORAGE_IDENTIFIER_TYPE;
-  typedef DWORD VSS_HARDWARE_OPTIONS;
-  typedef DWORD VSS_COMPONENT_FLAGS;
-  typedef DWORD VSS_RECOVERY_OPTIONS;
+  typedef DWORD VSS_HARDWARE_OPTIONS; //Alias
+  typedef DWORD VSS_COMPONENT_FLAGS; //Alias
+  typedef DWORD VSS_RECOVERY_OPTIONS; //Alias
   typedef struct VSS_SNAPSHOT_PROP {
     VSS_ID m_SnapshotId,
     VSS_ID m_SnapshotSetId,
@@ -311,7 +312,6 @@ ffi.cdef [[
     VSS_TIMESTAMP m_tsCreationTimestamp,
     VSS_SNAPSHOT_STATE m_eStatus,
   } VSS_SNAPSHOT_PROP;
-
   typedef struct VSS_VOLUME_PROTECTION_INFO {
     VSS_PROTECTION_LEVEL m_protectionLevel,
     BOOL m_volumeIsOfflineForProtection,
@@ -320,19 +320,16 @@ ffi.cdef [[
     BOOL m_volumeHasUnusedDiffArea,
     DWORD m_reserved,
   } VSS_VOLUME_PROTECTION_INFO;
-
   typedef struct VSS_VOLUME_PROP {
     VSS_PWSZ m_pwszVolumeName,
     VSS_PWSZ m_pwszVolumeDisplayName,
   } VSS_VOLUME_PROP;
-
   typedef struct VSS_DIFF_VOLUME_PROP {
     VSS_PWSZ m_pwszVolumeName,
     VSS_PWSZ m_pwszVolumeDisplayName,
     LONGLONG m_llVolumeFreeSpace,
     LONGLONG m_llVolumeTotalSpace,
   } VSS_DIFF_VOLUME_PROP;
-
   typedef struct VSS_DIFF_AREA_PROP {
     VSS_PWSZ m_pwszVolumeName,
     VSS_PWSZ m_pwszDiffAreaVolumeName,
@@ -340,18 +337,15 @@ ffi.cdef [[
     LONGLONG m_llAllocatedDiffSpace,
     LONGLONG m_llUsedDiffSpace,
   } VSS_DIFF_AREA_PROP;
-
   typedef union VSS_MGMT_OBJECT_UNION {
     VSS_VOLUME_PROP Vol,
     VSS_DIFF_VOLUME_PROP DiffVol,
     VSS_DIFF_AREA_PROP DiffArea,
   } VSS_MGMT_OBJECT_UNION;
-
   typedef struct VSS_MGMT_OBJECT_PROP {
     VSS_MGMT_OBJECT_TYPE Type,
     VSS_MGMT_OBJECT_UNION Obj,
   } VSS_MGMT_OBJECT_PROP;
-
   typedef struct VSS_PROVIDER_PROP {
     VSS_ID m_ProviderId,
     VSS_PWSZ m_pwszProviderName,
@@ -360,30 +354,25 @@ ffi.cdef [[
     VSS_ID m_ProviderVersionId,
     CLSID m_ClassId,
   } VSS_PROVIDER_PROP;
-
   typedef union VSS_OBJECT_UNION {
     VSS_SNAPSHOT_PROP Snap,
     VSS_PROVIDER_PROP Prov,
   } VSS_OBJECT_UNION;
-
   typedef struct VSS_OBJECT_PROP {
     VSS_OBJECT_TYPE Type,
     VSS_OBJECT_UNION Obj,
   } VSS_OBJECT_PROP;
-
   typedef struct VDS_STORAGE_IDENTIFIER {
     VDS_STORAGE_IDENTIFIER_CODE_SET m_CodeSet,
     VDS_STORAGE_IDENTIFIER_TYPE m_Type,
     ULONG m_cbIdentifier,
     BYTE* m_rgbIdentifier,
   } VDS_STORAGE_IDENTIFIER;
-
   typedef struct VDS_STORAGE_DEVICE_ID_DESCRIPTOR {
     ULONG m_version,
     ULONG m_cIdentifiers,
     VDS_STORAGE_IDENTIFIER* m_rgIdentifiers,
   } VDS_STORAGE_DEVICE_ID_DESCRIPTOR;
-
   typedef struct VDS_INTERCONNECT {
     VDS_INTERCONNECT_ADDRESS_TYPE m_addressType,
     ULONG m_cbPort,
@@ -391,7 +380,6 @@ ffi.cdef [[
     ULONG m_cbAddress,
     BYTE* m_pbAddress,
   } VDS_INTERCONNECT;
-
   typedef struct VDS_LUN_INFORMATION {
     ULONG m_version,
     BYTE m_DeviceType,
@@ -407,6 +395,5 @@ ffi.cdef [[
     ULONG m_cInterconnects,
     VDS_INTERCONNECT* m_rgInterconnects,
   } VDS_LUN_INFORMATION;
-
-  typedef UINT VSS_VOLUME_SNAPSHOT_ATTRIBUTES;
+  typedef UINT VSS_VOLUME_SNAPSHOT_ATTRIBUTES; //Alias
 ]]

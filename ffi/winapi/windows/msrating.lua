@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT RatingAccessDeniedDialog(  HWND hDlg, LPCTSTR pszUsername, LPCTSTR pszContentDescription, VOID* pRatingDetails);
   HRESULT RatingAccessDeniedDialog2( HWND hDlg, LPCSTR pszUsername, VOID* pRatingDetails);
@@ -11,4 +11,4 @@ ffi.cdef [[
   HRESULT RatingObtainQuery(         LPCTSTR pszTargetUrl, DWORD dwUserData, DWORD dwUserData, HRESULT hr, LPCTSTR pszRating, HANDLE* phRatingObtainQuery);
   HRESULT RatingSetupUI(             HWND hDlg, LPCSTR pszUsername);
 ]]
-return ffi.load( "msrating.dll" )
+return ffi.load( 'msrating.dll' )

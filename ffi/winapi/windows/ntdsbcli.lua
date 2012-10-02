@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT DsBackupClose(                 HBC hbc);
   HRESULT DsBackupEnd(                   HBC hbc);
@@ -19,4 +19,4 @@ ffi.cdef [[
   HRESULT DsSetAuthIdentity(             LPCTSTR szUserName, LPCTSTR szDomainName, LPCTSTR szPassword);
   HRESULT DsSetCurrentBackupLog(         LPCWSTR szServerName, DWORD dwCurrentLog);
 ]]
-return ffi.load( "Ntdsbcli.dll" )
+return ffi.load( 'Ntdsbcli.dll' )

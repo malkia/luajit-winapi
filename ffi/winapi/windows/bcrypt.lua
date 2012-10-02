@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/cryptography" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/cryptography' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   NTSTATUS BCryptAddContextFunction(                WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, WINAPI_CryptPriority dwPosition);
   NTSTATUS BCryptConfigureContext(                  WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, PCRYPT_CONTEXT_CONFIG pConfig);
@@ -52,4 +52,4 @@ ffi.cdef [[
   NTSTATUS BCryptDeriveKeyCapi(                     BCRYPT_HASH_HANDLE hHash, BCRYPT_ALG_HANDLE hTargetAlg, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags);
   NTSTATUS BCryptDeriveKeyPBKDF2(                   BCRYPT_ALG_HANDLE hPrf, PUCHAR pbPassword, ULONG cbPassword, PUCHAR pbSalt, ULONG cbSalt, ULONGLONG cIterations, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags);
 ]]
-return ffi.load( "Bcrypt.dll" )
+return ffi.load( 'Bcrypt.dll' )

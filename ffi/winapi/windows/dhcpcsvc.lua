@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   VOID  DhcpCApiCleanup(            );
   DWORD DhcpDeRegisterParamChange(  DWORD Flags, LPVOID Reserved, LPVOID Event);
@@ -16,4 +16,4 @@ ffi.cdef [[
   DWORD McastRenewAddress(          IP_ADDR_FAMILY AddrFamily, LPMCAST_CLIENT_UID pRequestID, PMCAST_LEASE_REQUEST pRenewRequest, PMCAST_LEASE_RESPONSE pRenewResponse);
   DWORD McastRequestAddress(        IP_ADDR_FAMILY AddrFamily, LPMCAST_CLIENT_UID pRequestID, PMCAST_SCOPE_CTX pScopeCtx, PMCAST_LEASE_REQUEST pAddrRequest, PMCAST_LEASE_RESPONSE pAddrResponse);
 ]]
-return ffi.load( "Dhcpcsvc.dll" )
+return ffi.load( 'Dhcpcsvc.dll' )

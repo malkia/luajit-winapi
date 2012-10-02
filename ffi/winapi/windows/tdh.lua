@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   ULONG TdhEnumerateProviderFieldInformation( LPGUID pGuid, EVENT_FIELD_TYPE EventFieldType, PPROVIDER_FIELD_INFOARRAY pBuffer, ULONG* pBufferSize);
   ULONG TdhEnumerateProviderFilters(          LPGUID pGuid, ULONG TdhContextCount, PTDH_CONTEXT pTdhContext, ULONG* FilterCount, PPROVIDER_FILTER_INFO* pBuffer, ULONG* pBufferSize);
@@ -13,4 +13,4 @@ ffi.cdef [[
   ULONG TdhQueryProviderFieldInformation(     LPGUID pGuid, ULONGLONG EventFieldValue, EVENT_FIELD_TYPE EventFieldType, PPROVIDER_FIELD_INFOARRAY pBuffer, ULONG* pBufferSize);
   ULONG TdhUnloadManifest(                    PWSTR Manifest);
 ]]
-return ffi.load( "Tdh.dll" )
+return ffi.load( 'Tdh.dll' )

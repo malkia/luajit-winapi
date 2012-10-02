@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   int  IdnToAscii(           WINAPI_IdnFlags dwFlags, LPCWSTR lpUnicodeCharStr, int cchUnicodeChar, LPWSTR lpASCIICharStr, int cchASCIIChar);
   int  IdnToNameprepUnicode( WINAPI_IdnFlags dwFlags, LPCWSTR lpUnicodeCharStr, int cchUnicodeChar, LPWSTR lpNameprepCharStr, int cchNameprepChar);
@@ -7,4 +7,4 @@ ffi.cdef [[
   BOOL IsNormalizedString(   NORM_FORM NormForm, LPCWSTR lpString, int cwLength);
   int  NormalizeString(      NORM_FORM NormForm, LPCWSTR lpSrcString, int cwSrcLength, LPWSTR lpDstString, int cwDstLength);
 ]]
-return ffi.load( "Normaliz.dll" )
+return ffi.load( 'Normaliz.dll' )

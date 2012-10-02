@@ -1,13 +1,14 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/shell" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/shell' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef DWORD SYNCMGR_ITEM_POLICIES;
-  typedef DWORD SYNCMGR_EVENT_FLAGS;
-  typedef DWORD SYNCMGR_RESOLUTION_ABILITIES_FLAGS;
-  typedef DWORD SYNCMGR_HANDLER_POLICIES;
-  typedef DWORD SYNCMGR_HANDLER_CAPABILITIES;
-  typedef DWORD SYNCMGR_SYNC_CONTROL_FLAGS;
+  typedef byte byte [1]; //Array 1
+  typedef DWORD SYNCMGR_ITEM_POLICIES; //Alias
+  typedef DWORD SYNCMGR_EVENT_FLAGS; //Alias
+  typedef DWORD SYNCMGR_RESOLUTION_ABILITIES_FLAGS; //Alias
+  typedef DWORD SYNCMGR_HANDLER_POLICIES; //Alias
+  typedef DWORD SYNCMGR_HANDLER_CAPABILITIES; //Alias
+  typedef DWORD SYNCMGR_SYNC_CONTROL_FLAGS; //Alias
   typedef enum SYNCMGR_EVENT_LEVEL {
     SYNCMGR_EL_INFORMATION = 1,
     SYNCMGR_EL_WARNING = 2,
@@ -61,7 +62,6 @@ ffi.cdef [[
     LPWSTR pszNewName,
     UINT iItemIndex,
   } CONFIRM_CONFLICT_RESULT_INFO;
-
   typedef enum SYNCMGR_CONFLICT_ITEM_TYPE {
     SYNCMGR_CIT_UPDATED = 0x1,
     SYNCMGR_CIT_DELETED = 0x2,
@@ -74,17 +74,15 @@ ffi.cdef [[
     LPWSTR pszLocationFull,
     SYNCMGR_CONFLICT_ITEM_TYPE nType,
   } CONFIRM_CONFLICT_ITEM;
-
   typedef struct BYTE_BLOB {
     unsigned long clSize,
     byte [1] abData,
   } BYTE_BLOB;
-
   typedef struct SYNCMGR_CONFLICT_ID_INFO {
     BYTE_BLOB* pblobID,
     BYTE_BLOB* pblobExtra,
   } SYNCMGR_CONFLICT_ID_INFO;
-
-  typedef DWORD SYNCMGR_CONTROL_FLAGS;
-  typedef DWORD SYNCMGR_ITEM_CAPABILITIES;
+  typedef SYNCMGR_CONFLICT_ID_INFO *WINAPI_SYNCMGR_CONFLICT_ID_INFO*; //Pointer
+  typedef DWORD SYNCMGR_CONTROL_FLAGS; //Alias
+  typedef DWORD SYNCMGR_ITEM_CAPABILITIES; //Alias
 ]]

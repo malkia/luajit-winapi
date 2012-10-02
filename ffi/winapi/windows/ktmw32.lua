@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL   CommitTransaction(                   HANDLE TransactionHandle);
   BOOL   CommitTransactionAsync(              HANDLE TransactionHandle);
@@ -41,4 +41,4 @@ ffi.cdef [[
   BOOL   RenameTransactionManager(            LPWSTR LogFileName, LPGUID ExistingTransactionManagerGuid);
   BOOL   RollforwardTransactionManager(       HANDLE TransactionManagerHandle, PLARGE_INTEGER TmVirtualClock);
 ]]
-return ffi.load( "Ktmw32.dll" )
+return ffi.load( 'Ktmw32.dll' )

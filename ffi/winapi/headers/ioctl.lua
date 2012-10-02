@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/common" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/common' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum WINAPI_IOCTL {
     IOCTL_BATTERY_QUERY_TAG = 0x00294040,

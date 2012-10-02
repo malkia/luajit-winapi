@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef short RETCODE;
+  typedef short RETCODE; //Alias
   typedef enum WINAPI_ODBC_DSN_REQUEST {
     ODBC_ADD_DSN = 1,
     ODBC_CONFIG_DSN = 2,

@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/cryptography" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/cryptography' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL                     OpenPersonalTrustDBDialog(             HWND hwndParent);
   BOOL                     OpenPersonalTrustDBDialogEx(           HWND hwndParent, DWORD dwFlags, PVOID* pvReserved);
@@ -9,7 +9,7 @@ ffi.cdef [[
   CRYPTCATATTRIBUTE*       CryptCATCDFEnumCatAttributes(          CRYPTCATCDF* pCDF, CRYPTCATATTRIBUTE* pPrevAttr, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError);
   LPWSTR                   CryptCATCDFEnumMembersByCDFTagEx(      CRYPTCATCDF* pCDF, LPWSTR pwszPrevCDFTag, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError, CRYPTCATMEMBER** ppMember, BOOL fContinueOnError, LPVOID pvReserved);
   CRYPTCATCDF*             CryptCATCDFOpen(                       LPWSTR pwszFilePath, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError);
-  BOOL                     CryptCATAdminAcquireContext(           HCATADMIN* phCatAdmin, GUID* pgSubsystem, DWORD dwFlags);
+  BOOL                     CryptCATAdminAcquireContext(           HCATADMIN* phCatAdmin, WINAPI_GUID* pgSubsystem, DWORD dwFlags);
   HCATINFO                 CryptCATAdminAddCatalog(               HCATADMIN hCatAdmin, WCHAR* pwszCatalogFile, WCHAR* pwszSelectBaseName, DWORD dwFlags);
   HCATINFO                 CryptCATAdminEnumCatalogFromHash(      HCATADMIN hCatAdmin, BYTE* pbHash, DWORD cbHash, DWORD dwFlags, HCATINFO* phPrevCatInfo);
   BOOL                     CryptCATAdminRemoveCatalog(            HCATADMIN hCatAdmin, LPCWSTR pwszCatalogFile, DWORD dwFlags);
@@ -43,4 +43,4 @@ ffi.cdef [[
   CRYPT_PROVIDER_SGNR*     WTHelperGetProvSignerFromChain(        CRYPT_PROVIDER_DATA* pProvData, DWORD idxSigner, BOOL fCounterSigner, DWORD idxCounterSigner);
   CRYPT_PROVIDER_DATA*     WTHelperProvDataFromStateData(         HANDLE hStateData);
 ]]
-return ffi.load( "Wintrust.dll" )
+return ffi.load( 'Wintrust.dll' )

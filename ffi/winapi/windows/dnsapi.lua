@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   DNS_STATUS  DnsAcquireContextHandle_(       BOOL CredentialFlags, PVOID Credentials, PHANDLE pContext);
   DNS_STATUS  DnsExtractRecordsFromMessage_W( PDNS_MESSAGE_BUFFER pDnsBuffer, WORD wMessageLength, PDNS_RECORD* ppRecord);
@@ -21,4 +21,4 @@ ffi.cdef [[
   DNS_STATUS  DnsValidateName_(               PCTSTR pszName, DNS_NAME_FORMAT Format);
   BOOL        DnsWriteQuestionToBuffer_W(     PDNS_MESSAGE_BUFFER pDnsBuffer, PDWORD pdwBufferSize, PCWSTR pszName, WINAPI_DnsRecordType wType, WORD Xid, BOOL fRecursionDesired);
 ]]
-return ffi.load( "Dnsapi.dll" )
+return ffi.load( 'Dnsapi.dll' )

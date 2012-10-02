@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/snmp" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/snmp' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   DWORD   SnmpSvcGetUptime(        );
   void    SnmpSvcSetLogLevel(      INT nLogLevel);
@@ -29,4 +29,4 @@ ffi.cdef [[
   void    SnmpUtilVarBindFree(     SnmpVarBind* pVb);
   void    SnmpUtilVarBindListFree( SnmpVarBindList* pVbl);
 ]]
-return ffi.load( "Snmpapi.dll" )
+return ffi.load( 'Snmpapi.dll' )

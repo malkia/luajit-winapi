@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   UINT    EnumEnabledLayoutOrTip(        LPCWSTR pszUserSidString, LAYOUTORTIPPROFILE* pLayoutOrTipProfile, UINT uBufLength);
   UINT    EnumLayoutOrTipForSetup(       UINT uBufLength, LAYOUTORTIP* pLayoutOrTip, UINT uBufLength, DWORD dwFlags);
@@ -13,4 +13,4 @@ ffi.cdef [[
   BOOL    SetDefaultLayoutOrTip(         LPCWSTR psz, WINAPI_SdlotFlags dwFlags);
   BOOL    SetDefaultLayoutOrTipUserReg(  LPCWSTR pszUserReg, LPCWSTR pszSystemReg, LPCWSTR pszSoftwareReg, LPCWSTR psz, WINAPI_SdlotFlags dwFlags);
 ]]
-return ffi.load( "input.dll" )
+return ffi.load( 'input.dll' )

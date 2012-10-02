@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HANDLE SCardAccessStartedEvent(      );
   LONG   SCardAddReaderToGroup(        SCARDCONTEXT hContext, LPCTSTR szReaderName, LPCTSTR szGroupName);
@@ -40,4 +40,4 @@ ffi.cdef [[
   LONG   SCardTransmit(                SCARDHANDLE hCard, LPCSCARD_IO_REQUEST pioSendPci, LPCBYTE pbSendBuffer, DWORD cbSendLength, LPSCARD_IO_REQUEST pioRecvPci, LPBYTE pbRecvBuffer, LPDWORD pcbRecvLength);
   LONG   SCardWriteCache(              SCARDCONTEXT hContext, UUID* CardIdentifier, DWORD FreshnessCounter, LPTSTR LookupName, PBYTE Data, DWORD DataLen);
 ]]
-return ffi.load( "Winscard.dll" )
+return ffi.load( 'Winscard.dll' )

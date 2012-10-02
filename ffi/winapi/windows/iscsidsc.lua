@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   ISDSC_STATUS AddISNSServer(                       PTCHAR Address);
   ISDSC_STATUS AddIScsiConnection(                  PISCSI_UNIQUE_SESSION_ID UniqueSessionId, PVOID Reserved, ULONG InitiatorPortNumber, PISCSI_TARGET_PORTAL TargetPortal, ISCSI_SECURITY_FLAGS SecurityFlags, PISCSI_LOGIN_OPTIONS LoginOptions, ULONG KeySize, PCHAR Key, PISCSI_UNIQUE_CONNECTION_ID ConnectionId);
@@ -46,4 +46,4 @@ ffi.cdef [[
   ISDSC_STATUS SetIScsiTunnelModeOuterAddress(      PTCHAR InitiatorName, ULONG InitiatorPortNumber, PTCHAR DestinationAddress, PTCHAR OuterModeAddress, BOOLEAN Persist);
   ISDSC_STATUS SetupPersistentIScsiDevices(         );
 ]]
-return ffi.load( "Iscsidsc.dll" )
+return ffi.load( 'Iscsidsc.dll' )

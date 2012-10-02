@@ -1,7 +1,7 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/gdi" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/gdi' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL           _TrackMouseEvent(             LPTRACKMOUSEEVENT lpEventTrack);
   int            AddMRUStringW(                HANDLE hMRU, LPCTSTR szString);
@@ -22,7 +22,7 @@ ffi.cdef [[
   void           MenuHelp(                     WINAPI_WinMsg uMsg, WPARAM wParam, LPARAM lParam, HMENU hMainMenu, HINSTANCE hInst, HWND hwndStatus, LPUINT lpwIDs);
   HWND           CreateUpDownControl(          WINAPI_UDStyle dwStyle, int x, int y, int cx, int cy, HWND hParent, int nID, HINSTANCE hInst, HWND hBuddy, int nUpper, int nLower, int nPos);
   void           DoReaderMode(                 PREADERMODEINFO prmi);
-  HDPA           DPA_Clone(                    HDPA hdpaSource, HDPA hdpaNew);
+  HDPA           DPA_Clone(                    WINAPI_HDPA hdpaSource, HDPA hdpaNew);
   HDPA           DPA_Create(                   int cpGrow);
   HDPA           DPA_CreateEx(                 int cpGrow, HANDLE hheap);
   BOOL           DPA_DeleteAllPtrs(            HDPA pdpa);
@@ -31,7 +31,7 @@ ffi.cdef [[
   void           DPA_DestroyCallback(          HDPA pdpa, PFNDPAENUMCALLBACK pfnCB, void* pData);
   void           DPA_EnumCallback(             HDPA pdpa, PFNDPAENUMCALLBACK pfnCB, void* pData);
   void*          DPA_GetPtr(                   HDPA pdpa, int index);
-  int            DPA_GetPtrIndex(              HDPA hdpa, void* pvoid);
+  int            DPA_GetPtrIndex(              HDPA hdpa, WINAPI_void* pvoid);
   ULONGLONG      DPA_GetSize(                  HDPA pdpa);
   BOOL           DPA_Grow(                     HDPA hdpa, int cp);
   int            DPA_InsertPtr(                HDPA pdpa, int index, void* p);
@@ -41,7 +41,7 @@ ffi.cdef [[
   int            DPA_Search(                   HDPA pdpa, void* pFind, int iStart, PFNDPACOMPARE pfnCmp, LPARAM lParam, UINT options);
   BOOL           DPA_SetPtr(                   HDPA pdpa, int index, void* p);
   BOOL           DPA_Sort(                     HDPA pdpa, PFNDPACOMPARE pfnCmp, LPARAM lParam);
-  int            DrawShadowText(               HDC hdc, LPCWSTR pszText, UINT cch, RECT* pRect, DWORD dwFlags, COLORREF crText, COLORREF crShadow, int ixOffset, int iyOffset);
+  int            DrawShadowText(               HDC hdc, LPCWSTR pszText, UINT cch, WINAPI_RECT* pRect, DWORD dwFlags, COLORREF crText, COLORREF crShadow, int ixOffset, int iyOffset);
   int            DrawTextExPrivWrap(           HDC hdc, LPTSTR lpchText, int cchText, LPRECT lprc, UINT dwDTFormat, LPDRAWTEXTPARAMS lpDTParams);
   int            DrawTextWrap(                 HDC hdc, LPCTSTR lpString, int nCount, LPRECT lpRect, UINT uFormat, LPDRAWTEXTPARAMS lpDTParams);
   HDSA           DSA_Clone(                    HDSA hdsa);
@@ -57,12 +57,12 @@ ffi.cdef [[
   int            DSA_InsertItem(               HDSA pdsa, int index, void* pItem);
   BOOL           DSA_SetItem(                  HDSA hdsa, int index, void* pItem);
   BOOL           DSA_Sort(                     HDSA pdsa, PFNDACOMPARE pfnCompare, LPARAM lParam);
-  BOOL           ExtTextOutWrap(               HDC hdc, int X, int Y, UINT uOptions, RECT* lprc, LPCTSTR lpString, UINT cbCount, INT* lpDx);
-  void           GetEffectiveClientRect(       HWND hWnd, LPRECT lprc, INT* lpInfo);
+  BOOL           ExtTextOutWrap(               HDC hdc, int X, int Y, UINT uOptions, WINAPI_RECT* lprc, LPCTSTR lpString, UINT cbCount, WINAPI_INT* lpDx);
+  void           GetEffectiveClientRect(       HWND hWnd, LPRECT lprc, WINAPI_INT* lpInfo);
   LANGID         GetMUILanguage(               );
   BOOL           GetTextExtentPoint32Wrap(     HDC hdc, LPCTSTR lpString, UINT cbCount, LPSIZE lpSize);
   void           InitCommonControls(           );
-  BOOL           InitCommonControlsEx(         LPINITCOMMONCONTROLSEX lpInitCtrls);
+  BOOL           InitCommonControlsEx(         WINAPI_LPINITCOMMONCONTROLSEX lpInitCtrls);
   VOID           InitMUILanguage(              LANGID uiLang);
   HRESULT        LoadIconMetric(               HINSTANCE hinst, PCWSTR pszName, int lims, HICON* phico);
   HRESULT        LoadIconWithScaleDown(        HINSTANCE hinst, PCWSTR pszName, int cx, int cy, HICON* phico);
@@ -90,7 +90,7 @@ ffi.cdef [[
   int            ImageList_Add(                HIMAGELIST himl, HBITMAP hbmImage, HBITMAP hbmMask);
   int            ImageList_AddMasked(          HIMAGELIST himl, HBITMAP hbmImage, COLORREF crMask);
   BOOL           ImageList_BeginDrag(          HIMAGELIST himlTrack, int iTrack, int dxHotspot, int dyHotspot);
-  HRESULT        ImageList_CoCreateInstance(   REFCLSID rclsid, IUnknown* punkOuter, REFIID riid, void** ppv);
+  HRESULT        ImageList_CoCreateInstance(   REFCLSID rclsid, WINAPI_IUnknown* punkOuter, REFIID riid, void** ppv);
   BOOL           ImageList_Copy(               HIMAGELIST himlDst, int iDst, HIMAGELIST himlSrc, int iSrc, UINT uFlags);
   HIMAGELIST     ImageList_Create(             int cx, int cy, WINAPI_ILC_Flags flags, int cInitial, int cGrow);
   BOOL           ImageList_Destroy(            HIMAGELIST himl);
@@ -125,6 +125,6 @@ ffi.cdef [[
   BOOL           ImageList_Write(              HIMAGELIST himl, LPSTREAM pstm);
   HRESULT        ImageList_WriteEx(            HIMAGELIST himl, WINAPI_ILP_Flags dwFlags, LPSTREAM pstm);
   HRESULT        TaskDialog(                   HWND hWndParent, HINSTANCE hInstance, PCWSTR pszWindowTitle, PCWSTR pszMainInstruction, PCWSTR pszContent, TASKDIALOG_COMMON_BUTTON_FLAGS dwCommonButtons, PCWSTR pszIcon, int* pnButton);
-  HRESULT        TaskDialogIndirect(           TASKDIALOGCONFIG* pTaskConfig, int* pnButton, int* pnRadioButton, BOOL* pfVerificationFlagChecked);
+  HRESULT        TaskDialogIndirect(           WINAPI_TASKDIALOGCONFIG* pTaskConfig, int* pnButton, int* pnRadioButton, BOOL* pfVerificationFlagChecked);
 ]]
-return ffi.load( "comctl32.dll" )
+return ffi.load( 'comctl32.dll' )

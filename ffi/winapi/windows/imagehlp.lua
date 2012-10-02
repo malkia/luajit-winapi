@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/native" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/native' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL              GetImageConfigInformation(  PLOADED_IMAGE LoadedImage, PIMAGE_LOAD_CONFIG_DIRECTORY ImageConfigInformation);
   DWORD             GetImageUnusedHeaderBytes(  PLOADED_IMAGE LoadedImage, PDWORD SizeUnusedHeaderBytes);
@@ -25,4 +25,4 @@ ffi.cdef [[
   BOOL              UpdateDebugInfoFile(        PSTR ImageFileName, PSTR SymbolPath, PSTR DebugFilePath, PIMAGE_NT_HEADERS NtHeaders);
   BOOL              UpdateDebugInfoFileEx(      PSTR ImageFileName, PSTR SymbolPath, PSTR DebugFilePath, PIMAGE_NT_HEADERS NtHeaders, DWORD OldChecksum);
 ]]
-return ffi.load( "ImageHlp.dll" )
+return ffi.load( 'ImageHlp.dll' )

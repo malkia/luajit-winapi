@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   WINAPI_ERROR_CODE WdsTransportClientAddRefBuffer(      PVOID pvBuffer);
   WINAPI_ERROR_CODE WdsTransportClientCancelSession(     HANDLE hSessionKey);
@@ -14,4 +14,4 @@ ffi.cdef [[
   WINAPI_ERROR_CODE WdsTransportClientStartSession(      HANDLE hSessionKey);
   WINAPI_ERROR_CODE WdsTransportClientWaitForCompletion( HANDLE hSessionKey, ULONG uTimeout);
 ]]
-return ffi.load( "Wdstptc.dll" )
+return ffi.load( 'Wdstptc.dll' )

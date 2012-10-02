@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum NET_FW_IP_VERSION {
     NET_FW_IP_VERSION_V4 = 0,
@@ -21,7 +21,7 @@ ffi.cdef [[
     NET_FW_IP_PROTOCOL_UDP = 17,
     NET_FW_IP_PROTOCOL_ANY = 256,
   } NET_FW_IP_PROTOCOL;
-  typedef UINT NET_FW_PROFILE_TYPE2;
+  typedef UINT NET_FW_PROFILE_TYPE2; //Alias
   typedef enum NET_FW_MODIFY_STATE {
     NET_FW_MODIFY_STATE_OK = 0,
     NET_FW_MODIFY_STATE_GP_OVERRIDE = 1,

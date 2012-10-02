@@ -1,21 +1,21 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/shell" )
-require( "ffi/winapi/headers/gdi" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/shell' )
+require( 'ffi/winapi/headers/gdi' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HICON             DuplicateIcon(                               HINSTANCE hInst, HICON hIcon);
   HICON             ExtractAssociatedIcon(                       HINSTANCE hInst, LPTSTR lpIconPath, LPWORD lpiIcon);
   HICON             ExtractIcon(                                 HINSTANCE hInst, LPCTSTR lpszExeFileName, UINT nIconIndex);
   UINT              ExtractIconEx(                               LPCTSTR lpszFile, int nIconIndex, HICON* phiconLarge, HICON* phiconSmall, UINT nIcons);
-  HRESULT           AssocCreateForClasses(                       ASSOCIATIONELEMENT* rgClasses, ULONG cClasses, REFIID riid, void** ppv);
+  HRESULT           AssocCreateForClasses(                       WINAPI_ASSOCIATIONELEMENT* rgClasses, ULONG cClasses, REFIID riid, void** ppv);
   HRESULT           AssocGetDetailsOfPropKey(                    IShellFolder* psf, PCUITEMID_CHILD pidl, PROPERTYKEY* pkey, VARIANT* pv, BOOL* pfFoundPropKey);
   int               CallCPLEntry16(                              HINSTANCE hInst, FARPROC16 lpfnEntry, HWND hwndCPL, UINT msg, LPARAM lParam1, LPARAM lParam2);
-  HRESULT           CDefFolderMenu_Create2(                      PCIDLIST_ABSOLUTE pidlFolder, HWND hwnd, UINT cidl, PCUITEMID_CHILD_ARRAY* apidl, IShellFolder* psf, LPFNDFMCALLBACK lpfn, UINT nKeys, HKEY* ahkeys, IContextMenu** ppcm);
+  HRESULT           CDefFolderMenu_Create2(                      PCIDLIST_ABSOLUTE pidlFolder, HWND hwnd, UINT cidl, PCUITEMID_CHILD_ARRAY* apidl, IShellFolder* psf, LPFNDFMCALLBACK lpfn, UINT nKeys, WINAPI_HKEY* ahkeys, IContextMenu** ppcm);
   HRESULT           CIDLData_CreateFromIDArray(                  PCIDLIST_ABSOLUTE pidlFolder, UINT cidl, PCUIDLIST_RELATIVE_ARRAY apidl, IDataObject** ppdtobj);
   LPWSTR*           CommandLineToArgvW(                          LPCWSTR lpCmdLine, int* pNumArgs);
-  BOOL              DAD_AutoScroll(                              HWND hwnd, AUTO_SCROLL_DATA* pad, POINT* pptNow);
-  BOOL              DAD_DragEnterEx(                             HWND hwndTarget, POINT ptStart);
+  BOOL              DAD_AutoScroll(                              HWND hwnd, AUTO_SCROLL_DATA* pad, WINAPI_POINT* pptNow);
+  BOOL              DAD_DragEnterEx(                             HWND hwndTarget, WINAPI_POINT ptStart);
   BOOL              DAD_DragLeave(                               );
   BOOL              DAD_DragMove(                                POINT pt);
   BOOL              DAD_SetDragImage(                            HIMAGELIST him, POINT* pptOffset);
@@ -85,18 +85,18 @@ ffi.cdef [[
   HANDLE            SHChangeNotification_Lock(                   HANDLE hChange, DWORD dwProcId, PIDLIST_ABSOLUTE** pppidl, LONG* plEvent);
   BOOL              SHChangeNotification_Unlock(                 HANDLE hLock);
   BOOL              SHChangeNotifyDeregister(                    ULONG ulID);
-  ULONG             SHChangeNotifyRegister(                      HWND hwnd, int fSources, LONG fEvents, UINT wMsg, int cEntries, SHChangeNotifyEntry* pshcne);
+  ULONG             SHChangeNotifyRegister(                      HWND hwnd, int fSources, LONG fEvents, UINT wMsg, int cEntries, WINAPI_SHChangeNotifyEntry* pshcne);
   void              SHChangeNotifyRegisterThread(                SCNRT_STATUS status);
   PIDLIST_ABSOLUTE  SHCloneSpecialIDList(                        HWND hwndOwner, WINAPI_CSIDL csidl, BOOL fCreate);
   HRESULT           SHCLSIDFromString(                           LPCWSTR psz, CLSID* pclsid);
-  HRESULT           SHCoCreateInstance(                          LPCWSTR pszCLSID, CLSID* pclsid, IUnknown* pUnkOuter, REFIID riid, void** ppv);
+  HRESULT           SHCoCreateInstance(                          LPCWSTR pszCLSID, WINAPI_CLSID* pclsid, IUnknown* pUnkOuter, REFIID riid, void** ppv);
   HRESULT           SHCreateAssociationRegistration(             REFIID riid, void** ppv);
   HRESULT           SHCreateDataObject(                          PCIDLIST_ABSOLUTE pidlFolder, UINT cidl, PCUITEMID_CHILD_ARRAY apidl, IDataObject* pdtInner, REFIID riid, void** ppv);
-  HRESULT           SHCreateDefaultContextMenu(                  DEFCONTEXTMENU* pdcm, REFIID riid, void** ppv);
+  HRESULT           SHCreateDefaultContextMenu(                  WINAPI_DEFCONTEXTMENU* pdcm, REFIID riid, void** ppv);
   HRESULT           SHCreateDefaultExtractIcon(                  REFIID riid, void** ppv);
   HRESULT           SHCreateDefaultPropertiesOp(                 IShellItem* psi, IFileOperation** ppFileOp);
   int               SHCreateDirectory(                           HWND hwnd, LPCWSTR pszPath);
-  int               SHCreateDirectoryEx(                         HWND hwnd, LPCTSTR pszPath, SECURITY_ATTRIBUTES* psa);
+  int               SHCreateDirectoryEx(                         HWND hwnd, LPCTSTR pszPath, WINAPI_SECURITY_ATTRIBUTES* psa);
   HRESULT           SHCreateFileExtractIconW(                    LPCWSTR pszFile, DWORD dwFileAttributes, REFIID riid, void** ppv);
   HRESULT           SHCreateItemFromParsingName(                 PCWSTR pszPath, IBindCtx* pbc, REFIID riid, void** ppv);
   HRESULT           SHCreateItemFromRelativeName(                IShellItem* psiParent, PCWSTR pszName, IBindCtx* pbc, REFIID riid, void** ppv);
@@ -105,7 +105,7 @@ ffi.cdef [[
   HPSXA             SHCreatePropSheetExtArray(                   HKEY hkey, LPCWSTR pszSubkey, UINT max_iface);
   HRESULT           SHCreateQueryCancelAutoPlayMoniker(          IMoniker** ppmoniker);
   HRESULT           SHCreateShellFolderViewEx(                   LPCSFV pcsfv, IShellView** ppsv);
-  HRESULT           SHCreateShellFolderView(                     SFV_CREATE* pcsfv, IShellView** ppsv);
+  HRESULT           SHCreateShellFolderView(                     WINAPI_SFV_CREATE* pcsfv, IShellView** ppsv);
   HRESULT           SHCreateShellItem(                           PCIDLIST_ABSOLUTE pidlParent, IShellFolder* psfParent, PCUITEMID_CHILD pidl, IShellItem** ppsi);
   HRESULT           SHCreateItemWithParent(                      PCIDLIST_ABSOLUTE pidlParent, IShellFolder* psfParent, PCUITEMID_CHILD pidl, REFIID riid, void** ppvItem);
   HRESULT           SHCreateItemFromIDList(                      PCIDLIST_ABSOLUTE pidl, REFIID riid, void** ppv);
@@ -122,7 +122,7 @@ ffi.cdef [[
   BOOL              Shell_GetImageLists(                         HIMAGELIST* phiml, HIMAGELIST* phimlSmall);
   UINT              Shell_MergeMenus(                            HMENU hmDst, HMENU hmSrc, UINT uInsert, UINT uIDAdjust, UINT uIDAdjustMax, ULONG uFlags);
   BOOL              Shell_NotifyIcon(                            DWORD dwMessage, PNOTIFYICONDATA lpdata);
-  HRESULT           Shell_NotifyIconGetRect(                     NOTIFYICONIDENTIFIER* identifier, RECT* iconLocation);
+  HRESULT           Shell_NotifyIconGetRect(                     WINAPI_NOTIFYICONIDENTIFIER* identifier, RECT* iconLocation);
   int               ShellAbout(                                  HWND hWnd, LPCTSTR szApp, LPCTSTR szOtherStuff, HICON hIcon);
   BOOL              ShellExecuteEx(                              LPSHELLEXECUTEINFO lpExecInfo);
   HRESULT           SHEmptyRecycleBin(                           HWND hwnd, LPCTSTR pszRootPath, DWORD dwFlags);
@@ -189,8 +189,8 @@ ffi.cdef [[
   HRESULT           SHMultiFileProperties(                       IDataObject* pdtobj, DWORD dwFlags);
   BOOL              SHObjectProperties(                          HWND hwnd, DWORD shopObjectType, PCWSTR pszObjectName, PCWSTR pszPropertyPage);
   HRESULT           SHOpenFolderAndSelectItems(                  PCIDLIST_ABSOLUTE pidlFolder, UINT cidl, PCUITEMID_CHILD_ARRAY* apidl, DWORD dwFlags);
-  BOOL              SHOpenPropSheetW(                            LPCWSTR pszCaption, UINT ckeys, CLSID* pclsidDef, IDataObject* pdtobj, IShellBrowser* psb, LPCWSTR pStartPage);
-  HRESULT           SHOpenWithDialog(                            HWND hwndParent, OPENASINFO* poainfo);
+  BOOL              SHOpenPropSheetW(                            LPCWSTR pszCaption, UINT ckeys, WINAPI_CLSID* pclsidDef, IDataObject* pdtobj, IShellBrowser* psb, LPCWSTR pStartPage);
+  HRESULT           SHOpenWithDialog(                            HWND hwndParent, WINAPI_OPENASINFO* poainfo);
   HRESULT           SHParseDisplayName(                          LPCWSTR pszName, IBindCtx* pbc, PIDLIST_ABSOLUTE* ppidl, SFGAOF sfgaoIn, SFGAOF* psfgaoOut);
   HRESULT           SHPathPrepareForWrite(                       HWND hwnd, IUnknown* punkEnableModless, LPCTSTR pszPath, DWORD dwFlags);
   HRESULT           SHQueryRecycleBin(                           LPCTSTR pszRootPath, LPSHQUERYRBINFO pSHQueryRBInfo);
@@ -229,7 +229,7 @@ ffi.cdef [[
   HRESULT           SHGetPropertyStoreForWindow(                 HWND hwnd, REFIID riid, void** ppv);
   HRESULT           SHGetPropertyStoreFromIDList(                PCIDLIST_ABSOLUTE pidl, GETPROPERTYSTOREFLAGS flags, REFIID riid, void** ppv);
   HRESULT           SHGetPropertyStoreFromParsingName(           PCWSTR pszPath, IBindCtx* pbc, GETPROPERTYSTOREFLAGS flags, REFIID riid, void** ppv);
-  HRESULT           SHPropStgCreate(                             IPropertySetStorage* psstg, REFFMTID fmtid, CLSID* pclsid, DWORD grfFlags, WINAPI_STGM_FLAGS grfMode, DWORD dwDisposition, IPropertyStorage** ppstg, UINT* puCodePage);
+  HRESULT           SHPropStgCreate(                             IPropertySetStorage* psstg, REFFMTID fmtid, WINAPI_CLSID* pclsid, DWORD grfFlags, WINAPI_STGM_FLAGS grfMode, DWORD dwDisposition, IPropertyStorage** ppstg, UINT* puCodePage);
   HRESULT           SHPropStgReadMultiple(                       IPropertyStorage* pps, WINAPI_CodePageEnum uCodePage, ULONG cpspec, PROPSPEC const[] rgpspec, PROPVARIANT[] rgvar);
   HRESULT           SHPropStgWriteMultiple(                      IPropertyStorage* pps, UINT* uCodePage, ULONG cpspec, PROPID propidNameFirst);
   LPWSTR            AddCommasExportW(                            DWORD value, LPWSTR pwszBuf);
@@ -263,4 +263,4 @@ ffi.cdef [[
   HRESULT           ShellExecCmdLine(                            HWND hwnd, LPCWSTR pwszCommand, LPCWSTR pwszStartDir, WINAPI_ShowWindowCmd nShow, LPVOID pUnused, WINAPI_SECL_FLAGS dwSeclFlags);
   LPWSTR            ShortSizeFormatExportW(                      DWORD value, LPWSTR pwszBuf);
 ]]
-return ffi.load( "Shell32.dll" )
+return ffi.load( 'Shell32.dll' )

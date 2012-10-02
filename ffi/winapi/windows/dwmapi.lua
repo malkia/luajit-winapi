@@ -1,14 +1,14 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/gdi" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/gdi' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT DwmAttachMilContent(               HWND hwnd);
   BOOL    DwmDefWindowProc(                  HWND hwnd, WINAPI_WinMsg msg, WPARAM wParam, LPARAM lParam, LRESULT* plResult);
   HRESULT DwmDetachMilContent(               HWND hwnd);
-  HRESULT DwmEnableBlurBehindWindow(         HWND hWnd, DWM_BLURBEHIND* pBlurBehind);
+  HRESULT DwmEnableBlurBehindWindow(         HWND hWnd, WINAPI_DWM_BLURBEHIND* pBlurBehind);
   HRESULT DwmEnableComposition(              UINT uCompositionAction);
   HRESULT DwmEnableMMCSS(                    BOOL fEnableMMCSS);
-  HRESULT DwmExtendFrameIntoClientArea(      HWND hWnd, MARGINS* pMarInset);
+  HRESULT DwmExtendFrameIntoClientArea(      HWND hWnd, WINAPI_MARGINS* pMarInset);
   HRESULT DwmFlush(                          );
   HRESULT DwmGetColorizationColor(           DWORD* pcrColorization, BOOL* pfOpaqueBlend);
   HRESULT DwmGetCompositionTimingInfo(       HWND hwnd, DWM_TIMING_INFO* pTimingInfo);
@@ -27,6 +27,6 @@ ffi.cdef [[
   HRESULT DwmSetWindowAttribute(             HWND hwnd, WINAPI_DwmWindowAttr dwAttribute, LPCVOID pvAttribute, DWORD cbAttribute);
   HRESULT DwmUnregisterThumbnail(            HTHUMBNAIL hThumbnailId);
   HRESULT DwmRegisterThumbnail(              HWND hwndDestination, HWND* hwndSource, PHTHUMBNAIL phThumbnailId);
-  HRESULT DwmUpdateThumbnailProperties(      HTHUMBNAIL hThumbnailId, DWM_THUMBNAIL_PROPERTIES* ptnProperties);
+  HRESULT DwmUpdateThumbnailProperties(      HTHUMBNAIL hThumbnailId, WINAPI_DWM_THUMBNAIL_PROPERTIES* ptnProperties);
 ]]
-return ffi.load( "dwmapi.dll" )
+return ffi.load( 'dwmapi.dll' )

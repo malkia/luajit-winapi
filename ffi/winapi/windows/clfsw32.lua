@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL              AlignReservedLog(              PVOID pvMarshal, ULONG cReservedRecords, LONGLONG [] rgcbReservation, PLONGLONG pcbAlignReservation);
   BOOL              AllocReservedLog(              PVOID pvMarshal, ULONG cReservedRecords, PLONGLONG pcbAdjustment);
@@ -32,7 +32,7 @@ ffi.cdef [[
   BOOL              ReadPreviousLogRestartArea(    PVOID pvReadContext, PVOID* ppvRestartBuffer, PULONG pcbRestartBuffer, PCLFS_LSN plsnRestart, LPOVERLAPPED pOverlapped);
   BOOL              WriteLogRestartArea(           PVOID pvMarshal, PVOID pvRestartBuffer, ULONG cbRestartBuffer, PCLFS_LSN plsnBase, ULONG fFlags, PULONG pcbWritten, PCLFS_LSN plsnNext, LPOVERLAPPED pOverlapped);
   BOOL              GetNextLogArchiveExtent(       CLFS_LOG_ARCHIVE_CONTEXT pvArchiveContext, CLFS_ARCHIVE_DESCRIPTOR [] rgadExtent, ULONG cDescriptors, PULONG pcDescriptorsReturned);
-  BOOL              PrepareLogArchive(             HANDLE hLog, PWSTR pszBaseLogFileName, ULONG cLen, PCLFS_LSN plsnLow, PCLFS_LSN plsnHigh, PULONG pcActualLength, PULONGLONG poffBaseLogFileData, PULONGLONG pcbBaseLogFileLength, PCLFS_LSN plsnBase, PCLFS_LSN plsnLast, PCLFS_LSN plsnCurrentArchiveTail, PCLFS_LOG_ARCHIVE_CONTEXT ppvArchiveContext);
+  BOOL              PrepareLogArchive(             HANDLE hLog, PWSTR pszBaseLogFileName, ULONG cLen, WINAPI_PCLFS_LSN plsnLow, WINAPI_PCLFS_LSN plsnHigh, PULONG pcActualLength, PULONGLONG poffBaseLogFileData, PULONGLONG pcbBaseLogFileLength, PCLFS_LSN plsnBase, PCLFS_LSN plsnLast, PCLFS_LSN plsnCurrentArchiveTail, PCLFS_LOG_ARCHIVE_CONTEXT ppvArchiveContext);
   BOOL              ReadLogArchiveMetadata(        CLFS_LOG_ARCHIVE_CONTEXT pvArchiveContext, ULONG cbOffset, ULONG cbBytesToRead, PBYTE pbReadBuffer, PULONG pcbBytesRead);
   BOOL              SetLogArchiveMode(             HANDLE hLog, CLFS_LOG_ARCHIVE_MODE eMode);
   BOOL              SetLogArchiveTail(             HANDLE hLog, PCLFS_LSN plsnArchiveTail, LPVOID pReserved);
@@ -40,13 +40,13 @@ ffi.cdef [[
   BOOL              ValidateLog(                   LPCWSTR pszLogFileName, LPSECURITY_ATTRIBUTES psaLogFile, PCLFS_INFORMATION pinfoBuffer, PULONG pcbBuffer);
   BOOL              CreateLogMarshallingArea(      HANDLE hLog, CLFS_BLOCK_ALLOCATION pfnAllocBuffer, CLFS_BLOCK_DEALLOCATION pfnFreeBuffer, PVOID pvBlockAllocContext, ULONG cbMarshallingBuffer, ULONG cMaxWriteBuffers, ULONG cMaxReadBuffers, PVOID* ppvMarshal);
   BOOL              DeleteLogMarshallingArea(      PVOID pvMarshal);
-  ULONG             LsnBlockOffset(                CLFS_LSN* plsn);
-  CLFS_CONTAINER_ID LsnContainer(                  CLFS_LSN* plsn);
+  ULONG             LsnBlockOffset(                WINAPI_CLFS_LSN* plsn);
+  CLFS_CONTAINER_ID LsnContainer(                  WINAPI_CLFS_LSN* plsn);
   CLFS_LSN          LsnCreate(                     CLFS_CONTAINER_ID cidContainer, ULONG offBlock, ULONG cRecord);
-  BOOL              LsnEqual(                      CLFS_LSN* plsn1, CLFS_LSN* plsn2);
-  BOOL              LsnGreater(                    CLFS_LSN* plsn1, CLFS_LSN* plsn2);
-  BOOL              LsnLess(                       CLFS_LSN* plsn1, CLFS_LSN* plsn2);
-  BOOL              LsnNull(                       CLFS_LSN* plsn);
-  ULONG             LsnRecordSequence(             CLFS_LSN* plsn);
+  BOOL              LsnEqual(                      WINAPI_CLFS_LSN* plsn1, WINAPI_CLFS_LSN* plsn2);
+  BOOL              LsnGreater(                    WINAPI_CLFS_LSN* plsn1, WINAPI_CLFS_LSN* plsn2);
+  BOOL              LsnLess(                       WINAPI_CLFS_LSN* plsn1, WINAPI_CLFS_LSN* plsn2);
+  BOOL              LsnNull(                       WINAPI_CLFS_LSN* plsn);
+  ULONG             LsnRecordSequence(             WINAPI_CLFS_LSN* plsn);
 ]]
-return ffi.load( "Clfsw32.dll" )
+return ffi.load( 'Clfsw32.dll' )

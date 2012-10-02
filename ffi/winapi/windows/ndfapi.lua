@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/sockets" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/sockets' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT NdfCloseIncident(              NDFHANDLE handle);
   HRESULT NdfCreateConnectivityIncident( NDFHANDLE* handle);
@@ -12,4 +12,4 @@ ffi.cdef [[
   HRESULT NdfCreateWinSockIncident(      SOCKET sock, LPCWSTR host, USHORT port, LPCWSTR appID, SID* userId, NDFHANDLE* handle);
   HRESULT NdfExecuteDiagnosis(           NDFHANDLE handle, HWND hwnd);
 ]]
-return ffi.load( "Ndfapi.dll" )
+return ffi.load( 'Ndfapi.dll' )

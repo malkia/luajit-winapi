@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/shell" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/shell' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum CREDENTIAL_PROVIDER_FIELD_STATE {
     CPFS_HIDDEN = 0,
@@ -39,7 +39,7 @@ ffi.cdef [[
     ULONG cbSerialization,
     byte* rgbSerialization,
   } CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION;
-
+  typedef CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION *WINAPI_CREDENTIAL_PROVIDER_CREDENTIAL_SERIALIZATION*; //Pointer
   typedef enum CREDENTIAL_PROVIDER_FIELD_TYPE {
     CPFT_INVALID = 0,
     CPFT_LARGE_TEXT = 1,
@@ -58,5 +58,4 @@ ffi.cdef [[
     LPWSTR pszLabel,
     GUID guidFieldType,
   } CREDENTIAL_PROVIDER_FIELD_DESCRIPTOR;
-
 ]]

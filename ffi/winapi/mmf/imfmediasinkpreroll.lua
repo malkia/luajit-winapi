@@ -1,5 +1,5 @@
-require( "ffi/winapi/mmf/mmfdefs" )
-require( "ffi/winapi/interfaces/iunknown" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/mmf/mmfdefs' )
+require( 'ffi/winapi/interfaces/iunknown' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
 ]]

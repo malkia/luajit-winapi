@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/multimedia" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/multimedia' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   MMRESULT    auxGetDevCaps(               UINT_PTR uDeviceID, LPAUXCAPS lpCaps, UINT cbCaps);
   UINT        auxGetNumDevs(               );
@@ -84,7 +84,7 @@ ffi.cdef [[
   LPMMIOPROC  mmioInstallIOProc(           FOURCC fccIOProc, LPMMIOPROC pIOProc, WINAPI_mmioInstallIOProcFlags dwFlags);
   HMMIO       mmioOpen(                    LPTSTR szFilename, LPMMIOINFO lpmmioinfo, DWORD dwOpenFlags);
   LONG        mmioRead(                    HMMIO hmmio, HPSTR pch, LONG cch);
-  MMRESULT    mmioRename(                  LPCTSTR szFilename, LPCTSTR szNewFilename, LPMMIOINFO lpmmioinfo, DWORD dwRenameFlags);
+  MMRESULT    mmioRename(                  LPCTSTR szFilename, LPCTSTR szNewFilename, WINAPI_LPMMIOINFO lpmmioinfo, DWORD dwRenameFlags);
   LONG        mmioSeek(                    HMMIO hmmio, LONG lOffset, WINAPI_mmioSeekOffset iOrigin);
   LRESULT     mmioSendMessage(             HMMIO hmmio, UINT wMsg, LPARAM lParam1, LPARAM lParam2);
   MMRESULT    mmioSetBuffer(               HMMIO hmmio, LPSTR pchBuffer, LONG cchBuffer, UINT wFlags);
@@ -136,4 +136,4 @@ ffi.cdef [[
   MMRESULT    waveOutUnprepareHeader(      HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh);
   MMRESULT    waveOutWrite(                HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh);
 ]]
-return ffi.load( "Winmm.dll" )
+return ffi.load( 'Winmm.dll' )

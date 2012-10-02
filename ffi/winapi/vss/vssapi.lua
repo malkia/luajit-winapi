@@ -1,5 +1,5 @@
-require( "ffi/winapi/vss/vss" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/vss/vss' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   WINAPI_VSS_HRESULT CreateVssBackupComponentsInternal(                                            IVssBackupComponents** ppBackup);
   WINAPI_VSS_HRESULT CreateVssExamineWriterMetadataInternal(                                       BSTR bstrXML, IVssExamineWriterMetadata** ppMetadata);
@@ -17,4 +17,4 @@ ffi.cdef [[
   WINAPI_VSS_HRESULT ?CreateVssBackupComponents@@YGJPAPAVIVssBackupComponents@@@Z(                 IVssBackupComponents** ppBackup);
   WINAPI_VSS_HRESULT ?CreateVssExamineWriterMetadata@@YGJPAGPAPAVIVssExamineWriterMetadata@@@Z(    BSTR bstrXML, IVssExamineWriterMetadata** ppMetadata);
 ]]
-return ffi.load( "VssApi.dll" )
+return ffi.load( 'VssApi.dll' )

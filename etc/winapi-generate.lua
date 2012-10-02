@@ -5,8 +5,6 @@ local files = require( "etc/winapi-files" )
 local outdir = "../ffi/winapi/"
 
 if ffi.os == "Windows" then
-   -- API Monitor v12 alpha would install the 64-bit on 64-bit system
-   -- Haven't tried this on 32-bit Windows yet
    xmldir = (os.getenv("ProgramW6432") or os.getenv("ProgramFiles")).."/rohitab.com/API Monitor/API/"
 else
    xmldir = "/Users/malkia/Downloads/API Monitor (rohitab.com)/API/"
@@ -30,23 +28,16 @@ local function fixpath(name)
    return table.concat(fixed)
 end
 
-local function filter_const(id)
-   if id:sub(1,6)=="const " then
-      return id:sub(7)
-   end
-   return id
-end
-
-local function filter_brackets(id, prefix, suffix)
+local function fixname(oid)
+   local id = oid
    id = id:gsub("-","_")
-   if id:sub(1,1)=="[" and id:sub(-1)=="]" then
-      return (prefix or "") .. id:sub(2,-2) .. (suffix or "")
+   if id:sub(1,6):lower()=="const " then
+      id = id:sub(7)
    end
-   return id
-end
-
-local function fixname(id)
-   return filter_brackets(filter_const(id),"WINAPI_")
+   if id:sub(1,1)=="[" and id:sub(-1)=="]" then
+      id = id:sub(2,-2)
+   end
+   return (oid == id) and id or ("WINAPI_" .. id)
 end
 
 local function normalize(t)
@@ -72,7 +63,7 @@ local function parse(buffer, filename)
 	    local value = ffi.string(attr[index+1])
 	    index = index + 2
 	    assert( kv[key] == nil )
-	    kv[key] = (key == 'Filename') and fixpath(value) or fixname(value)
+	    kv[key] = (key == "Filename") and fixpath(value) or fixname(value)
 	 end
 	 stack[#stack+1] = kv
       end)
@@ -94,28 +85,14 @@ local function parse(buffer, filename)
       local ln = expat.XML_GetCurrentLineNumber(parser)
       local cn = expat.XML_GetCurrentColumnNumber(parser)
       print(
-	 '\nexpat error=' .. tonumber(ec) .. ' \"' .. es .. 
-	    '\" in file: ' .. filename .. ':' .. ln .. ':' .. cn ..
-	    '\n' ) --.. ffi.string(buffer)) 
+	 "\nexpat error=" .. tonumber(ec) .. " '" .. es .. 
+	    "' in file: " .. filename .. ":" .. ln .. ":" .. cn ..
+	    "\n" ) --.. ffi.string(buffer)) 
       return nil
    end
    assert(stack[2]==nil and stack[1][2]==nil)
    return normalize(stack[1][1].ApiMonitor)
 end
-
-local stack = {}
-for _, filename in ipairs( files ) do
-   local file = assert(io.open(xmldir .. filename))
-   local contents = file:read('*all')
-   file:close()
-   local buffer = ffi.new( "char[?]", contents:len()+1, contents )
-   assert(stack[filename]==nil)
-   filename = fixpath(filename)
-   stack[filename] = parse(buffer, filename)
-end
-
-
---print(os.execute("ls -la "..outdir))
 
 local function dirname(filename)
    local p = 0
@@ -125,89 +102,116 @@ local function dirname(filename)
    return filename:sub(1, p)
 end
 
-local folders = {}
-
-
-for header, library in pairs(stack) do
-   local header_dir = dirname(header)
-   if folders[header_dir] == nil then
-      folders[header_dir] = true
-      -- cygwin's mkdir
-      print(os.execute( "e:/bin/mkdir -p " .. outdir .. header_dir ))
+local function main()
+   -- All "C" definitions from the API monitor files
+   local cdef = {}
+   for _, filename in ipairs(files) do
+      assert(cdef[filename]==nil)
+      local file = assert(io.open(xmldir .. filename))
+      local contents = file:read("*all")
+      file:close()
+      local buffer = ffi.new("char[?]", contents:len()+1, contents)
+      cdef[fixpath(filename)] = parse(buffer, filename)
    end
 
-   local luaname = header:gsub("%..*", "%.lua")
-   print( luaname )
-   local luafile = io.open(outdir..luaname, "wt")
-   for _, depend in ipairs(library.Include or {}) do
-      local requiredFilename = depend.Filename:gsub("%..*", "")
-      luafile:write('require( \"ffi/winapi/' .. requiredFilename .. '\" )\n')
-   end
-   luafile:write('local ffi = require( \"ffi\" )\n')
-   luafile:write('ffi.cdef ['..'[\n')
-   for _, header in ipairs(library.Headers or {}) do
-      for _, var in ipairs(header.Variable or {}) do
-	 if var.Enum then
-	    luafile:write('  typedef enum ' .. var.Name .. ' {\n');
-	    for _, enum in ipairs( var.Enum[1].Set ) do
-	       luafile:write('    ' .. enum.Name .. ' = ' .. enum.Value .. ',\n' )
-	    end
-	    luafile:write('  } ' .. var.Name .. ';\n');
-	 elseif var.Type == 'Alias' then
-	    luafile:write('  typedef '.. var.Base .. ' ' .. var.Name .. ';\n')
-	 elseif var.Type == 'Pointer' then
-	    if var.Base .. '*' ~= var.Name then
-	       luafile:write('  typedef '.. var.Base .. ' ' .. var.Name .. ';\n')
-	    end
-	 elseif var.Type == 'Struct' then
-	    luafile:write('  typedef struct ' .. var.Name .. ' {\n');
-	    for _, enum in ipairs( var.Field ) do
-	       local type = enum.Type or enum.TYPE
-	       luafile:write('    ' .. type .. ' ' .. enum.Name .. ',\n' )
-	    end
-	    luafile:write('  } ' .. var.Name .. ';\n\n');
-	 elseif var.Type == 'Union' then
-	    luafile:write('  typedef union ' .. var.Name .. ' {\n');
-	    for _, enum in ipairs( var.Field ) do
-	       luafile:write('    ' .. tostring(enum.Type) .. ' ' .. enum.Name .. ',\n' )
-	    end
-	    luafile:write('  } ' .. var.Name .. ';\n\n');
+   local luadirs = {}
+   for filename, cdef in pairs(cdef) do
+      local luaname = filename:gsub("%..*$", "%.lua")
+      local luadir = dirname(luaname)
+      if not luadirs[luadir] then
+	 luadirs[luadir] = true
+	 if ffi.os == "Windows" then
+	    os.execute( "md \"" .. outdir .. luadir .. "\"" )
+	 else
+	    os.execute( "mkdir -p \"" .. outdir .. luadir .. "\"" )
 	 end
---	 luafile:write(' /* ' .. dump(var) .. ' */\n')
       end
-   end
-   local dll
-   for _, module in ipairs(library.Module or {}) do
-      local modname = module.Name ~= "*" and module.Name or header
-      local name = modname:gsub("%..*", "%.lua"):lower()
-      local file = outdir .. name
-      print( file, header )
+      
+      local luafile = assert(io.open(outdir..luaname, "wt"))
 
-      local return_type_width = 0
-      local api_name_width = 0
-      for _, api in ipairs(module.Api) do
-	 local return_type = api.Return[1].Type
-	 return_type_width = math.max( #return_type, return_type_width )
-	 api_name_width = math.max( #api.Name, api_name_width )
-      end
-
-      for _, api in ipairs(module.Api) do
-	 local return_type = api.Return[1].Type
+      for _, depend in ipairs(cdef.Include or {}) do
 	 luafile:write(
-	    '  ' .. return_type .. string.rep(' ', return_type_width - #return_type + 1) .. 
-	    api.Name .. '(' .. string.rep(' ', api_name_width - #api.Name + 1))
-	 local comma = ''
-	 for _, param in ipairs(api.Param or {}) do
-	    luafile:write( comma .. param.Type .. ' ' .. param.Name )
-	    comma = ', '
-	 end
-	 luafile:write( ');\n')
+	    "require( 'ffi/winapi/" .. depend.Filename:gsub("%..*$", "") .. "' )\n" )
       end
-      dll = module.Name
-   end 
-   luafile:write(']'..']\n')
-   if dll then
-      luafile:write('return ffi.load( \"' .. dll ..'\" )\n')
+
+      luafile:write( "local ffi = require( 'ffi' )\n" ..
+		     "ffi.cdef [[\n" )
+      
+      for _, header in ipairs(cdef.Headers or {}) do
+	 for _, var in ipairs(header.Variable or {}) do
+	    if false then
+
+	    elseif var.Enum then
+	       luafile:write( "  typedef enum " .. var.Name .. " {\n" )
+	       for _, enum in ipairs( var.Enum[1].Set ) do
+		  luafile:write(
+		     "    " .. enum.Name .. " = " .. enum.Value .. ",\n" )
+	       end
+	       luafile:write( "  } " .. var.Name .. ";\n" )
+
+	    elseif var.Type == "Pointer" or var.Type == "Alias" then
+	       if var.Base .. "*" ~= var.Name then
+		  luafile:write(
+		     "  typedef " .. var.Base .. 
+			((var.Type == "Pointer") and " *" or " ") ..
+			var.Name .. "; //" .. var.Type .. "\n" )
+	       end
+
+	    elseif var.Type == "Array" then
+	       if var.Base .. "*" ~= var.Name then
+		  luafile:write(
+		     "  typedef " .. var.Base .. " " ..
+			var.Name .. "; //" .. var.Type .. " " .. var.Count .. "\n" )
+	       end
+
+	    elseif var.Type == "Struct" or var.Type == "Union" then
+	       luafile:write( "  typedef " .. var.Type:lower() .. " " .. var.Name .. " {\n");
+	       for _, enum in ipairs( var.Field ) do
+		  luafile:write(
+		     "    " .. (enum.Type or enum.TYPE) .. " " .. enum.Name .. ",\n" )
+	       end
+	       luafile:write( "  } " .. var.Name .. ";\n" )
+
+	    end
+	    --	 luafile:write(" /* " .. dump(var) .. " */\n")
+	 end
+      end
+
+      local dll
+      for _, module in ipairs(cdef.Module or {}) do
+	 local modname = module.Name ~= "*" and module.Name or filename
+
+	 local return_type_width = 0
+	 local api_name_width = 0
+	 for _, api in ipairs(module.Api) do
+	    local return_type = api.Return[1].Type
+	    return_type_width = math.max( #return_type, return_type_width )
+	    api_name_width = math.max( #api.Name, api_name_width )
+	 end
+
+	 for _, api in ipairs(module.Api) do
+	    local return_type = api.Return[1].Type
+	    luafile:write(
+	       "  " .. return_type .. string.rep(" ", return_type_width - #return_type + 1) .. 
+		  api.Name .. "(" .. string.rep(" ", api_name_width - #api.Name + 1))
+	    local comma = ""
+	    for _, param in ipairs(api.Param or {}) do
+	       luafile:write( comma .. param.Type .. " " .. param.Name )
+	       comma = ", "
+	    end
+	    luafile:write( ");\n" )
+	 end
+	 dll = module.Name
+      end 
+
+      luafile:write( "]]\n" )
+
+      if dll then
+	 luafile:write( "return ffi.load( '" .. dll .. "' )\n" )
+      end
+
+      luafile:close()
    end
-   luafile:close()
 end
+
+main()

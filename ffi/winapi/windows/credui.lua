@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/security" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/security' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   WINAPI_ERROR_CODE CredUICmdLinePromptForCredentials( PCTSTR pszTargetName, PCtxtHandle Reserved, DWORD dwAuthError, PTSTR pszUserName, ULONG ulUserNameMaxChars, PTSTR pszPassword, ULONG ulPasswordMaxChars, PBOOL pfSave, WINAPI_CredUIFlags dwFlags);
   WINAPI_ERROR_CODE CredUIConfirmCredentials(          PCTSTR pszTargetName, BOOL bConfirm);
@@ -17,4 +17,4 @@ ffi.cdef [[
   SECURITY_STATUS   SspiUnmarshalCredUIContext(        PUCHAR MarshaledCredUIContext, ULONG MarshaledCredUIContextLength, PSEC_WINNT_CREDUI_CONTEXT* CredUIContext);
   SECURITY_STATUS   SspiUpdateCredentials(             HANDLE ContextHandle, GUID* CredType, ULONG FlatCredUIContextLength, PUCHAR FlatCredUIContext);
 ]]
-return ffi.load( "Credui.dll" )
+return ffi.load( 'Credui.dll' )

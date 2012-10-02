@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/cryptography" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/cryptography' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT SignerFreeSignerContext(               SIGNER_CONTEXT* pSignerContext);
   HRESULT SignerSignEx(                          WINAPI_SPC_PE dwFlags, SIGNER_SUBJECT_INFO* pSubjectInfo, SIGNER_CERT* pSignerCert, SIGNER_SIGNATURE_INFO* pSignatureInfo, SIGNER_PROVIDER_INFO* pProviderInfo, LPCWSTR pwszHttpTimeStamp, PCRYPT_ATTRIBUTES psRequest, LPVOID pSipData, SIGNER_CONTEXT** ppSignerContext);
@@ -17,4 +17,4 @@ ffi.cdef [[
   BOOL    PvkPrivateKeyAcquireContextFromMemory( LPCWSTR pwszProvName, WINAPI_CryptProv dwProvType, BYTE* pbData, DWORD cbData, HWND hwndOwner, LPCWSTR pwszKeyName, DWORD* pdwKeySpec, HCRYPTPROV* phCryptProv, LPTSTR* ppwszTmpContainer);
   BOOL    PvkPrivateKeySave(                     HCRYPTPROV hCryptProv, HANDLE hFile, DWORD dwKeySpec, HWND hwndOwner, LPCWSTR pwszKeyName, DWORD dwFlags);
 ]]
-return ffi.load( "Mssign32.dll" )
+return ffi.load( 'Mssign32.dll' )

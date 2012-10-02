@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/mmf/mmfdefs" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/mmf/mmfdefs' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT  CreatePropertyStore(                          IPropertyStore** ppStore);
   HRESULT  MFAddPeriodicCallback(                        MFPERIODICCALLBACK Callback, IUnknown* pContext, DWORD* pdwKey);
@@ -10,7 +10,7 @@ ffi.cdef [[
   HRESULT  MFBeginCreateFile(                            MF_FILE_ACCESSMODE AccessMode, MF_FILE_OPENMODE OpenMode, MF_FILE_FLAGS fFlags, LPCWSTR pwszFilePath, IMFAsyncCallback* pCallback, IUnknown* pState, IUnknown** ppCancelCookie);
   HRESULT  MFBeginRegisterWorkQueueWithMMCSS(            DWORD dwWorkQueueId, LPCWSTR wszClass, DWORD dwTaskId, IMFAsyncCallback* pDoneCallback, IUnknown* pDoneState);
   HRESULT  MFBeginUnregisterWorkQueueWithMMCSS(          DWORD dwWorkQueueId, IMFAsyncCallback* pDoneCallback, IUnknown* pDoneState);
-  HRESULT  MFCalculateBitmapImageSize(                   BITMAPINFOHEADER* pBMIH, UINT32 cbBufSize, UINT32* pcbImageSize, BOOL* pbKnown);
+  HRESULT  MFCalculateBitmapImageSize(                   WINAPI_BITMAPINFOHEADER* pBMIH, UINT32 cbBufSize, UINT32* pcbImageSize, BOOL* pbKnown);
   HRESULT  MFCalculateImageSize(                         REFGUID guidSubtype, UINT32 unWidth, UINT32 unHeight, UINT32* pcbImageSize);
   HRESULT  MFCancelCreateFile(                           IUnknown* pCancelCookie);
   HRESULT  MFCancelWorkItem(                             MFWORKITEM_KEY Key);
@@ -18,21 +18,21 @@ ffi.cdef [[
   HRESULT  MFScheduleWorkItemEx(                         IMFAsyncResult* pResult, INT64 Timeout, MFWORKITEM_KEY* pKey);
   BOOL     MFCompareFullToPartialMediaType(              IMFMediaType* pMFTypeFull, IMFMediaType* pMFTypePartial);
   HRESULT  MFConvertColorInfoFromDXVA(                   MFVIDEOFORMAT* pToFormat, DWORD dwFromDXVA);
-  HRESULT  MFConvertColorInfoToDXVA(                     DWORD* pdwToDXVA, MFVIDEOFORMAT* pFromFormat);
-  HRESULT  MFConvertFromFP16Array(                       float* pDest, WORD* pSrc, DWORD dwCount);
-  HRESULT  MFConvertToFP16Array(                         WORD* pDest, float* pSrc, DWORD dwCount);
-  HRESULT  MFCopyImage(                                  BYTE* pDest, LONG lDestStride, BYTE* pSrc, LONG lSrcStride, DWORD dwWidthInBytes, DWORD dwLines);
+  HRESULT  MFConvertColorInfoToDXVA(                     DWORD* pdwToDXVA, WINAPI_MFVIDEOFORMAT* pFromFormat);
+  HRESULT  MFConvertFromFP16Array(                       float* pDest, WINAPI_WORD* pSrc, DWORD dwCount);
+  HRESULT  MFConvertToFP16Array(                         WORD* pDest, WINAPI_float* pSrc, DWORD dwCount);
+  HRESULT  MFCopyImage(                                  BYTE* pDest, LONG lDestStride, WINAPI_BYTE* pSrc, LONG lSrcStride, DWORD dwWidthInBytes, DWORD dwLines);
   HRESULT  MFCreateAlignedMemoryBuffer(                  DWORD cbMaxLength, DWORD fAlignmentFlags, IMFMediaBuffer** ppBuffer);
   HRESULT  MFCreateAMMediaTypeFromMFMediaType(           IMFMediaType* pMFType, GUID guidFormatBlockType, AM_MEDIA_TYPE** ppAMType);
   HRESULT  MFCreateAsyncResult(                          IUnknown* punkObject, IMFAsyncCallback* pCallback, IUnknown* punkState, IMFAsyncResult** ppAsyncResult);
   HRESULT  MFCreateAttributes(                           IMFAttributes** ppMFAttributes, UINT32 cInitialSize);
-  HRESULT  MFCreateAudioMediaType(                       WAVEFORMATEX* pAudioFormat, IMFAudioMediaType** ppIAudioMediaType);
+  HRESULT  MFCreateAudioMediaType(                       WINAPI_WAVEFORMATEX* pAudioFormat, IMFAudioMediaType** ppIAudioMediaType);
   HRESULT  MFCreateCollection(                           IMFCollection** ppIMFCollection);
   HRESULT  MFCreateEventQueue(                           IMFMediaEventQueue** ppMediaEventQueue);
   HRESULT  MFCreateFile(                                 MF_FILE_ACCESSMODE AccessMode, MF_FILE_OPENMODE OpenMode, MF_FILE_FLAGS fFlags, LPCWSTR pwszFileURL, IMFByteStream** ppIByteStream);
   HRESULT  MFCreateLegacyMediaBufferOnMFMediaBuffer(     IMFSample* pIMFSample, IMFMediaBuffer* pIMFMediaBuffer, DWORD cbOffset, IMediaBuffer** ppIMediaBuffer);
   HRESULT  MFCreateMediaBufferWrapper(                   IMFMediaBuffer* pBuffer, DWORD cbOffset, DWORD dwLength, IMFMediaBuffer** ppBuffer);
-  HRESULT  MFCreateMediaEvent(                           MediaEventType met, REFGUID guidExtendedType, HRESULT hrStatus, PROPVARIANT* pvValue, IMFMediaEvent** ppEvent);
+  HRESULT  MFCreateMediaEvent(                           MediaEventType met, REFGUID guidExtendedType, HRESULT hrStatus, WINAPI_PROPVARIANT* pvValue, IMFMediaEvent** ppEvent);
   HRESULT  MFCreateMediaType(                            IMFMediaType** ppMFType);
   HRESULT  MFCreateMediaTypeFromRepresentation(          GUID guidRepresentation, LPVOID pvRepresentation, IMFMediaType** ppIMediaType);
   HRESULT  MFCreateMemoryBuffer(                         DWORD cbMaxLength, IMFMediaBuffer** ppBuffer);
@@ -47,12 +47,12 @@ ffi.cdef [[
   HRESULT  MFCreateTempFile(                             MF_FILE_ACCESSMODE AccessMode, MF_FILE_OPENMODE OpenMode, MF_FILE_FLAGS fFlags, IMFByteStream** ppIByteStream);
   HRESULT  MFCreateTransformActivate(                    IMFActivate** ppActivate);
   HRESULT  MFCreateURLFromPath(                          LPCWSTR pwszFilePath, LPWSTR* ppwszFileURL);
-  HRESULT  MFCreateVideoMediaType(                       MFVIDEOFORMAT* pVideoFormat, IMFVideoMediaType** ppIVideoMediaType);
-  HRESULT  MFCreateVideoMediaTypeFromBitMapInfoHeader(   BITMAPINFOHEADER* pbmihBitMapInfoHeader, DWORD dwPixelAspectRatioX, DWORD dwPixelAspectRatioY, MFVideoInterlaceMode InterlaceMode, QWORD VideoFlags, QWORD qwFramesPerSecondNumerator, QWORD qwFramesPerSecondDenominator, DWORD dwMaxBitRate, IMFVideoMediaType** ppIVideoMediaType);
-  HRESULT  MFCreateVideoMediaTypeFromBitMapInfoHeaderEx( BITMAPINFOHEADER* pbmihBitMapInfoHeader, UINT32 cbBitMapInfoHeader, DWORD dwPixelAspectRatioX, DWORD dwPixelAspectRatioY, MFVideoInterlaceMode InterlaceMode, QWORD VideoFlags, DWORD dwFramesPerSecondNumerator, DWORD dwFramesPerSecondDenominator, DWORD dwMaxBitRate, IMFVideoMediaType** ppIVideoMediaType);
-  HRESULT  MFCreateVideoMediaTypeFromSubtype(            GUID* pAMSubtype, IMFVideoMediaType** ppIVideoMediaType);
-  HRESULT  MFCreateVideoMediaTypeFromVideoInfoHeader(    KS_VIDEOINFOHEADER* pVideoInfoHeader, DWORD cbVideoInfoHeader, DWORD dwPixelAspectRatioX, DWORD dwPixelAspectRatioY, MFVideoInterlaceMode InterlaceMode, QWORD VideoFlags, GUID* pSubtype, IMFVideoMediaType** ppIVideoMediaType);
-  HRESULT  MFCreateVideoMediaTypeFromVideoInfoHeader2(   KS_VIDEOINFOHEADER2* pVideoInfoHeader, DWORD cbVideoInfoHeader, QWORD AdditionalVideoFlags, GUID* pSubtype, IMFVideoMediaType** ppIVideoMediaType);
+  HRESULT  MFCreateVideoMediaType(                       WINAPI_MFVIDEOFORMAT* pVideoFormat, IMFVideoMediaType** ppIVideoMediaType);
+  HRESULT  MFCreateVideoMediaTypeFromBitMapInfoHeader(   WINAPI_BITMAPINFOHEADER* pbmihBitMapInfoHeader, DWORD dwPixelAspectRatioX, DWORD dwPixelAspectRatioY, MFVideoInterlaceMode InterlaceMode, QWORD VideoFlags, QWORD qwFramesPerSecondNumerator, QWORD qwFramesPerSecondDenominator, DWORD dwMaxBitRate, IMFVideoMediaType** ppIVideoMediaType);
+  HRESULT  MFCreateVideoMediaTypeFromBitMapInfoHeaderEx( WINAPI_BITMAPINFOHEADER* pbmihBitMapInfoHeader, UINT32 cbBitMapInfoHeader, DWORD dwPixelAspectRatioX, DWORD dwPixelAspectRatioY, MFVideoInterlaceMode InterlaceMode, QWORD VideoFlags, DWORD dwFramesPerSecondNumerator, DWORD dwFramesPerSecondDenominator, DWORD dwMaxBitRate, IMFVideoMediaType** ppIVideoMediaType);
+  HRESULT  MFCreateVideoMediaTypeFromSubtype(            WINAPI_GUID* pAMSubtype, IMFVideoMediaType** ppIVideoMediaType);
+  HRESULT  MFCreateVideoMediaTypeFromVideoInfoHeader(    WINAPI_KS_VIDEOINFOHEADER* pVideoInfoHeader, DWORD cbVideoInfoHeader, DWORD dwPixelAspectRatioX, DWORD dwPixelAspectRatioY, MFVideoInterlaceMode InterlaceMode, QWORD VideoFlags, WINAPI_GUID* pSubtype, IMFVideoMediaType** ppIVideoMediaType);
+  HRESULT  MFCreateVideoMediaTypeFromVideoInfoHeader2(   WINAPI_KS_VIDEOINFOHEADER2* pVideoInfoHeader, DWORD cbVideoInfoHeader, QWORD AdditionalVideoFlags, WINAPI_GUID* pSubtype, IMFVideoMediaType** ppIVideoMediaType);
   HRESULT  MFCreateWaveFormatExFromMFMediaType(          IMFMediaType* pMFType, WAVEFORMATEX** ppWF, UINT32* pcbSize, UINT32 Flags);
   HRESULT  MFDeserializeAttributesFromStream(            IMFAttributes* pAttr, DWORD dwOptions, IStream* pStm);
   HRESULT  MFDeserializePresentationDescriptor(          DWORD cbData, BYTE* pbData, IMFPresentationDescriptor** ppPD);
@@ -62,26 +62,26 @@ ffi.cdef [[
   HRESULT  MFFrameRateToAverageTimePerFrame(             UINT32 unNumerator, UINT32 unDenominator, UINT64* punAverageTimePerFrame);
   HRESULT  MFGetAttributesAsBlob(                        IMFAttributes* pAttributes, UINT8* pBuf, UINT cbBufSize);
   HRESULT  MFGetAttributesAsBlobSize(                    IMFAttributes* pAttributes, UINT32* pcbBufSize);
-  HRESULT  MFGetMFTMerit(                                IUnknown* pMFT, UINT32 cbVerifier, BYTE* verifier, DWORD* merit);
+  HRESULT  MFGetMFTMerit(                                IUnknown* pMFT, UINT32 cbVerifier, WINAPI_BYTE* verifier, DWORD* merit);
   HRESULT  MFGetPlaneSize(                               DWORD format, DWORD dwWidth, DWORD dwHeight, DWORD* pdwPlaneSize);
   HRESULT  MFGetPluginControl(                           IMFPluginControl** ppPluginControl);
   HRESULT  MFGetStrideForBitmapInfoHeader(               DWORD format, DWORD dwWidth, LONG* pStride);
   MFTIME   MFGetSystemTime(                              );
   HRESULT  MFGetTimerPeriodicity(                        DWORD* Periodicity);
-  DWORD    MFGetUncompressedVideoFormat(                 MFVIDEOFORMAT* pVideoFormat);
+  DWORD    MFGetUncompressedVideoFormat(                 WINAPI_MFVIDEOFORMAT* pVideoFormat);
   HRESULT  MFGetWorkQueueMMCSSClass(                     DWORD dwWorkQueueId, LPWSTR pwszClass, DWORD* pcchClass);
   HRESULT  MFGetWorkQueueMMCSSTaskId(                    DWORD dwWorkQueueId, LPDWORD pdwTaskId);
   void*    MFHeapAlloc(                                  size_t nSize, ULONG dwFlags, char* pszFile, int line, EAllocationType eat);
   void     MFHeapFree(                                   void* pv);
   HRESULT  MFInitAMMediaTypeFromMFMediaType(             IMFMediaType* pMFType, GUID guidFormatBlockType, AM_MEDIA_TYPE* pAMType);
-  HRESULT  MFInitAttributesFromBlob(                     IMFAttributes* pAttributes, UINT8* pBuf, UINT cbBufSize);
-  HRESULT  MFInitMediaTypeFromAMMediaType(               IMFMediaType* pMFType, AM_MEDIA_TYPE* pAMType);
-  HRESULT  MFInitMediaTypeFromMFVideoFormat(             IMFMediaType* pMFType, MFVIDEOFORMAT* pMFVF, UINT32 cbBufSize);
-  HRESULT  MFInitMediaTypeFromMPEG1VideoInfo(            IMFMediaType* pMFType, MPEG1VIDEOINFO* pMP1VI, UINT32 cbBufSize, GUID* pSubtype);
-  HRESULT  MFInitMediaTypeFromMPEG2VideoInfo(            IMFMediaType* pMFType, MPEG2VIDEOINFO* pMP2VI, UINT32 cbBufSize, GUID* pSubtype);
-  HRESULT  MFInitMediaTypeFromVideoInfoHeader(           IMFMediaType* pMFType, VIDEOINFOHEADER* pVIH, UINT32 cbBufSize, GUID* pSubtype);
-  HRESULT  MFInitMediaTypeFromVideoInfoHeader2(          IMFMediaType* pMFType, VIDEOINFOHEADER2* pVIH2, UINT32 cbBufSize, GUID* pSubtype);
-  HRESULT  MFInitMediaTypeFromWaveFormatEx(              IMFMediaType* pMFType, WAVEFORMATEX* pWaveFormat, UINT32 cbBufSize);
+  HRESULT  MFInitAttributesFromBlob(                     IMFAttributes* pAttributes, WINAPI_UINT8* pBuf, UINT cbBufSize);
+  HRESULT  MFInitMediaTypeFromAMMediaType(               IMFMediaType* pMFType, WINAPI_AM_MEDIA_TYPE* pAMType);
+  HRESULT  MFInitMediaTypeFromMFVideoFormat(             IMFMediaType* pMFType, WINAPI_MFVIDEOFORMAT* pMFVF, UINT32 cbBufSize);
+  HRESULT  MFInitMediaTypeFromMPEG1VideoInfo(            IMFMediaType* pMFType, WINAPI_MPEG1VIDEOINFO* pMP1VI, UINT32 cbBufSize, WINAPI_GUID* pSubtype);
+  HRESULT  MFInitMediaTypeFromMPEG2VideoInfo(            IMFMediaType* pMFType, WINAPI_MPEG2VIDEOINFO* pMP2VI, UINT32 cbBufSize, WINAPI_GUID* pSubtype);
+  HRESULT  MFInitMediaTypeFromVideoInfoHeader(           IMFMediaType* pMFType, WINAPI_VIDEOINFOHEADER* pVIH, UINT32 cbBufSize, WINAPI_GUID* pSubtype);
+  HRESULT  MFInitMediaTypeFromVideoInfoHeader2(          IMFMediaType* pMFType, WINAPI_VIDEOINFOHEADER2* pVIH2, UINT32 cbBufSize, WINAPI_GUID* pSubtype);
+  HRESULT  MFInitMediaTypeFromWaveFormatEx(              IMFMediaType* pMFType, WINAPI_WAVEFORMATEX* pWaveFormat, UINT32 cbBufSize);
   HRESULT  MFInitVideoFormat(                            MFVIDEOFORMAT* pVideoFormat, MFStandardVideoFormat type);
   HRESULT  MFInitVideoFormat_RGB(                        MFVIDEOFORMAT* pVideoFormat, DWORD dwWidth, DWORD dwHeight, DWORD D3Dfmt);
   HRESULT  MFInvokeCallback(                             IMFAsyncResult* pAsyncResult);
@@ -95,11 +95,11 @@ ffi.cdef [[
   HRESULT  MFShutdown(                                   );
   HRESULT  MFStartup(                                    ULONG Version, DWORD dwFlags);
   HRESULT  MFTEnum(                                      GUID guidCategory, UINT32 Flags, MFT_REGISTER_TYPE_INFO* pInputType, MFT_REGISTER_TYPE_INFO* pOutputType, IMFAttributes* pAttributes, CLSID** ppclsidMFT, UINT32* pcMFTs);
-  HRESULT  MFTEnumEx(                                    GUID guidCategory, UINT32 Flags, MFT_REGISTER_TYPE_INFO* pInputType, MFT_REGISTER_TYPE_INFO* pOutputType, IMFActivate*** pppMFTActivate, UINT32* pcMFTActivate);
+  HRESULT  MFTEnumEx(                                    GUID guidCategory, UINT32 Flags, WINAPI_MFT_REGISTER_TYPE_INFO* pInputType, WINAPI_MFT_REGISTER_TYPE_INFO* pOutputType, IMFActivate*** pppMFTActivate, UINT32* pcMFTActivate);
   HRESULT  MFTGetInfo(                                   CLSID clsidMFT, LPWSTR* pszName, MFT_REGISTER_TYPE_INFO** ppInputTypes, UINT32* pcInputTypes, MFT_REGISTER_TYPE_INFO** ppOutputTypes, UINT32* pcOutputTypes, IMFAttributes** ppAttributes);
   HRESULT  MFTRegister(                                  CLSID clsidMFT, GUID guidCategory, LPWSTR pszName, UINT32 Flags, UINT32 cInputTypes, MFT_REGISTER_TYPE_INFO* pInputTypes, UINT32 cOutputTypes, MFT_REGISTER_TYPE_INFO* pOutputTypes, IMFAttributes* pAttributes);
-  HRESULT  MFTRegisterLocal(                             IClassFactory* pClassFactory, REFGUID guidCategory, LPCWSTR pszName, UINT32 Flags, UINT32 cInputTypes, MFT_REGISTER_TYPE_INFO* pInputTypes, UINT32 cOutputTypes, MFT_REGISTER_TYPE_INFO* pOutputTypes);
-  HRESULT  MFTRegisterLocalByCLSID(                      REFCLSID clisdMFT, REFGUID guidCategory, LPCWSTR pszName, UINT32 Flags, UINT32 cInputTypes, MFT_REGISTER_TYPE_INFO* pInputTypes, UINT32 cOutputTypes, MFT_REGISTER_TYPE_INFO* pOutputTypes);
+  HRESULT  MFTRegisterLocal(                             IClassFactory* pClassFactory, REFGUID guidCategory, LPCWSTR pszName, UINT32 Flags, UINT32 cInputTypes, WINAPI_MFT_REGISTER_TYPE_INFO* pInputTypes, UINT32 cOutputTypes, WINAPI_MFT_REGISTER_TYPE_INFO* pOutputTypes);
+  HRESULT  MFTRegisterLocalByCLSID(                      REFCLSID clisdMFT, REFGUID guidCategory, LPCWSTR pszName, UINT32 Flags, UINT32 cInputTypes, WINAPI_MFT_REGISTER_TYPE_INFO* pInputTypes, UINT32 cOutputTypes, WINAPI_MFT_REGISTER_TYPE_INFO* pOutputTypes);
   HRESULT  MFTUnregister(                                CLSID clsidMFT);
   HRESULT  MFTUnregisterLocal(                           IClassFactory* pClassFactory);
   HRESULT  MFTUnregisterLocalByCLSID(                    CLSID clsidMFT);
@@ -110,4 +110,4 @@ ffi.cdef [[
   HRESULT  MFWrapMediaType(                              IMFMediaType* pOrig, REFGUID MajorType, REFGUID SubType, IMFMediaType** ppWrap);
   HRESULT  MFValidateMediaTypeSize(                      GUID FormatType, UINT8* pBlock, UINT32 cbSize);
 ]]
-return ffi.load( "Mfplat.dll" )
+return ffi.load( 'Mfplat.dll' )

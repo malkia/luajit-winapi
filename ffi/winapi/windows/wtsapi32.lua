@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   void   WTSCloseServer(                     WINAPI_WtsServerHandle hServer);
   BOOL   WTSConnectSession(                  ULONG LogonId, ULONG TargetLogonId, PTSTR pPassword, BOOL bWait);
@@ -31,4 +31,4 @@ ffi.cdef [[
   BOOL   WTSVirtualChannelWrite(             HANDLE hChannelHandle, LPVOID Buffer, ULONG Length, PULONG pBytesWritten);
   BOOL   WTSWaitSystemEvent(                 WINAPI_WtsServerHandle hServer, WINAPI_WtsEventFlags EventMask, WINAPI_WtsEventFlags* pEventFlags);
 ]]
-return ffi.load( "Wtsapi32.dll" )
+return ffi.load( 'Wtsapi32.dll' )

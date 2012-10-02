@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/security" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/security' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HANDLE  EnterCriticalPolicySection(      BOOL bMachine);
   BOOL    FreeGPOList(                     PGROUP_POLICY_OBJECT pGPOList);
@@ -31,4 +31,4 @@ ffi.cdef [[
   BOOL    LoadUserProfile(                 HANDLE hToken, LPPROFILEINFO lpProfileInfo);
   BOOL    UnloadUserProfile(               HANDLE hToken, HANDLE hProfile);
 ]]
-return ffi.load( "Userenv.dll" )
+return ffi.load( 'Userenv.dll' )

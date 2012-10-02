@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/registry" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/registry' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   DWORD PxeAsyncRecvDone(            HANDLE hClientRequest, PXE_BOOT_ACTION Action);
   DWORD PxeDhcpAppendOption(         PVOID pReplyPacket, ULONG uMaxReplyPacketLen, PULONG puReplyPacketLen, BYTE bOption, BYTE bOptionLen, PVOID pValue);
@@ -23,4 +23,4 @@ ffi.cdef [[
   DWORD PxeRegisterCallback(         HANDLE hProvider, PXE_CALLBACK_TYPE CallbackType, PVOID pCallbackFunction, PVOID pContext);
   DWORD PxeTrace(                    HANDLE hProvider, PXE_SEVERITY Severity, LPCWSTR pszFormat);
 ]]
-return ffi.load( "WdsPxe.dll" )
+return ffi.load( 'WdsPxe.dll' )

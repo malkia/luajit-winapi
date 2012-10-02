@@ -1,4 +1,4 @@
-local ffi = require( "ffi" )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef enum WINAPI_ERROR_CODE {
     ERROR_SUCCESS = 0,
@@ -2547,5 +2547,5 @@ ffi.cdef [[
     ERROR_HASH_NOT_SUPPORTED = 15300,
     ERROR_HASH_NOT_PRESENT = 15301,
   } WINAPI_ERROR_CODE;
-  typedef WINAPI_ERROR_CODE WINAPI_ERROR_CODE_ULONG;
+  typedef WINAPI_ERROR_CODE WINAPI_ERROR_CODE_ULONG; //Alias
 ]]

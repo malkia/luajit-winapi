@@ -1,4 +1,4 @@
-require( "ffi/winapi/interfaces/iclassfactory" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/interfaces/iclassfactory' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
 ]]

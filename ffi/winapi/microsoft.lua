@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT CorLaunchApplication(              HOST_TYPE dwClickOnceHost, LPCWSTR pwzAppFullName, DWORD dwManifestPaths, LPCWSTR* ppwzManifestPaths, DWORD dwActivationData, LPCWSTR* ppwzActivationData, LPPROCESS_INFORMATION lpProcessInformation);
   STDAPI  GetCLRIdentityManager(             REFIID riid, IUnknown** ppManager);
@@ -17,4 +17,4 @@ ffi.cdef [[
   HRESULT GetIdentityAuthority(              IIdentityAuthority** ppIIdentityAuthority);
   HRESULT PreBindAssemblyEx(                 IApplicationContext* pAppCtx, IAssemblyName* pName, IAssembly* pAsmParent, LPCWSTR pwzRuntimeVersion, IAssemblyName** ppNamePostPolicy, LPVOID pvReserved);
 ]]
-return ffi.load( "mscorwks.dll" )
+return ffi.load( 'mscorwks.dll' )

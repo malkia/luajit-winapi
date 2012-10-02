@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/security" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/security' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   SECURITY_STATUS SspiCompareAuthIdentities(       PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthIdentity1, PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthIdentity2, PBOOLEAN SameSuppliedUser, PBOOLEAN SameSuppliedIdentity);
   SECURITY_STATUS SspiCopyAuthIdentity(            PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData, PSEC_WINNT_AUTH_IDENTITY_OPAQUE* AuthDataCopy);
@@ -20,4 +20,4 @@ ffi.cdef [[
   SECURITY_STATUS SspiValidateAuthIdentity(        PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData);
   SECURITY_STATUS SspiZeroAuthIdentity(            PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData);
 ]]
-return ffi.load( "SspiCli.dll" )
+return ffi.load( 'SspiCli.dll' )

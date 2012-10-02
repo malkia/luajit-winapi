@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/sockets" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/sockets' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   DWORD RasClearConnectionStatistics( HRASCONN hRasConn);
   DWORD RasClearLinkStatistics(       HRASCONN hRasConn, DWORD dwSubEntry);
@@ -50,4 +50,4 @@ ffi.cdef [[
   DWORD RasUpdateConnection(          HRASCONN hrasconn, LPRASUPDATECONN lprasupdateconn);
   DWORD RasValidateEntryName(         LPCTSTR lpszPhonebook, LPCTSTR lpszEntry);
 ]]
-return ffi.load( "Rasapi32.dll" )
+return ffi.load( 'Rasapi32.dll' )

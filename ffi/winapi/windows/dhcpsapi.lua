@@ -1,5 +1,5 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   DWORD DhcpAddFilterV4(                       DHCP_CONST WCHAR* ServerIpAddress, DHCP_FILTER_ADD_INFO* AddFilterInfo, BOOL ForceFlag);
   DWORD DhcpAddServer(                         DWORD Flags, LPVOID IdInfo, LPDHCP_SERVER_INFO NewServer, LPVOID CallbackFn, LPVOID CallbackData);
@@ -103,4 +103,4 @@ ffi.cdef [[
   DWORD DhcpServerSetConfigV6(                 DHCP_CONST WCHAR* ServerIpAddress, LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo, DWORD FieldsToSet, LPDHCP_SERVER_CONFIG_INFO_V6 ConfigInfo);
   DWORD DhcpSetSubnetInfoV6(                   DHCP_CONST WCHAR* ServerIpAddress, DHCP_IPV6_ADDRESS SubnetAddress, LPDHCP_SUBNET_INFO_V6 SubnetInfo);
 ]]
-return ffi.load( "Dhcpsapi.dll" )
+return ffi.load( 'Dhcpsapi.dll' )

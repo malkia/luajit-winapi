@@ -1,3 +1,3 @@
-local ffi = require( "ffi" )
+local ffi = require( 'ffi' )
 ffi.cdef [[
 ]]

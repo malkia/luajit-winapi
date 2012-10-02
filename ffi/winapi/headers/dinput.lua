@@ -1,24 +1,25 @@
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef IDirectInputDeviceA* LPDIRECTINPUTDEVICEA;
-  typedef IDirectInputDeviceW* LPDIRECTINPUTDEVICEW;
-  typedef IDirectInputDevice8A* LPDIRECTINPUTDEVICE8A;
-  typedef IDirectInputDevice8W* LPDIRECTINPUTDEVICE8W;
-  typedef IDirectInputA* LPDIRECTINPUTA;
-  typedef IDirectInputW* LPDIRECTINPUTW;
-  typedef IDirectInputEffect* LPDIRECTINPUTEFFECT;
-  typedef LPVOID LPDIENUMDEVICESCALLBACKA;
-  typedef LPVOID LPDIENUMDEVICESCALLBACKW;
-  typedef LPVOID LPDICONFIGUREDEVICESCALLBACK;
-  typedef LPVOID LPDIENUMDEVICEOBJECTSCALLBACKA;
-  typedef LPVOID LPDIENUMDEVICEOBJECTSCALLBACKW;
-  typedef LPVOID LPDIENUMCREATEDEFFECTOBJECTSCALLBACK;
-  typedef LPVOID LPDIENUMEFFECTSCALLBACKA;
-  typedef LPVOID LPDIENUMEFFECTSCALLBACKW;
-  typedef LPVOID LPDIENUMEFFECTSINFILECALLBACK;
-  typedef LPVOID LPDIENUMDEVICESBYSEMANTICSCBA;
-  typedef LPVOID LPDIENUMDEVICESBYSEMANTICSCBW;
+  typedef IDirectInputDeviceA* LPDIRECTINPUTDEVICEA; //Alias
+  typedef IDirectInputDeviceW* LPDIRECTINPUTDEVICEW; //Alias
+  typedef IDirectInputDevice8A* LPDIRECTINPUTDEVICE8A; //Alias
+  typedef IDirectInputDevice8W* LPDIRECTINPUTDEVICE8W; //Alias
+  typedef IDirectInputA* LPDIRECTINPUTA; //Alias
+  typedef IDirectInputW* LPDIRECTINPUTW; //Alias
+  typedef IDirectInputEffect* LPDIRECTINPUTEFFECT; //Alias
+  typedef LPVOID LPDIENUMDEVICESCALLBACKA; //Alias
+  typedef LPVOID LPDIENUMDEVICESCALLBACKW; //Alias
+  typedef LPVOID LPDICONFIGUREDEVICESCALLBACK; //Alias
+  typedef LPVOID LPDIENUMDEVICEOBJECTSCALLBACKA; //Alias
+  typedef LPVOID LPDIENUMDEVICEOBJECTSCALLBACKW; //Alias
+  typedef LPVOID LPDIENUMCREATEDEFFECTOBJECTSCALLBACK; //Alias
+  typedef LPVOID LPDIENUMEFFECTSCALLBACKA; //Alias
+  typedef LPVOID LPDIENUMEFFECTSCALLBACKW; //Alias
+  typedef LPVOID LPDIENUMEFFECTSINFILECALLBACK; //Alias
+  typedef LPVOID LPDIENUMDEVICESBYSEMANTICSCBA; //Alias
+  typedef LPVOID LPDIENUMDEVICESBYSEMANTICSCBW; //Alias
+  typedef POINT POINT [5]; //Array 5
   typedef enum WINAPI_DI_HRESULT {
     DI_OK = 0x00000000,
     E_ABORT = 0x80004004,
@@ -67,8 +68,7 @@ ffi.cdef [[
     LPCSTR lptszActionName,
     UINT uResIdString,
   } WINAPI_DIACTIONA_u;
-
-  typedef DWORD WINAPI_DIA_Flags;
+  typedef DWORD WINAPI_DIA_Flags; //Alias
   typedef enum WINAPI_DIAH_Enum {
     DIAH_UNMAPPED = 0x00000000,
     DIAH_USERCONFIG = 0x00000001,
@@ -78,7 +78,7 @@ ffi.cdef [[
     DIAH_DEFAULT = 0x00000020,
     DIAH_ERROR = 0x80000000,
   } WINAPI_DIAH_Enum;
-  typedef DWORD WINAPI_DIDFT_Flags;
+  typedef DWORD WINAPI_DIDFT_Flags; //Alias
   typedef struct DIACTIONA {
     UINT_PTR uAppData,
     DWORD dwSemantic,
@@ -88,8 +88,7 @@ ffi.cdef [[
     WINAPI_DIDFT_Flags dwObjID,
     WINAPI_DIAH_Enum dwHow,
   } DIACTIONA;
-
-  typedef DIACTIONA LPDIACTIONA;
+  typedef DIACTIONA *LPDIACTIONA; //Pointer
   typedef struct DIACTIONFORMATA {
     DWORD dwSize,
     DWORD dwActionSize,
@@ -106,13 +105,11 @@ ffi.cdef [[
     DWORD dwCRC,
     CHAR [MAX_PATH] tszActionMap,
   } DIACTIONFORMATA;
-
-  typedef DIACTIONFORMATA LPDIACTIONFORMATA;
+  typedef DIACTIONFORMATA *LPDIACTIONFORMATA; //Pointer
   typedef union WINAPI_DIACTIONW_u {
     LPCWSTR lptszActionName,
     UINT uResIdString,
   } WINAPI_DIACTIONW_u;
-
   typedef struct DIACTIONW {
     UINT_PTR uAppData,
     DWORD dwSemantic,
@@ -122,8 +119,7 @@ ffi.cdef [[
     WINAPI_DIDFT_Flags dwObjID,
     WINAPI_DIAH_Enum dwHow,
   } DIACTIONW;
-
-  typedef DIACTIONW LPDIACTIONW;
+  typedef DIACTIONW *LPDIACTIONW; //Pointer
   typedef struct DIACTIONFORMATW {
     DWORD dwSize,
     DWORD dwActionSize,
@@ -140,9 +136,8 @@ ffi.cdef [[
     DWORD dwCRC,
     WCHAR [MAX_PATH] tszActionMap,
   } DIACTIONFORMATW;
-
-  typedef DIACTIONFORMATW LPDIACTIONFORMATW;
-  typedef DWORD WINAPI_DIDC_Flags;
+  typedef DIACTIONFORMATW *LPDIACTIONFORMATW; //Pointer
+  typedef DWORD WINAPI_DIDC_Flags; //Alias
   typedef struct DIDEVCAPS {
     DWORD dwSize,
     WINAPI_DIDC_Flags dwFlags,
@@ -156,8 +151,7 @@ ffi.cdef [[
     DWORD dwHardwareRevision,
     DWORD dwFFDriverVersion,
   } DIDEVCAPS;
-
-  typedef DIDEVCAPS LPDIDEVCAPS;
+  typedef DIDEVCAPS *LPDIDEVCAPS; //Pointer
   typedef struct DICOLORSET {
     DWORD dwSize,
     D3DCOLOR cTextFore,
@@ -169,7 +163,6 @@ ffi.cdef [[
     D3DCOLOR cHighlightFill,
     D3DCOLOR cAreaFill,
   } DICOLORSET;
-
   typedef struct DICONFIGUREDEVICESPARAMSA {
     DWORD dwSize,
     DWORD dwcUsers,
@@ -180,8 +173,7 @@ ffi.cdef [[
     DICOLORSET dics,
     IUnknown* lpUnkDDSTarget,
   } DICONFIGUREDEVICESPARAMSA;
-
-  typedef DICONFIGUREDEVICESPARAMSA LPDICONFIGUREDEVICESPARAMSA;
+  typedef DICONFIGUREDEVICESPARAMSA *LPDICONFIGUREDEVICESPARAMSA; //Pointer
   typedef struct DICONFIGUREDEVICESPARAMSW {
     DWORD dwSize,
     DWORD dwcUsers,
@@ -192,8 +184,7 @@ ffi.cdef [[
     DICOLORSET dics,
     IUnknown* lpUnkDDSTarget,
   } DICONFIGUREDEVICESPARAMSW;
-
-  typedef DICONFIGUREDEVICESPARAMSW LPDICONFIGUREDEVICESPARAMSW;
+  typedef DICONFIGUREDEVICESPARAMSW *LPDICONFIGUREDEVICESPARAMSW; //Pointer
   typedef enum WINAPI_DIPH_Enum {
     DIPH_DEVICE = 0,
     DIPH_BYOFFSET = 1,
@@ -206,9 +197,8 @@ ffi.cdef [[
     DWORD dwObj,
     WINAPI_DIPH_Enum dwHow,
   } DIPROPHEADER;
-
-  typedef DIPROPHEADER LPDIPROPHEADER;
-  typedef DIPROPHEADER LPCDIPROPHEADER;
+  typedef DIPROPHEADER *LPDIPROPHEADER; //Pointer
+  typedef DIPROPHEADER *LPCDIPROPHEADER; //Pointer
   typedef struct DIDEVICEOBJECTDATA {
     DWORD dwOfs,
     DWORD dwData,
@@ -216,18 +206,16 @@ ffi.cdef [[
     DWORD dwSequence,
     UINT_PTR uAppData,
   } DIDEVICEOBJECTDATA;
-
-  typedef DIDEVICEOBJECTDATA LPDIDEVICEOBJECTDATA;
-  typedef DIDEVICEOBJECTDATA LPCDIDEVICEOBJECTDATA;
-  typedef DWORD WINAPI_DIDOI_Flags;
+  typedef DIDEVICEOBJECTDATA *LPDIDEVICEOBJECTDATA; //Pointer
+  typedef DIDEVICEOBJECTDATA *LPCDIDEVICEOBJECTDATA; //Pointer
+  typedef DWORD WINAPI_DIDOI_Flags; //Alias
   typedef struct DIOBJECTDATAFORMAT {
-    GUID* pguid,
+    WINAPI_GUID* pguid,
     DWORD dwOfs,
     WINAPI_DIDFT_Flags dwType,
     WINAPI_DIDOI_Flags dwFlags,
   } DIOBJECTDATAFORMAT;
-
-  typedef DIOBJECTDATAFORMAT LPDIOBJECTDATAFORMAT;
+  typedef DIOBJECTDATAFORMAT *LPDIOBJECTDATAFORMAT; //Pointer
   typedef enum WINAPI_DIDATAFORMAT_Enum {
     DIDFT_RELAXIS = 0x00000001,
     DIDFT_ABSAXIS = 0x00000002,
@@ -240,8 +228,7 @@ ffi.cdef [[
     DWORD dwNumObjs,
     LPDIOBJECTDATAFORMAT rgodf,
   } DIDATAFORMAT;
-
-  typedef DIDATAFORMAT LPCDIDATAFORMAT;
+  typedef DIDATAFORMAT *LPCDIDATAFORMAT; //Pointer
   typedef struct DIDEVICEOBJECTINSTANCEA {
     DWORD dwSize,
     GUID guidType,
@@ -259,8 +246,7 @@ ffi.cdef [[
     WORD wExponent,
     WORD wReportId,
   } DIDEVICEOBJECTINSTANCEA;
-
-  typedef DIDEVICEOBJECTINSTANCEA LPDIDEVICEOBJECTINSTANCEA;
+  typedef DIDEVICEOBJECTINSTANCEA *LPDIDEVICEOBJECTINSTANCEA; //Pointer
   typedef struct DIDEVICEOBJECTINSTANCEW {
     DWORD dwSize,
     GUID guidType,
@@ -278,8 +264,7 @@ ffi.cdef [[
     WORD wExponent,
     WORD wReportId,
   } DIDEVICEOBJECTINSTANCEW;
-
-  typedef DIDEVICEOBJECTINSTANCEW LPDIDEVICEOBJECTINSTANCEW;
+  typedef DIDEVICEOBJECTINSTANCEW *LPDIDEVICEOBJECTINSTANCEW; //Pointer
   typedef struct DIDEVICEINSTANCEA {
     DWORD dwSize,
     GUID guidInstance,
@@ -291,8 +276,7 @@ ffi.cdef [[
     WORD wUsagePage,
     WORD wUsage,
   } DIDEVICEINSTANCEA;
-
-  typedef DIDEVICEINSTANCEA LPDIDEVICEINSTANCEA;
+  typedef DIDEVICEINSTANCEA *LPDIDEVICEINSTANCEA; //Pointer
   typedef struct DIDEVICEINSTANCEW {
     DWORD dwSize,
     GUID guidInstance,
@@ -304,8 +288,7 @@ ffi.cdef [[
     WORD wUsagePage,
     WORD wUsage,
   } DIDEVICEINSTANCEW;
-
-  typedef DIDEVICEINSTANCEW LPDIDEVICEINSTANCEW;
+  typedef DIDEVICEINSTANCEW *LPDIDEVICEINSTANCEW; //Pointer
   typedef struct DIENVELOPE {
     DWORD dwSize,
     DWORD dwAttackLevel,
@@ -313,9 +296,8 @@ ffi.cdef [[
     DWORD dwFadeLevel,
     DWORD dwFadeTime,
   } DIENVELOPE;
-
-  typedef DIENVELOPE LPDIENVELOPE;
-  typedef DWORD WINAPI_DIEFF_Flags;
+  typedef DIENVELOPE *LPDIENVELOPE; //Pointer
+  typedef DWORD WINAPI_DIEFF_Flags; //Alias
   typedef enum WINAPI_DIEB_Enum {
     DIEB_NOTRIGGER = 0xFFFFFFFF,
   } WINAPI_DIEB_Enum;
@@ -335,11 +317,10 @@ ffi.cdef [[
     LPVOID lpvTypeSpecificParams,
     DWORD dwStartDelay,
   } DIEFFECT;
-
-  typedef DIEFFECT LPDIEFFECT;
-  typedef DIEFFECT LPCDIEFFECT;
-  typedef DWORD WINAPI_DIEFT_Flags;
-  typedef DWORD WINAPI_DIEP_Flags;
+  typedef DIEFFECT *LPDIEFFECT; //Pointer
+  typedef DIEFFECT *LPCDIEFFECT; //Pointer
+  typedef DWORD WINAPI_DIEFT_Flags; //Alias
+  typedef DWORD WINAPI_DIEP_Flags; //Alias
   typedef struct DIEFFECTINFOA {
     DWORD dwSize,
     GUID guid,
@@ -348,8 +329,7 @@ ffi.cdef [[
     WINAPI_DIEP_Flags dwDynamicParams,
     CHAR [MAX_PATH] tszName,
   } DIEFFECTINFOA;
-
-  typedef DIEFFECTINFOA LPDIEFFECTINFOA;
+  typedef DIEFFECTINFOA *LPDIEFFECTINFOA; //Pointer
   typedef struct DIEFFECTINFOW {
     DWORD dwSize,
     GUID guid,
@@ -358,8 +338,7 @@ ffi.cdef [[
     WINAPI_DIEP_Flags dwDynamicParams,
     WCHAR [MAX_PATH] tszName,
   } DIEFFECTINFOW;
-
-  typedef DIEFFECTINFOW LPDIEFFECTINFOW;
+  typedef DIEFFECTINFOW *LPDIEFFECTINFOW; //Pointer
   typedef struct DIEFFESCAPE {
     DWORD dwSize,
     DWORD dwCommand,
@@ -368,18 +347,16 @@ ffi.cdef [[
     LPVOID lpvOutBuffer,
     DWORD cbOutBuffer,
   } DIEFFESCAPE;
-
-  typedef DIEFFESCAPE LPDIEFFESCAPE;
+  typedef DIEFFESCAPE *LPDIEFFESCAPE; //Pointer
   typedef struct DIFILEEFFECT {
     DWORD dwSize,
     GUID GuidEffect,
     LPCDIEFFECT lpDiEffect,
     CHAR [MAX_PATH] szFriendlyName,
   } DIFILEEFFECT;
-
-  typedef DIFILEEFFECT LPDIFILEEFFECT;
-  typedef DWORD WINAPI_DIDIFT_Flags;
-  typedef DWORD WINAPI_DIDAL_Flags;
+  typedef DIFILEEFFECT *LPDIFILEEFFECT; //Pointer
+  typedef DWORD WINAPI_DIDIFT_Flags; //Alias
+  typedef DWORD WINAPI_DIDAL_Flags; //Alias
   typedef struct DIDEVICEIMAGEINFOA {
     CHAR [MAX_PATH] tszImagePath,
     WINAPI_DIDIFT_Flags dwFlags,
@@ -391,8 +368,7 @@ ffi.cdef [[
     RECT rcCalloutRect,
     WINAPI_DIDAL_Flags dwTextAlign,
   } DIDEVICEIMAGEINFOA;
-
-  typedef DIDEVICEIMAGEINFOA LPDIDEVICEIMAGEINFOA;
+  typedef DIDEVICEIMAGEINFOA *LPDIDEVICEIMAGEINFOA; //Pointer
   typedef struct DIDEVICEIMAGEINFOHEADERA {
     DWORD dwSize,
     DWORD dwSizeImageInfo,
@@ -404,8 +380,7 @@ ffi.cdef [[
     DWORD dwBufferUsed,
     LPDIDEVICEIMAGEINFOA lprgImageInfoArray,
   } DIDEVICEIMAGEINFOHEADERA;
-
-  typedef DIDEVICEIMAGEINFOHEADERA LPDIDEVICEIMAGEINFOHEADERA;
+  typedef DIDEVICEIMAGEINFOHEADERA *LPDIDEVICEIMAGEINFOHEADERA; //Pointer
   typedef struct DIDEVICEIMAGEINFOW {
     WCHAR [MAX_PATH] tszImagePath,
     WINAPI_DIDIFT_Flags dwFlags,
@@ -417,8 +392,7 @@ ffi.cdef [[
     RECT rcCalloutRect,
     WINAPI_DIDAL_Flags dwTextAlign,
   } DIDEVICEIMAGEINFOW;
-
-  typedef DIDEVICEIMAGEINFOW LPDIDEVICEIMAGEINFOW;
+  typedef DIDEVICEIMAGEINFOW *LPDIDEVICEIMAGEINFOW; //Pointer
   typedef struct DIDEVICEIMAGEINFOHEADERW {
     DWORD dwSize,
     DWORD dwSizeImageInfo,
@@ -430,8 +404,7 @@ ffi.cdef [[
     DWORD dwBufferUsed,
     LPDIDEVICEIMAGEINFOW lprgImageInfoArray,
   } DIDEVICEIMAGEINFOHEADERW;
-
-  typedef DIDEVICEIMAGEINFOHEADERW LPDIDEVICEIMAGEINFOHEADERW;
+  typedef DIDEVICEIMAGEINFOHEADERW *LPDIDEVICEIMAGEINFOHEADERW; //Pointer
   typedef enum WINAPI_DIPROP {
     DIPROP_BUFFERSIZE = 1,
     DIPROP_AXISMODE = 2,
@@ -478,19 +451,19 @@ ffi.cdef [[
     DI8DEVTYPE_REMOTE = 0x1B,
     DI8DEVTYPE_SUPPLEMENTAL = 0x1C,
   } WINAPI_DI8DEV_FILTER;
-  typedef DWORD WINAPI_DIEDFL_Flags;
-  typedef DWORD WINAPI_DIEDBSFL_Flags;
+  typedef DWORD WINAPI_DIEDFL_Flags; //Alias
+  typedef DWORD WINAPI_DIEDBSFL_Flags; //Alias
   typedef enum WINAPI_DICD_Enum {
     DICD_DEFAULT = 0x00000000,
     DICD_EDIT = 0x00000001,
   } WINAPI_DICD_Enum;
-  typedef DWORD WINAPI_DIGFFS_Flags;
-  typedef DWORD WINAPI_DISFFC_Flags;
-  typedef DWORD WINAPI_DIFEF_Flags;
-  typedef DWORD WINAPI_DIDBAM_Flags;
-  typedef DWORD WINAPI_DIDSAM_Flags;
-  typedef DWORD WINAPI_DIES_Flags;
-  typedef DWORD WINAPI_DIEGES_Flags;
-  typedef DWORD WINAPI_DISCL_Flags;
-  typedef DWORD WINAPI_DIGDD_Flags;
+  typedef DWORD WINAPI_DIGFFS_Flags; //Alias
+  typedef DWORD WINAPI_DISFFC_Flags; //Alias
+  typedef DWORD WINAPI_DIFEF_Flags; //Alias
+  typedef DWORD WINAPI_DIDBAM_Flags; //Alias
+  typedef DWORD WINAPI_DIDSAM_Flags; //Alias
+  typedef DWORD WINAPI_DIES_Flags; //Alias
+  typedef DWORD WINAPI_DIEGES_Flags; //Alias
+  typedef DWORD WINAPI_DISCL_Flags; //Alias
+  typedef DWORD WINAPI_DIGDD_Flags; //Alias
 ]]

@@ -1,9 +1,9 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/registry" )
-require( "ffi/winapi/headers/shell" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/registry' )
+require( 'ffi/winapi/headers/shell' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  HANDLE                  SHAllocShared(                       void* pvData, DWORD dwSize, DWORD dwDestinationProcessId);
+  HANDLE                  SHAllocShared(                       WINAPI_void* pvData, DWORD dwSize, DWORD dwDestinationProcessId);
   WINAPI_MessageBoxResult ShellMessageBox(                     HINSTANCE hInst, HWND hWnd, LPCTSTR pszMsg, LPCTSTR pszTitle, WINAPI_MessageBoxType fuStyle);
   HRESULT                 SHGetViewStatePropertyBag(           PCIDLIST_ABSOLUTE pidl, LPCWSTR pszBagName, DWORD dwFlags, REFIID riid, void** ppv);
   LPVOID                  SHLockShared(                        HANDLE* hData, DWORD dwOtherProcId);
@@ -32,7 +32,7 @@ ffi.cdef [[
   PTSTR                   PathFindFileName(                    PTSTR pPath);
   PTSTR                   PathFindNextComponent(               PTSTR pszPath);
   BOOL                    PathFindOnPath(                      LPTSTR pszFile, LPCTSTR* ppszOtherDirs);
-  LPCTSTR                 PathFindSuffixArray(                 LPCTSTR pszPath, LPCTSTR* apszSuffix, int iArraySize);
+  LPCTSTR                 PathFindSuffixArray(                 LPCTSTR pszPath, WINAPI_LPCTSTR* apszSuffix, int iArraySize);
   PTSTR                   PathGetArgs(                         PTSTR pszPath);
   UINT                    PathGetCharType(                     TCHAR ch);
   int                     PathGetDriveNumber(                  LPCTSTR lpsz);
@@ -74,7 +74,7 @@ ffi.cdef [[
   BOOL                    PathUnExpandEnvStrings(              LPCTSTR pszPath, LPTSTR pszBuf, UINT cchBuf);
   BOOL                    PathUnmakeSystemFolder(              LPTSTR pszPath);
   void                    PathUnquoteSpaces(                   LPTSTR lpsz);
-  BOOL                    SHSkipJunction(                      IBindCtx* pbc, CLSID* pclsid);
+  BOOL                    SHSkipJunction(                      IBindCtx* pbc, WINAPI_CLSID* pclsid);
   HRESULT                 UrlApplyScheme(                      PCTSTR pszIn, PTSTR pszOut, DWORD* pcchOut, DWORD dwFlags);
   HRESULT                 UrlCanonicalize(                     PCTSTR pszUrl, PTSTR pszCanonicalized, DWORD* pcchCanonicalized, DWORD dwFlags);
   HRESULT                 UrlCombine(                          PCTSTR pszBase, PCTSTR pszRelative, PTSTR pszCombined, DWORD* pcchCombined, DWORD dwFlags);
@@ -134,8 +134,8 @@ ffi.cdef [[
   BOOL                    ChrCmpI(                             TCHAR w1, TCHAR w2);
   int                     CompareStringWrapW(                  LCID Locale, DWORD dwCmpFlags, LPCWSTR lpString1, int cchCount1, LPCWSTR lpString2, int cchCount2);
   HRESULT                 GetAcceptLanguages(                  LPTSTR pszLanguages, DWORD* pcchLanguages);
-  int                     GetDateFormatWrapW(                  LCID Locale, DWORD dwFlags, SYSTEMTIME* lpDate, LPCWSTR pwzFormat, LPWSTR pwzDateStr, int cchDate);
-  int                     GetTimeFormatWrapW(                  LCID Locale, DWORD dwFlags, SYSTEMTIME* lpTime, LPCWSTR pwzFormat, LPWSTR pwzTimeStr, int cchTime);
+  int                     GetDateFormatWrapW(                  LCID Locale, DWORD dwFlags, WINAPI_SYSTEMTIME* lpDate, LPCWSTR pwzFormat, LPWSTR pwzDateStr, int cchDate);
+  int                     GetTimeFormatWrapW(                  LCID Locale, DWORD dwFlags, WINAPI_SYSTEMTIME* lpTime, LPCWSTR pwzFormat, LPWSTR pwzTimeStr, int cchTime);
   BOOL                    IntlStrEqN(                          LPCTSTR pszStr1, LPCTSTR pszStr2, int nChar);
   BOOL                    IntlStrEqNI(                         LPCTSTR pszStr1, LPCTSTR pszStr2, int nChar);
   BOOL                    IntlStrEqWorker(                     BOOL fCaseSens, LPCTSTR pszStr1, LPCTSTR pszStr2, int nChar);
@@ -203,7 +203,7 @@ ffi.cdef [[
   HRESULT                 IStream_ReadStr(                     IStream* pstm, PWSTR* ppsz);
   HRESULT                 IStream_Reset(                       IStream* pstm);
   HRESULT                 IStream_Size(                        IStream* pstm, ULARGE_INTEGER* pui);
-  HRESULT                 IStream_Write(                       IStream* pstm, void* pv, ULONG cb);
+  HRESULT                 IStream_Write(                       IStream* pstm, WINAPI_void* pv, ULONG cb);
   HRESULT                 IStream_WritePidl(                   IStream* pstm, PCUIDLIST_RELATIVE pidlWrite);
   HRESULT                 IStream_WriteStr(                    IStream* pstm, PCWSTR psz);
   void                    IUnknown_AtomicRelease(              void** ppunk);
@@ -221,19 +221,19 @@ ffi.cdef [[
   int                     SHAnsiToAnsi(                        LPCSTR pszSrc, LPWSTR pszDst, int cchBuf);
   int                     SHAnsiToUnicode(                     PCSTR pszSrc, PWSTR pwszDst, int cwchBuf);
   HRESULT                 SHAutoComplete(                      HWND hwndEdit, DWORD dwFlags);
-  IStream*                SHCreateMemStream(                   BYTE* pInit, UINT cbInit);
+  IStream*                SHCreateMemStream(                   WINAPI_BYTE* pInit, UINT cbInit);
   HRESULT                 SHCreateStreamOnFile(                LPCTSTR pszFile, WINAPI_STGM_FLAGS grfMode, IStream** ppstm);
   HRESULT                 SHCreateStreamOnFileEx(              LPCWSTR pszFile, WINAPI_STGM_FLAGS grfMode, DWORD dwAttributes, BOOL fCreate, IStream* pstmTemplate, IStream** ppstm);
   BOOL                    SHCreateThread(                      LPTHREAD_START_ROUTINE pfnThreadProc, void* pData, SHCT_FLAGS dwFlags, LPTHREAD_START_ROUTINE pfnCallback);
   HRESULT                 SHCreateThreadRef(                   LONG* pcRef, IUnknown** ppunk);
   BOOL                    SHCreateThreadWithHandle(            LPTHREAD_START_ROUTINE pfnThreadProc, void* pData, SHCT_FLAGS flags, LPTHREAD_START_ROUTINE pfnCallback, HANDLE* pHandle);
-  int                     SHFormatDateTime(                    FILETIME* pft, DWORD* pdwFlags, LPTSTR pszBuf, UINT cchBuf);
+  int                     SHFormatDateTime(                    WINAPI_FILETIME* pft, DWORD* pdwFlags, LPTSTR pszBuf, UINT cchBuf);
   HRESULT                 SHGetThreadRef(                      IUnknown** ppunk);
   HRESULT                 SHSetThreadRef(                      IUnknown* punk);
   HRESULT                 SHReleaseThreadRef(                  );
-  long                    SHGlobalCounterDecrement(            SHGLOBALCOUNTER id);
-  long                    SHGlobalCounterGetValue(             SHGLOBALCOUNTER id);
-  long                    SHGlobalCounterIncrement(            SHGLOBALCOUNTER id);
+  long                    SHGlobalCounterDecrement(            WINAPI_SHGLOBALCOUNTER id);
+  long                    SHGlobalCounterGetValue(             WINAPI_SHGLOBALCOUNTER id);
+  long                    SHGlobalCounterIncrement(            WINAPI_SHGLOBALCOUNTER id);
   HRESULT                 SHIsChildOrSelf(                     HWND hwndParent, HWND hwnd);
   BOOL                    SHIsLowMemoryMachine(                DWORD dwType);
   int                     SHMessageBoxCheck(                   HWND hwnd, LPCTSTR pszText, LPCTSTR pszCaption, UINT uType, int iDefault, LPCTSTR pszRegVal);
@@ -274,4 +274,4 @@ ffi.cdef [[
   LSTATUS                 SHRegSetValue(                       HKEY hKey, LPCWSTR pwszSubKey, LPCWSTR pwszValue, SRRF srrfFlags, DWORD dwType, LPCVOID pvData, DWORD cbData);
   HRESULT                 SHUnicodeToAnsiCPAlloc(              UINT codePage, LPCWSTR pwszString, LPSTR* ppszConverted);
 ]]
-return ffi.load( "shlwapi.dll" )
+return ffi.load( 'shlwapi.dll' )

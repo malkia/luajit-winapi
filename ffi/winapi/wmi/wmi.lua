@@ -1,8 +1,8 @@
-require( "ffi/winapi/headers/ole" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/ole' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef LPWSTR WBEM_WSTR;
-  typedef LPCWSTR WBEM_CWSTR;
+  typedef LPWSTR WBEM_WSTR; //Alias
+  typedef LPCWSTR WBEM_CWSTR; //Alias
   typedef enum WBEMSTATUS {
     WBEM_S_NO_ERROR = 0,
     WBEM_S_FALSE = 1,
@@ -204,7 +204,6 @@ ffi.cdef [[
     long LastLine,
     DWORD dwOutFlags,
   } WBEM_COMPILE_STATUS_INFO;
-
   typedef enum WbemObjectTextFormatEnum {
     wbemObjectTextFormatCIMDTD20 = 1,
     wbemObjectTextFormatWMIDTD20 = 2,
@@ -271,9 +270,9 @@ ffi.cdef [[
     wbemAuthenticationLevelPktIntegrity = 5,
     wbemAuthenticationLevelPktPrivacy = 6,
   } WbemAuthenticationLevelEnum;
-  typedef UINT CIMTYPE;
-  typedef ULONG WBEM_COMPILER_OPTIONS;
-  typedef ULONG WBEM_CHANGE_FLAG_TYPE;
-  typedef ULONG WbemConnectOptionsEnum;
-  typedef ULONG WBEM_CONNECT_OPTIONS;
+  typedef UINT CIMTYPE; //Alias
+  typedef ULONG WBEM_COMPILER_OPTIONS; //Alias
+  typedef ULONG WBEM_CHANGE_FLAG_TYPE; //Alias
+  typedef ULONG WbemConnectOptionsEnum; //Alias
+  typedef ULONG WBEM_CONNECT_OPTIONS; //Alias
 ]]

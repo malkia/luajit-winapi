@@ -1,36 +1,39 @@
-require( "ffi/winapi/headers/ole" )
-require( "ffi/winapi/headers/windows" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/ole' )
+require( 'ffi/winapi/headers/windows' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef HANDLE HICON;
-  typedef HANDLE HMENU;
-  typedef HANDLE HDC;
-  typedef HANDLE CONST HDC;
-  typedef HANDLE HDC;
-  typedef HANDLE HPALETTE;
-  typedef HICON HCURSOR;
-  typedef HANDLE HMONITOR;
-  typedef LPVOID HIMAGELIST;
-  typedef HANDLE HRGN;
-  typedef HANDLE HMETAFILE;
-  typedef HANDLE HBRUSH;
-  typedef HANDLE HFONT;
-  typedef LPVOID LPCCHOOKPROC;
-  typedef LPVOID LPCFHOOKPROC;
-  typedef LPVOID LPPAGESETUPHOOK;
-  typedef LPVOID LPPAGEPAINTHOOK;
-  typedef LPVOID LPFRHOOKPROC;
-  typedef LPVOID LPPRINTHOOKPROC;
-  typedef LPVOID LPSETUPHOOKPROC;
-  typedef LONGLONG REFERENCE_TIME;
-  typedef REFERENCE_TIME* REFERENCE_TIME*;
+  typedef HANDLE HICON; //Alias
+  typedef HANDLE HMENU; //Alias
+  typedef HANDLE HDC; //Alias
+  typedef HANDLE WINAPI_HDC; //Alias
+  typedef HANDLE WINAPI_HDC; //Alias
+  typedef HANDLE HPALETTE; //Alias
+  typedef HICON HCURSOR; //Alias
+  typedef HANDLE HMONITOR; //Alias
+  typedef LPVOID HIMAGELIST; //Alias
+  typedef HANDLE HRGN; //Alias
+  typedef HANDLE HMETAFILE; //Alias
+  typedef HANDLE HBRUSH; //Alias
+  typedef HANDLE HFONT; //Alias
+  typedef LPVOID LPCCHOOKPROC; //Alias
+  typedef LPVOID LPCFHOOKPROC; //Alias
+  typedef LPVOID LPPAGESETUPHOOK; //Alias
+  typedef LPVOID LPPAGEPAINTHOOK; //Alias
+  typedef LPVOID LPFRHOOKPROC; //Alias
+  typedef LPVOID LPPRINTHOOKPROC; //Alias
+  typedef LPVOID LPSETUPHOOKPROC; //Alias
+  typedef LONGLONG REFERENCE_TIME; //Alias
+  typedef REFERENCE_TIME* WINAPI_REFERENCE_TIME*; //Alias
+  typedef TCHAR TCHAR [LF_FACESIZE]; //Array 32
+  typedef WCHAR WCHAR [LF_FACESIZE]; //Array 32
   typedef struct RGBQUAD {
     BYTE rgbBlue,
     BYTE rgbGreen,
     BYTE rgbRed,
     BYTE rgbReserved,
   } RGBQUAD;
-
+  typedef RGBQUAD *WINAPI_RGBQUAD*; //Pointer
+  typedef RGBQUAD RGBQUAD [1]; //Array 1
   typedef enum WINAPI_RegionType {
     RDH_RECTANGLES = 1,
   } WINAPI_RegionType;
@@ -41,29 +44,27 @@ ffi.cdef [[
     DWORD nRgnSize,
     RECT rcBound,
   } RGNDATAHEADER;
-
   typedef struct RGNDATA {
     RGNDATAHEADER rdh,
     char Buffer,
   } RGNDATA;
-
-  typedef RGNDATA CONST RGNDATA*;
-  typedef RGNDATA LPRGNDATA;
+  typedef RGNDATA *WINAPI_RGNDATA*; //Pointer
+  typedef RGNDATA *WINAPI_RGNDATA*; //Pointer
+  typedef RGNDATA *LPRGNDATA; //Pointer
   typedef enum COLORREF {
     CLR_INVALID = 0xFFFFFFFF,
   } COLORREF;
-  typedef COLORREF* COLORREF*;
+  typedef COLORREF* WINAPI_COLORREF*; //Alias
   typedef struct SIZE {
     LONG cx,
     LONG cy,
   } SIZE;
-
-  typedef SIZE* LPSIZE;
-  typedef SIZE* SIZE*;
-  typedef SIZE* PSIZE;
-  typedef SIZE SIZEL;
-  typedef SIZEL LPSIZEL;
-  typedef DWORD WINAPI_ChooseColorFlags;
+  typedef SIZE* LPSIZE; //Alias
+  typedef SIZE* WINAPI_SIZE*; //Alias
+  typedef SIZE* PSIZE; //Alias
+  typedef SIZE SIZEL; //Alias
+  typedef SIZEL *LPSIZEL; //Pointer
+  typedef DWORD WINAPI_ChooseColorFlags; //Alias
   typedef struct CHOOSECOLOR {
     DWORD lStructSize,
     HWND hwndOwner,
@@ -75,10 +76,9 @@ ffi.cdef [[
     LPCCHOOKPROC lpfnHook,
     LPCTSTR lpTemplateName,
   } CHOOSECOLOR;
-
-  typedef CHOOSECOLOR LPCHOOSECOLOR;
-  typedef DWORD WINAPI_ChoooseFontFlags;
-  typedef WORD WINAPI_FontType;
+  typedef CHOOSECOLOR *LPCHOOSECOLOR; //Pointer
+  typedef DWORD WINAPI_ChoooseFontFlags; //Alias
+  typedef WORD WINAPI_FontType; //Alias
   typedef enum WINAPI_FontWeight {
     FW_DONTCARE = 0,
     FW_THIN = 100,
@@ -145,7 +145,7 @@ ffi.cdef [[
     CLEARTYPE_QUALITY = 5,
     CLEARTYPE_NATURAL_QUALITY = 6,
   } WINAPI_FontQuality;
-  typedef BYTE WINAPI_FontPitchAndFamily;
+  typedef BYTE WINAPI_FontPitchAndFamily; //Alias
   typedef struct LOGFONT {
     LONG lfHeight,
     LONG lfWidth,
@@ -162,8 +162,8 @@ ffi.cdef [[
     WINAPI_FontPitchAndFamily lfPitchAndFamily,
     TCHAR [LF_FACESIZE] lfFaceName,
   } LOGFONT;
-
-  typedef LOGFONT LPLOGFONT;
+  typedef LOGFONT *LPLOGFONT; //Pointer
+  typedef LOGFONT *WINAPI_LOGFONT*; //Pointer
   typedef struct LOGFONTW {
     LONG lfHeight,
     LONG lfWidth,
@@ -180,7 +180,7 @@ ffi.cdef [[
     WINAPI_FontPitchAndFamily lfPitchAndFamily,
     WCHAR [LF_FACESIZE] lfFaceName,
   } LOGFONTW;
-
+  typedef LOGFONTW *WINAPI_LOGFONTW*; //Pointer
   typedef struct CHOOSEFONT {
     DWORD lStructSize,
     HWND hwndOwner,
@@ -199,9 +199,8 @@ ffi.cdef [[
     INT nSizeMin,
     INT nSizeMax,
   } CHOOSEFONT;
-
-  typedef CHOOSEFONT LPCHOOSEFONT;
-  typedef DWORD WINAPI_FindReplaceFlags;
+  typedef CHOOSEFONT *LPCHOOSEFONT; //Pointer
+  typedef DWORD WINAPI_FindReplaceFlags; //Alias
   typedef struct FINDREPLACE {
     DWORD lStructSize,
     HWND hwndOwner,
@@ -215,10 +214,9 @@ ffi.cdef [[
     LPFRHOOKPROC lpfnHook,
     LPCTSTR lpTemplateName,
   } FINDREPLACE;
-
-  typedef FINDREPLACE LPFINDREPLACE;
-  typedef DWORD WINAPI_OfnFlags;
-  typedef DWORD WINAPI_OfnFlagsEx;
+  typedef FINDREPLACE *LPFINDREPLACE; //Pointer
+  typedef DWORD WINAPI_OfnFlags; //Alias
+  typedef DWORD WINAPI_OfnFlagsEx; //Alias
   typedef struct OPENFILENAME {
     DWORD lStructSize,
     HWND hwndOwner,
@@ -244,9 +242,8 @@ ffi.cdef [[
     DWORD dwReserved,
     WINAPI_OfnFlagsEx FlagsEx,
   } OPENFILENAME;
-
-  typedef OPENFILENAME LPOPENFILENAME;
-  typedef DWORD WINAPI_PageSetupDialogFlags;
+  typedef OPENFILENAME *LPOPENFILENAME; //Pointer
+  typedef DWORD WINAPI_PageSetupDialogFlags; //Alias
   typedef struct PAGESETUPDLG {
     DWORD lStructSize,
     HWND hwndOwner,
@@ -263,9 +260,8 @@ ffi.cdef [[
     LPCTSTR lpPageSetupTemplateName,
     HGLOBAL hPageSetupTemplate,
   } PAGESETUPDLG;
-
-  typedef PAGESETUPDLG LPPAGESETUPDLG;
-  typedef DWORD WINAPI_PrintDlgFlags;
+  typedef PAGESETUPDLG *LPPAGESETUPDLG; //Pointer
+  typedef DWORD WINAPI_PrintDlgFlags; //Alias
   typedef struct PRINTDLG {
     DWORD lStructSize,
     HWND hwndOwner,
@@ -287,14 +283,12 @@ ffi.cdef [[
     HGLOBAL hPrintTemplate,
     HGLOBAL hSetupTemplate,
   } PRINTDLG;
-
-  typedef PRINTDLG LPPRINTDLG;
+  typedef PRINTDLG *LPPRINTDLG; //Pointer
   typedef struct PRINTPAGERANGE {
     DWORD nFromPage,
     DWORD nToPage,
   } PRINTPAGERANGE;
-
-  typedef PRINTPAGERANGE LPPRINTPAGERANGE;
+  typedef PRINTPAGERANGE *LPPRINTPAGERANGE; //Pointer
   typedef struct PRINTDLGEX {
     DWORD lStructSize,
     HWND hwndOwner,
@@ -318,8 +312,7 @@ ffi.cdef [[
     DWORD nStartPage,
     DWORD dwResultAction,
   } PRINTDLGEX;
-
-  typedef PRINTDLGEX LPPRINTDLGEX;
+  typedef PRINTDLGEX *LPPRINTDLGEX; //Pointer
   typedef struct DRAWTEXTPARAMS {
     UINT cbSize,
     int iTabLength,
@@ -327,18 +320,16 @@ ffi.cdef [[
     int iRightMargin,
     UINT uiLengthDrawn,
   } DRAWTEXTPARAMS;
-
-  typedef DRAWTEXTPARAMS LPDRAWTEXTPARAMS;
-  typedef DWORD WINAPI_TRACKMOUSEEVENT_Flags;
+  typedef DRAWTEXTPARAMS *LPDRAWTEXTPARAMS; //Pointer
+  typedef DWORD WINAPI_TRACKMOUSEEVENT_Flags; //Alias
   typedef struct TRACKMOUSEEVENT {
     DWORD cbSize,
     WINAPI_TRACKMOUSEEVENT_Flags dwFlags,
     HWND hwndTrack,
     DWORD dwHoverTime,
   } TRACKMOUSEEVENT;
-
-  typedef TRACKMOUSEEVENT LPTRACKMOUSEEVENT;
-  typedef UINT WINAPI_SCROLLINFO_Flags;
+  typedef TRACKMOUSEEVENT *LPTRACKMOUSEEVENT; //Pointer
+  typedef UINT WINAPI_SCROLLINFO_Flags; //Alias
   typedef struct SCROLLINFO {
     UINT cbSize,
     WINAPI_SCROLLINFO_Flags fMask,
@@ -348,23 +339,22 @@ ffi.cdef [[
     int nPos,
     int nTrackPos,
   } SCROLLINFO;
-
-  typedef SCROLLINFO LPSCROLLINFO;
-  typedef SCROLLINFO LPCSCROLLINFO;
+  typedef SCROLLINFO *LPSCROLLINFO; //Pointer
+  typedef SCROLLINFO *LPCSCROLLINFO; //Pointer
   typedef struct MARGINS {
     int cxLeftWidth,
     int cxRightWidth,
     int cyTopHeight,
     int cyBottomHeight,
   } MARGINS;
-
+  typedef MARGINS *WINAPI_MARGINS*; //Pointer
   typedef struct BLENDFUNCTION {
     BYTE BlendOp,
     BYTE BlendFlags,
     BYTE SourceConstantAlpha,
     BYTE AlphaFormat,
   } BLENDFUNCTION;
-
+  typedef BLENDFUNCTION *WINAPI_BLENDFUNCTION*; //Pointer
   typedef struct BITMAPINFOHEADER {
     DWORD biSize,
     LONG biWidth,
@@ -378,15 +368,15 @@ ffi.cdef [[
     DWORD biClrUsed,
     DWORD biClrImportant,
   } BITMAPINFOHEADER;
-
-  typedef BITMAPINFOHEADER LPBITMAPINFOHEADER;
+  typedef BITMAPINFOHEADER *WINAPI_BITMAPINFOHEADER*; //Pointer
+  typedef BITMAPINFOHEADER *LPBITMAPINFOHEADER; //Pointer
   typedef struct BITMAPINFO {
     BITMAPINFOHEADER bmiHeader,
     RGBQUAD [1] bmiColors,
   } BITMAPINFO;
-
-  typedef BITMAPINFO LPBITMAPINFO;
-  typedef BYTE WINAPI_TEXTMETRIC_Pitch;
+  typedef BITMAPINFO *LPBITMAPINFO; //Pointer
+  typedef BITMAPINFO *WINAPI_BITMAPINFO*; //Pointer
+  typedef BYTE WINAPI_TEXTMETRIC_Pitch; //Alias
   typedef struct TEXTMETRIC {
     LONG tmHeight,
     LONG tmAscent,
@@ -409,9 +399,8 @@ ffi.cdef [[
     WINAPI_TEXTMETRIC_Pitch tmPitchAndFamily,
     WINAPI_FontCharset tmCharSet,
   } TEXTMETRIC;
-
-  typedef TEXTMETRIC LPTEXTMETRIC;
-  typedef DWORD WINAPI_MONITORINFO_Flags;
+  typedef TEXTMETRIC *LPTEXTMETRIC; //Pointer
+  typedef DWORD WINAPI_MONITORINFO_Flags; //Alias
   typedef struct VIDEOINFOHEADER {
     RECT rcSource,
     RECT rcTarget,
@@ -420,10 +409,10 @@ ffi.cdef [[
     REFERENCE_TIME AvgTimePerFrame,
     BITMAPINFOHEADER bmiHeader,
   } VIDEOINFOHEADER;
-
-  typedef DWORD WINAPI_AMINTERLACE_FLAGS;
-  typedef DWORD WINAPI_AMCOPYPROTECT_FLAGS;
-  typedef DWORD WINAPI_AMCONTROL_FLAGS;
+  typedef VIDEOINFOHEADER *WINAPI_VIDEOINFOHEADER*; //Pointer
+  typedef DWORD WINAPI_AMINTERLACE_FLAGS; //Alias
+  typedef DWORD WINAPI_AMCOPYPROTECT_FLAGS; //Alias
+  typedef DWORD WINAPI_AMCONTROL_FLAGS; //Alias
   typedef struct VIDEOINFOHEADER2 {
     RECT rcSource,
     RECT rcTarget,
@@ -438,7 +427,7 @@ ffi.cdef [[
     DWORD dwReserved2,
     BITMAPINFOHEADER bmiHeader,
   } VIDEOINFOHEADER2;
-
+  typedef VIDEOINFOHEADER2 *WINAPI_VIDEOINFOHEADER2*; //Pointer
   typedef enum PixelFormat {
     PixelFormat4bppIndexed = 0x30402,
     PixelFormat8bppIndexed = 0x30803,
@@ -456,7 +445,7 @@ ffi.cdef [[
     PixelFormat32bppCMYK = 0x200f,
   } PixelFormat;
   typedef enum InterpolationMode {
-    InterpolationModeInvalid = _1,
+    InterpolationModeInvalid = WINAPI__1,
     InterpolationModeDefault = 0,
     InterpolationModeLowQuality = 1,
     InterpolationModeHighQuality = 2,
@@ -483,17 +472,15 @@ ffi.cdef [[
     EncoderParameterValueType Type,
     VOID* Value,
   } EncoderParameter;
-
+  typedef EncoderParameter EncoderParameter [1]; //Array 1
   typedef struct EncoderParameters {
     UINT Count,
     EncoderParameter [1] Parameter,
   } EncoderParameters;
-
   typedef struct ABC {
     int abcA,
     UINT abcB,
     int abcC,
   } ABC;
-
-  typedef ABC LPABC;
+  typedef ABC *LPABC; //Pointer
 ]]

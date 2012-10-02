@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/ole" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/ole' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT MQADsPathToFormatName(           LPCWSTR lpwcsADsPath);
   HRESULT MQBeginTransaction(              ITransaction** ppTransaction);
@@ -11,7 +11,7 @@ ffi.cdef [[
   HRESULT MQDeleteQueue(                   LPCWSTR lpwcsFormatName);
   VOID    MQFreeMemory(                    PVOID pvMemory);
   VOID    MQFreeSecurityContext(           HANDLE hSecurityContext);
-  HRESULT MQGetMachineProperties(          LPCWSTR lpwcsMachineName, GUID* pguidMachineID, MQQMPROPS* pQMProps);
+  HRESULT MQGetMachineProperties(          LPCWSTR lpwcsMachineName, WINAPI_GUID* pguidMachineID, MQQMPROPS* pQMProps);
   HRESULT MQGetOverlappedResult(           LPOVERLAPPED lpOverlapped);
   HRESULT MQGetPrivateComputerInformation( LPCWSTR lpwcsComputerName, MQPRIVATEPROPS* pPrivateProps);
   HRESULT MQGetQueueProperties(            LPCWSTR lpwcsFormatName, MQQUEUEPROPS* pQueueProps);
@@ -37,4 +37,4 @@ ffi.cdef [[
   HRESULT MQSetQueueProperties(            LPCWSTR lpwcsFormatName, MQQUEUEPROPS* pQueueProps);
   HRESULT MQSetQueueSecurity(              LPCWSTR lpwcsFormatName, SECURITY_INFORMATION SecurityInformation, PSECURITY_DESCRIPTOR pSecurityDescriptor);
 ]]
-return ffi.load( "Mqrt.dll" )
+return ffi.load( 'Mqrt.dll' )

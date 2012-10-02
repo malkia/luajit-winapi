@@ -1,6 +1,6 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/setup" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/setup' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
   BOOL InstallNewDevice(                  HWND hwndParent, LPGUID ClassGuid, PDWORD pReboot);
   BOOL DiInstallDevice(                   HWND hwndParent, HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DRVINFO_DATA DriverInfoData, DWORD Flags, PBOOL NeedReboot);
@@ -11,4 +11,4 @@ ffi.cdef [[
   BOOL UpdateDriverForPlugAndPlayDevices( HWND hwndParent, LPCTSTR HardwareId, LPCTSTR FullInfPath, DWORD InstallFlags, PBOOL bRebootRequired);
   BOOL InstallSelectedDriver(             HWND hwndParent, HDEVINFO DeviceInfoSet, LPCTSTR Reserved, BOOL Backup, PDWORD bReboot);
 ]]
-return ffi.load( "Newdev.dll" )
+return ffi.load( 'Newdev.dll' )

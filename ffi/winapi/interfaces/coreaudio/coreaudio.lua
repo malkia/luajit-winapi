@@ -1,8 +1,10 @@
-require( "ffi/winapi/headers/windows" )
-require( "ffi/winapi/headers/multimedia" )
-local ffi = require( "ffi" )
+require( 'ffi/winapi/headers/windows' )
+require( 'ffi/winapi/headers/multimedia' )
+local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef float float [];
+  typedef WCHAR WCHAR [MAX_SINK_DESCRIPTION_NAME_LENGTH]; //Array 32
+  typedef float float [1]; //Array 1
+  typedef float *float []; //Pointer
   typedef enum WINAPI_AUDCLNT_HRESULT {
     AUDCLNT_E_NOT_INITIALIZED = 0x88890001,
     AUDCLNT_E_ALREADY_INITIALIZED = 0x88890002,
@@ -81,18 +83,16 @@ ffi.cdef [[
     ULONG Id,
     ULONG Flags,
   } WINAPI_KSIDENTIFIER_s;
-
   typedef union KSIDENTIFIER {
     WINAPI_KSIDENTIFIER_s ,
     LONGLONG Alignment,
   } KSIDENTIFIER;
-
-  typedef KSIDENTIFIER KSPROPERTY;
-  typedef KSPROPERTY PKSPROPERTY;
-  typedef KSIDENTIFIER KSMETHOD;
-  typedef KSMETHOD PKSMETHOD;
-  typedef KSIDENTIFIER KSEVENT;
-  typedef KSEVENT PKSEVENT;
+  typedef KSIDENTIFIER KSPROPERTY; //Alias
+  typedef KSPROPERTY *PKSPROPERTY; //Pointer
+  typedef KSIDENTIFIER KSMETHOD; //Alias
+  typedef KSMETHOD *PKSMETHOD; //Pointer
+  typedef KSIDENTIFIER KSEVENT; //Alias
+  typedef KSEVENT *PKSEVENT; //Pointer
   typedef struct KSDATAFORMAT {
     ULONG FormatSize,
     ULONG Flags,
@@ -102,8 +102,7 @@ ffi.cdef [[
     GUID SubFormat,
     GUID Specifier,
   } KSDATAFORMAT;
-
-  typedef KSDATAFORMAT PKSDATAFORMAT;
+  typedef KSDATAFORMAT *PKSDATAFORMAT; //Pointer
   typedef enum EPcxConnectionType {
     eConnTypeUnknown = 0,
     eConnType3Point5mm = 1,
@@ -156,13 +155,11 @@ ffi.cdef [[
     EPxcPortConnection PortConnection,
     BOOL IsConnected,
   } KSJACK_DESCRIPTION;
-
-  typedef DWORD WINAPI_JACKDESC2_FLAGS;
+  typedef DWORD WINAPI_JACKDESC2_FLAGS; //Alias
   typedef struct KSJACK_DESCRIPTION2 {
     DWORD DeviceStateInfo,
     WINAPI_JACKDESC2_FLAGS JackCapabilities,
   } KSJACK_DESCRIPTION2;
-
   typedef enum KSJACK_SINK_CONNECTIONTYPE {
     KSJACK_SINK_CONNECTIONTYPE_HDMI = 0,
     KSJACK_SINK_CONNECTIONTYPE_DISPLAYPORT = 1,
@@ -178,7 +175,6 @@ ffi.cdef [[
     WCHAR [MAX_SINK_DESCRIPTION_NAME_LENGTH] SinkDescription,
     LUID PortId,
   } KSJACK_SINK_INFORMATION;
-
   typedef struct AUDIO_VOLUME_NOTIFICATION_DATA {
     GUID guidEventContext,
     BOOL bMuted,
@@ -186,6 +182,5 @@ ffi.cdef [[
     UINT nChannels,
     float [1] afChannelVolumes,
   } AUDIO_VOLUME_NOTIFICATION_DATA;
-
-  typedef AUDIO_VOLUME_NOTIFICATION_DATA PAUDIO_VOLUME_NOTIFICATION_DATA;
+  typedef AUDIO_VOLUME_NOTIFICATION_DATA *PAUDIO_VOLUME_NOTIFICATION_DATA; //Pointer
 ]]
