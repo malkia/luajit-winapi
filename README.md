@@ -1,3 +1,6 @@
+*** WORK IN PROGRES
+*** DO NOT USE!
+
 luajit-winapi
 =============
 
