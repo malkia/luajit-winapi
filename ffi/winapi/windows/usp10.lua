@@ -2,6 +2,74 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID SCRIPT_CACHE; //Alias
+  typedef LPVOID SCRIPT_STRING_ANALYSIS; //Alias
+  typedef ULONG OPENTYPE_TAG; //Alias
+  typedef struct SCRIPT_DIGITSUBSTITUTE {
+    DWORD Bitfield1;
+    DWORD Bitfield2;
+    DWORD dwReserved;
+  } SCRIPT_DIGITSUBSTITUTE;
+  typedef struct SCRIPT_PROPERTIES {
+    DWORD Bitfield1;
+    DWORD Bitfield2;
+  } SCRIPT_PROPERTIES;
+  typedef struct SCRIPT_LOGATTR {
+    BYTE Bitfield;
+  } SCRIPT_LOGATTR;
+  typedef struct SCRIPT_CHARPROP {
+    WORD Bitfield;
+  } SCRIPT_CHARPROP;
+  typedef struct SCRIPT_STATE {
+    WORD Bitfield;
+  } SCRIPT_STATE;
+  typedef struct SCRIPT_ANALYSIS {
+    WORD Bitfield;
+    SCRIPT_STATE s;
+  } SCRIPT_ANALYSIS;
+  typedef struct SCRIPT_ITEM {
+    int iCharPos;
+    SCRIPT_ANALYSIS a;
+  } SCRIPT_ITEM;
+  typedef struct SCRIPT_VISATTR {
+    WORD Bitfield;
+  } SCRIPT_VISATTR;
+  typedef struct SCRIPT_CONTROL {
+    DWORD Bitfield;
+  } SCRIPT_CONTROL;
+  typedef struct SCRIPT_GLYPHPROP {
+    SCRIPT_VISATTR sva;
+    WORD reserved;
+  } SCRIPT_GLYPHPROP;
+  typedef struct SCRIPT_FONTPROPERTIES {
+    int cBytes;
+    WORD wgBlank;
+    WORD wgDefault;
+    WORD wgInvalid;
+    WORD wgKashida;
+    int iKashidaWidth;
+  } SCRIPT_FONTPROPERTIES;
+  typedef struct GOFFSET {
+    LONG du;
+    LONG dv;
+  } GOFFSET;
+  typedef struct OPENTYPE_FEATURE_RECORD {
+    OPENTYPE_TAG tagFeature;
+    LONG lParameter;
+  } OPENTYPE_FEATURE_RECORD;
+  typedef struct TEXTRANGE_PROPERTIES {
+    OPENTYPE_FEATURE_RECORD* potfRecords;
+    int cotfRecords;
+  } TEXTRANGE_PROPERTIES;
+  typedef struct SCRIPT_TABDEF {
+    int cTabStops;
+    int iScale;
+    int* pTabStops;
+    int iTabOrigin;
+  } SCRIPT_TABDEF;
+  typedef DWORD WINAPI_SGCM_FLAGS; //Alias
+  typedef DWORD WINAPI_SIC_FLAGS; //Alias
+  typedef DWORD WINAPI_SSA_FLAGS; //Alias
   HRESULT                ScriptApplyDigitSubstitution(  WINAPI_SCRIPT_DIGITSUBSTITUTE* psds, SCRIPT_CONTROL* psc, SCRIPT_STATE* pss);
   HRESULT                ScriptApplyLogicalWidth(       WINAPI_int* piDx, int cChars, int cGlyphs, WINAPI_WORD* pwLogClust, WINAPI_SCRIPT_VISATTR* psva, WINAPI_int* piAdvance, WINAPI_SCRIPT_ANALYSIS* psa, ABC* pABC, int* piJustify);
   HRESULT                ScriptBreak(                   WINAPI_WCHAR* pwcChars, int cChars, WINAPI_SCRIPT_ANALYSIS* psa, SCRIPT_LOGATTR* psla);

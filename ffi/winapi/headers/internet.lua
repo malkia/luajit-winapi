@@ -8,8 +8,8 @@ ffi.cdef [[
   typedef LPVOID INTERNET_STATUS_CALLBACK; //Alias
   enum { GROUP_OWNER_STORAGE_SIZE = 4 };
   enum { GROUPNAME_MAX_LENGTH = 120 };
-  enum { MAX_GOPHER_DISPLAY_TEXT = 128 };
-  enum { MAX_GOPHER_LOCATOR_LENGTH = 652 };
+  enum { MAX_GOPHER_DISPLAY_TEXT = 129 };
+  enum { MAX_GOPHER_LOCATOR_LENGTH = 653 };
   typedef struct INTERNET_CACHE_ENTRY_INFO {
     DWORD dwStructSize;
     LPTSTR lpszSourceUrlName;
@@ -51,11 +51,10 @@ ffi.cdef [[
     TCHAR Locator[MAX_GOPHER_LOCATOR_LENGTH + 1];
   } GOPHER_FIND_DATA;
   typedef GOPHER_FIND_DATA *LPGOPHER_FIND_DATA; //Pointer
-  typedef enum WINAPI_ProxyAccessType {
-    WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = 0,
-    WINHTTP_ACCESS_TYPE_NO_PROXY = 1,
-    WINHTTP_ACCESS_TYPE_NAMED_PROXY = 3,
-  } WINAPI_ProxyAccessType;
+  typedef DWORD WINAPI_ProxyAccessType; //Alias
+  static const DWORD WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = 0;
+  static const DWORD WINHTTP_ACCESS_TYPE_NO_PROXY = 1;
+  static const DWORD WINHTTP_ACCESS_TYPE_NAMED_PROXY = 3;
   typedef struct WINHTTP_PROXY_INFO {
     WINAPI_ProxyAccessType dwAccessType;
     LPWSTR lpszProxy;
@@ -77,30 +76,28 @@ ffi.cdef [[
     DWORD dwReserved;
     BOOL fAutoLogonIfChallenged;
   } WINHTTP_AUTOPROXY_OPTIONS;
-  typedef enum INTERNET_PORT {
-    INTERNET_DEFAULT_FTP_PORT = 21,
-    INTERNET_DEFAULT_GOPHER_PORT = 70,
-    INTERNET_DEFAULT_HTTP_PORT = 80,
-    INTERNET_DEFAULT_HTTPS_PORT = 443,
-    INTERNET_DEFAULT_SOCKS_PORT = 1080,
-    INTERNET_INVALID_PORT_NUMBER = 0,
-  } INTERNET_PORT;
-  typedef enum INTERNET_SCHEME {
-    INTERNET_SCHEME_PARTIAL = -2,
-    INTERNET_SCHEME_UNKNOWN = -1,
-    INTERNET_SCHEME_DEFAULT = 0,
-    INTERNET_SCHEME_FTP = 1,
-    INTERNET_SCHEME_GOPHER = 2,
-    INTERNET_SCHEME_HTTP = 3,
-    INTERNET_SCHEME_HTTPS = 4,
-    INTERNET_SCHEME_FILE = 5,
-    INTERNET_SCHEME_NEWS = 6,
-    INTERNET_SCHEME_MAILTO = 7,
-    INTERNET_SCHEME_SOCKS = 8,
-    INTERNET_SCHEME_JAVASCRIPT = 9,
-    INTERNET_SCHEME_VBSCRIPT = 10,
-    INTERNET_SCHEME_RES = 11,
-  } INTERNET_SCHEME;
+  typedef WORD INTERNET_PORT; //Alias
+  static const WORD INTERNET_DEFAULT_FTP_PORT = 21;
+  static const WORD INTERNET_DEFAULT_GOPHER_PORT = 70;
+  static const WORD INTERNET_DEFAULT_HTTP_PORT = 80;
+  static const WORD INTERNET_DEFAULT_HTTPS_PORT = 443;
+  static const WORD INTERNET_DEFAULT_SOCKS_PORT = 1080;
+  static const WORD INTERNET_INVALID_PORT_NUMBER = 0;
+  typedef INT INTERNET_SCHEME; //Alias
+  static const INT INTERNET_SCHEME_PARTIAL = -2;
+  static const INT INTERNET_SCHEME_UNKNOWN = -1;
+  static const INT INTERNET_SCHEME_DEFAULT = 0;
+  static const INT INTERNET_SCHEME_FTP = 1;
+  static const INT INTERNET_SCHEME_GOPHER = 2;
+  static const INT INTERNET_SCHEME_HTTP = 3;
+  static const INT INTERNET_SCHEME_HTTPS = 4;
+  static const INT INTERNET_SCHEME_FILE = 5;
+  static const INT INTERNET_SCHEME_NEWS = 6;
+  static const INT INTERNET_SCHEME_MAILTO = 7;
+  static const INT INTERNET_SCHEME_SOCKS = 8;
+  static const INT INTERNET_SCHEME_JAVASCRIPT = 9;
+  static const INT INTERNET_SCHEME_VBSCRIPT = 10;
+  static const INT INTERNET_SCHEME_RES = 11;
   typedef struct URL_COMPONENTS {
     DWORD dwStructSize;
     LPTSTR lpszScheme;
@@ -119,10 +116,7 @@ ffi.cdef [[
     DWORD dwExtraInfoLength;
   } URL_COMPONENTS;
   typedef URL_COMPONENTS *LPURL_COMPONENTS; //Pointer
-  typedef enum WINAPI_InternetSchemeWinHttp {
-    INTERNET_SCHEME_HTTP = 1,
-    INTERNET_SCHEME_HTTPS = 2,
-  } WINAPI_InternetSchemeWinHttp;
+  typedef int WINAPI_InternetSchemeWinHttp; //Alias
   typedef struct URL_COMPONENTSW {
     DWORD dwStructSize;
     LPWSTR lpszScheme;

@@ -2,6 +2,61 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/security' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IWbemServices; //Interface
+  typedef void* IWbemClassObject; //Interface
+  typedef GUID* REFGPEXTENSIONID; //Alias
+  typedef UINT_PTR ASYNCCOMPLETIONHANDLE; //Alias
+  typedef PVOID PRSOPTOKEN; //Alias
+  typedef UINT GPO_LINK; //Alias
+  static const UINT GPLinkUnknown = 0;
+  static const UINT GPLinkMachine = 1;
+  static const UINT GPLinkSite = 2;
+  static const UINT GPLinkDomain = 3;
+  static const UINT GPLinkOrganizationalUnit = 4;
+  typedef DWORD WINAPI_GPO_FLAG; //Alias
+  typedef struct GROUP_POLICY_OBJECT {
+    WINAPI_GPO_FLAG dwOptions;
+    DWORD dwVersion;
+    LPTSTR lpDSPath;
+    LPTSTR lpFileSysPath;
+    LPTSTR lpDisplayName;
+    TCHAR szGPOName[50];
+    GPO_LINK GPOLink;
+    LPARAM lParam;
+    LPVOID pNext;
+    LPVOID pPrev;
+    LPTSTR lpExtensions;
+    LPARAM lParam2;
+    LPTSTR lpLink;
+  } GROUP_POLICY_OBJECT;
+  typedef GROUP_POLICY_OBJECT *PGROUP_POLICY_OBJECT; //Pointer
+  typedef UINT SETTINGSTATUS; //Alias
+  static const UINT RSOPUnspecified = 0;
+  static const UINT RSOPApplied = 1;
+  static const UINT RSOPIgnored = 2;
+  static const UINT RSOPFailed = 3;
+  static const UINT RSOPSubsettingFailed = 4;
+  typedef struct POLICYSETTINGSTATUSINFO {
+    LPWSTR szKey;
+    LPWSTR szEventSource;
+    LPWSTR szEventLogName;
+    DWORD dwEventID;
+    DWORD dwErrorCode;
+    SETTINGSTATUS status;
+    SYSTEMTIME timeLogged;
+  } POLICYSETTINGSTATUSINFO;
+  typedef struct PROFILEINFO {
+    DWORD dwSize;
+    DWORD dwFlags;
+    LPTSTR lpUserName;
+    LPTSTR lpProfilePath;
+    LPTSTR lpDefaultPath;
+    LPTSTR lpServerName;
+    LPTSTR lpPolicyPath;
+    HANDLE hProfile;
+  } PROFILEINFO;
+  typedef PROFILEINFO *LPPROFILEINFO; //Pointer
+  typedef DWORD WINAPI_ProfileType; //Alias
   HANDLE  EnterCriticalPolicySection(      BOOL bMachine);
   BOOL    FreeGPOList(                     PGROUP_POLICY_OBJECT pGPOList);
   DWORD   GetAppliedGPOList(               DWORD dwFlags, LPCTSTR pMachineName, PSID pSidUser, GUID* pGuidExtension, PGROUP_POLICY_OBJECT* ppGPOList);

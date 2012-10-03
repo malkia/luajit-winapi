@@ -31,47 +31,43 @@ ffi.cdef [[
     UUID ObjectUuid;
   } RPC_BINDING_HANDLE_TEMPLATE_V1;
   typedef unsigned long WINAPI_RPC_C_QOS_CAPABILITIES; //Alias
-  typedef enum WINAPI_RPC_C_QOS_IDENTITY {
-    RPC_C_QOS_IDENTITY_STATIC = 0,
-    RPC_C_QOS_IDENTITY_DYNAMIC = 1,
-  } WINAPI_RPC_C_QOS_IDENTITY;
-  typedef enum WINAPI_RPC_C_IMP_LEVEL {
-    RPC_C_IMP_LEVEL_DEFAULT = 0,
-    RPC_C_IMP_LEVEL_ANONYMOUS = 1,
-    RPC_C_IMP_LEVEL_IDENTIFY = 2,
-    RPC_C_IMP_LEVEL_IMPERSONATE = 3,
-    RPC_C_IMP_LEVEL_DELEGATE = 4,
-  } WINAPI_RPC_C_IMP_LEVEL;
+  typedef unsigned long WINAPI_RPC_C_QOS_IDENTITY; //Alias
+  static const unsigned long RPC_C_QOS_IDENTITY_STATIC = 0;
+  static const unsigned long RPC_C_QOS_IDENTITY_DYNAMIC = 1;
+  typedef unsigned long WINAPI_RPC_C_IMP_LEVEL; //Alias
+  static const unsigned long RPC_C_IMP_LEVEL_DEFAULT = 0;
+  static const unsigned long RPC_C_IMP_LEVEL_ANONYMOUS = 1;
+  static const unsigned long RPC_C_IMP_LEVEL_IDENTIFY = 2;
+  static const unsigned long RPC_C_IMP_LEVEL_IMPERSONATE = 3;
+  static const unsigned long RPC_C_IMP_LEVEL_DELEGATE = 4;
   typedef struct RPC_SECURITY_QOS {
     unsigned long Version;
     WINAPI_RPC_C_QOS_CAPABILITIES Capabilities;
     WINAPI_RPC_C_QOS_IDENTITY IdentityTracking;
     WINAPI_RPC_C_IMP_LEVEL ImpersonationType;
   } RPC_SECURITY_QOS;
-  typedef enum WINAPI_RPC_C_AUTHN_LEVEL {
-    RPC_C_AUTHN_LEVEL_DEFAULT = 0,
-    RPC_C_AUTHN_LEVEL_NONE = 1,
-    RPC_C_AUTHN_LEVEL_CONNECT = 2,
-    RPC_C_AUTHN_LEVEL_CALL = 3,
-    RPC_C_AUTHN_LEVEL_PKT = 4,
-    RPC_C_AUTHN_LEVEL_PKT_INTEGRITY = 5,
-    RPC_C_AUTHN_LEVEL_PKT_PRIVACY = 6,
-  } WINAPI_RPC_C_AUTHN_LEVEL;
-  typedef enum WINAPI_RPC_C_AUTHN_SVC {
-    RPC_C_AUTHN_NONE = 0,
-    RPC_C_AUTHN_DCE_PRIVATE = 1,
-    RPC_C_AUTHN_DCE_PUBLIC = 2,
-    RPC_C_AUTHN_DEC_PUBLIC = 4,
-    RPC_C_AUTHN_GSS_NEGOTIATE = 9,
-    RPC_C_AUTHN_WINNT = 10,
-    RPC_C_AUTHN_GSS_SCHANNEL = 14,
-    RPC_C_AUTHN_GSS_KERBEROS = 16,
-    RPC_C_AUTHN_DPA = 17,
-    RPC_C_AUTHN_MSN = 18,
-    RPC_C_AUTHN_DIGEST = 21,
-    RPC_C_AUTHN_MQ = 100,
-    RPC_C_AUTHN_DEFAULT = 0xFFFFFFFF,
-  } WINAPI_RPC_C_AUTHN_SVC;
+  typedef unsigned long WINAPI_RPC_C_AUTHN_LEVEL; //Alias
+  static const unsigned long RPC_C_AUTHN_LEVEL_DEFAULT = 0;
+  static const unsigned long RPC_C_AUTHN_LEVEL_NONE = 1;
+  static const unsigned long RPC_C_AUTHN_LEVEL_CONNECT = 2;
+  static const unsigned long RPC_C_AUTHN_LEVEL_CALL = 3;
+  static const unsigned long RPC_C_AUTHN_LEVEL_PKT = 4;
+  static const unsigned long RPC_C_AUTHN_LEVEL_PKT_INTEGRITY = 5;
+  static const unsigned long RPC_C_AUTHN_LEVEL_PKT_PRIVACY = 6;
+  typedef unsigned long WINAPI_RPC_C_AUTHN_SVC; //Alias
+  static const unsigned long RPC_C_AUTHN_NONE = 0;
+  static const unsigned long RPC_C_AUTHN_DCE_PRIVATE = 1;
+  static const unsigned long RPC_C_AUTHN_DCE_PUBLIC = 2;
+  static const unsigned long RPC_C_AUTHN_DEC_PUBLIC = 4;
+  static const unsigned long RPC_C_AUTHN_GSS_NEGOTIATE = 9;
+  static const unsigned long RPC_C_AUTHN_WINNT = 10;
+  static const unsigned long RPC_C_AUTHN_GSS_SCHANNEL = 14;
+  static const unsigned long RPC_C_AUTHN_GSS_KERBEROS = 16;
+  static const unsigned long RPC_C_AUTHN_DPA = 17;
+  static const unsigned long RPC_C_AUTHN_MSN = 18;
+  static const unsigned long RPC_C_AUTHN_DIGEST = 21;
+  static const unsigned long RPC_C_AUTHN_MQ = 100;
+  static const unsigned long RPC_C_AUTHN_DEFAULT = 0xFFFFFFFF;
   typedef unsigned long WINAPI_SEC_WINNT_AUTH_IDENTITY; //Alias
   typedef struct SEC_WINNT_AUTH_IDENTITY {
     RPC_TSTR User;
@@ -140,41 +136,37 @@ ffi.cdef [[
     void* CurrentPos;
     void* Head;
   } RPC_ERROR_ENUM_HANDLE;
-  typedef enum RPC_NOTIFICATIONS {
-    RpcNotificationCallNone = 0,
-    RpcNotificationClientDisconnect = 1,
-    RpcNotificationCallCancel = 2,
-  } RPC_NOTIFICATIONS;
+  typedef UINT RPC_NOTIFICATIONS; //Alias
+  static const UINT RpcNotificationCallNone = 0;
+  static const UINT RpcNotificationClientDisconnect = 1;
+  static const UINT RpcNotificationCallCancel = 2;
   typedef WINAPI_RPC_C_AUTHN_LEVEL WINAPI_RPC_C_AUTHN_LEVEL_unsigned_int; //Alias
-  typedef enum WINAPI_RPC_C_AUTHZ {
-    RPC_C_AUTHZ_NONE = 0,
-    RPC_C_AUTHZ_NAME = 1,
-    RPC_C_AUTHZ_DCE = 2,
-    RPC_C_AUTHZ_DEFAULT = 0xffffffff,
-  } WINAPI_RPC_C_AUTHZ;
-  typedef enum RPC_STATUS {
-    RPC_S_OK = 0,
-    RPC_S_INVALID_ARG = 87,
-    RPC_S_OUT_OF_MEMORY = 14,
-    RPC_S_OUT_OF_THREADS = 164,
-    RPC_S_BUFFER_TOO_SMALL = 122,
-    RPC_S_INVALID_SECURITY_DESC = 1338,
-    RPC_S_ACCESS_DENIED = 5,
-    RPC_S_SERVER_OUT_OF_MEMORY = 1130,
-    RPC_S_ASYNC_CALL_PENDING = 997,
-    RPC_S_UNKNOWN_PRINCIPAL = 1332,
-    RPC_S_TIMEOUT = 1460,
-    RPC_S_NOT_ENOUGH_QUOTA = 1816,
-  } RPC_STATUS;
-  typedef enum ExtendedErrorParamTypes {
-    eeptAnsiString = 1,
-    eeptUnicodeString = 2,
-    eeptLongVal = 3,
-    eeptShortVal = 4,
-    eeptPointerVal = 5,
-    eeptNone = 6,
-    eeptBinary = 7,
-  } ExtendedErrorParamTypes;
+  typedef unsigned long WINAPI_RPC_C_AUTHZ; //Alias
+  static const unsigned long RPC_C_AUTHZ_NONE = 0;
+  static const unsigned long RPC_C_AUTHZ_NAME = 1;
+  static const unsigned long RPC_C_AUTHZ_DCE = 2;
+  static const unsigned long RPC_C_AUTHZ_DEFAULT = 0xffffffff;
+  typedef long RPC_STATUS; //Alias
+  static const long RPC_S_OK = 0;
+  static const long RPC_S_INVALID_ARG = 87;
+  static const long RPC_S_OUT_OF_MEMORY = 14;
+  static const long RPC_S_OUT_OF_THREADS = 164;
+  static const long RPC_S_BUFFER_TOO_SMALL = 122;
+  static const long RPC_S_INVALID_SECURITY_DESC = 1338;
+  static const long RPC_S_ACCESS_DENIED = 5;
+  static const long RPC_S_SERVER_OUT_OF_MEMORY = 1130;
+  static const long RPC_S_ASYNC_CALL_PENDING = 997;
+  static const long RPC_S_UNKNOWN_PRINCIPAL = 1332;
+  static const long RPC_S_TIMEOUT = 1460;
+  static const long RPC_S_NOT_ENOUGH_QUOTA = 1816;
+  typedef UINT ExtendedErrorParamTypes; //Alias
+  static const UINT eeptAnsiString = 1;
+  static const UINT eeptUnicodeString = 2;
+  static const UINT eeptLongVal = 3;
+  static const UINT eeptShortVal = 4;
+  static const UINT eeptPointerVal = 5;
+  static const UINT eeptNone = 6;
+  static const UINT eeptBinary = 7;
   typedef struct BinaryParam {
     void* Buffer;
     short Size;
@@ -231,21 +223,19 @@ ffi.cdef [[
     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
   } RPC_ASYNC_NOTIFICATION_INFO;
   typedef unsigned long WINAPI_RPC_ASYNC_STATE_FLAGS; //Alias
-  typedef enum RPC_ASYNC_EVENT {
-    RpcCallComplete = 0,
-    RpcSendComplete = 1,
-    RpcReceiveComplete = 2,
-    RpcClientDisconnect = 3,
-    RpcClientCancel = 4,
-  } RPC_ASYNC_EVENT;
-  typedef enum RPC_NOTIFICATION_TYPES {
-    RpcNotificationTypeNone = 0,
-    RpcNotificationTypeEvent = 1,
-    RpcNotificationTypeApc = 2,
-    RpcNotificationTypeIoc = 3,
-    RpcNotificationTypeHwnd = 4,
-    RpcNotificationTypeCallback = 5,
-  } RPC_NOTIFICATION_TYPES;
+  typedef UINT RPC_ASYNC_EVENT; //Alias
+  static const UINT RpcCallComplete = 0;
+  static const UINT RpcSendComplete = 1;
+  static const UINT RpcReceiveComplete = 2;
+  static const UINT RpcClientDisconnect = 3;
+  static const UINT RpcClientCancel = 4;
+  typedef UINT RPC_NOTIFICATION_TYPES; //Alias
+  static const UINT RpcNotificationTypeNone = 0;
+  static const UINT RpcNotificationTypeEvent = 1;
+  static const UINT RpcNotificationTypeApc = 2;
+  static const UINT RpcNotificationTypeIoc = 3;
+  static const UINT RpcNotificationTypeHwnd = 4;
+  static const UINT RpcNotificationTypeCallback = 5;
   typedef struct RPC_ASYNC_STATE {
     unsigned int Size;
     unsigned long Signature;

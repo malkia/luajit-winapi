@@ -3,6 +3,206 @@ require( 'ffi/winapi/headers/cryptography' )
 require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef unsigned long MSIHANDLE; //Alias
+  typedef LPVOID INSTALLUI_HANDLER; //Alias
+  typedef LPVOID PINSTALLUI_HANDLER_RECORD; //Alias
+  typedef WINAPI_ERROR_CODE WINAPI_MSI_ERROR; //Alias
+  typedef UINT MSIPATCHDATATYPE; //Alias
+  static const UINT MSIPATCH_DATATYPE_PATCHFILE = 0;
+  static const UINT MSIPATCH_DATATYPE_XMLPATH = 1;
+  static const UINT MSIPATCH_DATATYPE_XMLBLOB = 2;
+  typedef struct MSIPATCHSEQUENCEINFO {
+    LPCTSTR szPatchData;
+    MSIPATCHDATATYPE ePatchDataType;
+    DWORD dwOrder;
+    UINT uStatus;
+  } MSIPATCHSEQUENCEINFO;
+  typedef MSIPATCHSEQUENCEINFO *PMSIPATCHSEQUENCEINFO; //Pointer
+  typedef struct MSIFILEHASHINFO {
+    ULONG dwFileHashInfoSize;
+    ULONG dwData[4];
+  } MSIFILEHASHINFO;
+  typedef MSIFILEHASHINFO *PMSIFILEHASHINFO; //Pointer
+  typedef int USERINFOSTATE; //Alias
+  static const int USERINFOSTATE_MOREDATA = -3;
+  static const int USERINFOSTATE_INVALIDARG = -2;
+  static const int USERINFOSTATE_UNKNOWN = -1;
+  static const int USERINFOSTATE_ABSENT = 0;
+  static const int USERINFOSTATE_PRESENT = 1;
+  typedef UINT INSTALLUILEVEL; //Alias
+  typedef DWORD MSIINSTALLCONTEXT; //Alias
+  typedef UINT INSTALLSTATE; //Alias
+  static const UINT INSTALLSTATE_NOTUSED = -7;
+  static const UINT INSTALLSTATE_BADCONFIG = -6;
+  static const UINT INSTALLSTATE_INCOMPLETE = -5;
+  static const UINT INSTALLSTATE_SOURCEABSENT = -4;
+  static const UINT INSTALLSTATE_MOREDATA = -3;
+  static const UINT INSTALLSTATE_INVALIDARG = -2;
+  static const UINT INSTALLSTATE_UNKNOWN = -1;
+  static const UINT INSTALLSTATE_BROKEN = 0;
+  static const UINT INSTALLSTATE_ADVERTISED = 1;
+  static const UINT INSTALLSTATE_ABSENT = 2;
+  static const UINT INSTALLSTATE_LOCAL = 3;
+  static const UINT INSTALLSTATE_SOURCE = 4;
+  static const UINT INSTALLSTATE_DEFAULT = 5;
+  typedef INSTALLSTATE WINAPI_INSTALLSTATE_DWORD; //Alias
+  typedef int WINAPI_MsiInstallLevel; //Alias
+  static const int INSTALLLEVEL_DEFAULT = 0;
+  static const int INSTALLLEVEL_MINIMUM = 1;
+  static const int INSTALLLEVEL_MAXIMUM = 0xFFFF;
+  typedef DWORD WINAPI_MsiReinstallMode; //Alias
+  typedef DWORD WINAPI_MsiInstallMode; //Alias
+  static const DWORD INSTALLMODE_NODETECTION_ANY = -4;
+  static const DWORD INSTALLMODE_NOSOURCERESOLUTION = -3;
+  static const DWORD INSTALLMODE_NODETECTION = -2;
+  static const DWORD INSTALLMODE_EXISTING = -1;
+  static const DWORD INSTALLMODE_DEFAULT = 0;
+  typedef UINT INSTALLTYPE; //Alias
+  typedef DWORD WINAPI_MsiInstallLogMode; //Alias
+  typedef DWORD WINAPI_MsiInstallLogAttributes; //Alias
+  typedef DWORD WINAPI_MsiArchFlags; //Alias
+  typedef DWORD WINAPI_MsiAdOptions; //Alias
+  typedef DWORD WINAPI_MsiSourceType; //Alias
+  typedef DWORD WINAPI_MsiCode; //Alias
+  typedef DWORD WINAPI_MsiAssemblyInfo; //Alias
+  typedef DWORD WINAPI_MsiOpenPackageFlags; //Alias
+  typedef DWORD WINAPI_MsiPatchState; //Alias
+  typedef DWORD WINAPI_MsiHashFlags; //Alias
+  typedef DWORD WINAPI_MsiTransactionAttributes; //Alias
+  typedef DWORD WINAPI_MsiScriptFlags; //Alias
+  typedef DWORD WINAPI_MsiInstallFeatureAttr; //Alias
+  typedef DWORD WINAPI_MsiTransactionState; //Alias
+  static const DWORD MSITRANSACTIONSTATE_ROLLBACK = 0;
+  static const DWORD MSITRANSACTIONSTATE_COMMIT = 1;
+  typedef UINT MSIMODIFY; //Alias
+  static const UINT MSIMODIFY_SEEK = -1;
+  static const UINT MSIMODIFY_REFRESH = 0;
+  static const UINT MSIMODIFY_INSERT = 1;
+  static const UINT MSIMODIFY_UPDATE = 2;
+  static const UINT MSIMODIFY_ASSIGN = 3;
+  static const UINT MSIMODIFY_REPLACE = 4;
+  static const UINT MSIMODIFY_MERGE = 5;
+  static const UINT MSIMODIFY_DELETE = 6;
+  static const UINT MSIMODIFY_INSERT_TEMPORARY = 7;
+  static const UINT MSIMODIFY_VALIDATE = 8;
+  static const UINT MSIMODIFY_VALIDATE_NEW = 9;
+  static const UINT MSIMODIFY_VALIDATE_FIELD = 10;
+  static const UINT MSIMODIFY_VALIDATE_DELETE = 11;
+  typedef UINT MSICOLINFO; //Alias
+  static const UINT MSICOLINFO_NAMES = 0;
+  static const UINT MSICOLINFO_TYPES = 1;
+  typedef UINT MSICONDITION; //Alias
+  static const UINT MSICONDITION_FALSE = 0;
+  static const UINT MSICONDITION_TRUE = 1;
+  static const UINT MSICONDITION_NONE = 2;
+  static const UINT MSICONDITION_ERROR = 3;
+  typedef UINT MSIDBERROR; //Alias
+  static const UINT MSIDBERROR_INVALIDARG = -3;
+  static const UINT MSIDBERROR_MOREDATA = -2;
+  static const UINT MSIDBERROR_FUNCTIONERROR = -1;
+  static const UINT MSIDBERROR_NOERROR = 0;
+  static const UINT MSIDBERROR_DUPLICATEKEY = 1;
+  static const UINT MSIDBERROR_REQUIRED = 2;
+  static const UINT MSIDBERROR_BADLINK = 3;
+  static const UINT MSIDBERROR_OVERFLOW = 4;
+  static const UINT MSIDBERROR_UNDERFLOW = 5;
+  static const UINT MSIDBERROR_NOTINSET = 6;
+  static const UINT MSIDBERROR_BADVERSION = 7;
+  static const UINT MSIDBERROR_BADCASE = 8;
+  static const UINT MSIDBERROR_BADGUID = 9;
+  static const UINT MSIDBERROR_BADWILDCARD = 10;
+  static const UINT MSIDBERROR_BADIDENTIFIER = 11;
+  static const UINT MSIDBERROR_BADLANGUAGE = 12;
+  static const UINT MSIDBERROR_BADFILENAME = 13;
+  static const UINT MSIDBERROR_BADPATH = 14;
+  static const UINT MSIDBERROR_BADCONDITION = 15;
+  static const UINT MSIDBERROR_BADFORMATTED = 16;
+  static const UINT MSIDBERROR_BADTEMPLATE = 17;
+  static const UINT MSIDBERROR_BADDEFAULTDIR = 18;
+  static const UINT MSIDBERROR_BADREGPATH = 19;
+  static const UINT MSIDBERROR_BADCUSTOMSOURCE = 20;
+  static const UINT MSIDBERROR_BADPROPERTY = 21;
+  static const UINT MSIDBERROR_MISSINGDATA = 22;
+  static const UINT MSIDBERROR_BADCATEGORY = 23;
+  static const UINT MSIDBERROR_BADKEYTABLE = 24;
+  static const UINT MSIDBERROR_BADMAXMINVALUES = 25;
+  static const UINT MSIDBERROR_BADCABINET = 26;
+  static const UINT MSIDBERROR_BADSHORTCUT = 27;
+  static const UINT MSIDBERROR_STRINGOVERFLOW = 28;
+  static const UINT MSIDBERROR_BADLOCALIZEATTRIB = 29;
+  typedef UINT MSICOSTTREE; //Alias
+  static const UINT MSICOSTTREE_SELFONLY = 0;
+  static const UINT MSICOSTTREE_CHILDREN = 1;
+  static const UINT MSICOSTTREE_PARENTS = 2;
+  static const UINT MSICOSTTREE_RESERVED = 3;
+  typedef UINT INSTALLMESSAGE; //Alias
+  static const UINT INSTALLMESSAGE_FATALEXIT = 0x00000000;
+  static const UINT INSTALLMESSAGE_ERROR = 0x01000000;
+  static const UINT INSTALLMESSAGE_WARNING = 0x02000000;
+  static const UINT INSTALLMESSAGE_USER = 0x03000000;
+  static const UINT INSTALLMESSAGE_INFO = 0x04000000;
+  static const UINT INSTALLMESSAGE_FILESINUSE = 0x05000000;
+  static const UINT INSTALLMESSAGE_RESOLVESOURCE = 0x06000000;
+  static const UINT INSTALLMESSAGE_OUTOFDISKSPACE = 0x07000000;
+  static const UINT INSTALLMESSAGE_ACTIONSTART = 0x08000000;
+  static const UINT INSTALLMESSAGE_ACTIONDATA = 0x09000000;
+  static const UINT INSTALLMESSAGE_PROGRESS = 0x0A000000;
+  static const UINT INSTALLMESSAGE_COMMONDATA = 0x0B000000;
+  static const UINT INSTALLMESSAGE_INITIALIZE = 0x0C000000;
+  static const UINT INSTALLMESSAGE_TERMINATE = 0x0D000000;
+  static const UINT INSTALLMESSAGE_SHOWDIALOG = 0x0E000000;
+  static const UINT INSTALLMESSAGE_PERFORMANCE = 0x0F000000;
+  static const UINT INSTALLMESSAGE_RMFILESINUSE = 0x19000000;
+  static const UINT INSTALLMESSAGE_INSTALLSTART = 0x1A000000;
+  static const UINT INSTALLMESSAGE_INSTALLEND = 0x1B000000;
+  typedef UINT MSIRUNMODE; //Alias
+  static const UINT MSIRUNMODE_ADMIN = 0;
+  static const UINT MSIRUNMODE_ADVERTISE = 1;
+  static const UINT MSIRUNMODE_MAINTENANCE = 2;
+  static const UINT MSIRUNMODE_ROLLBACKENABLED = 3;
+  static const UINT MSIRUNMODE_LOGENABLED = 4;
+  static const UINT MSIRUNMODE_OPERATIONS = 5;
+  static const UINT MSIRUNMODE_REBOOTATEND = 6;
+  static const UINT MSIRUNMODE_REBOOTNOW = 7;
+  static const UINT MSIRUNMODE_CABINET = 8;
+  static const UINT MSIRUNMODE_SOURCESHORTNAMES = 9;
+  static const UINT MSIRUNMODE_TARGETSHORTNAMES = 10;
+  static const UINT MSIRUNMODE_RESERVED11 = 11;
+  static const UINT MSIRUNMODE_WINDOWS9X = 12;
+  static const UINT MSIRUNMODE_ZAWENABLED = 13;
+  static const UINT MSIRUNMODE_RESERVED14 = 14;
+  static const UINT MSIRUNMODE_RESERVED15 = 15;
+  static const UINT MSIRUNMODE_SCHEDULED = 16;
+  static const UINT MSIRUNMODE_ROLLBACK = 17;
+  static const UINT MSIRUNMODE_COMMIT = 18;
+  typedef UINT MSIDBSTATE; //Alias
+  static const UINT MSIDBSTATE_ERROR = -1;
+  static const UINT MSIDBSTATE_READ = 0;
+  static const UINT MSIDBSTATE_WRITE = 1;
+  typedef UINT MSITRANSFORM_ERROR; //Alias
+  typedef UINT MSITRANSFORM_VALIDATE; //Alias
+  typedef UINT WINAPI_MSI_PID; //Alias
+  static const UINT PID_DICTIONARY = 0;
+  static const UINT PID_CODEPAGE = 1;
+  static const UINT PID_TITLE = 2;
+  static const UINT PID_SUBJECT = 3;
+  static const UINT PID_AUTHOR = 4;
+  static const UINT PID_KEYWORDS = 5;
+  static const UINT PID_COMMENTS = 6;
+  static const UINT PID_TEMPLATE = 7;
+  static const UINT PID_LASTAUTHOR = 8;
+  static const UINT PID_REVNUMBER = 9;
+  static const UINT PID_EDITTIME = 10;
+  static const UINT PID_LASTPRINTED = 11;
+  static const UINT PID_CREATE_DTM = 12;
+  static const UINT PID_LASTSAVE_DTM = 13;
+  static const UINT PID_PAGECOUNT = 14;
+  static const UINT PID_WORDCOUNT = 15;
+  static const UINT PID_CHARCOUNT = 16;
+  static const UINT PID_THUMBNAIL = 17;
+  static const UINT PID_APPNAME = 18;
+  static const UINT PID_SECURITY = 19;
+  typedef VARTYPE WINAPI_MSI_DATA_TYPE; //Alias
   INSTALLUILEVEL    MsiSetInternalUI(               INSTALLUILEVEL dwUILevel, HWND* phWnd);
   INSTALLUI_HANDLER MsiSetExternalUI(               INSTALLUI_HANDLER puiHandler, WINAPI_MsiInstallLogMode dwMessageFilter, LPVOID pvContext);
   WINAPI_MSI_ERROR  MsiSetExternalUIRecord(         PINSTALLUI_HANDLER_RECORD puiHandler, WINAPI_MsiInstallLogMode dwMessageFilter, LPVOID pvContext, PINSTALLUI_HANDLER_RECORD ppuiPrevHandler);

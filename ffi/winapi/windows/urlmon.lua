@@ -3,6 +3,117 @@ require( 'ffi/winapi/headers/shell' )
 require( 'ffi/winapi/headers/ole' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IUri; //Interface
+  typedef void* IUriBuilder; //Interface
+  typedef void* IInternetZoneManager; //Interface
+  typedef void* IInternetSecurityManager; //Interface
+  typedef void* IInternetSecurityManagerEx2; //Interface
+  typedef void* IBindStatusCallback; //Interface
+  typedef void* IServiceProvider; //Interface
+  typedef IBindStatusCallback* LPBINDSTATUSCALLBACK; //Alias
+  typedef DWORD BINDINFOF; //Alias
+  typedef DWORD BINDVERB; //Alias
+  static const DWORD BINDVERB_GET = 0;
+  static const DWORD BINDVERB_POST = 0x1;
+  static const DWORD BINDVERB_PUT = 0x2;
+  static const DWORD BINDVERB_CUSTOM = 0x3;
+  static const DWORD BINDVERB_RESERVED1 = 0x4;
+  typedef DWORD BINDINFO_OPTIONS; //Alias
+  typedef struct BINDINFO {
+    ULONG cbSize;
+    LPWSTR szExtraInfo;
+    STGMEDIUM stgmedData;
+    BINDINFOF grfBindInfoF;
+    BINDVERB dwBindVerb;
+    LPWSTR szCustomVerb;
+    DWORD cbstgmedData;
+    DWORD dwOptions;
+    BINDINFO_OPTIONS dwOptionsFlags;
+    WINAPI_CodePageEnum dwCodePage;
+    SECURITY_ATTRIBUTES securityAttributes;
+    IID iid;
+    IUnknown* pUnk;
+    DWORD dwReserved;
+  } BINDINFO;
+  typedef DWORD WINAPI_CreateUriFlags; //Alias
+  typedef DWORD WINAPI_UriEncodingFlags; //Alias
+  typedef UINT INTERNETFEATURELIST; //Alias
+  static const UINT FEATURE_OBJECT_CACHING = 0;
+  static const UINT FEATURE_ZONE_ELEVATION = 1;
+  static const UINT FEATURE_MIME_HANDLING = 2;
+  static const UINT FEATURE_MIME_SNIFFING = 3;
+  static const UINT FEATURE_WINDOW_RESTRICTIONS = 4;
+  static const UINT FEATURE_WEBOC_POPUPMANAGEMENT = 5;
+  static const UINT FEATURE_BEHAVIORS = 6;
+  static const UINT FEATURE_DISABLE_MK_PROTOCOL = 7;
+  static const UINT FEATURE_LOCALMACHINE_LOCKDOWN = 8;
+  static const UINT FEATURE_SECURITYBAND = 9;
+  static const UINT FEATURE_RESTRICT_ACTIVEXINSTALL = 10;
+  static const UINT FEATURE_VALIDATE_NAVIGATE_URL = 11;
+  static const UINT FEATURE_RESTRICT_FILEDOWNLOAD = 12;
+  static const UINT FEATURE_ADDON_MANAGEMENT = 13;
+  static const UINT FEATURE_PROTOCOL_LOCKDOWN = 14;
+  static const UINT FEATURE_HTTP_USERNAME_PASSWORD_DISABLE = 15;
+  static const UINT FEATURE_SAFE_BINDTOOBJECT = 16;
+  static const UINT FEATURE_UNC_SAVEDFILECHECK = 17;
+  static const UINT FEATURE_GET_URL_DOM_FILEPATH_UNENCODED = 18;
+  static const UINT FEATURE_TABBED_BROWSING = 19;
+  static const UINT FEATURE_SSLUX = 20;
+  static const UINT FEATURE_DISABLE_NAVIGATION_SOUNDS = 21;
+  static const UINT FEATURE_DISABLE_LEGACY_COMPRESSION = 22;
+  static const UINT FEATURE_FORCE_ADDR_AND_STATUS = 23;
+  static const UINT FEATURE_XMLHTTP = 24;
+  static const UINT FEATURE_DISABLE_TELNET_PROTOCOL = 25;
+  static const UINT FEATURE_FEEDS = 26;
+  static const UINT FEATURE_BLOCK_INPUT_PROMPTS = 27;
+  typedef DWORD WINAPI_GetFeatureFlag; //Alias
+  typedef DWORD WINAPI_UrlFlags; //Alias
+  typedef UINT QUERYOPTION; //Alias
+  static const UINT QUERY_EXPIRATION_DATE = 1;
+  static const UINT QUERY_TIME_OF_LAST_CHANGE = 2;
+  static const UINT QUERY_CONTENT_ENCODING = 3;
+  static const UINT QUERY_CONTENT_TYPE = 4;
+  static const UINT QUERY_REFRESH = 5;
+  static const UINT QUERY_RECOMBINE = 6;
+  static const UINT QUERY_CAN_NAVIGATE = 7;
+  static const UINT QUERY_USES_NETWORK = 8;
+  static const UINT QUERY_IS_CACHED = 9;
+  static const UINT QUERY_IS_INSTALLEDENTRY = 10;
+  static const UINT QUERY_IS_CACHED_OR_MAPPED = 11;
+  static const UINT QUERY_USES_CACHE = 12;
+  static const UINT QUERY_IS_SECURE = 13;
+  static const UINT QUERY_IS_SAFE = 14;
+  static const UINT QUERY_USES_HISTORYFOLDER = 15;
+  static const UINT QUERY_IS_CACHED_AND_USABLE_OFFLINE = 16;
+  typedef UINT PSUACTION; //Alias
+  static const UINT PSU_DEFAULT = 1;
+  static const UINT PSU_SECURITY_URL_ONLY = 2;
+  typedef UINT PARSEACTION; //Alias
+  static const UINT PARSE_CANONICALIZE = 1;
+  static const UINT PARSE_FRIENDLY = 2;
+  static const UINT PARSE_SECURITY_URL = 3;
+  static const UINT PARSE_ROOTDOCUMENT = 4;
+  static const UINT PARSE_DOCUMENT = 5;
+  static const UINT PARSE_ANCHOR = 6;
+  static const UINT PARSE_ENCODE = 7;
+  static const UINT PARSE_DECODE = 8;
+  static const UINT PARSE_PATH_FROM_URL = 9;
+  static const UINT PARSE_URL_FROM_PATH = 10;
+  static const UINT PARSE_MIME = 11;
+  static const UINT PARSE_SERVER = 12;
+  static const UINT PARSE_SCHEMA = 13;
+  static const UINT PARSE_SITE = 14;
+  static const UINT PARSE_DOMAIN = 15;
+  static const UINT PARSE_LOCATION = 16;
+  static const UINT PARSE_SECURITY_DOMAIN = 17;
+  static const UINT PARSE_ESCAPE = 18;
+  static const UINT PARSE_UNESCAPE = 19;
+  typedef DWORD WINAPI_UrlMkSessionOption; //Alias
+  static const DWORD URLMON_OPTION_USERAGENT = 0x10000001;
+  static const DWORD URLMON_OPTION_USERAGENT_REFRESH = 0x10000002;
+  static const DWORD URLMON_OPTION_URL_ENCODING = 0x10000004;
+  static const DWORD URLMON_OPTION_USE_BINDSTRINGCREDS = 0x10000008;
+  static const DWORD URLMON_OPTION_USE_BROWSERAPPSDOCUMENTS = 0x10000010;
   HRESULT CreateFormatEnumerator(                  UINT cfmtetc, FORMATETC* rgfmtetc, IEnumFORMATETC** ppenumfmtetc);
   HRESULT CoInternetCreateSecurityManager(         IServiceProvider* pSP, IInternetSecurityManager** ppSM, DWORD dwReserved);
   HRESULT CoInternetCreateZoneManager(             IServiceProvider* pSP, IInternetZoneManager** ppZM, DWORD dwReserved);

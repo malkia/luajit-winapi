@@ -3,6 +3,11 @@ require( 'ffi/winapi/headers/registry' )
 require( 'ffi/winapi/windows/srclient' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef struct PROTECTED_FILE_DATA {
+    WCHAR FileName[MAX_PATH];
+    DWORD FileNumber;
+  } PROTECTED_FILE_DATA;
+  typedef PROTECTED_FILE_DATA *PPROTECTED_FILE_DATA; //Pointer
   BOOL  SfcIsFileProtected(        HANDLE RpcHandle, LPCWSTR ProtFileName);
   BOOL  SfcIsKeyProtected(         HKEY hKey, LPCWSTR lpSubKey, REGSAM samDesired);
   BOOL  SfcGetNextProtectedFile(   HANDLE RpcHandle, PPROTECTED_FILE_DATA ProtFileData);

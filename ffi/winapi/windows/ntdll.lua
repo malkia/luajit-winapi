@@ -8,6 +8,1252 @@ require( 'ffi/winapi/headers/sockets' )
 require( 'ffi/winapi/headers/ioctl' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID PPLUGPLAY_EVENT_BLOCK; //Alias
+  typedef LPVOID PDBGUI_WAIT_STATE_CHANGE; //Alias
+  typedef LPVOID PRTL_TRACE_DATABASE; //Alias
+  typedef LPVOID PRTL_TRACE_BLOCK; //Alias
+  typedef LPVOID PRTL_TRACE_ENUM; //Alias
+  typedef USHORT RTL_ATOM; //Alias
+  typedef RTL_ATOM *PRTL_ATOM; //Pointer
+  typedef short CSHORT; //Alias
+  typedef ULONG CLONG; //Alias
+  typedef CHAR* PCCH; //Alias
+  typedef CHAR* PCH; //Alias
+  typedef char* PCSZ; //Alias
+  typedef LPVOID PTHREAD_START_ROUTINE; //Alias
+  typedef LPVOID WORKERCALLBACKFUNC; //Alias
+  typedef LPVOID WAITORTIMERCALLBACKFUNC; //Alias
+  typedef SIZE_T LPC_SIZE_T; //Alias
+  typedef PVOID LPC_PVOID; //Alias
+  typedef HANDLE LPC_HANDLE; //Alias
+  typedef LPVOID PTIMER_APC_ROUTINE; //Alias
+  typedef LPVOID PHEAP_ENUMERATION_ROUTINE; //Alias
+  typedef LPVOID PRTL_HEAP_COMMIT_ROUTINE; //Alias
+  typedef LPVOID PRTL_AVL_COMPARE_ROUTINE; //Alias
+  typedef LPVOID PRTL_AVL_ALLOCATE_ROUTINE; //Alias
+  typedef LPVOID PRTL_AVL_FREE_ROUTINE; //Alias
+  typedef LPVOID PRTL_SECURE_MEMORY_CACHE_CALLBACK; //Alias
+  typedef LPVOID PRTL_QUERY_REGISTRY_ROUTINE; //Alias
+  typedef LPVOID PRTL_GENERIC_COMPARE_ROUTINE; //Alias
+  typedef LPVOID PRTL_GENERIC_ALLOCATE_ROUTINE; //Alias
+  typedef LPVOID PRTL_GENERIC_FREE_ROUTINE; //Alias
+  typedef LPVOID PEXCEPTION_ROUTINE; //Alias
+  typedef HANDLE *HANDLE []; //Pointer
+  typedef LPVOID PRTL_TRACE_HASH_FUNCTION; //Alias
+  typedef LPVOID PLDR_DLL_NOTIFICATION_FUNCTION; //Alias
+  typedef PWCHAR PWCH; //Alias
+  enum { MAXIMUM_LEADBYTES = 12 };
+  enum { GDI_BATCH_BUFFER_SIZE = 310 };
+  typedef ULONG WINAPI_RTL_DEBUG_QUERY_FLAGS; //Alias
+  typedef struct CURDIR {
+    UNICODE_STRING DosPath;
+    HANDLE Handle;
+  } CURDIR;
+  typedef struct CSR_CAPTURE_BUFFER {
+    ULONG Size;
+    LPVOID PreviousCaptureBuffer;
+    ULONG PointerCount;
+    ULONG_PTR BufferEnd;
+    ULONG_PTR PointerArray[1];
+  } CSR_CAPTURE_BUFFER;
+  typedef ULONG WINAPI_LDRP_FLAGS; //Alias
+  typedef struct WINAPI_LDR_DATA_TABLE_ENTRY_u1_s {
+    PVOID SectionPointer;
+    ULONG CheckSum;
+  } WINAPI_LDR_DATA_TABLE_ENTRY_u1_s;
+  typedef union WINAPI_LDR_DATA_TABLE_ENTRY_u1 {
+    LIST_ENTRY HashLinks;
+    WINAPI_LDR_DATA_TABLE_ENTRY_u1_s ;
+  } WINAPI_LDR_DATA_TABLE_ENTRY_u1;
+  typedef union WINAPI_LDR_DATA_TABLE_ENTRY_u2 {
+    ULONG TimeDateStamp;
+    PVOID LoadedImports;
+  } WINAPI_LDR_DATA_TABLE_ENTRY_u2;
+  typedef struct LDR_DATA_TABLE_ENTRY {
+    LIST_ENTRY InLoadOrderLinks;
+    LIST_ENTRY InMemoryOrderModuleList;
+    LIST_ENTRY InInitializationOrderModuleList;
+    PVOID DllBase;
+    PVOID EntryPoint;
+    ULONG SizeOfImage;
+    UNICODE_STRING FullDllName;
+    UNICODE_STRING BaseDllName;
+    WINAPI_LDRP_FLAGS Flags;
+    USHORT LoadCount;
+    USHORT TlsIndex;
+    WINAPI_LDR_DATA_TABLE_ENTRY_u1 ;
+    WINAPI_LDR_DATA_TABLE_ENTRY_u2 ;
+    PVOID EntryPointActivationContext;
+    PVOID PatchInformation;
+  } LDR_DATA_TABLE_ENTRY;
+  typedef LDR_DATA_TABLE_ENTRY *PLDR_DATA_TABLE_ENTRY; //Pointer
+  typedef struct IMAGE_BASE_RELOCATION {
+    ULONG VirtualAddress;
+    ULONG SizeOfBlock;
+  } IMAGE_BASE_RELOCATION;
+  typedef IMAGE_BASE_RELOCATION *PIMAGE_BASE_RELOCATION; //Pointer
+  typedef UINT KPROFILE_SOURCE; //Alias
+  static const UINT ProfileTime = 0;
+  static const UINT ProfileAlignmentFixup = 1;
+  static const UINT ProfileTotalIssues = 2;
+  static const UINT ProfilePipelineDry = 3;
+  static const UINT ProfileLoadInstructions = 4;
+  static const UINT ProfilePipelineFrozen = 5;
+  static const UINT ProfileBranchInstructions = 6;
+  static const UINT ProfileTotalNonissues = 7;
+  static const UINT ProfileDcacheMisses = 8;
+  static const UINT ProfileIcacheMisses = 9;
+  static const UINT ProfileCacheMisses = 10;
+  static const UINT ProfileBranchMispredictions = 11;
+  static const UINT ProfileStoreInstructions = 12;
+  static const UINT ProfileFpInstructions = 13;
+  static const UINT ProfileIntegerInstructions = 14;
+  static const UINT Profile2Issue = 15;
+  static const UINT Profile3Issue = 16;
+  static const UINT Profile4Issue = 17;
+  static const UINT ProfileSpecialInstructions = 18;
+  static const UINT ProfileTotalCycles = 19;
+  static const UINT ProfileIcacheIssues = 20;
+  static const UINT ProfileDcacheAccesses = 21;
+  static const UINT ProfileMemoryBarrierCycles = 22;
+  static const UINT ProfileLoadLinkedIssues = 23;
+  typedef struct RTL_DRIVE_LETTER_CURDIR {
+    USHORT Flags;
+    USHORT Length;
+    ULONG TimeStamp;
+    UNICODE_STRING DosPath;
+  } RTL_DRIVE_LETTER_CURDIR;
+  typedef ULONG WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS; //Alias
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_NORMALIZED = 0x01;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_PROFILE_USER = 0x02;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_PROFILE_SERVER = 0x04;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_PROFILE_KERNEL = 0x08;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_UNKNOWN = 0x10;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_RESERVE_1MB = 0x20;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_DISABLE_HEAP_CHECKS = 0x100;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_PROCESS_OR_1 = 0x200;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_PROCESS_OR_2 = 0x400;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_PRIVATE_DLL_PATH = 0x1000;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_LOCAL_DLL_PATH = 0x2000;
+  static const ULONG RTL_USER_PROCESS_PARAMETERS_NX = 0x20000;
+  typedef struct RTL_USER_PROCESS_PARAMETERS {
+    ULONG MaximumLength;
+    ULONG Length;
+    WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS Flags;
+    ULONG DebugFlags;
+    HANDLE ConsoleHandle;
+    ULONG ConsoleFlags;
+    HANDLE StandardInput;
+    HANDLE StandardOutput;
+    HANDLE StandardError;
+    CURDIR CurrentDirectory;
+    UNICODE_STRING DllPath;
+    UNICODE_STRING ImagePathName;
+    UNICODE_STRING CommandLine;
+    PWSTR Environment;
+    ULONG StartingX;
+    ULONG StartingY;
+    ULONG CountX;
+    ULONG CountY;
+    ULONG CountCharsX;
+    ULONG CountCharsY;
+    ULONG FillAttribute;
+    WINAPI_STARTUPINFO_Flags WindowFlags;
+    WINAPI_ShowWindowCmd ShowWindowFlags;
+    UNICODE_STRING WindowTitle;
+    UNICODE_STRING DesktopInfo;
+    UNICODE_STRING ShellInfo;
+    UNICODE_STRING RuntimeData;
+    RTL_DRIVE_LETTER_CURDIR CurrentDirectories[32];
+  } RTL_USER_PROCESS_PARAMETERS;
+  typedef RTL_USER_PROCESS_PARAMETERS *PRTL_USER_PROCESS_PARAMETERS; //Pointer
+  typedef struct SECTION_IMAGE_INFORMATION {
+    PVOID EntryPoint;
+    ULONG StackZeroBits;
+    ULONG StackReserved;
+    ULONG StackCommit;
+    ULONG ImageSubsystem;
+    WORD SubsystemVersionLow;
+    WORD SubsystemVersionHigh;
+    ULONG Unknown1;
+    WINAPI_IMAGE_FILE_CHARACTERISTICS_ULONG ImageCharacteristics;
+    ULONG ImageMachineType;
+    ULONG Unknown2[3];
+  } SECTION_IMAGE_INFORMATION;
+  typedef struct RTL_USER_PROCESS_INFORMATION {
+    ULONG Size;
+    HANDLE ProcessHandle;
+    HANDLE ThreadHandle;
+    CLIENT_ID ClientId;
+    SECTION_IMAGE_INFORMATION ImageInformation;
+  } RTL_USER_PROCESS_INFORMATION;
+  typedef RTL_USER_PROCESS_INFORMATION *PRTL_USER_PROCESS_INFORMATION; //Pointer
+  typedef struct INITIAL_TEB {
+    PVOID StackBase;
+    PVOID StackLimit;
+    PVOID StackCommit;
+    PVOID StackCommitMax;
+    PVOID StackReserved;
+  } INITIAL_TEB;
+  typedef INITIAL_TEB *PINITIAL_TEB; //Pointer
+  typedef UINT RTL_PATH_TYPE; //Alias
+  static const UINT RtlPathTypeUnknown = 0;
+  static const UINT RtlPathTypeUncAbsolute = 1;
+  static const UINT RtlPathTypeDriveAbsolute = 2;
+  static const UINT RtlPathTypeDriveRelative = 3;
+  static const UINT RtlPathTypeRooted = 4;
+  static const UINT RtlPathTypeRelative = 5;
+  static const UINT RtlPathTypeLocalDevice = 6;
+  static const UINT RtlPathTypeRootLocalDevice = 7;
+  typedef struct RTL_RESOURCE {
+    RTL_CRITICAL_SECTION Lock;
+    HANDLE SharedSemaphore;
+    ULONG SharedWaiters;
+    HANDLE ExclusiveSemaphore;
+    ULONG ExclusiveWaiters;
+    LONG NumberActive;
+    HANDLE OwningThread;
+    ULONG TimeoutBoost;
+    PVOID DebugInfo;
+  } RTL_RESOURCE;
+  typedef RTL_RESOURCE *PRTL_RESOURCE; //Pointer
+  typedef struct RTL_PROCESS_VERIFIER_OPTIONS {
+    ULONG SizeStruct;
+    ULONG Option;
+    UCHAR OptionData[1];
+  } RTL_PROCESS_VERIFIER_OPTIONS;
+  typedef RTL_PROCESS_VERIFIER_OPTIONS *PRTL_PROCESS_VERIFIER_OPTIONS; //Pointer
+  typedef struct RTL_PROCESS_LOCK_INFORMATION {
+    PVOID Address;
+    USHORT Type;
+    USHORT CreatorBackTraceIndex;
+    ULONG OwnerThreadId;
+    ULONG ActiveCount;
+    ULONG ContentionCount;
+    ULONG EntryCount;
+    ULONG RecursionCount;
+    ULONG NumberOfSharedWaiters;
+    ULONG NumberOfExclusiveWaiters;
+  } RTL_PROCESS_LOCK_INFORMATION;
+  typedef struct RTL_PROCESS_LOCKS {
+    ULONG NumberOfLocks;
+    RTL_PROCESS_LOCK_INFORMATION Locks[1];
+  } RTL_PROCESS_LOCKS;
+  typedef RTL_PROCESS_LOCKS *PRTL_PROCESS_LOCKS; //Pointer
+  typedef struct RTL_HEAP_INFORMATION {
+    PVOID BaseAddress;
+    ULONG Flags;
+    USHORT EntryOverhead;
+    USHORT CreatorBackTraceIndex;
+    ULONG BytesAllocated;
+    ULONG BytesCommitted;
+    ULONG NumberOfTags;
+    ULONG NumberOfEntries;
+    ULONG NumberOfPseudoTags;
+    ULONG PseudoTagGranularity;
+    ULONG Reserved[4];
+    PVOID Tags;
+    PVOID Entries;
+  } RTL_HEAP_INFORMATION;
+  typedef struct RTL_PROCESS_HEAPS {
+    ULONG NumberOfHeaps;
+    RTL_HEAP_INFORMATION Heaps[1];
+  } RTL_PROCESS_HEAPS;
+  typedef RTL_PROCESS_HEAPS *PRTL_PROCESS_HEAPS; //Pointer
+  typedef struct RTL_PROCESS_BACKTRACE_INFORMATION {
+    PVOID SymbolicBackTrace;
+    ULONG TraceCount;
+    USHORT Index;
+    USHORT Depth;
+    PVOID BackTrace[16];
+  } RTL_PROCESS_BACKTRACE_INFORMATION;
+  typedef struct RTL_PROCESS_BACKTRACES {
+    ULONG CommittedMemory;
+    ULONG ReservedMemory;
+    ULONG NumberOfBackTraceLookups;
+    ULONG NumberOfBackTraces;
+    RTL_PROCESS_BACKTRACE_INFORMATION BackTraces[1];
+  } RTL_PROCESS_BACKTRACES;
+  typedef RTL_PROCESS_BACKTRACES *PRTL_PROCESS_BACKTRACES; //Pointer
+  typedef struct RTL_PROCESS_MODULE_INFORMATION {
+    ULONG Section;
+    PVOID MappedBase;
+    PVOID ImageBase;
+    ULONG ImageSize;
+    ULONG Flags;
+    USHORT LoadOrderIndex;
+    USHORT InitOrderIndex;
+    USHORT LoadCount;
+    USHORT OffsetToFileName;
+    CHAR FullPathName[256];
+  } RTL_PROCESS_MODULE_INFORMATION;
+  typedef struct RTL_PROCESS_MODULES {
+    ULONG NumberOfModules;
+    RTL_PROCESS_MODULE_INFORMATION Modules[1];
+  } RTL_PROCESS_MODULES;
+  typedef RTL_PROCESS_MODULES *PRTL_PROCESS_MODULES; //Pointer
+  typedef struct RTL_PROCESS_MODULE_INFORMATION_EX {
+    ULONG NextOffset;
+    RTL_PROCESS_MODULE_INFORMATION BaseInfo;
+    ULONG ImageCheckSum;
+    ULONG TimeDateStamp;
+    PVOID DefaultBase;
+  } RTL_PROCESS_MODULE_INFORMATION_EX;
+  typedef RTL_PROCESS_MODULE_INFORMATION_EX *PRTL_PROCESS_MODULE_INFORMATION_EX; //Pointer
+  typedef union WINAPI_RTL_DEBUG_INFORMATION_u {
+    PRTL_PROCESS_MODULES Modules;
+    PRTL_PROCESS_MODULE_INFORMATION_EX ModulesEx;
+  } WINAPI_RTL_DEBUG_INFORMATION_u;
+  typedef struct RTL_DEBUG_INFORMATION {
+    HANDLE SectionHandleClient;
+    PVOID ViewBaseClient;
+    PVOID ViewBaseTarget;
+    ULONG ViewBaseDelta;
+    HANDLE EventPairClient;
+    PVOID EventPairTarget;
+    HANDLE TargetProcessId;
+    HANDLE TargetThreadHandle;
+    WINAPI_RTL_DEBUG_QUERY_FLAGS Flags;
+    ULONG_PTR OffsetFree;
+    ULONG_PTR CommitSize;
+    ULONG_PTR ViewSize;
+    WINAPI_RTL_DEBUG_INFORMATION_u ;
+    PRTL_PROCESS_BACKTRACES BackTraces;
+    PRTL_PROCESS_HEAPS Heaps;
+    PRTL_PROCESS_LOCKS Locks;
+    HANDLE SpecificHeap;
+    HANDLE TargetProcessHandle;
+    PRTL_PROCESS_VERIFIER_OPTIONS VerifierOptions;
+    HANDLE ProcessHeap;
+    HANDLE CriticalSectionHandle;
+    HANDLE CriticalSectionOwnerThread;
+    PVOID Reserved[4];
+  } RTL_DEBUG_INFORMATION;
+  typedef RTL_DEBUG_INFORMATION *PRTL_DEBUG_INFORMATION; //Pointer
+  typedef struct RTL_BITMAP {
+    ULONG SizeOfBitMap;
+    PULONG Buffer;
+  } RTL_BITMAP;
+  typedef RTL_BITMAP *PRTL_BITMAP; //Pointer
+  typedef struct RTL_RANGE_LIST {
+    LIST_ENTRY ListHead;
+    ULONG Flags;
+    ULONG Count;
+    ULONG Stamp;
+  } RTL_RANGE_LIST;
+  typedef RTL_RANGE_LIST *PRTL_RANGE_LIST; //Pointer
+  typedef struct RTL_SPLAY_LINKS {
+    LPVOID Parent;
+    LPVOID LeftChild;
+    LPVOID RightChild;
+  } RTL_SPLAY_LINKS;
+  typedef RTL_SPLAY_LINKS *PRTL_SPLAY_LINKS; //Pointer
+  typedef struct RTL_GENERIC_TABLE {
+    PRTL_SPLAY_LINKS TableRoot;
+    LIST_ENTRY InsertOrderList;
+    PLIST_ENTRY OrderedPointer;
+    ULONG WhichOrderedElement;
+    ULONG NumberGenericTableElements;
+    PRTL_GENERIC_COMPARE_ROUTINE CompareRoutine;
+    PRTL_GENERIC_ALLOCATE_ROUTINE AllocateRoutine;
+    PRTL_GENERIC_FREE_ROUTINE FreeRoutine;
+    PVOID TableContext;
+  } RTL_GENERIC_TABLE;
+  typedef RTL_GENERIC_TABLE *PRTL_GENERIC_TABLE; //Pointer
+  typedef UINT TABLE_SEARCH_RESULT; //Alias
+  static const UINT TableEmptyTree = 0;
+  static const UINT TableFoundNode = 1;
+  static const UINT TableInsertAsLeft = 2;
+  static const UINT TableInsertAsRight = 3;
+  typedef union RTL_HANDLE_TABLE_ENTRY {
+    ULONG Flags;
+    LPVOID NextFree;
+  } RTL_HANDLE_TABLE_ENTRY;
+  typedef RTL_HANDLE_TABLE_ENTRY *PRTL_HANDLE_TABLE_ENTRY; //Pointer
+  typedef struct RTL_HANDLE_TABLE {
+    ULONG MaximumNumberOfHandles;
+    ULONG SizeOfHandleTableEntry;
+    ULONG Reserved[2];
+    PRTL_HANDLE_TABLE_ENTRY FreeHandles;
+    PRTL_HANDLE_TABLE_ENTRY CommittedHandles;
+    PRTL_HANDLE_TABLE_ENTRY UnCommittedHandles;
+    PRTL_HANDLE_TABLE_ENTRY MaxReservedHandles;
+  } RTL_HANDLE_TABLE;
+  typedef RTL_HANDLE_TABLE *PRTL_HANDLE_TABLE; //Pointer
+  typedef struct RTL_MESSAGE_RESOURCE_ENTRY {
+    USHORT Length;
+    USHORT Flags;
+    CHAR Text[1];
+  } RTL_MESSAGE_RESOURCE_ENTRY;
+  typedef RTL_MESSAGE_RESOURCE_ENTRY *PRTL_MESSAGE_RESOURCE_ENTRY; //Pointer
+  typedef ULONG WINAPI_RTL_QUERY_REGISTRY_FLAGS; //Alias
+  typedef struct RTL_QUERY_REGISTRY_TABLE {
+    PRTL_QUERY_REGISTRY_ROUTINE QueryRoutine;
+    WINAPI_RTL_QUERY_REGISTRY_FLAGS Flags;
+    PWSTR Name;
+    PVOID EntryContext;
+    ULONG DefaultType;
+    PVOID DefaultData;
+    ULONG DefaultLength;
+  } RTL_QUERY_REGISTRY_TABLE;
+  typedef RTL_QUERY_REGISTRY_TABLE *PRTL_QUERY_REGISTRY_TABLE; //Pointer
+  typedef struct CPTABLEINFO {
+    USHORT CodePage;
+    USHORT MaximumCharacterSize;
+    USHORT DefaultChar;
+    USHORT UniDefaultChar;
+    USHORT TransDefaultChar;
+    USHORT TransUniDefaultChar;
+    USHORT DBCSCodePage;
+    UCHAR LeadByte[MAXIMUM_LEADBYTES];
+    PUSHORT MultiByteTable;
+    PVOID WideCharTable;
+    PUSHORT DBCSRanges;
+    PUSHORT DBCSOffsets;
+  } CPTABLEINFO;
+  typedef CPTABLEINFO *PCPTABLEINFO; //Pointer
+  typedef struct NLSTABLEINFO {
+    CPTABLEINFO OemTableInfo;
+    CPTABLEINFO AnsiTableInfo;
+    PUSHORT UpperCaseTable;
+    PUSHORT LowerCaseTable;
+  } NLSTABLEINFO;
+  typedef NLSTABLEINFO *PNLSTABLEINFO; //Pointer
+  typedef struct RTL_SYSTEM_TIME {
+    WORD wYear;
+    WORD wMonth;
+    WORD wDayOfWeek;
+    WORD wDay;
+    WORD wHour;
+    WORD wMinute;
+    WORD wSecond;
+    WORD wMilliseconds;
+  } RTL_SYSTEM_TIME;
+  typedef struct RTL_TIME_ZONE_INFORMATION {
+    LONG Bias;
+    WCHAR StandardName[32];
+    RTL_SYSTEM_TIME StandardDate;
+    LONG StandardBias;
+    WCHAR DaylightName[32];
+    RTL_SYSTEM_TIME DaylightDate;
+    LONG DaylightBias;
+  } RTL_TIME_ZONE_INFORMATION;
+  typedef RTL_TIME_ZONE_INFORMATION *PRTL_TIME_ZONE_INFORMATION; //Pointer
+  typedef struct TIME_FIELDS {
+    CSHORT Year;
+    CSHORT Month;
+    CSHORT Day;
+    CSHORT Hour;
+    CSHORT Minute;
+    CSHORT Second;
+    CSHORT Milliseconds;
+    CSHORT Weekday;
+  } TIME_FIELDS;
+  typedef TIME_FIELDS *PTIME_FIELDS; //Pointer
+  typedef UINT NT_PRODUCT_TYPE; //Alias
+  static const UINT NtProductWinNt = 1;
+  static const UINT NtProductLanManNt = 2;
+  static const UINT NtProductServer = 3;
+  typedef NT_PRODUCT_TYPE *PNT_PRODUCT_TYPE; //Pointer
+  typedef struct RTL_BALANCED_LINKS {
+    LPVOID Parent;
+    LPVOID LeftChild;
+    LPVOID RightChild;
+    CHAR Balance;
+    UCHAR Reserved[3];
+  } RTL_BALANCED_LINKS;
+  typedef RTL_BALANCED_LINKS *PRTL_BALANCED_LINKS; //Pointer
+  typedef struct RTL_AVL_TABLE {
+    RTL_BALANCED_LINKS BalancedRoot;
+    PVOID OrderedPointer;
+    ULONG WhichOrderedElement;
+    ULONG NumberGenericTableElements;
+    ULONG DepthOfTree;
+    PRTL_BALANCED_LINKS RestartKey;
+    ULONG DeleteCount;
+    PRTL_AVL_COMPARE_ROUTINE CompareRoutine;
+    PRTL_AVL_ALLOCATE_ROUTINE AllocateRoutine;
+    PRTL_AVL_FREE_ROUTINE FreeRoutine;
+    PVOID TableContext;
+  } RTL_AVL_TABLE;
+  typedef RTL_AVL_TABLE *PRTL_AVL_TABLE; //Pointer
+  typedef struct COMPRESSED_DATA_INFO {
+    USHORT CompressionFormatAndEngine;
+    UCHAR CompressionUnitShift;
+    UCHAR ChunkShift;
+    UCHAR ClusterShift;
+    UCHAR Reserved;
+    USHORT NumberOfChunks;
+    ULONG CompressedChunkSizes[ANYSIZE_ARRAY];
+  } COMPRESSED_DATA_INFO;
+  typedef COMPRESSED_DATA_INFO *PCOMPRESSED_DATA_INFO; //Pointer
+  typedef struct GENERATE_NAME_CONTEXT {
+    USHORT Checksum;
+    BOOLEAN CheckSumInserted;
+    UCHAR NameLength;
+    WCHAR NameBuffer[8];
+    ULONG ExtensionLength;
+    WCHAR ExtensionBuffer[4];
+    ULONG LastIndexValue;
+  } GENERATE_NAME_CONTEXT;
+  typedef GENERATE_NAME_CONTEXT *PGENERATE_NAME_CONTEXT; //Pointer
+  typedef struct RTL_HEAP_PARAMETERS {
+    ULONG Length;
+    SIZE_T SegmentReserve;
+    SIZE_T SegmentCommit;
+    SIZE_T DeCommitFreeBlockThreshold;
+    SIZE_T DeCommitTotalFreeThreshold;
+    SIZE_T MaximumAllocationSize;
+    SIZE_T VirtualMemoryThreshold;
+    SIZE_T InitialCommit;
+    SIZE_T InitialReserve;
+    PRTL_HEAP_COMMIT_ROUTINE CommitRoutine;
+    SIZE_T Reserved[2];
+  } RTL_HEAP_PARAMETERS;
+  typedef RTL_HEAP_PARAMETERS *PRTL_HEAP_PARAMETERS; //Pointer
+  typedef struct RTL_HEAP_TAG_INFO {
+    ULONG NumberOfAllocations;
+    ULONG NumberOfFrees;
+    ULONG BytesAllocated;
+  } RTL_HEAP_TAG_INFO;
+  typedef RTL_HEAP_TAG_INFO *PRTL_HEAP_TAG_INFO; //Pointer
+  typedef struct RTL_HEAP_USAGE_ENTRY {
+    LPVOID Next;
+  } RTL_HEAP_USAGE_ENTRY;
+  typedef RTL_HEAP_USAGE_ENTRY *PRTL_HEAP_USAGE_ENTRY; //Pointer
+  typedef struct RTL_HEAP_USAGE {
+    ULONG Length;
+    ULONG BytesAllocated;
+    ULONG BytesCommitted;
+    ULONG BytesReserved;
+    ULONG BytesReservedMaximum;
+    PRTL_HEAP_USAGE_ENTRY Entries;
+    PRTL_HEAP_USAGE_ENTRY AddedEntries;
+    PRTL_HEAP_USAGE_ENTRY RemovedEntries;
+    UCHAR Reserved[32];
+  } RTL_HEAP_USAGE;
+  typedef RTL_HEAP_USAGE *PRTL_HEAP_USAGE; //Pointer
+  typedef union WINAPI_IO_STATUS_BLOCK_u {
+    NTSTATUS Status;
+    PVOID Pointer;
+  } WINAPI_IO_STATUS_BLOCK_u;
+  typedef struct IO_STATUS_BLOCK {
+    WINAPI_IO_STATUS_BLOCK_u ;
+    ULONG_PTR Information;
+  } IO_STATUS_BLOCK;
+  typedef IO_STATUS_BLOCK *PIO_STATUS_BLOCK; //Pointer
+  typedef struct KEY_VALUE_ENTRY {
+    PUNICODE_STRING ValueName;
+    ULONG DataLength;
+    ULONG DataOffset;
+    ULONG Type;
+  } KEY_VALUE_ENTRY;
+  typedef KEY_VALUE_ENTRY *PKEY_VALUE_ENTRY; //Pointer
+  typedef struct EFI_DRIVER_ENTRY {
+    ULONG Version;
+    ULONG Length;
+    ULONG Id;
+    ULONG Attributes;
+    ULONG FriendlyNameOffset;
+    ULONG DriverFilePathOffset;
+  } EFI_DRIVER_ENTRY;
+  typedef EFI_DRIVER_ENTRY *PEFI_DRIVER_ENTRY; //Pointer
+  typedef WINAPI_FileAttributes WINAPI_FILE_ATTRIBUTES_ULONG; //Alias
+  typedef struct FILE_BASIC_INFORMATION {
+    LARGE_INTEGER CreationTime;
+    LARGE_INTEGER LastAccessTime;
+    LARGE_INTEGER LastWriteTime;
+    LARGE_INTEGER ChangeTime;
+    WINAPI_FILE_ATTRIBUTES_ULONG FileAttributes;
+  } FILE_BASIC_INFORMATION;
+  typedef FILE_BASIC_INFORMATION *PFILE_BASIC_INFORMATION; //Pointer
+  typedef struct FILE_NETWORK_OPEN_INFORMATION {
+    LARGE_INTEGER CreationTime;
+    LARGE_INTEGER LastAccessTime;
+    LARGE_INTEGER LastWriteTime;
+    LARGE_INTEGER ChangeTime;
+    LARGE_INTEGER AllocationSize;
+    LARGE_INTEGER EndOfFile;
+    ULONG FileAttributes;
+  } FILE_NETWORK_OPEN_INFORMATION;
+  typedef FILE_NETWORK_OPEN_INFORMATION *PFILE_NETWORK_OPEN_INFORMATION; //Pointer
+  typedef struct BOOT_ENTRY {
+    ULONG Version;
+    ULONG Length;
+    ULONG Id;
+    ULONG Attributes;
+    ULONG FriendlyNameOffset;
+    ULONG BootFilePathOffset;
+    ULONG OsOptionsLength;
+    CHAR OsOptions[1];
+  } BOOT_ENTRY;
+  typedef BOOT_ENTRY *PBOOT_ENTRY; //Pointer
+  typedef struct BOOT_OPTIONS {
+    ULONG Version;
+    ULONG Length;
+    ULONG Timeout;
+    ULONG CurrentBootEntryId;
+    ULONG NextBootEntryId;
+    WCHAR HeadlessRedirection[1];
+  } BOOT_OPTIONS;
+  typedef BOOT_OPTIONS *PBOOT_OPTIONS; //Pointer
+  typedef struct FILE_PATH {
+    ULONG Version;
+    ULONG Length;
+    ULONG Type;
+    CHAR FilePath[1];
+  } FILE_PATH;
+  typedef FILE_PATH *PFILE_PATH; //Pointer
+  typedef struct LDR_RESOURCE_INFO {
+    ULONG_PTR Type;
+    ULONG_PTR Name;
+    ULONG Language;
+  } LDR_RESOURCE_INFO;
+  typedef LDR_RESOURCE_INFO *PLDR_RESOURCE_INFO; //Pointer
+  typedef struct PORT_VIEW {
+    ULONG Length;
+    LPC_HANDLE SectionHandle;
+    ULONG SectionOffset;
+    LPC_SIZE_T ViewSize;
+    LPC_PVOID ViewBase;
+    LPC_PVOID ViewRemoteBase;
+  } PORT_VIEW;
+  typedef PORT_VIEW *PPORT_VIEW; //Pointer
+  typedef struct REMOTE_PORT_VIEW {
+    ULONG Length;
+    LPC_SIZE_T ViewSize;
+    LPC_PVOID ViewBase;
+  } REMOTE_PORT_VIEW;
+  typedef REMOTE_PORT_VIEW *PREMOTE_PORT_VIEW; //Pointer
+  typedef struct JOB_SET_ARRAY {
+    HANDLE JobHandle;
+    DWORD MemberLevel;
+    DWORD Flags;
+  } JOB_SET_ARRAY;
+  typedef JOB_SET_ARRAY *PJOB_SET_ARRAY; //Pointer
+  typedef struct TOKEN_USER {
+    SID_AND_ATTRIBUTES User;
+  } TOKEN_USER;
+  typedef TOKEN_USER *PTOKEN_USER; //Pointer
+  typedef struct TOKEN_OWNER {
+    PSID Owner;
+  } TOKEN_OWNER;
+  typedef TOKEN_OWNER *PTOKEN_OWNER; //Pointer
+  typedef struct TOKEN_PRIMARY_GROUP {
+    PSID PrimaryGroup;
+  } TOKEN_PRIMARY_GROUP;
+  typedef TOKEN_PRIMARY_GROUP *PTOKEN_PRIMARY_GROUP; //Pointer
+  typedef struct TOKEN_DEFAULT_DACL {
+    PACL DefaultDacl;
+  } TOKEN_DEFAULT_DACL;
+  typedef TOKEN_DEFAULT_DACL *PTOKEN_DEFAULT_DACL; //Pointer
+  typedef struct IMAGE_RESOURCE_DATA_ENTRY {
+    DWORD OffsetToData;
+    DWORD Size;
+    WINAPI_CodePageEnum CodePage;
+    DWORD Reserved;
+  } IMAGE_RESOURCE_DATA_ENTRY;
+  typedef IMAGE_RESOURCE_DATA_ENTRY *PIMAGE_RESOURCE_DATA_ENTRY; //Pointer
+  typedef struct IMAGE_RESOURCE_DIRECTORY {
+    DWORD Characteristics;
+    DWORD TimeDateStamp;
+    WORD MajorVersion;
+    WORD MinorVersion;
+    WORD NumberOfNamedEntries;
+    WORD NumberOfIdEntries;
+  } IMAGE_RESOURCE_DIRECTORY;
+  typedef IMAGE_RESOURCE_DIRECTORY *PIMAGE_RESOURCE_DIRECTORY; //Pointer
+  typedef UINT KEY_INFORMATION_CLASS; //Alias
+  static const UINT KeyBasicInformation = 0;
+  static const UINT KeyNodeInformation = 1;
+  static const UINT KeyFullInformation = 2;
+  static const UINT KeyNameInformation = 3;
+  static const UINT KeyCachedInformation = 4;
+  static const UINT KeyFlagsInformation = 5;
+  static const UINT KeyVirtualizationInformation = 6;
+  static const UINT KeyHandleTagsInformation = 7;
+  typedef UINT KEY_VALUE_INFORMATION_CLASS; //Alias
+  static const UINT KeyValueBasicInformation = 0;
+  static const UINT KeyValueFullInformation = 1;
+  static const UINT KeyValuePartialInformation = 2;
+  static const UINT KeyValueFullInformationAlign64 = 2;
+  static const UINT KeyValuePartialInformationAlign64 = 2;
+  typedef UINT PLUGPLAY_CONTROL_CLASS; //Alias
+  static const UINT PlugPlayControlEnumerateDevice = 0;
+  static const UINT PlugPlayControlRegisterNewDevice = 1;
+  static const UINT PlugPlayControlDeregisterDevice = 2;
+  static const UINT PlugPlayControlInitializeDevice = 3;
+  static const UINT PlugPlayControlStartDevice = 4;
+  static const UINT PlugPlayControlUnlockDevice = 5;
+  static const UINT PlugPlayControlQueryAndRemoveDevice = 6;
+  static const UINT PlugPlayControlUserResponse = 7;
+  static const UINT PlugPlayControlGenerateLegacyDevice = 8;
+  static const UINT PlugPlayControlGetInterfaceDeviceList = 9;
+  static const UINT PlugPlayControlProperty = 10;
+  static const UINT PlugPlayControlDeviceClassAssociation = 11;
+  static const UINT PlugPlayControlGetRelatedDevice = 12;
+  static const UINT PlugPlayControlGetInterfaceDeviceAlias = 13;
+  static const UINT PlugPlayControlDeviceStatus = 14;
+  static const UINT PlugPlayControlGetDeviceDepth = 15;
+  static const UINT PlugPlayControlQueryDeviceRelations = 16;
+  static const UINT PlugPlayControlTargetDeviceRelation = 17;
+  static const UINT PlugPlayControlQueryConflictList = 18;
+  static const UINT PlugPlayControlRetrieveDock = 19;
+  static const UINT PlugPlayControlResetDevice = 20;
+  static const UINT PlugPlayControlHaltDevice = 21;
+  static const UINT PlugPlayControlGetBlockedDriverList = 22;
+  typedef UINT KEY_SET_INFORMATION_CLASS; //Alias
+  static const UINT KeyWriteTimeInformation = 0;
+  static const UINT KeyWow64FlagsInformation = 1;
+  static const UINT KeyControlFlagsInformation = 2;
+  static const UINT KeySetVirtualizationInformation = 3;
+  static const UINT KeySetDebugInformation = 4;
+  static const UINT KeySetHandleTagsInformation = 5;
+  typedef UINT DEBUGOBJECTINFOCLASS; //Alias
+  static const UINT DebugObjectUnusedInformation = 0;
+  static const UINT DebugObjectKillProcessOnExitInformation = 1;
+  typedef UINT TIMER_TYPE; //Alias
+  static const UINT NotificationTimer = 0;
+  static const UINT SynchronizationTimer = 1;
+  typedef UINT EVENT_INFORMATION_CLASS; //Alias
+  static const UINT EventBasicInformation = 0;
+  typedef UINT ATOM_INFORMATION_CLASS; //Alias
+  static const UINT AtomBasicInformation = 0;
+  static const UINT AtomTableInformation = 0;
+  typedef UINT MUTANT_INFORMATION_CLASS; //Alias
+  static const UINT MutantBasicInformation = 0;
+  static const UINT MutantOwnerInformation = 0;
+  typedef UINT SEMAPHORE_INFORMATION_CLASS; //Alias
+  static const UINT SemaphoreBasicInformation = 0;
+  typedef UINT TIMER_INFORMATION_CLASS; //Alias
+  static const UINT TimerBasicInformation = 0;
+  typedef UINT SHUTDOWN_ACTION; //Alias
+  static const UINT ShutdownNoReboot = 0;
+  static const UINT ShutdownReboot = 1;
+  static const UINT ShutdownPowerOff = 2;
+  typedef UINT FILE_INFORMATION_CLASS; //Alias
+  static const UINT FileDirectoryInformation = 1;
+  static const UINT FileFullDirectoryInformation = 2;
+  static const UINT FileBothDirectoryInformation = 3;
+  static const UINT FileBasicInformation = 4;
+  static const UINT FileStandardInformation = 5;
+  static const UINT FileInternalInformation = 6;
+  static const UINT FileEaInformation = 7;
+  static const UINT FileAccessInformation = 8;
+  static const UINT FileNameInformation = 9;
+  static const UINT FileRenameInformation = 10;
+  static const UINT FileLinkInformation = 11;
+  static const UINT FileNamesInformation = 12;
+  static const UINT FileDispositionInformation = 13;
+  static const UINT FilePositionInformation = 14;
+  static const UINT FileFullEaInformation = 15;
+  static const UINT FileModeInformation = 16;
+  static const UINT FileAlignmentInformation = 17;
+  static const UINT FileAllInformation = 18;
+  static const UINT FileAllocationInformation = 19;
+  static const UINT FileEndOfFileInformation = 20;
+  static const UINT FileAlternateNameInformation = 21;
+  static const UINT FileStreamInformation = 22;
+  static const UINT FilePipeInformation = 23;
+  static const UINT FilePipeLocalInformation = 24;
+  static const UINT FilePipeRemoteInformation = 25;
+  static const UINT FileMailslotQueryInformation = 26;
+  static const UINT FileMailslotSetInformation = 27;
+  static const UINT FileCompressionInformation = 28;
+  static const UINT FileObjectIdInformation = 29;
+  static const UINT FileCompletionInformation = 30;
+  static const UINT FileMoveClusterInformation = 31;
+  static const UINT FileQuotaInformation = 32;
+  static const UINT FileReparsePointInformation = 33;
+  static const UINT FileNetworkOpenInformation = 34;
+  static const UINT FileAttributeTagInformation = 35;
+  static const UINT FileTrackingInformation = 36;
+  static const UINT FileIdBothDirectoryInformation = 37;
+  static const UINT FileIdFullDirectoryInformation = 38;
+  static const UINT FileValidDataLengthInformation = 39;
+  static const UINT FileShortNameInformation = 40;
+  static const UINT FileIoCompletionNotificationInformation = 41;
+  static const UINT FileIoStatusBlockRangeInformation = 42;
+  static const UINT FileIoPriorityHintInformation = 43;
+  static const UINT FileSfioReserveInformation = 44;
+  static const UINT FileSfioVolumeInformation = 45;
+  static const UINT FileHardLinkInformation = 46;
+  static const UINT FileProcessIdsUsingFileInformation = 47;
+  static const UINT FileNormalizedNameInformation = 48;
+  static const UINT FileNetworkPhysicalNameInformation = 49;
+  static const UINT FileIdGlobalTxDirectoryInformation = 50;
+  static const UINT FileIsRemoteDeviceInformation = 51;
+  static const UINT FileAttributeCacheInformation = 52;
+  static const UINT FileNumaNodeInformation = 53;
+  static const UINT FileStandardLinkInformation = 54;
+  static const UINT FileRemoteProtocolInformation = 55;
+  static const UINT FileRenameInformationBypassAccessCheck = 56;
+  static const UINT FileLinkInformationBypassAccessCheck = 57;
+  static const UINT FileIntegrityStreamInformation = 58;
+  static const UINT FileVolumeNameInformation = 59;
+  typedef UINT IO_COMPLETION_INFORMATION_CLASS; //Alias
+  static const UINT IoCompletionBasicInformation = 0;
+  typedef UINT FS_INFORMATION_CLASS; //Alias
+  static const UINT FileFsVolumeInformation = 1;
+  static const UINT FileFsLabelInformation = 2;
+  static const UINT FileFsSizeInformation = 3;
+  static const UINT FileFsDeviceInformation = 4;
+  static const UINT FileFsAttributeInformation = 5;
+  static const UINT FileFsControlInformation = 6;
+  static const UINT FileFsFullSizeInformation = 7;
+  static const UINT FileFsObjectIdInformation = 8;
+  static const UINT FileFsDriverPathInformation = 9;
+  static const UINT FileFsVolumeFlagsInformation = 10;
+  static const UINT FileFsSectorSizeInformation = 11;
+  typedef UINT SYSDBG_COMMAND; //Alias
+  static const UINT SysDbgQueryModuleInformation = 0;
+  static const UINT SysDbgQueryTraceInformation = 1;
+  static const UINT SysDbgSetTracepoint = 2;
+  static const UINT SysDbgSetSpecialCall = 3;
+  static const UINT SysDbgClearSpecialCalls = 4;
+  static const UINT SysDbgQuerySpecialCalls = 5;
+  static const UINT SysDbgBreakPoint = 6;
+  static const UINT SysDbgQueryVersion = 7;
+  static const UINT SysDbgReadVirtual = 8;
+  static const UINT SysDbgWriteVirtual = 9;
+  static const UINT SysDbgReadPhysical = 10;
+  static const UINT SysDbgWritePhysical = 11;
+  static const UINT SysDbgReadControlSpace = 12;
+  static const UINT SysDbgWriteControlSpace = 13;
+  static const UINT SysDbgReadIoSpace = 14;
+  static const UINT SysDbgWriteIoSpace = 15;
+  static const UINT SysDbgReadMsr = 16;
+  static const UINT SysDbgWriteMsr = 17;
+  static const UINT SysDbgReadBusData = 18;
+  static const UINT SysDbgWriteBusData = 19;
+  static const UINT SysDbgCheckLowMemory = 20;
+  static const UINT SysDbgEnableKernelDebugger = 21;
+  static const UINT SysDbgDisableKernelDebugger = 22;
+  static const UINT SysDbgGetAutoKdEnable = 23;
+  static const UINT SysDbgSetAutoKdEnable = 24;
+  static const UINT SysDbgGetPrintBufferSize = 25;
+  static const UINT SysDbgSetPrintBufferSize = 26;
+  static const UINT SysDbgGetKdUmExceptionEnable = 27;
+  static const UINT SysDbgSetKdUmExceptionEnable = 28;
+  static const UINT SysDbgGetTriageDump = 29;
+  static const UINT SysDbgGetKdBlockEnable = 30;
+  static const UINT SysDbgSetKdBlockEnable = 31;
+  static const UINT SysDbgRegisterForUmBreakInfo = 32;
+  static const UINT SysDbgGetUmBreakPid = 33;
+  static const UINT SysDbgClearUmBreakPid = 34;
+  static const UINT SysDbgGetUmAttachPid = 35;
+  static const UINT SysDbgClearUmAttachPid = 36;
+  typedef UINT PORT_INFORMATION_CLASS; //Alias
+  static const UINT PortBasicInformation = 0;
+  static const UINT PortDumpInformation = 1;
+  typedef UINT SECTION_INHERIT; //Alias
+  static const UINT ViewShare = 1;
+  static const UINT ViewUnmap = 2;
+  typedef UINT SECTION_INFORMATION_CLASS; //Alias
+  static const UINT SectionBasicInformation = 0;
+  static const UINT SectionImageInformation = 1;
+  static const UINT SectionRelocationInformation = 2;
+  typedef UINT MEMORY_INFORMATION_CLASS; //Alias
+  static const UINT MemoryBasicInformation = 0;
+  static const UINT MemoryWorkingSetInformation = 1;
+  static const UINT MemoryMappedFilenameInformation = 2;
+  static const UINT MemoryRegionInformation = 3;
+  static const UINT MemoryWorkingSetExInformation = 4;
+  typedef UINT OBJECT_INFORMATION_CLASS; //Alias
+  static const UINT ObjectBasicInformation = 0;
+  static const UINT ObjectNameInformation = 1;
+  static const UINT ObjectTypeInformation = 2;
+  static const UINT ObjectAllTypesInformation = 3;
+  static const UINT ObjectHandleFlagInformation = 4;
+  static const UINT ObjectSessionInformation = 5;
+  typedef UINT WAIT_TYPE; //Alias
+  static const UINT WaitAll = 0;
+  static const UINT WaitAny = 1;
+  typedef UINT APPHELPCACHESERVICECLASS; //Alias
+  static const UINT ApphelpCacheServiceLookup = 0;
+  static const UINT ApphelpCacheServiceRemove = 1;
+  static const UINT ApphelpCacheServiceUpdate = 2;
+  static const UINT ApphelpCacheServiceFlush = 3;
+  static const UINT ApphelpCacheServiceDump = 4;
+  typedef UINT SYSTEM_INFORMATION_CLASS; //Alias
+  static const UINT SystemBasicInformation = 0;
+  static const UINT SystemProcessorInformation = 1;
+  static const UINT SystemPerformanceInformation = 2;
+  static const UINT SystemTimeOfDayInformation = 3;
+  static const UINT SystemPathInformation = 4;
+  static const UINT SystemProcessInformation = 5;
+  static const UINT SystemCallCountInformation = 6;
+  static const UINT SystemDeviceInformation = 7;
+  static const UINT SystemProcessorPerformanceInformation = 8;
+  static const UINT SystemFlagsInformation = 9;
+  static const UINT SystemCallTimeInformation = 10;
+  static const UINT SystemModuleInformation = 11;
+  static const UINT SystemLocksInformation = 12;
+  static const UINT SystemStackTraceInformation = 13;
+  static const UINT SystemPagedPoolInformation = 14;
+  static const UINT SystemNonPagedPoolInformation = 15;
+  static const UINT SystemHandleInformation = 16;
+  static const UINT SystemObjectInformation = 17;
+  static const UINT SystemPageFileInformation = 18;
+  static const UINT SystemVdmInstemulInformation = 19;
+  static const UINT SystemVdmBopInformation = 20;
+  static const UINT SystemFileCacheInformation = 21;
+  static const UINT SystemPoolTagInformation = 22;
+  static const UINT SystemInterruptInformation = 23;
+  static const UINT SystemDpcBehaviorInformation = 24;
+  static const UINT SystemFullMemoryInformation = 25;
+  static const UINT SystemLoadGdiDriverInformation = 26;
+  static const UINT SystemUnloadGdiDriverInformation = 27;
+  static const UINT SystemTimeAdjustmentInformation = 28;
+  static const UINT SystemSummaryMemoryInformation = 29;
+  static const UINT SystemMirrorMemoryInformation = 30;
+  static const UINT SystemPerformanceTraceInformation = 31;
+  static const UINT SystemObsolete0 = 32;
+  static const UINT SystemExceptionInformation = 33;
+  static const UINT SystemCrashDumpStateInformation = 34;
+  static const UINT SystemKernelDebuggerInformation = 35;
+  static const UINT SystemContextSwitchInformation = 36;
+  static const UINT SystemRegistryQuotaInformation = 37;
+  static const UINT SystemExtendServiceTableInformation = 38;
+  static const UINT SystemPrioritySeperation = 39;
+  static const UINT SystemVerifierAddDriverInformation = 40;
+  static const UINT SystemVerifierRemoveDriverInformation = 41;
+  static const UINT SystemProcessorIdleInformation = 42;
+  static const UINT SystemLegacyDriverInformation = 43;
+  static const UINT SystemCurrentTimeZoneInformation = 44;
+  static const UINT SystemLookasideInformation = 45;
+  static const UINT SystemTimeSlipNotification = 46;
+  static const UINT SystemSessionCreate = 47;
+  static const UINT SystemSessionDetach = 48;
+  static const UINT SystemSessionInformation = 49;
+  static const UINT SystemRangeStartInformation = 50;
+  static const UINT SystemVerifierInformation = 51;
+  static const UINT SystemVerifierThunkExtend = 52;
+  static const UINT SystemSessionProcessInformation = 53;
+  static const UINT SystemLoadGdiDriverInSystemSpace = 54;
+  static const UINT SystemNumaProcessorMap = 55;
+  static const UINT SystemPrefetcherInformation = 56;
+  static const UINT SystemExtendedProcessInformation = 57;
+  static const UINT SystemRecommendedSharedDataAlignment = 58;
+  static const UINT SystemComPlusPackage = 59;
+  static const UINT SystemNumaAvailableMemory = 60;
+  static const UINT SystemProcessorPowerInformation = 61;
+  static const UINT SystemEmulationBasicInformation = 62;
+  static const UINT SystemEmulationProcessorInformation = 63;
+  static const UINT SystemExtendedHandleInformation = 64;
+  static const UINT SystemLostDelayedWriteInformation = 65;
+  static const UINT SystemBigPoolInformation = 66;
+  static const UINT SystemSessionPoolTagInformation = 67;
+  static const UINT SystemSessionMappedViewInformation = 68;
+  static const UINT SystemHotpatchInformation = 69;
+  static const UINT SystemObjectSecurityMode = 70;
+  static const UINT SystemWatchdogTimerHandler = 71;
+  static const UINT SystemWatchdogTimerInformation = 72;
+  static const UINT SystemLogicalProcessorInformation = 73;
+  static const UINT SystemWow64SharedInformationObsolete = 74;
+  static const UINT SystemRegisterFirmwareTableInformationHandler = 75;
+  static const UINT SystemFirmwareTableInformation = 76;
+  static const UINT SystemModuleInformationEx = 77;
+  static const UINT SystemVerifierTriageInformation = 78;
+  static const UINT SystemSuperfetchInformation = 79;
+  static const UINT SystemMemoryListInformation = 80;
+  static const UINT SystemFileCacheInformationEx = 81;
+  static const UINT SystemThreadPriorityClientIdInformation = 82;
+  static const UINT SystemProcessorIdleCycleTimeInformation = 83;
+  static const UINT SystemVerifierCancellationInformation = 84;
+  static const UINT SystemProcessorPowerInformationEx = 85;
+  static const UINT SystemRefTraceInformation = 86;
+  static const UINT SystemSpecialPoolInformation = 87;
+  static const UINT SystemProcessIdInformation = 88;
+  static const UINT SystemErrorPortInformation = 89;
+  static const UINT SystemBootEnvironmentInformation = 90;
+  static const UINT SystemHypervisorInformation = 91;
+  static const UINT SystemVerifierInformationEx = 92;
+  static const UINT SystemTimeZoneInformation = 93;
+  static const UINT SystemImageFileExecutionOptionsInformation = 94;
+  static const UINT SystemCoverageInformation = 95;
+  static const UINT SystemPrefetchPatchInformation = 96;
+  static const UINT SystemVerifierFaultsInformation = 97;
+  static const UINT SystemSystemPartitionInformation = 98;
+  static const UINT SystemSystemDiskInformation = 99;
+  static const UINT SystemProcessorPerformanceDistribution = 100;
+  static const UINT SystemNumaProximityNodeInformation = 101;
+  static const UINT SystemDynamicTimeZoneInformation = 102;
+  static const UINT SystemCodeIntegrityInformation = 103;
+  static const UINT SystemProcessorMicrocodeUpdateInformation = 104;
+  static const UINT SystemProcessorBrandString = 105;
+  static const UINT SystemVirtualAddressInformation = 106;
+  static const UINT SystemLogicalProcessorAndGroupInformation = 107;
+  static const UINT SystemProcessorCycleTimeInformation = 108;
+  static const UINT SystemStoreInformation = 109;
+  static const UINT SystemRegistryAppendString = 110;
+  static const UINT SystemAitSamplingValue = 111;
+  static const UINT SystemVhdBootInformation = 112;
+  static const UINT SystemCpuQuotaInformation = 113;
+  static const UINT SystemNativeBasicInformation = 114;
+  static const UINT SystemErrorPortTimeouts = 115;
+  static const UINT SystemLowPriorityIoInformation = 116;
+  static const UINT SystemBootEntropyInformation = 117;
+  static const UINT SystemVerifierCountersInformation = 118;
+  static const UINT SystemPagedPoolInformationEx = 119;
+  static const UINT SystemSystemPtesInformationEx = 120;
+  static const UINT SystemNodeDistanceInformation = 121;
+  static const UINT SystemAcpiAuditInformation = 122;
+  static const UINT SystemBasicPerformanceInformation = 123;
+  static const UINT SystemQueryPerformanceCounterInformation = 124;
+  static const UINT SystemSessionBigPoolInformation = 125;
+  static const UINT SystemBootGraphicsInformation = 126;
+  static const UINT SystemScrubPhysicalMemoryInformation = 127;
+  static const UINT SystemBadPageInformation = 128;
+  static const UINT SystemProcessorProfileControlArea = 129;
+  static const UINT SystemCombinePhysicalMemoryInformation = 130;
+  static const UINT SystemEntropyInterruptTimingCallback = 131;
+  static const UINT SystemConsoleInformation = 132;
+  static const UINT SystemPlatformBinaryInformation = 133;
+  static const UINT SystemThrottleNotificationInformation = 134;
+  static const UINT SystemHypervisorProcessorCountInformation = 135;
+  static const UINT SystemDeviceDataInformation = 136;
+  static const UINT SystemDeviceDataEnumerationInformation = 137;
+  static const UINT SystemMemoryTopologyInformation = 138;
+  static const UINT SystemMemoryChannelInformation = 139;
+  static const UINT SystemBootLogoInformation = 140;
+  typedef ULONG WINAPI_NtCreateDisposition; //Alias
+  static const ULONG FILE_SUPERSEDE = 0x00000000;
+  static const ULONG FILE_OPEN = 0x00000001;
+  static const ULONG FILE_CREATE = 0x00000002;
+  static const ULONG FILE_OPEN_IF = 0x00000003;
+  static const ULONG FILE_OVERWRITE = 0x00000004;
+  static const ULONG FILE_OVERWRITE_IF = 0x00000005;
+  typedef ULONG WINAPI_NtCreateOptions; //Alias
+  typedef struct PEB_LDR_DATA {
+    ULONG Length;
+    BOOLEAN Initialized;
+    HANDLE SsHandle;
+    LIST_ENTRY InLoadOrderModuleList;
+    LIST_ENTRY InMemoryOrderModuleList;
+    LIST_ENTRY InInitializationOrderModuleList;
+    PVOID EntryInProgress;
+    BOOLEAN ShutdownInProgress;
+    HANDLE ShutdownThreadId;
+  } PEB_LDR_DATA;
+  typedef PEB_LDR_DATA *PPEB_LDR_DATA; //Pointer
+  typedef union WINAPI_PEB_u1 {
+    ULONG CrossProcessFlags;
+    ULONG EnvironmentUpdateCount;
+  } WINAPI_PEB_u1;
+  typedef union WINAPI_PEB_u2 {
+    PVOID KernelCallbackTable;
+    PVOID UserSharedInfoPtr;
+  } WINAPI_PEB_u2;
+  typedef struct PEB {
+    BOOLEAN InheritedAddressSpace;
+    BOOLEAN ReadImageFileExecOptions;
+    BOOLEAN BeingDebugged;
+    BOOLEAN BitField;
+    HANDLE Mutant;
+    HMODULE ImageBaseAddress;
+    PPEB_LDR_DATA LdrData;
+    RTL_USER_PROCESS_PARAMETERS* ProcessParameters;
+    PVOID SubSystemData;
+    HANDLE ProcessHeap;
+    PRTL_CRITICAL_SECTION FastPebLock;
+    PVOID AtlThunkSListPtr;
+    PVOID IFEOKey;
+    WINAPI_PEB_u1 ;
+    WINAPI_PEB_u2 ;
+    ULONG SystemReserved[1];
+    ULONG AtlThunkSListPtr32;
+    PVOID ApiSetMap;
+    ULONG TlsExpansionCounter;
+    PRTL_BITMAP TlsBitmap;
+    ULONG TlsBitmapBits[2];
+    PVOID ReadOnlySharedMemoryBase;
+    PVOID HotpatchInformation;
+    PVOID* ReadOnlyStaticServerData;
+    PVOID AnsiCodePageData;
+    PVOID OemCodePageData;
+    PVOID UnicodeCaseTableData;
+    ULONG NumberOfProcessors;
+    ULONG NtGlobalFlag;
+    LARGE_INTEGER CriticalSectionTimeout;
+    SIZE_T HeapSegmentReserve;
+    SIZE_T HeapSegmentCommit;
+    SIZE_T HeapDeCommitTotalFreeThreshold;
+    SIZE_T HeapDeCommitFreeBlockThreshold;
+    ULONG NumberOfHeaps;
+    ULONG MaximumNumberOfHeaps;
+    PVOID* ProcessHeaps;
+    PVOID GdiSharedHandleTable;
+    PVOID ProcessStarterHelper;
+    ULONG GdiDCAttributeList;
+    PRTL_CRITICAL_SECTION LoaderLock;
+    ULONG OSMajorVersion;
+    ULONG OSMinorVersion;
+    USHORT OSBuildNumber;
+    USHORT OSCSDVersion;
+    ULONG OSPlatformId;
+    ULONG ImageSubSystem;
+    ULONG ImageSubSystemMajorVersion;
+    ULONG ImageSubSystemMinorVersion;
+    ULONG_PTR ImageProcessAffinityMask;
+    GDI_HANDLE_BUFFER GdiHandleBuffer;
+    PVOID PostProcessInitRoutine;
+    PRTL_BITMAP TlsExpansionBitmap;
+    ULONG TlsExpansionBitmapBits[32];
+    ULONG SessionId;
+    ULARGE_INTEGER AppCompatFlags;
+    ULARGE_INTEGER AppCompatFlagsUser;
+    PVOID pShimData;
+    PVOID AppCompatInfo;
+    UNICODE_STRING CSDVersion;
+    PVOID ActivationContextData;
+    PVOID ProcessAssemblyStorageMap;
+    PVOID SystemDefaultActivationContextData;
+    PVOID SystemAssemblyStorageMap;
+    SIZE_T MinimumStackCommit;
+    PVOID* FlsCallback;
+    LIST_ENTRY FlsListHead;
+    PVOID FlsBitmap;
+    ULONG FlsBitmapBits[4];
+    ULONG FlsHighIndex;
+    PVOID WerRegistrationData;
+    PVOID WerShipAssertPtr;
+    PVOID pContextData;
+    PVOID pImageHeaderHash;
+    ULONG TracingFlags;
+    ULONG SpareTracingBits;
+  } PEB;
+  typedef PEB *PPEB; //Pointer
+  typedef struct EXCEPTION_REGISTRATION_RECORD {
+    LPVOID Next;
+    PEXCEPTION_ROUTINE Handler;
+  } EXCEPTION_REGISTRATION_RECORD;
+  typedef union WINAPI_NT_TIB_u {
+    PVOID FiberData;
+    DWORD Version;
+  } WINAPI_NT_TIB_u;
+  typedef struct NT_TIB {
+    EXCEPTION_REGISTRATION_RECORD* ExceptionList;
+    PVOID StackBase;
+    PVOID StackLimit;
+    PVOID SubSystemTib;
+    WINAPI_NT_TIB_u ;
+    PVOID ArbitraryUserPointer;
+    LPVOID Self;
+  } NT_TIB;
+  typedef struct GDI_TEB_BATCH {
+    ULONG Offset;
+    HANDLE HDC;
+    ULONG Buffer[GDI_BATCH_BUFFER_SIZE];
+  } GDI_TEB_BATCH;
+  typedef struct TEB_ACTIVE_FRAME_CONTEXT {
+    ULONG Flags;
+    PSTR FrameName;
+  } TEB_ACTIVE_FRAME_CONTEXT;
+  typedef TEB_ACTIVE_FRAME_CONTEXT *PTEB_ACTIVE_FRAME_CONTEXT; //Pointer
+  typedef struct TEB_ACTIVE_FRAME {
+    ULONG Flags;
+    LPVOID Previous;
+    PTEB_ACTIVE_FRAME_CONTEXT Context;
+  } TEB_ACTIVE_FRAME;
+  typedef TEB_ACTIVE_FRAME *PTEB_ACTIVE_FRAME; //Pointer
+  typedef struct WINAPI_TEB_u1_s {
+    UCHAR ReservedPad0;
+    UCHAR ReservedPad2;
+    UCHAR ReservedPad2;
+    UCHAR IdealProcessor;
+  } WINAPI_TEB_u1_s;
+  typedef union WINAPI_TEB_u1 {
+    PROCESSOR_NUMBER CurrentIdealProcessor;
+    ULONG IdealProcessorValue;
+    WINAPI_TEB_u1_s ;
+  } WINAPI_TEB_u1;
+  typedef TEB *PTEB; //Pointer
+  typedef struct RTL_ATOM_TABLE_ENTRY {
+    LPVOID HashLink;
+    USHORT HandleIndex;
+    USHORT Atom;
+    USHORT ReferenceCount;
+    UCHAR Flags;
+    UCHAR NameLength;
+    WCHAR Name[1];
+  } RTL_ATOM_TABLE_ENTRY;
+  typedef RTL_ATOM_TABLE_ENTRY *PRTL_ATOM_TABLE_ENTRY; //Pointer
+  typedef struct RTL_ATOM_TABLE {
+    ULONG Signature;
+    RTL_CRITICAL_SECTION CriticalSection;
+    RTL_HANDLE_TABLE RtlHandleTable;
+    ULONG NumberOfBuckets;
+    PRTL_ATOM_TABLE_ENTRY Buckets[1];
+  } RTL_ATOM_TABLE;
+  typedef RTL_ATOM_TABLE *PRTL_ATOM_TABLE; //Pointer
+  typedef USHORT LPC_TYPE; //Alias
+  static const USHORT LPC_NEW_MESSAGE = 0;
+  static const USHORT LPC_REQUEST = 1;
+  static const USHORT LPC_REPLY = 2;
+  static const USHORT LPC_DATAGRAM = 3;
+  static const USHORT LPC_LOST_REPLY = 4;
+  static const USHORT LPC_PORT_CLOSED = 5;
+  static const USHORT LPC_CLIENT_DIED = 6;
+  static const USHORT LPC_EXCEPTION = 7;
+  static const USHORT LPC_DEBUG_EVENT = 8;
+  static const USHORT LPC_ERROR_EVENT = 9;
+  static const USHORT LPC_CONNECTION_REQUEST = 10;
+  static const USHORT LPC_CONNECTION_REFUSED = 11;
+  typedef struct PORT_MESSAGE {
+    USHORT DataSize;
+    USHORT MessageSize;
+    LPC_TYPE MessageType;
+    USHORT VirtualRangesOffset;
+    CLIENT_ID ClientId;
+    ULONG MessageId;
+    ULONG SectionSize;
+  } PORT_MESSAGE;
+  typedef PORT_MESSAGE *PPORT_MESSAGE; //Pointer
+  typedef DWORD WINAPI_ElevationFlags; //Alias
+  typedef struct THREADEX_DATA {
+    SIZE_T cbSize;
+    UINT_PTR Unknown1;
+    SIZE_T cbClientId;
+    PCLIENT_ID ClientId;
+    UINT_PTR Unknown2;
+    UINT_PTR Unknown3;
+    SIZE_T cbppTEB;
+    PTEB* ppTeb;
+    UINT_PTR Unknown4;
+  } THREADEX_DATA;
+  typedef THREADEX_DATA *PTHREADEX_DATA; //Pointer
+  typedef ULONG WINAPI_REG_NOTIFY_CHANGE_FLAGS; //Alias
+  typedef struct RTL_UNLOAD_EVENT_TRACE {
+    PVOID BaseAddress;
+    SIZE_T SizeOfImage;
+    ULONG Sequence;
+    ULONG TimeDateStamp;
+    ULONG CheckSum;
+    WCHAR ImageName[32];
+  } RTL_UNLOAD_EVENT_TRACE;
+  enum { RTL_UNLOAD_EVENT_TRACE_NUMBER = 64 };
+  typedef HMODULE WINAPI_HMODULE_PVOID; //Alias
+  typedef ULONG WINAPI_LDR_LOCK_LOADER_LOCK_FLAG; //Alias
+  typedef ULONG WINAPI_LDR_UNLOCK_LOADER_LOCK_FLAG; //Alias
+  typedef ULONG WINAPI_LDR_LOCK_LOADER_LOCK_DISPOSITION; //Alias
+  static const ULONG LDR_LOCK_LOADER_LOCK_DISPOSITION_INVALID = 0;
+  static const ULONG LDR_LOCK_LOADER_LOCK_DISPOSITION_LOCK_ACQUIRED = 1;
+  static const ULONG LDR_LOCK_LOADER_LOCK_DISPOSITION_LOCK_NOT_ACQUIRED = 2;
+  typedef DWORD WINAPI_LDR_DLL_CHARACTERISTICS; //Alias
+  typedef ULONG WINAPI_LDR_ADDREF_DLL_FLAGS; //Alias
+  typedef ULONG WINAPI_LDR_GET_DLL_HANDLE_EX_FLAGS; //Alias
+  typedef NTSTATUS WINAPI_NT_WAIT_RESULT; //Alias
+  typedef REGSAM WINAPI_REGISTRY_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_EVENT_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_SEMAPHORE_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_MUTANT_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_IO_COMPLETION_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_SECTION_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_DIRECTORY_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_DEBUG_OBJECT_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_PIPE_ACCESS_MASK; //Alias
+  typedef ULONG WINAPI_SECTION_ALLOCATION; //Alias
   NTSTATUS                                               NtClearEvent(                                       HANDLE EventHandle);
   NTSTATUS                                               NtCreateEvent(                                      PHANDLE EventHandle, WINAPI_EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, EVENT_TYPE EventType, BOOLEAN InitialState);
   NTSTATUS                                               NtCreateEventPair(                                  PHANDLE EventPairHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);

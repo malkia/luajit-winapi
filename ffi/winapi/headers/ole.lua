@@ -162,20 +162,18 @@ ffi.cdef [[
   typedef HGLOBAL HOLEMENU; //Alias
   typedef unsigned long RPCOLEDATAREP; //Alias
   typedef HANDLE HMETAFILEPICT; //Alias
-  typedef enum VARIANT_BOOL {
-    VARIANT_TRUE = -1,
-    VARIANT_FALSE = 0,
-  } VARIANT_BOOL;
-  typedef enum MSHLFLAGS {
-    MSHLFLAGS_NORMAL = 0,
-    MSHLFLAGS_TABLESTRONG = 1,
-    MSHLFLAGS_TABLEWEAK = 2,
-    MSHLFLAGS_NOPING = 4,
-    MSHLFLAGS_RESERVED1 = 8,
-    MSHLFLAGS_RESERVED2 = 16,
-    MSHLFLAGS_RESERVED3 = 32,
-    MSHLFLAGS_RESERVED4 = 64,
-  } MSHLFLAGS;
+  typedef short VARIANT_BOOL; //Alias
+  static const short VARIANT_TRUE = -1;
+  static const short VARIANT_FALSE = 0;
+  typedef DWORD MSHLFLAGS; //Alias
+  static const DWORD MSHLFLAGS_NORMAL = 0;
+  static const DWORD MSHLFLAGS_TABLESTRONG = 1;
+  static const DWORD MSHLFLAGS_TABLEWEAK = 2;
+  static const DWORD MSHLFLAGS_NOPING = 4;
+  static const DWORD MSHLFLAGS_RESERVED1 = 8;
+  static const DWORD MSHLFLAGS_RESERVED2 = 16;
+  static const DWORD MSHLFLAGS_RESERVED3 = 32;
+  static const DWORD MSHLFLAGS_RESERVED4 = 64;
   typedef struct DVTARGETDEVICE {
     DWORD tdSize;
     WORD tdDriverNameOffset;
@@ -238,16 +236,15 @@ ffi.cdef [[
   typedef VARIANT VARIANTARG; //Alias
   typedef VARIANT PROPVARIANT; //Alias
   typedef PROPVARIANT* REFPROPVARIANT; //Alias
-  typedef enum TYMED {
-    TYMED_HGLOBAL = 1,
-    TYMED_FILE = 2,
-    TYMED_ISTREAM = 4,
-    TYMED_ISTORAGE = 8,
-    TYMED_GDI = 16,
-    TYMED_MFPICT = 32,
-    TYMED_ENHMF = 64,
-    TYMED_NULL = 0,
-  } TYMED;
+  typedef DWORD TYMED; //Alias
+  static const DWORD TYMED_HGLOBAL = 1;
+  static const DWORD TYMED_FILE = 2;
+  static const DWORD TYMED_ISTREAM = 4;
+  static const DWORD TYMED_ISTORAGE = 8;
+  static const DWORD TYMED_GDI = 16;
+  static const DWORD TYMED_MFPICT = 32;
+  static const DWORD TYMED_ENHMF = 64;
+  static const DWORD TYMED_NULL = 0;
   typedef DWORD DVASPECT; //Alias
   typedef struct FORMATETC {
     CLIPFORMAT cfFormat;
@@ -283,147 +280,139 @@ ffi.cdef [[
     HRESULT hr;
   } MULTI_QI;
   typedef DWORD WINAPI_STGM_FLAGS; //Alias
-  typedef enum THDTYPE {
-    THDTYPE_BLOCKMESSAGES = 0,
-    THDTYPE_PROCESSMESSAGES = 1,
-  } THDTYPE;
-  typedef enum GLOBALOPT_PROPERTIES {
-    COMGLB_EXCEPTION_HANDLING = 1,
-    COMGLB_APPID = 2,
-    COMGLB_RPC_THREADPOOL_SETTING = 3,
-  } GLOBALOPT_PROPERTIES;
-  typedef enum RPCOPT_PROPERTIES {
-    COMBND_RPCTIMEOUT = 0x1,
-    COMBND_SERVER_LOCALITY = 0x2,
-  } RPCOPT_PROPERTIES;
-  typedef enum ApplicationType {
-    ServerApplication = 0,
-    LibraryApplication = 1,
-  } ApplicationType;
-  typedef enum ShutdownType {
-    IdleShutdown = 0,
-    ForcedShutdown = 1,
-  } ShutdownType;
+  typedef UINT THDTYPE; //Alias
+  static const UINT THDTYPE_BLOCKMESSAGES = 0;
+  static const UINT THDTYPE_PROCESSMESSAGES = 1;
+  typedef UINT GLOBALOPT_PROPERTIES; //Alias
+  static const UINT COMGLB_EXCEPTION_HANDLING = 1;
+  static const UINT COMGLB_APPID = 2;
+  static const UINT COMGLB_RPC_THREADPOOL_SETTING = 3;
+  typedef UINT RPCOPT_PROPERTIES; //Alias
+  static const UINT COMBND_RPCTIMEOUT = 0x1;
+  static const UINT COMBND_SERVER_LOCALITY = 0x2;
+  typedef UINT ApplicationType; //Alias
+  static const UINT ServerApplication = 0;
+  static const UINT LibraryApplication = 1;
+  typedef UINT ShutdownType; //Alias
+  static const UINT IdleShutdown = 0;
+  static const UINT ForcedShutdown = 1;
   typedef DWORD LOCKTYPE; //Alias
   typedef DWORD ADVF; //Alias
-  typedef enum APTTYPE {
-    APTTYPE_CURRENT = -1,
-    APTTYPE_STA = 0,
-    APTTYPE_MTA = 1,
-    APTTYPE_NA = 2,
-    APTTYPE_MAINSTA = 3,
-  } APTTYPE;
-  typedef enum APTTYPEQUALIFIER {
-    APTTYPEQUALIFIER_NONE = 0,
-    APTTYPEQUALIFIER_IMPLICIT_MTA = 1,
-    APTTYPEQUALIFIER_NA_ON_MTA = 2,
-    APTTYPEQUALIFIER_NA_ON_STA = 3,
-    APTTYPEQUALIFIER_NA_ON_IMPLICIT_MTA = 4,
-    APTTYPEQUALIFIER_NA_ON_MAINSTA = 5,
-  } APTTYPEQUALIFIER;
-  typedef enum DISPID {
-    DISPID_UNKNOWN = -1,
-    DISPID_VALUE = 0,
-    DISPID_PROPERTYPUT = -3,
-    DISPID_NEWENUM = -4,
-    DISPID_EVALUATE = -5,
-    DISPID_CONSTRUCTOR = -6,
-    DISPID_DESTRUCTOR = -7,
-    DISPID_COLLECT = -8,
-    DISPID_AUTOSIZE = -500,
-    DISPID_BACKCOLOR = -501,
-    DISPID_BACKSTYLE = -502,
-    DISPID_BORDERCOLOR = -503,
-    DISPID_BORDERSTYLE = -504,
-    DISPID_BORDERWIDTH = -505,
-    DISPID_DRAWMODE = -507,
-    DISPID_DRAWSTYLE = -508,
-    DISPID_DRAWWIDTH = -509,
-    DISPID_FILLCOLOR = -510,
-    DISPID_FILLSTYLE = -511,
-    DISPID_FONT = -512,
-    DISPID_FORECOLOR = -513,
-    DISPID_ENABLED = -514,
-    DISPID_HWND = -515,
-    DISPID_TABSTOP = -516,
-    DISPID_TEXT = -517,
-    DISPID_CAPTION = -518,
-    DISPID_BORDERVISIBLE = -519,
-    DISPID_APPEARANCE = -520,
-    DISPID_MOUSEPOINTER = -521,
-    DISPID_MOUSEICON = -522,
-    DISPID_PICTURE = -523,
-    DISPID_VALID = -524,
-    DISPID_READYSTATE = -525,
-    DISPID_LISTINDEX = -526,
-    DISPID_SELECTED = -527,
-    DISPID_LIST = -528,
-    DISPID_COLUMN = -529,
-    DISPID_LISTCOUNT = -531,
-    DISPID_MULTISELECT = -532,
-    DISPID_MAXLENGTH = -533,
-    DISPID_PASSWORDCHAR = -534,
-    DISPID_SCROLLBARS = -535,
-    DISPID_WORDWRAP = -536,
-    DISPID_MULTILINE = -537,
-    DISPID_NUMBEROFROWS = -538,
-    DISPID_NUMBEROFCOLUMNS = -539,
-    DISPID_DISPLAYSTYLE = -540,
-    DISPID_GROUPNAME = -541,
-    DISPID_IMEMODE = -542,
-    DISPID_ACCELERATOR = -543,
-    DISPID_ENTERKEYBEHAVIOR = -544,
-    DISPID_TABKEYBEHAVIOR = -545,
-    DISPID_SELTEXT = -546,
-    DISPID_SELSTART = -547,
-    DISPID_SELLENGTH = -548,
-    DISPID_REFRESH = -550,
-    DISPID_DOCLICK = -551,
-    DISPID_ABOUTBOX = -552,
-    DISPID_ADDITEM = -553,
-    DISPID_CLEAR = -554,
-    DISPID_REMOVEITEM = -555,
-    DISPID_CLICK = -600,
-    DISPID_DBLCLICK = -601,
-    DISPID_KEYDOWN = -602,
-    DISPID_KEYPRESS = -603,
-    DISPID_KEYUP = -604,
-    DISPID_MOUSEDOWN = -605,
-    DISPID_MOUSEMOVE = -606,
-    DISPID_MOUSEUP = -607,
-    DISPID_ERROREVENT = -608,
-    DISPID_READYSTATECHANGE = -609,
-    DISPID_CLICK_VALUE = -610,
-    DISPID_RIGHTTOLEFT = -611,
-    DISPID_TOPTOBOTTOM = -612,
-    DISPID_THIS = -613,
-    DISPID_AMBIENT_BACKCOLOR = -701,
-    DISPID_AMBIENT_DISPLAYNAME = -702,
-    DISPID_AMBIENT_FONT = -703,
-    DISPID_AMBIENT_FORECOLOR = -704,
-    DISPID_AMBIENT_LOCALEID = -705,
-    DISPID_AMBIENT_MESSAGEREFLECT = -706,
-    DISPID_AMBIENT_SCALEUNITS = -707,
-    DISPID_AMBIENT_TEXTALIGN = -708,
-    DISPID_AMBIENT_USERMODE = -709,
-    DISPID_AMBIENT_UIDEAD = -710,
-    DISPID_AMBIENT_SHOWGRABHANDLES = -711,
-    DISPID_AMBIENT_SHOWHATCHING = -712,
-    DISPID_AMBIENT_DISPLAYASDEFAULT = -713,
-    DISPID_AMBIENT_SUPPORTSMNEMONICS = -714,
-    DISPID_AMBIENT_AUTOCLIP = -715,
-    DISPID_AMBIENT_APPEARANCE = -716,
-    DISPID_AMBIENT_CODEPAGE = -725,
-    DISPID_AMBIENT_PALETTE = -726,
-    DISPID_AMBIENT_CHARSET = -727,
-    DISPID_AMBIENT_TRANSFERPRIORITY = -728,
-    DISPID_AMBIENT_RIGHTTOLEFT = -732,
-    DISPID_AMBIENT_TOPTOBOTTOM = -733,
-    DISPID_Name = -800,
-    DISPID_Delete = -801,
-    DISPID_Object = -802,
-    DISPID_Parent = -803,
-  } DISPID;
+  typedef UINT APTTYPE; //Alias
+  static const UINT APTTYPE_CURRENT = -1;
+  static const UINT APTTYPE_STA = 0;
+  static const UINT APTTYPE_MTA = 1;
+  static const UINT APTTYPE_NA = 2;
+  static const UINT APTTYPE_MAINSTA = 3;
+  typedef UINT APTTYPEQUALIFIER; //Alias
+  static const UINT APTTYPEQUALIFIER_NONE = 0;
+  static const UINT APTTYPEQUALIFIER_IMPLICIT_MTA = 1;
+  static const UINT APTTYPEQUALIFIER_NA_ON_MTA = 2;
+  static const UINT APTTYPEQUALIFIER_NA_ON_STA = 3;
+  static const UINT APTTYPEQUALIFIER_NA_ON_IMPLICIT_MTA = 4;
+  static const UINT APTTYPEQUALIFIER_NA_ON_MAINSTA = 5;
+  typedef LONG DISPID; //Alias
+  static const LONG DISPID_UNKNOWN = -1;
+  static const LONG DISPID_VALUE = 0;
+  static const LONG DISPID_PROPERTYPUT = -3;
+  static const LONG DISPID_NEWENUM = -4;
+  static const LONG DISPID_EVALUATE = -5;
+  static const LONG DISPID_CONSTRUCTOR = -6;
+  static const LONG DISPID_DESTRUCTOR = -7;
+  static const LONG DISPID_COLLECT = -8;
+  static const LONG DISPID_AUTOSIZE = -500;
+  static const LONG DISPID_BACKCOLOR = -501;
+  static const LONG DISPID_BACKSTYLE = -502;
+  static const LONG DISPID_BORDERCOLOR = -503;
+  static const LONG DISPID_BORDERSTYLE = -504;
+  static const LONG DISPID_BORDERWIDTH = -505;
+  static const LONG DISPID_DRAWMODE = -507;
+  static const LONG DISPID_DRAWSTYLE = -508;
+  static const LONG DISPID_DRAWWIDTH = -509;
+  static const LONG DISPID_FILLCOLOR = -510;
+  static const LONG DISPID_FILLSTYLE = -511;
+  static const LONG DISPID_FONT = -512;
+  static const LONG DISPID_FORECOLOR = -513;
+  static const LONG DISPID_ENABLED = -514;
+  static const LONG DISPID_HWND = -515;
+  static const LONG DISPID_TABSTOP = -516;
+  static const LONG DISPID_TEXT = -517;
+  static const LONG DISPID_CAPTION = -518;
+  static const LONG DISPID_BORDERVISIBLE = -519;
+  static const LONG DISPID_APPEARANCE = -520;
+  static const LONG DISPID_MOUSEPOINTER = -521;
+  static const LONG DISPID_MOUSEICON = -522;
+  static const LONG DISPID_PICTURE = -523;
+  static const LONG DISPID_VALID = -524;
+  static const LONG DISPID_READYSTATE = -525;
+  static const LONG DISPID_LISTINDEX = -526;
+  static const LONG DISPID_SELECTED = -527;
+  static const LONG DISPID_LIST = -528;
+  static const LONG DISPID_COLUMN = -529;
+  static const LONG DISPID_LISTCOUNT = -531;
+  static const LONG DISPID_MULTISELECT = -532;
+  static const LONG DISPID_MAXLENGTH = -533;
+  static const LONG DISPID_PASSWORDCHAR = -534;
+  static const LONG DISPID_SCROLLBARS = -535;
+  static const LONG DISPID_WORDWRAP = -536;
+  static const LONG DISPID_MULTILINE = -537;
+  static const LONG DISPID_NUMBEROFROWS = -538;
+  static const LONG DISPID_NUMBEROFCOLUMNS = -539;
+  static const LONG DISPID_DISPLAYSTYLE = -540;
+  static const LONG DISPID_GROUPNAME = -541;
+  static const LONG DISPID_IMEMODE = -542;
+  static const LONG DISPID_ACCELERATOR = -543;
+  static const LONG DISPID_ENTERKEYBEHAVIOR = -544;
+  static const LONG DISPID_TABKEYBEHAVIOR = -545;
+  static const LONG DISPID_SELTEXT = -546;
+  static const LONG DISPID_SELSTART = -547;
+  static const LONG DISPID_SELLENGTH = -548;
+  static const LONG DISPID_REFRESH = -550;
+  static const LONG DISPID_DOCLICK = -551;
+  static const LONG DISPID_ABOUTBOX = -552;
+  static const LONG DISPID_ADDITEM = -553;
+  static const LONG DISPID_CLEAR = -554;
+  static const LONG DISPID_REMOVEITEM = -555;
+  static const LONG DISPID_CLICK = -600;
+  static const LONG DISPID_DBLCLICK = -601;
+  static const LONG DISPID_KEYDOWN = -602;
+  static const LONG DISPID_KEYPRESS = -603;
+  static const LONG DISPID_KEYUP = -604;
+  static const LONG DISPID_MOUSEDOWN = -605;
+  static const LONG DISPID_MOUSEMOVE = -606;
+  static const LONG DISPID_MOUSEUP = -607;
+  static const LONG DISPID_ERROREVENT = -608;
+  static const LONG DISPID_READYSTATECHANGE = -609;
+  static const LONG DISPID_CLICK_VALUE = -610;
+  static const LONG DISPID_RIGHTTOLEFT = -611;
+  static const LONG DISPID_TOPTOBOTTOM = -612;
+  static const LONG DISPID_THIS = -613;
+  static const LONG DISPID_AMBIENT_BACKCOLOR = -701;
+  static const LONG DISPID_AMBIENT_DISPLAYNAME = -702;
+  static const LONG DISPID_AMBIENT_FONT = -703;
+  static const LONG DISPID_AMBIENT_FORECOLOR = -704;
+  static const LONG DISPID_AMBIENT_LOCALEID = -705;
+  static const LONG DISPID_AMBIENT_MESSAGEREFLECT = -706;
+  static const LONG DISPID_AMBIENT_SCALEUNITS = -707;
+  static const LONG DISPID_AMBIENT_TEXTALIGN = -708;
+  static const LONG DISPID_AMBIENT_USERMODE = -709;
+  static const LONG DISPID_AMBIENT_UIDEAD = -710;
+  static const LONG DISPID_AMBIENT_SHOWGRABHANDLES = -711;
+  static const LONG DISPID_AMBIENT_SHOWHATCHING = -712;
+  static const LONG DISPID_AMBIENT_DISPLAYASDEFAULT = -713;
+  static const LONG DISPID_AMBIENT_SUPPORTSMNEMONICS = -714;
+  static const LONG DISPID_AMBIENT_AUTOCLIP = -715;
+  static const LONG DISPID_AMBIENT_APPEARANCE = -716;
+  static const LONG DISPID_AMBIENT_CODEPAGE = -725;
+  static const LONG DISPID_AMBIENT_PALETTE = -726;
+  static const LONG DISPID_AMBIENT_CHARSET = -727;
+  static const LONG DISPID_AMBIENT_TRANSFERPRIORITY = -728;
+  static const LONG DISPID_AMBIENT_RIGHTTOLEFT = -732;
+  static const LONG DISPID_AMBIENT_TOPTOBOTTOM = -733;
+  static const LONG DISPID_Name = -800;
+  static const LONG DISPID_Delete = -801;
+  static const LONG DISPID_Object = -802;
+  static const LONG DISPID_Parent = -803;
   typedef struct BIND_OPTS {
     DWORD cbStruct;
     DWORD grfFlags;
@@ -482,15 +471,14 @@ ffi.cdef [[
     LARGE_INTEGER cBytes;
   } StorageLayout;
   typedef DWORD OLECMDF; //Alias
-  typedef enum PROPBAG2_TYPE {
-    PROPBAG2_TYPE_UNDEFINED = 0,
-    PROPBAG2_TYPE_DATA = 1,
-    PROPBAG2_TYPE_URL = 2,
-    PROPBAG2_TYPE_OBJECT = 3,
-    PROPBAG2_TYPE_STREAM = 4,
-    PROPBAG2_TYPE_STORAGE = 5,
-    PROPBAG2_TYPE_MONIKER = 6,
-  } PROPBAG2_TYPE;
+  typedef UINT PROPBAG2_TYPE; //Alias
+  static const UINT PROPBAG2_TYPE_UNDEFINED = 0;
+  static const UINT PROPBAG2_TYPE_DATA = 1;
+  static const UINT PROPBAG2_TYPE_URL = 2;
+  static const UINT PROPBAG2_TYPE_OBJECT = 3;
+  static const UINT PROPBAG2_TYPE_STREAM = 4;
+  static const UINT PROPBAG2_TYPE_STORAGE = 5;
+  static const UINT PROPBAG2_TYPE_MONIKER = 6;
   typedef struct PROPBAG2 {
     PROPBAG2_TYPE dwType;
     VARTYPE vt;
@@ -517,15 +505,14 @@ ffi.cdef [[
     WINAPI_uCLSSPEC_u_s1 ByName;
     WINAPI_uCLSSPEC_u_s2 ByObjectId;
   } WINAPI_uCLSSPEC_u;
-  typedef enum TYSPEC {
-    TYSPEC_CLSID = 0,
-    TYSPEC_FILEEXT = 1,
-    TYSPEC_MIMETYPE = 2,
-    TYSPEC_FILENAME = 3,
-    TYSPEC_PROGID = 4,
-    TYSPEC_PACKAGENAME = 5,
-    TYSPEC_OBJECTID = 6,
-  } TYSPEC;
+  typedef DWORD TYSPEC; //Alias
+  static const DWORD TYSPEC_CLSID = 0;
+  static const DWORD TYSPEC_FILEEXT = 1;
+  static const DWORD TYSPEC_MIMETYPE = 2;
+  static const DWORD TYSPEC_FILENAME = 3;
+  static const DWORD TYSPEC_PROGID = 4;
+  static const DWORD TYSPEC_PACKAGENAME = 5;
+  static const DWORD TYSPEC_OBJECTID = 6;
   typedef struct uCLSSPEC {
     TYSPEC tyspec;
     WINAPI_uCLSSPEC_u tagged_union;
@@ -571,21 +558,19 @@ ffi.cdef [[
   } CUSTDATA;
   typedef CUSTDATA *LPCUSTDATA; //Pointer
   typedef WORD WINAPI_InvokeFlags; //Alias
-  typedef enum CALLCONV {
-    CC_FASTCALL = 0,
-    CC_CDECL = 1,
-    CC_PASCAL = 2,
-    CC_MACPASCAL = 3,
-    CC_STDCALL = 4,
-    CC_FPFASTCALL = 5,
-    CC_SYSCALL = 6,
-    CC_MPWCDECL = 7,
-    CC_MPWPASCAL = 8,
-  } CALLCONV;
-  typedef enum STATFLAG {
-    STATFLAG_DEFAULT = 0,
-    STATFLAG_NONAME = 1,
-    STATFLAG_NOOPEN = 2,
-  } STATFLAG;
+  typedef UINT CALLCONV; //Alias
+  static const UINT CC_FASTCALL = 0;
+  static const UINT CC_CDECL = 1;
+  static const UINT CC_PASCAL = 2;
+  static const UINT CC_MACPASCAL = 3;
+  static const UINT CC_STDCALL = 4;
+  static const UINT CC_FPFASTCALL = 5;
+  static const UINT CC_SYSCALL = 6;
+  static const UINT CC_MPWCDECL = 7;
+  static const UINT CC_MPWPASCAL = 8;
+  typedef DWORD STATFLAG; //Alias
+  static const DWORD STATFLAG_DEFAULT = 0;
+  static const DWORD STATFLAG_NONAME = 1;
+  static const DWORD STATFLAG_NOOPEN = 2;
   typedef DWORD STGC; //Alias
 ]]

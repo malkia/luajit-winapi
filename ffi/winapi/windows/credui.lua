@@ -2,6 +2,37 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/security' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef DWORD WINAPI_CredUIFlags; //Alias
+  typedef struct CREDUI_INFO {
+    DWORD cbSize;
+    HWND hwndParent;
+    PCTSTR pszMessageText;
+    PCTSTR pszCaptionText;
+    HBITMAP hbmBanner;
+  } CREDUI_INFO;
+  typedef CREDUI_INFO *PCREDUI_INFO; //Pointer
+  typedef struct SEC_WINNT_CREDUI_CONTEXT_VECTOR {
+    ULONG CredUIContextArrayOffset;
+    USHORT CredUIContextCount;
+  } SEC_WINNT_CREDUI_CONTEXT_VECTOR;
+  typedef SEC_WINNT_CREDUI_CONTEXT_VECTOR *PSEC_WINNT_CREDUI_CONTEXT_VECTOR; //Pointer
+  typedef struct CREDUI_INFOW {
+    DWORD cbSize;
+    HWND hwndParent;
+    PCWSTR pszMessageText;
+    PCWSTR pszCaptionText;
+    HBITMAP hbmBanner;
+  } CREDUI_INFOW;
+  typedef CREDUI_INFOW *PCREDUI_INFOW; //Pointer
+  typedef struct SEC_WINNT_CREDUI_CONTEXT {
+    USHORT cbHeaderLength;
+    HANDLE CredUIContextHandle;
+    PCREDUI_INFOW UIInfo;
+    ULONG dwAuthError;
+    PSEC_WINNT_AUTH_IDENTITY_OPAQUE pInputAuthIdentity;
+    PUNICODE_STRING TargetName;
+  } SEC_WINNT_CREDUI_CONTEXT;
+  typedef SEC_WINNT_CREDUI_CONTEXT *PSEC_WINNT_CREDUI_CONTEXT; //Pointer
   WINAPI_ERROR_CODE CredUICmdLinePromptForCredentials( PCTSTR pszTargetName, PCtxtHandle Reserved, DWORD dwAuthError, PTSTR pszUserName, ULONG ulUserNameMaxChars, PTSTR pszPassword, ULONG ulPasswordMaxChars, PBOOL pfSave, WINAPI_CredUIFlags dwFlags);
   WINAPI_ERROR_CODE CredUIConfirmCredentials(          PCTSTR pszTargetName, BOOL bConfirm);
   WINAPI_ERROR_CODE CredUIParseUserName(               PCTSTR pszUserName, PTSTR pszUser, ULONG ulUserMaxChars, PTSTR pszDomain, ULONG ulDomainMaxChars);

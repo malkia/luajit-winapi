@@ -3,6 +3,145 @@ require( 'ffi/winapi/headers/gdi' )
 require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID HDPA; //Alias
+  typedef HDPA WINAPI_HDPA; //Alias
+  typedef LPVOID SUBCLASSPROC; //Alias
+  typedef LPVOID PFNDPAENUMCALLBACK; //Alias
+  typedef LPVOID PFNDPASTREAM; //Alias
+  typedef LPVOID PFNDPACOMPARE; //Alias
+  typedef LPVOID PFNDPAMERGE; //Alias
+  typedef LPVOID HDSA; //Alias
+  typedef LPVOID PFNDSAENUMCALLBACK; //Alias
+  typedef LPVOID PFNDAENUMCALLBACK; //Alias
+  typedef LPVOID PFNDACOMPARE; //Alias
+  typedef LPVOID PFTASKDIALOGCALLBACK; //Alias
+  typedef LPVOID PFNREADERSCROLL; //Alias
+  typedef LPVOID PFNREADERTRANSLATEDISPATCH; //Alias
+  typedef TBBUTTON *LPCTBBUTTON; //Pointer
+  typedef DWORD WINAPI_ReaderModeFlag; //Alias
+  typedef struct READERMODEINFO {
+    UINT cbSize;
+    HWND hwnd;
+    WINAPI_ReaderModeFlag fFlags;
+    LPRECT prc;
+    PFNREADERSCROLL pfnScroll;
+    PFNREADERTRANSLATEDISPATCH pfnTranslatedDispatch;
+    LPARAM lParam;
+  } READERMODEINFO;
+  typedef READERMODEINFO *PREADERMODEINFO; //Pointer
+  typedef UINT TASKDIALOG_COMMON_BUTTON_FLAGS; //Alias
+  typedef UINT WINAPI_ILD_Flags; //Alias
+  typedef UINT WINAPI_ILC_Flags; //Alias
+  typedef UINT WINAPI_WSB_Prop; //Alias
+  static const UINT WSB_PROP_CYVSCROLL = 0x00000001;
+  static const UINT WSB_PROP_CXHSCROLL = 0x00000002;
+  static const UINT WSB_PROP_CYHSCROLL = 0x00000004;
+  static const UINT WSB_PROP_CXVSCROLL = 0x00000008;
+  static const UINT WSB_PROP_CXHTHUMB = 0x00000010;
+  static const UINT WSB_PROP_CYVTHUMB = 0x00000020;
+  static const UINT WSB_PROP_VBKGCOLOR = 0x00000040;
+  static const UINT WSB_PROP_HBKGCOLOR = 0x00000080;
+  static const UINT WSB_PROP_VSTYLE = 0x00000100;
+  static const UINT WSB_PROP_HSTYLE = 0x00000200;
+  static const UINT WSB_PROP_WINSTYLE = 0x00000400;
+  static const UINT WSB_PROP_PALETTE = 0x00000800;
+  static const UINT WSB_PROP_MASK = 0x00000FFF;
+  typedef DWORD WINAPI_ILP_Flags; //Alias
+  static const DWORD ILP_NORMAL = 0;
+  static const DWORD ILP_DOWNLEVEL = 1;
+  typedef DWORD WINAPI_TBStyle; //Alias
+  typedef DWORD WINAPI_UDStyle; //Alias
+  typedef UINT WINAPI_MruFlags; //Alias
+  typedef LPVOID MRUCMPPROC; //Alias
+  typedef struct MRUINFO {
+    DWORD cbSize;
+    UINT uMax;
+    WINAPI_MruFlags fFlags;
+    HKEY hKey;
+    LPCWSTR lpszSubKey;
+    MRUCMPPROC lpfnCompare;
+  } MRUINFO;
+  typedef MRUINFO *LPMRUINFO; //Pointer
+  typedef struct COLORMAP {
+    COLORREF from;
+    COLORREF to;
+  } COLORMAP;
+  typedef COLORMAP *LPCOLORMAP; //Pointer
+  typedef DWORD WINAPI_IccFlags; //Alias
+  typedef struct INITCOMMONCONTROLSEX {
+    DWORD dwSize;
+    WINAPI_IccFlags dwICC;
+  } INITCOMMONCONTROLSEX;
+  typedef INITCOMMONCONTROLSEX *WINAPI_LPINITCOMMONCONTROLSEX; //Pointer
+  typedef struct IMAGELISTDRAWPARAMS {
+    DWORD cbSize;
+    HIMAGELIST himl;
+    int i;
+    HDC hdcDst;
+    int x;
+    int y;
+    int cx;
+    int cy;
+    int xBitmap;
+    int yBitmap;
+    COLORREF rgbBk;
+    COLORREF rgbFg;
+    UINT fStyle;
+    DWORD dwRop;
+    DWORD fState;
+    DWORD Frame;
+    COLORREF crEffect;
+  } IMAGELISTDRAWPARAMS;
+  typedef struct IMAGEINFO {
+    HBITMAP hbmImage;
+    HBITMAP hbmMask;
+    int Unused1;
+    int Unused2;
+    RECT rcImage;
+  } IMAGEINFO;
+  typedef UINT TASKDIALOG_FLAGS; //Alias
+# pragma pack( push, 1 )
+  typedef struct TASKDIALOG_BUTTON {
+    int nButtonID;
+    PCWSTR pszButtonText;
+  } TASKDIALOG_BUTTON;
+# pragma pack( pop )
+  typedef union WINAPI_TASKDIALOGCONFIG_u1 {
+    HICON hMainIcon;
+    PCWSTR pszMainIcon;
+  } WINAPI_TASKDIALOGCONFIG_u1;
+  typedef union WINAPI_TASKDIALOGCONFIG_u2 {
+    HICON hFooterIcon;
+    PCWSTR pszFooterIcon;
+  } WINAPI_TASKDIALOGCONFIG_u2;
+# pragma pack( push, 1 )
+  typedef struct TASKDIALOGCONFIG {
+    UINT cbSize;
+    HWND hwndParent;
+    HINSTANCE hInstance;
+    TASKDIALOG_FLAGS dwFlags;
+    TASKDIALOG_COMMON_BUTTON_FLAGS dwCommonButtons;
+    PCWSTR pszWindowTitle;
+    WINAPI_TASKDIALOGCONFIG_u1 ;
+    PCWSTR pszMainInstruction;
+    PCWSTR pszContent;
+    UINT cButtons;
+    WINAPI_TASKDIALOG_BUTTON* pButtons;
+    int nDefaultButton;
+    UINT cRadioButtons;
+    WINAPI_TASKDIALOG_BUTTON* pRadioButtons;
+    int nDefaultRadioButton;
+    PCWSTR pszVerificationText;
+    PCWSTR pszExpandedInformation;
+    PCWSTR pszExpandedControlText;
+    PCWSTR pszCollapsedControlText;
+    WINAPI_TASKDIALOGCONFIG_u2 ;
+    PCWSTR pszFooter;
+    PFTASKDIALOGCALLBACK pfCallback;
+    LONG_PTR lpCallbackData;
+    UINT cxWidth;
+  } TASKDIALOGCONFIG;
+# pragma pack( pop )
   BOOL           _TrackMouseEvent(             LPTRACKMOUSEEVENT lpEventTrack);
   int            AddMRUStringW(                HANDLE hMRU, LPCTSTR szString);
   int            CreateMRUListW(               LPMRUINFO lpmi);

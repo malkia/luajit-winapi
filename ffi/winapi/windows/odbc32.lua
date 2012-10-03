@@ -1,6 +1,55 @@
 require( 'ffi/winapi/headers/odbc' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef short SQLSMALLINT; //Alias
+  typedef unsigned short SQLUSMALLINT; //Alias
+  typedef void* SQLPOINTER; //Alias
+  typedef long SQLINTEGER; //Alias
+  typedef INT_PTR SQLLEN; //Alias
+  typedef UINT_PTR SQLULEN; //Alias
+  typedef UINT_PTR SQLSETPOSIROW; //Alias
+  typedef HWND SQLHWND; //Alias
+  typedef void* SQLHANDLE; //Alias
+  typedef SQLHANDLE SQLHENV; //Alias
+  typedef SQLHANDLE SQLHDBC; //Alias
+  typedef SQLHANDLE SQLHSTMT; //Alias
+  typedef SQLHANDLE SQLHDESC; //Alias
+  typedef unsigned char SQLCHAR; //Alias
+  typedef TCHAR SQLTCHAR; //Alias
+  typedef SQLSMALLINT SQLRETURN; //Alias
+  static const SQLSMALLINT SQL_SUCCESS = 0;
+  static const SQLSMALLINT SQL_SUCCESS_WITH_INFO = 1;
+  static const SQLSMALLINT SQL_NO_DATA = 100;
+  static const SQLSMALLINT SQL_PARAM_DATA_AVAILABLE = 101;
+  static const SQLSMALLINT SQL_ERROR = -1;
+  static const SQLSMALLINT SQL_INVALID_HANDLE = -2;
+  static const SQLSMALLINT SQL_STILL_EXECUTING = 2;
+  static const SQLSMALLINT SQL_NEED_DATA = 99;
+  typedef SQLUSMALLINT WINAPI_SQL_DRIVER_COMPLETION; //Alias
+  static const SQLUSMALLINT SQL_DRIVER_NOPROMPT = 0;
+  static const SQLUSMALLINT SQL_DRIVER_COMPLETE = 1;
+  static const SQLUSMALLINT SQL_DRIVER_PROMPT = 2;
+  static const SQLUSMALLINT SQL_DRIVER_COMPLETE_REQUIRED = 3;
+  typedef SQLSMALLINT WINAPI_SQL_ENDTRAN_OPTION; //Alias
+  static const SQLSMALLINT SQL_COMMIT = 0;
+  static const SQLSMALLINT SQL_ROLLBACK = 1;
+  typedef SQLSMALLINT WINAPI_SQL_FETCH_TYPE; //Alias
+  static const SQLSMALLINT SQL_FETCH_NEXT = 1;
+  static const SQLSMALLINT SQL_FETCH_FIRST = 2;
+  static const SQLSMALLINT SQL_FETCH_LAST = 3;
+  static const SQLSMALLINT SQL_FETCH_PRIOR = 4;
+  static const SQLSMALLINT SQL_FETCH_ABSOLUTE = 5;
+  static const SQLSMALLINT SQL_FETCH_RELATIVE = 6;
+  typedef SQLSMALLINT WINAPI_SQL_HANDLE_TYPE; //Alias
+  static const SQLSMALLINT SQL_HANDLE_ENV = 1;
+  static const SQLSMALLINT SQL_HANDLE_DBC = 2;
+  static const SQLSMALLINT SQL_HANDLE_STMT = 3;
+  static const SQLSMALLINT SQL_HANDLE_DESC = 4;
+  typedef SQLUSMALLINT WINAPI_SQL_FREESTMT_OPTION; //Alias
+  static const SQLUSMALLINT SQL_CLOSE = 0;
+  static const SQLUSMALLINT SQL_DROP = 1;
+  static const SQLUSMALLINT SQL_UNBIND = 2;
+  static const SQLUSMALLINT SQL_RESET_PARAMS = 3;
   SQLRETURN SQLAllocConnect(     SQLHENV EnvironmentHandle, SQLHDBC* ConnectionHandle);
   SQLRETURN SQLAllocEnv(         SQLHENV* EnvironmentHandle);
   SQLRETURN SQLAllocHandle(      WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE InputHandle, SQLHANDLE* OutputHandlePtr);

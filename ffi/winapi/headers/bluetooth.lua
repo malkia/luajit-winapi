@@ -13,60 +13,58 @@ ffi.cdef [[
   enum { BLUETOOTH_MAX_SERVICE_NAME_SIZE = 256 };
   enum { BLUETOOTH_DEVICE_NAME_SIZE = 256 };
   enum { BTH_MAX_PIN_SIZE = 16 };
-  typedef enum BTH_ADDR {
-    BLUETOOTH_NULL_ADDRESS = 0,
-  } BTH_ADDR;
+  typedef ULONGLONG BTH_ADDR; //Alias
+  static const ULONGLONG BLUETOOTH_NULL_ADDRESS = 0;
   typedef struct BLUETOOTH_ADDRESS {
     BTH_ADDR ullLong;
   } BLUETOOTH_ADDRESS;
-  typedef enum WINAPI_BTH_MFG {
-    BTH_MFG_ERICSSON = 0,
-    BTH_MFG_NOKIA = 1,
-    BTH_MFG_INTEL = 2,
-    BTH_MFG_IBM = 3,
-    BTH_MFG_TOSHIBA = 4,
-    BTH_MFG_3COM = 5,
-    BTH_MFG_MICROSOFT = 6,
-    BTH_MFG_LUCENT = 7,
-    BTH_MFG_MOTOROLA = 8,
-    BTH_MFG_INFINEON = 9,
-    BTH_MFG_CSR = 10,
-    BTH_MFG_SILICONWAVE = 11,
-    BTH_MFG_DIGIANSWER = 12,
-    BTH_MFG_TI = 13,
-    BTH_MFG_PARTHUS = 14,
-    BTH_MFG_BROADCOM = 15,
-    BTH_MFG_MITEL = 16,
-    BTH_MFG_WIDCOMM = 17,
-    BTH_MFG_ZEEVO = 18,
-    BTH_MFG_ATMEL = 19,
-    BTH_MFG_MITSIBUSHI = 20,
-    BTH_MFG_RTX_TELECOM = 21,
-    BTH_MFG_KC_TECHNOLOGY = 22,
-    BTH_MFG_NEWLOGIC = 23,
-    BTH_MFG_TRANSILICA = 24,
-    BTH_MFG_ROHDE_SCHWARZ = 25,
-    BTH_MFG_TTPCOM = 26,
-    BTH_MFG_SIGNIA = 27,
-    BTH_MFG_CONEXANT = 28,
-    BTH_MFG_QUALCOMM = 29,
-    BTH_MFG_INVENTEL = 30,
-    BTH_MFG_AVM_BERLIN = 31,
-    BTH_MFG_BANDSPEED = 32,
-    BTH_MFG_MANSELLA = 33,
-    BTH_MFG_NEC = 34,
-    BTH_MFG_WAVEPLUS_TECHNOLOGY_CO = 35,
-    BTH_MFG_ALCATEL = 36,
-    BTH_MFG_PHILIPS_SEMICONDUCTOR = 37,
-    BTH_MFG_C_TECHNOLOGIES = 38,
-    BTH_MFG_OPEN_INTERFACE = 39,
-    BTH_MFG_RF_MICRO_DEVICES = 40,
-    BTH_MFG_HITACHI = 41,
-    BTH_MFG_SYMBOL_TECHNOLOGIES = 42,
-    BTH_MFG_TENOVIS = 43,
-    BTH_MFG_MACRONIX_INTERNATIONAL = 44,
-    BTH_MFG_INTERNAL_USE = 65535,
-  } WINAPI_BTH_MFG;
+  typedef USHORT WINAPI_BTH_MFG; //Alias
+  static const USHORT BTH_MFG_ERICSSON = 0;
+  static const USHORT BTH_MFG_NOKIA = 1;
+  static const USHORT BTH_MFG_INTEL = 2;
+  static const USHORT BTH_MFG_IBM = 3;
+  static const USHORT BTH_MFG_TOSHIBA = 4;
+  static const USHORT BTH_MFG_3COM = 5;
+  static const USHORT BTH_MFG_MICROSOFT = 6;
+  static const USHORT BTH_MFG_LUCENT = 7;
+  static const USHORT BTH_MFG_MOTOROLA = 8;
+  static const USHORT BTH_MFG_INFINEON = 9;
+  static const USHORT BTH_MFG_CSR = 10;
+  static const USHORT BTH_MFG_SILICONWAVE = 11;
+  static const USHORT BTH_MFG_DIGIANSWER = 12;
+  static const USHORT BTH_MFG_TI = 13;
+  static const USHORT BTH_MFG_PARTHUS = 14;
+  static const USHORT BTH_MFG_BROADCOM = 15;
+  static const USHORT BTH_MFG_MITEL = 16;
+  static const USHORT BTH_MFG_WIDCOMM = 17;
+  static const USHORT BTH_MFG_ZEEVO = 18;
+  static const USHORT BTH_MFG_ATMEL = 19;
+  static const USHORT BTH_MFG_MITSIBUSHI = 20;
+  static const USHORT BTH_MFG_RTX_TELECOM = 21;
+  static const USHORT BTH_MFG_KC_TECHNOLOGY = 22;
+  static const USHORT BTH_MFG_NEWLOGIC = 23;
+  static const USHORT BTH_MFG_TRANSILICA = 24;
+  static const USHORT BTH_MFG_ROHDE_SCHWARZ = 25;
+  static const USHORT BTH_MFG_TTPCOM = 26;
+  static const USHORT BTH_MFG_SIGNIA = 27;
+  static const USHORT BTH_MFG_CONEXANT = 28;
+  static const USHORT BTH_MFG_QUALCOMM = 29;
+  static const USHORT BTH_MFG_INVENTEL = 30;
+  static const USHORT BTH_MFG_AVM_BERLIN = 31;
+  static const USHORT BTH_MFG_BANDSPEED = 32;
+  static const USHORT BTH_MFG_MANSELLA = 33;
+  static const USHORT BTH_MFG_NEC = 34;
+  static const USHORT BTH_MFG_WAVEPLUS_TECHNOLOGY_CO = 35;
+  static const USHORT BTH_MFG_ALCATEL = 36;
+  static const USHORT BTH_MFG_PHILIPS_SEMICONDUCTOR = 37;
+  static const USHORT BTH_MFG_C_TECHNOLOGIES = 38;
+  static const USHORT BTH_MFG_OPEN_INTERFACE = 39;
+  static const USHORT BTH_MFG_RF_MICRO_DEVICES = 40;
+  static const USHORT BTH_MFG_HITACHI = 41;
+  static const USHORT BTH_MFG_SYMBOL_TECHNOLOGIES = 42;
+  static const USHORT BTH_MFG_TENOVIS = 43;
+  static const USHORT BTH_MFG_MACRONIX_INTERNATIONAL = 44;
+  static const USHORT BTH_MFG_INTERNAL_USE = 65535;
   typedef struct BLUETOOTH_RADIO_INFO {
     DWORD dwSize;
     BLUETOOTH_ADDRESS address;
@@ -115,13 +113,12 @@ ffi.cdef [[
     BLUETOOTH_NUMERIC_COMPARISON_INFO numericCompInfo;
     BLUETOOTH_PASSKEY_INFO passkeyInfo;
   } WINAPI_BLUETOOTH_AUTHENTICATE_RESPONSE_u;
-  typedef enum BLUETOOTH_AUTHENTICATION_METHOD {
-    BLUETOOTH_AUTHENTICATION_METHOD_LEGACY = 1,
-    BLUETOOTH_AUTHENTICATION_METHOD_OOB = 2,
-    BLUETOOTH_AUTHENTICATION_METHOD_NUMERIC_COMPARISON = 3,
-    BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY_NOTIFICATION = 4,
-    BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY = 5,
-  } BLUETOOTH_AUTHENTICATION_METHOD;
+  typedef UINT BLUETOOTH_AUTHENTICATION_METHOD; //Alias
+  static const UINT BLUETOOTH_AUTHENTICATION_METHOD_LEGACY = 1;
+  static const UINT BLUETOOTH_AUTHENTICATION_METHOD_OOB = 2;
+  static const UINT BLUETOOTH_AUTHENTICATION_METHOD_NUMERIC_COMPARISON = 3;
+  static const UINT BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY_NOTIFICATION = 4;
+  static const UINT BLUETOOTH_AUTHENTICATION_METHOD_PASSKEY = 5;
   typedef struct BLUETOOTH_AUTHENTICATE_RESPONSE {
     BLUETOOTH_ADDRESS bthAddressRemote;
     BLUETOOTH_AUTHENTICATION_METHOD authMethod;
@@ -169,43 +166,40 @@ ffi.cdef [[
     DWORD cNumDevices;
     PBLUETOOTH_DEVICE_INFO pDevices;
   } BLUETOOTH_SELECT_DEVICE_PARAMS;
-  typedef enum BLUETOOTH_AUTHENTICATION_REQUIREMENTS {
-    MITMProtectionNotRequired = 0x00,
-    MITMProtectionRequired = 0x01,
-    MITMProtectionNotRequiredBonding = 0x02,
-    MITMProtectionRequiredBonding = 0x03,
-    MITMProtectionNotRequiredGeneralBonding = 0x04,
-    MITMProtectionRequiredGeneralBonding = 0x05,
-    MITMProtectionNotDefined = 0xff,
-  } BLUETOOTH_AUTHENTICATION_REQUIREMENTS;
-  typedef enum SDP_TYPE {
-    SDP_TYPE_NIL = 0x00,
-    SDP_TYPE_UINT = 0x01,
-    SDP_TYPE_INT = 0x02,
-    SDP_TYPE_UUID = 0x03,
-    SDP_TYPE_STRING = 0x04,
-    SDP_TYPE_BOOLEAN = 0x05,
-    SDP_TYPE_SEQUENCE = 0x06,
-    SDP_TYPE_ALTERNATIVE = 0x07,
-    SDP_TYPE_URL = 0x08,
-    SDP_TYPE_CONTAINER = 0x20,
-  } SDP_TYPE;
-  typedef enum SDP_SPECIFICTYPE {
-    SDP_ST_NONE = 0x0000,
-    SDP_ST_UINT8 = 0x0010,
-    SDP_ST_UINT16 = 0x0110,
-    SDP_ST_UINT32 = 0x0210,
-    SDP_ST_UINT64 = 0x0310,
-    SDP_ST_UINT128 = 0x0410,
-    SDP_ST_INT8 = 0x0020,
-    SDP_ST_INT16 = 0x0120,
-    SDP_ST_INT32 = 0x0220,
-    SDP_ST_INT64 = 0x0320,
-    SDP_ST_INT128 = 0x0420,
-    SDP_ST_UUID16 = 0x0130,
-    SDP_ST_UUID32 = 0x0220,
-    SDP_ST_UUID128 = 0x0430,
-  } SDP_SPECIFICTYPE;
+  typedef UINT BLUETOOTH_AUTHENTICATION_REQUIREMENTS; //Alias
+  static const UINT MITMProtectionNotRequired = 0x00;
+  static const UINT MITMProtectionRequired = 0x01;
+  static const UINT MITMProtectionNotRequiredBonding = 0x02;
+  static const UINT MITMProtectionRequiredBonding = 0x03;
+  static const UINT MITMProtectionNotRequiredGeneralBonding = 0x04;
+  static const UINT MITMProtectionRequiredGeneralBonding = 0x05;
+  static const UINT MITMProtectionNotDefined = 0xff;
+  typedef UINT SDP_TYPE; //Alias
+  static const UINT SDP_TYPE_NIL = 0x00;
+  static const UINT SDP_TYPE_UINT = 0x01;
+  static const UINT SDP_TYPE_INT = 0x02;
+  static const UINT SDP_TYPE_UUID = 0x03;
+  static const UINT SDP_TYPE_STRING = 0x04;
+  static const UINT SDP_TYPE_BOOLEAN = 0x05;
+  static const UINT SDP_TYPE_SEQUENCE = 0x06;
+  static const UINT SDP_TYPE_ALTERNATIVE = 0x07;
+  static const UINT SDP_TYPE_URL = 0x08;
+  static const UINT SDP_TYPE_CONTAINER = 0x20;
+  typedef UINT SDP_SPECIFICTYPE; //Alias
+  static const UINT SDP_ST_NONE = 0x0000;
+  static const UINT SDP_ST_UINT8 = 0x0010;
+  static const UINT SDP_ST_UINT16 = 0x0110;
+  static const UINT SDP_ST_UINT32 = 0x0210;
+  static const UINT SDP_ST_UINT64 = 0x0310;
+  static const UINT SDP_ST_UINT128 = 0x0410;
+  static const UINT SDP_ST_INT8 = 0x0020;
+  static const UINT SDP_ST_INT16 = 0x0120;
+  static const UINT SDP_ST_INT32 = 0x0220;
+  static const UINT SDP_ST_INT64 = 0x0320;
+  static const UINT SDP_ST_INT128 = 0x0420;
+  static const UINT SDP_ST_UUID16 = 0x0130;
+  static const UINT SDP_ST_UUID32 = 0x0220;
+  static const UINT SDP_ST_UUID128 = 0x0430;
   typedef struct WINAPI_SDP_ELEMENT_DATA_u_s1 {
     LPBYTE value;
     ULONG length;

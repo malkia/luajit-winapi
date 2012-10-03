@@ -4,7 +4,7 @@ ffi.cdef [[
   typedef LPVOID PFAX_RECIPIENT_CALLBACK; //Alias
   typedef LPVOID PFAX_ROUTING_INSTALLATION_CALLBACK; //Alias
   typedef DWORD HCALL; //Alias
-  enum { MAX_COMPUTERNAME_LENGTH = 15 };
+  enum { MAX_COMPUTERNAME_LENGTH = 16 };
   typedef struct FAX_CONTEXT_INFO {
     DWORD SizeOfStruct;
     HDC hDC;
@@ -59,18 +59,16 @@ ffi.cdef [[
     LPCTSTR ExtensionFriendlyName;
   } FAX_GLOBAL_ROUTING_INFO;
   typedef FAX_GLOBAL_ROUTING_INFO *PFAX_GLOBAL_ROUTING_INFO; //Pointer
-  typedef enum WINAPI_FaxLogCategory {
-    FAXLOG_CATEGORY_INIT = 0,
-    FAXLOG_CATEGORY_OUTBOUND = 1,
-    FAXLOG_CATEGORY_INBOUND = 2,
-    FAXLOG_CATEGORY_UNKNOWN = 3,
-  } WINAPI_FaxLogCategory;
-  typedef enum WINAPI_FaxLogLevel {
-    FAXLOG_LEVEL_NONE = 0,
-    FAXLOG_LEVEL_MIN = 1,
-    FAXLOG_LEVEL_MED = 2,
-    FAXLOG_LEVEL_MAX = 3,
-  } WINAPI_FaxLogLevel;
+  typedef DWORD WINAPI_FaxLogCategory; //Alias
+  static const DWORD FAXLOG_CATEGORY_INIT = 0;
+  static const DWORD FAXLOG_CATEGORY_OUTBOUND = 1;
+  static const DWORD FAXLOG_CATEGORY_INBOUND = 2;
+  static const DWORD FAXLOG_CATEGORY_UNKNOWN = 3;
+  typedef DWORD WINAPI_FaxLogLevel; //Alias
+  static const DWORD FAXLOG_LEVEL_NONE = 0;
+  static const DWORD FAXLOG_LEVEL_MIN = 1;
+  static const DWORD FAXLOG_LEVEL_MED = 2;
+  static const DWORD FAXLOG_LEVEL_MAX = 3;
   typedef struct FAX_LOG_CATEGORY {
     LPCTSTR Name;
     WINAPI_FaxLogCategory Category;

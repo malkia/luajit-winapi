@@ -1,6 +1,7 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef WORD WINAPI_OpenFlags; //Alias
   INT  GetExpandedName( LPTSTR lpszSource, LPTSTR lpszBuffer);
   void LZClose(         INT hFile);
   LONG LZCopy(          INT hfSource, INT hfDest);

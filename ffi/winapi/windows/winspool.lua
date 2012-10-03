@@ -2,6 +2,137 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IPrintAsyncNotifyCallback; //Interface
+  typedef void* IPrintAsyncNotifyChannel; //Interface
+  typedef LPVOID PCORE_PRINTER_DRIVER; //Alias
+  typedef WORD WINAPI_PrinterNotifyType; //Alias
+  typedef struct WINAPI_PRINTER_NOTIFY_INFO_DATA_u_s {
+    DWORD cbBuf;
+    LPVOID pBuf;
+  } WINAPI_PRINTER_NOTIFY_INFO_DATA_u_s;
+  typedef union WINAPI_PRINTER_NOTIFY_INFO_DATA_u {
+    DWORD adwData[2];
+    WINAPI_PRINTER_NOTIFY_INFO_DATA_u_s Data;
+  } WINAPI_PRINTER_NOTIFY_INFO_DATA_u;
+  typedef struct PRINTER_NOTIFY_INFO_DATA {
+    WINAPI_PrinterNotifyType Type;
+    WORD Field;
+    DWORD Reserved;
+    DWORD Id;
+    WINAPI_PRINTER_NOTIFY_INFO_DATA_u NotifyData;
+  } PRINTER_NOTIFY_INFO_DATA;
+  typedef DWORD WINAPI_PRINTER_NOTIFY_INFO_FLAGS; //Alias
+  typedef struct PRINTER_NOTIFY_INFO {
+    DWORD Version;
+    WINAPI_PRINTER_NOTIFY_INFO_FLAGS Flags;
+    DWORD Count;
+    PRINTER_NOTIFY_INFO_DATA aData[1];
+  } PRINTER_NOTIFY_INFO;
+  typedef PRINTER_NOTIFY_INFO *PPRINTER_NOTIFY_INFO; //Pointer
+  typedef DWORD PRINTER_OPTION_FLAGS; //Alias
+  typedef struct PRINTER_OPTIONS {
+    UINT cbSize;
+    PRINTER_OPTION_FLAGS dwFlags;
+  } PRINTER_OPTIONS;
+  typedef PRINTER_OPTIONS *PPRINTER_OPTIONS; //Pointer
+  typedef ACCESS_MASK WINAPI_PRINTER_ACCESS_MASK; //Alias
+  typedef struct PRINTER_DEFAULTS {
+    LPTSTR pDatatype;
+    LPDEVMODE pDevMode;
+    WINAPI_PRINTER_ACCESS_MASK DesiredAccess;
+  } PRINTER_DEFAULTS;
+  typedef PRINTER_DEFAULTS *LPPRINTER_DEFAULTS; //Pointer
+  typedef WORD WINAPI_DeviceCapability; //Alias
+  static const WORD DC_FIELDS = 1;
+  static const WORD DC_PAPERS = 2;
+  static const WORD DC_PAPERSIZE = 3;
+  static const WORD DC_MINEXTENT = 4;
+  static const WORD DC_MAXEXTENT = 5;
+  static const WORD DC_BINS = 6;
+  static const WORD DC_DUPLEX = 7;
+  static const WORD DC_SIZE = 8;
+  static const WORD DC_EXTRA = 9;
+  static const WORD DC_VERSION = 10;
+  static const WORD DC_DRIVER = 11;
+  static const WORD DC_BINNAMES = 12;
+  static const WORD DC_ENUMRESOLUTIONS = 13;
+  static const WORD DC_FILEDEPENDENCIES = 14;
+  static const WORD DC_TRUETYPE = 15;
+  static const WORD DC_PAPERNAMES = 16;
+  static const WORD DC_ORIENTATION = 17;
+  static const WORD DC_COPIES = 18;
+  static const WORD DC_BINADJUST = 19;
+  static const WORD DC_EMF_COMPLIANT = 20;
+  static const WORD DC_DATATYPE_PRODUCED = 21;
+  static const WORD DC_COLLATE = 22;
+  static const WORD DC_MANUFACTURER = 23;
+  static const WORD DC_MODEL = 24;
+  static const WORD DC_PERSONALITY = 25;
+  static const WORD DC_PRINTRATE = 26;
+  static const WORD DC_PRINTRATEUNIT = 27;
+  static const WORD DC_PRINTERMEM = 28;
+  static const WORD DC_MEDIAREADY = 29;
+  static const WORD DC_STAPLE = 30;
+  static const WORD DC_PRINTRATEPPM = 31;
+  static const WORD DC_COLORDEVICE = 32;
+  static const WORD DC_NUP = 33;
+  static const WORD DC_MEDIATYPENAMES = 34;
+  static const WORD DC_MEDIATYPES = 35;
+  typedef DWORD WINAPI_EnumPrintersFlags; //Alias
+  typedef DWORD WINAPI_DocumentMode; //Alias
+  typedef DWORD WINAPI_PrinterChangeFlags; //Alias
+  typedef DWORD WINAPI_JobControl; //Alias
+  static const DWORD JOB_CONTROL_PAUSE = 1;
+  static const DWORD JOB_CONTROL_RESUME = 2;
+  static const DWORD JOB_CONTROL_CANCEL = 3;
+  static const DWORD JOB_CONTROL_RESTART = 4;
+  static const DWORD JOB_CONTROL_DELETE = 5;
+  static const DWORD JOB_CONTROL_SENT_TO_PRINTER = 6;
+  static const DWORD JOB_CONTROL_LAST_PAGE_EJECTED = 7;
+  static const DWORD JOB_CONTROL_RETAIN = 8;
+  static const DWORD JOB_CONTROL_RELEASE = 9;
+  typedef DWORD WINAPI_PrinterControl; //Alias
+  static const DWORD PRINTER_CONTROL_PAUSE = 1;
+  static const DWORD PRINTER_CONTROL_RESUME = 2;
+  static const DWORD PRINTER_CONTROL_PURGE = 3;
+  static const DWORD PRINTER_CONTROL_SET_STATUS = 4;
+  typedef UINT EPrintXPSJobOperation; //Alias
+  static const UINT kJobProduction = 1;
+  static const UINT kJobConsumption = 2;
+  typedef UINT EPrintXPSJobProgress; //Alias
+  static const UINT kAddingDocumentSequence = 0;
+  static const UINT kDocumentSequenceAdded = 1;
+  static const UINT kAddingFixedDocument = 2;
+  static const UINT kFixedDocumentAdded = 3;
+  static const UINT kAddingFixedPage = 4;
+  static const UINT kFixedPageAdded = 5;
+  static const UINT kResourceAdded = 6;
+  static const UINT kFontAdded = 7;
+  static const UINT kImageAdded = 8;
+  static const UINT kXpsDocumentCommitted = 9;
+  typedef UINT PrintAsyncNotifyUserFilter; //Alias
+  static const UINT kPerUser = 0;
+  static const UINT kAllUsers = 1;
+  typedef UINT PrintAsyncNotifyConversationStyle; //Alias
+  static const UINT kBiDirectional = 0;
+  static const UINT kUniDirectional = 1;
+  typedef struct PRINTER_NOTIFY_OPTIONS_TYPE {
+    WINAPI_PrinterNotifyType Type;
+    WORD Reserved0;
+    DWORD Reserved1;
+    DWORD Reserved2;
+    DWORD Count;
+    PWORD pFields;
+  } PRINTER_NOTIFY_OPTIONS_TYPE;
+  typedef PRINTER_NOTIFY_OPTIONS_TYPE *PPRINTER_NOTIFY_OPTIONS_TYPE; //Pointer
+  typedef DWORD WINAPI_PrinterNotifyFlags; //Alias
+  typedef struct PRINTER_NOTIFY_OPTIONS {
+    DWORD Version;
+    WINAPI_PrinterNotifyFlags Flags;
+    DWORD Count;
+    PPRINTER_NOTIFY_OPTIONS_TYPE pTypes;
+  } PRINTER_NOTIFY_OPTIONS;
+  typedef PRINTER_NOTIFY_OPTIONS *PPRINTER_NOTIFY_OPTIONS; //Pointer
   BOOL              AddJob(                               HANDLE hPrinter, DWORD Level, LPBYTE pData, DWORD cbBuf, LPDWORD pcbNeeded);
   BOOL              AddMonitor(                           LPTSTR pName, DWORD Level, LPBYTE pMonitors);
   HANDLE            AddPrinter(                           LPTSTR* pName, DWORD Level, LPBYTE pPrinter);

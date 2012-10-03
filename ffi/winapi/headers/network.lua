@@ -17,11 +17,10 @@ ffi.cdef [[
     LSA_FOREST_TRUST_DOMAIN_INFO DomainInfo;
     LSA_FOREST_TRUST_BINARY_DATA Data;
   } WINAPI_LSA_FOREST_TRUST_RECORD_u;
-  typedef enum LSA_FOREST_TRUST_RECORD_TYPE {
-    ForestTrustTopLevelName = 0,
-    ForestTrustTopLevelNameEx = 1,
-    ForestTrustDomainInfo = 2,
-  } LSA_FOREST_TRUST_RECORD_TYPE;
+  typedef UINT LSA_FOREST_TRUST_RECORD_TYPE; //Alias
+  static const UINT ForestTrustTopLevelName = 0;
+  static const UINT ForestTrustTopLevelNameEx = 1;
+  static const UINT ForestTrustDomainInfo = 2;
   typedef struct LSA_FOREST_TRUST_RECORD {
     ULONG Flags;
     LSA_FOREST_TRUST_RECORD_TYPE ForestTrustType;
@@ -34,11 +33,10 @@ ffi.cdef [[
     PLSA_FOREST_TRUST_RECORD* Entries;
   } LSA_FOREST_TRUST_INFORMATION;
   typedef LSA_FOREST_TRUST_INFORMATION *PLSA_FOREST_TRUST_INFORMATION; //Pointer
-  typedef enum LSA_FOREST_TRUST_COLLISION_RECORD_TYPE {
-    CollisionTdo = 0,
-    CollisionXref = 1,
-    CollisionOther = 2,
-  } LSA_FOREST_TRUST_COLLISION_RECORD_TYPE;
+  typedef UINT LSA_FOREST_TRUST_COLLISION_RECORD_TYPE; //Alias
+  static const UINT CollisionTdo = 0;
+  static const UINT CollisionXref = 1;
+  static const UINT CollisionOther = 2;
   typedef struct LSA_FOREST_TRUST_COLLISION_RECORD {
     ULONG Index;
     LSA_FOREST_TRUST_COLLISION_RECORD_TYPE Type;

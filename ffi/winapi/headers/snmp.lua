@@ -29,24 +29,23 @@ ffi.cdef [[
   typedef AsnOctetString AsnSequence; //Alias
   typedef AsnOctetString AsnIPAddress; //Alias
   typedef AsnOctetString AsnOpaque; //Alias
-  typedef enum WINAPI_ASN_TYPE {
-    ASN_INTEGER = 0x02,
-    ASN_BITS = 0x03,
-    ASN_OCTETSTRING = 0x04,
-    ASN_NULL = 0x05,
-    ASN_OBJECTIDENTIFIER = 0x06,
-    ASN_SEQUENCE = 0x30,
-    ASN_IPADDRESS = 0x40,
-    ASN_COUNTER32 = 0x41,
-    ASN_GAUGE32 = 0x42,
-    ASN_TIMETICKS = 0x43,
-    ASN_OPAQUE = 0x44,
-    ASN_COUNTER64 = 0x46,
-    ASN_UINTEGER32 = 0x47,
-    SNMP_EXCEPTION_NOSUCHOBJECT = 0x80,
-    SNMP_EXCEPTION_NOSUCHINSTANCE = 0x81,
-    SNMP_EXCEPTION_ENDOFMIBVIEW = 0x82,
-  } WINAPI_ASN_TYPE;
+  typedef BYTE WINAPI_ASN_TYPE; //Alias
+  static const BYTE ASN_INTEGER = 0x02;
+  static const BYTE ASN_BITS = 0x03;
+  static const BYTE ASN_OCTETSTRING = 0x04;
+  static const BYTE ASN_NULL = 0x05;
+  static const BYTE ASN_OBJECTIDENTIFIER = 0x06;
+  static const BYTE ASN_SEQUENCE = 0x30;
+  static const BYTE ASN_IPADDRESS = 0x40;
+  static const BYTE ASN_COUNTER32 = 0x41;
+  static const BYTE ASN_GAUGE32 = 0x42;
+  static const BYTE ASN_TIMETICKS = 0x43;
+  static const BYTE ASN_OPAQUE = 0x44;
+  static const BYTE ASN_COUNTER64 = 0x46;
+  static const BYTE ASN_UINTEGER32 = 0x47;
+  static const BYTE SNMP_EXCEPTION_NOSUCHOBJECT = 0x80;
+  static const BYTE SNMP_EXCEPTION_NOSUCHINSTANCE = 0x81;
+  static const BYTE SNMP_EXCEPTION_ENDOFMIBVIEW = 0x82;
 # pragma pack( push, 4 )
   typedef union WINAPI_AsnAny_u {
     AsnInteger32 number;

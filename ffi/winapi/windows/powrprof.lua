@@ -3,6 +3,158 @@ require( 'ffi/winapi/headers/power' )
 require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID PWRSCHEMESENUMPROC; //Alias
+  typedef DWORD WINAPI_POWER_ACTION; //Alias
+  typedef DWORD WINAPI_POWER_LEVEL; //Alias
+  typedef struct POWER_ACTION_POLICY {
+    POWER_ACTION Action;
+    WINAPI_POWER_ACTION Flags;
+    WINAPI_POWER_LEVEL EventCode;
+  } POWER_ACTION_POLICY;
+  typedef struct USER_POWER_POLICY {
+    ULONG Revision;
+    POWER_ACTION_POLICY IdleAc;
+    POWER_ACTION_POLICY IdleDc;
+    ULONG IdleTimeoutAc;
+    ULONG IdleTimeoutDc;
+    UCHAR IdleSensitivityAc;
+    UCHAR IdleSensitivityDc;
+    UCHAR ThrottlePolicyAc;
+    UCHAR ThrottlePolicyDc;
+    SYSTEM_POWER_STATE MaxSleepAc;
+    SYSTEM_POWER_STATE MaxSleepDc;
+    ULONG Reserved[2];
+    ULONG VideoTimeoutAc;
+    ULONG VideoTimeoutDc;
+    ULONG SpindownTimeoutAc;
+    ULONG SpindownTimeoutDc;
+    BOOLEAN OptimizeForPowerAc;
+    BOOLEAN OptimizeForPowerDc;
+    UCHAR FanThrottleToleranceAc;
+    UCHAR FanThrottleToleranceDc;
+    UCHAR ForcedThrottleAc;
+    UCHAR ForcedThrottleDc;
+  } USER_POWER_POLICY;
+  typedef struct MACHINE_POWER_POLICY {
+    ULONG Revision;
+    SYSTEM_POWER_STATE MinSleepAc;
+    SYSTEM_POWER_STATE MinSleepDc;
+    SYSTEM_POWER_STATE ReducedLatencySleepAc;
+    SYSTEM_POWER_STATE ReducedLatencySleepDc;
+    ULONG DozeTimeoutAc;
+    ULONG DozeTimeoutDc;
+    ULONG DozeS4TimeoutAc;
+    ULONG DozeS4TimeoutDc;
+    UCHAR MinThrottleAc;
+    UCHAR MinThrottleDc;
+    UCHAR pad1[2];
+    POWER_ACTION_POLICY OverThrottledAc;
+    POWER_ACTION_POLICY OverThrottledDc;
+  } MACHINE_POWER_POLICY;
+  typedef struct POWER_POLICY {
+    USER_POWER_POLICY user;
+    MACHINE_POWER_POLICY mach;
+  } POWER_POLICY;
+  typedef POWER_POLICY *PPOWER_POLICY; //Pointer
+  typedef struct SYSTEM_POWER_LEVEL {
+    BOOLEAN Enable;
+    BYTE Spare[3];
+    DWORD BatteryLevel;
+    POWER_ACTION_POLICY PowerPolicy;
+    SYSTEM_POWER_STATE MinSystemState;
+  } SYSTEM_POWER_LEVEL;
+  enum { NUM_DISCHARGE_POLICIES = 4 };
+  typedef struct GLOBAL_USER_POWER_POLICY {
+    ULONG Revision;
+    POWER_ACTION_POLICY PowerButtonAc;
+    POWER_ACTION_POLICY PowerButtonDc;
+    POWER_ACTION_POLICY SleepButtonAc;
+    POWER_ACTION_POLICY SleepButtonDc;
+    POWER_ACTION_POLICY LidCloseAc;
+    POWER_ACTION_POLICY LidCloseDc;
+    SYSTEM_POWER_LEVEL DischargePolicy[NUM_DISCHARGE_POLICIES];
+    ULONG GlobalFlags;
+  } GLOBAL_USER_POWER_POLICY;
+  typedef struct GLOBAL_MACHINE_POWER_POLICY {
+    ULONG Revision;
+    SYSTEM_POWER_STATE LidOpenWakeAc;
+    SYSTEM_POWER_STATE LidOpenWakeDc;
+    ULONG BroadcastCapacityResolution;
+  } GLOBAL_MACHINE_POWER_POLICY;
+  typedef struct GLOBAL_POWER_POLICY {
+    GLOBAL_USER_POWER_POLICY user;
+    GLOBAL_MACHINE_POWER_POLICY mach;
+  } GLOBAL_POWER_POLICY;
+  typedef GLOBAL_POWER_POLICY *PGLOBAL_POWER_POLICY; //Pointer
+  typedef struct PROCESSOR_POWER_POLICY_INFO {
+    DWORD TimeCheck;
+    DWORD DemoteLimit;
+    DWORD PromoteLimit;
+    BYTE DemotePercent;
+    BYTE PromotePercent;
+    BYTE Spare[2];
+    DWORD Reserved;
+  } PROCESSOR_POWER_POLICY_INFO;
+  typedef struct PROCESSOR_POWER_POLICY {
+    DWORD Revision;
+    BYTE DynamicThrottle;
+    BYTE Spare[3];
+    DWORD Reserved;
+    DWORD PolicyCount;
+    PROCESSOR_POWER_POLICY_INFO Policy[3];
+  } PROCESSOR_POWER_POLICY;
+  typedef struct MACHINE_PROCESSOR_POWER_POLICY {
+    ULONG Revision;
+    PROCESSOR_POWER_POLICY ProcessorPolicyAc;
+    PROCESSOR_POWER_POLICY ProcessorPolicyDc;
+  } MACHINE_PROCESSOR_POWER_POLICY;
+  typedef MACHINE_PROCESSOR_POWER_POLICY *PMACHINE_PROCESSOR_POWER_POLICY; //Pointer
+  typedef struct BATTERY_REPORTING_SCALE {
+    DWORD Granularity;
+    DWORD Capacity;
+  } BATTERY_REPORTING_SCALE;
+  typedef struct SYSTEM_POWER_CAPABILITIES {
+    BOOLEAN PowerButtonPresent;
+    BOOLEAN SleepButtonPresent;
+    BOOLEAN LidPresent;
+    BOOLEAN SystemS1;
+    BOOLEAN SystemS2;
+    BOOLEAN SystemS3;
+    BOOLEAN SystemS4;
+    BOOLEAN SystemS5;
+    BOOLEAN HiberFilePresent;
+    BOOLEAN FullWake;
+    BOOLEAN VideoDimPresent;
+    BOOLEAN ApmPresent;
+    BOOLEAN UpsPresent;
+    BOOLEAN ThermalControl;
+    BOOLEAN ProcessorThrottle;
+    BYTE ProcessorMinThrottle;
+    BYTE ProcessorMaxThrottle;
+    BOOLEAN FastSystemS4;
+    BYTE spare2[3];
+    BOOLEAN DiskSpinDown;
+    BYTE spare3[8];
+    BOOLEAN SystemBatteriesPresent;
+    BOOLEAN BatteriesAreShortTerm;
+    BATTERY_REPORTING_SCALE BatteryScale[3];
+    SYSTEM_POWER_STATE AcOnLineWake;
+    SYSTEM_POWER_STATE SoftLidWake;
+    SYSTEM_POWER_STATE RtcWake;
+    SYSTEM_POWER_STATE MinDeviceWakeState;
+    SYSTEM_POWER_STATE DefaultLowLatencyWake;
+  } SYSTEM_POWER_CAPABILITIES;
+  typedef SYSTEM_POWER_CAPABILITIES *PSYSTEM_POWER_CAPABILITIES; //Pointer
+  typedef UINT POWER_PLATFORM_ROLE; //Alias
+  static const UINT PlatformRoleUnspecified = 0;
+  static const UINT PlatformRoleDesktop = 1;
+  static const UINT PlatformRoleMobile = 2;
+  static const UINT PlatformRoleWorkstation = 3;
+  static const UINT PlatformRoleEnterpriseServer = 4;
+  static const UINT PlatformRoleSOHOServer = 5;
+  static const UINT PlatformRoleAppliancePC = 6;
+  static const UINT PlatformRolePerformanceServer = 7;
+  static const UINT PlatformRoleMaximum = 8;
   NTSTATUS            CallNtPowerInformation(                      POWER_INFORMATION_LEVEL InformationLevel, PVOID lpInputBuffer, ULONG nInputBufferSize, PVOID lpOutputBuffer, ULONG nOutputBufferSize);
   BOOLEAN             DevicePowerClose(                            );
   BOOLEAN             DevicePowerEnumDevices(                      ULONG QueryIndex, ULONG QueryInterpretationFlags, ULONG QueryFlags, PBYTE pReturnBuffer, PULONG pBufferSize);

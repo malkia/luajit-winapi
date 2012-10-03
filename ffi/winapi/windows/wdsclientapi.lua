@@ -1,6 +1,14 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID PFN_WdsCliTraceFunction; //Alias
+  typedef LPVOID PFN_WdsCliCallback; //Alias
+  typedef struct WDS_CLI_CRED {
+    PCWSTR pwszUserName;
+    PCWSTR pwszDomain;
+    PCWSTR pwszPassword;
+  } WDS_CLI_CRED;
+  typedef WDS_CLI_CRED *PWDS_CLI_CRED; //Pointer
   HRESULT WdsCliAuthorizeSession(                 HANDLE hSession, PWDS_CLI_CRED pCred);
   HRESULT WdsCliCancelTransfer(                   HANDLE hTransfer);
   HRESULT WdsCliClose(                            HANDLE Handle);

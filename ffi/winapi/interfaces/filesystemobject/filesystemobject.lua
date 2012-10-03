@@ -12,38 +12,32 @@ ffi.cdef [[
   typedef void* IFolderCollection; //Interface
   typedef void* IScriptEncoder; //Interface
   typedef void* ITextStream; //Interface
-  typedef enum CompareMethod {
-    BinaryCompare = 0,
-    TextCompare = 1,
-    DatabaseCompare = 2,
-  } CompareMethod;
-  typedef enum IOMode {
-    ForReading = 1,
-    ForWriting = 2,
-    ForAppending = 8,
-  } IOMode;
-  typedef enum Tristate {
-    TristateTrue = -1,
-    TristateFalse = 0,
-    TristateUseDefault = -2,
-  } Tristate;
+  typedef UINT CompareMethod; //Alias
+  static const UINT BinaryCompare = 0;
+  static const UINT TextCompare = 1;
+  static const UINT DatabaseCompare = 2;
+  typedef UINT IOMode; //Alias
+  static const UINT ForReading = 1;
+  static const UINT ForWriting = 2;
+  static const UINT ForAppending = 8;
+  typedef UINT Tristate; //Alias
+  static const UINT TristateTrue = -1;
+  static const UINT TristateFalse = 0;
+  static const UINT TristateUseDefault = -2;
   typedef UINT FileAttribute; //Alias
-  typedef enum SpecialFolderConst {
-    WindowsFolder = 0,
-    SystemFolder = 1,
-    TemporaryFolder = 2,
-  } SpecialFolderConst;
-  typedef enum DriveTypeConst {
-    UnknownType = 0,
-    Removable = 1,
-    Fixed = 2,
-    Remote = 3,
-    CDRom = 4,
-    RamDisk = 5,
-  } DriveTypeConst;
-  typedef enum StandardStreamTypes {
-    StdIn = 0,
-    StdOut = 1,
-    StdErr = 2,
-  } StandardStreamTypes;
+  typedef UINT SpecialFolderConst; //Alias
+  static const UINT WindowsFolder = 0;
+  static const UINT SystemFolder = 1;
+  static const UINT TemporaryFolder = 2;
+  typedef UINT DriveTypeConst; //Alias
+  static const UINT UnknownType = 0;
+  static const UINT Removable = 1;
+  static const UINT Fixed = 2;
+  static const UINT Remote = 3;
+  static const UINT CDRom = 4;
+  static const UINT RamDisk = 5;
+  typedef UINT StandardStreamTypes; //Alias
+  static const UINT StdIn = 0;
+  static const UINT StdOut = 1;
+  static const UINT StdErr = 2;
 ]]

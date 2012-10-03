@@ -86,14 +86,10 @@ ffi.cdef [[
   typedef LPVOID LPFREEBUFFER; //Alias
   typedef ULONG *LPULONG; //Pointer
   enum { MAPI_DIM = 1 };
-  enum { MAPI_DIM = 1 };
-  enum { MAPI_DIM = 1 };
-  enum { MAPI_DIM = 1 };
   typedef GUID MAPIUID; //Alias
   typedef MAPIUID *LPMAPIUID; //Pointer
   typedef ULONG WINAPI_MapiUnicodeFlag; //Alias
   typedef ULONG WINAPI_FlagList_FLAGS; //Alias
-  enum { MAPI_DIM = 1 };
   typedef struct FlagList {
     ULONG cFlags;
     WINAPI_FlagList_FLAGS ulFlag[MAPI_DIM];
@@ -110,10 +106,9 @@ ffi.cdef [[
     LPCSTR aMessageClass[MAPI_DIM];
   } SMessageClassArray;
   typedef SMessageClassArray *LPSMESSAGECLASSARRAY; //Pointer
-  typedef enum WINAPI_MAPINAMEID_CHOICE {
-    MNID_ID = 0,
-    MNID_STRING = 1,
-  } WINAPI_MAPINAMEID_CHOICE;
+  typedef ULONG WINAPI_MAPINAMEID_CHOICE; //Alias
+  static const ULONG MNID_ID = 0;
+  static const ULONG MNID_STRING = 1;
   typedef union WINAPI_MAPINAMEID_u {
     LONG lID;
     LPWSTR lpwstrName;
@@ -137,10 +132,9 @@ ffi.cdef [[
   typedef union WINAPI_SMAPIFormProp_u {
     WINAPI_SMAPIFormProp_u_s s1;
   } WINAPI_SMAPIFormProp_u;
-  typedef enum FORMPROPSPECIALTYPE {
-    FPST_VANILLA = 0,
-    FPST_ENUM_PROP = 1,
-  } FORMPROPSPECIALTYPE;
+  typedef ULONG FORMPROPSPECIALTYPE; //Alias
+  static const ULONG FPST_VANILLA = 0;
+  static const ULONG FPST_ENUM_PROP = 1;
   typedef struct SMAPIFormProp {
     WINAPI_MapiUnicodeFlag ulFlags;
     ULONG nPropType;
@@ -149,7 +143,6 @@ ffi.cdef [[
     FORMPROPSPECIALTYPE nSpecialType;
     WINAPI_SMAPIFormProp_u u;
   } SMAPIFormProp;
-  enum { MAPI_DIM = 1 };
   typedef struct SMAPIFormPropArray {
     ULONG cProps;
     ULONG ulPad;
@@ -168,7 +161,6 @@ ffi.cdef [[
     DWORD grfAttribs;
     WINAPI_MapiUnicodeFlag ulFlags;
   } SMAPIVerb;
-  enum { MAPI_DIM = 1 };
   typedef struct SMAPIVerbArray {
     ULONG cMAPIVerb;
     SMAPIVerb aMAPIVerb[MAPI_DIM];
@@ -190,7 +182,6 @@ ffi.cdef [[
     LPSPropValue lpProps;
   } SRow;
   typedef SRow *LPSRow; //Pointer
-  enum { MAPI_DIM = 1 };
   typedef struct SRowSet {
     ULONG cRows;
     SRow aRow[MAPI_DIM];
@@ -201,7 +192,6 @@ ffi.cdef [[
     ULONG ulPropTag;
     WINAPI_TABLE_SORT ulOrder;
   } SSortOrder;
-  enum { MAPI_DIM = 1 };
   typedef struct SSortOrderSet {
     ULONG cSorts;
     ULONG cCategories;
@@ -215,14 +205,12 @@ ffi.cdef [[
     LPSPropValue rgPropVals;
   } ADRENTRY;
   typedef ADRENTRY *LPADRENTRY; //Pointer
-  enum { MAPI_DIM = 1 };
   typedef struct ADRLIST {
     ULONG cEntries;
     ADRENTRY aEntries[MAPI_DIM];
   } ADRLIST;
   typedef ADRLIST *LPADRLIST; //Pointer
   typedef ULONG WINAPI_PROPATTR_FLAGS; //Alias
-  enum { MAPI_DIM = 1 };
   typedef struct SPropAttrArray {
     ULONG cValues;
     WINAPI_PROPATTR_FLAGS aPropAttr[MAPI_DIM];
@@ -244,7 +232,6 @@ ffi.cdef [[
     ULONG ulPropTag;
     SCODE scode;
   } SPropProblem;
-  enum { MAPI_DIM = 1 };
   typedef struct SPropProblemArray {
     ULONG cProblem;
     SPropProblem aProblem[MAPI_DIM];
@@ -255,42 +242,38 @@ ffi.cdef [[
     ULONG ulPropTag;
     SCODE scode;
   } STnefProblem;
-  enum { MAPI_DIM = 1 };
   typedef struct STnefProblemArray {
     ULONG cProblem;
     STnefProblem aProblem[MAPI_DIM];
   } STnefProblemArray;
   typedef UINT METHODS; //Alias
-  typedef enum WINAPI_MapiObjType {
-    MAPI_STORE = 0x00000001,
-    MAPI_ADDRBOOK = 0x00000002,
-    MAPI_FOLDER = 0x00000003,
-    MAPI_ABCONT = 0x00000004,
-    MAPI_MESSAGE = 0x00000005,
-    MAPI_MAILUSER = 0x00000006,
-    MAPI_ATTACH = 0x00000007,
-    MAPI_DISTLIST = 0x00000008,
-    MAPI_PROFSECT = 0x00000009,
-    MAPI_STATUS = 0x0000000A,
-    MAPI_SESSION = 0x0000000B,
-    MAPI_FORMINFO = 0x0000000C,
-  } WINAPI_MapiObjType;
+  typedef ULONG WINAPI_MapiObjType; //Alias
+  static const ULONG MAPI_STORE = 0x00000001;
+  static const ULONG MAPI_ADDRBOOK = 0x00000002;
+  static const ULONG MAPI_FOLDER = 0x00000003;
+  static const ULONG MAPI_ABCONT = 0x00000004;
+  static const ULONG MAPI_MESSAGE = 0x00000005;
+  static const ULONG MAPI_MAILUSER = 0x00000006;
+  static const ULONG MAPI_ATTACH = 0x00000007;
+  static const ULONG MAPI_DISTLIST = 0x00000008;
+  static const ULONG MAPI_PROFSECT = 0x00000009;
+  static const ULONG MAPI_STATUS = 0x0000000A;
+  static const ULONG MAPI_SESSION = 0x0000000B;
+  static const ULONG MAPI_FORMINFO = 0x0000000C;
   typedef ULONG FLAGS; //Alias
-  typedef enum WINAPI_MapiTableType {
-    TBLTYPE_SNAPSHOT = 0,
-    TBLTYPE_KEYSET = 1,
-    TBLTYPE_DYNAMIC = 2,
-  } WINAPI_MapiTableType;
-  typedef enum WINAPI_MapiTableStatus {
-    TBLSTAT_COMPLETE = 0,
-    TBLSTAT_QCHANGED = 7,
-    TBLSTAT_SORTING = 9,
-    TBLSTAT_SORT_ERROR = 10,
-    TBLSTAT_SETTING_COLS = 11,
-    TBLSTAT_SETCOL_ERROR = 13,
-    TBLSTAT_RESTRICTING = 14,
-    TBLSTAT_RESTRICT_ERROR = 15,
-  } WINAPI_MapiTableStatus;
+  typedef ULONG WINAPI_MapiTableType; //Alias
+  static const ULONG TBLTYPE_SNAPSHOT = 0;
+  static const ULONG TBLTYPE_KEYSET = 1;
+  static const ULONG TBLTYPE_DYNAMIC = 2;
+  typedef ULONG WINAPI_MapiTableStatus; //Alias
+  static const ULONG TBLSTAT_COMPLETE = 0;
+  static const ULONG TBLSTAT_QCHANGED = 7;
+  static const ULONG TBLSTAT_SORTING = 9;
+  static const ULONG TBLSTAT_SORT_ERROR = 10;
+  static const ULONG TBLSTAT_SETTING_COLS = 11;
+  static const ULONG TBLSTAT_SETCOL_ERROR = 13;
+  static const ULONG TBLSTAT_RESTRICTING = 14;
+  static const ULONG TBLSTAT_RESTRICT_ERROR = 15;
   typedef ULONG WINAPI_ADRPARM_Flags; //Alias
   typedef struct ADRPARM {
     ULONG cbABContEntryID;
@@ -349,17 +332,15 @@ ffi.cdef [[
     ULONG cb;
     LPBYTE lpb;
   } SBinary;
-  typedef enum HFRMREG {
-    HFRMREG_DEFAULT = 0,
-    HFRMREG_LOCAL = 1,
-    HFRMREG_PERSONAL = 2,
-    HFRMREG_FOLDER = 3,
-  } HFRMREG;
-  typedef enum BOOKMARK {
-    BOOKMARK_BEGINNING = 0,
-    BOOKMARK_CURRENT = 1,
-    BOOKMARK_END = 2,
-  } BOOKMARK;
+  typedef ULONG HFRMREG; //Alias
+  static const ULONG HFRMREG_DEFAULT = 0;
+  static const ULONG HFRMREG_LOCAL = 1;
+  static const ULONG HFRMREG_PERSONAL = 2;
+  static const ULONG HFRMREG_FOLDER = 3;
+  typedef ULONG BOOKMARK; //Alias
+  static const ULONG BOOKMARK_BEGINNING = 0;
+  static const ULONG BOOKMARK_CURRENT = 1;
+  static const ULONG BOOKMARK_END = 2;
   typedef struct SBinaryArray {
     ULONG cValues;
     SBinary* lpbin;

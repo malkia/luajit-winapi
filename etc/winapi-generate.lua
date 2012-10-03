@@ -32,6 +32,11 @@ local function fixname(oid)
    local num = tonumber(oid)
    local id = oid
    if num == nil then
+      local colon = id:find(":", 1, true)
+      if colon then
+	 id = id:sub(1,colon-1)
+	 oid = id
+      end
       id = id:gsub("-","_")
       if id:sub(1,6):lower()=="const " then
 	 id = id:sub(7)
@@ -103,7 +108,8 @@ local function dirname(filename)
    return filename:sub(1, p)
 end
 
-local processed = {}
+local defined = {}
+
 local function process(var, luafile)
    if var.Enum then
       if var.Type=="Integer" or var.Size then
@@ -113,19 +119,33 @@ local function process(var, luafile)
 	    "int" .. tostring( 8 * tonumber(var.Size)) .. "_t"
 	 luafile:write(
 	    "  typedef " .. type .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
-	 -- handle BOOL and BOOLEAN's TRUE and FALSE
 	 local special_prefix =
 	    (var.Name == "BOOL" or var.Name == "BOOLEAN") and (var.Name .. "_") or ""
 	 for _, enum in ipairs( var.Enum[1].Set ) do
---	    luafile:write(
---	       "  const   " .. type .. " " ..
---		  special_prefix .. enum.Name .. " = " .. enum.Value .. ";\n" )
+	    luafile:write(
+	       "  static const " .. type .. " " ..
+		  special_prefix .. enum.Name .. " = " .. enum.Value .. ";\n" )
+	 end
+      elseif var.Type=="Alias" or var.Base then
+	 assert(var.Type=="Alias" and var.Base)
+	 luafile:write(
+	    "  typedef " .. var.Base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+	 for _, enum in ipairs( var.Enum[1].Set ) do
+	    if defined[enum.Name]==nil then
+	       defined[enum.Name]=true
+	       luafile:write(
+		  "  static const " .. var.Base .. " " ..
+		     enum.Name .. " = " .. enum.Value .. ";\n" )
+	    end
 	 end
       else
 	 luafile:write( "  typedef enum " .. var.Name .. " {\n" )
 	 for _, enum in ipairs( var.Enum[1].Set ) do
-	    luafile:write(
-	       "    " .. enum.Name .. " = " .. enum.Value .. ",\n" )
+	    if defined[enum.Name]==nil then
+	       defined[enum.Name]=true
+	       luafile:write(
+		  "    " .. enum.Name .. " = " .. enum.Value .. ",\n" )
+	    end
 	 end
 	 luafile:write( "  } " .. var.Name .. ";\n" )
       end
@@ -168,9 +188,10 @@ local function process(var, luafile)
 	 local space = in_brackets:find(" ", 1, true)
 	 local before_space = (space and in_brackets:sub(1, space-1) or in_brackets)
 	 local after_space = (space and in_brackets:sub(space) or "0"):gsub(" ","")
-	 if tonumber(before_space) == nil then
+	 if tonumber(before_space) == nil and defined[before_space]==nil then
+	    defined[before_space] = true
 	    luafile:write(
-	       "  enum { " .. before_space .. " = " ..  tostring(var.Count - after_space) .. " };\n")
+	       "  enum { " .. before_space .. " = " .. var.Count .. " };\n")
 
 	    --		     luafile:write(
 	    --			"  typedef " .. var.Base .. " " ..
@@ -229,18 +250,26 @@ end
 
 local function generate()
    -- All "C" definitions from the API monitor files
-   local cdef = {}
+   local cdefs = {}
    for _, filename in ipairs(files) do
-      assert(cdef[filename]==nil)
+      assert(cdefs[filename]==nil)
       local file = assert(io.open(xmldir .. filename))
       local contents = file:read("*all")
       file:close()
       local buffer = ffi.new("char[?]", contents:len()+1, contents)
-      cdef[fixpath(filename)] = parse(buffer, filename)
+      cdefs[fixpath(filename)] = parse(buffer, filename)
    end
 
-   local luadirs = {}
-   for filename, cdef in pairs(cdef) do
+   local blacklist = {
+      "internal/exception-codes.h.xml"
+   }
+   for _, v in ipairs(blacklist) do
+      assert(cdefs[v])
+      cdefs[v] = nil
+   end
+
+   local luadirs={}
+   for filename, cdef in pairs(cdefs) do
       local modname = filename:gsub("%..*$", "")
 
       local luaname = filename:gsub("%..*$", "%.lua")
@@ -257,10 +286,16 @@ local function generate()
       local luafile = assert(io.open(outdir..luaname, "wt"))
 
       for _, depend in ipairs(cdef.Include or {}) do
-	 local dependFilename = depend.Filename:gsub("%..*$","")
-	 assert(modname~=dependFilename)
-	 luafile:write(
-	    "require( 'ffi/winapi/" .. dependFilename .. "' )\n" )
+	 local dependFilename = fixpath(depend.Filename)
+	 local dependModule = dependFilename:gsub("%..*$","")
+	 if cdefs[dependFilename] then
+	    assert(modname~=dependModule)
+	    luafile:write(
+	       "require( 'ffi/winapi/" .. dependModule .. "' )\n" )
+	 else
+	    luafile:write(
+	       "-- require( 'ffi/winapi/" .. dependModule .. "' )\n" )
+	 end
       end
 
       luafile:write( "local ffi = require( 'ffi' )\n" ..
@@ -286,7 +321,9 @@ local function generate()
 
       local dll
       for _, module in ipairs(cdef.Module or {}) do
-	 local modname = module.Name ~= "*" and module.Name or filename
+	 for _, var in ipairs(module.Variable or {}) do
+	    process(var, luafile)
+	 end
 
 	 local return_type_width = 0
 	 local api_name_width = 0
@@ -319,15 +356,17 @@ local function generate()
 
       luafile:close()
    end
+
+   return cdefs
 end
 
-local function test()
-   for _, filename in ipairs(files) do
+local function test(cdef)
+--   for _, filename in ipairs(files) do
+   for filename, _ in pairs(cdef) do
       local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
       local status, error = pcall(require,lib)
       print(lib, error==true and "OK" or error)
    end
 end
 
-generate()
-test()
+test(generate())

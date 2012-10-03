@@ -2,6 +2,7 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/patch' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef ULONG WINAPI_ApplyOptionFlags; //Alias
   BOOL ApplyPatchToFile(               LPCTSTR PatchFileName, LPCTSTR OldFileName, LPCTSTR NewFileName, WINAPI_ApplyOptionFlags ApplyOptionFlags);
   BOOL ApplyPatchToFileByBuffers(      PBYTE PatchFileMapped, ULONG PatchFileSize, PBYTE OldFileMapped, ULONG OldFileSize, PBYTE* NewFileBuffer, ULONG NewFileBufferSize, ULONG* NewFileActualSize, FILETIME* NewFileTime, WINAPI_ApplyOptionFlags ApplyOptionFlags, PPATCH_PROGRESS_CALLBACK ProgressCallback, PVOID CallbackContext);
   BOOL ApplyPatchToFileByHandles(      HANDLE PatchFileHandle, HANDLE OldFileHandle, HANDLE NewFileHandle, WINAPI_ApplyOptionFlags ApplyOptionFlags);

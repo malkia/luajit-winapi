@@ -2,6 +2,67 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/ole' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* ITransaction; //Interface
+  typedef HANDLE QUEUEHANDLE; //Alias
+  typedef PROPID QUEUEPROPID; //Alias
+  typedef PROPID QMPROPID; //Alias
+  typedef PROPID MGMTPROPID; //Alias
+  typedef PROPID MSGPROPID; //Alias
+  typedef LPVOID PMQRECEIVECALLBACK; //Alias
+  typedef PROPVARIANT MQPROPVARIANT; //Alias
+  typedef MQPROPVARIANT *MQPROPVARIANT[]; //Pointer
+  typedef ULONG WINAPI_MQPR_Rel; //Alias
+  typedef struct MQPROPERTYRESTRICTION {
+    WINAPI_MQPR_Rel rel;
+    PROPID prop;
+    MQPROPVARIANT prval;
+  } MQPROPERTYRESTRICTION;
+  typedef struct MQQUEUEPROPS {
+    DWORD cProp;
+    QUEUEPROPID* aPropID;
+    MQPROPVARIANT* aPropVar;
+    HRESULT* aStatus;
+  } MQQUEUEPROPS;
+  typedef struct MQQMPROPS {
+    DWORD cProp;
+    QMPROPID* aPropID;
+    MQPROPVARIANT* aPropVar;
+    HRESULT* aStatus;
+  } MQQMPROPS;
+  typedef struct MQPRIVATEPROPS {
+    DWORD cProp;
+    QMPROPID* aPropID;
+    MQPROPVARIANT* aPropVar;
+    HRESULT* aStatus;
+  } MQPRIVATEPROPS;
+  typedef struct MQRESTRICTION {
+    ULONG cRes;
+    MQPROPERTYRESTRICTION* paPropRes;
+  } MQRESTRICTION;
+  typedef struct MQCOLUMNSET {
+    ULONG cCol;
+    PROPID* aCol;
+  } MQCOLUMNSET;
+  typedef struct MQSORTKEY {
+    PROPID propColumn;
+    ULONG dwOrder;
+  } MQSORTKEY;
+  typedef struct MQSORTSET {
+    ULONG cCol;
+    MQSORTKEY* aCol;
+  } MQSORTSET;
+  typedef struct MQMGMTPROPS {
+    DWORD cProp;
+    MGMTPROPID* aPropID;
+    MQPROPVARIANT* aPropVar;
+    HRESULT* aStatus;
+  } MQMGMTPROPS;
+  typedef struct MQMSGPROPS {
+    DWORD cProp;
+    MSGPROPID* aPropID;
+    MQPROPVARIANT* aPropVar;
+    HRESULT* aStatus;
+  } MQMSGPROPS;
   HRESULT MQADsPathToFormatName(           LPCWSTR lpwcsADsPath);
   HRESULT MQBeginTransaction(              ITransaction** ppTransaction);
   HRESULT MQCloseCursor(                   HANDLE hCursor);

@@ -1,6 +1,11 @@
 require( 'ffi/winapi/mozilla/nspr' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef PRIntn WINAPI_PrAddressFamily; //Alias
+  static const PRIntn PR_AF_UNSPEC = 0;
+  static const PRIntn PR_AF_LOCAL = 1;
+  static const PRIntn PR_AF_INET = 2;
+  static const PRIntn PR_AF_INET6 = 100;
   PRStatus            PR_JoinThread(                       PRThread* thread);
   PRThread*           PR_CreateThread(                     PRThreadType type, void (*)(void*) start, void* arg, PRThreadPriority priority, PRThreadScope scope, PRThreadState state, PRUint32 stackSize);
   PRThread*           PR_GetCurrentThread(                 );

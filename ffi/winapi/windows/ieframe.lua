@@ -2,6 +2,12 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef struct IELAUNCHURLINFO {
+    DWORD cbSize;
+    DWORD dwCreationFlags;
+    DWORD dwLaunchOptionFlags;
+  } IELAUNCHURLINFO;
+  typedef IELAUNCHURLINFO *LPIELAUNCHURLINFO; //Pointer
   HRESULT IECancelSaveFile(                HANDLE hState);
   BOOL    IECreateDirectory(               LPCWSTR lpPathName, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
   HANDLE  IECreateFile(                    LPCWSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);

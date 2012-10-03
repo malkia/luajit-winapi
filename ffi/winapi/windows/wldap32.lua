@@ -1,6 +1,84 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID PLDAPSearch; //Alias
+  typedef struct WINAPI_LDAP_s {
+    UINT_PTR sb_sd;
+    UCHAR Reserved1[41];
+    ULONG_PTR sb_naddr;
+    UCHAR Reserved2[24];
+  } WINAPI_LDAP_s;
+  typedef struct LDAP {
+    WINAPI_LDAP_s ld_sb;
+    PCHAR ld_host;
+    ULONG ld_version;
+    UCHAR ld_lberoptions;
+    ULONG ld_deref;
+    ULONG ld_timelimit;
+    ULONG ld_sizelimit;
+    ULONG ld_errno;
+    PCHAR ld_matched;
+    PCHAR ld_error;
+    ULONG ld_msgid;
+    UCHAR Reserved3[25];
+    ULONG ld_cldaptries;
+    ULONG ld_cldaptimeout;
+    ULONG ld_refhoplimit;
+    ULONG ld_options;
+  } LDAP;
+  typedef LDAP *PLDAP; //Pointer
+  typedef struct LDAPMessage {
+    ULONG lm_msgid;
+    ULONG lm_msgtype;
+    PVOID lm_ber;
+    LPVOID lm_chain;
+    LPVOID lm_next;
+    ULONG lm_time;
+    PLDAP Connection;
+    PVOID Request;
+    ULONG lm_returncode;
+    USHORT lm_referral;
+    BOOLEAN lm_chased;
+    BOOLEAN lm_eom;
+    BOOLEAN ConnectionReferenced;
+  } LDAPMessage;
+  typedef LDAPMessage *PLDAPMessage; //Pointer
+  typedef struct berval {
+    ULONG bv_len;
+    PCHAR bv_val;
+  } berval;
+  typedef berval struct berval; //Alias
+  typedef berval *PBERVAL; //Pointer
+  typedef struct LDAPControl {
+    PTCHAR ldctl_oid;
+    struct berval ldctl_value;
+    BOOLEAN ldctl_iscritical;
+  } LDAPControl;
+  typedef LDAPControl *PLDAPControl; //Pointer
+  typedef struct LDAP_TIMEVAL {
+    LONG tv_sec;
+    LONG tv_usec;
+  } LDAP_TIMEVAL;
+  typedef LDAP_TIMEVAL struct l_timeval; //Alias
+  typedef struct LDAPSortKey {
+    PTCHAR sk_attrtype;
+    PTCHAR sk_matchruleoid;
+    BOOLEAN sk_reverseorder;
+  } LDAPSortKey;
+  typedef LDAPSortKey *PLDAPSortKey; //Pointer
+  typedef struct LDAPVLVInfo {
+    int ldvlv_version;
+    ULONG ldvlv_before_count;
+    ULONG ldvlv_after_count;
+    ULONG ldvlv_offset;
+    ULONG ldvlv_count;
+    PBERVAL ldvlv_attrvalue;
+    PBERVAL ldvlv_context;
+    VOID* ldvlv_extradata;
+  } LDAPVLVInfo;
+  typedef struct BerElement {
+    PCHAR opaque;
+  } BerElement;
   LDAP*           cldap_open(                 PCHAR HostName, ULONG PortNumber);
   LDAP*           cldap_open(                 PTCHAR HostName, ULONG PortNumber);
   LDAP*           ldap_open(                  PCHAR HostName, ULONG PortNumber);

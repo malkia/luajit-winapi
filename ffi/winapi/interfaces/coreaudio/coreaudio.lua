@@ -56,79 +56,69 @@ ffi.cdef [[
   typedef void* ISubunit; //Interface
   enum { MAX_SINK_DESCRIPTION_NAME_LENGTH = 32 };
   typedef float *float []; //Pointer
-  typedef enum WINAPI_AUDCLNT_HRESULT {
-    AUDCLNT_E_NOT_INITIALIZED = 0x88890001,
-    AUDCLNT_E_ALREADY_INITIALIZED = 0x88890002,
-    AUDCLNT_E_WRONG_ENDPOINT_TYPE = 0x88890003,
-    AUDCLNT_E_DEVICE_INVALIDATED = 0x88890004,
-    AUDCLNT_E_NOT_STOPPED = 0x88890005,
-    AUDCLNT_E_BUFFER_TOO_LARGE = 0x88890006,
-    AUDCLNT_E_OUT_OF_ORDER = 0x88890007,
-    AUDCLNT_E_UNSUPPORTED_FORMAT = 0x88890008,
-    AUDCLNT_E_INVALID_SIZE = 0x88890009,
-    AUDCLNT_E_DEVICE_IN_USE = 0x8889000a,
-    AUDCLNT_E_BUFFER_OPERATION_PENDING = 0x8889000b,
-    AUDCLNT_E_THREAD_NOT_REGISTERED = 0x8889000c,
-    AUDCLNT_E_EXCLUSIVE_MODE_NOT_ALLOWED = 0x8889000e,
-    AUDCLNT_E_ENDPOINT_CREATE_FAILED = 0x8889000f,
-    AUDCLNT_E_SERVICE_NOT_RUNNING = 0x88890010,
-    AUDCLNT_E_EVENTHANDLE_NOT_EXPECTED = 0x88890011,
-    AUDCLNT_E_EXCLUSIVE_MODE_ONLY = 0x88890012,
-    AUDCLNT_E_BUFDURATION_PERIOD_NOT_EQUAL = 0x88890013,
-    AUDCLNT_E_EVENTHANDLE_NOT_SET = 0x88890014,
-    AUDCLNT_E_INCORRECT_BUFFER_SIZE = 0x88890015,
-    AUDCLNT_E_BUFFER_SIZE_ERROR = 0x88890016,
-    AUDCLNT_E_CPUUSAGE_EXCEEDED = 0x88890017,
-    AUDCLNT_E_BUFFER_ERROR = 0x88890018,
-    AUDCLNT_E_BUFFER_SIZE_NOT_ALIGNED = 0x88890019,
-    AUDCLNT_E_INVALID_DEVICE_PERIOD = 0x88890020,
-    AUDCLNT_S_BUFFER_EMPTY = 0x08890001,
-    AUDCLNT_S_THREAD_ALREADY_REGISTERED = 0x08890002,
-    AUDCLNT_S_POSITION_STALLED = 0x08890003,
-  } WINAPI_AUDCLNT_HRESULT;
-  typedef enum AUDCLNT_SHAREMODE {
-    AUDCLNT_SHAREMODE_SHARED = 0,
-    AUDCLNT_SHAREMODE_EXCLUSIVE = 1,
-  } AUDCLNT_SHAREMODE;
-  typedef enum AudioSessionState {
-    AudioSessionStateInactive = 0,
-    AudioSessionStateActive = 1,
-    AudioSessionStateExpired = 2,
-  } AudioSessionState;
-  typedef enum AudioSessionDisconnectReason {
-    DisconnectReasonDeviceRemoval = 0,
-    DisconnectReasonServerShutdown = 1,
-    DisconnectReasonFormatChanged = 2,
-    DisconnectReasonSessionLogoff = 3,
-    DisconnectReasonSessionDisconnected = 4,
-    DisconnectReasonExclusiveModeOverride = 5,
-  } AudioSessionDisconnectReason;
-  typedef enum ConnectorType {
-    Unknown_Connector = 0,
-    Physical_Internal = 1,
-    Physical_External = 2,
-    Software_IO = 3,
-    Software_Fixed = 4,
-    Network = 5,
-  } ConnectorType;
-  typedef enum DataFlow {
-    In = 0,
-    Out = 1,
-  } DataFlow;
-  typedef enum EDataFlow {
-    eRender = 0,
-    eCapture = 1,
-    eAll = 2,
-  } EDataFlow;
-  typedef enum ERole {
-    eConsole = 0,
-    eMultimedia = 1,
-    eCommunications = 2,
-  } ERole;
-  typedef enum PartType {
-    Connector = 0,
-    Subunit = 1,
-  } PartType;
+  typedef HRESULT WINAPI_AUDCLNT_HRESULT; //Alias
+  static const HRESULT AUDCLNT_E_NOT_INITIALIZED = 0x88890001;
+  static const HRESULT AUDCLNT_E_ALREADY_INITIALIZED = 0x88890002;
+  static const HRESULT AUDCLNT_E_WRONG_ENDPOINT_TYPE = 0x88890003;
+  static const HRESULT AUDCLNT_E_DEVICE_INVALIDATED = 0x88890004;
+  static const HRESULT AUDCLNT_E_NOT_STOPPED = 0x88890005;
+  static const HRESULT AUDCLNT_E_BUFFER_TOO_LARGE = 0x88890006;
+  static const HRESULT AUDCLNT_E_OUT_OF_ORDER = 0x88890007;
+  static const HRESULT AUDCLNT_E_UNSUPPORTED_FORMAT = 0x88890008;
+  static const HRESULT AUDCLNT_E_INVALID_SIZE = 0x88890009;
+  static const HRESULT AUDCLNT_E_DEVICE_IN_USE = 0x8889000a;
+  static const HRESULT AUDCLNT_E_BUFFER_OPERATION_PENDING = 0x8889000b;
+  static const HRESULT AUDCLNT_E_THREAD_NOT_REGISTERED = 0x8889000c;
+  static const HRESULT AUDCLNT_E_EXCLUSIVE_MODE_NOT_ALLOWED = 0x8889000e;
+  static const HRESULT AUDCLNT_E_ENDPOINT_CREATE_FAILED = 0x8889000f;
+  static const HRESULT AUDCLNT_E_SERVICE_NOT_RUNNING = 0x88890010;
+  static const HRESULT AUDCLNT_E_EVENTHANDLE_NOT_EXPECTED = 0x88890011;
+  static const HRESULT AUDCLNT_E_EXCLUSIVE_MODE_ONLY = 0x88890012;
+  static const HRESULT AUDCLNT_E_BUFDURATION_PERIOD_NOT_EQUAL = 0x88890013;
+  static const HRESULT AUDCLNT_E_EVENTHANDLE_NOT_SET = 0x88890014;
+  static const HRESULT AUDCLNT_E_INCORRECT_BUFFER_SIZE = 0x88890015;
+  static const HRESULT AUDCLNT_E_BUFFER_SIZE_ERROR = 0x88890016;
+  static const HRESULT AUDCLNT_E_CPUUSAGE_EXCEEDED = 0x88890017;
+  static const HRESULT AUDCLNT_E_BUFFER_ERROR = 0x88890018;
+  static const HRESULT AUDCLNT_E_BUFFER_SIZE_NOT_ALIGNED = 0x88890019;
+  static const HRESULT AUDCLNT_E_INVALID_DEVICE_PERIOD = 0x88890020;
+  static const HRESULT AUDCLNT_S_BUFFER_EMPTY = 0x08890001;
+  static const HRESULT AUDCLNT_S_THREAD_ALREADY_REGISTERED = 0x08890002;
+  static const HRESULT AUDCLNT_S_POSITION_STALLED = 0x08890003;
+  typedef UINT AUDCLNT_SHAREMODE; //Alias
+  static const UINT AUDCLNT_SHAREMODE_SHARED = 0;
+  static const UINT AUDCLNT_SHAREMODE_EXCLUSIVE = 1;
+  typedef UINT AudioSessionState; //Alias
+  static const UINT AudioSessionStateInactive = 0;
+  static const UINT AudioSessionStateActive = 1;
+  static const UINT AudioSessionStateExpired = 2;
+  typedef UINT AudioSessionDisconnectReason; //Alias
+  static const UINT DisconnectReasonDeviceRemoval = 0;
+  static const UINT DisconnectReasonServerShutdown = 1;
+  static const UINT DisconnectReasonFormatChanged = 2;
+  static const UINT DisconnectReasonSessionLogoff = 3;
+  static const UINT DisconnectReasonSessionDisconnected = 4;
+  static const UINT DisconnectReasonExclusiveModeOverride = 5;
+  typedef UINT ConnectorType; //Alias
+  static const UINT Unknown_Connector = 0;
+  static const UINT Physical_Internal = 1;
+  static const UINT Physical_External = 2;
+  static const UINT Software_IO = 3;
+  static const UINT Software_Fixed = 4;
+  typedef UINT DataFlow; //Alias
+  static const UINT In = 0;
+  static const UINT Out = 1;
+  typedef UINT EDataFlow; //Alias
+  static const UINT eRender = 0;
+  static const UINT eCapture = 1;
+  static const UINT eAll = 2;
+  typedef UINT ERole; //Alias
+  static const UINT eConsole = 0;
+  static const UINT eMultimedia = 1;
+  static const UINT eCommunications = 2;
+  typedef UINT PartType; //Alias
+  static const UINT Connector = 0;
+  static const UINT Subunit = 1;
   typedef struct WINAPI_KSIDENTIFIER_s {
     GUID Set;
     ULONG Id;
@@ -154,49 +144,45 @@ ffi.cdef [[
     GUID Specifier;
   } KSDATAFORMAT;
   typedef KSDATAFORMAT *PKSDATAFORMAT; //Pointer
-  typedef enum EPcxConnectionType {
-    eConnTypeUnknown = 0,
-    eConnType3Point5mm = 1,
-    eConnTypeQuarter = 2,
-    eConnTypeAtapiInternal = 3,
-    eConnTypeRCA = 4,
-    eConnTypeOptical = 5,
-    eConnTypeOtherDigital = 6,
-    eConnTypeOtherAnalog = 7,
-    eConnTypeMultichannelAnalogDIN = 8,
-    eConnTypeXlrProfessional = 9,
-    eConnTypeRJ11Modem = 10,
-    eConnTypeCombination = 11,
-  } EPcxConnectionType;
-  typedef enum EPcxGeoLocation {
-    eGeoLocRear = 0x1,
-    eGeoLocFront = 2,
-    eGeoLocLeft = 3,
-    eGeoLocRight = 4,
-    eGeoLocTop = 5,
-    eGeoLocBottom = 6,
-    eGeoLocRearPanel = 7,
-    eGeoLocRiser = 8,
-    eGeoLocInsideMobileLid = 9,
-    eGeoLocDrivebay = 10,
-    eGeoLocHDMI = 11,
-    eGeoLocOutsideMobileLid = 12,
-    eGeoLocATAPI = 13,
-    eGeoLocReserved5 = 14,
-    eGeoLocReserved6 = 15,
-  } EPcxGeoLocation;
-  typedef enum EPcxGenLocation {
-    eGenLocPrimaryBox = 0,
-    eGenLocInternal = 1,
-    eGenLocSeparate = 2,
-    eGenLocOther = 3,
-  } EPcxGenLocation;
-  typedef enum EPxcPortConnection {
-    ePortConnJack = 0,
-    ePortConnIntegratedDevice = 1,
-    ePortConnBothIntegratedAndJack = 2,
-    ePortConnUnknown = 3,
-  } EPxcPortConnection;
+  typedef UINT EPcxConnectionType; //Alias
+  static const UINT eConnTypeUnknown = 0;
+  static const UINT eConnType3Point5mm = 1;
+  static const UINT eConnTypeQuarter = 2;
+  static const UINT eConnTypeAtapiInternal = 3;
+  static const UINT eConnTypeRCA = 4;
+  static const UINT eConnTypeOptical = 5;
+  static const UINT eConnTypeOtherDigital = 6;
+  static const UINT eConnTypeOtherAnalog = 7;
+  static const UINT eConnTypeMultichannelAnalogDIN = 8;
+  static const UINT eConnTypeXlrProfessional = 9;
+  static const UINT eConnTypeRJ11Modem = 10;
+  static const UINT eConnTypeCombination = 11;
+  typedef UINT EPcxGeoLocation; //Alias
+  static const UINT eGeoLocRear = 0x1;
+  static const UINT eGeoLocFront = 2;
+  static const UINT eGeoLocLeft = 3;
+  static const UINT eGeoLocRight = 4;
+  static const UINT eGeoLocTop = 5;
+  static const UINT eGeoLocBottom = 6;
+  static const UINT eGeoLocRearPanel = 7;
+  static const UINT eGeoLocRiser = 8;
+  static const UINT eGeoLocInsideMobileLid = 9;
+  static const UINT eGeoLocDrivebay = 10;
+  static const UINT eGeoLocHDMI = 11;
+  static const UINT eGeoLocOutsideMobileLid = 12;
+  static const UINT eGeoLocATAPI = 13;
+  static const UINT eGeoLocReserved5 = 14;
+  static const UINT eGeoLocReserved6 = 15;
+  typedef UINT EPcxGenLocation; //Alias
+  static const UINT eGenLocPrimaryBox = 0;
+  static const UINT eGenLocInternal = 1;
+  static const UINT eGenLocSeparate = 2;
+  static const UINT eGenLocOther = 3;
+  typedef UINT EPxcPortConnection; //Alias
+  static const UINT ePortConnJack = 0;
+  static const UINT ePortConnIntegratedDevice = 1;
+  static const UINT ePortConnBothIntegratedAndJack = 2;
+  static const UINT ePortConnUnknown = 3;
   typedef struct KSJACK_DESCRIPTION {
     WINAPI_SPEAKER_POSITION ChannelMapping;
     COLORREF Color;
@@ -211,10 +197,9 @@ ffi.cdef [[
     DWORD DeviceStateInfo;
     WINAPI_JACKDESC2_FLAGS JackCapabilities;
   } KSJACK_DESCRIPTION2;
-  typedef enum KSJACK_SINK_CONNECTIONTYPE {
-    KSJACK_SINK_CONNECTIONTYPE_HDMI = 0,
-    KSJACK_SINK_CONNECTIONTYPE_DISPLAYPORT = 1,
-  } KSJACK_SINK_CONNECTIONTYPE;
+  typedef UINT KSJACK_SINK_CONNECTIONTYPE; //Alias
+  static const UINT KSJACK_SINK_CONNECTIONTYPE_HDMI = 0;
+  static const UINT KSJACK_SINK_CONNECTIONTYPE_DISPLAYPORT = 1;
   typedef struct KSJACK_SINK_INFORMATION {
     KSJACK_SINK_CONNECTIONTYPE ConnType;
     WORD ManufacturerId;

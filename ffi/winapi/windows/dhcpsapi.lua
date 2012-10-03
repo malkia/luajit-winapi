@@ -1,6 +1,654 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef DWORD DHCP_IP_ADDRESS; //Alias
+  typedef DHCP_IP_ADDRESS *LPDHCP_IP_ADDRESS; //Pointer
+  typedef DWORD DHCP_IP_MASK; //Alias
+  typedef DWORD DHCP_OPTION_ID; //Alias
+  typedef DHCP_IP_ADDRESS DHCP_CONST DHCP_IP_ADDRESS; //Alias
+  typedef LPWSTR DHCP_CONST LPWSTR; //Alias
+  typedef DWORD DHCP_RESUME_HANDLE; //Alias
+  typedef BOOL DHCP_CONST BOOL; //Alias
+  enum { MAX_PATTERN_LENGTH = 255 };
+  typedef struct DHCP_ADDR_PATTERN {
+    BOOL MatchHWType;
+    BYTE HWType;
+    BOOL IsWildcard;
+    BYTE Length;
+    BYTE Pattern[MAX_PATTERN_LENGTH];
+  } DHCP_ADDR_PATTERN;
+  typedef DHCP_ADDR_PATTERN *LPDHCP_ADDR_PATTERN; //Pointer
+  typedef struct DHCP_IPV6_ADDRESS {
+    ULONGLONG HighOrderBits;
+    ULONGLONG LowOrderBits;
+  } DHCP_IPV6_ADDRESS;
+  typedef DHCP_IPV6_ADDRESS *LPDHCP_IPV6_ADDRESS; //Pointer
+  typedef struct DHCP_IP_RANGE_V6 {
+    DHCP_IPV6_ADDRESS StartAddress;
+    DHCP_IPV6_ADDRESS EndAddress;
+  } DHCP_IP_RANGE_V6;
+  typedef struct DHCP_BINARY_DATA {
+    DWORD DataLength;
+    BYTE* Data;
+  } DHCP_BINARY_DATA;
+  typedef DHCP_BINARY_DATA DHCP_CLIENT_UID; //Alias
+  typedef struct DHCP_IP_RESERVATION_V6 {
+    DHCP_IPV6_ADDRESS ReservedIpAddress;
+    DHCP_CLIENT_UID* ReservedForClient;
+    DWORD InterfaceId;
+  } DHCP_IP_RESERVATION_V6;
+  typedef struct DHCP_IP_RANGE {
+    DHCP_IP_ADDRESS StartAddress;
+    DHCP_IP_ADDRESS EndAddress;
+  } DHCP_IP_RANGE;
+  typedef UINT DHCP_OPTION_DATA_TYPE; //Alias
+  static const UINT DhcpByteOption = 0;
+  static const UINT DhcpWordOption = 1;
+  static const UINT DhcpDWordOption = 2;
+  static const UINT DhcpDWordDWordOption = 3;
+  static const UINT DhcpIpAddressOption = 4;
+  static const UINT DhcpStringDataOption = 5;
+  static const UINT DhcpBinaryDataOption = 6;
+  static const UINT DhcpEncapsulatedDataOption = 7;
+  static const UINT DhcpIpv6AddressOption = 8;
+  typedef struct DWORD_DWORD {
+    DWORD DWord1;
+    DWORD DWord2;
+  } DWORD_DWORD;
+  typedef union DHCP_OPTION_ELEMENT_UNION {
+    BYTE ByteOption;
+    WORD WordOption;
+    DWORD DWordOption;
+    DWORD_DWORD DWordDWordOption;
+    DHCP_IP_ADDRESS IpAddressOption;
+    LPWSTR StringDataOption;
+    DHCP_BINARY_DATA BinaryDataOption;
+    DHCP_BINARY_DATA EncapsulatedDataOption;
+    LPWSTR Ipv6AddressDataOption;
+  } DHCP_OPTION_ELEMENT_UNION;
+  typedef struct DHCP_OPTION_DATA_ELEMENT {
+    DHCP_OPTION_DATA_TYPE OptionType;
+    DHCP_OPTION_ELEMENT_UNION Element;
+  } DHCP_OPTION_DATA_ELEMENT;
+  typedef DHCP_OPTION_DATA_ELEMENT *LPDHCP_OPTION_DATA_ELEMENT; //Pointer
+  typedef struct DHCP_BOOTP_IP_RANGE {
+    DHCP_IP_ADDRESS StartAddress;
+    DHCP_IP_ADDRESS EndAddress;
+    ULONG BootpAllocated;
+    ULONG MaxBootpAllowed;
+  } DHCP_BOOTP_IP_RANGE;
+  typedef struct DHCP_HOST_INFO {
+    DHCP_IP_ADDRESS IpAddress;
+    LPWSTR NetBiosName;
+    LPWSTR HostName;
+  } DHCP_HOST_INFO;
+  typedef struct DHCP_IP_CLUSTER {
+    DHCP_IP_ADDRESS ClusterAddress;
+    DWORD ClusterMask;
+  } DHCP_IP_CLUSTER;
+  typedef struct DHCP_IP_RESERVATION_V4 {
+    DHCP_IP_ADDRESS ReservedIpAddress;
+    DHCP_CLIENT_UID* ReservedForClient;
+    BYTE bAllowedClientTypes;
+  } DHCP_IP_RESERVATION_V4;
+  typedef union DHCP_SUBNET_ELEMENT_UNION_V5 {
+    DHCP_BOOTP_IP_RANGE* IpRange;
+    DHCP_HOST_INFO* SecondaryHost;
+    DHCP_IP_RESERVATION_V4* ReservedIp;
+    DHCP_IP_RANGE* ExcludeIpRange;
+    DHCP_IP_CLUSTER* IpUsedCluster;
+  } DHCP_SUBNET_ELEMENT_UNION_V5;
+  typedef UINT DHCP_SUBNET_ELEMENT_TYPE; //Alias
+  static const UINT DhcpIpRanges = 0;
+  static const UINT DhcpSecondaryHosts = 1;
+  static const UINT DhcpReservedIps = 2;
+  static const UINT DhcpExcludedIpRanges = 3;
+  static const UINT DhcpIpUsedClusters = 4;
+  static const UINT DhcpIpRangesDhcpOnly = 5;
+  static const UINT DhcpIpRangesDhcpBootp = 6;
+  static const UINT DhcpIpRangesBootpOnly = 7;
+  typedef struct DHCP_SUBNET_ELEMENT_DATA_V5 {
+    DHCP_SUBNET_ELEMENT_TYPE ElementType;
+    DHCP_SUBNET_ELEMENT_UNION_V5 Element;
+  } DHCP_SUBNET_ELEMENT_DATA_V5;
+  typedef UINT DHCP_SEARCH_INFO_TYPE; //Alias
+  static const UINT DhcpClientIpAddress = 0;
+  static const UINT DhcpClientHardwareAddress = 1;
+  static const UINT DhcpClientName = 2;
+  typedef union DHCP_CLIENT_SEARCH_UNION {
+    DHCP_IP_ADDRESS ClientIpAddress;
+    DHCP_CLIENT_UID ClientHardwareAddress;
+    LPWSTR ClientName;
+  } DHCP_CLIENT_SEARCH_UNION;
+  typedef struct DHCP_SEARCH_INFO {
+    DHCP_SEARCH_INFO_TYPE SearchType;
+    DHCP_CLIENT_SEARCH_UNION SearchInfo;
+  } DHCP_SEARCH_INFO;
+  typedef DHCP_SEARCH_INFO *LPDHCP_SEARCH_INFO; //Pointer
+  typedef struct DHCP_RESERVED_SCOPE {
+    DHCP_IP_ADDRESS ReservedIpAddress;
+    DHCP_IP_ADDRESS ReservedIpSubnetAddress;
+  } DHCP_RESERVED_SCOPE;
+  typedef union DHCP_OPTION_SCOPE_UNION {
+    PVOID DefaultScopeInfo;
+    PVOID GlobalScopeInfo;
+    DHCP_IP_ADDRESS SubnetScopeInfo;
+    DHCP_RESERVED_SCOPE ReservedScopeInfo;
+    LPWSTR MScopeInfo;
+  } DHCP_OPTION_SCOPE_UNION;
+  typedef UINT DHCP_OPTION_SCOPE_TYPE; //Alias
+  static const UINT DhcpDefaultOptions = 0;
+  static const UINT DhcpGlobalOptions = 1;
+  static const UINT DhcpSubnetOptions = 2;
+  static const UINT DhcpReservedOptions = 3;
+  static const UINT DhcpMScopeOptions = 4;
+  typedef struct DHCP_OPTION_SCOPE_INFO {
+    DHCP_OPTION_SCOPE_TYPE ScopeType;
+    DHCP_OPTION_SCOPE_UNION ScopeInfo;
+  } DHCP_OPTION_SCOPE_INFO;
+  typedef DHCP_OPTION_SCOPE_INFO *LPDHCP_OPTION_SCOPE_INFO; //Pointer
+  typedef struct DHCP_OPTION_DATA {
+    DWORD NumElements;
+    LPDHCP_OPTION_DATA_ELEMENT Elements;
+  } DHCP_OPTION_DATA;
+  typedef DHCP_OPTION_DATA *LPDHCP_OPTION_DATA; //Pointer
+  typedef struct DHCP_OPTION_VALUE {
+    DHCP_OPTION_ID OptionID;
+    DHCP_OPTION_DATA Value;
+  } DHCP_OPTION_VALUE;
+  typedef DHCP_OPTION_VALUE *LPDHCP_OPTION_VALUE; //Pointer
+  typedef struct DHCP_OPTION_VALUE_ARRAY {
+    DWORD NumElements;
+    LPDHCP_OPTION_VALUE Values;
+  } DHCP_OPTION_VALUE_ARRAY;
+  typedef DHCP_OPTION_VALUE_ARRAY *LPDHCP_OPTION_VALUE_ARRAY; //Pointer
+  typedef struct WINAPI_DHCP_ALL_OPTION_VALUES_s {
+    LPWSTR ClassName;
+    LPWSTR VendorName;
+    BOOL IsVendor;
+    LPDHCP_OPTION_VALUE_ARRAY OptionsArray;
+  } WINAPI_DHCP_ALL_OPTION_VALUES_s;
+  typedef struct DHCP_ALL_OPTION_VALUES {
+    DWORD Flags;
+    DWORD NumElements;
+    WINAPI_DHCP_ALL_OPTION_VALUES_s* Options;
+  } DHCP_ALL_OPTION_VALUES;
+  typedef struct DHCP_IP_RESERVATION {
+    DHCP_IP_ADDRESS ReservedIpAddress;
+    DHCP_CLIENT_UID* ReservedForClient;
+  } DHCP_IP_RESERVATION;
+  typedef union DHCP_SUBNET_ELEMENT_UNION {
+    DHCP_IP_RANGE* IpRange;
+    DHCP_HOST_INFO* SecondaryHost;
+    DHCP_IP_RESERVATION* ReservedIp;
+    DHCP_IP_RANGE* ExcludeIpRange;
+    DHCP_IP_CLUSTER* IpUsedCluster;
+  } DHCP_SUBNET_ELEMENT_UNION;
+  typedef struct DHCP_SUBNET_ELEMENT_DATA {
+    DHCP_SUBNET_ELEMENT_TYPE ElementType;
+    DHCP_SUBNET_ELEMENT_UNION Element;
+  } DHCP_SUBNET_ELEMENT_DATA;
+  typedef DHCP_SUBNET_ELEMENT_DATA *LPDHCP_SUBNET_ELEMENT_DATA; //Pointer
+  typedef UINT DHCP_SUBNET_ELEMENT_TYPE_V6; //Alias
+  static const UINT Dhcpv6IpRanges = 0;
+  static const UINT Dhcpv6ReservedIps = 1;
+  static const UINT Dhcpv6ExcludedIpRanges = 2;
+  typedef union DHCP_SUBNET_ELEMENT_UNION_V6 {
+    DHCP_IP_RANGE_V6* IpRange;
+    DHCP_IP_RESERVATION_V6* ReservedIp;
+    DHCP_IP_RANGE_V6* ExcludeIpRange;
+  } DHCP_SUBNET_ELEMENT_UNION_V6;
+  typedef struct DHCP_SUBNET_ELEMENT_DATA_V6 {
+    DHCP_SUBNET_ELEMENT_TYPE_V6 ElementType;
+    DHCP_SUBNET_ELEMENT_UNION_V6 Element;
+  } DHCP_SUBNET_ELEMENT_DATA_V6;
+  typedef DHCP_SUBNET_ELEMENT_DATA_V6 *LPDHCP_SUBNET_ELEMENT_DATA_V6; //Pointer
+  typedef UINT DHCP_SEARCH_INFO_TYPE_V6; //Alias
+  static const UINT Dhcpv6ClientIpAddress = 0;
+  static const UINT Dhcpv6ClientDUID = 1;
+  static const UINT Dhcpv6ClientName = 2;
+  typedef union DHCP_CLIENT_SEARCH_UNION_V6 {
+    DHCP_IPV6_ADDRESS ClientIpAddress;
+    DHCP_CLIENT_UID ClientDUID;
+    LPWSTR ClientName;
+  } DHCP_CLIENT_SEARCH_UNION_V6;
+  typedef struct DHCP_SEARCH_INFO_V6 {
+    DHCP_SEARCH_INFO_TYPE_V6 SearchType;
+    DHCP_CLIENT_SEARCH_UNION_V6 SearchInfo;
+  } DHCP_SEARCH_INFO_V6;
+  typedef DHCP_SEARCH_INFO_V6 *LPDHCP_SEARCH_INFO_V6; //Pointer
+  typedef struct DHCP_RESERVED_SCOPE6 {
+    DHCP_IPV6_ADDRESS ReservedIpAddress;
+    DHCP_IPV6_ADDRESS ReservedIpSubnetAddress;
+  } DHCP_RESERVED_SCOPE6;
+  typedef UINT DHCP_OPTION_SCOPE_TYPE6; //Alias
+  static const UINT DhcpDefaultOptions6 = 0;
+  static const UINT DhcpScopeOptions6 = 1;
+  static const UINT DhcpReservedOptions6 = 2;
+  static const UINT DhcpGlobalOptions6 = 3;
+  typedef union DHCP_OPTION_SCOPE_UNION6 {
+    PVOID DefaultScopeInfo;
+    DHCP_IPV6_ADDRESS SubnetScopeInfo;
+    DHCP_RESERVED_SCOPE6 ReservedScopeInfo;
+  } DHCP_OPTION_SCOPE_UNION6;
+  typedef struct DHCP_OPTION_SCOPE_INFO6 {
+    DHCP_OPTION_SCOPE_TYPE6 ScopeType;
+    DHCP_OPTION_SCOPE_UNION6 ScopeInfo;
+  } DHCP_OPTION_SCOPE_INFO6;
+  typedef DHCP_OPTION_SCOPE_INFO6 *LPDHCP_OPTION_SCOPE_INFO6; //Pointer
+  typedef UINT DHCP_OPTION_TYPE; //Alias
+  static const UINT DhcpUnaryElementTypeOption = 0;
+  static const UINT DhcpArrayTypeOption = 1;
+  typedef struct DHCP_OPTION {
+    DHCP_OPTION_ID OptionID;
+    LPWSTR OptionName;
+    LPWSTR OptionComment;
+    DHCP_OPTION_DATA DefaultValue;
+    DHCP_OPTION_TYPE OptionType;
+  } DHCP_OPTION;
+  typedef DHCP_OPTION *LPDHCP_OPTION; //Pointer
+  typedef struct DHCP_OPTION_ARRAY {
+    DWORD NumElements;
+    LPDHCP_OPTION Options;
+  } DHCP_OPTION_ARRAY;
+  typedef DHCP_OPTION_ARRAY *LPDHCP_OPTION_ARRAY; //Pointer
+  typedef struct WINAPI_DHCP_ALL_OPTIONS_s {
+    DHCP_OPTION Option;
+    LPWSTR VendorName;
+    LPWSTR ClassName;
+  } WINAPI_DHCP_ALL_OPTIONS_s;
+  typedef struct DHCP_ALL_OPTIONS {
+    DWORD Flags;
+    LPDHCP_OPTION_ARRAY NonVendorOptions;
+    DWORD NumVendorOptions;
+    WINAPI_DHCP_ALL_OPTIONS_s* VendorOptions;
+  } DHCP_ALL_OPTIONS;
+  typedef DHCP_ALL_OPTIONS *LPDHCP_ALL_OPTIONS; //Pointer
+  typedef UINT DHCP_FILTER_LIST_TYPE; //Alias
+  static const UINT Deny = 0;
+  static const UINT Allow = 1;
+  typedef struct DHCP_FILTER_ADD_INFO {
+    DHCP_ADDR_PATTERN AddrPatt;
+    LPWSTR Comment;
+    DHCP_FILTER_LIST_TYPE ListType;
+  } DHCP_FILTER_ADD_INFO;
+  typedef struct DHCP_FILTER_RECORD {
+    DHCP_ADDR_PATTERN AddrPatt;
+    LPWSTR Comment;
+  } DHCP_FILTER_RECORD;
+  typedef DHCP_FILTER_RECORD *LPDHCP_FILTER_RECORD; //Pointer
+  typedef struct DATE_TIME {
+    DWORD dwLowDateTime;
+    DWORD dwHighDateTime;
+  } DATE_TIME;
+  typedef struct DHCP_CLASS_INFO {
+    LPWSTR ClassName;
+    LPWSTR ClassComment;
+    DWORD ClassDataLength;
+    BOOL IsVendor;
+    DWORD Flags;
+    LPBYTE ClassData;
+  } DHCP_CLASS_INFO;
+  typedef DHCP_CLASS_INFO *LPDHCP_CLASS_INFO; //Pointer
+  typedef struct DHCP_CLIENT_INFO {
+    DHCP_IP_ADDRESS ClientIpAddress;
+    DHCP_IP_MASK SubnetMask;
+    DHCP_CLIENT_UID ClientHardwareAddress;
+    LPWSTR ClientName;
+    LPWSTR ClientComment;
+    DATE_TIME ClientLeaseExpires;
+    DHCP_HOST_INFO OwnerHost;
+  } DHCP_CLIENT_INFO;
+  typedef DHCP_CLIENT_INFO *LPDHCP_CLIENT_INFO; //Pointer
+  typedef struct DHCP_CLIENT_INFO_V4 {
+    DHCP_IP_ADDRESS ClientIpAddress;
+    DHCP_IP_MASK SubnetMask;
+    DHCP_CLIENT_UID ClientHardwareAddress;
+    LPWSTR ClientName;
+    LPWSTR ClientComment;
+    DATE_TIME ClientLeaseExpires;
+    DHCP_HOST_INFO OwnerHost;
+    BYTE bClientType;
+  } DHCP_CLIENT_INFO_V4;
+  typedef UINT QuarantineStatus; //Alias
+  static const UINT NOQUARANTINE = 0;
+  static const UINT RESTRICTEDACCESS = 1;
+  static const UINT DROPPACKET = 2;
+  static const UINT PROBATION = 3;
+  static const UINT EXEMPT = 4;
+  static const UINT DEFAULTQUARSETTING = 5;
+  static const UINT NOQUARINFO = 6;
+  typedef struct DHCP_CLIENT_INFO_VQ {
+    DHCP_IP_ADDRESS ClientIpAddress;
+    DHCP_IP_MASK SubnetMask;
+    DHCP_CLIENT_UID ClientHardwareAddress;
+    LPWSTR ClientName;
+    LPWSTR ClientComment;
+    DATE_TIME ClientLeaseExpires;
+    DHCP_HOST_INFO OwnerHost;
+    BYTE bClientType;
+    BYTE AddressState;
+    QuarantineStatus Status;
+    DATE_TIME ProbationEnds;
+    BOOL QuarantineCapable;
+  } DHCP_CLIENT_INFO_VQ;
+  typedef DHCP_CLIENT_INFO_VQ *LPDHCP_CLIENT_INFO_VQ; //Pointer
+  typedef UINT DHCP_SUBNET_STATE; //Alias
+  static const UINT DhcpSubnetEnabled = 0;
+  static const UINT DhcpSubnetDisabled = 1;
+  static const UINT DhcpSubnetEnabledSwitched = 2;
+  static const UINT DhcpSubnetDisabledSwitched = 3;
+  static const UINT DhcpSubnetInvalidState = 4;
+  typedef struct DHCP_SUBNET_INFO {
+    DHCP_IP_ADDRESS SubnetAddress;
+    DHCP_IP_MASK SubnetMask;
+    LPWSTR SubnetName;
+    LPWSTR SubnetComment;
+    DHCP_HOST_INFO PrimaryHost;
+    DHCP_SUBNET_STATE SubnetState;
+  } DHCP_SUBNET_INFO;
+  typedef DHCP_SUBNET_INFO *LPDHCP_SUBNET_INFO; //Pointer
+  typedef struct DHCP_SUBNET_INFO_VQ {
+    DHCP_IP_ADDRESS SubnetAddress;
+    DHCP_IP_MASK SubnetMask;
+    LPWSTR SubnetName;
+    LPWSTR SubnetComment;
+    DHCP_HOST_INFO PrimaryHost;
+    DHCP_SUBNET_STATE SubnetState;
+    DWORD QuarantineOn;
+    DWORD Reserved1;
+    DWORD Reserved2;
+    INT64 Reserved3;
+    INT64 Reserved4;
+  } DHCP_SUBNET_INFO_VQ;
+  typedef DHCP_SUBNET_INFO_VQ *LPDHCP_SUBNET_INFO_VQ; //Pointer
+  typedef UINT DHCP_FORCE_FLAG; //Alias
+  static const UINT DhcpFullForce = 0;
+  static const UINT DhcpNoForce = 1;
+  typedef struct DHCP_CLASS_INFO_ARRAY {
+    DWORD NumElements;
+    LPDHCP_CLASS_INFO Classes;
+  } DHCP_CLASS_INFO_ARRAY;
+  typedef DHCP_CLASS_INFO_ARRAY *LPDHCP_CLASS_INFO_ARRAY; //Pointer
+  typedef struct DHCP_FILTER_ENUM_INFO {
+    DWORD NumElements;
+    LPDHCP_FILTER_RECORD pEnumRecords;
+  } DHCP_FILTER_ENUM_INFO;
+  typedef DHCP_FILTER_ENUM_INFO *LPDHCP_FILTER_ENUM_INFO; //Pointer
+  typedef struct DHCPDS_SERVER {
+    DWORD Version;
+    LPWSTR ServerName;
+    DWORD ServerAddress;
+    DWORD Flags;
+    DWORD State;
+    LPWSTR DsLocation;
+    DWORD DsLocType;
+  } DHCPDS_SERVER;
+  typedef DHCPDS_SERVER *LPDHCPDS_SERVER; //Pointer
+  typedef DHCPDS_SERVER *LPDHCP_SERVER_INFO; //Pointer
+  typedef struct DHCPDS_SERVERS {
+    DWORD Flags;
+    DWORD NumElements;
+    LPDHCPDS_SERVER Servers;
+  } DHCPDS_SERVERS;
+  typedef DHCPDS_SERVERS *LPDHCP_SERVER_INFO_ARRAY; //Pointer
+  typedef struct DHCP_CLIENT_INFO_ARRAY {
+    DWORD NumElements;
+    LPDHCP_CLIENT_INFO* Clients;
+  } DHCP_CLIENT_INFO_ARRAY;
+  typedef DHCP_CLIENT_INFO_ARRAY *LPDHCP_CLIENT_INFO_ARRAY; //Pointer
+  typedef struct DHCP_CLIENT_INFO_V5 {
+    DHCP_IP_ADDRESS ClientIpAddress;
+    DHCP_IP_MASK SubnetMask;
+    DHCP_CLIENT_UID ClientHardwareAddress;
+    LPWSTR ClientName;
+    LPWSTR ClientComment;
+    DATE_TIME ClientLeaseExpires;
+    DHCP_HOST_INFO OwnerHost;
+    BYTE bClientType;
+    BYTE AddressState;
+  } DHCP_CLIENT_INFO_V5;
+  typedef DHCP_CLIENT_INFO_V5 *LPDHCP_CLIENT_INFO_V5; //Pointer
+  typedef struct DHCP_CLIENT_INFO_ARRAY_V5 {
+    DWORD NumElements;
+    LPDHCP_CLIENT_INFO_V5* Clients;
+  } DHCP_CLIENT_INFO_ARRAY_V5;
+  typedef DHCP_CLIENT_INFO_ARRAY_V5 *LPDHCP_CLIENT_INFO_ARRAY_V5; //Pointer
+  typedef struct DHCP_CLIENT_INFO_ARRAY_VQ {
+    DWORD NumElements;
+    LPDHCP_CLIENT_INFO_VQ* Clients;
+  } DHCP_CLIENT_INFO_ARRAY_VQ;
+  typedef DHCP_CLIENT_INFO_ARRAY_VQ *LPDHCP_CLIENT_INFO_ARRAY_VQ; //Pointer
+  typedef struct DHCP_CLIENT_FILTER_STATUS_INFO {
+    DHCP_IP_ADDRESS ClientIpAddress;
+    DHCP_IP_MASK SubnetMask;
+    DHCP_CLIENT_UID ClientHardwareAddress;
+    LPWSTR ClientName;
+    LPWSTR ClientComment;
+    DATE_TIME ClientLeaseExpires;
+    DHCP_HOST_INFO OwnerHost;
+    BYTE bClientType;
+    BYTE AddressState;
+    QuarantineStatus Status;
+    DATE_TIME ProbationEnds;
+    BOOL QuarantineCapable;
+    DWORD FilterStatus;
+  } DHCP_CLIENT_FILTER_STATUS_INFO;
+  typedef DHCP_CLIENT_FILTER_STATUS_INFO *LPDHCP_CLIENT_FILTER_STATUS_INFO; //Pointer
+  typedef struct DHCP_CLIENT_FILTER_STATUS_INFO_ARRAY {
+    DWORD NumElements;
+    LPDHCP_CLIENT_FILTER_STATUS_INFO* Clients;
+  } DHCP_CLIENT_FILTER_STATUS_INFO_ARRAY;
+  typedef DHCP_CLIENT_FILTER_STATUS_INFO_ARRAY *LPDHCP_CLIENT_FILTER_STATUS_INFO_ARRAY; //Pointer
+  typedef struct DHCP_SUBNET_ELEMENT_INFO_ARRAY {
+    DWORD NumElements;
+    LPDHCP_SUBNET_ELEMENT_DATA Elements;
+  } DHCP_SUBNET_ELEMENT_INFO_ARRAY;
+  typedef DHCP_SUBNET_ELEMENT_INFO_ARRAY *LPDHCP_SUBNET_ELEMENT_INFO_ARRAY; //Pointer
+  typedef struct DHCP_IP_ARRAY {
+    DWORD NumElements;
+    LPDHCP_IP_ADDRESS Elements;
+  } DHCP_IP_ARRAY;
+  typedef DHCP_IP_ARRAY *LPDHCP_IP_ARRAY; //Pointer
+  typedef struct DHCP_FILTER_GLOBAL_INFO {
+    BOOL EnforceAllowList;
+    BOOL EnforceDenyList;
+  } DHCP_FILTER_GLOBAL_INFO;
+  typedef struct SCOPE_MIB_INFO_V5 {
+    DHCP_IP_ADDRESS Subnet;
+    DWORD NumAddressesInuse;
+    DWORD NumAddressesFree;
+    DWORD NumPendingOffers;
+  } SCOPE_MIB_INFO_V5;
+  typedef SCOPE_MIB_INFO_V5 *LPSCOPE_MIB_INFO_V5; //Pointer
+  typedef struct DHCP_MIB_INFO_V5 {
+    DWORD Discovers;
+    DWORD Offers;
+    DWORD Requests;
+    DWORD Acks;
+    DWORD Naks;
+    DWORD Declines;
+    DWORD Releases;
+    DATE_TIME ServerStartTime;
+    DWORD QtnNumLeases;
+    DWORD QtnPctQtnLeases;
+    DWORD QtnProbationLeases;
+    DWORD QtnNonQtnLeases;
+    DWORD QtnExemptLeases;
+    DWORD QtnCapableClients;
+    DWORD QtnIASErrors;
+    DWORD DelayedOffers;
+    DWORD ScopesWithDelayedOffers;
+    DWORD Scopes;
+    LPSCOPE_MIB_INFO_V5 ScopeInfo;
+  } DHCP_MIB_INFO_V5;
+  typedef DHCP_MIB_INFO_V5 *LPDHCP_MIB_INFO_V5; //Pointer
+  typedef struct DHCP_BIND_ELEMENT {
+    ULONG Flags;
+    BOOL fBoundToDHCPServer;
+    DHCP_IP_ADDRESS AdapterPrimaryAddress;
+    DHCP_IP_ADDRESS AdapterSubnetAddress;
+    LPWSTR IfDescription;
+    ULONG IfIdSize;
+    LPBYTE IfId;
+  } DHCP_BIND_ELEMENT;
+  typedef DHCP_BIND_ELEMENT *LPDHCP_BIND_ELEMENT; //Pointer
+  typedef struct DHCP_BIND_ELEMENT_ARRAY {
+    DWORD NumElements;
+    LPDHCP_BIND_ELEMENT Elements;
+  } DHCP_BIND_ELEMENT_ARRAY;
+  typedef DHCP_BIND_ELEMENT_ARRAY *LPDHCP_BIND_ELEMENT_ARRAY; //Pointer
+  typedef struct DHCP_SUPER_SCOPE_TABLE_ENTRY {
+    DHCP_IP_ADDRESS SubnetAddress;
+    DWORD SuperScopeNumber;
+    DWORD NextInSuperScope;
+    LPWSTR SuperScopeName;
+  } DHCP_SUPER_SCOPE_TABLE_ENTRY;
+  typedef DHCP_SUPER_SCOPE_TABLE_ENTRY *LPDHCP_SUPER_SCOPE_TABLE; //Pointer
+  typedef struct DHCP_SERVER_CONFIG_INFO_VQ {
+    DWORD APIProtocolSupport;
+    LPWSTR DatabaseName;
+    LPWSTR DatabasePath;
+    LPWSTR BackupPath;
+    DWORD BackupInterval;
+    DWORD DatabaseLoggingFlag;
+    DWORD RestoreFlag;
+    DWORD DatabaseCleanupInterval;
+    DWORD DebugFlag;
+    DWORD dwPingRetries;
+    DWORD cbBootTableString;
+    WCHAR* wszBootTableString;
+    BOOL fAuditLog;
+    BOOL QuarantineOn;
+    DWORD QuarDefFail;
+    BOOL QuarRuntimeStatus;
+  } DHCP_SERVER_CONFIG_INFO_VQ;
+  typedef DHCP_SERVER_CONFIG_INFO_VQ *LPDHCP_SERVER_CONFIG_INFO_VQ; //Pointer
+  typedef struct DHCP_SERVER_CONFIG_INFO_V4 {
+    DWORD APIProtocolSupport;
+    LPWSTR DatabaseName;
+    LPWSTR DatabasePath;
+    LPWSTR BackupPath;
+    DWORD BackupInterval;
+    DWORD DatabaseLoggingFlag;
+    DWORD RestoreFlag;
+    DWORD DatabaseCleanupInterval;
+    DWORD DebugFlag;
+    DWORD dwPingRetries;
+    DWORD cbBootTableString;
+    WCHAR* wszBootTableString;
+    BOOL fAuditLog;
+  } DHCP_SERVER_CONFIG_INFO_V4;
+  typedef DHCP_SERVER_CONFIG_INFO_V4 *LPDHCP_SERVER_CONFIG_INFO_V4; //Pointer
+  typedef DHCP_IPV6_ADDRESS DHCP_RESUME_IPV6_HANDLE; //Alias
+  typedef struct DHCP_CLASS_INFO_V6 {
+    LPWSTR ClassName;
+    LPWSTR ClassComment;
+    DWORD ClassDataLength;
+    BOOL IsVendor;
+    DWORD EnterpriseNumber;
+    DWORD Flags;
+    LPBYTE ClassData;
+  } DHCP_CLASS_INFO_V6;
+  typedef DHCP_CLASS_INFO_V6 *LPDHCP_CLASS_INFO_V6; //Pointer
+  typedef struct DHCP_SUBNET_INFO_V6 {
+    DHCP_IPV6_ADDRESS SubnetAddress;
+    ULONG Prefix;
+    USHORT Preference;
+    LPWSTR SubnetName;
+    LPWSTR SubnetComment;
+    DWORD State;
+    DWORD ScopeId;
+  } DHCP_SUBNET_INFO_V6;
+  typedef DHCP_SUBNET_INFO_V6 *LPDHCP_SUBNET_INFO_V6; //Pointer
+  typedef struct DHCP_CLASS_INFO_ARRAY_V6 {
+    DWORD NumElements;
+    LPDHCP_CLASS_INFO_V6 Classes;
+  } DHCP_CLASS_INFO_ARRAY_V6;
+  typedef DHCP_CLASS_INFO_ARRAY_V6 *LPDHCP_CLASS_INFO_ARRAY_V6; //Pointer
+  typedef struct DHCPV6_IP_ARRAY {
+    DWORD NumElements;
+    LPDHCP_IPV6_ADDRESS Elements;
+  } DHCPV6_IP_ARRAY;
+  typedef DHCPV6_IP_ARRAY *LPDHCPV6_IP_ARRAY; //Pointer
+  typedef struct DHCP_HOST_INFO_V6 {
+    DHCP_IPV6_ADDRESS IpAddress;
+    LPWSTR NetBiosName;
+    LPWSTR HostName;
+  } DHCP_HOST_INFO_V6;
+  typedef struct DHCP_CLIENT_INFO_V6 {
+    DHCP_IPV6_ADDRESS ClientIpAddress;
+    DHCP_CLIENT_UID ClientDUID;
+    DWORD AddressType;
+    DWORD IAID;
+    LPWSTR ClientName;
+    LPWSTR ClientComment;
+    DATE_TIME ClientValidLeaseExpires;
+    DATE_TIME ClientPrefLeaseExpires;
+    DHCP_HOST_INFO_V6 OwnerHost;
+  } DHCP_CLIENT_INFO_V6;
+  typedef DHCP_CLIENT_INFO_V6 *LPDHCP_CLIENT_INFO_V6; //Pointer
+  typedef struct DHCP_CLIENT_INFO_ARRAY_V6 {
+    DWORD NumElements;
+    LPDHCP_CLIENT_INFO_V6* Clients;
+  } DHCP_CLIENT_INFO_ARRAY_V6;
+  typedef DHCP_CLIENT_INFO_ARRAY_V6 *LPDHCP_CLIENT_INFO_ARRAY_V6; //Pointer
+  typedef struct DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6 {
+    DWORD NumElements;
+    LPDHCP_SUBNET_ELEMENT_DATA_V6 Elements;
+  } DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6;
+  typedef DHCP_SUBNET_ELEMENT_INFO_ARRAY_V6 *LPDHCP_SUBNET_ELEMENT_INFO_ARRAY_V6; //Pointer
+  typedef struct SCOPE_MIB_INFO_V6 {
+    DHCP_IPV6_ADDRESS Subnet;
+    ULONGLONG NumAddressesInuse;
+    ULONGLONG NumAddressesFree;
+    ULONGLONG NumPendingAdvertises;
+  } SCOPE_MIB_INFO_V6;
+  typedef SCOPE_MIB_INFO_V6 *LPSCOPE_MIB_INFO_V6; //Pointer
+  typedef struct DHCP_MIB_INFO_V6 {
+    DWORD Solicits;
+    DWORD Advertises;
+    DWORD Requests;
+    DWORD Renews;
+    DWORD Rebinds;
+    DWORD Replies;
+    DWORD Confirms;
+    DWORD Declines;
+    DWORD Releases;
+    DWORD Informs;
+    DATE_TIME ServerStartTime;
+    DWORD Scopes;
+    LPSCOPE_MIB_INFO_V6 ScopeInfo;
+  } DHCP_MIB_INFO_V6;
+  typedef DHCP_MIB_INFO_V6 *LPDHCP_MIB_INFO_V6; //Pointer
+  typedef struct DHCPV6_BIND_ELEMENT {
+    ULONG Flags;
+    BOOL fBoundToDHCPServer;
+    DHCP_IPV6_ADDRESS AdapterPrimaryAddress;
+    DHCP_IPV6_ADDRESS AdapterSubnetAddress;
+    LPWSTR IfDescription;
+    DWORD IpV6IfIndex;
+    ULONG IfIdSize;
+    LPBYTE IfId;
+  } DHCPV6_BIND_ELEMENT;
+  typedef DHCPV6_BIND_ELEMENT *LPDHCPV6_BIND_ELEMENT; //Pointer
+  typedef struct DHCPV6_BIND_ELEMENT_ARRAY {
+    DWORD NumElements;
+    LPDHCPV6_BIND_ELEMENT Elements;
+  } DHCPV6_BIND_ELEMENT_ARRAY;
+  typedef DHCPV6_BIND_ELEMENT_ARRAY *LPDHCPV6_BIND_ELEMENT_ARRAY; //Pointer
+  typedef struct DHCP_SERVER_CONFIG_INFO_V6 {
+    BOOL UnicastFlag;
+    BOOL RapidCommitFlag;
+    DWORD PreferredLifetime;
+    DWORD ValidLifetime;
+    DWORD T1;
+    DWORD T2;
+    DWORD PreferredLifetimeIATA;
+    DWORD ValidLifetimeIATA;
+    BOOL fAuditLog;
+  } DHCP_SERVER_CONFIG_INFO_V6;
+  typedef DHCP_SERVER_CONFIG_INFO_V6 *LPDHCP_SERVER_CONFIG_INFO_V6; //Pointer
   DWORD DhcpAddFilterV4(                       DHCP_CONST WCHAR* ServerIpAddress, DHCP_FILTER_ADD_INFO* AddFilterInfo, BOOL ForceFlag);
   DWORD DhcpAddServer(                         DWORD Flags, LPVOID IdInfo, LPDHCP_SERVER_INFO NewServer, LPVOID CallbackFn, LPVOID CallbackData);
   DWORD DhcpAddSubnetElementV5(                DHCP_CONST WCHAR* ServerIpAddress, DHCP_IP_ADDRESS SubnetAddress, DHCP_CONST DHCP_SUBNET_ELEMENT_DATA_V5* AddElementInfo);

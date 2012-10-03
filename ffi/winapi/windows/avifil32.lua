@@ -2,6 +2,68 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/multimedia' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LONG STDAPI_(LONG); //Alias
+  typedef ULONG STDAPI_(ULONG); //Alias
+  typedef LPVOID STDAPI_(LPVOID); //Alias
+  typedef LPVOID AVISAVECALLBACK; //Alias
+  typedef void* IAVIFile; //Interface
+  typedef void* IAVIStream; //Interface
+  typedef void* IGetFrame; //Interface
+  typedef IAVIFile* PAVIFILE; //Alias
+  typedef IAVIStream* PAVISTREAM; //Alias
+  typedef IGetFrame* PGETFRAME; //Alias
+  typedef PGETFRAME STDAPI_(PGETFRAME); //Alias
+  typedef DWORD WINAPI_AVISTREAMINFO_FLAGS; //Alias
+  typedef struct AVISTREAMINFO {
+    FOURCC fccType;
+    DWORD fccHandler;
+    WINAPI_AVISTREAMINFO_FLAGS dwFlags;
+    DWORD dwCaps;
+    WORD wPriority;
+    WORD wLanguage;
+    DWORD dwScale;
+    DWORD dwRate;
+    DWORD dwStart;
+    DWORD dwLength;
+    DWORD dwInitialFrames;
+    DWORD dwSuggestedBufferSize;
+    DWORD dwQuality;
+    DWORD dwSampleSize;
+    RECT rcFrame;
+    DWORD dwEditCount;
+    DWORD dwFormatChangeCount;
+    TCHAR szName[64];
+  } AVISTREAMINFO;
+  typedef DWORD WINAPI_AVIFILEINFO_FLAGS; //Alias
+  typedef DWORD WINAPI_AVIFILECAPS; //Alias
+  typedef struct AVIFILEINFO {
+    DWORD dwMaxBytesPerSec;
+    WINAPI_AVIFILEINFO_FLAGS dwFlags;
+    WINAPI_AVIFILECAPS dwCaps;
+    DWORD dwStreams;
+    DWORD dwSuggestedBufferSize;
+    DWORD dwWidth;
+    DWORD dwHeight;
+    DWORD dwScale;
+    DWORD dwRate;
+    DWORD dwLength;
+    DWORD dwEditCount;
+    TCHAR szFileType[64];
+  } AVIFILEINFO;
+  typedef struct AVICOMPRESSOPTIONS {
+    DWORD fccType;
+    DWORD fccHandler;
+    DWORD dwKeyFrameEvery;
+    DWORD dwQuality;
+    DWORD dwBytesPerSecond;
+    DWORD dwFlags;
+    LPVOID lpFormat;
+    DWORD cbFormat;
+    LPVOID lpParms;
+    DWORD cbParms;
+    DWORD dwInterleaveEvery;
+  } AVICOMPRESSOPTIONS;
+  typedef AVICOMPRESSOPTIONS *LPAVICOMPRESSOPTIONS; //Pointer
   STDAPI             AVIBuildFilter(             LPTSTR lpszFilter, LONG cbFilter, BOOL fSaving);
   STDAPI             AVIClearClipboard(          );
   STDAPI_(ULONG)     AVIFileAddRef(              PAVIFILE pfile);

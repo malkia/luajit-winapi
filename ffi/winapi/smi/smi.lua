@@ -9,48 +9,41 @@ ffi.cdef [[
   typedef void* ISettingsNamespace; //Interface
   typedef void* ISettingsResult; //Interface
   typedef void* ITargetInfo; //Interface
-  typedef enum WcmTargetMode {
-    OfflineMode = 1,
-    OnlineMode = 2,
-  } WcmTargetMode;
-  typedef enum WcmNamespaceEnumerationFlags {
-    SharedEnumeration = 1,
-    UserEnumeration = 2,
-    AllEnumeration = 3,
-  } WcmNamespaceEnumerationFlags;
-  typedef enum WcmDataType {
-    dataTypeByte = 1,
-    dataTypeSByte = 2,
-    dataTypeUInt16 = 3,
-    dataTypeInt16 = 4,
-    dataTypeUInt32 = 5,
-    dataTypeInt32 = 6,
-    dataTypeUInt64 = 7,
-    dataTypeInt64 = 8,
-    dataTypeBoolean = 11,
-    dataTypeString = 12,
-    dataTypeFlagArray = 0x8000,
-  } WcmDataType;
-  typedef enum WcmSettingType {
-    settingTypeScalar = 1,
-    settingTypeComplex = 2,
-    settingTypeList = 3,
-  } WcmSettingType;
-  typedef enum WcmRestrictionFacets {
-    restrictionFacetMaxLength = 0x1,
-    restrictionFacetEnumeration = 0x2,
-    restrictionFacetMaxInclusive = 0x4,
-    restrictionFacetMinInclusive = 0x8,
-  } WcmRestrictionFacets;
-  typedef enum WcmUserStatus {
-    UnknownStatus = 0,
-    UserRegistered = 1,
-    UserUnregistered = 2,
-    UserLoaded = 3,
-    UserUnloaded = 4,
-  } WcmUserStatus;
-  typedef enum WcmNamespaceAccess {
-    ReadOnlyAccess = 1,
-    ReadWriteAccess = 2,
-  } WcmNamespaceAccess;
+  typedef UINT WcmTargetMode; //Alias
+  static const UINT OfflineMode = 1;
+  static const UINT OnlineMode = 2;
+  typedef UINT WcmNamespaceEnumerationFlags; //Alias
+  static const UINT SharedEnumeration = 1;
+  static const UINT UserEnumeration = 2;
+  static const UINT AllEnumeration = 3;
+  typedef UINT WcmDataType; //Alias
+  static const UINT dataTypeByte = 1;
+  static const UINT dataTypeSByte = 2;
+  static const UINT dataTypeUInt16 = 3;
+  static const UINT dataTypeInt16 = 4;
+  static const UINT dataTypeUInt32 = 5;
+  static const UINT dataTypeInt32 = 6;
+  static const UINT dataTypeUInt64 = 7;
+  static const UINT dataTypeInt64 = 8;
+  static const UINT dataTypeBoolean = 11;
+  static const UINT dataTypeString = 12;
+  static const UINT dataTypeFlagArray = 0x8000;
+  typedef UINT WcmSettingType; //Alias
+  static const UINT settingTypeScalar = 1;
+  static const UINT settingTypeComplex = 2;
+  static const UINT settingTypeList = 3;
+  typedef UINT WcmRestrictionFacets; //Alias
+  static const UINT restrictionFacetMaxLength = 0x1;
+  static const UINT restrictionFacetEnumeration = 0x2;
+  static const UINT restrictionFacetMaxInclusive = 0x4;
+  static const UINT restrictionFacetMinInclusive = 0x8;
+  typedef UINT WcmUserStatus; //Alias
+  static const UINT UnknownStatus = 0;
+  static const UINT UserRegistered = 1;
+  static const UINT UserUnregistered = 2;
+  static const UINT UserLoaded = 3;
+  static const UINT UserUnloaded = 4;
+  typedef UINT WcmNamespaceAccess; //Alias
+  static const UINT ReadOnlyAccess = 1;
+  static const UINT ReadWriteAccess = 2;
 ]]

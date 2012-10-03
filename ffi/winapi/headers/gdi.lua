@@ -24,16 +24,14 @@ ffi.cdef [[
   typedef LPVOID LPSETUPHOOKPROC; //Alias
   typedef LONGLONG REFERENCE_TIME; //Alias
   enum { LF_FACESIZE = 32 };
-  enum { LF_FACESIZE = 32 };
   typedef struct RGBQUAD {
     BYTE rgbBlue;
     BYTE rgbGreen;
     BYTE rgbRed;
     BYTE rgbReserved;
   } RGBQUAD;
-  typedef enum WINAPI_RegionType {
-    RDH_RECTANGLES = 1,
-  } WINAPI_RegionType;
+  typedef DWORD WINAPI_RegionType; //Alias
+  static const DWORD RDH_RECTANGLES = 1;
   typedef struct RGNDATAHEADER {
     DWORD dwSize;
     WINAPI_RegionType iType;
@@ -46,9 +44,8 @@ ffi.cdef [[
     char Buffer;
   } RGNDATA;
   typedef RGNDATA *LPRGNDATA; //Pointer
-  typedef enum COLORREF {
-    CLR_INVALID = 0xFFFFFFFF,
-  } COLORREF;
+  typedef DWORD COLORREF; //Alias
+  static const DWORD CLR_INVALID = 0xFFFFFFFF;
   typedef struct SIZE {
     LONG cx;
     LONG cy;
@@ -72,72 +69,67 @@ ffi.cdef [[
   typedef CHOOSECOLOR *LPCHOOSECOLOR; //Pointer
   typedef DWORD WINAPI_ChoooseFontFlags; //Alias
   typedef WORD WINAPI_FontType; //Alias
-  typedef enum WINAPI_FontWeight {
-    FW_DONTCARE = 0,
-    FW_THIN = 100,
-    FW_EXTRALIGHT = 200,
-    FW_LIGHT = 300,
-    FW_NORMAL = 400,
-    FW_MEDIUM = 500,
-    FW_SEMIBOLD = 600,
-    FW_BOLD = 700,
-    FW_EXTRABOLD = 800,
-    FW_HEAVY = 900,
-  } WINAPI_FontWeight;
-  typedef enum WINAPI_FontCharset {
-    ANSI_CHARSET = 0,
-    DEFAULT_CHARSET = 1,
-    SYMBOL_CHARSET = 2,
-    SHIFTJIS_CHARSET = 128,
-    HANGEUL_CHARSET = 129,
-    HANGUL_CHARSET = 129,
-    GB2312_CHARSET = 134,
-    CHINESEBIG5_CHARSET = 136,
-    OEM_CHARSET = 255,
-    JOHAB_CHARSET = 130,
-    HEBREW_CHARSET = 177,
-    ARABIC_CHARSET = 178,
-    GREEK_CHARSET = 161,
-    TURKISH_CHARSET = 162,
-    VIETNAMESE_CHARSET = 163,
-    THAI_CHARSET = 222,
-    EASTEUROPE_CHARSET = 238,
-    RUSSIAN_CHARSET = 204,
-    MAC_CHARSET = 77,
-    BALTIC_CHARSET = 186,
-  } WINAPI_FontCharset;
-  typedef enum WINAPI_FontOutputPrecision {
-    OUT_DEFAULT_PRECIS = 0,
-    OUT_STRING_PRECIS = 1,
-    OUT_CHARACTER_PRECIS = 2,
-    OUT_STROKE_PRECIS = 3,
-    OUT_TT_PRECIS = 4,
-    OUT_DEVICE_PRECIS = 5,
-    OUT_RASTER_PRECIS = 6,
-    OUT_TT_ONLY_PRECIS = 7,
-    OUT_OUTLINE_PRECIS = 8,
-    OUT_SCREEN_OUTLINE_PRECIS = 9,
-    OUT_PS_ONLY_PRECIS = 10,
-  } WINAPI_FontOutputPrecision;
-  typedef enum WINAPI_FontClipPrecision {
-    CLIP_DEFAULT_PRECIS = 0,
-    CLIP_CHARACTER_PRECIS = 1,
-    CLIP_STROKE_PRECIS = 2,
-    CLIP_MASK = 0xf,
-    CLIP_LH_ANGLES = 0x10,
-    CLIP_TT_ALWAYS = 0x20,
-    CLIP_DFA_DISABLE = 0x40,
-    CLIP_EMBEDDED = 0x80,
-  } WINAPI_FontClipPrecision;
-  typedef enum WINAPI_FontQuality {
-    DEFAULT_QUALITY = 0,
-    DRAFT_QUALITY = 1,
-    PROOF_QUALITY = 2,
-    NONANTIALIASED_QUALITY = 3,
-    ANTIALIASED_QUALITY = 4,
-    CLEARTYPE_QUALITY = 5,
-    CLEARTYPE_NATURAL_QUALITY = 6,
-  } WINAPI_FontQuality;
+  typedef LONG WINAPI_FontWeight; //Alias
+  static const LONG FW_DONTCARE = 0;
+  static const LONG FW_THIN = 100;
+  static const LONG FW_EXTRALIGHT = 200;
+  static const LONG FW_LIGHT = 300;
+  static const LONG FW_NORMAL = 400;
+  static const LONG FW_MEDIUM = 500;
+  static const LONG FW_SEMIBOLD = 600;
+  static const LONG FW_BOLD = 700;
+  static const LONG FW_EXTRABOLD = 800;
+  static const LONG FW_HEAVY = 900;
+  typedef BYTE WINAPI_FontCharset; //Alias
+  static const BYTE ANSI_CHARSET = 0;
+  static const BYTE DEFAULT_CHARSET = 1;
+  static const BYTE SYMBOL_CHARSET = 2;
+  static const BYTE SHIFTJIS_CHARSET = 128;
+  static const BYTE HANGEUL_CHARSET = 129;
+  static const BYTE HANGUL_CHARSET = 129;
+  static const BYTE GB2312_CHARSET = 134;
+  static const BYTE CHINESEBIG5_CHARSET = 136;
+  static const BYTE OEM_CHARSET = 255;
+  static const BYTE JOHAB_CHARSET = 130;
+  static const BYTE HEBREW_CHARSET = 177;
+  static const BYTE ARABIC_CHARSET = 178;
+  static const BYTE GREEK_CHARSET = 161;
+  static const BYTE TURKISH_CHARSET = 162;
+  static const BYTE VIETNAMESE_CHARSET = 163;
+  static const BYTE THAI_CHARSET = 222;
+  static const BYTE EASTEUROPE_CHARSET = 238;
+  static const BYTE RUSSIAN_CHARSET = 204;
+  static const BYTE MAC_CHARSET = 77;
+  static const BYTE BALTIC_CHARSET = 186;
+  typedef BYTE WINAPI_FontOutputPrecision; //Alias
+  static const BYTE OUT_DEFAULT_PRECIS = 0;
+  static const BYTE OUT_STRING_PRECIS = 1;
+  static const BYTE OUT_CHARACTER_PRECIS = 2;
+  static const BYTE OUT_STROKE_PRECIS = 3;
+  static const BYTE OUT_TT_PRECIS = 4;
+  static const BYTE OUT_DEVICE_PRECIS = 5;
+  static const BYTE OUT_RASTER_PRECIS = 6;
+  static const BYTE OUT_TT_ONLY_PRECIS = 7;
+  static const BYTE OUT_OUTLINE_PRECIS = 8;
+  static const BYTE OUT_SCREEN_OUTLINE_PRECIS = 9;
+  static const BYTE OUT_PS_ONLY_PRECIS = 10;
+  typedef BYTE WINAPI_FontClipPrecision; //Alias
+  static const BYTE CLIP_DEFAULT_PRECIS = 0;
+  static const BYTE CLIP_CHARACTER_PRECIS = 1;
+  static const BYTE CLIP_STROKE_PRECIS = 2;
+  static const BYTE CLIP_MASK = 0xf;
+  static const BYTE CLIP_LH_ANGLES = 0x10;
+  static const BYTE CLIP_TT_ALWAYS = 0x20;
+  static const BYTE CLIP_DFA_DISABLE = 0x40;
+  static const BYTE CLIP_EMBEDDED = 0x80;
+  typedef BYTE WINAPI_FontQuality; //Alias
+  static const BYTE DEFAULT_QUALITY = 0;
+  static const BYTE DRAFT_QUALITY = 1;
+  static const BYTE PROOF_QUALITY = 2;
+  static const BYTE NONANTIALIASED_QUALITY = 3;
+  static const BYTE ANTIALIASED_QUALITY = 4;
+  static const BYTE CLEARTYPE_QUALITY = 5;
+  static const BYTE CLEARTYPE_NATURAL_QUALITY = 6;
   typedef BYTE WINAPI_FontPitchAndFamily; //Alias
   typedef struct LOGFONT {
     LONG lfHeight;
@@ -415,44 +407,41 @@ ffi.cdef [[
     DWORD dwReserved2;
     BITMAPINFOHEADER bmiHeader;
   } VIDEOINFOHEADER2;
-  typedef enum PixelFormat {
-    PixelFormat4bppIndexed = 0x30402,
-    PixelFormat8bppIndexed = 0x30803,
-    PixelFormat16bppGrayScale = 0x101004,
-    PixelFormat16bppRGB555 = 0x21005,
-    PixelFormat16bppRGB565 = 0x21006,
-    PixelFormat16bppARGB1555 = 0x61007,
-    PixelFormat24bppRGB = 0x21808,
-    PixelFormat32bppRGB = 0x22009,
-    PixelFormat32bppARGB = 0x26200a,
-    PixelFormat32bppPARGB = 0xe200b,
-    PixelFormat48bppRGB = 0x10300c,
-    PixelFormat64bppARGB = 0x34400d,
-    PixelFormat64bppPARGB = 0x1c400e,
-    PixelFormat32bppCMYK = 0x200f,
-  } PixelFormat;
-  typedef enum InterpolationMode {
-    InterpolationModeInvalid = -1,
-    InterpolationModeDefault = 0,
-    InterpolationModeLowQuality = 1,
-    InterpolationModeHighQuality = 2,
-    InterpolationModeBilinear = 3,
-    InterpolationModeBicubic = 4,
-    InterpolationModeNearestNeighbor = 5,
-    InterpolationModeHighQualityBilinear = 6,
-    InterpolationModeHighQualityBicubic = 7,
-  } InterpolationMode;
-  typedef enum EncoderParameterValueType {
-    EncoderParameterValueTypeByte = 1,
-    EncoderParameterValueTypeASCII = 2,
-    EncoderParameterValueTypeShort = 3,
-    EncoderParameterValueTypeLong = 4,
-    EncoderParameterValueTypeRational = 5,
-    EncoderParameterValueTypeLongRange = 6,
-    EncoderParameterValueTypeUndefined = 7,
-    EncoderParameterValueTypeRationalRange = 8,
-    EncoderParameterValueTypePointer = 9,
-  } EncoderParameterValueType;
+  typedef UINT PixelFormat; //Alias
+  static const UINT PixelFormat4bppIndexed = 0x30402;
+  static const UINT PixelFormat8bppIndexed = 0x30803;
+  static const UINT PixelFormat16bppGrayScale = 0x101004;
+  static const UINT PixelFormat16bppRGB555 = 0x21005;
+  static const UINT PixelFormat16bppRGB565 = 0x21006;
+  static const UINT PixelFormat16bppARGB1555 = 0x61007;
+  static const UINT PixelFormat24bppRGB = 0x21808;
+  static const UINT PixelFormat32bppRGB = 0x22009;
+  static const UINT PixelFormat32bppARGB = 0x26200a;
+  static const UINT PixelFormat32bppPARGB = 0xe200b;
+  static const UINT PixelFormat48bppRGB = 0x10300c;
+  static const UINT PixelFormat64bppARGB = 0x34400d;
+  static const UINT PixelFormat64bppPARGB = 0x1c400e;
+  static const UINT PixelFormat32bppCMYK = 0x200f;
+  typedef UINT InterpolationMode; //Alias
+  static const UINT InterpolationModeInvalid = -1;
+  static const UINT InterpolationModeDefault = 0;
+  static const UINT InterpolationModeLowQuality = 1;
+  static const UINT InterpolationModeHighQuality = 2;
+  static const UINT InterpolationModeBilinear = 3;
+  static const UINT InterpolationModeBicubic = 4;
+  static const UINT InterpolationModeNearestNeighbor = 5;
+  static const UINT InterpolationModeHighQualityBilinear = 6;
+  static const UINT InterpolationModeHighQualityBicubic = 7;
+  typedef ULONG EncoderParameterValueType; //Alias
+  static const ULONG EncoderParameterValueTypeByte = 1;
+  static const ULONG EncoderParameterValueTypeASCII = 2;
+  static const ULONG EncoderParameterValueTypeShort = 3;
+  static const ULONG EncoderParameterValueTypeLong = 4;
+  static const ULONG EncoderParameterValueTypeRational = 5;
+  static const ULONG EncoderParameterValueTypeLongRange = 6;
+  static const ULONG EncoderParameterValueTypeUndefined = 7;
+  static const ULONG EncoderParameterValueTypeRationalRange = 8;
+  static const ULONG EncoderParameterValueTypePointer = 9;
   typedef struct EncoderParameter {
     GUID Guid;
     ULONG NumberOfValues;

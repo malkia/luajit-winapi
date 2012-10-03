@@ -1,6 +1,15 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID RM_WRITE_STATUS_CALLBACK; //Alias
+  typedef struct RM_UNIQUE_PROCESS {
+    DWORD dwProcessId;
+    FILETIME ProcessStartTime;
+  } RM_UNIQUE_PROCESS;
+  typedef UINT RM_FILTER_ACTION; //Alias
+  static const UINT RmInvalidFilterAction = 0;
+  static const UINT RmNoRestart = 1;
+  static const UINT RmNoShutdown = 2;
   DWORD RmAddFilter(         DWORD dwSessionHandle, LPCWSTR strFilename, RM_UNIQUE_PROCESS* Application, LPCWSTR strShortServiceName, RM_FILTER_ACTION ActionType);
   DWORD RmStartSession(      DWORD* pSessionHandle, DWORD dwSessionFlags);
   DWORD RmJoinSession(       DWORD* pSessionHandle);

@@ -2,6 +2,409 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/native' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID PFPO_DATA; //Alias
+  typedef DWORD RVA; //Alias
+  typedef LPVOID PENUMDIRTREE_CALLBACK; //Alias
+  typedef LPVOID PENUMLOADED_MODULES_CALLBACK64; //Alias
+  typedef LPVOID PENUMLOADED_MODULES_CALLBACKW64; //Alias
+  typedef LPVOID PFIND_DEBUG_FILE_CALLBACK; //Alias
+  typedef LPVOID PFIND_EXE_FILE_CALLBACK; //Alias
+  typedef LPVOID PREAD_PROCESS_MEMORY_ROUTINE64; //Alias
+  typedef LPVOID PFUNCTION_TABLE_ACCESS_ROUTINE64; //Alias
+  typedef LPVOID PGET_MODULE_BASE_ROUTINE64; //Alias
+  typedef LPVOID PTRANSLATE_ADDRESS_ROUTINE64; //Alias
+  typedef LPVOID PSYM_ENUMLINES_CALLBACK; //Alias
+  typedef LPVOID PSYM_ENUMPROCESSES_CALLBACK; //Alias
+  typedef LPVOID PSYM_ENUMSOURCEFILES_CALLBACK; //Alias
+  typedef LPVOID PSYM_ENUMERATESYMBOLS_CALLBACK; //Alias
+  typedef LPVOID PFINDFILEINPATHCALLBACK; //Alias
+  typedef LPVOID PSYMBOL_REGISTERED_CALLBACK64; //Alias
+  typedef LPVOID PSYMBOL_REGISTERED_CALLBACKW64; //Alias
+  typedef LPVOID PSYMBOL_FUNCENTRY_CALLBACK64; //Alias
+  typedef LPVOID PSYM_ENUMSYMBOLS_CALLBACK64; //Alias
+  typedef LPVOID PSYM_ENUMSYMBOLS_CALLBACKW64; //Alias
+  typedef LPVOID MINIDUMP_CALLBACK_ROUTINE; //Alias
+  typedef LPVOID PIMAGEHLP_CONTEXT; //Alias
+  enum { MAX_PATH = 780 };
+# pragma pack( push, 8 )
+  typedef struct API_VERSION {
+    USHORT MajorVersion;
+    USHORT MinorVersion;
+    USHORT Revision;
+    USHORT Reserved;
+  } API_VERSION;
+# pragma pack( pop )
+  typedef API_VERSION *LPAPI_VERSION; //Pointer
+# pragma pack( push, 8 )
+  typedef struct IMAGEHLP_LINE64 {
+    DWORD SizeOfStruct;
+    PVOID Key;
+    DWORD LineNumber;
+    PCHAR FileName;
+    DWORD64 Address;
+  } IMAGEHLP_LINE64;
+# pragma pack( pop )
+  typedef IMAGEHLP_LINE64 *PIMAGEHLP_LINE64; //Pointer
+# pragma pack( push, 8 )
+  typedef struct IMAGEHLP_LINEW64 {
+    DWORD SizeOfStruct;
+    PVOID Key;
+    DWORD LineNumber;
+    PWSTR FileName;
+    DWORD64 Address;
+  } IMAGEHLP_LINEW64;
+# pragma pack( pop )
+  typedef IMAGEHLP_LINEW64 *PIMAGEHLP_LINEW64; //Pointer
+# pragma pack( push, 8 )
+  typedef struct OMAP {
+    ULONG rva;
+    ULONG rvaTo;
+  } OMAP;
+# pragma pack( pop )
+  typedef OMAP *POMAP; //Pointer
+  typedef UINT IMAGEHLP_SYMBOL_TYPE_INFO; //Alias
+  static const UINT TI_GET_SYMTAG = 0;
+  static const UINT TI_GET_SYMNAME = 1;
+  static const UINT TI_GET_LENGTH = 2;
+  static const UINT TI_GET_TYPE = 3;
+  static const UINT TI_GET_TYPEID = 4;
+  static const UINT TI_GET_BASETYPE = 5;
+  static const UINT TI_GET_ARRAYINDEXTYPEID = 6;
+  static const UINT TI_FINDCHILDREN = 7;
+  static const UINT TI_GET_DATAKIND = 8;
+  static const UINT TI_GET_ADDRESSOFFSET = 9;
+  static const UINT TI_GET_OFFSET = 10;
+  static const UINT TI_GET_VALUE = 11;
+  static const UINT TI_GET_COUNT = 12;
+  static const UINT TI_GET_CHILDRENCOUNT = 13;
+  static const UINT TI_GET_BITPOSITION = 14;
+  static const UINT TI_GET_VIRTUALBASECLASS = 15;
+  static const UINT TI_GET_VIRTUALTABLESHAPEID = 16;
+  static const UINT TI_GET_VIRTUALBASEPOINTEROFFSET = 17;
+  static const UINT TI_GET_CLASSPARENTID = 18;
+  static const UINT TI_GET_NESTED = 19;
+  static const UINT TI_GET_SYMINDEX = 20;
+  static const UINT TI_GET_LEXICALPARENT = 21;
+  static const UINT TI_GET_ADDRESS = 22;
+  static const UINT TI_GET_THISADJUST = 23;
+  static const UINT TI_GET_UDTKIND = 24;
+  static const UINT TI_IS_EQUIV_TO = 25;
+  static const UINT TI_GET_CALLING_CONVENTION = 26;
+  static const UINT TI_IS_CLOSE_EQUIV_TO = 27;
+  static const UINT TI_GTIEX_REQS_VALID = 28;
+  static const UINT TI_GET_VIRTUALBASEOFFSET = 29;
+  static const UINT TI_GET_VIRTUALBASEDISPINDEX = 30;
+  static const UINT TI_GET_IS_REFERENCE = 31;
+# pragma pack( push, 8 )
+  typedef struct IMAGEHLP_GET_TYPE_INFO_PARAMS {
+    ULONG SizeOfStruct;
+    ULONG Flags;
+    ULONG NumIds;
+    PULONG TypeIds;
+    ULONG64 TagFilter;
+    ULONG NumReqs;
+    IMAGEHLP_SYMBOL_TYPE_INFO* ReqKinds;
+    PULONG_PTR ReqOffsets;
+    PULONG ReqSizes;
+    ULONG_PTR ReqStride;
+    ULONG_PTR BufferSize;
+    PVOID Buffer;
+    ULONG EntriesMatched;
+    ULONG EntriesFilled;
+    ULONG64 TagsFound;
+    ULONG64 AllReqsValid;
+    ULONG NumReqsValid;
+    PULONG64 ReqsValid;
+  } IMAGEHLP_GET_TYPE_INFO_PARAMS;
+# pragma pack( pop )
+  typedef IMAGEHLP_GET_TYPE_INFO_PARAMS *PIMAGEHLP_GET_TYPE_INFO_PARAMS; //Pointer
+# pragma pack( push, 8 )
+  typedef struct MODLOAD_DATA {
+    DWORD ssize;
+    DWORD ssig;
+    PVOID data;
+    DWORD size;
+    DWORD flags;
+  } MODLOAD_DATA;
+# pragma pack( pop )
+  typedef MODLOAD_DATA *PMODLOAD_DATA; //Pointer
+# pragma pack( push, 4 )
+  typedef struct MINIDUMP_LOCATION_DESCRIPTOR {
+    ULONG32 DataSize;
+    RVA Rva;
+  } MINIDUMP_LOCATION_DESCRIPTOR;
+# pragma pack( pop )
+# pragma pack( push, 4 )
+  typedef struct MINIDUMP_DIRECTORY {
+    ULONG32 StreamType;
+    MINIDUMP_LOCATION_DESCRIPTOR Location;
+  } MINIDUMP_DIRECTORY;
+# pragma pack( pop )
+  typedef MINIDUMP_DIRECTORY *PMINIDUMP_DIRECTORY; //Pointer
+# pragma pack( push, 4 )
+  typedef struct MINIDUMP_EXCEPTION_INFORMATION {
+    DWORD ThreadId;
+    PEXCEPTION_POINTERS ExceptionPointers;
+    BOOL ClientPointers;
+  } MINIDUMP_EXCEPTION_INFORMATION;
+# pragma pack( pop )
+  typedef MINIDUMP_EXCEPTION_INFORMATION *PMINIDUMP_EXCEPTION_INFORMATION; //Pointer
+# pragma pack( push, 4 )
+  typedef struct MINIDUMP_USER_STREAM {
+    ULONG32 Type;
+    ULONG BufferSize;
+    PVOID Buffer;
+  } MINIDUMP_USER_STREAM;
+# pragma pack( pop )
+  typedef MINIDUMP_USER_STREAM *PMINIDUMP_USER_STREAM; //Pointer
+# pragma pack( push, 4 )
+  typedef struct MINIDUMP_USER_STREAM_INFORMATION {
+    ULONG UserStreamCount;
+    PMINIDUMP_USER_STREAM UserStreamArray;
+  } MINIDUMP_USER_STREAM_INFORMATION;
+# pragma pack( pop )
+  typedef MINIDUMP_USER_STREAM_INFORMATION *PMINIDUMP_USER_STREAM_INFORMATION; //Pointer
+# pragma pack( push, 4 )
+  typedef struct MINIDUMP_CALLBACK_INFORMATION {
+    MINIDUMP_CALLBACK_ROUTINE CallbackRoutine;
+    PVOID CallbackParam;
+  } MINIDUMP_CALLBACK_INFORMATION;
+# pragma pack( pop )
+  typedef MINIDUMP_CALLBACK_INFORMATION *PMINIDUMP_CALLBACK_INFORMATION; //Pointer
+  typedef UINT SYM_TYPE; //Alias
+  static const UINT SymNone = 0;
+  static const UINT SymCoff = 1;
+  static const UINT SymCv = 2;
+  static const UINT SymPdb = 3;
+  static const UINT SymExport = 4;
+  static const UINT SymDeferred = 5;
+  static const UINT SymSym = 6;
+  static const UINT SymDia = 7;
+  static const UINT SymVirtual = 8;
+  typedef struct IMAGEHLP_MODULE64 {
+    DWORD SizeOfStruct;
+    DWORD64 BaseOfImage;
+    DWORD ImageSize;
+    DWORD TimeDateStamp;
+    DWORD CheckSum;
+    DWORD NumSyms;
+    SYM_TYPE SymType;
+    TCHAR ModuleName[32];
+    TCHAR ImageName[256];
+    TCHAR LoadedImageName[256];
+    TCHAR LoadedPdbName[256];
+    DWORD CVSig;
+    TCHAR CVData[MAX_PATH * 3];
+    DWORD PdbSig;
+    GUID PdbSig70;
+    DWORD PdbAge;
+    BOOL PdbUnmatched;
+    BOOL DbgUnmatched;
+    BOOL LineNumbers;
+    BOOL GlobalSymbols;
+    BOOL TypeInfo;
+    BOOL SourceIndexed;
+    BOOL Publics;
+  } IMAGEHLP_MODULE64;
+  typedef IMAGEHLP_MODULE64 *PIMAGEHLP_MODULE64; //Pointer
+  typedef struct IMAGEHLP_MODULEW64 {
+    DWORD SizeOfStruct;
+    DWORD64 BaseOfImage;
+    DWORD ImageSize;
+    DWORD TimeDateStamp;
+    DWORD CheckSum;
+    DWORD NumSyms;
+    SYM_TYPE SymType;
+    WCHAR ModuleName[32];
+    WCHAR ImageName[256];
+    WCHAR LoadedImageName[256];
+    WCHAR LoadedPdbName[256];
+    DWORD CVSig;
+    WCHAR CVData[MAX_PATH * 3];
+    DWORD PdbSig;
+    GUID PdbSig70;
+    DWORD PdbAge;
+    BOOL PdbUnmatched;
+    BOOL DbgUnmatched;
+    BOOL LineNumbers;
+    BOOL GlobalSymbols;
+    BOOL TypeInfo;
+    BOOL SourceIndexed;
+    BOOL Publics;
+  } IMAGEHLP_MODULEW64;
+  typedef IMAGEHLP_MODULEW64 *PIMAGEHLP_MODULEW64; //Pointer
+  typedef UINT ADDRESS_MODE; //Alias
+  static const UINT AddrMode1616 = 0;
+  static const UINT AddrMode1632 = 1;
+  static const UINT AddrModeReal = 2;
+  static const UINT AddrModeFlat = 3;
+  typedef struct ADDRESS64 {
+    DWORD64 Offset;
+    WORD Segment;
+    ADDRESS_MODE Mode;
+  } ADDRESS64;
+  typedef struct KDHELP64 {
+    DWORD64 Thread;
+    DWORD ThCallbackStack;
+    DWORD ThCallbackBStore;
+    DWORD NextCallback;
+    DWORD FramePointer;
+    DWORD64 KiCallUserMode;
+    DWORD64 KeUserCallbackDispatcher;
+    DWORD64 SystemRangeStart;
+    DWORD64 KiUserExceptionDispatcher;
+    DWORD64 StackBase;
+    DWORD64 StackLimit;
+    DWORD64 Reserved[5];
+  } KDHELP64;
+  typedef struct STACKFRAME64 {
+    ADDRESS64 AddrPC;
+    ADDRESS64 AddrReturn;
+    ADDRESS64 AddrFrame;
+    ADDRESS64 AddrStack;
+    ADDRESS64 AddrBStore;
+    PVOID FuncTableEntry;
+    DWORD64 Params[4];
+    BOOL Far;
+    BOOL Virtual;
+    DWORD64 Reserved[3];
+    KDHELP64 KdHelp;
+  } STACKFRAME64;
+  typedef STACKFRAME64 *LPSTACKFRAME64; //Pointer
+  typedef struct IMAGEHLP_STACK_FRAME {
+    ULONG64 InstructionOffset;
+    ULONG64 ReturnOffset;
+    ULONG64 FrameOffset;
+    ULONG64 StackOffset;
+    ULONG64 BackingStoreOffset;
+    ULONG64 FuncTableEntry;
+    ULONG64 Params[4];
+    ULONG64 Reserved[5];
+    BOOL Virtual;
+    ULONG Reserved2;
+  } IMAGEHLP_STACK_FRAME;
+  typedef IMAGEHLP_STACK_FRAME *PIMAGEHLP_STACK_FRAME; //Pointer
+  typedef ULONG WINAPI_SYMFLAG; //Alias
+  typedef struct SYMBOL_INFO {
+    ULONG SizeOfStruct;
+    ULONG TypeIndex;
+    ULONG64 Reserved[2];
+    ULONG Index;
+    ULONG Size;
+    ULONG64 ModBase;
+    WINAPI_SYMFLAG Flags;
+    ULONG64 Value;
+    ULONG64 Address;
+    ULONG Register;
+    ULONG Scope;
+    WINAPI_SymTagEnum_ULONG Tag;
+    ULONG NameLen;
+    ULONG MaxNameLen;
+    TCHAR Name[1];
+  } SYMBOL_INFO;
+  typedef SYMBOL_INFO *PSYMBOL_INFO; //Pointer
+  typedef struct IMAGEHLP_SYMBOL64 {
+    DWORD SizeOfStruct;
+    DWORD64 Address;
+    DWORD Size;
+    DWORD Flags;
+    DWORD MaxNameLength;
+    TCHAR Name[1];
+  } IMAGEHLP_SYMBOL64;
+  typedef IMAGEHLP_SYMBOL64 *PIMAGEHLP_SYMBOL64; //Pointer
+  typedef struct SYMSRV_INDEX_INFO {
+    DWORD sizeofstruct;
+    TCHAR file[MAX_PATH + 1];
+    BOOL stripped;
+    DWORD timestamp;
+    DWORD size;
+    TCHAR dbgfile[MAX_PATH + 1];
+    TCHAR pdbfile[MAX_PATH + 1];
+    GUID guid;
+    DWORD sig;
+    DWORD age;
+  } SYMSRV_INDEX_INFO;
+  typedef SYMSRV_INDEX_INFO *PSYMSRV_INDEX_INFO; //Pointer
+  typedef struct IMAGE_FUNCTION_ENTRY {
+    DWORD StartingAddress;
+    DWORD EndingAddress;
+    DWORD EndOfPrologue;
+  } IMAGE_FUNCTION_ENTRY;
+  typedef IMAGE_FUNCTION_ENTRY *PIMAGE_FUNCTION_ENTRY; //Pointer
+  typedef struct IMAGE_COFF_SYMBOLS_HEADER {
+    DWORD NumberOfSymbols;
+    DWORD LvaToFirstSymbol;
+    DWORD NumberOfLinenumbers;
+    DWORD LvaToFirstLinenumber;
+    DWORD RvaToFirstByteOfCode;
+    DWORD RvaToLastByteOfCode;
+    DWORD RvaToFirstByteOfData;
+    DWORD RvaToLastByteOfData;
+  } IMAGE_COFF_SYMBOLS_HEADER;
+  typedef IMAGE_COFF_SYMBOLS_HEADER *PIMAGE_COFF_SYMBOLS_HEADER; //Pointer
+  typedef DWORD WINAPI_IMAGE_DEBUG_TYPE; //Alias
+  static const DWORD IMAGE_DEBUG_TYPE_UNKNOWN = 0;
+  static const DWORD IMAGE_DEBUG_TYPE_COFF = 1;
+  static const DWORD IMAGE_DEBUG_TYPE_CODEVIEW = 2;
+  static const DWORD IMAGE_DEBUG_TYPE_FPO = 3;
+  static const DWORD IMAGE_DEBUG_TYPE_MISC = 4;
+  static const DWORD IMAGE_DEBUG_TYPE_EXCEPTION = 5;
+  static const DWORD IMAGE_DEBUG_TYPE_FIXUP = 6;
+  static const DWORD IMAGE_DEBUG_TYPE_OMAP_TO_SRC = 7;
+  static const DWORD IMAGE_DEBUG_TYPE_OMAP_FROM_SRC = 8;
+  static const DWORD IMAGE_DEBUG_TYPE_BORLAND = 9;
+  static const DWORD IMAGE_DEBUG_TYPE_RESERVED10 = 10;
+  static const DWORD IMAGE_DEBUG_TYPE_CLSID = 11;
+  typedef struct IMAGE_DEBUG_DIRECTORY {
+    DWORD Characteristics;
+    DWORD TimeDateStamp;
+    WORD MajorVersion;
+    WORD MinorVersion;
+    WINAPI_IMAGE_DEBUG_TYPE Type;
+    DWORD SizeOfData;
+    DWORD AddressOfRawData;
+    DWORD PointerToRawData;
+  } IMAGE_DEBUG_DIRECTORY;
+  typedef IMAGE_DEBUG_DIRECTORY *PIMAGE_DEBUG_DIRECTORY; //Pointer
+  typedef struct IMAGE_DEBUG_INFORMATION {
+    LIST_ENTRY List;
+    DWORD ReservedSize;
+    PVOID ReservedMappedBase;
+    USHORT ReservedMachine;
+    USHORT ReservedCharacteristics;
+    DWORD ReservedCheckSum;
+    DWORD ImageBase;
+    DWORD SizeOfImage;
+    DWORD ReservedNumberOfSections;
+    PIMAGE_SECTION_HEADER ReservedSections;
+    DWORD ReservedExportedNamesSize;
+    PSTR ReservedExportedNames;
+    DWORD ReservedNumberOfFunctionTableEntries;
+    PIMAGE_FUNCTION_ENTRY ReservedFunctionTableEntries;
+    DWORD ReservedLowestFunctionStartingAddress;
+    DWORD ReservedHighestFunctionEndingAddress;
+    DWORD ReservedNumberOfFpoTableEntries;
+    PFPO_DATA ReservedFpoTableEntries;
+    DWORD SizeOfCoffSymbols;
+    PIMAGE_COFF_SYMBOLS_HEADER CoffSymbols;
+    DWORD ReservedSizeOfCodeViewSymbols;
+    PVOID ReservedCodeViewSymbols;
+    PSTR ImageFilePath;
+    PSTR ImageFileName;
+    PSTR ReservedDebugFilePath;
+    DWORD ReservedTimeDateStamp;
+    BOOL ReservedRomImage;
+    PIMAGE_DEBUG_DIRECTORY ReservedDebugDirectory;
+    DWORD ReservedNumberOfDebugDirectories;
+    DWORD ReservedOriginalFunctionTableBaseAddress;
+    DWORD Reserved[2];
+  } IMAGE_DEBUG_INFORMATION;
+  typedef IMAGE_DEBUG_INFORMATION *PIMAGE_DEBUG_INFORMATION; //Pointer
+  typedef DWORD WINAPI_UNDNAME_FLAGS; //Alias
+  typedef DWORD WINAPI_ESLFLAG; //Alias
+  typedef DWORD WINAPI_SSRVOPT; //Alias
+  typedef DWORD WINAPI_SYMSEARCH_FLAGS; //Alias
+  typedef DWORD WINAPI_SYMOPT_FLAGS; //Alias
   BOOL                     EnumDirTree(                        WINAPI_ProcessHandle hProcess, PCTSTR RootPath, PCTSTR InputPathName, PTSTR OutputPathBuffer, PENUMDIRTREE_CALLBACK Callback, PVOID CallbackData);
   LPAPI_VERSION            ImagehlpApiVersion(                 );
   LPAPI_VERSION            ImagehlpApiVersionEx(               LPAPI_VERSION AppVersion);

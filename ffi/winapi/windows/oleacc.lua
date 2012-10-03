@@ -3,6 +3,7 @@ require( 'ffi/winapi/headers/ole' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IAccessible; //Interface
   STDAPI  AccessibleChildren(         IAccessible* paccContainer, LONG iChildStart, LONG cChildren, VARIANT* rgvarChildren, LONG* pcObtained);
   STDAPI  AccessibleObjectFromEvent(  HWND hwnd, DWORD dwObjectID, DWORD dwChildID, IAccessible** ppacc, VARIANT* pvarChild);
   STDAPI  AccessibleObjectFromPoint(  POINT ptScreen, IAccessible** ppacc, VARIANT* pvarChild);

@@ -2,6 +2,14 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/cryptography' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef HANDLE HCATADMIN; //Alias
+  typedef HANDLE HCATINFO; //Alias
+  typedef LPVOID PFN_CDF_PARSE_ERROR_CALLBACK; //Alias
+  typedef struct CATALOG_INFO {
+    DWORD cbStruct;
+    WCHAR wszCatalogFile[MAX_PATH];
+  } CATALOG_INFO;
+  typedef DWORD WINAPI_WintrustPolicyFlags; //Alias
   BOOL                     OpenPersonalTrustDBDialog(             HWND hwndParent);
   BOOL                     OpenPersonalTrustDBDialogEx(           HWND hwndParent, DWORD dwFlags, PVOID* pvReserved);
   BOOL                     CryptCATCDFClose(                      CRYPTCATCDF* pCDF);

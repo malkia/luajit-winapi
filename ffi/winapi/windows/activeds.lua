@@ -2,6 +2,8 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/ole' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IADsContainer; //Interface
+  typedef void* IEnumVARIANT; //Interface
   HRESULT ADsBuildEnumerator(  IADsContainer* pADsContainer, IEnumVARIANT** ppEnumVariant);
   HRESULT ADsBuildVarArrayInt( LPDWORD lpdwObjectTypes, DWORD dwObjectTypes, VARIANT* pVar);
   HRESULT ADsBuildVarArrayStr( LPWSTR* lppPathNames, DWORD dwPathNames, VARIANT* pVar);

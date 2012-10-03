@@ -1,6 +1,9 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID HBC; //Alias
+  typedef ULONG WINAPI_NtdsBackupType; //Alias
+  typedef ULONG WINAPI_NtdsRestoreType; //Alias
   HRESULT DsBackupClose(                 HBC hbc);
   HRESULT DsBackupEnd(                   HBC hbc);
   void    DsBackupFree(                  PVOID pvBuffer);

@@ -2,6 +2,35 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/native' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID DIGEST_FUNCTION; //Alias
+  typedef PVOID DIGEST_HANDLE; //Alias
+  typedef LPVOID PIMAGEHLP_STATUS_ROUTINE; //Alias
+  typedef IMAGE_LOAD_CONFIG_DIRECTORY *PIMAGE_LOAD_CONFIG_DIRECTORY; //Pointer
+  typedef WORD WINAPI_WIN_CERT_TYPE; //Alias
+  typedef struct WIN_CERTIFICATE {
+    DWORD dwLength;
+    WORD wRevision;
+    WINAPI_WIN_CERT_TYPE wCertificateType;
+    BYTE bCertificate[ANYSIZE_ARRAY];
+  } WIN_CERTIFICATE;
+  typedef WIN_CERTIFICATE *LPWIN_CERTIFICATE; //Pointer
+  typedef struct LOADED_IMAGE {
+    PSTR ModuleName;
+    HANDLE hFile;
+    PUCHAR MappedAddress;
+    PIMAGE_NT_HEADERS FileHeader;
+    PIMAGE_SECTION_HEADER LastRvaSection;
+    ULONG NumberOfSections;
+    PIMAGE_SECTION_HEADER Sections;
+    WINAPI_IMAGE_FILE_CHARACTERISTICS_ULONG Characteristics;
+    BOOLEAN fSystemImage;
+    BOOLEAN fDOSImage;
+    BOOLEAN fReadOnly;
+    UCHAR Version;
+    LIST_ENTRY Links;
+    ULONG SizeOfImage;
+  } LOADED_IMAGE;
+  typedef LOADED_IMAGE *PLOADED_IMAGE; //Pointer
   BOOL              GetImageConfigInformation(  PLOADED_IMAGE LoadedImage, PIMAGE_LOAD_CONFIG_DIRECTORY ImageConfigInformation);
   DWORD             GetImageUnusedHeaderBytes(  PLOADED_IMAGE LoadedImage, PDWORD SizeUnusedHeaderBytes);
   PLOADED_IMAGE     ImageLoad(                  PSTR DllName, PSTR DllPath);

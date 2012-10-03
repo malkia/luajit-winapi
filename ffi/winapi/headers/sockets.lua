@@ -52,116 +52,80 @@ ffi.cdef[[
   typedef HANDLE WSAEVENT; //Alias
   typedef unsigned int u_int; //Alias
   enum { FD_MAX_EVENTS = 10 };
-  enum { WSAPROTOCOL_LEN = 255 };
+  enum { WSAPROTOCOL_LEN = 256 };
   enum { MAX_PROTOCOL_CHAIN = 7 };
-  enum { WSADESCRIPTION_LEN = 256 };
-  enum { WSASYS_STATUS_LEN = 128 };
-  typedef enum WINAPI_AddressFamily {
-    AF_UNSPEC = 0,
-    AF_UNIX = 1,
-    AF_INET = 2,
-    AF_IMPLINK = 3,
-    AF_PUP = 4,
-    AF_CHAOS = 5,
-    AF_IPX/AF_NS = 6,
-    AF_ISO/AF_OSI = 7,
-    AF_ECMA = 8,
-    AF_DATAKIT = 9,
-    AF_CCITT = 10,
-    AF_SNA = 11,
-    AF_DECnet = 12,
-    AF_DLI = 13,
-    AF_LAT = 14,
-    AF_HYLINK = 15,
-    AF_APPLETALK = 16,
-    AF_NETBIOS = 17,
-    AF_VOICEVIEW = 18,
-    AF_FIREFOX = 19,
-    AF_UNKNOWN1 = 20,
-    AF_BAN = 21,
-    AF_ATM = 22,
-    AF_INET6 = 23,
-    AF_CLUSTER = 24,
-    AF_12844 = 25,
-    AF_IRDA = 26,
-    AF_NETDES = 28,
-    AF_TCNPROCESS = 29,
-    AF_TCNMESSAGE = 30,
-    AF_ICLFXBM = 31,
-    AF_BTH = 32,
-  } WINAPI_AddressFamily;
-  typedef enum ADDRESS_FAMILY {
-    AF_UNSPEC = 0,
-    AF_UNIX = 1,
-    AF_INET = 2,
-    AF_IMPLINK = 3,
-    AF_PUP = 4,
-    AF_CHAOS = 5,
-    AF_IPX/AF_NS = 6,
-    AF_ISO/AF_OSI = 7,
-    AF_ECMA = 8,
-    AF_DATAKIT = 9,
-    AF_CCITT = 10,
-    AF_SNA = 11,
-    AF_DECnet = 12,
-    AF_DLI = 13,
-    AF_LAT = 14,
-    AF_HYLINK = 15,
-    AF_APPLETALK = 16,
-    AF_NETBIOS = 17,
-    AF_VOICEVIEW = 18,
-    AF_FIREFOX = 19,
-    AF_UNKNOWN1 = 20,
-    AF_BAN = 21,
-    AF_ATM = 22,
-    AF_INET6 = 23,
-    AF_CLUSTER = 24,
-    AF_12844 = 25,
-    AF_IRDA = 26,
-    AF_NETDES = 28,
-    AF_TCNPROCESS = 29,
-    AF_TCNMESSAGE = 30,
-    AF_ICLFXBM = 31,
-    AF_BTH = 32,
-  } ADDRESS_FAMILY;
+  enum { WSADESCRIPTION_LEN = 257 };
+  enum { WSASYS_STATUS_LEN = 129 };
+  typedef int WINAPI_AddressFamily; //Alias
+  static const int AF_UNSPEC = 0;
+  static const int AF_UNIX = 1;
+  static const int AF_INET = 2;
+  static const int AF_IMPLINK = 3;
+  static const int AF_PUP = 4;
+  static const int AF_CHAOS = 5;
+  static const int AF_IPX/AF_NS = 6;
+  static const int AF_ISO/AF_OSI = 7;
+  static const int AF_ECMA = 8;
+  static const int AF_DATAKIT = 9;
+  static const int AF_CCITT = 10;
+  static const int AF_SNA = 11;
+  static const int AF_DECnet = 12;
+  static const int AF_DLI = 13;
+  static const int AF_LAT = 14;
+  static const int AF_HYLINK = 15;
+  static const int AF_APPLETALK = 16;
+  static const int AF_NETBIOS = 17;
+  static const int AF_VOICEVIEW = 18;
+  static const int AF_FIREFOX = 19;
+  static const int AF_UNKNOWN1 = 20;
+  static const int AF_BAN = 21;
+  static const int AF_ATM = 22;
+  static const int AF_INET6 = 23;
+  static const int AF_CLUSTER = 24;
+  static const int AF_12844 = 25;
+  static const int AF_IRDA = 26;
+  static const int AF_NETDES = 28;
+  static const int AF_TCNPROCESS = 29;
+  static const int AF_TCNMESSAGE = 30;
+  static const int AF_ICLFXBM = 31;
+  static const int AF_BTH = 32;
+  typedef USHORT ADDRESS_FAMILY; //Alias
   typedef ADDRESS_FAMILY WINAPI_ADDRESS_FAMILY_short; //Alias
-  typedef enum WINAPI_SocketType {
-    SOCK_STREAM = 1,
-    SOCK_DGRAM = 2,
-    SOCK_RAW = 3,
-    SOCK_RDM = 4,
-    SOCK_SEQPACKET = 5,
-  } WINAPI_SocketType;
-  typedef enum WINAPI_SocketProtocol {
-    IPPROTO_IP = 0,
-    IPPROTO_ICMP = 1,
-    IPPROTO_IGMP = 2,
-    IPPROTO_GGP = 3,
-    IPPROTO_IPV4 = 4,
-    IPPROTO_ST = 5,
-    IPPROTO_TCP = 6,
-    IPPROTO_CBT = 7,
-    IPPROTO_EGP = 8,
-    IPPROTO_IGP = 9,
-    IPPROTO_PUP = 12,
-    IPPROTO_UDP = 17,
-    IPPROTO_IDP = 22,
-    IPPROTO_RDP = 27,
-    IPPROTO_IPV6 = 41,
-    IPPROTO_ROUTING = 43,
-    IPPROTO_FRAGMENT = 44,
-    IPPROTO_ESP = 50,
-    IPPROTO_AH = 51,
-    IPPROTO_ICMPV6 = 58,
-    IPPROTO_NONE = 59,
-    IPPROTO_DSTOPTS = 60,
-    IPPROTO_ND = 77,
-    IPPROTO_PIM = 103,
-    IPPROTO_PGM = 113,
-    IPPROTO_L2TP = 115,
-    IPPROTO_SCTP = 132,
-    IPPROTO_RAW = 255,
-  } WINAPI_SocketProtocol;
+  typedef int WINAPI_SocketType; //Alias
+  static const int SOCK_STREAM = 1;
+  static const int SOCK_DGRAM = 2;
+  static const int SOCK_RAW = 3;
+  static const int SOCK_RDM = 4;
+  static const int SOCK_SEQPACKET = 5;
+  typedef int WINAPI_SocketProtocol; //Alias
+  static const int IPPROTO_IP = 0;
+  static const int IPPROTO_ICMP = 1;
+  static const int IPPROTO_IGMP = 2;
+  static const int IPPROTO_GGP = 3;
+  static const int IPPROTO_IPV4 = 4;
+  static const int IPPROTO_ST = 5;
+  static const int IPPROTO_TCP = 6;
+  static const int IPPROTO_CBT = 7;
+  static const int IPPROTO_EGP = 8;
+  static const int IPPROTO_IGP = 9;
+  static const int IPPROTO_PUP = 12;
+  static const int IPPROTO_UDP = 17;
+  static const int IPPROTO_IDP = 22;
+  static const int IPPROTO_RDP = 27;
+  static const int IPPROTO_IPV6 = 41;
+  static const int IPPROTO_ROUTING = 43;
+  static const int IPPROTO_FRAGMENT = 44;
+  static const int IPPROTO_ESP = 50;
+  static const int IPPROTO_AH = 51;
+  static const int IPPROTO_ICMPV6 = 58;
+  static const int IPPROTO_NONE = 59;
+  static const int IPPROTO_DSTOPTS = 60;
+  static const int IPPROTO_ND = 77;
+  static const int IPPROTO_PIM = 103;
+  static const int IPPROTO_PGM = 113;
+  static const int IPPROTO_L2TP = 115;
+  static const int IPPROTO_SCTP = 132;
+  static const int IPPROTO_RAW = 255;
   typedef struct struct sockaddr {
     ADDRESS_FAMILY sa_family;
     CHAR sa_data[14];
@@ -202,9 +166,8 @@ ffi.cdef[[
     LPVOID ai_next;
   } ADDRINFOEX;
   typedef ADDRINFOEX *PADDRINFOEX; //Pointer
-  typedef enum SOCKET {
-    INVALID_SOCKET = -1,
-  } SOCKET;
+  typedef UINT_PTR SOCKET; //Alias
+  static const UINT_PTR INVALID_SOCKET = -1;
   enum { FD_SETSIZE = 64 };
   typedef struct fd_set {
     u_int fd_count;
@@ -216,13 +179,11 @@ ffi.cdef[[
   } WSAPROTOCOLCHAIN;
   typedef DWORD WINAPI_WSA_PROVIDER_FLAGS; //Alias
   typedef DWORD WINAPI_WSA_SERVICE_FLAGS_1; //Alias
-  typedef enum WINAPI_NetworkByteOrder {
-    BIGENDIAN = 0x0000,
-    LITTLEENDIAN = 0x0001,
-  } WINAPI_NetworkByteOrder;
-  typedef enum WINAPI_SecurityScheme {
-    SECURITY_PROTOCOL_NONE = 0x0000,
-  } WINAPI_SecurityScheme;
+  typedef int WINAPI_NetworkByteOrder; //Alias
+  static const int BIGENDIAN = 0x0000;
+  static const int LITTLEENDIAN = 0x0001;
+  typedef int WINAPI_SecurityScheme; //Alias
+  static const int SECURITY_PROTOCOL_NONE = 0x0000;
   typedef struct WSAPROTOCOL_INFO {
     WINAPI_WSA_SERVICE_FLAGS_1 dwServiceFlags1;
     DWORD dwServiceFlags2;
@@ -281,11 +242,10 @@ ffi.cdef[[
     WINAPI_IN_ADDR_u S_un;
   } IN_ADDR;
   typedef IN_ADDR struct in_addr; //Alias
-  typedef enum SOCKET_SECURITY_PROTOCOL {
-    SOCKET_SECURITY_PROTOCOL_DEFAULT = 0,
-    SOCKET_SECURITY_PROTOCOL_IPSEC = 1,
-    SOCKET_SECURITY_PROTOCOL_IPSEC2 = 2,
-  } SOCKET_SECURITY_PROTOCOL;
+  typedef UINT SOCKET_SECURITY_PROTOCOL; //Alias
+  static const UINT SOCKET_SECURITY_PROTOCOL_DEFAULT = 0;
+  static const UINT SOCKET_SECURITY_PROTOCOL_IPSEC = 1;
+  static const UINT SOCKET_SECURITY_PROTOCOL_IPSEC2 = 2;
   typedef ULONG WINAPI_SocketInfoFlags; //Alias
   typedef struct SOCKET_SECURITY_QUERY_INFO {
     SOCKET_SECURITY_PROTOCOL SecurityProtocol;
@@ -361,10 +321,9 @@ ffi.cdef[[
     LPWSANSCLASSINFO lpClassInfos;
   } WSASERVICECLASSINFO;
   typedef WSASERVICECLASSINFO *LPWSASERVICECLASSINFO; //Pointer
-  typedef enum WSAECOMPARATOR {
-    COMP_EQUAL = 0,
-    COMP_NOTLESS = 1,
-  } WSAECOMPARATOR;
+  typedef UINT WSAECOMPARATOR; //Alias
+  static const UINT COMP_EQUAL = 0;
+  static const UINT COMP_NOTLESS = 1;
   typedef struct WSAVERSION {
     DWORD dwVersion;
     WSAECOMPARATOR ecHow;
@@ -414,15 +373,13 @@ ffi.cdef[[
     ULONG dwFlags;
   } WSAMSG;
   typedef WSAMSG *LPWSAMSG; //Pointer
-  typedef enum WSAESETSERVICEOP {
-    RNRSERVICE_REGISTER = 0,
-    RNRSERVICE_DEREGISTER = 1,
-    RNRSERVICE_DELETE = 2,
-  } WSAESETSERVICEOP;
-  typedef enum GROUP {
-    SG_UNCONSTRAINED_GROUP = 0x1,
-    SG_CONSTRAINED_GROUP = 0x2,
-  } GROUP;
+  typedef UINT WSAESETSERVICEOP; //Alias
+  static const UINT RNRSERVICE_REGISTER = 0;
+  static const UINT RNRSERVICE_DEREGISTER = 1;
+  static const UINT RNRSERVICE_DELETE = 2;
+  typedef unsigned int GROUP; //Alias
+  static const unsigned int SG_UNCONSTRAINED_GROUP = 0x1;
+  static const unsigned int SG_CONSTRAINED_GROUP = 0x2;
   typedef ULONG SERVICETYPE; //Alias
   typedef struct FLOWSPEC {
     ULONG TokenRate;
@@ -440,24 +397,16 @@ ffi.cdef[[
     WSABUF ProviderSpecific;
   } QOS;
   typedef QOS *LPQOS; //Pointer
-  typedef enum WINAPI_SocketLevel {
-    IPPROTO_IP = 0,
-    IPPROTO_IPV6 = 41,
-    IPPROTO_RM = 113,
-    IPPROTO_TCP = 6,
-    IPPROTO_UDP = 17,
-    NSPROTO_IPX = 1000,
-    SOL_SOCKET = 0xffff,
-  } WINAPI_SocketLevel;
+  typedef int WINAPI_SocketLevel; //Alias
+  static const int IPPROTO_RM = 113;
+  static const int NSPROTO_IPX = 1000;
+  static const int SOL_SOCKET = 0xffff;
   typedef DWORD WINAPI_SocketOption; //Alias
   typedef DWORD WINAPI_SendRecvFlags; //Alias
   typedef UINT WINAPI_NI_Flags; //Alias
-  typedef enum WINAPI_SocketCode_int {
-    SOCKET_ERROR = -1,
-  } WINAPI_SocketCode_int;
-  typedef enum WINAPI_SocketCode_INT {
-    SOCKET_ERROR = -1,
-  } WINAPI_SocketCode_INT;
+  typedef int WINAPI_SocketCode_int; //Alias
+  static const int SOCKET_ERROR = -1;
+  typedef int WINAPI_SocketCode_INT; //Alias
   typedef DWORD WINAPI_NameSpaceFlags; //Alias
   typedef DWORD WINAPI_ResolutionFlags; //Alias
   typedef DWORD WINAPI_GetService_Props; //Alias
@@ -465,22 +414,19 @@ ffi.cdef[[
   typedef DWORD WINAPI_SetService_Flags; //Alias
   typedef DWORD WINAPI_SetService_FlagsOut; //Alias
   typedef DWORD WINAPI_TransmitFile_Flags; //Alias
-  typedef enum WINAPI_SocketShutdownFlags {
-    SD_RECEIVE = 0x00,
-    SD_SEND = 0x01,
-    SD_BOTH = 0x02,
-  } WINAPI_SocketShutdownFlags;
-  typedef enum WINAPI_INET_ADDR_OUTPUT {
-    INADDR_NONE = 0xffffffff,
-  } WINAPI_INET_ADDR_OUTPUT;
-  typedef enum WINAPI_Socket_IOCTL {
-    FIONREAD = 0x4004667f,
-    FIONBIO = 0x8004667e,
-    FIOASYNC = 0x8004667d,
-    SIOCSHIWAT = 0x80047300,
-    SIOCGHIWAT = 0x40047301,
-    SIOCSLOWAT = 0x80047302,
-    SIOCGLOWAT = 0x40047303,
-    SIOCATMARK = 0x40047307,
-  } WINAPI_Socket_IOCTL;
+  typedef int WINAPI_SocketShutdownFlags; //Alias
+  static const int SD_RECEIVE = 0x00;
+  static const int SD_SEND = 0x01;
+  static const int SD_BOTH = 0x02;
+  typedef unsigned long WINAPI_INET_ADDR_OUTPUT; //Alias
+  static const unsigned long INADDR_NONE = 0xffffffff;
+  typedef long WINAPI_Socket_IOCTL; //Alias
+  static const long FIONREAD = 0x4004667f;
+  static const long FIONBIO = 0x8004667e;
+  static const long FIOASYNC = 0x8004667d;
+  static const long SIOCSHIWAT = 0x80047300;
+  static const long SIOCGHIWAT = 0x40047301;
+  static const long SIOCSLOWAT = 0x80047302;
+  static const long SIOCGLOWAT = 0x40047303;
+  static const long SIOCATMARK = 0x40047307;
 ]]

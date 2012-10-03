@@ -1,6 +1,14 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef ULONG NOTIFICATION_MASK; //Alias
+  typedef struct TRANSACTION_NOTIFICATION {
+    PVOID TransactionKey;
+    NOTIFICATION_MASK TransactionNotification;
+    LARGE_INTEGER TmVirtualClock;
+    ULONG ArgumentLength;
+  } TRANSACTION_NOTIFICATION;
+  typedef TRANSACTION_NOTIFICATION *PTRANSACTION_NOTIFICATION; //Pointer
   BOOL   CommitTransaction(                   HANDLE TransactionHandle);
   BOOL   CommitTransactionAsync(              HANDLE TransactionHandle);
   HANDLE CreateTransaction(                   LPSECURITY_ATTRIBUTES lpTransactionAttributes, LPGUID UOW, DWORD CreateOptions, DWORD IsolationLevel, DWORD IsolationFlags, DWORD Timeout, LPWSTR Description);

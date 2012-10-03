@@ -2,6 +2,10 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/sockets' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef WINAPI_ERROR_CODE WINAPI_WSA_ERROR; //Alias
+  typedef DWORD WINAPI_LookupServiceFlags; //Alias
+  typedef DWORD WINAPI_WsaFlags; //Alias
+  typedef DWORD WINAPI_WsaIoctl; //Alias
   SOCKET                  accept(                          SOCKET s, struct sockaddr* addr, int* addrlen);
   WINAPI_SocketCode_int   bind(                            SOCKET s, WINAPI_struct sockaddr* name, int namelen);
   WINAPI_SocketCode_int   closesocket(                     SOCKET s);

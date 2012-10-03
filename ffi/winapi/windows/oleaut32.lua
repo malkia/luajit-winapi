@@ -1,6 +1,107 @@
 require( 'ffi/winapi/headers/ole' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID LPDECIMAL; //Alias
+  typedef DWORD OLE_COLOR; //Alias
+  typedef BSTR *LPBSTR; //Pointer
+  typedef struct WINAPI_PICTDESC_u_s1 {
+    HBITMAP hbitmap;
+    HPALETTE hpal;
+  } WINAPI_PICTDESC_u_s1;
+  typedef struct WINAPI_PICTDESC_u_s2 {
+    HMETAFILE hmeta;
+    int xExt;
+    int yExt;
+  } WINAPI_PICTDESC_u_s2;
+  typedef struct WINAPI_PICTDESC_u_s3 {
+    HICON hicon;
+  } WINAPI_PICTDESC_u_s3;
+  typedef struct WINAPI_PICTDESC_u_s4 {
+    HENHMETAFILE hemf;
+  } WINAPI_PICTDESC_u_s4;
+  typedef union WINAPI_PICTDESC_u {
+    WINAPI_PICTDESC_u_s1 bmp;
+    WINAPI_PICTDESC_u_s2 wmf;
+    WINAPI_PICTDESC_u_s3 icon;
+    WINAPI_PICTDESC_u_s4 emf;
+  } WINAPI_PICTDESC_u;
+  typedef UINT WINAPI_PICTYPE; //Alias
+  typedef struct PICTDESC {
+    UINT cbSizeofstruct;
+    WINAPI_PICTYPE picType;
+    WINAPI_PICTDESC_u ;
+  } PICTDESC;
+  typedef PICTDESC *LPPICTDESC; //Pointer
+  typedef struct CY {
+    unsigned long Lo;
+    long Hi;
+  } CY;
+  typedef CY *LPCY; //Pointer
+  typedef struct FONTDESC {
+    UINT cbSizeofstruct;
+    LPOLESTR lpstrName;
+    CY cySize;
+    SHORT sWeight;
+    SHORT sCharset;
+    BOOL fItalic;
+    BOOL fUnderline;
+    BOOL fStrikethrough;
+  } FONTDESC;
+  typedef FONTDESC *LPFONTDESC; //Pointer
+  typedef struct OCPFIPARAMS {
+    ULONG cbStructSize;
+    HWND hWndOwner;
+    int x;
+    int y;
+    LPCOLESTR lpszCaption;
+    ULONG cObjects;
+    LPUNKNOWN* lplpUnk;
+    ULONG cPages;
+    CLSID* lpPages;
+    LCID lcid;
+    DISPID dispidInitialProperty;
+  } OCPFIPARAMS;
+  typedef OCPFIPARAMS *LPOCPFIPARAMS; //Pointer
+  typedef DWORD WINAPI_OleLoadPictureExFlags; //Alias
+  static const DWORD LP_DEFAULT = 0x00;
+  static const DWORD LP_MONOCHROME = 0x01;
+  static const DWORD LP_VGACOLOR = 0x02;
+  static const DWORD LP_COLOR = 0x04;
+  typedef UINT REGKIND; //Alias
+  static const UINT REGKIND_DEFAULT = 0;
+  static const UINT REGKIND_REGISTER = 1;
+  static const UINT REGKIND_NONE = 2;
+  typedef struct UDATE {
+    SYSTEMTIME st;
+    USHORT wDayOfYear;
+  } UDATE;
+  typedef ULONG WINAPI_NUMPRS_FLAG; //Alias
+  typedef struct NUMPARSE {
+    INT cDig;
+    WINAPI_NUMPRS_FLAG dwInFlags;
+    WINAPI_NUMPRS_FLAG dwOutFlags;
+    INT cchUsed;
+    INT nBaseShift;
+    INT nPwr10;
+  } NUMPARSE;
+  typedef struct PARAMDATA {
+    OLECHAR* szName;
+    VARTYPE vt;
+  } PARAMDATA;
+  typedef struct METHODDATA {
+    OLECHAR* szName;
+    PARAMDATA* ppdata;
+    DISPID dispid;
+    UINT iMeth;
+    CALLCONV cc;
+    UINT cArgs;
+    WINAPI_InvokeFlags wFlags;
+    VARTYPE vtReturn;
+  } METHODDATA;
+  typedef struct INTERFACEDATA {
+    METHODDATA* pmethdata;
+    UINT cMembers;
+  } INTERFACEDATA;
   HCURSOR        OleIconToCursor(                 HINSTANCE hinstExe, HICON hIcon);
   HRESULT        OleCreateFontIndirect(           LPFONTDESC lpFontDesc, REFIID riid, LPVOID* lplpvObj);
   HRESULT        OleCreatePictureIndirect(        LPPICTDESC lpPictDesc, REFIID riid, BOOL fOwn, LPVOID* lplpvObj);

@@ -4,6 +4,65 @@ require( 'ffi/winapi/headers/rpc' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef IPersistStorage* LPPERSISTSTORAGE; //Alias
+  typedef IPersistStream* LPPERSISTSTREAM; //Alias
+  typedef IOleInPlaceFrame* LPOLEINPLACEFRAME; //Alias
+  typedef IOleInPlaceActiveObject* LPOLEINPLACEACTIVEOBJECT; //Alias
+  typedef IDropTarget* LPDROPTARGET; //Alias
+  typedef IDataAdviseHolder* LPDATAADVISEHOLDER; //Alias
+  typedef IOleAdviseHolder* LPOLEADVISEHOLDER; //Alias
+  typedef IDropSource* LPDROPSOURCE; //Alias
+  typedef IInitializeSpy* LPINITIALIZESPY; //Alias
+  typedef IMallocSpy* LPMALLOCSPY; //Alias
+  typedef IMessageFilter* LPMESSAGEFILTER; //Alias
+  typedef ISurrogate* LPSURROGATE; //Alias
+  typedef IRunningObjectTable* LPRUNNINGOBJECTTABLE; //Alias
+  typedef IMarshal* LPMARSHAL; //Alias
+  typedef LPVOID LPOLESTREAM; //Alias
+  typedef struct STGOPTIONS {
+    USHORT usVersion;
+    USHORT reserved;
+    ULONG ulSectorSize;
+    WINAPI_WCHAR* pwcsTemplateFile;
+  } STGOPTIONS;
+  typedef struct COAUTHIDENTITY {
+    USHORT* User;
+    ULONG UserLength;
+    USHORT* Domain;
+    ULONG DomainLength;
+    USHORT* Password;
+    ULONG PasswordLength;
+    ULONG Flags;
+  } COAUTHIDENTITY;
+  typedef struct COAUTHINFO {
+    DWORD dwAuthnSvc;
+    DWORD dwAuthzSvc;
+    LPWSTR pwszServerPrincName;
+    DWORD dwAuthnLevel;
+    DWORD dwImpersonationLevel;
+    COAUTHIDENTITY* pAuthIdentityData;
+    DWORD dwCapabilities;
+  } COAUTHINFO;
+  typedef struct COSERVERINFO {
+    DWORD dwReserved1;
+    LPWSTR pwszName;
+    COAUTHINFO* pAuthInfo;
+    DWORD dwReserved2;
+  } COSERVERINFO;
+  typedef struct SOLE_AUTHENTICATION_SERVICE {
+    DWORD dwAuthnSvc;
+    DWORD dwAuthzSvc;
+    OLECHAR* pPrincipalName;
+    HRESULT hr;
+  } SOLE_AUTHENTICATION_SERVICE;
+  typedef DWORD EOLE_AUTHENTICATION_CAPABILITIES; //Alias
+  typedef DWORD REGCLS; //Alias
+  typedef DWORD STGFMT; //Alias
+  static const DWORD STGFMT_STORAGE = 0;
+  static const DWORD STGFMT_NATIVE = 1;
+  static const DWORD STGFMT_FILE = 3;
+  static const DWORD STGFMT_ANY = 4;
+  static const DWORD STGFMT_DOCFILE = 5;
   HRESULT                  BindMoniker(                           LPMONIKER pmk, DWORD grfOpt, REFIID iidResult, LPVOID* ppvResult);
   HRESULT                  CLSIDFromProgID(                       LPCOLESTR lpszProgID, LPCLSID lpclsid);
   HRESULT                  CLSIDFromProgIDEx(                     LPCOLESTR lpszProgID, LPCLSID lpclsid);

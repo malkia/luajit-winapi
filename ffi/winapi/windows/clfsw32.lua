@@ -1,6 +1,83 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID PCLFS_SCAN_CONTEXT; //Alias
+  typedef LPVOID PFILE; //Alias
+  typedef LPVOID CLFS_PRINT_RECORD_ROUTINE; //Alias
+  typedef LPVOID CLFS_BLOCK_ALLOCATION; //Alias
+  typedef LPVOID CLFS_BLOCK_DEALLOCATION; //Alias
+  typedef ULONG CLFS_CONTAINER_ID; //Alias
+  typedef LPVOID CLFS_LOG_ARCHIVE_CONTEXT; //Alias
+  typedef CLFS_LOG_ARCHIVE_CONTEXT *PCLFS_LOG_ARCHIVE_CONTEXT; //Pointer
+  enum { CLFS_MAX_CONTAINER_INFO = 256 };
+  typedef LONGLONG *LONGLONG []; //Pointer
+  typedef UINT32 CLFS_CONTAINER_STATE; //Alias
+  typedef struct CLS_CONTAINER_INFORMATION {
+    ULONG FileAttributes;
+    ULONGLONG CreationTime;
+    ULONGLONG LastAccessTime;
+    ULONGLONG LastWriteTime;
+    LONGLONG ContainerSize;
+    ULONG FileNameActualLength;
+    ULONG FileNameLength;
+    WCHAR FileName[CLFS_MAX_CONTAINER_INFO];
+    CLFS_CONTAINER_STATE State;
+    CLFS_CONTAINER_ID PhysicalContainerId;
+    CLFS_CONTAINER_ID LogicalContainerId;
+  } CLS_CONTAINER_INFORMATION;
+  typedef struct CLFS_ARCHIVE_DESCRIPTOR {
+    ULONGLONG coffLow;
+    ULONGLONG coffHigh;
+    CLS_CONTAINER_INFORMATION infoContainer;
+  } CLFS_ARCHIVE_DESCRIPTOR;
+  typedef CLFS_ARCHIVE_DESCRIPTOR *CLFS_ARCHIVE_DESCRIPTOR []; //Pointer
+  typedef UINT8 CLFS_RECORD_TYPE; //Alias
+  static const UINT8 ClfsNullRecord = 0x00;
+  static const UINT8 ClfsDataRecord = 0x01;
+  static const UINT8 ClfsRestartRecord = 0x01;
+  typedef CLFS_RECORD_TYPE *PCLFS_RECORD_TYPE; //Pointer
+  typedef UINT CLFS_IOSTATS_CLASS; //Alias
+  static const UINT ClfsIoStatsDefault = 0x0000;
+  typedef UINT CLFS_CONTEXT_MODE; //Alias
+  static const UINT ClfsContextNone = 0x00;
+  static const UINT ClfsContextUndoNext = 0x01;
+  static const UINT ClfsContextPrevious = 0x02;
+  static const UINT ClfsContextForward = 0x03;
+  typedef UINT8 CLFS_SCAN_MODE; //Alias
+  typedef UINT CLFS_LOG_ARCHIVE_MODE; //Alias
+  static const UINT ClfsLogArchiveEnabled = 0x01;
+  static const UINT ClfsLogArchiveDisabled = 0x02;
+  typedef struct CLS_LSN {
+    ULONGLONG Internal;
+  } CLS_LSN;
+  typedef CLS_LSN CLFS_LSN; //Alias
+  typedef CLFS_LSN *PCLFS_LSN; //Pointer
+  typedef PCLFS_LSN WINAPI_PCLFS_LSN; //Alias
+  typedef struct CLFS_WRITE_ENTRY {
+    PVOID Buffer;
+    ULONG ByteLength;
+  } CLFS_WRITE_ENTRY;
+  typedef CLFS_WRITE_ENTRY *PCLFS_WRITE_ENTRY; //Pointer
+  typedef struct CLFS_INFORMATION {
+    LONGLONG TotalAvailable;
+    LONGLONG CurrentAvailable;
+    LONGLONG TotalReservation;
+    ULONGLONG BaseFileSize;
+    ULONGLONG ContainerSize;
+    ULONG TotalContainers;
+    ULONG FreeContainers;
+    ULONG TotalClients;
+    ULONG Attributes;
+    ULONG FlushThreshold;
+    ULONG SectorSize;
+    CLS_LSN MinArchiveTailLsn;
+    CLS_LSN BaseLsn;
+    CLS_LSN LastFlushedLsn;
+    CLS_LSN LastLsn;
+    CLS_LSN RestartLsn;
+    GUID Identity;
+  } CLFS_INFORMATION;
+  typedef CLFS_INFORMATION *PCLFS_INFORMATION; //Pointer
   BOOL              AlignReservedLog(              PVOID pvMarshal, ULONG cReservedRecords, LONGLONG [] rgcbReservation, PLONGLONG pcbAlignReservation);
   BOOL              AllocReservedLog(              PVOID pvMarshal, ULONG cReservedRecords, PLONGLONG pcbAdjustment);
   BOOL              CloseAndResetLogFile(          HANDLE hLog);

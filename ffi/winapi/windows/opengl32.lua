@@ -2,6 +2,47 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef HANDLE HGLRC; //Alias
+  typedef LPVOID PROC; //Alias
+  typedef struct LAYERPLANEDESCRIPTOR {
+    WORD nSize;
+    WORD nVersion;
+    DWORD dwFlags;
+    BYTE iPixelType;
+    BYTE cColorBits;
+    BYTE cRedBits;
+    BYTE cRedShift;
+    BYTE cGreenBits;
+    BYTE cGreenShift;
+    BYTE cBlueBits;
+    BYTE cBlueShift;
+    BYTE cAlphaBits;
+    BYTE cAlphaShift;
+    BYTE cAccumBits;
+    BYTE cAccumRedBits;
+    BYTE cAccumGreenBits;
+    BYTE cAccumBlueBits;
+    BYTE cAccumAlphaBits;
+    BYTE cDepthBits;
+    BYTE cStencilBits;
+    BYTE cAuxBuffers;
+    BYTE iLayerPlane;
+    BYTE bReserved;
+    COLORREF crTransparent;
+  } LAYERPLANEDESCRIPTOR;
+  typedef LAYERPLANEDESCRIPTOR *LPLAYERPLANEDESCRIPTOR; //Pointer
+  typedef struct POINTFLOAT {
+    FLOAT x;
+    FLOAT y;
+  } POINTFLOAT;
+  typedef struct GLYPHMETRICSFLOAT {
+    FLOAT gmfBlackBoxX;
+    FLOAT gmfBlackBoxY;
+    POINTFLOAT gmfptGlyphOrigin;
+    FLOAT gmfCellIncX;
+    FLOAT gmfCellIncY;
+  } GLYPHMETRICSFLOAT;
+  typedef GLYPHMETRICSFLOAT *LPGLYPHMETRICSFLOAT; //Pointer
   HGLRC wglCreateContext(          HDC hdc);
   HGLRC wglCreateLayerContext(     HDC hdc, int iLayerPlane);
   BOOL  wglCopyContext(            HGLRC hglrcSrc, HGLRC hglrcDst, UINT mask);

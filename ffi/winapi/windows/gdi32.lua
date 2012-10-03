@@ -2,6 +2,766 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef HANDLE HGDIOBJ; //Alias
+  typedef LPVOID GOBJENUMPROC; //Alias
+  typedef LPVOID FONTENUMPROC; //Alias
+  typedef LPVOID LINEDDAPROC; //Alias
+  typedef LPVOID ENHMFENUMPROC; //Alias
+  typedef LPVOID MFENUMPROC; //Alias
+  typedef LPVOID ABORTPROC; //Alias
+  enum { MM_MAX_NUMAXES = 16 };
+  enum { LF_FULLFACESIZE = 64 };
+  typedef WINAPI_FontCharset WINAPI_FontCharset_int; //Alias
+  typedef struct ENUMLOGFONTEX {
+    LOGFONT elfLogFont;
+    TCHAR elfFullName[LF_FULLFACESIZE];
+    TCHAR elfStyle[LF_FACESIZE];
+    TCHAR elfScript[LF_FACESIZE];
+  } ENUMLOGFONTEX;
+  typedef struct DESIGNVECTOR {
+    DWORD dvReserved;
+    DWORD dvNumAxes;
+    LONG dvValues[MM_MAX_NUMAXES];
+  } DESIGNVECTOR;
+  typedef struct ENUMLOGFONTEXDV {
+    ENUMLOGFONTEX elfEnumLogfontEx;
+    DESIGNVECTOR elfDesignVector;
+  } ENUMLOGFONTEXDV;
+  typedef struct WCRANGE {
+    WCHAR wcLow;
+    USHORT cGlyphs;
+  } WCRANGE;
+  typedef struct GLYPHSET {
+    DWORD cbThis;
+    DWORD flAccel;
+    DWORD cGlyphsSupported;
+    DWORD cRanges;
+    WCRANGE ranges[1];
+  } GLYPHSET;
+  typedef GLYPHSET *LPGLYPHSET; //Pointer
+  typedef UINT WINAPI_OTM_SELECTION; //Alias
+  typedef BYTE WINAPI_PANOSE_FAMILY; //Alias
+  static const BYTE PAN_ANY = 0;
+  static const BYTE PAN_NO_FIT = 1;
+  static const BYTE PAN_FAMILY_TEXT_DISPLAY = 2;
+  static const BYTE PAN_FAMILY_SCRIPT = 3;
+  static const BYTE PAN_FAMILY_DECORATIVE = 4;
+  static const BYTE PAN_FAMILY_PICTORIAL = 5;
+  typedef BYTE WINAPI_PANOSE_SERIF; //Alias
+  static const BYTE PAN_SERIF_COVE = 2;
+  static const BYTE PAN_SERIF_OBTUSE_COVE = 3;
+  static const BYTE PAN_SERIF_SQUARE_COVE = 4;
+  static const BYTE PAN_SERIF_OBTUSE_SQUARE_COVE = 5;
+  static const BYTE PAN_SERIF_SQUARE = 6;
+  static const BYTE PAN_SERIF_THIN = 7;
+  static const BYTE PAN_SERIF_BONE = 8;
+  static const BYTE PAN_SERIF_EXAGGERATED = 9;
+  static const BYTE PAN_SERIF_TRIANGLE = 10;
+  static const BYTE PAN_SERIF_NORMAL_SANS = 11;
+  static const BYTE PAN_SERIF_OBTUSE_SANS = 12;
+  static const BYTE PAN_SERIF_PERP_SANS = 13;
+  static const BYTE PAN_SERIF_FLARED = 14;
+  static const BYTE PAN_SERIF_ROUNDED = 15;
+  typedef BYTE WINAPI_PANOSE_WEIGHT; //Alias
+  static const BYTE PAN_WEIGHT_VERY_LIGHT = 2;
+  static const BYTE PAN_WEIGHT_LIGHT = 3;
+  static const BYTE PAN_WEIGHT_THIN = 4;
+  static const BYTE PAN_WEIGHT_BOOK = 5;
+  static const BYTE PAN_WEIGHT_MEDIUM = 6;
+  static const BYTE PAN_WEIGHT_DEMI = 7;
+  static const BYTE PAN_WEIGHT_BOLD = 8;
+  static const BYTE PAN_WEIGHT_HEAVY = 9;
+  static const BYTE PAN_WEIGHT_BLACK = 10;
+  static const BYTE PAN_WEIGHT_NORD = 11;
+  typedef BYTE WINAPI_PANOSE_PROPORTION; //Alias
+  static const BYTE PAN_PROP_OLD_STYLE = 2;
+  static const BYTE PAN_PROP_MODERN = 3;
+  static const BYTE PAN_PROP_EVEN_WIDTH = 4;
+  static const BYTE PAN_PROP_EXPANDED = 5;
+  static const BYTE PAN_PROP_CONDENSED = 6;
+  static const BYTE PAN_PROP_VERY_EXPANDED = 7;
+  static const BYTE PAN_PROP_VERY_CONDENSED = 8;
+  static const BYTE PAN_PROP_MONOSPACED = 9;
+  typedef BYTE WINAPI_PANOSE_CONTRAST; //Alias
+  static const BYTE PAN_CONTRAST_NONE = 2;
+  static const BYTE PAN_CONTRAST_VERY_LOW = 3;
+  static const BYTE PAN_CONTRAST_LOW = 4;
+  static const BYTE PAN_CONTRAST_MEDIUM_LOW = 5;
+  static const BYTE PAN_CONTRAST_MEDIUM = 6;
+  static const BYTE PAN_CONTRAST_MEDIUM_HIGH = 7;
+  static const BYTE PAN_CONTRAST_HIGH = 8;
+  static const BYTE PAN_CONTRAST_VERY_HIGH = 9;
+  typedef BYTE WINAPI_PANOSE_STROKE; //Alias
+  static const BYTE PAN_STROKE_GRADUAL_DIAG = 2;
+  static const BYTE PAN_STROKE_GRADUAL_TRAN = 3;
+  static const BYTE PAN_STROKE_GRADUAL_VERT = 4;
+  static const BYTE PAN_STROKE_GRADUAL_HORZ = 5;
+  static const BYTE PAN_STROKE_RAPID_VERT = 6;
+  static const BYTE PAN_STROKE_RAPID_HORZ = 7;
+  static const BYTE PAN_STROKE_INSTANT_VERT = 8;
+  typedef BYTE WINAPI_PANOSE_ARM; //Alias
+  static const BYTE PAN_STRAIGHT_ARMS_HORZ = 2;
+  static const BYTE PAN_STRAIGHT_ARMS_WEDGE = 3;
+  static const BYTE PAN_STRAIGHT_ARMS_VERT = 4;
+  static const BYTE PAN_STRAIGHT_ARMS_SINGLE_SERIF = 5;
+  static const BYTE PAN_STRAIGHT_ARMS_DOUBLE_SERIF = 6;
+  static const BYTE PAN_BENT_ARMS_HORZ = 7;
+  static const BYTE PAN_BENT_ARMS_WEDGE = 8;
+  static const BYTE PAN_BENT_ARMS_VERT = 9;
+  static const BYTE PAN_BENT_ARMS_SINGLE_SERIF = 10;
+  static const BYTE PAN_BENT_ARMS_DOUBLE_SERIF = 11;
+  typedef BYTE WINAPI_PANOSE_LETTER; //Alias
+  static const BYTE PAN_LETT_NORMAL_CONTACT = 2;
+  static const BYTE PAN_LETT_NORMAL_WEIGHTED = 3;
+  static const BYTE PAN_LETT_NORMAL_BOXED = 4;
+  static const BYTE PAN_LETT_NORMAL_FLATTENED = 5;
+  static const BYTE PAN_LETT_NORMAL_ROUNDED = 6;
+  static const BYTE PAN_LETT_NORMAL_OFF_CENTER = 7;
+  static const BYTE PAN_LETT_NORMAL_SQUARE = 8;
+  static const BYTE PAN_LETT_OBLIQUE_CONTACT = 9;
+  static const BYTE PAN_LETT_OBLIQUE_WEIGHTED = 10;
+  static const BYTE PAN_LETT_OBLIQUE_BOXED = 11;
+  static const BYTE PAN_LETT_OBLIQUE_FLATTENED = 12;
+  static const BYTE PAN_LETT_OBLIQUE_ROUNDED = 13;
+  static const BYTE PAN_LETT_OBLIQUE_OFF_CENTER = 14;
+  static const BYTE PAN_LETT_OBLIQUE_SQUARE = 15;
+  typedef BYTE WINAPI_PANOSE_MIDLINE; //Alias
+  static const BYTE PAN_MIDLINE_STANDARD_TRIMMED = 2;
+  static const BYTE PAN_MIDLINE_STANDARD_POINTED = 3;
+  static const BYTE PAN_MIDLINE_STANDARD_SERIFED = 4;
+  static const BYTE PAN_MIDLINE_HIGH_TRIMMED = 5;
+  static const BYTE PAN_MIDLINE_HIGH_POINTED = 6;
+  static const BYTE PAN_MIDLINE_HIGH_SERIFED = 7;
+  static const BYTE PAN_MIDLINE_CONSTANT_TRIMMED = 8;
+  static const BYTE PAN_MIDLINE_CONSTANT_POINTED = 9;
+  static const BYTE PAN_MIDLINE_CONSTANT_SERIFED = 10;
+  static const BYTE PAN_MIDLINE_LOW_TRIMMED = 11;
+  static const BYTE PAN_MIDLINE_LOW_POINTED = 12;
+  static const BYTE PAN_MIDLINE_LOW_SERIFED = 13;
+  typedef BYTE WINAPI_PANOSE_XHEIGHT; //Alias
+  static const BYTE PAN_XHEIGHT_CONSTANT_SMALL = 2;
+  static const BYTE PAN_XHEIGHT_CONSTANT_STD = 3;
+  static const BYTE PAN_XHEIGHT_CONSTANT_LARGE = 4;
+  static const BYTE PAN_XHEIGHT_DUCKING_SMALL = 5;
+  static const BYTE PAN_XHEIGHT_DUCKING_STD = 6;
+  static const BYTE PAN_XHEIGHT_DUCKING_LARGE = 7;
+  typedef struct PANOSE {
+    WINAPI_PANOSE_FAMILY bFamilyType;
+    WINAPI_PANOSE_SERIF bSerifStyle;
+    WINAPI_PANOSE_WEIGHT bWeight;
+    WINAPI_PANOSE_PROPORTION bProportion;
+    WINAPI_PANOSE_CONTRAST bContrast;
+    WINAPI_PANOSE_STROKE bStrokeVariation;
+    WINAPI_PANOSE_ARM bArmStyle;
+    WINAPI_PANOSE_LETTER bLetterform;
+    WINAPI_PANOSE_MIDLINE bMidline;
+    WINAPI_PANOSE_XHEIGHT bXHeight;
+  } PANOSE;
+  typedef struct OUTLINETEXTMETRIC {
+    UINT otmSize;
+    TEXTMETRIC otmTextMetrics;
+    BYTE otmFiller;
+    PANOSE otmPanoseNumber;
+    WINAPI_OTM_SELECTION otmfsSelection;
+    UINT otmfsType;
+    int otmsCharSlopeRise;
+    int otmsCharSlopeRun;
+    int otmItalicAngle;
+    UINT otmEMSquare;
+    int otmAscent;
+    int otmDescent;
+    UINT otmLineGap;
+    UINT otmsCapEmHeight;
+    UINT otmsXHeight;
+    RECT otmrcFontBox;
+    int otmMacAscent;
+    int otmMacDescent;
+    UINT otmMacLineGap;
+    UINT otmusMinimumPPEM;
+    POINT otmptSubscriptSize;
+    POINT otmptSubscriptOffset;
+    POINT otmptSuperscriptSize;
+    POINT otmptSuperscriptOffset;
+    UINT otmsStrikeoutSize;
+    int otmsStrikeoutPosition;
+    int otmsUnderscoreSize;
+    int otmsUnderscorePosition;
+    PSTR otmpFamilyName;
+    PSTR otmpFaceName;
+    PSTR otmpStyleName;
+    PSTR otmpFullName;
+  } OUTLINETEXTMETRIC;
+  typedef OUTLINETEXTMETRIC *LPOUTLINETEXTMETRIC; //Pointer
+  typedef struct HANDLETABLE {
+    HGDIOBJ objectHandle[1];
+  } HANDLETABLE;
+  typedef HANDLETABLE *LPHANDLETABLE; //Pointer
+  typedef DWORD WINAPI_EMR_TYPE; //Alias
+  static const DWORD EMR_HEADER = 1;
+  static const DWORD EMR_POLYBEZIER = 2;
+  static const DWORD EMR_POLYGON = 3;
+  static const DWORD EMR_POLYLINE = 4;
+  static const DWORD EMR_POLYBEZIERTO = 5;
+  static const DWORD EMR_POLYLINETO = 6;
+  static const DWORD EMR_POLYPOLYLINE = 7;
+  static const DWORD EMR_POLYPOLYGON = 8;
+  static const DWORD EMR_SETWINDOWEXTEX = 9;
+  static const DWORD EMR_SETWINDOWORGEX = 10;
+  static const DWORD EMR_SETVIEWPORTEXTEX = 11;
+  static const DWORD EMR_SETVIEWPORTORGEX = 12;
+  static const DWORD EMR_SETBRUSHORGEX = 13;
+  static const DWORD EMR_EOF = 14;
+  static const DWORD EMR_SETPIXELV = 15;
+  static const DWORD EMR_SETMAPPERFLAGS = 16;
+  static const DWORD EMR_SETMAPMODE = 17;
+  static const DWORD EMR_SETBKMODE = 18;
+  static const DWORD EMR_SETPOLYFILLMODE = 19;
+  static const DWORD EMR_SETROP2 = 20;
+  static const DWORD EMR_SETSTRETCHBLTMODE = 21;
+  static const DWORD EMR_SETTEXTALIGN = 22;
+  static const DWORD EMR_SETCOLORADJUSTMENT = 23;
+  static const DWORD EMR_SETTEXTCOLOR = 24;
+  static const DWORD EMR_SETBKCOLOR = 25;
+  static const DWORD EMR_OFFSETCLIPRGN = 26;
+  static const DWORD EMR_MOVETOEX = 27;
+  static const DWORD EMR_SETMETARGN = 28;
+  static const DWORD EMR_EXCLUDECLIPRECT = 29;
+  static const DWORD EMR_INTERSECTCLIPRECT = 30;
+  static const DWORD EMR_SCALEVIEWPORTEXTEX = 31;
+  static const DWORD EMR_SCALEWINDOWEXTEX = 32;
+  static const DWORD EMR_SAVEDC = 33;
+  static const DWORD EMR_RESTOREDC = 34;
+  static const DWORD EMR_SETWORLDTRANSFORM = 35;
+  static const DWORD EMR_MODIFYWORLDTRANSFORM = 36;
+  static const DWORD EMR_SELECTOBJECT = 37;
+  static const DWORD EMR_CREATEPEN = 38;
+  static const DWORD EMR_CREATEBRUSHINDIRECT = 39;
+  static const DWORD EMR_DELETEOBJECT = 40;
+  static const DWORD EMR_ANGLEARC = 41;
+  static const DWORD EMR_ELLIPSE = 42;
+  static const DWORD EMR_RECTANGLE = 43;
+  static const DWORD EMR_ROUNDRECT = 44;
+  static const DWORD EMR_ARC = 45;
+  static const DWORD EMR_CHORD = 46;
+  static const DWORD EMR_PIE = 47;
+  static const DWORD EMR_SELECTPALETTE = 48;
+  static const DWORD EMR_CREATEPALETTE = 49;
+  static const DWORD EMR_SETPALETTEENTRIES = 50;
+  static const DWORD EMR_RESIZEPALETTE = 51;
+  static const DWORD EMR_REALIZEPALETTE = 52;
+  static const DWORD EMR_EXTFLOODFILL = 53;
+  static const DWORD EMR_LINETO = 54;
+  static const DWORD EMR_ARCTO = 55;
+  static const DWORD EMR_POLYDRAW = 56;
+  static const DWORD EMR_SETARCDIRECTION = 57;
+  static const DWORD EMR_SETMITERLIMIT = 58;
+  static const DWORD EMR_BEGINPATH = 59;
+  static const DWORD EMR_ENDPATH = 60;
+  static const DWORD EMR_CLOSEFIGURE = 61;
+  static const DWORD EMR_FILLPATH = 62;
+  static const DWORD EMR_STROKEANDFILLPATH = 63;
+  static const DWORD EMR_STROKEPATH = 64;
+  static const DWORD EMR_FLATTENPATH = 65;
+  static const DWORD EMR_WIDENPATH = 66;
+  static const DWORD EMR_SELECTCLIPPATH = 67;
+  static const DWORD EMR_ABORTPATH = 68;
+  static const DWORD EMR_GDICOMMENT = 70;
+  static const DWORD EMR_FILLRGN = 71;
+  static const DWORD EMR_FRAMERGN = 72;
+  static const DWORD EMR_INVERTRGN = 73;
+  static const DWORD EMR_PAINTRGN = 74;
+  static const DWORD EMR_EXTSELECTCLIPRGN = 75;
+  static const DWORD EMR_BITBLT = 76;
+  static const DWORD EMR_STRETCHBLT = 77;
+  static const DWORD EMR_MASKBLT = 78;
+  static const DWORD EMR_PLGBLT = 79;
+  static const DWORD EMR_SETDIBITSTODEVICE = 80;
+  static const DWORD EMR_STRETCHDIBITS = 81;
+  static const DWORD EMR_EXTCREATEFONTINDIRECTW = 82;
+  static const DWORD EMR_EXTTEXTOUTA = 83;
+  static const DWORD EMR_EXTTEXTOUTW = 84;
+  static const DWORD EMR_POLYBEZIER16 = 85;
+  static const DWORD EMR_POLYGON16 = 86;
+  static const DWORD EMR_POLYLINE16 = 87;
+  static const DWORD EMR_POLYBEZIERTO16 = 88;
+  static const DWORD EMR_POLYLINETO16 = 89;
+  static const DWORD EMR_POLYPOLYLINE16 = 90;
+  static const DWORD EMR_POLYPOLYGON16 = 91;
+  static const DWORD EMR_POLYDRAW16 = 92;
+  static const DWORD EMR_CREATEMONOBRUSH = 93;
+  static const DWORD EMR_CREATEDIBPATTERNBRUSHPT = 94;
+  static const DWORD EMR_EXTCREATEPEN = 95;
+  static const DWORD EMR_POLYTEXTOUTA = 96;
+  static const DWORD EMR_POLYTEXTOUTW = 97;
+  static const DWORD EMR_SETICMMODE = 98;
+  static const DWORD EMR_CREATECOLORSPACE = 99;
+  static const DWORD EMR_SETCOLORSPACE = 100;
+  static const DWORD EMR_DELETECOLORSPACE = 101;
+  static const DWORD EMR_GLSRECORD = 102;
+  static const DWORD EMR_GLSBOUNDEDRECORD = 103;
+  static const DWORD EMR_PIXELFORMAT = 104;
+  static const DWORD EMR_RESERVED_105 = 105;
+  static const DWORD EMR_RESERVED_106 = 106;
+  static const DWORD EMR_RESERVED_107 = 107;
+  static const DWORD EMR_RESERVED_108 = 108;
+  static const DWORD EMR_RESERVED_109 = 109;
+  static const DWORD EMR_RESERVED_110 = 110;
+  static const DWORD EMR_COLORCORRECTPALETTE = 111;
+  static const DWORD EMR_SETICMPROFILEA = 112;
+  static const DWORD EMR_SETICMPROFILEW = 113;
+  static const DWORD EMR_ALPHABLEND = 114;
+  static const DWORD EMR_SETLAYOUT = 115;
+  static const DWORD EMR_TRANSPARENTBLT = 116;
+  static const DWORD EMR_RESERVED_117 = 117;
+  static const DWORD EMR_GRADIENTFILL = 118;
+  static const DWORD EMR_RESERVED_119 = 119;
+  static const DWORD EMR_RESERVED_120 = 120;
+  static const DWORD EMR_COLORMATCHTOTARGETW = 121;
+  static const DWORD EMR_CREATECOLORSPACEW = 122;
+  typedef struct ENHMETARECORD {
+    WINAPI_EMR_TYPE iType;
+    DWORD nSize;
+    DWORD dParm[1];
+  } ENHMETARECORD;
+  typedef struct METARECORD {
+    DWORD rdSize;
+    WORD rdFunction;
+    WORD rdParm[1];
+  } METARECORD;
+  typedef METARECORD *LPMETARECORD; //Pointer
+  typedef struct FONTSIGNATURE {
+    DWORD fsUsb[4];
+    DWORD fsCsb[2];
+  } FONTSIGNATURE;
+  typedef FONTSIGNATURE *LPFONTSIGNATURE; //Pointer
+  typedef struct CHARSETINFO {
+    UINT ciCharset;
+    WINAPI_CodePageEnum ciACP;
+    FONTSIGNATURE fs;
+  } CHARSETINFO;
+  typedef CHARSETINFO *LPCHARSETINFO; //Pointer
+  typedef struct BITMAP {
+    LONG bmType;
+    LONG bmWidth;
+    LONG bmHeight;
+    LONG bmWidthBytes;
+    WORD bmPlanes;
+    WORD bmBitsPixel;
+    LPVOID bmBits;
+  } BITMAP;
+  typedef struct LOGBRUSH {
+    UINT lbStyle;
+    COLORREF lbColor;
+    ULONG_PTR lbHatch;
+  } LOGBRUSH;
+  typedef struct COLORADJUSTMENT {
+    WORD caSize;
+    WORD caFlags;
+    WORD caIlluminantIndex;
+    WORD caRedGamma;
+    WORD caGreenGamma;
+    WORD caBlueGamma;
+    WORD caReferenceBlack;
+    WORD caReferenceWhite;
+    SHORT caContrast;
+    SHORT caBrightness;
+    SHORT caColorfulness;
+    SHORT caRedGreenTint;
+  } COLORADJUSTMENT;
+  typedef COLORADJUSTMENT *LPCOLORADJUSTMENT; //Pointer
+  typedef struct XFORM {
+    FLOAT eM11;
+    FLOAT eM12;
+    FLOAT eM21;
+    FLOAT eM22;
+    FLOAT eDx;
+    FLOAT eDy;
+  } XFORM;
+  typedef XFORM *LPXFORM; //Pointer
+  typedef struct ABCFLOAT {
+    FLOAT abcfA;
+    FLOAT abcfB;
+    FLOAT abcfC;
+  } ABCFLOAT;
+  typedef ABCFLOAT *LPABCFLOAT; //Pointer
+  typedef struct GCP_RESULTS {
+    DWORD lStructSize;
+    LPTSTR lpOutString;
+    UINT* lpOrder;
+    int* lpDx;
+    int* lpCaretPos;
+    LPSTR lpClass;
+    LPWSTR lpGlyphs;
+    UINT nGlyphs;
+    int nMaxFit;
+  } GCP_RESULTS;
+  typedef GCP_RESULTS *LPGCP_RESULTS; //Pointer
+  typedef struct GLYPHMETRICS {
+    UINT gmBlackBoxX;
+    UINT gmBlackBoxY;
+    POINT gmptGlyphOrigin;
+    short gmCellIncX;
+    short gmCellIncY;
+  } GLYPHMETRICS;
+  typedef GLYPHMETRICS *LPGLYPHMETRICS; //Pointer
+  typedef struct FIXED {
+    WORD fract;
+    short value;
+  } FIXED;
+  typedef struct MAT2 {
+    FIXED eM11;
+    FIXED eM12;
+    FIXED eM21;
+    FIXED eM22;
+  } MAT2;
+  typedef struct KERNINGPAIR {
+    WORD wFirst;
+    WORD wSecond;
+    int iKernAmount;
+  } KERNINGPAIR;
+  typedef KERNINGPAIR *LPKERNINGPAIR; //Pointer
+  typedef struct RASTERIZER_STATUS {
+    short nSize;
+    short wFlags;
+    short nLanguageID;
+  } RASTERIZER_STATUS;
+  typedef RASTERIZER_STATUS *LPRASTERIZER_STATUS; //Pointer
+  typedef struct POLYTEXT {
+    int x;
+    int y;
+    UINT n;
+    LPCTSTR lpstr;
+    UINT uiFlags;
+    RECT rcl;
+    int* pdx;
+  } POLYTEXT;
+  typedef struct ENHMETAHEADER {
+    DWORD iType;
+    DWORD nSize;
+    RECTL rclBounds;
+    RECTL rclFrame;
+    DWORD dSignature;
+    DWORD nVersion;
+    DWORD nBytes;
+    DWORD nRecords;
+    WORD nHandles;
+    WORD sReserved;
+    DWORD nDescription;
+    DWORD offDescription;
+    DWORD nPalEntries;
+    SIZEL szlDevice;
+    SIZEL szlMillimeters;
+    DWORD cbPixelFormat;
+    DWORD offPixelFormat;
+    DWORD bOpenGL;
+    SIZEL szlMicrometers;
+  } ENHMETAHEADER;
+  typedef ENHMETAHEADER *LPENHMETAHEADER; //Pointer
+  typedef struct METAFILEPICT {
+    LONG mm;
+    LONG xExt;
+    LONG yExt;
+    HMETAFILE hMF;
+  } METAFILEPICT;
+  typedef struct DOCINFO {
+    int cbSize;
+    LPCTSTR lpszDocName;
+    LPCTSTR lpszOutput;
+    LPCTSTR lpszDatatype;
+    DWORD fwType;
+  } DOCINFO;
+  typedef struct PIXELFORMATDESCRIPTOR {
+    WORD nSize;
+    WORD nVersion;
+    DWORD dwFlags;
+    BYTE iPixelType;
+    BYTE cColorBits;
+    BYTE cRedBits;
+    BYTE cRedShift;
+    BYTE cGreenBits;
+    BYTE cGreenShift;
+    BYTE cBlueBits;
+    BYTE cBlueShift;
+    BYTE cAlphaBits;
+    BYTE cAlphaShift;
+    BYTE cAccumBits;
+    BYTE cAccumRedBits;
+    BYTE cAccumGreenBits;
+    BYTE cAccumBlueBits;
+    BYTE cAccumAlphaBits;
+    BYTE cDepthBits;
+    BYTE cStencilBits;
+    BYTE cAuxBuffers;
+    BYTE iLayerType;
+    BYTE bReserved;
+    DWORD dwLayerMask;
+    DWORD dwVisibleMask;
+    DWORD dwDamageMask;
+  } PIXELFORMATDESCRIPTOR;
+  typedef PIXELFORMATDESCRIPTOR *LPPIXELFORMATDESCRIPTOR; //Pointer
+  typedef int WINAPI_DeviceCapsEnum; //Alias
+  static const int DRIVERVERSION = 0;
+  static const int TECHNOLOGY = 2;
+  static const int HORZSIZE = 4;
+  static const int VERTSIZE = 6;
+  static const int HORZRES = 8;
+  static const int VERTRES = 10;
+  static const int BITSPIXEL = 12;
+  static const int PLANES = 14;
+  static const int NUMBRUSHES = 16;
+  static const int NUMPENS = 18;
+  static const int NUMMARKERS = 20;
+  static const int NUMFONTS = 22;
+  static const int NUMCOLORS = 24;
+  static const int PDEVICESIZE = 26;
+  static const int CURVECAPS = 28;
+  static const int LINECAPS = 30;
+  static const int POLYGONALCAPS = 32;
+  static const int TEXTCAPS = 34;
+  static const int CLIPCAPS = 36;
+  static const int RASTERCAPS = 38;
+  static const int ASPECTX = 40;
+  static const int ASPECTY = 42;
+  static const int ASPECTXY = 44;
+  static const int LOGPIXELSX = 88;
+  static const int LOGPIXELSY = 90;
+  static const int SIZEPALETTE = 104;
+  static const int NUMRESERVED = 106;
+  static const int COLORRES = 108;
+  static const int PHYSICALWIDTH = 110;
+  static const int PHYSICALHEIGHT = 111;
+  static const int PHYSICALOFFSETX = 112;
+  static const int PHYSICALOFFSETY = 113;
+  static const int SCALINGFACTORX = 114;
+  static const int SCALINGFACTORY = 115;
+  static const int VREFRESH = 116;
+  static const int DESKTOPVERTRES = 117;
+  static const int DESKTOPHORZRES = 118;
+  static const int BLTALIGNMENT = 119;
+  static const int SHADEBLENDCAPS = 120;
+  static const int COLORMGMTCAPS = 121;
+  typedef DWORD WINAPI_RasterOperationEnum; //Alias
+  static const DWORD SRCCOPY = 0x00CC0020;
+  static const DWORD SRCPAINT = 0x00EE0086;
+  static const DWORD SRCAND = 0x008800C6;
+  static const DWORD SRCINVERT = 0x00660046;
+  static const DWORD SRCERASE = 0x00440328;
+  static const DWORD NOTSRCCOPY = 0x00330008;
+  static const DWORD NOTSRCERASE = 0x001100A6;
+  static const DWORD MERGECOPY = 0x00C000CA;
+  static const DWORD MERGEPAINT = 0x00BB0226;
+  static const DWORD PATCOPY = 0x00F00021;
+  static const DWORD PATPAINT = 0x00FB0A09;
+  static const DWORD PATINVERT = 0x005A0049;
+  static const DWORD DSTINVERT = 0x00550009;
+  static const DWORD BLACKNESS = 0x00000042;
+  static const DWORD WHITENESS = 0x00FF0062;
+  static const DWORD NOMIRRORBITMAP = 0x80000000;
+  static const DWORD CAPTUREBLT = 0x40000000;
+  typedef int WINAPI_StretchModeEnum; //Alias
+  static const int BLACKONWHITE = 1;
+  static const int WHITEONBLACK = 2;
+  static const int COLORONCOLOR = 3;
+  static const int HALFTONE = 4;
+  typedef INT WINAPI_RandomRgnEnum; //Alias
+  static const INT SYSRGN = 4;
+  typedef UINT WINAPI_ColorUseEnum; //Alias
+  static const UINT DIB_RGB_COLORS = 0;
+  static const UINT DIB_PAL_COLORS = 0;
+  typedef DWORD WINAPI_CreateBitmapInitFlag; //Alias
+  typedef int WINAPI_ROP2ModeEnum; //Alias
+  static const int R2_BLACK = 1;
+  static const int R2_NOTMERGEPEN = 2;
+  static const int R2_MASKNOTPEN = 3;
+  static const int R2_NOTCOPYPEN = 4;
+  static const int R2_MASKPENNOT = 5;
+  static const int R2_NOT = 6;
+  static const int R2_XORPEN = 7;
+  static const int R2_NOTMASKPEN = 8;
+  static const int R2_MASKPEN = 9;
+  static const int R2_NOTXORPEN = 10;
+  static const int R2_NOP = 11;
+  static const int R2_MERGENOTPEN = 12;
+  static const int R2_COPYPEN = 13;
+  static const int R2_MERGEPENNOT = 14;
+  static const int R2_MERGEPEN = 15;
+  static const int R2_WHITE = 16;
+  typedef int WINAPI_BkModeEnum; //Alias
+  static const int TRANSPARENT = 1;
+  static const int OPAQUE = 2;
+  typedef UINT WINAPI_TextAlignFlag; //Alias
+  typedef int WINAPI_RgnMode; //Alias
+  static const int RGN_AND = 1;
+  static const int RGN_OR = 2;
+  static const int RGN_XOR = 3;
+  static const int RGN_DIFF = 4;
+  static const int RGN_COPY = 5;
+  typedef DWORD WINAPI_TranslateCharsetInfoFlag; //Alias
+  static const DWORD TCI_SRCCHARSET = 1;
+  static const DWORD TCI_SRCCODEPAGE = 2;
+  static const DWORD TCI_SRCFONTSIG = 3;
+  static const DWORD TCI_SRCLOCALE = 0x1000;
+  typedef UINT WINAPI_ObjectType; //Alias
+  static const UINT OBJ_PEN = 1;
+  static const UINT OBJ_BRUSH = 2;
+  static const UINT OBJ_DC = 3;
+  static const UINT OBJ_METADC = 4;
+  static const UINT OBJ_PAL = 5;
+  static const UINT OBJ_FONT = 6;
+  static const UINT OBJ_BITMAP = 7;
+  static const UINT OBJ_REGION = 8;
+  static const UINT OBJ_METAFILE = 9;
+  static const UINT OBJ_MEMDC = 10;
+  static const UINT OBJ_EXTPEN = 11;
+  static const UINT OBJ_ENHMETADC = 12;
+  static const UINT OBJ_ENHMETAFILE = 13;
+  static const UINT OBJ_COLORSPACE = 14;
+  typedef int WINAPI_MappingMode; //Alias
+  static const int MM_TEXT = 1;
+  static const int MM_LOMETRIC = 2;
+  static const int MM_HIMETRIC = 3;
+  static const int MM_LOENGLISH = 4;
+  static const int MM_HIENGLISH = 5;
+  static const int MM_TWIPS = 6;
+  static const int MM_ISOTROPIC = 7;
+  static const int MM_ANISOTROPIC = 8;
+  typedef DWORD WINAPI_LayoutFlags; //Alias
+  typedef UINT WINAPI_BoundsAccumulationFlags; //Alias
+  typedef UINT WINAPI_ExtTextOutFlags; //Alias
+  typedef DWORD WINAPI_ModifyWorldTransformMode; //Alias
+  static const DWORD MWT_IDENTITY = 1;
+  static const DWORD MWT_LEFTMULTIPLY = 2;
+  static const DWORD MWT_RIGHTMULTIPLY = 3;
+  typedef DWORD WINAPI_GetGlyphIndicesFlag; //Alias
+  typedef int WINAPI_PolyFillModes; //Alias
+  static const int ALTERNATE = 1;
+  static const int WINDING = 2;
+  typedef int WINAPI_GraphicsModes; //Alias
+  static const int GM_COMPATIBLE = 1;
+  static const int GM_ADVANCED = 2;
+  typedef int WINAPI_HatchStyle; //Alias
+  static const int HS_HORIZONTAL = 0;
+  static const int HS_VERTICAL = 1;
+  static const int HS_FDIAGONAL = 2;
+  static const int HS_BDIAGONAL = 3;
+  static const int HS_CROSS = 4;
+  static const int HS_DIAGCROSS = 5;
+  typedef int WINAPI_GdiEscapeFunction; //Alias
+  static const int NEWFRAME = 1;
+  static const int ABORTDOC = 2;
+  static const int NEXTBAND = 3;
+  static const int SETCOLORTABLE = 4;
+  static const int GETCOLORTABLE = 5;
+  static const int FLUSHOUTPUT = 6;
+  static const int DRAFTMODE = 7;
+  static const int QUERYESCSUPPORT = 8;
+  static const int SETABORTPROC = 9;
+  static const int STARTDOC = 10;
+  static const int ENDDOC = 11;
+  static const int GETPHYSPAGESIZE = 12;
+  static const int GETPRINTINGOFFSET = 13;
+  static const int GETSCALINGFACTOR = 14;
+  static const int MFCOMMENT = 15;
+  static const int GETPENWIDTH = 16;
+  static const int SETCOPYCOUNT = 17;
+  static const int SELECTPAPERSOURCE = 18;
+  static const int DEVICEDATA = 19;
+  static const int PASSTHROUGH = 19;
+  static const int GETTECHNOLGY = 20;
+  static const int GETTECHNOLOGY = 20;
+  static const int SETLINECAP = 21;
+  static const int SETLINEJOIN = 22;
+  static const int SETMITERLIMIT = 23;
+  static const int BANDINFO = 24;
+  static const int DRAWPATTERNRECT = 25;
+  static const int GETVECTORPENSIZE = 26;
+  static const int GETVECTORBRUSHSIZE = 27;
+  static const int ENABLEDUPLEX = 28;
+  static const int GETSETPAPERBINS = 29;
+  static const int GETSETPRINTORIENT = 30;
+  static const int ENUMPAPERBINS = 31;
+  static const int SETDIBSCALING = 32;
+  static const int EPSPRINTING = 33;
+  static const int ENUMPAPERMETRICS = 34;
+  static const int GETSETPAPERMETRICS = 35;
+  static const int POSTSCRIPT_DATA = 37;
+  static const int POSTSCRIPT_IGNORE = 38;
+  static const int MOUSETRAILS = 39;
+  static const int GETDEVICEUNITS = 42;
+  static const int GETEXTENDEDTEXTMETRICS = 256;
+  static const int GETEXTENTTABLE = 257;
+  static const int GETPAIRKERNTABLE = 258;
+  static const int GETTRACKKERNTABLE = 259;
+  static const int EXTTEXTOUT = 512;
+  static const int GETFACENAME = 513;
+  static const int DOWNLOADFACE = 514;
+  static const int ENABLERELATIVEWIDTHS = 768;
+  static const int ENABLEPAIRKERNING = 769;
+  static const int SETKERNTRACK = 770;
+  static const int SETALLJUSTVALUES = 771;
+  static const int SETCHARSET = 772;
+  static const int STRETCHBLT = 2048;
+  static const int METAFILE_DRIVER = 2049;
+  static const int GETSETSCREENPARAMS = 3072;
+  static const int QUERYDIBSUPPORT = 3073;
+  static const int BEGIN_PATH = 4096;
+  static const int CLIP_TO_PATH = 4097;
+  static const int END_PATH = 4098;
+  static const int EXT_DEVICE_CAPS = 4099;
+  static const int RESTORE_CTM = 4100;
+  static const int SAVE_CTM = 4101;
+  static const int SET_ARC_DIRECTION = 4102;
+  static const int SET_BACKGROUND_COLOR = 4103;
+  static const int SET_POLY_MODE = 4104;
+  static const int SET_SCREEN_ANGLE = 4105;
+  static const int SET_SPREAD = 4106;
+  static const int TRANSFORM_CTM = 4107;
+  static const int SET_CLIP_BOX = 4108;
+  static const int SET_BOUNDS = 4109;
+  static const int SET_MIRROR_MODE = 4110;
+  static const int OPENCHANNEL = 4110;
+  static const int DOWNLOADHEADER = 4111;
+  static const int CLOSECHANNEL = 4112;
+  static const int POSTSCRIPT_PASSTHROUGH = 4115;
+  static const int ENCAPSULATED_POSTSCRIPT = 4116;
+  static const int POSTSCRIPT_IDENTIFY = 4117;
+  static const int POSTSCRIPT_INJECTION = 4118;
+  static const int CHECKJPEGFORMAT = 4119;
+  static const int CHECKPNGFORMAT = 4120;
+  static const int GET_PS_FEATURESETTING = 4121;
+  static const int GDIPLUS_TS_QUERYVER = 4122;
+  static const int GDIPLUS_TS_RECORD = 4123;
+  typedef UINT WINAPI_GetGlyphOutlineFormat; //Alias
+  static const UINT GGO_METRICS = 0;
+  static const UINT GGO_BITMAP = 1;
+  static const UINT GGO_NATIVE = 2;
+  static const UINT GGO_BEZIER = 3;
+  static const UINT GGO_GRAY2_BITMAP = 4;
+  static const UINT GGO_GRAY4_BITMAP = 5;
+  static const UINT GGO_GRAY8_BITMAP = 6;
+  static const UINT GGO_GLYPH_INDEX = 0x0080;
+  static const UINT GGO_UNHINTED = 0x0100;
+  typedef int WINAPI_STOCK_OBJECT; //Alias
+  static const int WHITE_BRUSH = 0;
+  static const int LTGRAY_BRUSH = 1;
+  static const int GRAY_BRUSH = 2;
+  static const int DKGRAY_BRUSH = 3;
+  static const int BLACK_BRUSH = 4;
+  static const int HOLLOW_BRUSH = 5;
+  static const int WHITE_PEN = 6;
+  static const int BLACK_PEN = 7;
+  static const int NULL_PEN = 8;
+  static const int OEM_FIXED_FONT = 10;
+  static const int ANSI_FIXED_FONT = 11;
+  static const int ANSI_VAR_FONT = 12;
+  static const int SYSTEM_FONT = 13;
+  static const int DEVICE_DEFAULT_FONT = 14;
+  static const int DEFAULT_PALETTE = 15;
+  static const int SYSTEM_FIXED_FONT = 16;
+  static const int DEFAULT_GUI_FONT = 17;
+  static const int DC_BRUSH = 18;
+  static const int DC_PEN = 19;
+  typedef DWORD WINAPI_GCP_FLAGS; //Alias
   BOOL                   BitBlt(                       HDC hdcDest, int nXDest, int nYDest, int nWidth, int nHeight, HDC hdcSrc, int nXSrc, int nYSrc, WINAPI_RasterOperationEnum dwRop);
   HBITMAP                CreateBitmap(                 int nWidth, int nHeight, UINT cPlanes, UINT cBitsPerPel, WINAPI_VOID* lpvBits);
   HBITMAP                CreateBitmapIndirect(         WINAPI_BITMAP* lpbm);

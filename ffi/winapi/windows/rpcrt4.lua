@@ -3,6 +3,44 @@ require( 'ffi/winapi/headers/cryptography' )
 require( 'ffi/winapi/headers/rpc' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID handle_t; //Alias
+  typedef LPVOID MIDL_ES_READ; //Alias
+  typedef LPVOID MIDL_ES_ALLOC; //Alias
+  typedef LPVOID MIDL_ES_WRITE; //Alias
+  typedef BOOL WINAPI_BOOL_int; //Alias
+  typedef struct NDR_USER_MARSHAL_INFO_LEVEL1 {
+    void* Buffer;
+    unsigned long BufferSize;
+    void* pfnAllocate;
+    void* pfnFree;
+    IRpcChannelBuffer* pRpcChannelBuffer;
+    ULONG_PTR Reserved[5];
+  } NDR_USER_MARSHAL_INFO_LEVEL1;
+  typedef union WINAPI_NDR_USER_MARSHAL_INFO_u {
+    NDR_USER_MARSHAL_INFO_LEVEL1 Level1;
+  } WINAPI_NDR_USER_MARSHAL_INFO_u;
+  typedef struct NDR_USER_MARSHAL_INFO {
+    unsigned long InformationLevel;
+    WINAPI_NDR_USER_MARSHAL_INFO_u ;
+  } NDR_USER_MARSHAL_INFO;
+  typedef unsigned long WINAPI_BindingOptions; //Alias
+  static const unsigned long RPC_C_OPT_BINDING_NONCAUSAL = 9;
+  static const unsigned long RPC_C_OPT_MAX_OPTIONS = 17;
+  static const unsigned long RPC_C_DONT_FAIL = 4;
+  static const unsigned long RPC_C_OPT_SESSION_ID = 6;
+  static const unsigned long RPC_C_OPT_COOKIE_AUTH = 7;
+  static const unsigned long RPC_C_OPT_RESOURCE_TYPE_UUID = 8;
+  static const unsigned long RPC_C_OPT_DONT_LINGER = 13;
+  static const unsigned long RPC_C_OPT_UNIQUE_BINDING = 11;
+  typedef unsigned int WINAPI_InterfaceRegistrationFlags; //Alias
+  typedef UINT MIDL_ES_CODE; //Alias
+  static const UINT MES_ENCODE = 0;
+  static const UINT MES_DECODE = 1;
+  static const UINT MES_ENCODE_NDR64 = 2;
+  typedef unsigned long MIDL_ES_HANDLE_STYLE; //Alias
+  static const unsigned long MES_INCREMENTAL_HANDLE = 0;
+  static const unsigned long MES_FIXED_BUFFER_HANDLE = 1;
+  static const unsigned long MES_DYNAMIC_BUFFER_HANDLE = 2;
   RPC_STATUS           DceErrorInqText(                     unsigned long StatusToConvert, RPC_TSTR ErrorText);
   RPC_STATUS           MesBufferHandleReset(                handle_t Handle, MIDL_ES_HANDLE_STYLE HandleStyle, MIDL_ES_CODE OpCode, char** ppBuffer, unsigned long BufferSize, unsigned long* pEncodedSize);
   RPC_STATUS           MesDecodeBufferHandleCreate(         WINAPI_LPVOID_char* Buffer, unsigned long BufferSize, handle_t* pHandle);

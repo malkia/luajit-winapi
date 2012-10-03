@@ -7,37 +7,33 @@ ffi.cdef [[
   enum { SAFER_MAX_HASH_SIZE = 64 };
   enum { TOKEN_SOURCE_LENGTH = 8 };
   typedef DWORD WINAPI_AceFlags; //Alias
-  typedef enum ACCESS_MODE {
-    NOT_USED_ACCESS = 0,
-    GRANT_ACCESS = 1,
-    SET_ACCESS = 2,
-    DENY_ACCESS = 3,
-    REVOKE_ACCESS = 4,
-    SET_AUDIT_SUCCESS = 5,
-    SET_AUDIT_FAILURE = 6,
-  } ACCESS_MODE;
-  typedef enum MULTIPLE_TRUSTEE_OPERATION {
-    NO_MULTIPLE_TRUSTEE = 0,
-    TRUSTEE_IS_IMPERSONATE = 1,
-  } MULTIPLE_TRUSTEE_OPERATION;
-  typedef enum TRUSTEE_FORM {
-    TRUSTEE_IS_SID = 0,
-    TRUSTEE_IS_NAME = 1,
-    TRUSTEE_BAD_FORM = 2,
-    TRUSTEE_IS_OBJECTS_AND_SID = 3,
-    TRUSTEE_IS_OBJECTS_AND_NAME = 4,
-  } TRUSTEE_FORM;
-  typedef enum TRUSTEE_TYPE {
-    TRUSTEE_IS_UNKNOWN = 0,
-    TRUSTEE_IS_USER = 1,
-    TRUSTEE_IS_GROUP = 2,
-    TRUSTEE_IS_DOMAIN = 3,
-    TRUSTEE_IS_ALIAS = 4,
-    TRUSTEE_IS_WELL_KNOWN_GROUP = 5,
-    TRUSTEE_IS_DELETED = 6,
-    TRUSTEE_IS_INVALID = 7,
-    TRUSTEE_IS_COMPUTER = 8,
-  } TRUSTEE_TYPE;
+  typedef UINT ACCESS_MODE; //Alias
+  static const UINT NOT_USED_ACCESS = 0;
+  static const UINT GRANT_ACCESS = 1;
+  static const UINT SET_ACCESS = 2;
+  static const UINT DENY_ACCESS = 3;
+  static const UINT REVOKE_ACCESS = 4;
+  static const UINT SET_AUDIT_SUCCESS = 5;
+  static const UINT SET_AUDIT_FAILURE = 6;
+  typedef UINT MULTIPLE_TRUSTEE_OPERATION; //Alias
+  static const UINT NO_MULTIPLE_TRUSTEE = 0;
+  static const UINT TRUSTEE_IS_IMPERSONATE = 1;
+  typedef UINT TRUSTEE_FORM; //Alias
+  static const UINT TRUSTEE_IS_SID = 0;
+  static const UINT TRUSTEE_IS_NAME = 1;
+  static const UINT TRUSTEE_BAD_FORM = 2;
+  static const UINT TRUSTEE_IS_OBJECTS_AND_SID = 3;
+  static const UINT TRUSTEE_IS_OBJECTS_AND_NAME = 4;
+  typedef UINT TRUSTEE_TYPE; //Alias
+  static const UINT TRUSTEE_IS_UNKNOWN = 0;
+  static const UINT TRUSTEE_IS_USER = 1;
+  static const UINT TRUSTEE_IS_GROUP = 2;
+  static const UINT TRUSTEE_IS_DOMAIN = 3;
+  static const UINT TRUSTEE_IS_ALIAS = 4;
+  static const UINT TRUSTEE_IS_WELL_KNOWN_GROUP = 5;
+  static const UINT TRUSTEE_IS_DELETED = 6;
+  static const UINT TRUSTEE_IS_INVALID = 7;
+  static const UINT TRUSTEE_IS_COMPUTER = 8;
   typedef struct OBJECTS_AND_SID {
     DWORD ObjectsPresent;
     GUID ObjectTypeGuid;
@@ -45,21 +41,20 @@ ffi.cdef [[
     SID* pSid;
   } OBJECTS_AND_SID;
   typedef OBJECTS_AND_SID *POBJECTS_AND_SID; //Pointer
-  typedef enum SE_OBJECT_TYPE {
-    SE_UNKNOWN_OBJECT_TYPE = 0,
-    SE_FILE_OBJECT = 1,
-    SE_SERVICE = 2,
-    SE_PRINTER = 3,
-    SE_REGISTRY_KEY = 4,
-    SE_LMSHARE = 5,
-    SE_KERNEL_OBJECT = 6,
-    SE_WINDOW_OBJECT = 7,
-    SE_DS_OBJECT = 8,
-    SE_DS_OBJECT_ALL = 9,
-    SE_PROVIDER_DEFINED_OBJECT = 10,
-    SE_WMIGUID_OBJECT = 11,
-    SE_REGISTRY_WOW64_32KEY = 12,
-  } SE_OBJECT_TYPE;
+  typedef UINT SE_OBJECT_TYPE; //Alias
+  static const UINT SE_UNKNOWN_OBJECT_TYPE = 0;
+  static const UINT SE_FILE_OBJECT = 1;
+  static const UINT SE_SERVICE = 2;
+  static const UINT SE_PRINTER = 3;
+  static const UINT SE_REGISTRY_KEY = 4;
+  static const UINT SE_LMSHARE = 5;
+  static const UINT SE_KERNEL_OBJECT = 6;
+  static const UINT SE_WINDOW_OBJECT = 7;
+  static const UINT SE_DS_OBJECT = 8;
+  static const UINT SE_DS_OBJECT_ALL = 9;
+  static const UINT SE_PROVIDER_DEFINED_OBJECT = 10;
+  static const UINT SE_WMIGUID_OBJECT = 11;
+  static const UINT SE_REGISTRY_WOW64_32KEY = 12;
   typedef struct OBJECTS_AND_NAME {
     DWORD ObjectsPresent;
     SE_OBJECT_TYPE ObjectType;
@@ -95,13 +90,12 @@ ffi.cdef [[
   } TOKEN_SOURCE;
   typedef TOKEN_SOURCE *PTOKEN_SOURCE; //Pointer
   typedef DWORD WINAPI_SAFER_CRITERIA; //Alias
-  typedef enum URLZONE {
-    URLZONE_LOCAL_MACHINE = 0,
-    URLZONE_INTRANET = 1,
-    URLZONE_TRUSTED = 2,
-    URLZONE_INTERNET = 3,
-    URLZONE_UNTRUSTED = 4,
-  } URLZONE;
+  typedef DWORD URLZONE; //Alias
+  static const DWORD URLZONE_LOCAL_MACHINE = 0;
+  static const DWORD URLZONE_INTRANET = 1;
+  static const DWORD URLZONE_TRUSTED = 2;
+  static const DWORD URLZONE_INTERNET = 3;
+  static const DWORD URLZONE_UNTRUSTED = 4;
 # pragma pack( push, 8 )
   typedef struct SAFER_CODE_PROPERTIES {
     DWORD cbSize;
@@ -129,26 +123,25 @@ ffi.cdef [[
     GUID AuditCategoryGuid;
   } AUDIT_POLICY_INFORMATION;
   typedef AUDIT_POLICY_INFORMATION *PCAUDIT_POLICY_INFORMATION; //Pointer
-  typedef enum WINAPI_AceType {
-    ACCESS_ALLOWED = 0x0,
-    ACCESS_DENIED = 0x1,
-    SYSTEM_AUDIT = 0x2,
-    SYSTEM_ALARM = 0x3,
-    ACCESS_ALLOWED_COMPOUND = 0x4,
-    ACCESS_ALLOWED_OBJECT = 0x5,
-    ACCESS_DENIED_OBJECT = 0x6,
-    SYSTEM_AUDIT_OBJECT = 0x7,
-    SYSTEM_ALARM_OBJECT = 0x8,
-    ACCESS_ALLOWED_CALLBACK = 0x9,
-    ACCESS_DENIED_CALLBACK = 0xA,
-    ACCESS_ALLOWED_CALLBACK_OBJECT = 0xB,
-    ACCESS_DENIED_CALLBACK_OBJECT = 0xC,
-    SYSTEM_AUDIT_CALLBACK = 0xD,
-    SYSTEM_ALARM_CALLBACK = 0xE,
-    SYSTEM_AUDIT_CALLBACK_OBJECT = 0xF,
-    SYSTEM_ALARM_CALLBACK_OBJECT = 0x10,
-    SYSTEM_MANDATORY_LABEL = 0x11,
-  } WINAPI_AceType;
+  typedef BYTE WINAPI_AceType; //Alias
+  static const BYTE ACCESS_ALLOWED = 0x0;
+  static const BYTE ACCESS_DENIED = 0x1;
+  static const BYTE SYSTEM_AUDIT = 0x2;
+  static const BYTE SYSTEM_ALARM = 0x3;
+  static const BYTE ACCESS_ALLOWED_COMPOUND = 0x4;
+  static const BYTE ACCESS_ALLOWED_OBJECT = 0x5;
+  static const BYTE ACCESS_DENIED_OBJECT = 0x6;
+  static const BYTE SYSTEM_AUDIT_OBJECT = 0x7;
+  static const BYTE SYSTEM_ALARM_OBJECT = 0x8;
+  static const BYTE ACCESS_ALLOWED_CALLBACK = 0x9;
+  static const BYTE ACCESS_DENIED_CALLBACK = 0xA;
+  static const BYTE ACCESS_ALLOWED_CALLBACK_OBJECT = 0xB;
+  static const BYTE ACCESS_DENIED_CALLBACK_OBJECT = 0xC;
+  static const BYTE SYSTEM_AUDIT_CALLBACK = 0xD;
+  static const BYTE SYSTEM_ALARM_CALLBACK = 0xE;
+  static const BYTE SYSTEM_AUDIT_CALLBACK_OBJECT = 0xF;
+  static const BYTE SYSTEM_ALARM_CALLBACK_OBJECT = 0x10;
+  static const BYTE SYSTEM_MANDATORY_LABEL = 0x11;
   typedef BYTE WINAPI_AceFlags_BYTE; //Alias
   typedef struct ACE_HEADER {
     WINAPI_AceType AceType;
@@ -251,59 +244,58 @@ ffi.cdef [[
   typedef SecHandle *PCtxtHandle; //Pointer
   typedef WORD SECURITY_DESCRIPTOR_CONTROL; //Alias
   typedef SECURITY_DESCRIPTOR_CONTROL *PSECURITY_DESCRIPTOR_CONTROL; //Pointer
-  typedef enum TOKEN_TYPE {
-    TokenPrimary = 1,
-    TokenImpersonation = 2,
-  } TOKEN_TYPE;
-  typedef enum TOKEN_INFORMATION_CLASS {
-    TokenUser = 1,
-    TokenGroups = 2,
-    TokenPrivileges = 3,
-    TokenOwner = 4,
-    TokenPrimaryGroup = 5,
-    TokenDefaultDacl = 6,
-    TokenSource = 7,
-    TokenType = 8,
-    TokenImpersonationLevel = 9,
-    TokenStatistics = 10,
-    TokenRestrictedSids = 11,
-    TokenSessionId = 12,
-    TokenGroupsAndPrivileges = 13,
-    TokenSessionReference = 14,
-    TokenSandBoxInert = 15,
-    TokenAuditPolicy = 16,
-    TokenOrigin = 17,
-    TokenElevationType = 18,
-    TokenLinkedToken = 19,
-    TokenElevation = 20,
-    TokenHasRestrictions = 21,
-    TokenAccessInformation = 22,
-    TokenVirtualizationAllowed = 23,
-    TokenVirtualizationEnabled = 24,
-    TokenIntegrityLevel = 25,
-    TokenUIAccess = 26,
-    TokenMandatoryPolicy = 27,
-    TokenLogonSid = 28,
-    TokenIsAppContainer = 29,
-    TokenCapabilities = 30,
-    TokenAppContainerSid = 31,
-    TokenAppContainerNumber = 32,
-    TokenUserClaimAttributes = 33,
-    TokenDeviceClaimAttributes = 34,
-    TokenRestrictedUserClaimAttributes = 35,
-    TokenRestrictedDeviceClaimAttributes = 36,
-    TokenDeviceGroups = 37,
-    TokenRestrictedDeviceGroups = 38,
-    TokenSecurityAttributes = 39,
-    TokenIsRestricted = 40,
-  } TOKEN_INFORMATION_CLASS;
-  typedef enum SECURITY_IMPERSONATION_LEVEL {
-    SecurityAnonymous = 0,
-    SecurityIdentification = 1,
-    SecurityImpersonation = 2,
-    SecurityDelegation = 3,
-  } SECURITY_IMPERSONATION_LEVEL;
+  typedef UINT TOKEN_TYPE; //Alias
+  static const UINT TokenPrimary = 1;
+  static const UINT TokenImpersonation = 2;
+  typedef UINT TOKEN_INFORMATION_CLASS; //Alias
+  static const UINT TokenUser = 1;
+  static const UINT TokenGroups = 2;
+  static const UINT TokenPrivileges = 3;
+  static const UINT TokenOwner = 4;
+  static const UINT TokenPrimaryGroup = 5;
+  static const UINT TokenDefaultDacl = 6;
+  static const UINT TokenSource = 7;
+  static const UINT TokenType = 8;
+  static const UINT TokenImpersonationLevel = 9;
+  static const UINT TokenStatistics = 10;
+  static const UINT TokenRestrictedSids = 11;
+  static const UINT TokenSessionId = 12;
+  static const UINT TokenGroupsAndPrivileges = 13;
+  static const UINT TokenSessionReference = 14;
+  static const UINT TokenSandBoxInert = 15;
+  static const UINT TokenAuditPolicy = 16;
+  static const UINT TokenOrigin = 17;
+  static const UINT TokenElevationType = 18;
+  static const UINT TokenLinkedToken = 19;
+  static const UINT TokenElevation = 20;
+  static const UINT TokenHasRestrictions = 21;
+  static const UINT TokenAccessInformation = 22;
+  static const UINT TokenVirtualizationAllowed = 23;
+  static const UINT TokenVirtualizationEnabled = 24;
+  static const UINT TokenIntegrityLevel = 25;
+  static const UINT TokenUIAccess = 26;
+  static const UINT TokenMandatoryPolicy = 27;
+  static const UINT TokenLogonSid = 28;
+  static const UINT TokenIsAppContainer = 29;
+  static const UINT TokenCapabilities = 30;
+  static const UINT TokenAppContainerSid = 31;
+  static const UINT TokenAppContainerNumber = 32;
+  static const UINT TokenUserClaimAttributes = 33;
+  static const UINT TokenDeviceClaimAttributes = 34;
+  static const UINT TokenRestrictedUserClaimAttributes = 35;
+  static const UINT TokenRestrictedDeviceClaimAttributes = 36;
+  static const UINT TokenDeviceGroups = 37;
+  static const UINT TokenRestrictedDeviceGroups = 38;
+  static const UINT TokenSecurityAttributes = 39;
+  static const UINT TokenIsRestricted = 40;
+  typedef UINT SECURITY_IMPERSONATION_LEVEL; //Alias
+  static const UINT SecurityAnonymous = 0;
+  static const UINT SecurityIdentification = 1;
+  static const UINT SecurityImpersonation = 2;
+  static const UINT SecurityDelegation = 3;
   typedef int8_t SECURITY_CONTEXT_TRACKING_MODE; //Integer
+  static const int8_t SECURITY_DYNAMIC_TRACKING = 1;
+  static const int8_t SECURITY_STATIC_TRACKING = 0;
   typedef struct SECURITY_QUALITY_OF_SERVICE {
     DWORD Length;
     SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;
@@ -311,212 +303,202 @@ ffi.cdef [[
     BOOLEAN EffectiveOnly;
   } SECURITY_QUALITY_OF_SERVICE;
   typedef SECURITY_QUALITY_OF_SERVICE *PSECURITY_QUALITY_OF_SERVICE; //Pointer
-  typedef enum ACL_INFORMATION_CLASS {
-    AclRevisionInformation = 1,
-    AclSizeInformation = 2,
-  } ACL_INFORMATION_CLASS;
-  typedef enum SAFER_POLICY_INFO_CLASS {
-    SaferPolicyLevelList = 1,
-    SaferPolicyEnableTransparentEnforcement = 2,
-    SaferPolicyDefaultLevel = 3,
-    SaferPolicyEvaluateUserScope = 4,
-    SaferPolicyScopeFlags = 5,
-    SaferPolicyDefaultLevelFlags = 6,
-    SaferPolicyAuthenticodeEnabled = 7,
-  } SAFER_POLICY_INFO_CLASS;
-  typedef enum WELL_KNOWN_SID_TYPE {
-    WinNullSid = 0,
-    WinWorldSid = 1,
-    WinLocalSid = 2,
-    WinCreatorOwnerSid = 3,
-    WinCreatorGroupSid = 4,
-    WinCreatorOwnerServerSid = 5,
-    WinCreatorGroupServerSid = 6,
-    WinNtAuthoritySid = 7,
-    WinDialupSid = 8,
-    WinNetworkSid = 9,
-    WinBatchSid = 10,
-    WinInteractiveSid = 11,
-    WinServiceSid = 12,
-    WinAnonymousSid = 13,
-    WinProxySid = 14,
-    WinEnterpriseControllersSid = 15,
-    WinSelfSid = 16,
-    WinAuthenticatedUserSid = 17,
-    WinRestrictedCodeSid = 18,
-    WinTerminalServerSid = 19,
-    WinRemoteLogonIdSid = 20,
-    WinLogonIdsSid = 21,
-    WinLocalSystemSid = 22,
-    WinLocalServiceSid = 23,
-    WinNetworkServiceSid = 24,
-    WinBuiltinDomainSid = 25,
-    WinBuiltinAdministratorsSid = 26,
-    WinBuiltinUsersSid = 27,
-    WinBuiltinGuestsSid = 28,
-    WinBuiltinPowerUsersSid = 29,
-    WinBuiltinAccountOperatorsSid = 30,
-    WinBuiltinSystemOperatorsSid = 31,
-    WinBuiltinPrintOperatorsSid = 32,
-    WinBuiltinBackupOperatorsSid = 33,
-    WinBuiltinReplicatorSid = 34,
-    WinBuiltinPreWindows2000CompatibleAccessSid = 35,
-    WinBuiltinRemoteDesktopUsersSid = 36,
-    WinBuiltinNetworkConfigurationOperatorsSid = 37,
-    WinAccountAdministratorSid = 38,
-    WinAccountGuestSid = 39,
-    WinAccountKrbtgtSid = 40,
-    WinAccountDomainAdminsSid = 41,
-    WinAccountDomainUsersSid = 42,
-    WinAccountDomainGuestsSid = 43,
-    WinAccountComputersSid = 44,
-    WinAccountControllersSid = 45,
-    WinAccountCertAdminsSid = 46,
-    WinAccountSchemaAdminsSid = 47,
-    WinAccountEnterpriseAdminsSid = 48,
-    WinAccountPolicyAdminsSid = 49,
-    WinAccountRasAndIasServersSid = 50,
-    WinNTLMAuthenticationSid = 51,
-    WinDigestAuthenticationSid = 52,
-    WinSChannelAuthenticationSid = 53,
-    WinThisOrganizationSid = 54,
-    WinOtherOrganizationSid = 55,
-    WinBuiltinIncomingForestTrustBuildersSid = 56,
-    WinBuiltinPerfMonitoringUsersSid = 57,
-    WinBuiltinPerfLoggingUsersSid = 58,
-    WinBuiltinAuthorizationAccessSid = 59,
-    WinBuiltinTerminalServerLicenseServersSid = 60,
-    WinBuiltinDCOMUsersSid = 61,
-    WinBuiltinIUsersSid = 62,
-    WinIUserSid = 63,
-    WinBuiltinCryptoOperatorsSid = 64,
-    WinUntrustedLabelSid = 65,
-    WinLowLabelSid = 66,
-    WinMediumLabelSid = 67,
-    WinHighLabelSid = 68,
-    WinSystemLabelSid = 69,
-    WinWriteRestrictedCodeSid = 70,
-    WinCreatorOwnerRightsSid = 71,
-    WinCacheablePrincipalsGroupSid = 72,
-    WinNonCacheablePrincipalsGroupSid = 73,
-    WinEnterpriseReadonlyControllersSid = 74,
-    WinAccountReadonlyControllersSid = 75,
-    WinBuiltinEventLogReadersGroup = 76,
-    WinNewEnterpriseReadonlyControllersSid = 77,
-    WinBuiltinCertSvcDComAccessGroup = 78,
-    WinMediumPlusLabelSid = 79,
-    WinLocalLogonSid = 80,
-    WinConsoleLogonSid = 81,
-    WinThisOrganizationCertificateSid = 82,
-    WinApplicationPackageAuthoritySid = 83,
-    WinBuiltinAnyPackageSid = 84,
-    WinCapabilityInternetClientSid = 85,
-    WinCapabilityInternetClientServerSid = 86,
-    WinCapabilityPrivateNetworkClientServerSid = 87,
-    WinCapabilityPicturesLibrarySid = 88,
-    WinCapabilityVideosLibrarySid = 89,
-    WinCapabilityMusicLibrarySid = 90,
-    WinCapabilityDocumentsLibrarySid = 91,
-    WinCapabilitySharedUserCertificatesSid = 92,
-    WinCapabilityDefaultWindowsCredentialsSid = 93,
-    WinCapabilityRemovableStorageSid = 94,
-    WinBuiltinRDSRemoteAccessServersSid = 95,
-    WinBuiltinRDSEndpointServersSid = 96,
-    WinBuiltinRDSManagementServersSid = 97,
-    WinUserModeDriversSid = 98,
-    WinBuiltinHyperVAdminsSid = 99,
-  } WELL_KNOWN_SID_TYPE;
-  typedef enum SID_NAME_USE {
-    SidTypeUser = 1,
-    SidTypeGroup = 2,
-    SidTypeDomain = 3,
-    SidTypeAlias = 4,
-    SidTypeWellKnownGroup = 5,
-    SidTypeDeletedAccount = 6,
-    SidTypeInvalid = 7,
-    SidTypeUnknown = 8,
-    SidTypeComputer = 9,
-    SidTypeLabel = 10,
-  } SID_NAME_USE;
+  typedef UINT ACL_INFORMATION_CLASS; //Alias
+  static const UINT AclRevisionInformation = 1;
+  static const UINT AclSizeInformation = 2;
+  typedef UINT SAFER_POLICY_INFO_CLASS; //Alias
+  static const UINT SaferPolicyLevelList = 1;
+  static const UINT SaferPolicyEnableTransparentEnforcement = 2;
+  static const UINT SaferPolicyDefaultLevel = 3;
+  static const UINT SaferPolicyEvaluateUserScope = 4;
+  static const UINT SaferPolicyScopeFlags = 5;
+  static const UINT SaferPolicyDefaultLevelFlags = 6;
+  static const UINT SaferPolicyAuthenticodeEnabled = 7;
+  typedef UINT WELL_KNOWN_SID_TYPE; //Alias
+  static const UINT WinNullSid = 0;
+  static const UINT WinWorldSid = 1;
+  static const UINT WinLocalSid = 2;
+  static const UINT WinCreatorOwnerSid = 3;
+  static const UINT WinCreatorGroupSid = 4;
+  static const UINT WinCreatorOwnerServerSid = 5;
+  static const UINT WinCreatorGroupServerSid = 6;
+  static const UINT WinNtAuthoritySid = 7;
+  static const UINT WinDialupSid = 8;
+  static const UINT WinNetworkSid = 9;
+  static const UINT WinBatchSid = 10;
+  static const UINT WinInteractiveSid = 11;
+  static const UINT WinServiceSid = 12;
+  static const UINT WinAnonymousSid = 13;
+  static const UINT WinProxySid = 14;
+  static const UINT WinEnterpriseControllersSid = 15;
+  static const UINT WinSelfSid = 16;
+  static const UINT WinAuthenticatedUserSid = 17;
+  static const UINT WinRestrictedCodeSid = 18;
+  static const UINT WinTerminalServerSid = 19;
+  static const UINT WinRemoteLogonIdSid = 20;
+  static const UINT WinLogonIdsSid = 21;
+  static const UINT WinLocalSystemSid = 22;
+  static const UINT WinLocalServiceSid = 23;
+  static const UINT WinNetworkServiceSid = 24;
+  static const UINT WinBuiltinDomainSid = 25;
+  static const UINT WinBuiltinAdministratorsSid = 26;
+  static const UINT WinBuiltinUsersSid = 27;
+  static const UINT WinBuiltinGuestsSid = 28;
+  static const UINT WinBuiltinPowerUsersSid = 29;
+  static const UINT WinBuiltinAccountOperatorsSid = 30;
+  static const UINT WinBuiltinSystemOperatorsSid = 31;
+  static const UINT WinBuiltinPrintOperatorsSid = 32;
+  static const UINT WinBuiltinBackupOperatorsSid = 33;
+  static const UINT WinBuiltinReplicatorSid = 34;
+  static const UINT WinBuiltinPreWindows2000CompatibleAccessSid = 35;
+  static const UINT WinBuiltinRemoteDesktopUsersSid = 36;
+  static const UINT WinBuiltinNetworkConfigurationOperatorsSid = 37;
+  static const UINT WinAccountAdministratorSid = 38;
+  static const UINT WinAccountGuestSid = 39;
+  static const UINT WinAccountKrbtgtSid = 40;
+  static const UINT WinAccountDomainAdminsSid = 41;
+  static const UINT WinAccountDomainUsersSid = 42;
+  static const UINT WinAccountDomainGuestsSid = 43;
+  static const UINT WinAccountComputersSid = 44;
+  static const UINT WinAccountControllersSid = 45;
+  static const UINT WinAccountCertAdminsSid = 46;
+  static const UINT WinAccountSchemaAdminsSid = 47;
+  static const UINT WinAccountEnterpriseAdminsSid = 48;
+  static const UINT WinAccountPolicyAdminsSid = 49;
+  static const UINT WinAccountRasAndIasServersSid = 50;
+  static const UINT WinNTLMAuthenticationSid = 51;
+  static const UINT WinDigestAuthenticationSid = 52;
+  static const UINT WinSChannelAuthenticationSid = 53;
+  static const UINT WinThisOrganizationSid = 54;
+  static const UINT WinOtherOrganizationSid = 55;
+  static const UINT WinBuiltinIncomingForestTrustBuildersSid = 56;
+  static const UINT WinBuiltinPerfMonitoringUsersSid = 57;
+  static const UINT WinBuiltinPerfLoggingUsersSid = 58;
+  static const UINT WinBuiltinAuthorizationAccessSid = 59;
+  static const UINT WinBuiltinTerminalServerLicenseServersSid = 60;
+  static const UINT WinBuiltinDCOMUsersSid = 61;
+  static const UINT WinBuiltinIUsersSid = 62;
+  static const UINT WinIUserSid = 63;
+  static const UINT WinBuiltinCryptoOperatorsSid = 64;
+  static const UINT WinUntrustedLabelSid = 65;
+  static const UINT WinLowLabelSid = 66;
+  static const UINT WinMediumLabelSid = 67;
+  static const UINT WinHighLabelSid = 68;
+  static const UINT WinSystemLabelSid = 69;
+  static const UINT WinWriteRestrictedCodeSid = 70;
+  static const UINT WinCreatorOwnerRightsSid = 71;
+  static const UINT WinCacheablePrincipalsGroupSid = 72;
+  static const UINT WinNonCacheablePrincipalsGroupSid = 73;
+  static const UINT WinEnterpriseReadonlyControllersSid = 74;
+  static const UINT WinAccountReadonlyControllersSid = 75;
+  static const UINT WinBuiltinEventLogReadersGroup = 76;
+  static const UINT WinNewEnterpriseReadonlyControllersSid = 77;
+  static const UINT WinBuiltinCertSvcDComAccessGroup = 78;
+  static const UINT WinMediumPlusLabelSid = 79;
+  static const UINT WinLocalLogonSid = 80;
+  static const UINT WinConsoleLogonSid = 81;
+  static const UINT WinThisOrganizationCertificateSid = 82;
+  static const UINT WinApplicationPackageAuthoritySid = 83;
+  static const UINT WinBuiltinAnyPackageSid = 84;
+  static const UINT WinCapabilityInternetClientSid = 85;
+  static const UINT WinCapabilityInternetClientServerSid = 86;
+  static const UINT WinCapabilityPrivateNetworkClientServerSid = 87;
+  static const UINT WinCapabilityPicturesLibrarySid = 88;
+  static const UINT WinCapabilityVideosLibrarySid = 89;
+  static const UINT WinCapabilityMusicLibrarySid = 90;
+  static const UINT WinCapabilityDocumentsLibrarySid = 91;
+  static const UINT WinCapabilitySharedUserCertificatesSid = 92;
+  static const UINT WinCapabilityDefaultWindowsCredentialsSid = 93;
+  static const UINT WinCapabilityRemovableStorageSid = 94;
+  static const UINT WinBuiltinRDSRemoteAccessServersSid = 95;
+  static const UINT WinBuiltinRDSEndpointServersSid = 96;
+  static const UINT WinBuiltinRDSManagementServersSid = 97;
+  static const UINT WinUserModeDriversSid = 98;
+  static const UINT WinBuiltinHyperVAdminsSid = 99;
+  typedef UINT SID_NAME_USE; //Alias
+  static const UINT SidTypeUser = 1;
+  static const UINT SidTypeGroup = 2;
+  static const UINT SidTypeDomain = 3;
+  static const UINT SidTypeAlias = 4;
+  static const UINT SidTypeWellKnownGroup = 5;
+  static const UINT SidTypeDeletedAccount = 6;
+  static const UINT SidTypeInvalid = 7;
+  static const UINT SidTypeUnknown = 8;
+  static const UINT SidTypeComputer = 9;
+  static const UINT SidTypeLabel = 10;
   typedef SID_NAME_USE *PSID_NAME_USE; //Pointer
-  typedef enum SAFER_OBJECT_INFO_CLASS {
-    SaferObjectLevelId = 1,
-    SaferObjectScopeId = 2,
-    SaferObjectFriendlyName = 3,
-    SaferObjectDescription = 4,
-    SaferObjectBuiltin = 5,
-    SaferObjectDisallowed = 6,
-    SaferObjectDisableMaxPrivilege = 7,
-    SaferObjectInvertDeletedPrivileges = 8,
-    SaferObjectDeletedPrivileges = 9,
-    SaferObjectDefaultOwner = 10,
-    SaferObjectSidsToDisable = 11,
-    SaferObjectRestrictedSidsInverted = 12,
-    SaferObjectRestrictedSidsAdded = 13,
-    SaferObjectAllIdentificationGuids = 14,
-    SaferObjectSingleIdentification = 15,
-    SaferObjectExtendedError = 16,
-  } SAFER_OBJECT_INFO_CLASS;
-  typedef enum CRED_PROTECTION_TYPE {
-    CredUnprotected = 0,
-    CredUserProtection = 1,
-    CredTrustedProtection = 2,
-  } CRED_PROTECTION_TYPE;
-  typedef enum CRED_MARSHAL_TYPE {
-    CertCredential = 1,
-    UsernameTargetCredential = 2,
-    BinaryBlobCredential = 3,
-  } CRED_MARSHAL_TYPE;
+  typedef UINT SAFER_OBJECT_INFO_CLASS; //Alias
+  static const UINT SaferObjectLevelId = 1;
+  static const UINT SaferObjectScopeId = 2;
+  static const UINT SaferObjectFriendlyName = 3;
+  static const UINT SaferObjectDescription = 4;
+  static const UINT SaferObjectBuiltin = 5;
+  static const UINT SaferObjectDisallowed = 6;
+  static const UINT SaferObjectDisableMaxPrivilege = 7;
+  static const UINT SaferObjectInvertDeletedPrivileges = 8;
+  static const UINT SaferObjectDeletedPrivileges = 9;
+  static const UINT SaferObjectDefaultOwner = 10;
+  static const UINT SaferObjectSidsToDisable = 11;
+  static const UINT SaferObjectRestrictedSidsInverted = 12;
+  static const UINT SaferObjectRestrictedSidsAdded = 13;
+  static const UINT SaferObjectAllIdentificationGuids = 14;
+  static const UINT SaferObjectSingleIdentification = 15;
+  static const UINT SaferObjectExtendedError = 16;
+  typedef UINT CRED_PROTECTION_TYPE; //Alias
+  static const UINT CredUnprotected = 0;
+  static const UINT CredUserProtection = 1;
+  static const UINT CredTrustedProtection = 2;
+  typedef UINT CRED_MARSHAL_TYPE; //Alias
+  static const UINT CertCredential = 1;
+  static const UINT UsernameTargetCredential = 2;
+  static const UINT BinaryBlobCredential = 3;
   typedef CRED_MARSHAL_TYPE *PCRED_MARSHAL_TYPE; //Pointer
-  typedef enum AUDIT_EVENT_TYPE {
-    AuditEventObjectAccess = 0,
-    AuditEventDirectoryServiceAccess = 1,
-  } AUDIT_EVENT_TYPE;
-  typedef enum POLICY_AUDIT_EVENT_TYPE {
-    AuditCategorySystem = 0,
-    AuditCategoryLogon = 1,
-    AuditCategoryObjectAccess = 2,
-    AuditCategoryPrivilegeUse = 3,
-    AuditCategoryDetailedTracking = 4,
-    AuditCategoryPolicyChange = 5,
-    AuditCategoryAccountManagement = 6,
-    AuditCategoryDirectoryServiceAccess = 7,
-    AuditCategoryAccountLogon = 8,
-  } POLICY_AUDIT_EVENT_TYPE;
+  typedef UINT AUDIT_EVENT_TYPE; //Alias
+  static const UINT AuditEventObjectAccess = 0;
+  static const UINT AuditEventDirectoryServiceAccess = 1;
+  typedef UINT POLICY_AUDIT_EVENT_TYPE; //Alias
+  static const UINT AuditCategorySystem = 0;
+  static const UINT AuditCategoryLogon = 1;
+  static const UINT AuditCategoryObjectAccess = 2;
+  static const UINT AuditCategoryPrivilegeUse = 3;
+  static const UINT AuditCategoryDetailedTracking = 4;
+  static const UINT AuditCategoryPolicyChange = 5;
+  static const UINT AuditCategoryAccountManagement = 6;
+  static const UINT AuditCategoryDirectoryServiceAccess = 7;
+  static const UINT AuditCategoryAccountLogon = 8;
   typedef POLICY_AUDIT_EVENT_TYPE *PPOLICY_AUDIT_EVENT_TYPE; //Pointer
-  typedef enum SECURITY_STATUS {
-    SEC_E_OK = 0x00000000,
-    SEC_E_INSUFFICIENT_MEMORY = 0x80090300,
-    SEC_E_INVALID_HANDLE = 0x80090301,
-    SEC_E_UNSUPPORTED_FUNCTION = 0x80090302,
-    SEC_E_TARGET_UNKNOWN = 0x80090303,
-    SEC_E_INTERNAL_ERROR = 0x80090304,
-    SEC_E_SECPKG_NOT_FOUND = 0x80090305,
-    SEC_E_NOT_OWNER = 0x80090306,
-    SEC_E_CANNOT_INSTALL = 0x80090307,
-    SEC_E_INVALID_TOKEN = 0x80090308,
-    SEC_E_CANNOT_PACK = 0x80090309,
-    SEC_E_QOP_NOT_SUPPORTED = 0x8009030A,
-    SEC_E_NO_IMPERSONATION = 0x8009030B,
-    SEC_E_LOGON_DENIED = 0x8009030C,
-    SEC_E_UNKNOWN_CREDENTIALS = 0x8009030D,
-    SEC_E_NO_CREDENTIALS = 0x8009030E,
-    SEC_E_MESSAGE_ALTERED = 0x8009030F,
-    SEC_E_OUT_OF_SEQUENCE = 0x80090310,
-    SEC_E_NO_AUTHENTICATING_AUTHORITY = 0x80090311,
-    SEC_E_CONTEXT_EXPIRED = 0x80090317,
-    SEC_E_INCOMPLETE_MESSAGE = 0x80090318,
-    SEC_I_CONTINUE_NEEDED = 0x00090312,
-    SEC_I_COMPLETE_NEEDED = 0x00090313,
-    SEC_I_COMPLETE_AND_CONTINUE = 0x00090314,
-    SEC_I_LOCAL_LOGON = 0x00090315,
-    SEC_I_CONTEXT_EXPIRED = 0x00090317,
-    SEC_I_INCOMPLETE_CREDENTIALS = 0x00090320,
-    SEC_I_RENEGOTIATE = 0x00090321,
-    SEC_I_NO_LSA_CONTEXT = 0x00090323,
-    SEC_I_SIGNATURE_NEEDED = 0x0009035C,
-    SEC_I_NO_RENEGOTIATION = 0x00090360,
-  } SECURITY_STATUS;
+  typedef LONG SECURITY_STATUS; //Alias
+  static const LONG SEC_E_OK = 0x00000000;
+  static const LONG SEC_E_INSUFFICIENT_MEMORY = 0x80090300;
+  static const LONG SEC_E_INVALID_HANDLE = 0x80090301;
+  static const LONG SEC_E_UNSUPPORTED_FUNCTION = 0x80090302;
+  static const LONG SEC_E_TARGET_UNKNOWN = 0x80090303;
+  static const LONG SEC_E_INTERNAL_ERROR = 0x80090304;
+  static const LONG SEC_E_SECPKG_NOT_FOUND = 0x80090305;
+  static const LONG SEC_E_NOT_OWNER = 0x80090306;
+  static const LONG SEC_E_CANNOT_INSTALL = 0x80090307;
+  static const LONG SEC_E_INVALID_TOKEN = 0x80090308;
+  static const LONG SEC_E_CANNOT_PACK = 0x80090309;
+  static const LONG SEC_E_QOP_NOT_SUPPORTED = 0x8009030A;
+  static const LONG SEC_E_NO_IMPERSONATION = 0x8009030B;
+  static const LONG SEC_E_LOGON_DENIED = 0x8009030C;
+  static const LONG SEC_E_UNKNOWN_CREDENTIALS = 0x8009030D;
+  static const LONG SEC_E_NO_CREDENTIALS = 0x8009030E;
+  static const LONG SEC_E_MESSAGE_ALTERED = 0x8009030F;
+  static const LONG SEC_E_OUT_OF_SEQUENCE = 0x80090310;
+  static const LONG SEC_E_NO_AUTHENTICATING_AUTHORITY = 0x80090311;
+  static const LONG SEC_E_CONTEXT_EXPIRED = 0x80090317;
+  static const LONG SEC_E_INCOMPLETE_MESSAGE = 0x80090318;
+  static const LONG SEC_I_CONTINUE_NEEDED = 0x00090312;
+  static const LONG SEC_I_COMPLETE_NEEDED = 0x00090313;
+  static const LONG SEC_I_COMPLETE_AND_CONTINUE = 0x00090314;
+  static const LONG SEC_I_LOCAL_LOGON = 0x00090315;
+  static const LONG SEC_I_CONTEXT_EXPIRED = 0x00090317;
+  static const LONG SEC_I_INCOMPLETE_CREDENTIALS = 0x00090320;
+  static const LONG SEC_I_RENEGOTIATE = 0x00090321;
+  static const LONG SEC_I_NO_LSA_CONTEXT = 0x00090323;
+  static const LONG SEC_I_SIGNATURE_NEEDED = 0x0009035C;
+  static const LONG SEC_I_NO_RENEGOTIATION = 0x00090360;
   typedef struct OBJECT_TYPE_LIST {
     WORD Level;
     WORD Sbz;
@@ -528,7 +510,6 @@ ffi.cdef [[
     DWORD Attributes;
   } SID_AND_ATTRIBUTES;
   typedef SID_AND_ATTRIBUTES *PSID_AND_ATTRIBUTES; //Pointer
-  enum { ANYSIZE_ARRAY = 1 };
   typedef struct TOKEN_GROUPS {
     DWORD GroupCount;
     SID_AND_ATTRIBUTES Groups[ANYSIZE_ARRAY];

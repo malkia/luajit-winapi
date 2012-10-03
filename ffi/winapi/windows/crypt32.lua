@@ -2,6 +2,26 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/cryptography' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPCSTR WINAPI_CERT_STORE_PROVIDER; //Alias
+  static const LPCSTR CERT_STORE_PROV_MSG = 1;
+  static const LPCSTR CERT_STORE_PROV_MEMORY = 2;
+  static const LPCSTR CERT_STORE_PROV_FILE = 3;
+  static const LPCSTR CERT_STORE_PROV_REG = 4;
+  static const LPCSTR CERT_STORE_PROV_PKCS7 = 5;
+  static const LPCSTR CERT_STORE_PROV_SERIALIZED = 6;
+  static const LPCSTR CERT_STORE_PROV_FILENAME_A = 7;
+  static const LPCSTR CERT_STORE_PROV_FILENAME_W = 8;
+  static const LPCSTR CERT_STORE_PROV_SYSTEM_A = 9;
+  static const LPCSTR CERT_STORE_PROV_SYSTEM_W = 10;
+  static const LPCSTR CERT_STORE_PROV_COLLECTION = 11;
+  static const LPCSTR CERT_STORE_PROV_SYSTEM_REGISTRY_A = 12;
+  static const LPCSTR CERT_STORE_PROV_SYSTEM_REGISTRY_W = 13;
+  static const LPCSTR CERT_STORE_PROV_PHYSICAL = 14;
+  static const LPCSTR CERT_STORE_PROV_SMART_CARD_W = 15;
+  static const LPCSTR CERT_STORE_PROV_SMART_CARD = 15;
+  static const LPCSTR CERT_STORE_PROV_LDAP_W = 16;
+  static const LPCSTR CERT_STORE_PROV_LDAP = 16;
+  static const LPCSTR CERT_STORE_PROV_PKCS12 = 17;
   BOOL                                CryptInstallDefaultContext(                         HCRYPTPROV hCryptProv, DWORD dwDefaultType, WINAPI_void* pvDefaultPara, DWORD dwFlags, void* pvReserved, HCRYPTDEFAULTCONTEXT* phDefaultContext);
   BOOL                                CryptUninstallDefaultContext(                       HCRYPTDEFAULTCONTEXT hDefaultContext, DWORD dwFlags, void* pvReserved);
   BOOL                                CryptDecodeObject(                                  WINAPI_CertEncodingType dwCertEncodingType, LPCSTR lpszStructType, WINAPI_BYTE* pbEncoded, DWORD cbEncoded, WINAPI_CryptDecodeObjectFlags dwFlags, void* pvStructInfo, DWORD* pcbStructInfo);

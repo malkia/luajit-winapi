@@ -20,18 +20,16 @@ ffi.cdef [[
     DWORD Characteristics;
   } IMAGE_SECTION_HEADER;
   typedef IMAGE_SECTION_HEADER *PIMAGE_SECTION_HEADER; //Pointer
-  typedef enum EVENT_TYPE {
-    NotificationEvent = 0,
-    SynchronizationEvent = 1,
-  } EVENT_TYPE;
+  typedef UINT EVENT_TYPE; //Alias
+  static const UINT NotificationEvent = 0;
+  static const UINT SynchronizationEvent = 1;
   typedef DWORD WINAPI_FileShareMode; //Alias
   typedef DWORD WINAPI_MemoryType; //Alias
   typedef DWORD WINAPI_MemoryAllocationFlags; //Alias
   typedef DWORD WINAPI_MemoryProtection; //Alias
-  typedef enum WINAPI_AclRevision {
-    ACL_REVISION = 2,
-    ACL_REVISION_DS = 4,
-  } WINAPI_AclRevision;
+  typedef DWORD WINAPI_AclRevision; //Alias
+  static const DWORD ACL_REVISION = 2;
+  static const DWORD ACL_REVISION_DS = 4;
   typedef DWORD WINAPI_NtVerType; //Alias
   typedef DWORD WINAPI_TOKEN_ACCESS_MASK; //Alias
   typedef ULONG WINAPI_ObjectAttributes; //Alias
@@ -66,23 +64,21 @@ ffi.cdef [[
 # pragma pack( pop )
   typedef RTL_CRITICAL_SECTION *PRTL_CRITICAL_SECTION; //Pointer
   typedef ULONG WINAPI_NtProtectionFlags; //Alias
-  typedef enum WINAPI_ProcThreadAttribute {
-    PROC_THREAD_ATTRIBUTE_PARENT_PROCESS = 0x00020000,
-    PROC_THREAD_ATTRIBUTE_EXTENDED_FLAGS = 0x00060001,
-    PROC_THREAD_ATTRIBUTE_HANDLE_LIST = 0x00020002,
-    PROC_THREAD_ATTRIBUTE_IDEAL_PROCESSOR = 0x00030005,
-    PROC_THREAD_ATTRIBUTE_MITIGATION_POLICY = 0x00020007,
-    PROC_THREAD_ATTRIBUTE_PREFERRED_NODE = 0x00020004,
-    PROC_THREAD_ATTRIBUTE_UMS_THREAD = 0x00030006,
-    PROC_THREAD_ATTRIBUTE_GROUP_AFFINITY = 0x00030003,
-  } WINAPI_ProcThreadAttribute;
+  typedef DWORD_PTR WINAPI_ProcThreadAttribute; //Alias
+  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_PARENT_PROCESS = 0x00020000;
+  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_EXTENDED_FLAGS = 0x00060001;
+  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_HANDLE_LIST = 0x00020002;
+  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_IDEAL_PROCESSOR = 0x00030005;
+  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_MITIGATION_POLICY = 0x00020007;
+  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_PREFERRED_NODE = 0x00020004;
+  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_UMS_THREAD = 0x00030006;
+  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_GROUP_AFFINITY = 0x00030003;
   typedef DWORD WINAPI_ProcThreadAttributeFlags; //Alias
   typedef struct PROC_THREAD_ATTRIBUTE_ENTRY {
     WINAPI_ProcThreadAttribute Attribute;
     SIZE_T cbSize;
     PVOID lpValue;
   } PROC_THREAD_ATTRIBUTE_ENTRY;
-  enum { ANYSIZE_ARRAY = 1 };
   typedef struct PROC_THREAD_ATTRIBUTE_LIST {
     WINAPI_ProcThreadAttributeFlags dwFlags;
     ULONG Size;

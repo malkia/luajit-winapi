@@ -4,6 +4,341 @@ require( 'ffi/winapi/headers/gdi' )
 require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef UINT RESTRICTIONS; //Alias
+  typedef LPVOID LPSHELLSTATE; //Alias
+  typedef LPVOID LPSHELLFLAGSTATE; //Alias
+  typedef void* IShellFolder; //Interface
+  typedef void* IContextMenu; //Interface
+  typedef void* IDataObject; //Interface
+  typedef void* IEnumAssocHandlers; //Interface
+  typedef void* IShellItem; //Interface
+  typedef void* IFileOperation; //Interface
+  typedef void* IShellView; //Interface
+  typedef void* IShellItemArray; //Interface
+  typedef void* IShellBrowser; //Interface
+  typedef void* IFileOperationProgressSink; //Interface
+  typedef void* IShellTaskScheduler; //Interface
+  typedef void* IDropSource; //Interface
+  typedef void* IContextMenuCB; //Interface
+  typedef void* IShellFolderViewCB; //Interface
+  typedef LPVOID FARPROC16; //Alias
+  typedef LPVOID LPFNDFMCALLBACK; //Alias
+  typedef HANDLE HDROP; //Alias
+  typedef HANDLE HPSXA; //Alias
+  typedef LPVOID LPFNADDPROPSHEETPAGE; //Alias
+  typedef LPVOID LPFNVIEWCALLBACK; //Alias
+  typedef LPVOID PFNASYNCICONTASKBALLBACK; //Alias
+  typedef PROPVARIANT *PROPVARIANT[]; //Pointer
+  enum { NUM_POINTS = 3 };
+  typedef struct AUTO_SCROLL_DATA {
+    int iNextSample;
+    DWORD dwLastScroll;
+    BOOL bFull;
+    POINT pts[NUM_POINTS];
+    DWORD dwTimes[NUM_POINTS];
+  } AUTO_SCROLL_DATA;
+  typedef UINT WINAPI_BROWSEINFO_FLAG; //Alias
+# pragma pack( push, 8 )
+  typedef struct BROWSEINFO {
+    HWND hwndOwner;
+    PCIDLIST_ABSOLUTE pidlRoot;
+    LPTSTR pszDisplayName;
+    LPCTSTR lpszTitle;
+    WINAPI_BROWSEINFO_FLAG ulFlags;
+    BFFCALLBACK lpfn;
+    LPARAM lParam;
+    int iImage;
+  } BROWSEINFO;
+# pragma pack( pop )
+  typedef BROWSEINFO *LPBROWSEINFO; //Pointer
+  typedef union WINAPI_NOTIFYICONDATA_u {
+    UINT uTimeout;
+    UINT uVersion;
+  } WINAPI_NOTIFYICONDATA_u;
+  typedef UINT WINAPI_NOTIFYICON_FLAG; //Alias
+  typedef DWORD WINAPI_NOTIFYICON_STATE; //Alias
+  typedef DWORD WINAPI_NOTIFYICON_INFO_FLAG; //Alias
+  typedef struct NOTIFYICONDATA {
+    DWORD cbSize;
+    HWND hWnd;
+    UINT uID;
+    WINAPI_NOTIFYICON_FLAG uFlags;
+    UINT uCallbackMessage;
+    HICON hIcon;
+    TCHAR szTip[128];
+    WINAPI_NOTIFYICON_STATE dwState;
+    WINAPI_NOTIFYICON_STATE dwStateMask;
+    TCHAR szInfo[256];
+    WINAPI_NOTIFYICONDATA_u ;
+    TCHAR szInfoTitle[64];
+    WINAPI_NOTIFYICON_INFO_FLAG dwInfoFlags;
+    GUID guidItem;
+    HICON hBalloonIcon;
+  } NOTIFYICONDATA;
+  typedef NOTIFYICONDATA *PNOTIFYICONDATA; //Pointer
+  typedef struct SHFILEINFO {
+    HICON hIcon;
+    int iIcon;
+    SFGAOF dwAttributes;
+    TCHAR szDisplayName[MAX_PATH];
+    TCHAR szTypeName[80];
+  } SHFILEINFO;
+  typedef DWORD WINAPI_SHFOLDERCUSTOMSETTINGS_MASK; //Alias
+# pragma pack( push, 8 )
+  typedef struct SHFOLDERCUSTOMSETTINGS {
+    DWORD dwSize;
+    WINAPI_SHFOLDERCUSTOMSETTINGS_MASK dwMask;
+    SHELLVIEWID* pvid;
+    LPWSTR pszWebViewTemplate;
+    DWORD cchWebViewTemplate;
+    LPWSTR pszWebViewTemplateVersion;
+    LPWSTR pszInfoTip;
+    DWORD cchInfoTip;
+    CLSID* pclsid;
+    DWORD dwFlags;
+    LPWSTR pszIconFile;
+    DWORD cchIconFile;
+    int iIconIndex;
+    LPWSTR pszLogo;
+    DWORD cchLogo;
+  } SHFOLDERCUSTOMSETTINGS;
+# pragma pack( pop )
+  typedef SHFOLDERCUSTOMSETTINGS *LPSHFOLDERCUSTOMSETTINGS; //Pointer
+  typedef struct SHSTOCKICONINFO {
+    DWORD cbSize;
+    HICON hIcon;
+    int iSysImageIndex;
+    int iIcon;
+    WCHAR szPath[MAX_PATH];
+  } SHSTOCKICONINFO;
+  typedef UINT OPEN_AS_INFO_FLAGS; //Alias
+# pragma pack( push, 8 )
+  typedef struct OPENASINFO {
+    LPCWSTR pcszFile;
+    LPCWSTR pcszClass;
+    OPEN_AS_INFO_FLAGS oaifInFlags;
+  } OPENASINFO;
+# pragma pack( pop )
+  typedef UINT ASSOCCLASS; //Alias
+  static const UINT ASSOCCLASS_SHELL_KEY = 0;
+  static const UINT ASSOCCLASS_PROGID_KEY = 1;
+  static const UINT ASSOCCLASS_PROGID_STR = 2;
+  static const UINT ASSOCCLASS_CLSID_KEY = 3;
+  static const UINT ASSOCCLASS_CLSID_STR = 4;
+  static const UINT ASSOCCLASS_APP_KEY = 5;
+  static const UINT ASSOCCLASS_APP_STR = 6;
+  static const UINT ASSOCCLASS_SYSTEM_STR = 7;
+  static const UINT ASSOCCLASS_FOLDER = 8;
+  static const UINT ASSOCCLASS_STAR = 9;
+  typedef struct ASSOCIATIONELEMENT {
+    ASSOCCLASS ac;
+    HKEY hkClass;
+    PCWSTR pszClass;
+  } ASSOCIATIONELEMENT;
+# pragma pack( push, 1 )
+  typedef struct SHChangeNotifyEntry {
+    PCIDLIST_ABSOLUTE pidl;
+    BOOL fRecursive;
+  } SHChangeNotifyEntry;
+# pragma pack( pop )
+  typedef struct APPBARDATA {
+    DWORD cbSize;
+    HWND hWnd;
+    UINT uCallbackMessage;
+    UINT uEdge;
+    RECT rc;
+    LPARAM lParam;
+  } APPBARDATA;
+  typedef APPBARDATA *PAPPBARDATA; //Pointer
+  typedef struct DEFCONTEXTMENU {
+    HWND hwnd;
+    IContextMenuCB* pcmcb;
+    PCIDLIST_ABSOLUTE pidlFolder;
+    IShellFolder* psf;
+    UINT cidl;
+    PCUITEMID_CHILD_ARRAY apidl;
+    IUnknown* punkAssociationInfo;
+    UINT cKeys;
+    WINAPI_HKEY* aKeys;
+  } DEFCONTEXTMENU;
+  typedef struct SHCREATEPROCESSINFOW {
+    DWORD cbSize;
+    ULONG fMask;
+    HWND hwnd;
+    LPCWSTR pszFile;
+    LPCWSTR pszParameters;
+    LPCWSTR pszCurrentDirectory;
+    HANDLE hUserToken;
+    LPSECURITY_ATTRIBUTES lpProcessAttributes;
+    LPSECURITY_ATTRIBUTES lpThreadAttributes;
+    BOOL bInheritHandles;
+    DWORD dwCreationFlags;
+    LPSTARTUPINFOW lpStartupInfo;
+    LPPROCESS_INFORMATION lpProcessInformation;
+  } SHCREATEPROCESSINFOW;
+  typedef SHCREATEPROCESSINFOW *PSHCREATEPROCESSINFOW; //Pointer
+  typedef struct CSFV {
+    UINT cbSize;
+    IShellFolder* pshf;
+    IShellView* psvOuter;
+    PCIDLIST_ABSOLUTE pidl;
+    LONG lEvents;
+    LPFNVIEWCALLBACK pfnCallback;
+    FOLDERVIEWMODE fvm;
+  } CSFV;
+  typedef CSFV *LPCSFV; //Pointer
+  typedef struct SFV_CREATE {
+    UINT cbSize;
+    IShellFolder* pshf;
+    IShellView* psvOuter;
+    IShellFolderViewCB* psfvcb;
+  } SFV_CREATE;
+  typedef struct NOTIFYICONIDENTIFIER {
+    DWORD cbSize;
+    HWND hWnd;
+    UINT uID;
+    GUID guidItem;
+  } NOTIFYICONIDENTIFIER;
+  typedef struct SHFILEOPSTRUCT {
+    HWND hwnd;
+    UINT wFunc;
+    LPCTSTR pFrom;
+    LPCTSTR pTo;
+    FILEOP_FLAGS fFlags;
+    BOOL fAnyOperationsAborted;
+    LPVOID hNameMappings;
+    LPCTSTR lpszProgressTitle;
+  } SHFILEOPSTRUCT;
+  typedef SHFILEOPSTRUCT *LPSHFILEOPSTRUCT; //Pointer
+  typedef struct SHQUERYRBINFO {
+    DWORD cbSize;
+    DWORDLONG i64Size;
+    DWORDLONG i64NumItems;
+  } SHQUERYRBINFO;
+  typedef SHQUERYRBINFO *LPSHQUERYRBINFO; //Pointer
+  typedef int WINAPI_SHGetDataFromIDListFormats; //Alias
+  static const int SHGDFIL_FINDDATA = 1;
+  static const int SHGDFIL_NETRESOURCE = 2;
+  static const int SHGDFIL_DESCRIPTIONID = 3;
+  typedef DWORD KNOWN_FOLDER_FLAG; //Alias
+  typedef DWORD WINAPI_SHGetFolderPathFlags; //Alias
+  static const DWORD SHGFP_TYPE_CURRENT = 0;
+  static const DWORD SHGFP_TYPE_DEFAULT = 1;
+  typedef ULONG WINAPI_ShellChangeNotifyEvent; //Alias
+  typedef UINT WINAPI_ShellChangeNotifyFlag; //Alias
+  typedef UINT ASSOC_FILTER; //Alias
+  static const UINT ASSOC_FILTER_NONE = 0;
+  static const UINT ASSOC_FILTER_RECOMMENDED = 0x1;
+  typedef UINT SCNRT_STATUS; //Alias
+  static const UINT SCNRT_ENABLE = 0;
+  static const UINT SCNRT_DISABLE = 1;
+  typedef DWORD DATAOBJ_GET_ITEM_FLAGS; //Alias
+  typedef UINT GPFIDL_FLAGS; //Alias
+  typedef UINT SHSTOCKICONID; //Alias
+  static const UINT SIID_DOCNOASSOC = 0;
+  static const UINT SIID_DOCASSOC = 1;
+  static const UINT SIID_APPLICATION = 2;
+  static const UINT SIID_FOLDER = 3;
+  static const UINT SIID_FOLDEROPEN = 4;
+  static const UINT SIID_DRIVE525 = 5;
+  static const UINT SIID_DRIVE35 = 6;
+  static const UINT SIID_DRIVEREMOVE = 7;
+  static const UINT SIID_DRIVEFIXED = 8;
+  static const UINT SIID_DRIVENET = 9;
+  static const UINT SIID_DRIVENETDISABLED = 10;
+  static const UINT SIID_DRIVECD = 11;
+  static const UINT SIID_DRIVERAM = 12;
+  static const UINT SIID_WORLD = 13;
+  static const UINT SIID_SERVER = 15;
+  static const UINT SIID_PRINTER = 16;
+  static const UINT SIID_MYNETWORK = 17;
+  static const UINT SIID_FIND = 22;
+  static const UINT SIID_HELP = 23;
+  static const UINT SIID_SHARE = 28;
+  static const UINT SIID_LINK = 29;
+  static const UINT SIID_SLOWFILE = 30;
+  static const UINT SIID_RECYCLER = 31;
+  static const UINT SIID_RECYCLERFULL = 32;
+  static const UINT SIID_MEDIACDAUDIO = 40;
+  static const UINT SIID_LOCK = 47;
+  static const UINT SIID_AUTOLIST = 49;
+  static const UINT SIID_PRINTERNET = 50;
+  static const UINT SIID_SERVERSHARE = 51;
+  static const UINT SIID_PRINTERFAX = 52;
+  static const UINT SIID_PRINTERFAXNET = 53;
+  static const UINT SIID_PRINTERFILE = 54;
+  static const UINT SIID_STACK = 55;
+  static const UINT SIID_MEDIASVCD = 56;
+  static const UINT SIID_STUFFEDFOLDER = 57;
+  static const UINT SIID_DRIVEUNKNOWN = 58;
+  static const UINT SIID_DRIVEDVD = 59;
+  static const UINT SIID_MEDIADVD = 60;
+  static const UINT SIID_MEDIADVDRAM = 61;
+  static const UINT SIID_MEDIADVDRW = 62;
+  static const UINT SIID_MEDIADVDR = 63;
+  static const UINT SIID_MEDIADVDROM = 64;
+  static const UINT SIID_MEDIACDAUDIOPLUS = 65;
+  static const UINT SIID_MEDIACDRW = 66;
+  static const UINT SIID_MEDIACDR = 67;
+  static const UINT SIID_MEDIACDBURN = 68;
+  static const UINT SIID_MEDIABLANKCD = 69;
+  static const UINT SIID_MEDIACDROM = 70;
+  static const UINT SIID_AUDIOFILES = 71;
+  static const UINT SIID_IMAGEFILES = 72;
+  static const UINT SIID_VIDEOFILES = 73;
+  static const UINT SIID_MIXEDFILES = 74;
+  static const UINT SIID_FOLDERBACK = 75;
+  static const UINT SIID_FOLDERFRONT = 76;
+  static const UINT SIID_SHIELD = 77;
+  static const UINT SIID_WARNING = 78;
+  static const UINT SIID_INFO = 79;
+  static const UINT SIID_ERROR = 80;
+  static const UINT SIID_KEY = 81;
+  static const UINT SIID_SOFTWARE = 82;
+  static const UINT SIID_RENAME = 83;
+  static const UINT SIID_DELETE = 84;
+  static const UINT SIID_MEDIAAUDIODVD = 85;
+  static const UINT SIID_MEDIAMOVIEDVD = 86;
+  static const UINT SIID_MEDIAENHANCEDCD = 87;
+  static const UINT SIID_MEDIAENHANCEDDVD = 88;
+  static const UINT SIID_MEDIAHDDVD = 89;
+  static const UINT SIID_MEDIABLURAY = 90;
+  static const UINT SIID_MEDIAVCD = 91;
+  static const UINT SIID_MEDIADVDPLUSR = 92;
+  static const UINT SIID_MEDIADVDPLUSRW = 93;
+  static const UINT SIID_DESKTOPPC = 94;
+  static const UINT SIID_MOBILEPC = 95;
+  static const UINT SIID_USERS = 96;
+  static const UINT SIID_MEDIASMARTMEDIA = 97;
+  static const UINT SIID_MEDIACOMPACTFLASH = 98;
+  static const UINT SIID_DEVICECELLPHONE = 99;
+  static const UINT SIID_DEVICECAMERA = 100;
+  static const UINT SIID_DEVICEVIDEOCAMERA = 101;
+  static const UINT SIID_DEVICEAUDIOPLAYER = 102;
+  static const UINT SIID_NETWORKCONNECT = 103;
+  static const UINT SIID_INTERNET = 104;
+  static const UINT SIID_ZIPFILE = 105;
+  static const UINT SIID_SETTINGS = 106;
+  static const UINT SIID_MAX_ICONS = 107;
+  typedef UINT QUERY_USER_NOTIFICATION_STATE; //Alias
+  static const UINT QUNS_NOT_PRESENT = 1;
+  static const UINT QUNS_BUSY = 2;
+  static const UINT QUNS_RUNNING_D3D_FULL_SCREEN = 3;
+  static const UINT QUNS_PRESENTATION_MODE = 4;
+  static const UINT QUNS_ACCEPTS_NOTIFICATIONS = 5;
+  typedef UINT LIBRARYMANAGEDIALOGOPTIONS; //Alias
+  static const UINT LMD_DEFAULT = 0x00000000;
+  static const UINT LMD_ALLOWUNINDEXABLENETWORKLOCATIONS = 0x00000001;
+  typedef UINT WINAPI_RunFileDlgFlags; //Alias
+  typedef DWORD WINAPI_NUMBERFMT_FLAGS; //Alias
+  typedef DWORD WINAPI_SGUPP_FLAGS; //Alias
+  typedef DWORD WINAPI_SECL_FLAGS; //Alias
+  typedef struct CLASSPIDL {
+    HWND hwnd;
+    HANDLE hData;
+    HICON hPrinterIcon;
+  } CLASSPIDL;
+  typedef DWORD WINAPI_SSF_FLAGS; //Alias
   HICON             DuplicateIcon(                               HINSTANCE hInst, HICON hIcon);
   HICON             ExtractAssociatedIcon(                       HINSTANCE hInst, LPTSTR lpIconPath, LPWORD lpiIcon);
   HICON             ExtractIcon(                                 HINSTANCE hInst, LPCTSTR lpszExeFileName, UINT nIconIndex);

@@ -10,6 +10,373 @@ require( 'ffi/winapi/headers/processes' )
 require( 'ffi/winapi/headers/shell' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  enum { HW_PROFILE_GUIDLEN = 39 };
+  enum { MAX_PROFILE_LEN = 80 };
+  enum { WCT_OBJNAME_LENGTH = 128 };
+  typedef WINAPI_ERROR_CODE WINAPI_REG_ERROR; //Alias
+  typedef struct HW_PROFILE_INFO {
+    DWORD dwDockInfo;
+    TCHAR szHwProfileGuid[HW_PROFILE_GUIDLEN];
+    TCHAR szHwProfileName[MAX_PROFILE_LEN];
+  } HW_PROFILE_INFO;
+  typedef HW_PROFILE_INFO *LPHW_PROFILE_INFO; //Pointer
+  typedef UINT WCT_OBJECT_TYPE; //Alias
+  static const UINT WctCriticalSectionType = 1;
+  static const UINT WctSendMessageType = 2;
+  static const UINT WctMutexType = 3;
+  static const UINT WctAlpcType = 4;
+  static const UINT WctComType = 5;
+  static const UINT WctThreadWaitType = 6;
+  static const UINT WctProcessWaitType = 7;
+  static const UINT WctThreadType = 8;
+  static const UINT WctComActivationType = 9;
+  static const UINT WctUnknownType = 10;
+  static const UINT WctSocketIoType = 11;
+  static const UINT WctSmbIoType = 12;
+  typedef UINT WCT_OBJECT_STATUS; //Alias
+  static const UINT WctStatusNoAccess = 1;
+  static const UINT WctStatusRunning = 2;
+  static const UINT WctStatusBlocked = 3;
+  static const UINT WctStatusPidOnly = 4;
+  static const UINT WctStatusPidOnlyRpcss = 5;
+  static const UINT WctStatusOwned = 6;
+  static const UINT WctStatusNotOwned = 7;
+  static const UINT WctStatusAbandoned = 8;
+  static const UINT WctStatusUnknown = 9;
+  static const UINT WctStatusError = 10;
+  typedef struct WINAPI_WAITCHAIN_NODE_INFO_u_s1 {
+    WCHAR ObjectName[WCT_OBJNAME_LENGTH];
+    LARGE_INTEGER Timeout;
+    BOOL Alertable;
+  } WINAPI_WAITCHAIN_NODE_INFO_u_s1;
+  typedef struct WINAPI_WAITCHAIN_NODE_INFO_u_s2 {
+    DWORD ProcessId;
+    DWORD ThreadId;
+    DWORD WaitTime;
+    DWORD ContextSwitches;
+  } WINAPI_WAITCHAIN_NODE_INFO_u_s2;
+  typedef union WINAPI_WAITCHAIN_NODE_INFO_u {
+    WINAPI_WAITCHAIN_NODE_INFO_u_s1 LockObject;
+    WINAPI_WAITCHAIN_NODE_INFO_u_s2 ThreadObject;
+  } WINAPI_WAITCHAIN_NODE_INFO_u;
+  typedef struct WAITCHAIN_NODE_INFO {
+    WCT_OBJECT_TYPE ObjectType;
+    WCT_OBJECT_STATUS ObjectStatus;
+    WINAPI_WAITCHAIN_NODE_INFO_u ObjectStatus;
+  } WAITCHAIN_NODE_INFO;
+  typedef WAITCHAIN_NODE_INFO *PWAITCHAIN_NODE_INFO; //Pointer
+  typedef UINT SC_ENUM_TYPE; //Alias
+  static const UINT SC_ENUM_PROCESS_INFO = 0;
+  typedef UINT TRACE_INFO_CLASS; //Alias
+  static const UINT TraceGuidQueryList = 0;
+  static const UINT TraceGuidQueryInfo = 1;
+  static const UINT TraceGuidQueryProcess = 2;
+  static const UINT TraceStackTracingInfo = 3;
+  static const UINT TraceSystemTraceEnableFlagsInfo = 4;
+  static const UINT TraceSampledProfileIntervalInfo = 5;
+  static const UINT TraceProfileSourceConfigInfo = 6;
+  static const UINT TraceProfileSourceListInfo = 7;
+  static const UINT TracePmcEventListInfo = 8;
+  static const UINT TracePmcCounterListInfo = 9;
+  typedef TRACE_INFO_CLASS TRACE_QUERY_INFO_CLASS; //Alias
+  typedef UINT PROG_INVOKE_SETTING; //Alias
+  static const UINT ProgressInvokeNever = 1;
+  static const UINT ProgressInvokeEveryObject = 2;
+  static const UINT ProgressInvokeOnError = 3;
+  static const UINT ProgressCancelOperation = 4;
+  static const UINT ProgressRetryOperation = 5;
+  static const UINT ProgressInvokePrePostError = 6;
+  typedef UINT TRUSTED_INFORMATION_CLASS; //Alias
+  static const UINT TrustedDomainNameInformation = 1;
+  static const UINT TrustedControllersInformation = 2;
+  static const UINT TrustedPosixOffsetInformation = 3;
+  static const UINT TrustedPasswordInformation = 4;
+  static const UINT TrustedDomainInformationBasic = 5;
+  static const UINT TrustedDomainInformationEx = 6;
+  static const UINT TrustedDomainAuthInformation = 7;
+  static const UINT TrustedDomainFullInformation = 8;
+  static const UINT TrustedDomainAuthInformationInternal = 9;
+  static const UINT TrustedDomainFullInformationInternal = 10;
+  static const UINT TrustedDomainInformationEx2Internal = 11;
+  static const UINT TrustedDomainFullInformation2Internal = 12;
+  static const UINT TrustedDomainSupportedEncryptionTypes = 13;
+  typedef DWORD WINAPI_SDRevision; //Alias
+  static const DWORD SECURITY_DESCRIPTOR_REVISION = 1;
+  typedef DWORD WINAPI_SDDL_Revision; //Alias
+  typedef ULONG WINAPI_SEF_Flags; //Alias
+  typedef DWORD WINAPI_SaferScopeId; //Alias
+  static const DWORD SAFER_SCOPEID_MACHINE = 1;
+  static const DWORD SAFER_SCOPEID_USER = 2;
+  typedef DWORD WINAPI_MandatoryPolicyFlags; //Alias
+  typedef DWORD WINAPI_LogonFlags; //Alias
+  typedef DWORD WINAPI_LogonType; //Alias
+  static const DWORD LOGON32_LOGON_INTERACTIVE = 2;
+  static const DWORD LOGON32_LOGON_NETWORK = 3;
+  static const DWORD LOGON32_LOGON_BATCH = 4;
+  static const DWORD LOGON32_LOGON_SERVICE = 5;
+  static const DWORD LOGON32_LOGON_UNLOCK = 7;
+  static const DWORD LOGON32_LOGON_NETWORK_CLEARTEXT = 8;
+  static const DWORD LOGON32_LOGON_NEW_CREDENTIALS = 9;
+  typedef DWORD WINAPI_LogonProvider; //Alias
+  static const DWORD LOGON32_PROVIDER_DEFAULT = 0;
+  static const DWORD LOGON32_PROVIDER_WINNT35 = 1;
+  static const DWORD LOGON32_PROVIDER_WINNT40 = 2;
+  static const DWORD LOGON32_PROVIDER_WINNT50 = 3;
+  typedef DWORD WINAPI_TreeSecAction; //Alias
+  typedef DWORD WINAPI_CredGetTargetInfoFlags; //Alias
+  typedef DWORD WINAPI_CredType; //Alias
+  static const DWORD CRED_TYPE_GENERIC = 1;
+  static const DWORD CRED_TYPE_DOMAIN_PASSWORD = 2;
+  static const DWORD CRED_TYPE_DOMAIN_CERTIFICATE = 3;
+  static const DWORD CRED_TYPE_DOMAIN_VISIBLE_PASSWORD = 4;
+  static const DWORD CRED_TYPE_GENERIC_CERTIFICATE = 5;
+  typedef DWORD WINAPI_CredEnumerateFlags; //Alias
+  typedef DWORD WINAPI_CreateRestrictedTokenFlags; //Alias
+  typedef UINT POLICY_INFORMATION_CLASS; //Alias
+  static const UINT PolicyAuditLogInformation = 1;
+  static const UINT PolicyAuditEventsInformation = 2;
+  static const UINT PolicyPrimaryDomainInformation = 3;
+  static const UINT PolicyPdAccountInformation = 4;
+  static const UINT PolicyAccountDomainInformation = 5;
+  static const UINT PolicyLsaServerRoleInformation = 6;
+  static const UINT PolicyReplicaSourceInformation = 7;
+  static const UINT PolicyDefaultQuotaInformation = 8;
+  static const UINT PolicyModificationInformation = 9;
+  static const UINT PolicyAuditFullSetInformation = 11;
+  static const UINT PolicyAuditFullQueryInformation = 11;
+  static const UINT PolicyDnsDomainInformation = 12;
+  static const UINT PolicyDnsDomainInformationInt = 13;
+  static const UINT PolicyLocalAccountDomainInformation = 14;
+  typedef UINT POLICY_DOMAIN_INFORMATION_CLASS; //Alias
+  static const UINT PolicyDomainQualityOfServiceInformation = 1;
+  static const UINT PolicyDomainEfsInformation = 2;
+  static const UINT PolicyDomainKerberosTicketInformation = 3;
+  typedef struct EFS_HASH_BLOB {
+    DWORD cbData;
+    PBYTE pbData;
+  } EFS_HASH_BLOB;
+  typedef EFS_HASH_BLOB *PEFS_HASH_BLOB; //Pointer
+  typedef struct ENCRYPTION_CERTIFICATE_HASH {
+    DWORD cbTotalLength;
+    SID* pUserSid;
+    PEFS_HASH_BLOB pHash;
+    LPWSTR lpDisplayInformation;
+  } ENCRYPTION_CERTIFICATE_HASH;
+  typedef ENCRYPTION_CERTIFICATE_HASH *PENCRYPTION_CERTIFICATE_HASH; //Pointer
+  typedef struct ENCRYPTION_CERTIFICATE_HASH_LIST {
+    DWORD nCert_Hash;
+    PENCRYPTION_CERTIFICATE_HASH* pUsers;
+  } ENCRYPTION_CERTIFICATE_HASH_LIST;
+  typedef ENCRYPTION_CERTIFICATE_HASH_LIST *PENCRYPTION_CERTIFICATE_HASH_LIST; //Pointer
+  typedef UINT INSTALLSPECTYPE; //Alias
+  static const UINT APPNAME = 1;
+  static const UINT FILEEXT = 2;
+  static const UINT PROGID = 3;
+  static const UINT COMCLASS = 4;
+  typedef struct WINAPI_INSTALLSPEC_s1 {
+    WCHAR* Name;
+    GUID GPOId;
+  } WINAPI_INSTALLSPEC_s1;
+  typedef struct WINAPI_INSTALLSPEC_s2 {
+    GUID Clsid;
+    WINAPI_CLSCTX ClsCtx;
+  } WINAPI_INSTALLSPEC_s2;
+  typedef union INSTALLSPEC {
+    WINAPI_INSTALLSPEC_s1 AppName;
+    WCHAR* FileExt;
+    WCHAR* ProgId;
+    WINAPI_INSTALLSPEC_s2 COMClass;
+  } INSTALLSPEC;
+  typedef struct INSTALLDATA {
+    INSTALLSPECTYPE Type;
+    INSTALLSPEC Spec;
+  } INSTALLDATA;
+  typedef INSTALLDATA *PINSTALLDATA; //Pointer
+  typedef struct VALENT {
+    LPTSTR ve_valuename;
+    DWORD ve_valuelen;
+    DWORD_PTR ve_valueptr;
+    DWORD ve_type;
+  } VALENT;
+  typedef VALENT *PVALENT; //Pointer
+  typedef struct EFS_CERTIFICATE_BLOB {
+    DWORD dwCertEncodingType;
+    DWORD cbData;
+    PBYTE pbData;
+  } EFS_CERTIFICATE_BLOB;
+  typedef EFS_CERTIFICATE_BLOB *PEFS_CERTIFICATE_BLOB; //Pointer
+  typedef struct ENCRYPTION_CERTIFICATE {
+    DWORD cbTotalLength;
+    SID* pUserSid;
+    PEFS_CERTIFICATE_BLOB pCertBlob;
+  } ENCRYPTION_CERTIFICATE;
+  typedef ENCRYPTION_CERTIFICATE *PENCRYPTION_CERTIFICATE; //Pointer
+  typedef struct ENCRYPTION_CERTIFICATE_LIST {
+    DWORD nUsers;
+    PENCRYPTION_CERTIFICATE* pUsers;
+  } ENCRYPTION_CERTIFICATE_LIST;
+  typedef ENCRYPTION_CERTIFICATE_LIST *PENCRYPTION_CERTIFICATE_LIST; //Pointer
+  typedef DWORD WINAPI_LocalState; //Alias
+  typedef struct LOCALMANAGEDAPPLICATION {
+    LPWSTR pszDeploymentName;
+    LPWSTR pszPolicyName;
+    LPWSTR pszProductId;
+    WINAPI_LocalState dwState;
+  } LOCALMANAGEDAPPLICATION;
+  typedef LOCALMANAGEDAPPLICATION *PLOCALMANAGEDAPPLICATION; //Pointer
+  typedef struct MANAGEDAPPLICATION {
+    LPWSTR pszPackageName;
+    LPWSTR pszPublisher;
+    DWORD dwVersionHi;
+    DWORD dwVersionLo;
+    DWORD dwRevision;
+    GUID GpoId;
+    LPWSTR pszPolicyName;
+    GUID ProductId;
+    LANGID Language;
+    LPWSTR pszOwner;
+    LPWSTR pszCompany;
+    LPWSTR pszComments;
+    LPWSTR pszContact;
+    LPWSTR pszSupportUrl;
+    DWORD dwPathType;
+    BOOL bInstalled;
+  } MANAGEDAPPLICATION;
+  typedef MANAGEDAPPLICATION *PMANAGEDAPPLICATION; //Pointer
+  typedef struct PERF_COUNTERSET_INSTANCE {
+    GUID CounterSetGuid;
+    ULONG dwSize;
+    ULONG InstanceId;
+    ULONG InstanceNameOffset;
+    ULONG InstanceNameSize;
+  } PERF_COUNTERSET_INSTANCE;
+  typedef PERF_COUNTERSET_INSTANCE *PPERF_COUNTERSET_INSTANCE; //Pointer
+  typedef struct PERF_COUNTERSET_INFO {
+    GUID CounterSetGuid;
+    GUID ProviderGuid;
+    ULONG NumCounters;
+    ULONG InstanceType;
+  } PERF_COUNTERSET_INFO;
+  typedef PERF_COUNTERSET_INFO *PPERF_COUNTERSET_INFO; //Pointer
+  typedef LPVOID PERFLIBREQUEST; //Alias
+  typedef LPVOID PERF_MEM_ALLOC; //Alias
+  typedef LPVOID PERF_MEM_FREE; //Alias
+  typedef struct PERF_PROVIDER_CONTEXT {
+    DWORD ContextSize;
+    DWORD Reserved;
+    PERFLIBREQUEST ControlCallback;
+    PERF_MEM_ALLOC MemAllocRoutine;
+    PERF_MEM_FREE MemFreeRoutine;
+    LPVOID pMemContext;
+  } PERF_PROVIDER_CONTEXT;
+  typedef PERF_PROVIDER_CONTEXT *PPERF_PROVIDER_CONTEXT; //Pointer
+  typedef LPVOID PEVENT_FILTER_DESCRIPTOR; //Alias
+  typedef struct ENABLE_TRACE_PARAMETERS {
+    ULONG Version;
+    ULONG EnableProperty;
+    ULONG ControlFlags;
+    GUID SourceId;
+    PEVENT_FILTER_DESCRIPTOR EnableFilterDesc;
+  } ENABLE_TRACE_PARAMETERS;
+  typedef ENABLE_TRACE_PARAMETERS *PENABLE_TRACE_PARAMETERS; //Pointer
+  typedef struct TRACE_GUID_PROPERTIES {
+    GUID Guid;
+    ULONG GuidType;
+    ULONG LoggerId;
+    ULONG EnableLevel;
+    ULONG EnableFlags;
+    BOOLEAN IsEnable;
+  } TRACE_GUID_PROPERTIES;
+  typedef TRACE_GUID_PROPERTIES *PTRACE_GUID_PROPERTIES; //Pointer
+  typedef struct TRACE_GUID_REGISTRATION {
+    LPCGUID Guid;
+    HANDLE RegHandle;
+  } TRACE_GUID_REGISTRATION;
+  typedef TRACE_GUID_REGISTRATION *PTRACE_GUID_REGISTRATION; //Pointer
+  typedef struct INHERITED_FROM {
+    LONG GenerationGap;
+    LPTSTR AncestorName;
+  } INHERITED_FROM;
+  typedef INHERITED_FROM *PINHERITED_FROM; //Pointer
+  typedef struct FN_OBJECT_MGR_FUNCTS {
+    ULONG Placeholder;
+  } FN_OBJECT_MGR_FUNCTS;
+  typedef FN_OBJECT_MGR_FUNCTS *PFN_OBJECT_MGR_FUNCTS; //Pointer
+  typedef struct LSA_TRANSLATED_SID {
+    SID_NAME_USE Use;
+    ULONG RelativeId;
+    LONG DomainIndex;
+  } LSA_TRANSLATED_SID;
+  typedef LSA_TRANSLATED_SID *PLSA_TRANSLATED_SID; //Pointer
+  typedef struct LSA_TRANSLATED_SID2 {
+    SID_NAME_USE Use;
+    PSID Sid;
+    LONG DomainIndex;
+    ULONG Flags;
+  } LSA_TRANSLATED_SID2;
+  typedef LSA_TRANSLATED_SID2 *PLSA_TRANSLATED_SID2; //Pointer
+  typedef struct LSA_TRANSLATED_NAME {
+    SID_NAME_USE Use;
+    LSA_UNICODE_STRING Name;
+    LONG DomainIndex;
+  } LSA_TRANSLATED_NAME;
+  typedef LSA_TRANSLATED_NAME *PLSA_TRANSLATED_NAME; //Pointer
+  typedef struct TRUSTED_DOMAIN_INFORMATION_EX {
+    LSA_UNICODE_STRING Name;
+    LSA_UNICODE_STRING FlatName;
+    PSID Sid;
+    ULONG TrustDirection;
+    ULONG TrustType;
+    ULONG TrustAttributes;
+  } TRUSTED_DOMAIN_INFORMATION_EX;
+  typedef TRUSTED_DOMAIN_INFORMATION_EX *PTRUSTED_DOMAIN_INFORMATION_EX; //Pointer
+  typedef ULONG WINAPI_LsaAuthType; //Alias
+  static const ULONG TRUST_AUTH_TYPE_NONE = 0;
+  static const ULONG TRUST_AUTH_TYPE_NT4OWF = 1;
+  static const ULONG TRUST_AUTH_TYPE_CLEAR = 2;
+  static const ULONG TRUST_AUTH_TYPE_VERSION = 3;
+  typedef struct LSA_AUTH_INFORMATION {
+    LARGE_INTEGER LastUpdateTime;
+    WINAPI_LsaAuthType AuthType;
+    ULONG AuthInfoLength;
+    PUCHAR AuthInfo;
+  } LSA_AUTH_INFORMATION;
+  typedef LSA_AUTH_INFORMATION *PLSA_AUTH_INFORMATION; //Pointer
+  typedef struct TRUSTED_DOMAIN_AUTH_INFORMATION {
+    ULONG IncomingAuthInfos;
+    PLSA_AUTH_INFORMATION IncomingAuthenticationInformation;
+    PLSA_AUTH_INFORMATION IncomingPreviousAuthenticationInformation;
+    ULONG OutgoingAuthInfos;
+    PLSA_AUTH_INFORMATION OutgoingAuthenticationInformation;
+    PLSA_AUTH_INFORMATION OutgoingPreviousAuthenticationInformation;
+  } TRUSTED_DOMAIN_AUTH_INFORMATION;
+  typedef TRUSTED_DOMAIN_AUTH_INFORMATION *PTRUSTED_DOMAIN_AUTH_INFORMATION; //Pointer
+  typedef ULONG WINAPI_TRACE_MESSAGE_FLAGS; //Alias
+  typedef ULONG WINAPI_LSA_LOOKUP_FLAGS; //Alias
+  typedef LPVOID PFE_EXPORT_FUNC; //Alias
+  typedef LPVOID PFE_IMPORT_FUNC; //Alias
+  typedef LPVOID LPHANDLER_FUNCTION; //Alias
+  typedef LPVOID LPHANDLER_FUNCTION_EX; //Alias
+  typedef ULONG64 TRACEHANDLE; //Alias
+  typedef TRACEHANDLE *PTRACEHANDLE; //Pointer
+  typedef LPVOID WMIDPREQUEST; //Alias
+  typedef LPVOID ENABLECALLBACK; //Alias
+  typedef LPVOID FN_PROGRESS; //Alias
+  typedef LPVOID WINAPI_PSID; //Alias
+  typedef PVOID LSA_HANDLE; //Alias
+  typedef LSA_HANDLE *PLSA_HANDLE; //Pointer
+  typedef ULONG LSA_ENUMERATION_HANDLE; //Alias
+  typedef LSA_ENUMERATION_HANDLE *PLSA_ENUMERATION_HANDLE; //Pointer
+  typedef LPVOID HWCT; //Alias
+  typedef LPVOID PWAITCHAINCALLBACK; //Alias
+  typedef LPVOID PCOGETCALLSTATE; //Alias
+  typedef LPVOID PCOGETACTIVATIONSTATE; //Alias
+  typedef ULONGLONG REGHANDLE; //Alias
+  typedef REGHANDLE *PREGHANDLE; //Pointer
+  typedef OBJECT_ATTRIBUTES *PLSA_OBJECT_ATTRIBUTES; //Pointer
+  typedef DWORD WINAPI_SHUTDOWN_FLAGS; //Alias
+  typedef DWORD WINAPI_SHTDN_REASON; //Alias
+  typedef WINAPI_TOKEN_ACCESS_MASK WINAPI_TOKEN_ACCESS_MASK_DWORD; //Alias
   WINAPI_REG_ERROR          RegCloseKey(                                         HKEY hKey);
   WINAPI_REG_ERROR          RegConnectRegistry(                                  LPCTSTR lpMachineName, HKEY hKey, PHKEY phkResult);
   WINAPI_REG_ERROR          RegCopyTree(                                         HKEY hKeySrc, LPCTSTR lpSubKey, HKEY hKeyDest);

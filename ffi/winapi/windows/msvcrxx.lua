@@ -1,6 +1,534 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID _locale_t; //Alias
+  typedef unsigned int unsigned; //Alias
+  typedef long long int; //Alias
+  typedef unsigned short wint_t; //Alias
+  typedef LPVOID _CRT_ALLOC_HOOK; //Alias
+  typedef LPVOID _CRT_DUMP_CLIENT; //Alias
+  typedef LPVOID _CRT_REPORT_HOOK; //Alias
+  typedef LPVOID _CRT_REPORT_HOOKW; //Alias
+  typedef LPVOID _se_translator_function; //Alias
+  typedef LPVOID terminate_function; //Alias
+  typedef LPVOID unexpected_function; //Alias
+  typedef INT_PTR intptr_t; //Alias
+  typedef long __time32_t; //Alias
+  typedef __int64 __time64_t; //Alias
+  typedef WCHAR wchar; //Alias
+  typedef LPVOID _PNH; //Alias
+  typedef UINT_PTR uintptr_t; //Alias
+  typedef LPVOID _onexit_t; //Alias
+  typedef long clock_t; //Alias
+  typedef LPVOID _PVFV; //Alias
+  typedef int mbstate_t; //Alias
+  typedef LPVOID _HANDLE_MATH_ERROR; //Alias
+  typedef LPVOID _invalid_parameter_handler; //Alias
+  typedef LPVOID PEXCEPTION_REGISTRATION; //Alias
+  typedef unsigned int _dev_t; //Alias
+  typedef unsigned short _ino_t; //Alias
+  typedef long _off_t; //Alias
+  typedef unsigned long _fsize_t; //Alias
+  typedef __int64 fpos_t; //Alias
+  typedef LPVOID _purecall_handler; //Alias
+  typedef void* _HFILE; //Alias
+  static const void* _CRTDBG_INVALID_HFILE = -1;
+  static const void* _CRTDBG_HFILE_ERROR = -2;
+  static const void* _CRTDBG_FILE_STDOUT = -4;
+  static const void* _CRTDBG_FILE_STDERR = -5;
+  static const void* _CRTDBG_REPORT_FILE = -6;
+  typedef int errno_t; //Alias
+  static const int EPERM = 1;
+  static const int ENOENT = 2;
+  static const int ESRCH = 3;
+  static const int EINTR = 4;
+  static const int EIO = 5;
+  static const int ENXIO = 6;
+  static const int E2BIG = 7;
+  static const int ENOEXEC = 8;
+  static const int EBADF = 9;
+  static const int ECHILD = 10;
+  static const int EAGAIN = 11;
+  static const int ENOMEM = 12;
+  static const int EACCES = 13;
+  static const int EFAULT = 14;
+  static const int EBUSY = 16;
+  static const int EEXIST = 17;
+  static const int EXDEV = 18;
+  static const int ENODEV = 19;
+  static const int ENOTDIR = 20;
+  static const int EISDIR = 21;
+  static const int EINVAL = 22;
+  static const int ENFILE = 23;
+  static const int EMFILE = 24;
+  static const int ENOTTY = 25;
+  static const int EFBIG = 27;
+  static const int ENOSPC = 28;
+  static const int ESPIPE = 29;
+  static const int EROFS = 30;
+  static const int EMLINK = 31;
+  static const int EPIPE = 32;
+  static const int EDOM = 33;
+  static const int ERANGE = 34;
+  static const int EDEADLK = 36;
+  static const int ENAMETOOLONG = 38;
+  static const int ENOLCK = 39;
+  static const int ENOSYS = 40;
+  static const int ENOTEMPTY = 41;
+  static const int EILSEQ = 42;
+  static const int STRUNCATE = 80;
+  static const int EADDRINUSE = 100;
+  static const int EADDRNOTAVAIL = 101;
+  static const int EAFNOSUPPORT = 102;
+  static const int EALREADY = 103;
+  static const int EBADMSG = 104;
+  static const int ECANCELED = 105;
+  static const int ECONNABORTED = 106;
+  static const int ECONNREFUSED = 107;
+  static const int ECONNRESET = 108;
+  static const int EDESTADDRREQ = 109;
+  static const int EHOSTUNREACH = 110;
+  static const int EIDRM = 111;
+  static const int EINPROGRESS = 112;
+  static const int EISCONN = 113;
+  static const int ELOOP = 114;
+  static const int EMSGSIZE = 115;
+  static const int ENETDOWN = 116;
+  static const int ENETRESET = 117;
+  static const int ENETUNREACH = 118;
+  static const int ENOBUFS = 119;
+  static const int ENODATA = 120;
+  static const int ENOLINK = 121;
+  static const int ENOMSG = 122;
+  static const int ENOPROTOOPT = 123;
+  static const int ENOSR = 124;
+  static const int ENOSTR = 125;
+  static const int ENOTCONN = 126;
+  static const int ENOTRECOVERABLE = 127;
+  static const int ENOTSOCK = 128;
+  static const int ENOTSUP = 129;
+  static const int EOPNOTSUPP = 130;
+  static const int EOTHER = 131;
+  static const int EOVERFLOW = 132;
+  static const int EOWNERDEAD = 133;
+  static const int EPROTO = 134;
+  static const int EPROTONOSUPPORT = 135;
+  static const int EPROTOTYPE = 136;
+  static const int ETIME = 137;
+  static const int ETIMEDOUT = 138;
+  static const int ETXTBSY = 139;
+  static const int EWOULDBLOCK = 140;
+  typedef struct struct _diskfree_t {
+    unsigned total_clusters;
+    unsigned avail_clusters;
+    unsigned sectors_per_cluster;
+    unsigned bytes_per_sector;
+  } struct _diskfree_t;
+  typedef struct _startupinfo {
+    int newmode;
+  } _startupinfo;
+  typedef UINT EXCEPTION_DISPOSITION; //Alias
+  static const UINT ExceptionContinueExecution = 0;
+  static const UINT ExceptionContinueSearch = 1;
+  static const UINT ExceptionNestedException = 2;
+  static const UINT ExceptionCollidedUnwind = 3;
+  typedef int WINAPI_SIGNAL; //Alias
+  static const int SIGINT = 2;
+  static const int SIGILL = 4;
+  static const int SIGABRT_COMPAT = 6;
+  static const int SIGFPE = 8;
+  static const int SIGSEGV = 11;
+  static const int SIGTERM = 15;
+  static const int SIGBREAK = 21;
+  static const int SIGABRT = 22;
+  typedef LPVOID WINAPI_SIGNAL_FUNC; //Alias
+  static const LPVOID SIG_DFL = 0;
+  static const LPVOID SIG_IGN = 1;
+  static const LPVOID SIG_GET = 2;
+  static const LPVOID SIG_SGE = 3;
+  static const LPVOID SIG_ACK = 4;
+  static const LPVOID SIG_DIE = 5;
+  static const LPVOID SIG_ERR = -1;
+  typedef int WINAPI_C_APP_TYPE; //Alias
+  static const int _UNKNOWN_APP = 0;
+  static const int _CONSOLE_APP = 1;
+  static const int _GUI_APP = 2;
+  typedef unsigned short WINAPI_ST_MODE; //Alias
+  typedef struct struct _stat {
+    _dev_t st_dev;
+    _ino_t st_ino;
+    WINAPI_ST_MODE st_mode;
+    short st_nlink;
+    short st_uid;
+    short st_gid;
+    _dev_t st_rdev;
+    _off_t st_size;
+    time_t st_atime;
+    time_t st_mtime;
+    time_t st_ctime;
+  } struct _stat;
+  typedef struct struct _stat32 {
+    _dev_t st_dev;
+    _ino_t st_ino;
+    WINAPI_ST_MODE st_mode;
+    short st_nlink;
+    short st_uid;
+    short st_gid;
+    _dev_t st_rdev;
+    _off_t st_size;
+    __time32_t st_atime;
+    __time32_t st_mtime;
+    __time32_t st_ctime;
+  } struct _stat32;
+  typedef struct struct _stat64 {
+    _dev_t st_dev;
+    _ino_t st_ino;
+    WINAPI_ST_MODE st_mode;
+    short st_nlink;
+    short st_uid;
+    short st_gid;
+    _dev_t st_rdev;
+    __int64 st_size;
+    __time64_t st_atime;
+    __time64_t st_mtime;
+    __time64_t st_ctime;
+  } struct _stat64;
+  typedef struct struct _stat32i64 {
+    _dev_t st_dev;
+    _ino_t st_ino;
+    WINAPI_ST_MODE st_mode;
+    short st_nlink;
+    short st_uid;
+    short st_gid;
+    _dev_t st_rdev;
+    __int64 st_size;
+    __time32_t st_atime;
+    __time32_t st_mtime;
+    __time32_t st_ctime;
+  } struct _stat32i64;
+  typedef struct struct _stat64i32 {
+    _dev_t st_dev;
+    _ino_t st_ino;
+    WINAPI_ST_MODE st_mode;
+    short st_nlink;
+    short st_uid;
+    short st_gid;
+    _dev_t st_rdev;
+    _off_t st_size;
+    __time64_t st_atime;
+    __time64_t st_mtime;
+    __time64_t st_ctime;
+  } struct _stat64i32;
+  typedef struct struct _complex {
+    double x;
+    double y;
+  } struct _complex;
+  typedef struct _CRT_DOUBLE {
+    double x;
+  } _CRT_DOUBLE;
+  typedef struct _CRT_FLOAT {
+    float f;
+  } _CRT_FLOAT;
+  typedef struct struct tm {
+    int tm_sec;
+    int tm_min;
+    int tm_hour;
+    int tm_mday;
+    int tm_mon;
+    int tm_year;
+    int tm_wday;
+    int tm_yday;
+    int tm_isdst;
+  } struct tm;
+  typedef int WINAPI_HEAP_RESULT; //Alias
+  static const int _HEAPEMPTY = -1;
+  static const int _HEAPOK = -2;
+  static const int _HEAPBADBEGIN = -3;
+  static const int _HEAPBADNODE = -4;
+  static const int _HEAPEND = -5;
+  static const int _HEAPBADPTR = -6;
+  typedef int WINAPI_HEAP_USE_FLAG; //Alias
+  static const int _FREEENTRY = 0;
+  static const int _USEDENTRY = 1;
+  typedef struct _HEAPINFO {
+    int* _pentry;
+    size_t _size;
+    WINAPI_HEAP_USE_FLAG _useflag;
+  } _HEAPINFO;
+  typedef struct struct _timeb {
+    time_t time;
+    unsigned short millitm;
+    short timezone;
+    short dstflag;
+  } struct _timeb;
+  typedef struct struct __timeb32 {
+    __time32_t time;
+    unsigned short millitm;
+    short timezone;
+    short dstflag;
+  } struct __timeb32;
+  typedef struct struct __timeb64 {
+    __time64_t time;
+    unsigned short millitm;
+    short timezone;
+    short dstflag;
+  } struct __timeb64;
+  typedef struct struct _utimbuf {
+    time_t actime;
+    time_t modtime;
+  } struct _utimbuf;
+  typedef struct struct __utimbuf32 {
+    __time32_t actime;
+    __time32_t modtime;
+  } struct __utimbuf32;
+  typedef struct struct __utimbuf64 {
+    __time64_t actime;
+    __time64_t modtime;
+  } struct __utimbuf64;
+  typedef unsigned WINAPI_FINDDATA_ATTRIB; //Alias
+  typedef struct struct _finddata32_t {
+    WINAPI_FINDDATA_ATTRIB attrib;
+    __time32_t time_create;
+    __time32_t time_access;
+    __time32_t time_write;
+    _fsize_t size;
+    char name[260];
+  } struct _finddata32_t;
+  typedef struct struct _finddata32i64_t {
+    WINAPI_FINDDATA_ATTRIB attrib;
+    __time32_t time_create;
+    __time32_t time_access;
+    __time32_t time_write;
+    __int64 size;
+    char name[260];
+  } struct _finddata32i64_t;
+  typedef struct struct _finddata64i32_t {
+    WINAPI_FINDDATA_ATTRIB attrib;
+    __time64_t time_create;
+    __time64_t time_access;
+    __time64_t time_write;
+    _fsize_t size;
+    char name[260];
+  } struct _finddata64i32_t;
+  typedef struct struct __finddata64_t {
+    WINAPI_FINDDATA_ATTRIB attrib;
+    __time64_t time_create;
+    __time64_t time_access;
+    __time64_t time_write;
+    __int64 size;
+    char name[260];
+  } struct __finddata64_t;
+  typedef struct struct _wfinddata32_t {
+    WINAPI_FINDDATA_ATTRIB attrib;
+    __time32_t time_create;
+    __time32_t time_access;
+    __time32_t time_write;
+    _fsize_t size;
+    wchar_t name[260];
+  } struct _wfinddata32_t;
+  typedef struct struct _wfinddata32i64_t {
+    WINAPI_FINDDATA_ATTRIB attrib;
+    __time32_t time_create;
+    __time32_t time_access;
+    __time32_t time_write;
+    __int64 size;
+    wchar_t name[260];
+  } struct _wfinddata32i64_t;
+  typedef struct struct _wfinddata64i32_t {
+    WINAPI_FINDDATA_ATTRIB attrib;
+    __time64_t time_create;
+    __time64_t time_access;
+    __time64_t time_write;
+    _fsize_t size;
+    wchar_t name[260];
+  } struct _wfinddata64i32_t;
+  typedef struct struct _wfinddata64_t {
+    WINAPI_FINDDATA_ATTRIB attrib;
+    __time64_t time_create;
+    __time64_t time_access;
+    __time64_t time_write;
+    __int64 size;
+    wchar_t name[260];
+  } struct _wfinddata64_t;
+  typedef unsigned short wctype_t; //Alias
+  typedef wctype_t _ctype_t; //Alias
+  typedef int WINAPI_exception_type; //Alias
+  static const int _DOMAIN = 1;
+  static const int _SING = 2;
+  static const int _OVERFLOW = 3;
+  static const int _UNDERFLOW = 4;
+  static const int _TLOSS = 5;
+  static const int _PLOSS = 6;
+  typedef struct struct _exception {
+    WINAPI_exception_type type;
+    char* name;
+    double arg1;
+    double arg2;
+    double retval;
+  } struct _exception;
+  typedef struct div_t {
+    int quot;
+    int rem;
+  } div_t;
+  typedef struct ldiv_t {
+    long quot;
+    long rem;
+  } ldiv_t;
+# pragma pack( push, 4 )
+  typedef struct _LDOUBLE {
+    unsigned char[10] ld;
+  } _LDOUBLE;
+# pragma pack( pop )
+  typedef UINT8 WINAPI_lconv_val; //Alias
+  static const UINT8 CHAR_MAX = 127;
+  typedef struct struct lconv {
+    char* decimal_point;
+    char* thousands_sep;
+    char* grouping;
+    char* int_curr_symbol;
+    char* currency_symbol;
+    char* mon_decimal_point;
+    char* mon_thousands_sep;
+    char* mon_grouping;
+    char* positive_sign;
+    char* negative_sign;
+    WINAPI_lconv_val int_frac_digits;
+    WINAPI_lconv_val frac_digits;
+    WINAPI_lconv_val p_cs_precedes;
+    WINAPI_lconv_val p_sep_by_space;
+    WINAPI_lconv_val n_cs_precedes;
+    WINAPI_lconv_val n_sep_by_space;
+    WINAPI_lconv_val p_sign_posn;
+    WINAPI_lconv_val n_sign_posn;
+    wchar_t* _W_decimal_point;
+    wchar_t* _W_thousands_sep;
+    wchar_t* _W_int_curr_symbol;
+    wchar_t* _W_currency_symbol;
+    wchar_t* _W_mon_decimal_point;
+    wchar_t* _W_mon_thousands_sep;
+    wchar_t* _W_positive_sign;
+    wchar_t* _W_negative_sign;
+  } struct lconv;
+  typedef int WINAPI_LOCK_NUM; //Alias
+  static const int _SIGNAL_LOCK = 0;
+  static const int _IOB_SCAN_LOCK = 1;
+  static const int _TMPNAM_LOCK = 2;
+  static const int _CONIO_LOCK = 3;
+  static const int _HEAP_LOCK = 4;
+  static const int _UNDNAME_LOCK = 5;
+  static const int _TIME_LOCK = 6;
+  static const int _ENV_LOCK = 7;
+  static const int _EXIT_LOCK1 = 8;
+  static const int _POPEN_LOCK = 9;
+  static const int _LOCKTAB_LOCK = 10;
+  static const int _OSFHND_LOCK = 11;
+  static const int _SETLOCALE_LOCK = 12;
+  static const int _MB_CP_LOCK = 13;
+  static const int _TYPEINFO_LOCK = 14;
+  static const int _DEBUG_LOCK = 15;
+  static const int _STREAM_LOCKS = 16;
+  typedef unsigned int WINAPI_output_format; //Alias
+  static const unsigned int _TWO_DIGIT_EXPONENT = 0x1;
+  typedef LPVOID WINAPI_compare_function; //Alias
+  typedef LPVOID WINAPI_compare_s_function; //Alias
+  typedef unsigned int WINAPI_open_flag; //Alias
+  typedef unsigned int WINAPI_share_flag; //Alias
+  typedef unsigned int WINAPI_perm_mode; //Alias
+  typedef int WINAPI_byte_type; //Alias
+  static const int _MBC_SINGLE = 0;
+  static const int _MBC_LEAD = 1;
+  static const int _MBC_TRAIL = 2;
+  static const int _MBC_ILLEGAL = -1;
+  typedef int WINAPI_CRT_REPORT_TYPE; //Alias
+  static const int _CRT_WARN = 0;
+  static const int _CRT_ERROR = 1;
+  static const int _CRT_ASSERT = 2;
+  static const int _CRT_ERRCNT = 3;
+  typedef unsigned int WINAPI_CRTDBG_FLAG; //Alias
+  typedef int WINAPI_CRT_RPTHOOK_MODE; //Alias
+  static const int _CRT_RPTHOOK_INSTALL = 0;
+  static const int _CRT_RPTHOOK_REMOVE = 1;
+  typedef unsigned int WINAPI_CRTDBG_MODE; //Alias
+  typedef int WINAPI_DBG_BLOCK_TYPE; //Alias
+  static const int _FREE_BLOCK = 0;
+  static const int _NORMAL_BLOCK = 1;
+  static const int _CRT_BLOCK = 2;
+  static const int _IGNORE_BLOCK = 3;
+  static const int _CLIENT_BLOCK = 4;
+  static const int _MAX_BLOCKS = 5;
+  typedef int WINAPI_set_error_mode; //Alias
+  static const int _OUT_TO_DEFAULT = 0;
+  static const int _OUT_TO_STDERR = 1;
+  static const int _OUT_TO_MSGBOX = 2;
+  static const int _REPORT_ERRMODE = 3;
+  typedef int WINAPI_disposition_type; //Alias
+  static const int DISPOSITION_DISMISS = 0;
+  static const int DISPOSITION_CONTINUE_SEARCH = 1;
+  static const int DISPOSITION_NESTED_EXCEPTION = 2;
+  static const int DISPOSITION_COLLIDED_UNWIND = 3;
+  typedef unsigned long WINAPI_xcpt_num; //Alias
+  typedef int WINAPI_xcpt_action; //Alias
+  static const int EXCEPTION_EXECUTE_HANDLER = 1;
+  static const int EXCEPTION_CONTINUE_SEARCH = 0;
+  static const int EXCEPTION_CONTINUE_EXECUTION = -1;
+  typedef int WINAPI__LK_MODE; //Alias
+  static const int _LK_UNLCK = 0;
+  static const int _LK_LOCK = 1;
+  static const int _LK_NBLCK = 2;
+  static const int _LK_RLCK = 3;
+  static const int _LK_NBRLCK = 4;
+  typedef unsigned int WINAPI__SW_FLOAT; //Alias
+  typedef unsigned int WINAPI_control_bits; //Alias
+  typedef unsigned int WINAPI_control_mask; //Alias
+  static const unsigned int _MCW_DN = 0x03000000;
+  static const unsigned int _MCW_EM = 0x0008001f;
+  static const unsigned int _MCW_RC = 0x00000300;
+  static const unsigned int _MCW_IC = 0x00040000;
+  static const unsigned int _MCW_PC = 0x00030000;
+  typedef unsigned int WINAPI__FPCLASS; //Alias
+  typedef int WINAPI_file_translation_mode; //Alias
+  static const int _O_TEXT = 0x4000;
+  static const int _O_BINARY = 0x8000;
+  static const int _O_WTEXT = 0x10000;
+  static const int _O_U16TEXT = 0x20000;
+  static const int _O_U8TEXT = 0x40000;
+  typedef int WINAPI_RET_EOF; //Alias
+  static const int EOF = -1;
+  typedef wint_t WINAPI_RET_WEOF; //Alias
+  static const wint_t WEOF = -1;
+  typedef int WINAPI_RET_WEOF_INT; //Alias
+  typedef int WINAPI_buffer_mode; //Alias
+  static const int _IOFBF = 0x0000;
+  static const int _IOLBF = 0x0040;
+  static const int _IONBF = 0x0004;
+  typedef int WINAPI_locale_category; //Alias
+  static const int LC_ALL = 0;
+  static const int LC_COLLATE = 1;
+  static const int LC_CTYPE = 2;
+  static const int LC_MONETARY = 3;
+  static const int LC_NUMERIC = 4;
+  static const int LC_TIME = 5;
+  typedef int WINAPI_thread_locale_type; //Alias
+  static const int _ENABLE_PER_THREAD_LOCALE = 0x1;
+  static const int _DISABLE_PER_THREAD_LOCALE = 0x2;
+  typedef int WINAPI__MB_CP_TYPE; //Alias
+  static const int _MB_CP_SBCS = 0;
+  static const int _MB_CP_OEM = -2;
+  static const int _MB_CP_ANSI = -3;
+  static const int _MB_CP_LOCALE = -4;
+  typedef unsigned WINAPI_thread_initflag; //Alias
+  static const unsigned CREATE_SUSPENDED = 0x00000004;
+  typedef int WINAPI_spawn_mode; //Alias
+  static const int _P_WAIT = 0;
+  static const int _P_NOWAIT = 1;
+  static const int _P_OVERLAY = 2;
+  static const int _P_NOWAITO = 3;
+  static const int _P_DETACH = 4;
+  typedef int WINAPI__NLSCMPERROR; //Alias
+  static const int _NLSCMPERROR = 0x7FFFFFFF;
+  typedef size_t WINAPI_size_t_INT_MAX; //Alias
+  static const size_t INT_MAX = 0x7FFFFFFF;
+  typedef unsigned int WINAPI_abort_flag; //Alias
   void*                         _memccpy(                                                         void* dest, WINAPI_void* src, int c, size_t count);
   void*                         memchr(                                                           WINAPI_void* buf, int c, size_t count);
   int                           memcmp(                                                           WINAPI_void* buf1, WINAPI_void* buf2, size_t count);

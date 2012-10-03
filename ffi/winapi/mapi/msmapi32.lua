@@ -1,6 +1,7 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef BOOL WINAPI_BOOL_ULONG; //Alias
   HRESULT           ABProviderInit(             HINSTANCE hInstance, LPMALLOC lpMalloc, LPALLOCATEBUFFER lpAllocateBuffer, LPALLOCATEMORE lpAllocateMore, LPFREEBUFFER lpFreeBuffer, ULONG ulFlags, ULONG ulMAPIVer, ULONG* lpulProviderVer, LPABPROVIDER* lppABProvider);
   STDAPI            BuildDisplayTable(          LPALLOCATEBUFFER lpAllocateBuffer, LPALLOCATEMORE lpAllocateMore, LPFREEBUFFER lpFreeBuffer, LPMALLOC lpMalloc, HINSTANCE hInstance, UINT cPages, LPDTPAGE lpPage, ULONG ulFlags, LPMAPITABLE* lppTable, LPTABLEDATA* lppTblData);
   VOID              ChangeIdleRoutine(          FTG ftg, PFNIDLE pfnIdle, LPVOID pvIdleParam, short priIdle, ULONG csecIdle, USHORT iroIdle, USHORT ircIdle);

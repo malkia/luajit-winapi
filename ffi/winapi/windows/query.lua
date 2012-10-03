@@ -2,6 +2,53 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/ole' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* ICommand; //Interface
+  typedef WORD DBCOMMANDOP; //Alias
+  typedef DWORD DBKIND; //Alias
+  static const DWORD DBKIND_GUID_NAME = 0;
+  static const DWORD DBKIND_GUID_PROPID = 1;
+  static const DWORD DBKIND_NAME = 2;
+  static const DWORD DBKIND_PGUID_NAME = 3;
+  static const DWORD DBKIND_PGUID_PROPID = 4;
+  static const DWORD DBKIND_PROPID = 5;
+  static const DWORD DBKIND_GUID = 6;
+  typedef union WINAPI_DBID_u1 {
+    GUID guid;
+    GUID* pguid;
+  } WINAPI_DBID_u1;
+  typedef union WINAPI_DBID_u2 {
+    LPOLESTR pwszName;
+    ULONG ulPropid;
+  } WINAPI_DBID_u2;
+  typedef struct DBID {
+    WINAPI_DBID_u1 uGuid;
+    DBKIND eKind;
+    WINAPI_DBID_u2 uName;
+  } DBID;
+  typedef struct CIPROPERTYDEF {
+    LPWSTR wcsFriendlyName;
+    DWORD dbType;
+    DBID dbCol;
+  } CIPROPERTYDEF;
+# pragma pack( push, 4 )
+  typedef struct CI_STATE {
+    DWORD cbStruct;
+    DWORD cWordList;
+    DWORD cPersistentIndex;
+    DWORD cQueries;
+    DWORD cDocuments;
+    DWORD cFreshTest;
+    DWORD dwMergeProgress;
+    DWORD eState;
+    DWORD cFilteredDocuments;
+    DWORD cTotalDocuments;
+    DWORD cPendingScans;
+    DWORD dwIndexSize;
+    DWORD cUniqueKeys;
+    DWORD cSecQDocuments;
+    DWORD dwPropCacheSize;
+  } CI_STATE;
+# pragma pack( pop )
   STDAPI CIState(                 WCHAR const* pwcsCat, WCHAR const* pwcsMachine, CI_STATE* pCiState);
   STDAPI LocateCatalogs(          TCHAR const* pwszScope, ULONG iBmk, TCHAR* pwszMachine, ULONG* pcMachine, TCHAR* pwszCat, ULONG* pcCat);
   STDAPI SetCatalogState(         WCHAR const* pwcsCat, WCHAR const* pwcsMachine, DWORD dwNewState, DWORD* pdwOldState);

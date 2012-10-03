@@ -6,6 +6,1447 @@ require( 'ffi/winapi/headers/ioctl' )
 require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef UINT_PTR DLL_DIRECTORY_COOKIE; //Alias
+  typedef LPVOID PKNONVOLATILE_CONTEXT_POINTERS; //Alias
+  typedef LPVOID LPCONTEXT; //Alias
+  typedef LPVOID PCONTEXT_EX; //Alias
+  typedef LPVOID LPCOMSTAT; //Alias
+  typedef LPVOID LPLDT_ENTRY; //Alias
+  typedef LPVOID PWOW64_LDT_ENTRY; //Alias
+  typedef HANDLE HLOCAL; //Alias
+  typedef LPVOID APPLICATION_RECOVERY_CALLBACK; //Alias
+  typedef LPVOID LPPROGRESS_ROUTINE; //Alias
+  typedef LPVOID LPOVERLAPPED_COMPLETION_ROUTINE; //Alias
+  typedef LPVOID PSECURE_MEMORY_CACHE_CALLBACK; //Alias
+  typedef LPVOID LPTHREAD_START_ROUTINE; //Alias
+  typedef LPVOID PTP_CALLBACK_INSTANCE; //Alias
+  typedef LPVOID PTP_IO; //Alias
+  typedef LPVOID PTP_POOL; //Alias
+  typedef LPVOID PTP_CLEANUP_GROUP; //Alias
+  typedef LPVOID PTP_CLEANUP_GROUP_CANCEL_CALLBACK; //Alias
+  typedef LPVOID PTP_TIMER; //Alias
+  typedef LPVOID PTP_WAIT; //Alias
+  typedef LPVOID PTP_WORK; //Alias
+  typedef LPVOID PTP_WIN32_IO_CALLBACK; //Alias
+  typedef LPVOID PTP_TIMER_CALLBACK; //Alias
+  typedef LPVOID PTP_WAIT_CALLBACK; //Alias
+  typedef LPVOID PTP_WORK_CALLBACK; //Alias
+  typedef LPVOID PTP_SIMPLE_CALLBACK; //Alias
+  typedef LPVOID LPFIBER_START_ROUTINE; //Alias
+  typedef LPVOID PFLS_CALLBACK_FUNCTION; //Alias
+  typedef LPVOID PUMS_CONTEXT; //Alias
+  typedef LPVOID PHANDLER_ROUTINE; //Alias
+  typedef LPVOID CALINFO_ENUMPROC; //Alias
+  typedef LPVOID CALINFO_ENUMPROCEX; //Alias
+  typedef LPVOID CALINFO_ENUMPROCEXEX; //Alias
+  typedef LPVOID DATEFMT_ENUMPROC; //Alias
+  typedef LPVOID DATEFMT_ENUMPROCEX; //Alias
+  typedef LPVOID DATEFMT_ENUMPROCEXEX; //Alias
+  typedef LPVOID LANGGROUPLOCALE_ENUMPROC; //Alias
+  typedef LPVOID CODEPAGE_ENUMPROC; //Alias
+  typedef LPVOID GEO_ENUMPROC; //Alias
+  typedef LPVOID LANGUAGEGROUP_ENUMPROC; //Alias
+  typedef LPVOID LOCALE_ENUMPROC; //Alias
+  typedef LPVOID LOCALE_ENUMPROCEX; //Alias
+  typedef LPVOID TIMEFMT_ENUMPROC; //Alias
+  typedef LPVOID TIMEFMT_ENUMPROCEX; //Alias
+  typedef LPVOID ENUMRESLANGPROC; //Alias
+  typedef LPVOID ENUMRESNAMEPROC; //Alias
+  typedef LPVOID ENUMRESTYPEPROC; //Alias
+  typedef LPVOID LPTOP_LEVEL_EXCEPTION_FILTER; //Alias
+  typedef LPVOID PGET_RUNTIME_FUNCTION_CALLBACK; //Alias
+  typedef LPVOID PAPCFUNC; //Alias
+  typedef LPVOID PSRWLOCK; //Alias
+  typedef LPVOID PCONDITION_VARIABLE; //Alias
+  typedef LPVOID LPINIT_ONCE; //Alias
+  typedef LPINIT_ONCE PINIT_ONCE; //Alias
+  typedef LPVOID PINIT_ONCE_FN; //Alias
+  typedef LPVOID WAITORTIMERCALLBACK; //Alias
+  typedef LPVOID PTIMERAPCROUTINE; //Alias
+  typedef PRTL_CRITICAL_SECTION LPCRITICAL_SECTION; //Alias
+  typedef PRTL_CRITICAL_SECTION PCRITICAL_SECTION; //Alias
+  typedef DWORD TP_VERSION; //Alias
+  enum { MAX_DEFAULTCHAR = 2 };
+  enum { MAX_LEADBYTES = 12 };
+  enum { WOW64_MAXIMUM_SUPPORTED_EXTENSION = 512 };
+  enum { WOW64_SIZE_OF_80387_REGISTERS = 80 };
+  enum { MAX_MODULE_NAME32 = 256 };
+  typedef WORD WINAPI_ConsoleAttribute; //Alias
+  typedef UINT GEOID; //Alias
+  static const UINT Antigua and Barbuda = 0x2;
+  static const UINT Afghanistan = 0x3;
+  static const UINT Algeria = 0x4;
+  static const UINT Azerbaijan = 0x5;
+  static const UINT Albania = 0x6;
+  static const UINT Armenia = 0x7;
+  static const UINT Andorra = 0x8;
+  static const UINT Angola = 0x9;
+  static const UINT American Samoa = 0xA;
+  static const UINT Argentina = 0xB;
+  static const UINT Australia = 0xC;
+  static const UINT Austria = 0xE;
+  static const UINT Bahrain = 0x11;
+  static const UINT Barbados = 0x12;
+  static const UINT Botswana = 0x13;
+  static const UINT Bermuda = 0x14;
+  static const UINT Belgium = 0x15;
+  static const UINT Bahamas, The = 0x16;
+  static const UINT Bangladesh = 0x17;
+  static const UINT Belize = 0x18;
+  static const UINT Bosnia and Herzegovina = 0x19;
+  static const UINT Bolivia = 0x1A;
+  static const UINT Myanmar = 0x1B;
+  static const UINT Benin = 0x1C;
+  static const UINT Belarus = 0x1D;
+  static const UINT Solomon Islands = 0x1E;
+  static const UINT Brazil = 0x20;
+  static const UINT Bhutan = 0x22;
+  static const UINT Bulgaria = 0x23;
+  static const UINT Brunei = 0x25;
+  static const UINT Burundi = 0x26;
+  static const UINT Canada = 0x27;
+  static const UINT Cambodia = 0x28;
+  static const UINT Chad = 0x29;
+  static const UINT Sri Lanka = 0x2A;
+  static const UINT Congo = 0x2B;
+  static const UINT Congo (DRC) = 0x2C;
+  static const UINT China = 0x2D;
+  static const UINT Chile = 0x2E;
+  static const UINT Cameroon = 0x31;
+  static const UINT Comoros = 0x32;
+  static const UINT Colombia = 0x33;
+  static const UINT Costa Rica = 0x36;
+  static const UINT Central African Republic = 0x37;
+  static const UINT Cuba = 0x38;
+  static const UINT Cape Verde = 0x39;
+  static const UINT Cyprus = 0x3B;
+  static const UINT Denmark = 0x3D;
+  static const UINT Djibouti = 0x3E;
+  static const UINT Dominica = 0x3F;
+  static const UINT Dominican Republic = 0x41;
+  static const UINT Ecuador = 0x42;
+  static const UINT Egypt = 0x43;
+  static const UINT Ireland = 0x44;
+  static const UINT Equatorial Guinea = 0x45;
+  static const UINT Estonia = 0x46;
+  static const UINT Eritrea = 0x47;
+  static const UINT El Salvador = 0x48;
+  static const UINT Ethiopia = 0x49;
+  static const UINT Czech Republic = 0x4B;
+  static const UINT Finland = 0x4D;
+  static const UINT Fiji Islands = 0x4E;
+  static const UINT Micronesia = 0x50;
+  static const UINT Faroe Islands = 0x51;
+  static const UINT France = 0x54;
+  static const UINT Gambia, The = 0x56;
+  static const UINT Gabon = 0x57;
+  static const UINT Georgia = 0x58;
+  static const UINT Ghana = 0x59;
+  static const UINT Gibraltar = 0x5A;
+  static const UINT Grenada = 0x5B;
+  static const UINT Greenland = 0x5D;
+  static const UINT Germany = 0x5E;
+  static const UINT Greece = 0x62;
+  static const UINT Guatemala = 0x63;
+  static const UINT Guinea = 0x64;
+  static const UINT Guyana = 0x65;
+  static const UINT Haiti = 0x67;
+  static const UINT Hong Kong SAR = 0x68;
+  static const UINT Honduras = 0x6A;
+  static const UINT Croatia = 0x6C;
+  static const UINT Hungary = 0x6D;
+  static const UINT Iceland = 0x6E;
+  static const UINT Indonesia = 0x6F;
+  static const UINT India = 0x71;
+  static const UINT British Indian Ocean Territory = 0x72;
+  static const UINT Iran = 0x74;
+  static const UINT Israel = 0x75;
+  static const UINT Italy = 0x76;
+  static const UINT Côte d'Ivoire = 0x77;
+  static const UINT Iraq = 0x79;
+  static const UINT Japan = 0x7A;
+  static const UINT Jamaica = 0x7C;
+  static const UINT Jan Mayen = 0x7D;
+  static const UINT Jordan = 0x7E;
+  static const UINT Johnston Atoll = 0x7F;
+  static const UINT Kenya = 0x81;
+  static const UINT Kyrgyzstan = 0x82;
+  static const UINT North Korea = 0x83;
+  static const UINT Kiribati = 0x85;
+  static const UINT Korea = 0x86;
+  static const UINT Kuwait = 0x88;
+  static const UINT Kazakhstan = 0x89;
+  static const UINT Laos = 0x8A;
+  static const UINT Lebanon = 0x8B;
+  static const UINT Latvia = 0x8C;
+  static const UINT Lithuania = 0x8D;
+  static const UINT Liberia = 0x8E;
+  static const UINT Slovakia = 0x8F;
+  static const UINT Liechtenstein = 0x91;
+  static const UINT Lesotho = 0x92;
+  static const UINT Luxembourg = 0x93;
+  static const UINT Libya = 0x94;
+  static const UINT Madagascar = 0x95;
+  static const UINT Macao SAR = 0x97;
+  static const UINT Moldova = 0x98;
+  static const UINT Mongolia = 0x9A;
+  static const UINT Malawi = 0x9C;
+  static const UINT Mali = 0x9D;
+  static const UINT Monaco = 0x9E;
+  static const UINT Morocco = 0x9F;
+  static const UINT Mauritius = 0xA0;
+  static const UINT Mauritania = 0xA2;
+  static const UINT Malta = 0xA3;
+  static const UINT Oman = 0xA4;
+  static const UINT Maldives = 0xA5;
+  static const UINT Mexico = 0xA6;
+  static const UINT Malaysia = 0xA7;
+  static const UINT Mozambique = 0xA8;
+  static const UINT Niger = 0xAD;
+  static const UINT Vanuatu = 0xAE;
+  static const UINT Nigeria = 0xAF;
+  static const UINT Netherlands = 0xB0;
+  static const UINT Norway = 0xB1;
+  static const UINT Nepal = 0xB2;
+  static const UINT Nauru = 0xB4;
+  static const UINT Suriname = 0xB5;
+  static const UINT Nicaragua = 0xB6;
+  static const UINT New Zealand = 0xB7;
+  static const UINT Palestinian Authority = 0xB8;
+  static const UINT Paraguay = 0xB9;
+  static const UINT Peru = 0xBB;
+  static const UINT Pakistan = 0xBE;
+  static const UINT Poland = 0xBF;
+  static const UINT Panama = 0xC0;
+  static const UINT Portugal = 0xC1;
+  static const UINT Papua New Guinea = 0xC2;
+  static const UINT Palau = 0xC3;
+  static const UINT WINAPI_Guinea_Bissau = 0xC4;
+  static const UINT Qatar = 0xC5;
+  static const UINT Reunion = 0xC6;
+  static const UINT Marshall Islands = 0xC7;
+  static const UINT Romania = 0xC8;
+  static const UINT Philippines = 0xC9;
+  static const UINT Puerto Rico = 0xCA;
+  static const UINT Russia = 0xCB;
+  static const UINT Rwanda = 0xCC;
+  static const UINT Saudi Arabia = 0xCD;
+  static const UINT St. Pierre and Miquelon = 0xCE;
+  static const UINT St. Kitts and Nevis = 0xCF;
+  static const UINT Seychelles = 0xD0;
+  static const UINT South Africa = 0xD1;
+  static const UINT Senegal = 0xD2;
+  static const UINT Slovenia = 0xD4;
+  static const UINT Sierra Leone = 0xD5;
+  static const UINT San Marino = 0xD6;
+  static const UINT Singapore = 0xD7;
+  static const UINT Somalia = 0xD8;
+  static const UINT Spain = 0xD9;
+  static const UINT St. Lucia = 0xDA;
+  static const UINT Sudan = 0xDB;
+  static const UINT Svalbard = 0xDC;
+  static const UINT Sweden = 0xDD;
+  static const UINT Syria = 0xDE;
+  static const UINT Switzerland = 0xDF;
+  static const UINT United Arab Emirates = 0xE0;
+  static const UINT Trinidad and Tobago = 0xE1;
+  static const UINT Thailand = 0xE3;
+  static const UINT Tajikistan = 0xE4;
+  static const UINT Tonga = 0xE7;
+  static const UINT Togo = 0xE8;
+  static const UINT São Tomé and Príncipe = 0xE9;
+  static const UINT Tunisia = 0xEA;
+  static const UINT Turkey = 0xEB;
+  static const UINT Tuvalu = 0xEC;
+  static const UINT Taiwan = 0xED;
+  static const UINT Turkmenistan = 0xEE;
+  static const UINT Tanzania = 0xEF;
+  static const UINT Uganda = 0xF0;
+  static const UINT Ukraine = 0xF1;
+  static const UINT United Kingdom = 0xF2;
+  static const UINT United States = 0xF4;
+  static const UINT Burkina Faso = 0xF5;
+  static const UINT Uruguay = 0xF6;
+  static const UINT Uzbekistan = 0xF7;
+  static const UINT St. Vincent and the Grenadines = 0xF8;
+  static const UINT Venezuela = 0xF9;
+  static const UINT Vietnam = 0xFB;
+  static const UINT Virgin Islands = 0xFC;
+  static const UINT Vatican City = 0xFD;
+  static const UINT Namibia = 0xFE;
+  static const UINT Wake Island = 0x102;
+  static const UINT Samoa = 0x103;
+  static const UINT Swaziland = 0x104;
+  static const UINT Yemen = 0x105;
+  static const UINT Zambia = 0x107;
+  static const UINT Zimbabwe = 0x108;
+  static const UINT Serbia = 0x10D;
+  static const UINT Anguilla = 0x12C;
+  static const UINT Antarctica = 0x12D;
+  static const UINT Aruba = 0x12E;
+  static const UINT Ascension Island = 0x12F;
+  static const UINT Ashmore and Cartier Islands = 0x130;
+  static const UINT Baker Island = 0x131;
+  static const UINT Bouvet Island = 0x132;
+  static const UINT Cayman Islands = 0x133;
+  static const UINT Channel Islands = 0x134;
+  static const UINT Christmas Island = 0x135;
+  static const UINT Clipperton Island = 0x136;
+  static const UINT Cocos (Keeling) Islands = 0x137;
+  static const UINT Cook Islands = 0x138;
+  static const UINT Coral Sea Islands = 0x139;
+  static const UINT Diego Garcia = 0x13A;
+  static const UINT Falkland Islands (Islas Malvinas) = 0x13B;
+  static const UINT French Guiana = 0x13D;
+  static const UINT French Polynesia = 0x13E;
+  static const UINT French Southern and Antarctic Lands = 0x13F;
+  static const UINT Guadeloupe = 0x141;
+  static const UINT Guam = 0x142;
+  static const UINT Guantanamo Bay = 0x143;
+  static const UINT Guernsey = 0x144;
+  static const UINT Heard Island and McDonald Islands = 0x145;
+  static const UINT Howland Island = 0x146;
+  static const UINT Jarvis Island = 0x147;
+  static const UINT Jersey = 0x148;
+  static const UINT Kingman Reef = 0x149;
+  static const UINT Martinique = 0x14A;
+  static const UINT Mayotte = 0x14B;
+  static const UINT Montserrat = 0x14C;
+  static const UINT Netherlands Antilles = 0x14D;
+  static const UINT New Caledonia = 0x14E;
+  static const UINT Niue = 0x14F;
+  static const UINT Norfolk Island = 0x150;
+  static const UINT Northern Mariana Islands = 0x151;
+  static const UINT Palmyra Atoll = 0x152;
+  static const UINT Pitcairn Islands = 0x153;
+  static const UINT Rota Island = 0x154;
+  static const UINT Saipan = 0x155;
+  static const UINT South Georgia and the South Sandwich Islands = 0x156;
+  static const UINT St. Helena = 0x157;
+  static const UINT Tinian Island = 0x15A;
+  static const UINT Tokelau = 0x15B;
+  static const UINT Tristan da Cunha = 0x15C;
+  static const UINT Turks and Caicos Islands = 0x15D;
+  static const UINT Virgin Islands, British = 0x15F;
+  static const UINT Wallis and Futuna = 0x160;
+  static const UINT Isle of Man = 0x3B16;
+  static const UINT Macedonia, FYROM = 0x4CA2;
+  static const UINT Midway Islands = 0x52FA;
+  static const UINT WINAPI_Timor_Leste = 0x6F60E7;
+  typedef UINT STREAM_INFO_LEVELS; //Alias
+  static const UINT FindStreamInfoStandard = 0;
+  typedef UINT HFILE; //Alias
+  static const UINT HFILE_ERROR = -1;
+  typedef UINT DEP_SYSTEM_POLICY_TYPE; //Alias
+  static const UINT AlwaysOff = 0;
+  static const UINT AlwaysOn = 1;
+  static const UINT OptIn = 2;
+  static const UINT OptOut = 3;
+  typedef UINT TP_CALLBACK_PRIORITY; //Alias
+  static const UINT TP_CALLBACK_PRIORITY_HIGH = 0;
+  static const UINT TP_CALLBACK_PRIORITY_LOW = 1;
+  static const UINT TP_CALLBACK_PRIORITY_NORMAL = 2;
+  static const UINT TP_CALLBACK_PRIORITY_INVALID = 3;
+  typedef UINT UMS_THREAD_INFO_CLASS; //Alias
+  static const UINT UmsThreadInvalidInfoClass = 0;
+  static const UINT UmsThreadUserContext = 1;
+  static const UINT UmsThreadPriority = 2;
+  static const UINT UmsThreadAffinity = 3;
+  static const UINT UmsThreadTeb = 4;
+  static const UINT UmsThreadIsSuspended = 5;
+  static const UINT UmsThreadIsTerminated = 6;
+  typedef UINT GEOCLASS; //Alias
+  static const UINT GEOCLASS_NATION = 16;
+  static const UINT GEOCLASS_REGION = 14;
+  typedef UINT FILE_INFO_BY_HANDLE_CLASS; //Alias
+  static const UINT FileBasicInfo = 0;
+  static const UINT FileStandardInfo = 1;
+  static const UINT FileNameInfo = 2;
+  static const UINT FileRenameInfo = 3;
+  static const UINT FileDispositionInfo = 4;
+  static const UINT FileAllocationInfo = 5;
+  static const UINT FileEndOfFileInfo = 6;
+  static const UINT FileStreamInfo = 7;
+  static const UINT FileCompressionInfo = 8;
+  static const UINT FileAttributeTagInfo = 9;
+  static const UINT FileIdBothDirectoryInfo = 10;
+  static const UINT FileIdBothDirectoryRestartInfo = 11;
+  static const UINT FileIoPriorityHintInfo = 12;
+  static const UINT FileRemoteProtocolInfo = 13;
+  static const UINT FileFullDirectoryInfo = 14;
+  static const UINT FileFullDirectoryRestartInfo = 15;
+  static const UINT FileStorageInfo = 16;
+  static const UINT FileAlignmentInfo = 17;
+  typedef UINT MEMORY_RESOURCE_NOTIFICATION_TYPE; //Alias
+  static const UINT LowMemoryResourceNotification = 0;
+  static const UINT HighMemoryResourceNotification = 1;
+  static const UINT PendingBadMemoryNotification = 2;
+  typedef UINT HEAP_INFORMATION_CLASS; //Alias
+  static const UINT HeapCompatibilityInformation = 0;
+  static const UINT HeapEnableTerminationOnCorruption = 1;
+  static const UINT HeapExtendedInformation = 2;
+  typedef UINT LOGICAL_PROCESSOR_RELATIONSHIP; //Alias
+  static const UINT RelationProcessorCore = 0;
+  static const UINT RelationNumaNode = 1;
+  static const UINT RelationCache = 2;
+  static const UINT RelationProcessorPackage = 3;
+  static const UINT RelationGroup = 4;
+  static const UINT RelationAll = 0xffff;
+  typedef UINT CALDATETIME_DATEUNIT; //Alias
+  static const UINT EraUnit = 0;
+  static const UINT YearUnit = 1;
+  static const UINT MonthUnit = 2;
+  static const UINT WeekUnit = 3;
+  static const UINT DayUnit = 4;
+  static const UINT HourUnit = 5;
+  static const UINT MinuteUnit = 6;
+  static const UINT SecondUnit = 7;
+  static const UINT TickUnit = 8;
+  typedef DWORD CALID; //Alias
+  static const DWORD CAL_GREGORIAN = 1;
+  static const DWORD CAL_GREGORIAN_US = 2;
+  static const DWORD CAL_JAPAN = 3;
+  static const DWORD CAL_TAIWAN = 4;
+  static const DWORD CAL_KOREA = 5;
+  static const DWORD CAL_HIJRI = 6;
+  static const DWORD CAL_THAI = 7;
+  static const DWORD CAL_HEBREW = 8;
+  static const DWORD CAL_GREGORIAN_ME_FRENCH = 9;
+  static const DWORD CAL_GREGORIAN_ARABIC = 10;
+  static const DWORD CAL_GREGORIAN_XLIT_ENGLISH = 11;
+  static const DWORD CAL_GREGORIAN_XLIT_FRENCH = 12;
+  static const DWORD CAL_UMALQURA = 23;
+  static const DWORD ENUM_ALL_CALENDARS = 0xffffffff;
+  typedef DWORD CALTYPE; //Alias
+  typedef DWORD LGRPID; //Alias
+  static const DWORD LGRPID_WESTERN_EUROPE = 0x0001;
+  static const DWORD LGRPID_CENTRAL_EUROPE = 0x0002;
+  static const DWORD LGRPID_BALTIC = 0x0003;
+  static const DWORD LGRPID_GREEK = 0x0004;
+  static const DWORD LGRPID_CYRILLIC = 0x0005;
+  static const DWORD LGRPID_TURKIC = 0x0006;
+  static const DWORD LGRPID_TURKISH = 0x0006;
+  static const DWORD LGRPID_JAPANESE = 0x0007;
+  static const DWORD LGRPID_KOREAN = 0x0008;
+  static const DWORD LGRPID_TRADITIONAL_CHINESE = 0x0009;
+  static const DWORD LGRPID_SIMPLIFIED_CHINESE = 0x000a;
+  static const DWORD LGRPID_THAI = 0x000b;
+  static const DWORD LGRPID_HEBREW = 0x000c;
+  static const DWORD LGRPID_ARABIC = 0x000d;
+  static const DWORD LGRPID_VIETNAMESE = 0x000e;
+  static const DWORD LGRPID_INDIC = 0x000f;
+  static const DWORD LGRPID_GEORGIAN = 0x0010;
+  static const DWORD LGRPID_ARMENIAN = 0x0011;
+  typedef DWORD GEOTYPE; //Alias
+  static const DWORD GEO_NATION = 0x0001;
+  static const DWORD GEO_LATITUDE = 0x0002;
+  static const DWORD GEO_LONGITUDE = 0x0003;
+  static const DWORD GEO_ISO2 = 0x0004;
+  static const DWORD GEO_ISO3 = 0x0005;
+  static const DWORD GEO_RFC1766 = 0x0006;
+  static const DWORD GEO_LCID = 0x0007;
+  static const DWORD GEO_FRIENDLYNAME = 0x0008;
+  static const DWORD GEO_OFFICIALNAME = 0x0009;
+  static const DWORD GEO_TIMEZONES = 0x000A;
+  static const DWORD GEO_OFFICIALLANGUAGES = 0x000B;
+  static const DWORD GEO_ISO_UN_NUMBER = 0x000C;
+  static const DWORD GEO_PARENT = 0x000D;
+  typedef DWORD LCTYPE; //Alias
+  typedef DWORD NLS_FUNCTION; //Alias
+  static const DWORD COMPARE_STRING = 0x0001;
+  typedef DWORD EXECUTION_STATE; //Alias
+  typedef DWORD WER_REGISTER_FILE_TYPE; //Alias
+  static const DWORD WerRegFileTypeUserDocument = 1;
+  static const DWORD WerRegFileTypeOther = 2;
+  typedef DWORD WINAPI_CreationDisposition; //Alias
+  static const DWORD CREATE_NEW = 1;
+  static const DWORD CREATE_ALWAYS = 2;
+  static const DWORD OPEN_EXISTING = 3;
+  static const DWORD OPEN_ALWAYS = 4;
+  static const DWORD TRUNCATE_EXISTING = 5;
+  typedef DWORD WINAPI_FlagsAndAttributes; //Alias
+  typedef DWORD WINAPI_FormatMessageFlags; //Alias
+  typedef DWORD WINAPI_ProcessorFeatureEnum; //Alias
+  static const DWORD PF_FLOATING_POINT_PRECISION_ERRATA = 0;
+  static const DWORD PF_FLOATING_POINT_EMULATED = 1;
+  static const DWORD PF_COMPARE_EXCHANGE_DOUBLE = 2;
+  static const DWORD PF_MMX_INSTRUCTIONS_AVAILABLE = 3;
+  static const DWORD PF_PPC_MOVEMEM_64BIT_OK = 4;
+  static const DWORD PF_ALPHA_BYTE_INSTRUCTIONS = 5;
+  static const DWORD PF_XMMI_INSTRUCTIONS_AVAILABLE = 6;
+  static const DWORD PF_3DNOW_INSTRUCTIONS_AVAILABLE = 7;
+  static const DWORD PF_RDTSC_INSTRUCTION_AVAILABLE = 8;
+  static const DWORD PF_PAE_ENABLED = 9;
+  static const DWORD PF_XMMI64_INSTRUCTIONS_AVAILABLE = 10;
+  static const DWORD PF_SSE_DAZ_MODE_AVAILABLE = 11;
+  static const DWORD PF_NX_ENABLED = 12;
+  static const DWORD PF_SSE3_INSTRUCTIONS_AVAILABLE = 13;
+  static const DWORD PF_COMPARE_EXCHANGE128 = 14;
+  static const DWORD PF_COMPARE64_EXCHANGE128 = 15;
+  static const DWORD PF_CHANNELS_ENABLED = 16;
+  static const DWORD PF_XSAVE_ENABLED = 17;
+  typedef DWORD WINAPI_CharacterTypeFlag; //Alias
+  typedef UINT WINAPI_LocalMemoryFlag; //Alias
+  typedef UINT WINAPI_GlobalMemoryFlag; //Alias
+  typedef DWORD WINAPI_WideCharFlags; //Alias
+  typedef DWORD WINAPI_MultiByteFlags; //Alias
+  typedef DWORD WINAPI_MoveMethodEnum; //Alias
+  static const DWORD FILE_BEGIN = 0;
+  static const DWORD FILE_CURRENT = 1;
+  static const DWORD FILE_END = 2;
+  typedef DWORD WINAPI_MapAccessFlags; //Alias
+  typedef DWORD WINAPI_ThreadCreationFlags; //Alias
+  typedef DWORD WINAPI_LocaleEnumerationFlags; //Alias
+  typedef DWORD WINAPI_EnumSystemLocalesExFlags; //Alias
+  typedef DWORD WINAPI_CodePageEnumerationFlags; //Alias
+  typedef DWORD WINAPI_StringFlags; //Alias
+  typedef DWORD WINAPI_MappingFlags; //Alias
+  typedef DWORD WINAPI_DeactivateActCtxFlags; //Alias
+  typedef UINT WINAPI_SEM_FLAGS; //Alias
+  typedef WINAPI_SEM_FLAGS WINAPI_SEM_FLAGS_DWORD; //Alias
+  typedef DWORD WINAPI_GetNumberFormatFlags; //Alias
+  typedef DWORD WINAPI_DuplicateHandleFlags; //Alias
+  typedef DWORD WINAPI_StandardAccessRights; //Alias
+  typedef DWORD WINAPI_EventAccessRights; //Alias
+  typedef DWORD WINAPI_MutexAccessRights; //Alias
+  typedef DWORD WINAPI_SemaphoreAccessRights; //Alias
+  typedef DWORD WINAPI_TimerAccessRights; //Alias
+  typedef DWORD WINAPI_QueryActCtxFlags; //Alias
+  typedef ULONG WINAPI_ActivationContextInfoClass; //Alias
+  static const ULONG ActivationContextBasicInformation = 1;
+  static const ULONG ActivationContextDetailedInformation = 2;
+  static const ULONG AssemblyDetailedInformationInActivationContext = 3;
+  static const ULONG FileInformationInAssemblyOfAssemblyInActivationContext = 4;
+  static const ULONG RunlevelInformationInActivationContext = 5;
+  static const ULONG CompatibilityInformationInActivationContext = 6;
+  static const ULONG ActivationContextManifestResourceName = 7;
+  typedef DWORD WINAPI_ResourceEnumFlags; //Alias
+  typedef ULONG WINAPI_WorkItemFlags; //Alias
+  typedef BYTE WINAPI_VerOperator; //Alias
+  static const BYTE VER_EQUAL = 1;
+  static const BYTE VER_GREATER = 2;
+  static const BYTE VER_GREATER_EQUAL = 3;
+  static const BYTE VER_LESS = 4;
+  static const BYTE VER_LESS_EQUAL = 5;
+  static const BYTE VER_AND = 6;
+  static const BYTE VER_OR = 7;
+  typedef DWORD WINAPI_ExceptionFlags; //Alias
+  typedef DWORD WINAPI_GetDateFormatFlags; //Alias
+  typedef DWORD WINAPI_GetTimeFormatFlags; //Alias
+  typedef DWORD WINAPI_StdHandle; //Alias
+  static const DWORD STD_INPUT_HANDLE = -10;
+  static const DWORD STD_OUTPUT_HANDLE = -11;
+  static const DWORD STD_ERROR_HANDLE = -12;
+  typedef int WINAPI_ThreadPriority; //Alias
+  static const int THREAD_PRIORITY_LOWEST = -2;
+  static const int THREAD_PRIORITY_BELOW_NORMAL = -1;
+  static const int THREAD_PRIORITY_NORMAL = 0;
+  static const int THREAD_PRIORITY_HIGHEST = 2;
+  static const int THREAD_PRIORITY_ABOVE_NORMAL = 1;
+  static const int THREAD_PRIORITY_TIME_CRITICAL = 15;
+  static const int THREAD_PRIORITY_IDLE = -15;
+  static const int THREAD_MODE_BACKGROUND_BEGIN = 0x00010000;
+  static const int THREAD_MODE_BACKGROUND_END = 0x00020000;
+  typedef DWORD WINAPI_ConsoleModeFlags; //Alias
+  typedef DWORD WINAPI_HandleFlags; //Alias
+  typedef ULONG WINAPI_PrivateNamespaceFlag; //Alias
+  typedef DWORD WINAPI_GetFinalPathNameByHandleFlags; //Alias
+  typedef DWORD WINAPI_LockFileFlags; //Alias
+  typedef DWORD WINAPI_ProductType; //Alias
+  static const DWORD PRODUCT_UNDEFINED = 0x00000000;
+  static const DWORD PRODUCT_ULTIMATE = 0x00000001;
+  static const DWORD PRODUCT_HOME_BASIC = 0x00000002;
+  static const DWORD PRODUCT_HOME_PREMIUM = 0x00000003;
+  static const DWORD PRODUCT_ENTERPRISE = 0x00000004;
+  static const DWORD PRODUCT_HOME_BASIC_N = 0x00000005;
+  static const DWORD PRODUCT_BUSINESS = 0x00000006;
+  static const DWORD PRODUCT_STANDARD_SERVER = 0x00000007;
+  static const DWORD PRODUCT_DATACENTER_SERVER = 0x00000008;
+  static const DWORD PRODUCT_SMALLBUSINESS_SERVER = 0x00000009;
+  static const DWORD PRODUCT_ENTERPRISE_SERVER = 0x0000000A;
+  static const DWORD PRODUCT_STARTER = 0x0000000B;
+  static const DWORD PRODUCT_DATACENTER_SERVER_CORE = 0x0000000C;
+  static const DWORD PRODUCT_STANDARD_SERVER_CORE = 0x0000000D;
+  static const DWORD PRODUCT_ENTERPRISE_SERVER_CORE = 0x0000000E;
+  static const DWORD PRODUCT_ENTERPRISE_SERVER_IA64 = 0x0000000F;
+  static const DWORD PRODUCT_BUSINESS_N = 0x00000010;
+  static const DWORD PRODUCT_WEB_SERVER = 0x00000011;
+  static const DWORD PRODUCT_CLUSTER_SERVER = 0x00000012;
+  static const DWORD PRODUCT_HOME_SERVER = 0x00000013;
+  static const DWORD PRODUCT_STORAGE_EXPRESS_SERVER = 0x00000014;
+  static const DWORD PRODUCT_STORAGE_STANDARD_SERVER = 0x00000015;
+  static const DWORD PRODUCT_STORAGE_WORKGROUP_SERVER = 0x00000016;
+  static const DWORD PRODUCT_STORAGE_ENTERPRISE_SERVER = 0x00000017;
+  static const DWORD PRODUCT_SERVER_FOR_SMALLBUSINESS = 0x00000018;
+  static const DWORD PRODUCT_SMALLBUSINESS_SERVER_PREMIUM = 0x00000019;
+  static const DWORD PRODUCT_UNLICENSED = 0xABCDABCD;
+  typedef DWORD WINAPI_MoveFileFlags; //Alias
+  typedef DWORD WINAPI_LanguageGroupFlags; //Alias
+  typedef DWORD WINAPI_ApplicationRestartFlags; //Alias
+  typedef DWORD WINAPI_ProcessShutdownFlags; //Alias
+  typedef UINT FINDEX_INFO_LEVELS; //Alias
+  static const UINT FindExInfoStandard = 0;
+  static const UINT FindExInfoBasic = 1;
+  typedef UINT FINDEX_SEARCH_OPS; //Alias
+  static const UINT FindExSearchNameMatch = 0;
+  static const UINT FindExSearchLimitToDirectories = 1;
+  static const UINT FindExSearchLimitToDevices = 2;
+  typedef DWORD WINAPI_FindFirstFileExFlags; //Alias
+  typedef DWORD WINAPI_QueryFullProcessImageNameFlags; //Alias
+  typedef DWORD WINAPI_WerFileFlags; //Alias
+  typedef DWORD WINAPI_GetBinaryTypeResult; //Alias
+  static const DWORD SCS_32BIT_BINARY = 0;
+  static const DWORD SCS_DOS_BINARY = 1;
+  static const DWORD SCS_WOW_BINARY = 2;
+  static const DWORD SCS_PIF_BINARY = 3;
+  static const DWORD SCS_POSIX_BINARY = 4;
+  static const DWORD SCS_OS216_BINARY = 5;
+  static const DWORD SCS_64BIT_BINARY = 6;
+  typedef UINT WINAPI_OpenFileFlags; //Alias
+  typedef DWORD WINAPI_PriorityClass; //Alias
+  typedef DWORD WINAPI_ContinueStatusFlag; //Alias
+  typedef int WINAPI_lcreatAttribute; //Alias
+  static const int Normal = 0;
+  static const int WINAPI_Read_only = 1;
+  static const int Hidden = 2;
+  static const int System = 3;
+  typedef DWORD WINAPI_CreateSymbolicLinkFlags; //Alias
+  typedef DWORD WINAPI_FileType; //Alias
+  static const DWORD FILE_TYPE_UNKNOWN = 0x0000;
+  static const DWORD FILE_TYPE_DISK = 0x0001;
+  static const DWORD FILE_TYPE_CHAR = 0x0002;
+  static const DWORD FILE_TYPE_PIPE = 0x0003;
+  static const DWORD FILE_TYPE_REMOTE = 0x8000;
+  typedef UINT POWER_REQUEST_TYPE; //Alias
+  static const UINT PowerRequestDisplayRequired = 0;
+  static const UINT PowerRequestSystemRequired = 1;
+  static const UINT PowerRequestAwayModeRequired = 2;
+  static const UINT PowerRequestExecutionRequired = 3;
+  typedef UINT LATENCY_TIME; //Alias
+  static const UINT LT_DONT_CARE = 0;
+  static const UINT LT_LOWEST_LATENCY = 1;
+  typedef UINT COMPUTER_NAME_FORMAT; //Alias
+  static const UINT ComputerNameNetBIOS = 0;
+  static const UINT ComputerNameDnsHostname = 1;
+  static const UINT ComputerNameDnsDomain = 2;
+  static const UINT ComputerNameDnsFullyQualified = 3;
+  static const UINT ComputerNamePhysicalNetBIOS = 4;
+  static const UINT ComputerNamePhysicalDnsHostname = 5;
+  static const UINT ComputerNamePhysicalDnsDomain = 6;
+  static const UINT ComputerNamePhysicalDnsFullyQualified = 7;
+  typedef struct COORD {
+    SHORT X;
+    SHORT Y;
+  } COORD;
+  typedef COORD *PCOORD; //Pointer
+  typedef struct SMALL_RECT {
+    SHORT Left;
+    SHORT Top;
+    SHORT Right;
+    SHORT Bottom;
+  } SMALL_RECT;
+  typedef SMALL_RECT *PSMALL_RECT; //Pointer
+  typedef struct CHAR_INFO {
+    SHORT Char;
+    WINAPI_ConsoleAttribute Attributes;
+  } CHAR_INFO;
+  typedef CHAR_INFO *PCHAR_INFO; //Pointer
+  typedef DWORD WINAPI_HeapEntryFlags; //Alias
+  static const DWORD LF32_FIXED = 0x00000001;
+  static const DWORD LF32_FREE = 0x00000002;
+  static const DWORD LF32_MOVEABLE = 0x00000004;
+  typedef struct HEAPENTRY32 {
+    SIZE_T dwSize;
+    HANDLE hHandle;
+    ULONG_PTR dwAddress;
+    SIZE_T dwBlockSize;
+    WINAPI_HeapEntryFlags dwFlags;
+    DWORD dwLockCount;
+    DWORD dwResvd;
+    DWORD th32ProcessID;
+    ULONG_PTR th32HeapID;
+  } HEAPENTRY32;
+  typedef HEAPENTRY32 *LPHEAPENTRY32; //Pointer
+  typedef DWORD WINAPI_HeapListFlags; //Alias
+  static const DWORD HF32_DEFAULT = 1;
+  static const DWORD HF32_SHARED = 2;
+  typedef struct HEAPLIST32 {
+    SIZE_T dwSize;
+    DWORD th32ProcessID;
+    ULONG_PTR th32HeapID;
+    WINAPI_HeapListFlags dwFlags;
+  } HEAPLIST32;
+  typedef HEAPLIST32 *LPHEAPLIST32; //Pointer
+  typedef struct THREADENTRY32 {
+    DWORD dwSize;
+    DWORD cntUsage;
+    DWORD th32ThreadID;
+    DWORD th32OwnerProcessID;
+    LONG tpBasePri;
+    LONG tpDeltaPri;
+    DWORD dwFlags;
+  } THREADENTRY32;
+  typedef THREADENTRY32 *LPTHREADENTRY32; //Pointer
+  typedef struct BY_HANDLE_FILE_INFORMATION {
+    DWORD dwFileAttributes;
+    FILETIME ftCreationTime;
+    FILETIME ftLastAccessTime;
+    FILETIME ftLastWriteTime;
+    DWORD dwVolumeSerialNumber;
+    DWORD nFileSizeHigh;
+    DWORD nFileSizeLow;
+    DWORD nNumberOfLinks;
+    DWORD nFileIndexHigh;
+    DWORD nFileIndexLow;
+  } BY_HANDLE_FILE_INFORMATION;
+  typedef BY_HANDLE_FILE_INFORMATION *LPBY_HANDLE_FILE_INFORMATION; //Pointer
+  typedef struct OVERLAPPED_ENTRY {
+    ULONG_PTR lpCompletionKey;
+    LPOVERLAPPED lpOverlapped;
+    ULONG_PTR Internal;
+    DWORD dwNumberOfBytesTransferred;
+  } OVERLAPPED_ENTRY;
+  typedef OVERLAPPED_ENTRY *LPOVERLAPPED_ENTRY; //Pointer
+  typedef struct MEMORYSTATUSEX {
+    DWORD dwLength;
+    DWORD dwMemoryLoad;
+    DWORDLONG ullTotalPhys;
+    DWORDLONG ullAvailPhys;
+    DWORDLONG ullTotalPageFile;
+    DWORDLONG ullAvailPageFile;
+    DWORDLONG ullTotalVirtual;
+    DWORDLONG ullAvailVirtual;
+    DWORDLONG ullAvailExtendedVirtual;
+  } MEMORYSTATUSEX;
+  typedef MEMORYSTATUSEX *LPMEMORYSTATUSEX; //Pointer
+  typedef struct MEMORY_BASIC_INFORMATION {
+    PVOID BaseAddress;
+    PVOID AllocationBase;
+    WINAPI_MemoryProtection AllocationProtect;
+    SIZE_T RegionSize;
+    WINAPI_MemoryAllocationFlags State;
+    WINAPI_MemoryProtection Protect;
+    WINAPI_MemoryType Type;
+  } MEMORY_BASIC_INFORMATION;
+  typedef MEMORY_BASIC_INFORMATION *PMEMORY_BASIC_INFORMATION; //Pointer
+  typedef struct MEMORYSTATUS {
+    DWORD dwLength;
+    DWORD dwMemoryLoad;
+    SIZE_T dwTotalPhys;
+    SIZE_T dwAvailPhys;
+    SIZE_T dwTotalPageFile;
+    SIZE_T dwAvailPageFile;
+    SIZE_T dwTotalVirtual;
+    SIZE_T dwAvailVirtual;
+  } MEMORYSTATUS;
+  typedef MEMORYSTATUS *LPMEMORYSTATUS; //Pointer
+  typedef struct IO_COUNTERS {
+    ULONGLONG ReadOperationCount;
+    ULONGLONG WriteOperationCount;
+    ULONGLONG OtherOperationCount;
+    ULONGLONG ReadTransferCount;
+    ULONGLONG WriteTransferCount;
+    ULONGLONG OtherTransferCount;
+  } IO_COUNTERS;
+  typedef IO_COUNTERS *PIO_COUNTERS; //Pointer
+  typedef struct SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION {
+    DWORD64 CycleTime;
+  } SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION;
+  typedef SYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION *PSYSTEM_PROCESSOR_CYCLE_TIME_INFORMATION; //Pointer
+  typedef struct TP_POOL_STACK_INFORMATION {
+    SIZE_T StackReserve;
+    SIZE_T StackCommit;
+  } TP_POOL_STACK_INFORMATION;
+  typedef TP_POOL_STACK_INFORMATION *PTP_POOL_STACK_INFORMATION; //Pointer
+  typedef LPVOID PUMS_COMPLETION_LIST; //Alias
+  typedef PUMS_COMPLETION_LIST *PUMS_SCHEDULER_ENTRY_POINT; //Pointer
+  typedef struct UMS_SCHEDULER_STARTUP_INFO {
+    ULONG UmsVersion;
+    PUMS_COMPLETION_LIST CompletionList;
+    PUMS_SCHEDULER_ENTRY_POINT SchedulerProc;
+    PVOID SchedulerParam;
+  } UMS_SCHEDULER_STARTUP_INFO;
+  typedef UMS_SCHEDULER_STARTUP_INFO *PUMS_SCHEDULER_STARTUP_INFO; //Pointer
+  typedef struct ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA {
+    PVOID lpInformation;
+    PVOID lpSectionBase;
+    ULONG ulSectionLength;
+    PVOID lpSectionGlobalDataBase;
+    ULONG ulSectionGlobalDataLength;
+  } ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA;
+  typedef struct ACTCTX_SECTION_KEYED_DATA {
+    ULONG cbSize;
+    ULONG ulDataFormatVersion;
+    PVOID lpData;
+    ULONG ulLength;
+    PVOID lpSectionGlobalData;
+    ULONG ulSectionGlobalDataLength;
+    PVOID lpSectionBase;
+    ULONG ulSectionTotalLength;
+    HANDLE hActCtx;
+    ULONG ulAssemblyRosterIndex;
+    ULONG ulFlags;
+    ACTCTX_SECTION_KEYED_DATA_ASSEMBLY_METADATA AssemblyMetadata;
+  } ACTCTX_SECTION_KEYED_DATA;
+  typedef ACTCTX_SECTION_KEYED_DATA *PACTCTX_SECTION_KEYED_DATA; //Pointer
+  typedef struct COMMTIMEOUTS {
+    DWORD ReadIntervalTimeout;
+    DWORD ReadTotalTimeoutMultiplier;
+    DWORD ReadTotalTimeoutConstant;
+    DWORD WriteTotalTimeoutMultiplier;
+    DWORD WriteTotalTimeoutConstant;
+  } COMMTIMEOUTS;
+  typedef COMMTIMEOUTS *LPCOMMTIMEOUTS; //Pointer
+  typedef struct CONSOLE_CURSOR_INFO {
+    DWORD dwSize;
+    BOOL bVisible;
+  } CONSOLE_CURSOR_INFO;
+  typedef CONSOLE_CURSOR_INFO *PCONSOLE_CURSOR_INFO; //Pointer
+  typedef struct CONSOLE_HISTORY_INFO {
+    UINT cbSize;
+    UINT HistoryBufferSize;
+    UINT NumberOfHistoryBuffers;
+    DWORD dwFlags;
+  } CONSOLE_HISTORY_INFO;
+  typedef CONSOLE_HISTORY_INFO *PCONSOLE_HISTORY_INFO; //Pointer
+  typedef struct CONSOLE_SCREEN_BUFFER_INFO {
+    COORD dwSize;
+    COORD dwCursorPosition;
+    WORD wAttributes;
+    SMALL_RECT srWindow;
+    COORD dwMaximumWindowSize;
+  } CONSOLE_SCREEN_BUFFER_INFO;
+  typedef CONSOLE_SCREEN_BUFFER_INFO *PCONSOLE_SCREEN_BUFFER_INFO; //Pointer
+  typedef struct CONSOLE_SELECTION_INFO {
+    DWORD dwFlags;
+    COORD dwSelectionAnchor;
+    SMALL_RECT srSelection;
+  } CONSOLE_SELECTION_INFO;
+  typedef CONSOLE_SELECTION_INFO *PCONSOLE_SELECTION_INFO; //Pointer
+  typedef struct CONSOLE_FONT_INFO {
+    DWORD nFont;
+    COORD dwFontSize;
+  } CONSOLE_FONT_INFO;
+  typedef CONSOLE_FONT_INFO *PCONSOLE_FONT_INFO; //Pointer
+  typedef struct FRAME_POINTERS {
+    ULONGLONG MemoryStackFp;
+    ULONGLONG BackingStoreFp;
+  } FRAME_POINTERS;
+  typedef FRAME_POINTERS *PFRAME_POINTERS; //Pointer
+  typedef struct RUNTIME_FUNCTION {
+    DWORD BeginAddress;
+    DWORD EndAddress;
+    DWORD UnwindData;
+  } RUNTIME_FUNCTION;
+  typedef RUNTIME_FUNCTION *PRUNTIME_FUNCTION; //Pointer
+  typedef struct CALDATETIME {
+    CALID CalId;
+    UINT Era;
+    UINT Year;
+    UINT Month;
+    UINT Day;
+    UINT DayOfWeek;
+    UINT Hour;
+    UINT Minute;
+    UINT Second;
+    ULONG Tick;
+  } CALDATETIME;
+  typedef CALDATETIME *LPCALDATETIME; //Pointer
+  typedef LPCALDATETIME WINAPI_LPCALDATETIME; //Alias
+  typedef struct NLSVERSIONINFO {
+    DWORD dwNLSVersionInfoSize;
+    DWORD dwNLSVersion;
+    DWORD dwDefinedVersion;
+  } NLSVERSIONINFO;
+  typedef NLSVERSIONINFO *LPNLSVERSIONINFO; //Pointer
+  typedef struct NLSVERSIONINFOEX {
+    DWORD dwNLSVersionInfoSize;
+    DWORD dwNLSVersion;
+    DWORD dwDefinedVersion;
+    DWORD dwEffectiveId;
+    GUID guidCustomVersion;
+  } NLSVERSIONINFOEX;
+  typedef NLSVERSIONINFOEX *LPNLSVERSIONINFOEX; //Pointer
+  typedef struct CURRENCYFMT {
+    UINT NumDigits;
+    UINT LeadingZero;
+    UINT Grouping;
+    LPTSTR lpDecimalSep;
+    LPTSTR lpThousandSep;
+    UINT NegativeOrder;
+    UINT PositiveOrder;
+    LPTSTR lpCurrencySymbol;
+  } CURRENCYFMT;
+  typedef struct SYSTEM_POWER_STATUS {
+    BYTE ACLineStatus;
+    BYTE BatteryFlag;
+    BYTE BatteryLifePercent;
+    BYTE Reserved1;
+    DWORD BatteryLifeTime;
+    DWORD BatteryFullLifeTime;
+  } SYSTEM_POWER_STATUS;
+  typedef SYSTEM_POWER_STATUS *LPSYSTEM_POWER_STATUS; //Pointer
+  typedef DWORD WINAPI_PROCESSOR_TYPE; //Alias
+  static const DWORD PROCESSOR_INTEL_386 = 386;
+  static const DWORD PROCESSOR_INTEL_486 = 486;
+  static const DWORD PROCESSOR_INTEL_PENTIUM = 586;
+  static const DWORD PROCESSOR_INTEL_IA64 = 2200;
+  static const DWORD PROCESSOR_AMD_X8664 = 8664;
+  typedef struct SYSTEM_INFO {
+    WINAPI_PROCESSOR_ARCHITECTURE wProcessorArchitecture;
+    WORD wReserved;
+    DWORD dwPageSize;
+    LPVOID lpMinimumApplicationAddress;
+    LPVOID lpMaximumApplicationAddress;
+    DWORD_PTR dwActiveProcessorMask;
+    DWORD dwNumberOfProcessors;
+    WINAPI_PROCESSOR_TYPE dwProcessorType;
+    DWORD dwAllocationGranularity;
+    WORD wProcessorLevel;
+    WORD wProcessorRevision;
+  } SYSTEM_INFO;
+  typedef SYSTEM_INFO *LPSYSTEM_INFO; //Pointer
+  typedef DWORD WINAPI_SET_LAST_ERROR_EX_TYPE; //Alias
+  static const DWORD SLE_ERROR = 0x00000001;
+  static const DWORD SLE_MINORERROR = 0x00000002;
+  static const DWORD SLE_WARNING = 0x00000003;
+  typedef DWORD WINAPI_DEBUG_EVENT_CODE; //Alias
+  static const DWORD EXCEPTION_DEBUG_EVENT = 1;
+  static const DWORD CREATE_THREAD_DEBUG_EVENT = 2;
+  static const DWORD CREATE_PROCESS_DEBUG_EVENT = 3;
+  static const DWORD EXIT_THREAD_DEBUG_EVENT = 4;
+  static const DWORD EXIT_PROCESS_DEBUG_EVENT = 5;
+  static const DWORD LOAD_DLL_DEBUG_EVENT = 6;
+  static const DWORD UNLOAD_DLL_DEBUG_EVENT = 7;
+  static const DWORD OUTPUT_DEBUG_STRING_EVENT = 8;
+  static const DWORD RIP_EVENT = 9;
+  typedef struct EXCEPTION_DEBUG_INFO {
+    EXCEPTION_RECORD ExceptionRecord;
+    DWORD dwFirstChance;
+  } EXCEPTION_DEBUG_INFO;
+  typedef struct CREATE_THREAD_DEBUG_INFO {
+    HANDLE hThread;
+    LPVOID lpThreadLocalBase;
+    LPTHREAD_START_ROUTINE lpStartAddress;
+  } CREATE_THREAD_DEBUG_INFO;
+  typedef struct CREATE_PROCESS_DEBUG_INFO {
+    HANDLE hFile;
+    HANDLE hProcess;
+    HANDLE hThread;
+    LPVOID lpBaseOfImage;
+    DWORD dwDebugInfoFileOffset;
+    DWORD nDebugInfoSize;
+    LPVOID lpThreadLocalBase;
+    LPTHREAD_START_ROUTINE lpStartAddress;
+    LPVOID lpImageName;
+    WORD fUnicode;
+  } CREATE_PROCESS_DEBUG_INFO;
+  typedef struct EXIT_THREAD_DEBUG_INFO {
+    DWORD dwExitCode;
+  } EXIT_THREAD_DEBUG_INFO;
+  typedef struct EXIT_PROCESS_DEBUG_INFO {
+    DWORD dwExitCode;
+  } EXIT_PROCESS_DEBUG_INFO;
+  typedef struct LOAD_DLL_DEBUG_INFO {
+    HANDLE hFile;
+    LPVOID lpBaseOfDll;
+    DWORD dwDebugInfoFileOffset;
+    DWORD nDebugInfoSize;
+    LPVOID lpImageName;
+    WORD fUnicode;
+  } LOAD_DLL_DEBUG_INFO;
+  typedef struct UNLOAD_DLL_DEBUG_INFO {
+    LPVOID lpBaseOfDll;
+  } UNLOAD_DLL_DEBUG_INFO;
+  typedef struct OUTPUT_DEBUG_STRING_INFO {
+    LPSTR lpDebugStringData;
+    WORD fUnicode;
+    WORD nDebugStringLength;
+  } OUTPUT_DEBUG_STRING_INFO;
+  typedef struct RIP_INFO {
+    DWORD dwError;
+    WINAPI_SET_LAST_ERROR_EX_TYPE dwType;
+  } RIP_INFO;
+  typedef union WINAPI_DEBUG_EVENT_u {
+    EXCEPTION_DEBUG_INFO Exception;
+    CREATE_THREAD_DEBUG_INFO CreateThread;
+    CREATE_PROCESS_DEBUG_INFO CreateProcessInfo;
+    EXIT_THREAD_DEBUG_INFO ExitThread;
+    EXIT_PROCESS_DEBUG_INFO ExitProcess;
+    LOAD_DLL_DEBUG_INFO LoadDll;
+    UNLOAD_DLL_DEBUG_INFO UnloadDll;
+    OUTPUT_DEBUG_STRING_INFO DebugString;
+    RIP_INFO RipInfo;
+  } WINAPI_DEBUG_EVENT_u;
+  typedef struct DEBUG_EVENT {
+    WINAPI_DEBUG_EVENT_CODE dwDebugEventCode;
+    DWORD dwProcessId;
+    DWORD dwThreadId;
+    WINAPI_DEBUG_EVENT_u u;
+  } DEBUG_EVENT;
+  typedef DEBUG_EVENT *LPDEBUG_EVENT; //Pointer
+  typedef struct WOW64_FLOATING_SAVE_AREA {
+    DWORD ControlWord;
+    DWORD StatusWord;
+    DWORD TagWord;
+    DWORD ErrorOffset;
+    DWORD ErrorSelector;
+    DWORD DataOffset;
+    DWORD DataSelector;
+    BYTE RegisterArea[WOW64_SIZE_OF_80387_REGISTERS];
+    DWORD Cr0NpxState;
+  } WOW64_FLOATING_SAVE_AREA;
+  typedef DWORD WINAPI_WOW64_CONTEXT_FLAGS; //Alias
+# pragma pack( push, 4 )
+  typedef struct WOW64_CONTEXT {
+    WINAPI_WOW64_CONTEXT_FLAGS ContextFlags;
+    DWORD Dr0;
+    DWORD Dr1;
+    DWORD Dr2;
+    DWORD Dr3;
+    DWORD Dr6;
+    DWORD Dr7;
+    WOW64_FLOATING_SAVE_AREA FloatSave;
+    DWORD SegGs;
+    DWORD SegFs;
+    DWORD SegEs;
+    DWORD SegDs;
+    DWORD Edi;
+    DWORD Esi;
+    DWORD Ebx;
+    DWORD Edx;
+    DWORD Ecx;
+    DWORD Eax;
+    DWORD Ebp;
+    DWORD Eip;
+    DWORD SegCs;
+    DWORD EFlags;
+    DWORD Esp;
+    DWORD SegSs;
+    BYTE ExtendedRegisters[WOW64_MAXIMUM_SUPPORTED_EXTENSION];
+  } WOW64_CONTEXT;
+# pragma pack( pop )
+  typedef WOW64_CONTEXT *PWOW64_CONTEXT; //Pointer
+  typedef struct MODULEENTRY32 {
+    DWORD dwSize;
+    DWORD th32ModuleID;
+    DWORD th32ProcessID;
+    DWORD GlblcntUsage;
+    DWORD ProccntUsage;
+    BYTE* modBaseAddr;
+    DWORD modBaseSize;
+    HMODULE hModule;
+    TCHAR szModule[MAX_MODULE_NAME32 + 1];
+    TCHAR szExePath[MAX_PATH];
+  } MODULEENTRY32;
+  typedef MODULEENTRY32 *LPMODULEENTRY32; //Pointer
+  typedef struct PROCESSENTRY32 {
+    DWORD dwSize;
+    DWORD cntUsage;
+    DWORD th32ProcessID;
+    ULONG_PTR th32DefaultHeapID;
+    DWORD th32ModuleID;
+    DWORD cntThreads;
+    DWORD th32ParentProcessID;
+    LONG pcPriClassBase;
+    DWORD dwFlags;
+    TCHAR szExeFile[MAX_PATH];
+  } PROCESSENTRY32;
+  typedef PROCESSENTRY32 *LPPROCESSENTRY32; //Pointer
+  typedef UINT FILE_ID_TYPE; //Alias
+  static const UINT FileIdType = 0;
+  static const UINT ObjectIdType = 1;
+  typedef union WINAPI_FILE_ID_DESCRIPTOR_u {
+    LARGE_INTEGER FileId;
+    GUID ObjectId;
+  } WINAPI_FILE_ID_DESCRIPTOR_u;
+  typedef struct FILE_ID_DESCRIPTOR {
+    DWORD dwSize;
+    FILE_ID_TYPE Type;
+    WINAPI_FILE_ID_DESCRIPTOR_u ;
+  } FILE_ID_DESCRIPTOR;
+  typedef FILE_ID_DESCRIPTOR *LPFILE_ID_DESCRIPTOR; //Pointer
+  typedef UINT PROCESSOR_CACHE_TYPE; //Alias
+  static const UINT CacheUnified = 0;
+  static const UINT CacheInstruction = 1;
+  static const UINT CacheData = 2;
+  static const UINT CacheTrace = 3;
+  typedef BYTE WINAPI_CACHE_ASSOCIATIVITY; //Alias
+  typedef struct CACHE_DESCRIPTOR {
+    BYTE Level;
+    WINAPI_CACHE_ASSOCIATIVITY Associativity;
+    WORD LineSize;
+    DWORD Size;
+    PROCESSOR_CACHE_TYPE Type;
+  } CACHE_DESCRIPTOR;
+  typedef struct WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u_s1 {
+    BYTE Flags;
+  } WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u_s1;
+  typedef struct WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u_s2 {
+    DWORD NodeNumber;
+  } WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u_s2;
+  typedef union WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u {
+    WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u_s1 ProcessorCore;
+    WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u_s2 NumaNode;
+    CACHE_DESCRIPTOR Cache;
+    ULONGLONG Reserved[2];
+  } WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u;
+  typedef struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
+    ULONG_PTR ProcessorMask;
+    LOGICAL_PROCESSOR_RELATIONSHIP Relationship;
+    WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u ;
+  } SYSTEM_LOGICAL_PROCESSOR_INFORMATION;
+  typedef SYSTEM_LOGICAL_PROCESSOR_INFORMATION *PSYSTEM_LOGICAL_PROCESSOR_INFORMATION; //Pointer
+  typedef struct GROUP_AFFINITY {
+    KAFFINITY Mask;
+    WORD Group;
+    WORD Reserved[3];
+  } GROUP_AFFINITY;
+  typedef GROUP_AFFINITY *PGROUP_AFFINITY; //Pointer
+  typedef struct PROCESSOR_GROUP_INFO {
+    BYTE MaximumProcessorCount;
+    BYTE ActiveProcessorCount;
+    BYTE Reserved[38];
+    KAFFINITY ActiveProcessorMask;
+  } PROCESSOR_GROUP_INFO;
+  typedef struct GROUP_RELATIONSHIP {
+    WORD MaximumGroupCount;
+    WORD ActiveGroupCount;
+    BYTE Reserved[20];
+    PROCESSOR_GROUP_INFO GroupInfo[ANYSIZE_ARRAY];
+  } GROUP_RELATIONSHIP;
+  typedef struct CACHE_RELATIONSHIP {
+    BYTE Level;
+    WINAPI_CACHE_ASSOCIATIVITY Associativity;
+    WORD LineSize;
+    DWORD CacheSize;
+    PROCESSOR_CACHE_TYPE Type;
+    BYTE Reserved[20];
+    GROUP_AFFINITY GroupMask;
+  } CACHE_RELATIONSHIP;
+  typedef struct NUMA_NODE_RELATIONSHIP {
+    DWORD NodeNumber;
+    BYTE Reserved[20];
+    GROUP_AFFINITY GroupMask;
+  } NUMA_NODE_RELATIONSHIP;
+  typedef BYTE WINAPI_PROCESSOR_RELATIONSHIP_FLAGS; //Alias
+  static const BYTE LTP_PC_SMT = 0x1;
+  typedef struct PROCESSOR_RELATIONSHIP {
+    WINAPI_PROCESSOR_RELATIONSHIP_FLAGS Flags;
+    BYTE Reserved[21];
+    WORD GroupCount;
+    GROUP_AFFINITY GroupMask[ANYSIZE_ARRAY];
+  } PROCESSOR_RELATIONSHIP;
+  typedef union WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_u {
+    PROCESSOR_RELATIONSHIP Processor;
+    NUMA_NODE_RELATIONSHIP NumaNode;
+    CACHE_RELATIONSHIP Cache;
+    GROUP_RELATIONSHIP Group;
+  } WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_u;
+  typedef struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX {
+    LOGICAL_PROCESSOR_RELATIONSHIP Relationship;
+    DWORD Size;
+    WINAPI_SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_u ;
+  } SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX;
+  typedef SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX *PSYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX; //Pointer
+  typedef BYTE WINAPI_DCB_PARITY; //Alias
+  static const BYTE NOPARITY = 0;
+  static const BYTE ODDPARITY = 1;
+  static const BYTE EVENPARITY = 2;
+  static const BYTE MARKPARITY = 3;
+  static const BYTE SPACEPARITY = 4;
+  typedef BYTE WINAPI_DCB_STOPBITS; //Alias
+  static const BYTE ONESTOPBIT = 0;
+  static const BYTE ONE5STOPBITS = 1;
+  static const BYTE TWOSTOPBITS = 2;
+  typedef struct DCB {
+    DWORD DCBlength;
+    DWORD BaudRate;
+    DWORD fDummy2;
+    WORD wReserved;
+    WORD XonLim;
+    WORD XoffLim;
+    BYTE ByteSize;
+    WINAPI_DCB_PARITY Parity;
+    WINAPI_DCB_STOPBITS StopBits;
+    char XonChar;
+    char XoffChar;
+    char ErrorChar;
+    char EofChar;
+    char EvtChar;
+    WORD wReserved1;
+  } DCB;
+  typedef DCB *LPDCB; //Pointer
+  typedef DWORD WINAPI_SERIAL_PROVIDER_TYPE; //Alias
+  typedef DWORD WINAPI_BAUD_FLAGS; //Alias
+  typedef DWORD WINAPI_PROVIDER_SUB_TYPE; //Alias
+  static const DWORD PST_UNSPECIFIED = 0x00000000;
+  static const DWORD PST_RS232 = 0x00000001;
+  static const DWORD PST_PARALLELPORT = 0x00000002;
+  static const DWORD PST_RS422 = 0x00000003;
+  static const DWORD PST_RS423 = 0x00000004;
+  static const DWORD PST_RS449 = 0x00000005;
+  static const DWORD PST_MODEM = 0x00000006;
+  static const DWORD PST_FAX = 0x00000021;
+  static const DWORD PST_SCANNER = 0x00000022;
+  static const DWORD PST_NETWORK_BRIDGE = 0x00000100;
+  static const DWORD PST_LAT = 0x00000101;
+  static const DWORD PST_TCPIP_TELNET = 0x00000102;
+  static const DWORD PST_X25 = 0x00000103;
+  typedef DWORD WINAPI_PROVIDER_CAPABILITIES; //Alias
+  typedef DWORD WINAPI_SETTABLE_PARAMS; //Alias
+  typedef WORD WINAPI_DATABITS_FLAGS; //Alias
+  typedef WORD WINAPI_STOPBITS_PARITY_FLAGS; //Alias
+  typedef DWORD WINAPI_COMMPROP_SPEC; //Alias
+  static const DWORD COMMPROP_INITIALIZED = 0xE73CF52E;
+  typedef struct COMMPROP {
+    WORD wPacketLength;
+    WORD wPacketVersion;
+    WINAPI_SERIAL_PROVIDER_TYPE dwServiceMask;
+    DWORD dwReserved1;
+    DWORD dwMaxTxQueue;
+    DWORD dwMaxRxQueue;
+    WINAPI_BAUD_FLAGS dwMaxBaud;
+    WINAPI_PROVIDER_SUB_TYPE dwProvSubType;
+    WINAPI_PROVIDER_CAPABILITIES dwProvCapabilities;
+    WINAPI_SETTABLE_PARAMS dwSettableParams;
+    WINAPI_BAUD_FLAGS dwSettableBaud;
+    WINAPI_DATABITS_FLAGS wSettableData;
+    WINAPI_STOPBITS_PARITY_FLAGS wSettableStopParity;
+    DWORD dwCurrentTxQueue;
+    DWORD dwCurrentRxQueue;
+    WINAPI_COMMPROP_SPEC dwProvSpec1;
+    DWORD dwProvSpec2;
+    WCHAR wcProvChar[1];
+  } COMMPROP;
+  typedef COMMPROP *LPCOMMPROP; //Pointer
+  typedef struct COMMCONFIG {
+    DWORD dwSize;
+    WORD wVersion;
+    WORD wReserved;
+    DCB dcb;
+    WINAPI_PROVIDER_SUB_TYPE dwProviderSubType;
+    DWORD dwProviderOffset;
+    DWORD dwProviderSize;
+    WCHAR wcProviderData[1];
+  } COMMCONFIG;
+  typedef COMMCONFIG *LPCOMMCONFIG; //Pointer
+  typedef struct CONSOLE_SCREEN_BUFFER_INFOEX {
+    ULONG cbSize;
+    COORD dwSize;
+    COORD dwCursorPosition;
+    WINAPI_ConsoleAttribute wAttributes;
+    SMALL_RECT srWindow;
+    COORD dwMaximumWindowSize;
+    WORD wPopupAttributes;
+    BOOL bFullscreenSupported;
+    COLORREF ColorTable[16];
+  } CONSOLE_SCREEN_BUFFER_INFOEX;
+  typedef CONSOLE_SCREEN_BUFFER_INFOEX *PCONSOLE_SCREEN_BUFFER_INFOEX; //Pointer
+  typedef UINT WINAPI_FONT_FAMILY; //Alias
+  typedef struct CONSOLE_FONT_INFOEX {
+    ULONG cbSize;
+    DWORD nFont;
+    COORD dwFontSize;
+    WINAPI_FONT_FAMILY FontFamily;
+    UINT FontWeight;
+    WCHAR FaceName[LF_FACESIZE];
+  } CONSOLE_FONT_INFOEX;
+  typedef CONSOLE_FONT_INFOEX *PCONSOLE_FONT_INFOEX; //Pointer
+  typedef WORD WINAPI_INPUT_RECORD_TYPE; //Alias
+  static const WORD KEY_EVENT = 0x0001;
+  static const WORD MOUSE_EVENT = 0x0002;
+  static const WORD WINDOW_BUFFER_SIZE_EVENT = 0x0004;
+  static const WORD MENU_EVENT = 0x0008;
+  static const WORD FOCUS_EVENT = 0x0010;
+  typedef union WINAPI_KEY_EVENT_RECORD_u {
+    WCHAR UnicodeChar;
+    CHAR AsciiChar;
+  } WINAPI_KEY_EVENT_RECORD_u;
+  typedef DWORD WINAPI_ControlKeyState; //Alias
+  typedef struct KEY_EVENT_RECORD {
+    BOOL bKeyDown;
+    WORD wRepeatCount;
+    WINAPI_VirtKeyCode wVirtualKeyCode;
+    WORD wVirtualScanCode;
+    WINAPI_KEY_EVENT_RECORD_u uChar;
+    WINAPI_ControlKeyState dwControlKeyState;
+  } KEY_EVENT_RECORD;
+  typedef DWORD WINAPI_MOUSE_EVENT_STATE; //Alias
+  typedef DWORD WINAPI_MOUSE_EVENT_FLAGS; //Alias
+  typedef struct MOUSE_EVENT_RECORD {
+    COORD dwMousePosition;
+    WINAPI_MOUSE_EVENT_STATE dwButtonState;
+    DWORD dwControlKeyState;
+    WINAPI_MOUSE_EVENT_FLAGS dwEventFlags;
+  } MOUSE_EVENT_RECORD;
+  typedef struct WINDOW_BUFFER_SIZE_RECORD {
+    COORD dwSize;
+  } WINDOW_BUFFER_SIZE_RECORD;
+  typedef struct MENU_EVENT_RECORD {
+    UINT dwCommandId;
+  } MENU_EVENT_RECORD;
+  typedef struct FOCUS_EVENT_RECORD {
+    BOOL bSetFocus;
+  } FOCUS_EVENT_RECORD;
+  typedef union WINAPI_INPUT_RECORD_u {
+    KEY_EVENT_RECORD KeyEvent;
+    MOUSE_EVENT_RECORD MouseEvent;
+    WINDOW_BUFFER_SIZE_RECORD WindowBufferSizeEvent;
+    MENU_EVENT_RECORD MenuEvent;
+    FOCUS_EVENT_RECORD FocusEvent;
+  } WINAPI_INPUT_RECORD_u;
+  typedef struct INPUT_RECORD {
+    WINAPI_INPUT_RECORD_TYPE EventType;
+    WINAPI_INPUT_RECORD_u Event;
+  } INPUT_RECORD;
+  typedef INPUT_RECORD *PINPUT_RECORD; //Pointer
+  typedef struct UNWIND_HISTORY_TABLE_ENTRY {
+    DWORD64 ImageBase;
+    PRUNTIME_FUNCTION FunctionEntry;
+  } UNWIND_HISTORY_TABLE_ENTRY;
+  enum { UNWIND_HISTORY_TABLE_SIZE = 12 };
+  typedef struct UNWIND_HISTORY_TABLE {
+    DWORD Count;
+    BYTE LocalHint;
+    BYTE GlobalHint;
+    BYTE Search;
+    BYTE Once;
+    DWORD64 LowAddress;
+    DWORD64 HighAddress;
+    UNWIND_HISTORY_TABLE_ENTRY Entry[UNWIND_HISTORY_TABLE_SIZE];
+  } UNWIND_HISTORY_TABLE;
+  typedef UNWIND_HISTORY_TABLE *PUNWIND_HISTORY_TABLE; //Pointer
+  typedef struct CPINFOEX {
+    UINT MaxCharSize;
+    BYTE DefaultChar[MAX_DEFAULTCHAR];
+    BYTE LeadByte[MAX_LEADBYTES];
+    WCHAR UnicodeDefaultChar;
+    UINT CodePage;
+    TCHAR CodePageName[MAX_PATH];
+  } CPINFOEX;
+  typedef CPINFOEX *LPCPINFOEX; //Pointer
+  typedef struct CPINFO {
+    UINT MaxCharSize;
+    BYTE DefaultChar[MAX_DEFAULTCHAR];
+    BYTE LeadByte[MAX_LEADBYTES];
+  } CPINFO;
+  typedef CPINFO *LPCPINFO; //Pointer
+  typedef struct WINAPI_REASON_CONTEXT_u_s {
+    HMODULE LocalizedReasonModule;
+    ULONG LocalizedReasonId;
+    ULONG ReasonStringCount;
+    LPWSTR* ReasonStrings;
+  } WINAPI_REASON_CONTEXT_u_s;
+  typedef union WINAPI_REASON_CONTEXT_u {
+    WINAPI_REASON_CONTEXT_u_s Detailed;
+    LPWSTR SimpleReasonString;
+  } WINAPI_REASON_CONTEXT_u;
+  typedef DWORD WINAPI_POWER_REQUEST_CONTEXT_FLAGS; //Alias
+  static const DWORD POWER_REQUEST_CONTEXT_SIMPLE_STRING = 0x00000001;
+  static const DWORD POWER_REQUEST_CONTEXT_DETAILED_STRING = 0x00000002;
+  typedef struct REASON_CONTEXT {
+    ULONG Version;
+    WINAPI_POWER_REQUEST_CONTEXT_FLAGS Flags;
+    WINAPI_REASON_CONTEXT_u Reason;
+  } REASON_CONTEXT;
+  typedef REASON_CONTEXT *PREASON_CONTEXT; //Pointer
+  typedef struct DYNAMIC_TIME_ZONE_INFORMATION {
+    LONG Bias;
+    WCHAR StandardName[32];
+    SYSTEMTIME StandardDate;
+    LONG StandardBias;
+    WCHAR DaylightName[32];
+    SYSTEMTIME DaylightDate;
+    LONG DaylightBias;
+    WCHAR TimeZoneKeyName[128];
+    BOOLEAN DynamicDaylightTimeDisabled;
+  } DYNAMIC_TIME_ZONE_INFORMATION;
+  typedef DYNAMIC_TIME_ZONE_INFORMATION *PDYNAMIC_TIME_ZONE_INFORMATION; //Pointer
+  typedef union WINAPI_TP_CALLBACK_ENVIRON_V3_u {
+    DWORD Flags;
+  } WINAPI_TP_CALLBACK_ENVIRON_V3_u;
+  typedef struct TP_CALLBACK_ENVIRON_V3 {
+    TP_VERSION Version;
+    PTP_POOL Pool;
+    PTP_CLEANUP_GROUP CleanupGroup;
+    PTP_CLEANUP_GROUP_CANCEL_CALLBACK CleanupGroupCancelCallback;
+    PVOID RaceDll;
+    ACTIVATION_CONTEXT* ActivationContext;
+    PTP_SIMPLE_CALLBACK FinalizationCallback;
+    WINAPI_TP_CALLBACK_ENVIRON_V3_u u;
+    TP_CALLBACK_PRIORITY CallbackPriority;
+    DWORD Size;
+  } TP_CALLBACK_ENVIRON_V3;
+  typedef TP_CALLBACK_ENVIRON_V3 *PTP_CALLBACK_ENVIRON; //Pointer
+  typedef struct WINAPI_PROCESS_HEAP_ENTRY_u_s1 {
+    HANDLE hMem;
+    DWORD dwReserved[3];
+  } WINAPI_PROCESS_HEAP_ENTRY_u_s1;
+  typedef struct WINAPI_PROCESS_HEAP_ENTRY_u_s2 {
+    DWORD dwCommittedSize;
+    DWORD dwUnCommittedSize;
+    LPVOID lpFirstBlock;
+    LPVOID lpLastBlock;
+  } WINAPI_PROCESS_HEAP_ENTRY_u_s2;
+  typedef union WINAPI_PROCESS_HEAP_ENTRY_u {
+    WINAPI_PROCESS_HEAP_ENTRY_u_s1 Block;
+    WINAPI_PROCESS_HEAP_ENTRY_u_s2 Region;
+  } WINAPI_PROCESS_HEAP_ENTRY_u;
+  typedef WORD WINAPI_PROCESS_HEAP_FLAGS; //Alias
+  typedef struct PROCESS_HEAP_ENTRY {
+    PVOID lpData;
+    DWORD cbData;
+    BYTE cbOverhead;
+    BYTE iRegionIndex;
+    WINAPI_PROCESS_HEAP_FLAGS wFlags;
+    WINAPI_PROCESS_HEAP_ENTRY_u ;
+  } PROCESS_HEAP_ENTRY;
+  typedef PROCESS_HEAP_ENTRY *LPPROCESS_HEAP_ENTRY; //Pointer
+  typedef UINT HARDWARE_COUNTER_TYPE; //Alias
+  static const UINT PMCCounter = 0;
+  typedef struct HARDWARE_COUNTER_DATA {
+    HARDWARE_COUNTER_TYPE Type;
+    DWORD Reserved;
+    DWORD64 Value;
+  } HARDWARE_COUNTER_DATA;
+  enum { MAX_HW_COUNTERS = 16 };
+  typedef struct PERFORMANCE_DATA {
+    WORD Size;
+    BYTE Version;
+    BYTE HwCountersCount;
+    DWORD ContextSwitchCount;
+    DWORD64 WaitReasonBitMap;
+    DWORD64 CycleTime;
+    DWORD RetryCount;
+    DWORD Reserved;
+    HARDWARE_COUNTER_DATA HwCounters[MAX_HW_COUNTERS];
+  } PERFORMANCE_DATA;
+  typedef PERFORMANCE_DATA *PPERFORMANCE_DATA; //Pointer
+  typedef DWORD WINAPI_DDD_FLAGS; //Alias
+  typedef UINT WINAPI_DRIVE_TYPE; //Alias
+  static const UINT DRIVE_UNKNOWN = 0;
+  static const UINT DRIVE_NO_ROOT_DIR = 1;
+  static const UINT DRIVE_REMOVABLE = 2;
+  static const UINT DRIVE_FIXED = 3;
+  static const UINT DRIVE_REMOTE = 4;
+  static const UINT DRIVE_CDROM = 5;
+  static const UINT DRIVE_RAMDISK = 6;
+  typedef DWORD WINAPI_FILE_SYSTEM_FLAGS; //Alias
+  typedef WINAPI_FILE_SYSTEM_FLAGS *WINAPI_LPFILE_SYSTEM_FLAGS; //Pointer
+  typedef DWORD WINAPI_NMPWAIT; //Alias
+  static const DWORD NMPWAIT_WAIT_FOREVER = 0xffffffff;
+  static const DWORD NMPWAIT_NOWAIT = 0x00000001;
+  static const DWORD NMPWAIT_USE_DEFAULT_WAIT = 0x00000000;
+  typedef DWORD WINAPI_PIPE_ACCESS; //Alias
+  typedef DWORD WINAPI_PIPE_MODE; //Alias
+  typedef DWORD WINAPI_PIPE_STATE; //Alias
+  typedef DWORD WINAPI_PIPE_TYPE; //Alias
+  typedef DWORD WINAPI_GetModuleHandleExFlags; //Alias
+  typedef DWORD WINAPI_LoadLibraryExFlags; //Alias
+  typedef DWORD WINAPI_CreateToolhelp32SnapshotFlags; //Alias
+  typedef DWORD WINAPI_LOAD_LIBRARY_SEARCH_FLAGS; //Alias
+  typedef WINAPI_ProcessHandle WINAPI_PROCESS_THREAD_HANDLE; //Alias
   BOOL                         CheckRemoteDebuggerPresent(              WINAPI_ProcessHandle hProcess, PBOOL pbDebuggerPresent);
   BOOL                         ContinueDebugEvent(                      DWORD dwProcessId, DWORD dwThreadId, WINAPI_ContinueStatusFlag dwContinueStatus);
   BOOL                         CopyExtendedContext(                     PCONTEXT_EX Destination, DWORD ContextFlags, PCONTEXT_EX Source);

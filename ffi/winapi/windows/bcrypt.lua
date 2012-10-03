@@ -2,6 +2,112 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/cryptography' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID BCRYPT_HANDLE; //Alias
+  typedef LPVOID BCRYPT_ALG_HANDLE; //Alias
+  typedef LPVOID BCRYPT_HASH_HANDLE; //Alias
+  typedef LPVOID BCRYPT_SECRET_HANDLE; //Alias
+  typedef struct CRYPT_CONTEXT_CONFIG {
+    ULONG dwFlags;
+    ULONG dwReserved;
+  } CRYPT_CONTEXT_CONFIG;
+  typedef CRYPT_CONTEXT_CONFIG *PCRYPT_CONTEXT_CONFIG; //Pointer
+  typedef CRYPT_CONTEXT_CONFIG *PCRYPT_CONTEXT_FUNCTION_CONFIG; //Pointer
+  typedef struct BCRYPT_ALGORITHM_IDENTIFIER {
+    LPWSTR pszName;
+    ULONG dwClass;
+    ULONG dwFlags;
+  } BCRYPT_ALGORITHM_IDENTIFIER;
+  typedef struct CRYPT_CONTEXT_FUNCTION_PROVIDERS {
+    ULONG cProviders;
+    PWSTR* rgpszProviders;
+  } CRYPT_CONTEXT_FUNCTION_PROVIDERS;
+  typedef CRYPT_CONTEXT_FUNCTION_PROVIDERS *PCRYPT_CONTEXT_FUNCTION_PROVIDERS; //Pointer
+  typedef struct CRYPT_CONTEXT_FUNCTIONS {
+    ULONG cFunctions;
+    PWSTR* rgpszFunctions;
+  } CRYPT_CONTEXT_FUNCTIONS;
+  typedef CRYPT_CONTEXT_FUNCTIONS *PCRYPT_CONTEXT_FUNCTIONS; //Pointer
+  typedef struct CRYPT_CONTEXTS {
+    ULONG cContexts;
+    PWSTR* rgpszContexts;
+  } CRYPT_CONTEXTS;
+  typedef CRYPT_CONTEXTS *PCRYPT_CONTEXTS; //Pointer
+  typedef struct BCRYPT_PROVIDER_NAME {
+    LPWSTR pszProviderName;
+  } BCRYPT_PROVIDER_NAME;
+  typedef CRYPT_CONTEXT_FUNCTION_PROVIDERS CRYPT_PROVIDERS; //Alias
+  typedef CRYPT_PROVIDERS *PCRYPT_PROVIDERS; //Pointer
+  typedef struct CRYPT_INTERFACE_REG {
+    ULONG dwInterface;
+    ULONG dwFlags;
+    ULONG cFunctions;
+    PWSTR* rgpszFunctions;
+  } CRYPT_INTERFACE_REG;
+  typedef CRYPT_INTERFACE_REG *PCRYPT_INTERFACE_REG; //Pointer
+  typedef struct CRYPT_IMAGE_REG {
+    PWSTR pszImage;
+    ULONG cInterfaces;
+    PCRYPT_INTERFACE_REG* rgpInterfaces;
+  } CRYPT_IMAGE_REG;
+  typedef CRYPT_IMAGE_REG *PCRYPT_IMAGE_REG; //Pointer
+  typedef struct CRYPT_PROVIDER_REG {
+    ULONG cAliases;
+    PWSTR* rgpszAliases;
+    PCRYPT_IMAGE_REG pUM;
+    PCRYPT_IMAGE_REG pKM;
+  } CRYPT_PROVIDER_REG;
+  typedef CRYPT_PROVIDER_REG *PCRYPT_PROVIDER_REG; //Pointer
+  typedef struct CRYPT_PROPERTY_REF {
+    PWSTR pszProperty;
+    ULONG cbValue;
+    PUCHAR pbValue;
+  } CRYPT_PROPERTY_REF;
+  typedef CRYPT_PROPERTY_REF *PCRYPT_PROPERTY_REF; //Pointer
+  typedef struct CRYPT_IMAGE_REF {
+    PWSTR pszImage;
+    ULONG dwFlags;
+  } CRYPT_IMAGE_REF;
+  typedef CRYPT_IMAGE_REF *PCRYPT_IMAGE_REF; //Pointer
+  typedef struct CRYPT_PROVIDER_REF {
+    ULONG dwInterface;
+    PWSTR pszFunction;
+    PWSTR pszProvider;
+    ULONG cProperties;
+    PCRYPT_PROPERTY_REF* rgpProperties;
+    PCRYPT_IMAGE_REF pUM;
+    PCRYPT_IMAGE_REF pKM;
+  } CRYPT_PROVIDER_REF;
+  typedef CRYPT_PROVIDER_REF *PCRYPT_PROVIDER_REF; //Pointer
+  typedef struct CRYPT_PROVIDER_REFS {
+    ULONG cProviders;
+    PCRYPT_PROVIDER_REF* rgpProviders;
+  } CRYPT_PROVIDER_REFS;
+  typedef CRYPT_PROVIDER_REFS *PCRYPT_PROVIDER_REFS; //Pointer
+  typedef ULONG WINAPI_CryptConfigTable; //Alias
+  static const ULONG CRYPT_LOCAL = 0x00000001;
+  static const ULONG CRYPT_DOMAIN = 0x00000002;
+  typedef ULONG WINAPI_CryptInterface; //Alias
+  static const ULONG BCRYPT_CIPHER_INTERFACE = 0x00000001;
+  static const ULONG BCRYPT_HASH_INTERFACE = 0x00000002;
+  static const ULONG BCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE = 0x00000003;
+  static const ULONG BCRYPT_SECRET_AGREEMENT_INTERFACE = 0x00000004;
+  static const ULONG BCRYPT_SIGNATURE_INTERFACE = 0x00000005;
+  static const ULONG BCRYPT_RNG_INTERFACE = 0x00000006;
+  static const ULONG NCRYPT_KEY_STORAGE_INTERFACE = 0x00010001;
+  static const ULONG NCRYPT_SCHANNEL_INTERFACE = 0x00010002;
+  static const ULONG NCRYPT_SCHANNEL_SIGNATURE_INTERFACE = 0x00010003;
+  typedef ULONG WINAPI_CryptPriority; //Alias
+  static const ULONG CRYPT_PRIORITY_TOP = 0x00000000;
+  static const ULONG CRYPT_PRIORITY_BOTTOM = 0xFFFFFFFF;
+  typedef ULONG WINAPI_CryptOperation; //Alias
+  typedef ULONG WINAPI_CryptMode; //Alias
+  static const ULONG CRYPT_UM = 0x00000001;
+  static const ULONG CRYPT_KM = 0x00000002;
+  static const ULONG CRYPT_MM = 0x00000003;
+  static const ULONG CRYPT_ANY = 0x00000004;
+  typedef ULONG WINAPI_CryptEnumFlags; //Alias
+  typedef ULONG WINAPI_CryptDeriveKeyFlags; //Alias
+  typedef ULONG WINAPI_BCryptOpenAlgorithmProviderFlags; //Alias
   NTSTATUS BCryptAddContextFunction(                WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, WINAPI_CryptPriority dwPosition);
   NTSTATUS BCryptConfigureContext(                  WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, PCRYPT_CONTEXT_CONFIG pConfig);
   NTSTATUS BCryptConfigureContextFunction(          WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, PCRYPT_CONTEXT_FUNCTION_CONFIG pConfig);

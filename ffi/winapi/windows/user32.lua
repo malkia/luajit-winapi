@@ -4,6 +4,880 @@ require( 'ffi/winapi/headers/gdi' )
 require( 'ffi/winapi/headers/security' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID PMENUBARINFO; //Alias
+  typedef LPVOID DLGPROC; //Alias
+  typedef LPVOID WNDPROC; //Alias
+  typedef LPVOID MSGBOXCALLBACK; //Alias
+  typedef HANDLE HDESK; //Alias
+  typedef LPVOID SENDASYNCPROC; //Alias
+  typedef LPVOID WNDENUMPROC; //Alias
+  typedef PVOID HDEVNOTIFY; //Alias
+  typedef HANDLE HCONV; //Alias
+  typedef HANDLE HDDEDATA; //Alias
+  typedef HANDLE HSZ; //Alias
+  typedef HANDLE HCONVLIST; //Alias
+  typedef LPVOID PFNCALLBACK; //Alias
+  typedef HANDLE HHOOK; //Alias
+  typedef LPVOID HOOKPROC; //Alias
+  typedef LPVOID MONITORENUMPROC; //Alias
+  typedef LPVOID DRAWSTATEPROC; //Alias
+  typedef LPVOID GRAYSTRINGPROC; //Alias
+  typedef PVOID HPOWERNOTIFY; //Alias
+  typedef HANDLE HRAWINPUT; //Alias
+  typedef LPVOID TIMERPROC; //Alias
+  typedef LPVOID PROPENUMPROC; //Alias
+  typedef LPVOID PROPENUMPROCEX; //Alias
+  typedef LPVOID WINSTAENUMPROC; //Alias
+  typedef LPVOID DESKTOPENUMPROC; //Alias
+  typedef LPVOID WINEVENTPROC; //Alias
+  typedef HANDLE HWINSTA; //Alias
+  typedef HANDLE HWINEVENTHOOK; //Alias
+  typedef HANDLE HTOUCHINPUT; //Alias
+  typedef HANDLE HGESTUREINFO; //Alias
+  enum { CCHILDREN_TITLEBAR = 6 };
+  enum { CCHILDREN_SCROLLBAR = 6 };
+  typedef struct TITLEBARINFO {
+    DWORD cbSize;
+    RECT rcTitleBar;
+    DWORD rgstate[CCHILDREN_TITLEBAR + 1];
+  } TITLEBARINFO;
+  typedef TITLEBARINFO *PTITLEBARINFO; //Pointer
+  typedef DWORD WINAPI_DISPLAY_DEVICE_STATE; //Alias
+  typedef struct DISPLAY_DEVICE {
+    DWORD cb;
+    TCHAR DeviceName[32];
+    TCHAR DeviceString[128];
+    WINAPI_DISPLAY_DEVICE_STATE StateFlags;
+    TCHAR DeviceID[128];
+    TCHAR DeviceKey[128];
+  } DISPLAY_DEVICE;
+  typedef DISPLAY_DEVICE *PDISPLAY_DEVICE; //Pointer
+  typedef struct ICONINFOEX {
+    DWORD cbSize;
+    BOOL fIcon;
+    DWORD xHotspot;
+    DWORD yHotspot;
+    HBITMAP hbmMask;
+    HBITMAP hbmColor;
+    WORD wResID;
+    TCHAR szModName[MAX_PATH];
+    TCHAR szResName[MAX_PATH];
+  } ICONINFOEX;
+  typedef ICONINFOEX *PICONINFOEX; //Pointer
+  typedef struct PAINTSTRUCT {
+    HDC hdc;
+    BOOL fErase;
+    RECT rcPaint;
+    BOOL fRestore;
+    BOOL fIncUpdate;
+    BYTE rgbReserved[32];
+  } PAINTSTRUCT;
+  typedef PAINTSTRUCT *LPPAINTSTRUCT; //Pointer
+  typedef struct SCROLLBARINFO {
+    DWORD cbSize;
+    RECT rcScrollBar;
+    int dxyLineButton;
+    int xyThumbTop;
+    int xyThumbBottom;
+    int reserved;
+    DWORD rgstate[CCHILDREN_SCROLLBAR + 1];
+  } SCROLLBARINFO;
+  typedef SCROLLBARINFO *PSCROLLBARINFO; //Pointer
+  typedef DWORD WINAPI_MOUSEINPUT_Data; //Alias
+  typedef DWORD WINAPI_MOUSEEVENTF; //Alias
+  typedef struct MOUSEINPUT {
+    LONG dx;
+    LONG dy;
+    WINAPI_MOUSEINPUT_Data mouseData;
+    WINAPI_MOUSEEVENTF dwFlags;
+    DWORD time;
+    ULONG_PTR dwExtraInfo;
+  } MOUSEINPUT;
+  typedef DWORD WINAPI_KEYEVENTF; //Alias
+  typedef struct KEYBDINPUT {
+    WINAPI_VirtKeyCode wVk;
+    WORD wScan;
+    WINAPI_KEYEVENTF dwFlags;
+    DWORD time;
+    ULONG_PTR dwExtraInfo;
+  } KEYBDINPUT;
+  typedef struct HARDWAREINPUT {
+    DWORD uMsg;
+    WORD wParamL;
+    WORD wParamH;
+  } HARDWAREINPUT;
+  typedef union WINAPI_INPUT_u {
+    MOUSEINPUT mi;
+    KEYBDINPUT ki;
+    HARDWAREINPUT hi;
+  } WINAPI_INPUT_u;
+  typedef DWORD WINAPI_INPUT_Type; //Alias
+  static const DWORD INPUT_MOUSE = 0;
+  static const DWORD INPUT_KEYBOARD = 1;
+  static const DWORD INPUT_HARDWARE = 2;
+  typedef struct INPUT {
+    WINAPI_INPUT_Type type;
+    WINAPI_INPUT_u ;
+  } INPUT;
+  typedef INPUT *LPINPUT; //Pointer
+  typedef DWORD WINAPI_WindowStyle; //Alias
+  typedef DWORD WINAPI_WindowExStyle; //Alias
+  typedef DWORD WINAPI_DialogStyle; //Alias
+# pragma pack( push, 2 )
+  typedef struct DLGTEMPLATE {
+    WINAPI_DialogStyle style;
+    WINAPI_WindowExStyle dwExtendedStyle;
+    WORD cdit;
+    short x;
+    short y;
+    short cx;
+    short cy;
+  } DLGTEMPLATE;
+# pragma pack( pop )
+  typedef DLGTEMPLATE *LPCDLGTEMPLATE; //Pointer
+  typedef struct MSGBOXPARAMS {
+    UINT cbSize;
+    HWND hwndOwner;
+    HINSTANCE hInstance;
+    LPCTSTR lpszText;
+    LPCTSTR lpszCaption;
+    DWORD dwStyle;
+    LPCTSTR lpszIcon;
+    DWORD_PTR dwContextHelpId;
+    MSGBOXCALLBACK lpfnMsgBoxCallback;
+    DWORD dwLanguageId;
+  } MSGBOXPARAMS;
+  typedef MSGBOXPARAMS *WINAPI_LPMSGBOXPARAMS; //Pointer
+  typedef struct BSMINFO {
+    UINT cbSize;
+    HDESK hdesk;
+    HWND hwnd;
+    LUID luid;
+  } BSMINFO;
+  typedef BSMINFO *PBSMINFO; //Pointer
+  typedef struct CHANGEFILTERSTRUCT {
+    DWORD cbSize;
+    DWORD ExtStatus;
+  } CHANGEFILTERSTRUCT;
+  typedef CHANGEFILTERSTRUCT *PCHANGEFILTERSTRUCT; //Pointer
+  typedef struct ALTTABINFO {
+    DWORD cbSize;
+    int cItems;
+    int cColumns;
+    int cRows;
+    int iColFocus;
+    int iRowFocus;
+    int cxItem;
+    int cyItem;
+    POINT ptStart;
+  } ALTTABINFO;
+  typedef ALTTABINFO *PALTTABINFO; //Pointer
+  typedef DWORD WINAPI_GUITHREADINFO_Flags; //Alias
+  typedef struct GUITHREADINFO {
+    DWORD cbSize;
+    WINAPI_GUITHREADINFO_Flags flags;
+    HWND hwndActive;
+    HWND hwndFocus;
+    HWND hwndCapture;
+    HWND hwndMenuOwner;
+    HWND hwndMoveSize;
+    HWND hwndCaret;
+    RECT rcCaret;
+  } GUITHREADINFO;
+  typedef GUITHREADINFO *LPGUITHREADINFO; //Pointer
+  typedef struct WINDOWINFO {
+    DWORD cbSize;
+    RECT rcWindow;
+    RECT rcClient;
+    WINAPI_WindowStyle dwStyle;
+    WINAPI_WindowExStyle dwExStyle;
+    DWORD dwWindowStatus;
+    UINT cxWindowBorders;
+    UINT cyWindowBorders;
+    ATOM atomWindowType;
+    WORD wCreatorVersion;
+  } WINDOWINFO;
+  typedef WINDOWINFO *PWINDOWINFO; //Pointer
+  typedef UINT WINAPI_WPF_Flags; //Alias
+  typedef struct WINDOWPLACEMENT {
+    UINT length;
+    WINAPI_WPF_Flags flags;
+    UINT showCmd;
+    POINT ptMinPosition;
+    POINT ptMaxPosition;
+    RECT rcNormalPosition;
+  } WINDOWPLACEMENT;
+  typedef struct UPDATELAYEREDWINDOWINFO {
+    DWORD cbSize;
+    HDC hdcDst;
+    WINAPI_POINT* pptDst;
+    WINAPI_SIZE* psize;
+    HDC hdcSrc;
+    WINAPI_POINT* pptSrc;
+    COLORREF crKey;
+    WINAPI_BLENDFUNCTION* pblend;
+    DWORD dwFlags;
+    WINAPI_RECT* prcDirty;
+  } UPDATELAYEREDWINDOWINFO;
+  typedef struct COMBOBOXINFO {
+    DWORD cbSize;
+    RECT rcItem;
+    RECT rcButton;
+    DWORD stateButton;
+    HWND hwndCombo;
+    HWND hwndItem;
+    HWND hwndList;
+  } COMBOBOXINFO;
+  typedef COMBOBOXINFO *PCOMBOBOXINFO; //Pointer
+  typedef DWORD WINAPI_CursorFlags; //Alias
+  typedef struct CURSORINFO {
+    DWORD cbSize;
+    WINAPI_CursorFlags flags;
+    HCURSOR hCursor;
+    POINT ptScreenPos;
+  } CURSORINFO;
+  typedef CURSORINFO *PCURSORINFO; //Pointer
+  typedef struct CONVCONTEXT {
+    UINT cb;
+    UINT wFlags;
+    UINT wCountryID;
+    int iCodePage;
+    DWORD dwLangID;
+    DWORD dwSecurity;
+    SECURITY_QUALITY_OF_SERVICE qos;
+  } CONVCONTEXT;
+  typedef CONVCONTEXT *PCONVCONTEXT; //Pointer
+  typedef UINT WINAPI_CONVINFO_XTYP; //Alias
+  static const UINT XTYP_ERROR = 0x8002;
+  static const UINT XTYP_ADVDATA = 0x4010;
+  static const UINT XTYP_ADVREQ = 0x2022;
+  static const UINT XTYP_ADVSTART = 0x1030;
+  static const UINT XTYP_ADVSTOP = 0x8040;
+  static const UINT XTYP_EXECUTE = 0x4050;
+  static const UINT XTYP_CONNECT = 0x1062;
+  static const UINT XTYP_MONITOR = 0x80F2;
+  static const UINT XTYP_CONNECT_CONFIRM = 0x8072;
+  static const UINT XTYP_XACT_COMPLETE = 0x8080;
+  static const UINT XTYP_POKE = 0x4090;
+  static const UINT XTYP_REGISTER = 0x80A2;
+  static const UINT XTYP_REQUEST = 0x20B0;
+  static const UINT XTYP_DISCONNECT = 0x80C2;
+  static const UINT XTYP_UNREGISTER = 0x80D2;
+  static const UINT XTYP_WILDCONNECT = 0x20E2;
+  typedef UINT WINAPI_CONVINFO_STATUS; //Alias
+  static const UINT ST_CONNECTED = 0x0001;
+  static const UINT ST_ADVISE = 0x0002;
+  static const UINT ST_ISLOCAL = 0x0004;
+  static const UINT ST_BLOCKED = 0x0008;
+  static const UINT ST_CLIENT = 0x0010;
+  static const UINT ST_TERMINATED = 0x0020;
+  static const UINT ST_INLIST = 0x0040;
+  static const UINT ST_BLOCKNEXT = 0x0080;
+  static const UINT ST_ISSELF = 0x0100;
+  typedef UINT WINAPI_CONVINFO_STATE; //Alias
+  static const UINT XST_NULL = 0;
+  static const UINT XST_INCOMPLETE = 1;
+  static const UINT XST_CONNECTED = 2;
+  static const UINT XST_INIT1 = 3;
+  static const UINT XST_INIT2 = 4;
+  static const UINT XST_REQSENT = 5;
+  static const UINT XST_DATARCVD = 6;
+  static const UINT XST_POKESENT = 7;
+  static const UINT XST_POKEACKRCVD = 8;
+  static const UINT XST_EXECSENT = 9;
+  static const UINT XST_EXECACKRCVD = 10;
+  static const UINT XST_ADVSENT = 11;
+  static const UINT XST_UNADVSENT = 12;
+  static const UINT XST_ADVACKRCVD = 13;
+  static const UINT XST_UNADVACKRCVD = 14;
+  static const UINT XST_ADVDATASENT = 15;
+  static const UINT XST_ADVDATAACKRCVD = 16;
+  typedef struct CONVINFO {
+    DWORD cb;
+    DWORD_PTR hUser;
+    HCONV hConvPartner;
+    HSZ hszSvcPartner;
+    HSZ hszServiceReq;
+    HSZ hszTopic;
+    HSZ hszItem;
+    UINT wFmt;
+    WINAPI_CONVINFO_XTYP wType;
+    WINAPI_CONVINFO_STATUS wStatus;
+    WINAPI_CONVINFO_STATE wConvst;
+    UINT wLastError;
+    HCONVLIST hConvList;
+    CONVCONTEXT ConvCtxt;
+    HWND hwnd;
+    HWND hwndPartner;
+  } CONVINFO;
+  typedef CONVINFO *PCONVINFO; //Pointer
+  typedef DWORD WINAPI_FLASHWINFO_Flags; //Alias
+  typedef struct FLASHWINFO {
+    UINT cbSize;
+    HWND hwnd;
+    WINAPI_FLASHWINFO_Flags dwFlags;
+    UINT uCount;
+    DWORD dwTimeout;
+  } FLASHWINFO;
+  typedef FLASHWINFO *PFLASHWINFO; //Pointer
+  typedef struct ICONINFO {
+    BOOL fIcon;
+    DWORD xHotspot;
+    DWORD yHotspot;
+    HBITMAP hbmMask;
+    HBITMAP hbmColor;
+  } ICONINFO;
+  typedef ICONINFO *PICONINFO; //Pointer
+  typedef BYTE WINAPI_ACCEL_Flags; //Alias
+  typedef struct ACCEL {
+    WINAPI_ACCEL_Flags fVirt;
+    WINAPI_VirtKeyCode key;
+    WORD cmd;
+  } ACCEL;
+  typedef ACCEL *LPACCEL; //Pointer
+  typedef struct LASTINPUTINFO {
+    UINT cbSize;
+    DWORD dwTime;
+  } LASTINPUTINFO;
+  typedef LASTINPUTINFO *PLASTINPUTINFO; //Pointer
+  typedef DWORD WINAPI_MENUINFO_Mask; //Alias
+  typedef DWORD WINAPI_MENUINFO_Style; //Alias
+  typedef struct MENUINFO {
+    DWORD cbSize;
+    WINAPI_MENUINFO_Mask fMask;
+    WINAPI_MENUINFO_Style dwStyle;
+    UINT cyMax;
+    HBRUSH hbrBack;
+    DWORD dwContextHelpID;
+    ULONG_PTR dwMenuData;
+  } MENUINFO;
+  typedef MENUINFO *LPCMENUINFO; //Pointer
+  typedef UINT WINAPI_MENUITEMINFO_MASK; //Alias
+  typedef UINT WINAPI_MENUITEM_TYPE; //Alias
+  typedef UINT WINAPI_MENUITEM_STATE; //Alias
+  typedef HBITMAP WINAPI_HBMMENU; //Alias
+  typedef struct MENUITEMINFO {
+    UINT cbSize;
+    WINAPI_MENUITEMINFO_MASK fMask;
+    WINAPI_MENUITEM_TYPE fType;
+    WINAPI_MENUITEM_STATE fState;
+    UINT wID;
+    HMENU hSubMenu;
+    HBITMAP hbmpChecked;
+    HBITMAP hbmpUnchecked;
+    ULONG_PTR dwItemData;
+    LPTSTR dwTypeData;
+    UINT cch;
+    WINAPI_HBMMENU hbmpItem;
+  } MENUITEMINFO;
+  typedef MENUITEMINFO *LPMENUITEMINFO; //Pointer
+  typedef MENUITEMINFO *LPCMENUITEMINFO; //Pointer
+  typedef struct TPMPARAMS {
+    UINT cbSize;
+    RECT rcExclude;
+  } TPMPARAMS;
+  typedef TPMPARAMS *LPTPMPARAMS; //Pointer
+  typedef struct MOUSEMOVEPOINT {
+    int x;
+    int y;
+    DWORD time;
+    ULONG_PTR dwExtraInfo;
+  } MOUSEMOVEPOINT;
+  typedef MOUSEMOVEPOINT *LPMOUSEMOVEPOINT; //Pointer
+  typedef struct MONITORINFO {
+    DWORD cbSize;
+    RECT rcMonitor;
+    RECT rcWork;
+    WINAPI_MONITORINFO_Flags dwFlags;
+  } MONITORINFO;
+  typedef MONITORINFO *LPMONITORINFO; //Pointer
+  typedef DWORD WINAPI_RAWINPUTDEVICE_Flags; //Alias
+  typedef struct RAWINPUTDEVICE {
+    USHORT usUsagePage;
+    USHORT usUsage;
+    WINAPI_RAWINPUTDEVICE_Flags dwFlags;
+    HWND hwndTarget;
+  } RAWINPUTDEVICE;
+  typedef RAWINPUTDEVICE *PRAWINPUTDEVICE; //Pointer
+  typedef RAWINPUTDEVICE *PCRAWINPUTDEVICE; //Pointer
+  typedef DWORD WINAPI_RIM_TYPE; //Alias
+  static const DWORD RIM_TYPEMOUSE = 0;
+  static const DWORD RIM_TYPEKEYBOARD = 1;
+  static const DWORD RIM_TYPEHID = 2;
+  typedef struct RAWINPUTDEVICELIST {
+    HANDLE hDevice;
+    WINAPI_RIM_TYPE dwType;
+  } RAWINPUTDEVICELIST;
+  typedef RAWINPUTDEVICELIST *PRAWINPUTDEVICELIST; //Pointer
+  typedef UINT WINAPI_ClassStyle; //Alias
+  typedef struct WNDCLASS {
+    WINAPI_ClassStyle style;
+    WNDPROC lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    HINSTANCE hInstance;
+    HICON hIcon;
+    HCURSOR hCursor;
+    HBRUSH hbrBackground;
+    LPCTSTR lpszMenuName;
+    LPCTSTR lpszClassName;
+  } WNDCLASS;
+  typedef WNDCLASS *LPWNDCLASS; //Pointer
+  typedef struct WNDCLASSEX {
+    UINT cbSize;
+    WINAPI_ClassStyle style;
+    WNDPROC lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    HINSTANCE hInstance;
+    HICON hIcon;
+    HCURSOR hCursor;
+    HBRUSH hbrBackground;
+    LPCTSTR lpszMenuName;
+    LPCTSTR lpszClassName;
+    HICON hIconSm;
+  } WNDCLASSEX;
+  typedef WNDCLASSEX *LPWNDCLASSEX; //Pointer
+  typedef UINT WINAPI_ExitWindowsExFlags; //Alias
+  static const UINT EWX_LOGOFF = 0;
+  static const UINT EWX_POWEROFF = 0x00000008;
+  static const UINT EWX_REBOOT = 0x00000002;
+  static const UINT EWX_RESTARTAPPS = 0x00000040;
+  static const UINT EWX_SHUTDOWN = 0x00000001;
+  typedef DWORD WINAPI_ExitWindowsExReason; //Alias
+  static const DWORD EWX_FORCE = 0x00000004;
+  static const DWORD EWX_FORCEIFHUNG = 0x00000010;
+  typedef int WINAPI_WindowLongIndex; //Alias
+  static const int GWL_WNDPROC = -4;
+  static const int GWL_HINSTANCE = -6;
+  static const int GWL_HWNDPARENT = -8;
+  static const int GWL_ID = -12;
+  static const int GWL_STYLE = -16;
+  static const int GWL_EXSTYLE = -20;
+  static const int GWL_USERDATA = -21;
+  static const int DWL_MSGRESULT = 0;
+  static const int DWL_DLGPROC = 4;
+  static const int DWL_USER = 8;
+  typedef int WINAPI_ClassLongIndex; //Alias
+  static const int GCL_MENUNAME = -8;
+  static const int GCL_HBRBACKGROUND = -10;
+  static const int GCL_HCURSOR = -12;
+  static const int GCL_HICON = -14;
+  static const int GCL_HMODULE = -16;
+  static const int GCL_CBWNDEXTRA = -18;
+  static const int GCL_CBCLSEXTRA = -20;
+  static const int GCL_WNDPROC = -24;
+  static const int GCL_STYLE = -26;
+  static const int GCW_ATOM = -32;
+  static const int GCL_HICONSM = -34;
+  typedef int WINAPI_SystemMetricIndex; //Alias
+  static const int SM_CXSCREEN = 0;
+  static const int SM_CYSCREEN = 1;
+  static const int SM_CXVSCROLL = 2;
+  static const int SM_CYHSCROLL = 3;
+  static const int SM_CYCAPTION = 4;
+  static const int SM_CXBORDER = 5;
+  static const int SM_CYBORDER = 6;
+  static const int SM_CXDLGFRAME = 7;
+  static const int SM_CYDLGFRAME = 8;
+  static const int SM_CYVTHUMB = 9;
+  static const int SM_CXHTHUMB = 10;
+  static const int SM_CXICON = 11;
+  static const int SM_CYICON = 12;
+  static const int SM_CXCURSOR = 13;
+  static const int SM_CYCURSOR = 14;
+  static const int SM_CYMENU = 15;
+  static const int SM_CXFULLSCREEN = 16;
+  static const int SM_CYFULLSCREEN = 17;
+  static const int SM_CYKANJIWINDOW = 18;
+  static const int SM_MOUSEPRESENT = 19;
+  static const int SM_CYVSCROLL = 20;
+  static const int SM_CXHSCROLL = 21;
+  static const int SM_DEBUG = 22;
+  static const int SM_SWAPBUTTON = 23;
+  static const int SM_RESERVED1 = 24;
+  static const int SM_RESERVED2 = 25;
+  static const int SM_RESERVED3 = 26;
+  static const int SM_RESERVED4 = 27;
+  static const int SM_CXMIN = 28;
+  static const int SM_CYMIN = 29;
+  static const int SM_CXSIZE = 30;
+  static const int SM_CYSIZE = 31;
+  static const int SM_CXFRAME = 32;
+  static const int SM_CYFRAME = 33;
+  static const int SM_CXMINTRACK = 34;
+  static const int SM_CYMINTRACK = 35;
+  static const int SM_CXDOUBLECLK = 36;
+  static const int SM_CYDOUBLECLK = 37;
+  static const int SM_CXICONSPACING = 38;
+  static const int SM_CYICONSPACING = 39;
+  static const int SM_MENUDROPALIGNMENT = 40;
+  static const int SM_PENWINDOWS = 41;
+  static const int SM_DBCSENABLED = 42;
+  static const int SM_CMOUSEBUTTONS = 43;
+  static const int SM_SECURE = 44;
+  static const int SM_CXEDGE = 45;
+  static const int SM_CYEDGE = 46;
+  static const int SM_CXMINSPACING = 47;
+  static const int SM_CYMINSPACING = 48;
+  static const int SM_CXSMICON = 49;
+  static const int SM_CYSMICON = 50;
+  static const int SM_CYSMCAPTION = 51;
+  static const int SM_CXSMSIZE = 52;
+  static const int SM_CYSMSIZE = 53;
+  static const int SM_CXMENUSIZE = 54;
+  static const int SM_CYMENUSIZE = 55;
+  static const int SM_ARRANGE = 56;
+  static const int SM_CXMINIMIZED = 57;
+  static const int SM_CYMINIMIZED = 58;
+  static const int SM_CXMAXTRACK = 59;
+  static const int SM_CYMAXTRACK = 60;
+  static const int SM_CXMAXIMIZED = 61;
+  static const int SM_CYMAXIMIZED = 62;
+  static const int SM_NETWORK = 63;
+  static const int SM_CLEANBOOT = 67;
+  static const int SM_CXDRAG = 68;
+  static const int SM_CYDRAG = 69;
+  static const int SM_SHOWSOUNDS = 70;
+  static const int SM_CXMENUCHECK = 71;
+  static const int SM_CYMENUCHECK = 72;
+  static const int SM_SLOWMACHINE = 73;
+  static const int SM_MIDEASTENABLED = 74;
+  static const int SM_MOUSEWHEELPRESENT = 75;
+  static const int SM_XVIRTUALSCREEN = 76;
+  static const int SM_YVIRTUALSCREEN = 77;
+  static const int SM_CXVIRTUALSCREEN = 78;
+  static const int SM_CYVIRTUALSCREEN = 79;
+  static const int SM_CMONITORS = 80;
+  static const int SM_SAMEDISPLAYFORMAT = 81;
+  static const int SM_IMMENABLED = 82;
+  static const int SM_CXFOCUSBORDER = 83;
+  static const int SM_CYFOCUSBORDER = 84;
+  static const int SM_TABLETPC = 86;
+  static const int SM_MEDIACENTER = 87;
+  static const int SM_STARTER = 88;
+  static const int SM_SERVERR2 = 89;
+  static const int SM_MOUSEHORIZONTALWHEELPRESENT = 91;
+  static const int SM_CXPADDEDBORDER = 92;
+  typedef UINT WINAPI_PeekMessageFlag; //Alias
+  typedef DWORD WINAPI_QueueStatusFlag; //Alias
+  typedef DWORD WINAPI_WindowMessageFilterEnum; //Alias
+  static const DWORD MSGFLT_ADD = 1;
+  static const DWORD MSGFLT_REMOVE = 2;
+  typedef int WINAPI_UserObjectInformationEnum; //Alias
+  static const int UOI_FLAGS = 1;
+  static const int UOI_NAME = 2;
+  static const int UOI_TYPE = 3;
+  static const int UOI_USER_SID = 4;
+  static const int UOI_HEAPSIZE = 5;
+  static const int UOI_IO = 6;
+  typedef UINT WINAPI_GetAncestorEnum; //Alias
+  static const UINT GA_PARENT = 1;
+  static const UINT GA_ROOT = 2;
+  static const UINT GA_ROOTOWNER = 3;
+  typedef UINT WINAPI_GetWindowEnum; //Alias
+  static const UINT GW_HWNDFIRST = 0;
+  static const UINT GW_HWNDLAST = 1;
+  static const UINT GW_HWNDNEXT = 2;
+  static const UINT GW_HWNDPREV = 3;
+  static const UINT GW_OWNER = 4;
+  static const UINT GW_CHILD = 5;
+  static const UINT GW_ENABLEDPOPUP = 6;
+  typedef DWORD WINAPI_DCExFlags; //Alias
+  typedef DWORD WINAPI_EnumDisplayDevicesFlags; //Alias
+  typedef UINT WINAPI_WinEventFlags; //Alias
+  typedef UINT WINAPI_RedrawWindowFlags; //Alias
+  typedef DWORD WINAPI_AnimateWindowFlags; //Alias
+  typedef UINT WINAPI_SetWindowPosFlags; //Alias
+  typedef UINT WINAPI_SendMessageTimeoutFlags; //Alias
+  typedef UINT WINAPI_DrawIconFlags; //Alias
+  typedef LONG WINAPI_ObjectIdEnum; //Alias
+  static const LONG OBJID_WINDOW = 0x00000000;
+  static const LONG OBJID_SYSMENU = 0xFFFFFFFF;
+  static const LONG OBJID_TITLEBAR = 0xFFFFFFFE;
+  static const LONG OBJID_MENU = 0xFFFFFFFD;
+  static const LONG OBJID_CLIENT = 0xFFFFFFFC;
+  static const LONG OBJID_VSCROLL = 0xFFFFFFFB;
+  static const LONG OBJID_HSCROLL = 0xFFFFFFFA;
+  static const LONG OBJID_SIZEGRIP = 0xFFFFFFF9;
+  static const LONG OBJID_CARET = 0xFFFFFFF8;
+  static const LONG OBJID_CURSOR = 0xFFFFFFF7;
+  static const LONG OBJID_ALERT = 0xFFFFFFF6;
+  static const LONG OBJID_SOUND = 0xFFFFFFF5;
+  static const LONG OBJID_QUERYCLASSNAMEIDX = 0xFFFFFFF4;
+  static const LONG OBJID_NATIVEOM = 0xFFFFFFF0;
+  typedef UINT WINAPI_DrawStateFlags; //Alias
+  typedef UINT WINAPI_MenuCommandPosFlag; //Alias
+  static const UINT MF_BYCOMMAND = 0x00000000;
+  static const UINT MF_BYPOSITION = 0x00000400;
+  typedef UINT WINAPI_InsertMenuFlags; //Alias
+  typedef UINT WINAPI_EnableMenuItemFlag; //Alias
+  typedef int WINAPI_EnableMenuItemResult; //Alias
+  static const int MF_ENABLED = 0x00000000;
+  static const int MF_GRAYED = 0x00000001;
+  static const int MF_DISABLED = 0x00000002;
+  typedef UINT WINAPI_CheckMenuItemFlag; //Alias
+  typedef UINT WINAPI_ClipboardFormat; //Alias
+  static const UINT CF_TEXT = 1;
+  static const UINT CF_BITMAP = 2;
+  static const UINT CF_METAFILEPICT = 3;
+  static const UINT CF_SYLK = 4;
+  static const UINT CF_DIF = 5;
+  static const UINT CF_TIFF = 6;
+  static const UINT CF_OEMTEXT = 7;
+  static const UINT CF_DIB = 8;
+  static const UINT CF_PALETTE = 9;
+  static const UINT CF_PENDATA = 10;
+  static const UINT CF_RIFF = 11;
+  static const UINT CF_WAVE = 12;
+  static const UINT CF_UNICODETEXT = 13;
+  static const UINT CF_ENHMETAFILE = 14;
+  static const UINT CF_HDROP = 15;
+  static const UINT CF_LOCALE = 16;
+  static const UINT CF_DIBV5 = 17;
+  static const UINT CF_OWNERDISPLAY = 0x0080;
+  static const UINT CF_DSPTEXT = 0x0081;
+  static const UINT CF_DSPBITMAP = 0x0082;
+  static const UINT CF_DSPMETAFILEPICT = 0x0083;
+  static const UINT CF_DSPENHMETAFILE = 0x008E;
+  typedef HWND WINAPI_HwndInsertAfterEnum; //Alias
+  typedef int WINAPI_WindowsHook; //Alias
+  static const int WH_MSGFILTER = -1;
+  static const int WH_JOURNALRECORD = 0;
+  static const int WH_JOURNALPLAYBACK = 1;
+  static const int WH_KEYBOARD = 2;
+  static const int WH_GETMESSAGE = 3;
+  static const int WH_CALLWNDPROC = 4;
+  static const int WH_CBT = 5;
+  static const int WH_SYSMSGFILTER = 6;
+  static const int WH_MOUSE = 7;
+  static const int WH_HARDWARE = 8;
+  static const int WH_DEBUG = 9;
+  static const int WH_SHELL = 10;
+  static const int WH_FOREGROUNDIDLE = 11;
+  static const int WH_CALLWNDPROCRET = 12;
+  static const int WH_KEYBOARD_LL = 13;
+  static const int WH_MOUSE_LL = 14;
+  typedef DWORD WINAPI_MsgWaitForMultipleObjectsFlags; //Alias
+  typedef HKL WINAPI_KeyboardLayoutHandle; //Alias
+  static const HKL HKL_PREV = 0;
+  static const HKL HKL_NEXT = 1;
+  typedef UINT WINAPI_KeyboardLayoutFlags; //Alias
+  typedef DWORD WINAPI_MonitorFlags; //Alias
+  typedef UINT WINAPI_ScrollWindowFlags; //Alias
+  typedef DWORD WINAPI_EnumDisplaySettingsEnum; //Alias
+  static const DWORD ENUM_CURRENT_SETTINGS = -1;
+  static const DWORD ENUM_REGISTRY_SETTINGS = -2;
+  typedef UINT WINAPI_ButtonState; //Alias
+  static const UINT BST_UNCHECKED = 0x0000;
+  static const UINT BST_CHECKED = 0x0001;
+  static const UINT BST_INDETERMINATE = 0x0002;
+  static const UINT BST_PUSHED = 0x0004;
+  static const UINT BST_FOCUS = 0x0008;
+  typedef DWORD WINAPI_LayeredWindowAttribute; //Alias
+  typedef DWORD WINAPI_UpdateLayeredWindowFlags; //Alias
+  typedef UINT WINAPI_MapVirtualKeyType; //Alias
+  static const UINT MAPVK_VK_TO_VSC = 0;
+  static const UINT MAPVK_VSC_TO_VK = 1;
+  static const UINT MAPVK_VK_TO_CHAR = 2;
+  static const UINT MAPVK_VSC_TO_VK_EX = 3;
+  static const UINT MAPVK_VK_TO_VSC_EX = 4;
+  typedef DWORD WINAPI_DesktopFlags; //Alias
+  static const DWORD DF_ALLOWOTHERACCOUNTHOOK = 0x0001;
+  typedef ACCESS_MASK WINAPI_DESKTOP_ACCESS_MASK; //Alias
+  typedef DWORD WINAPI_WindowStationAccessRights; //Alias
+  typedef DWORD WINAPI_CreateWindowStationFlags; //Alias
+  static const DWORD CWF_CREATE_ONLY = 0x00000001;
+  typedef UINT WINAPI_LockSetForegroundWindowCode; //Alias
+  static const UINT LSFW_LOCK = 1;
+  static const UINT LSFW_UNLOCK = 2;
+  typedef DWORD WINAPI_DeviceNotificationFlags; //Alias
+  typedef UINT WINAPI_TrackPopupMenuFlags; //Alias
+  typedef UINT WINAPI_GetMenuDefaultItemFlags; //Alias
+  typedef LPCTSTR WINAPI_LoadImageString/LPCTSTR; //Alias
+  static const LPCTSTR OBM_CLOSE = 32754;
+  static const LPCTSTR OBM_UPARROW = 32753;
+  static const LPCTSTR OBM_DNARROW = 32752;
+  static const LPCTSTR OBM_RGARROW = 32751;
+  static const LPCTSTR OBM_LFARROW = 32750;
+  static const LPCTSTR OBM_REDUCE = 32749;
+  static const LPCTSTR OBM_ZOOM = 32748;
+  static const LPCTSTR OBM_RESTORE = 32747;
+  static const LPCTSTR OBM_REDUCED = 32746;
+  static const LPCTSTR OBM_ZOOMD = 32745;
+  static const LPCTSTR OBM_RESTORED = 32744;
+  static const LPCTSTR OBM_UPARROWD = 32743;
+  static const LPCTSTR OBM_DNARROWD = 32742;
+  static const LPCTSTR OBM_RGARROWD = 32741;
+  static const LPCTSTR OBM_LFARROWD = 32740;
+  static const LPCTSTR OBM_MNARROW = 32739;
+  static const LPCTSTR OBM_COMBO = 32738;
+  static const LPCTSTR OBM_UPARROWI = 32737;
+  static const LPCTSTR OBM_DNARROWI = 32736;
+  static const LPCTSTR OBM_RGARROWI = 32735;
+  static const LPCTSTR OBM_LFARROWI = 32734;
+  static const LPCTSTR OBM_OLD_CLOSE = 32767;
+  static const LPCTSTR OBM_SIZE = 32766;
+  static const LPCTSTR OBM_OLD_UPARROW = 32765;
+  static const LPCTSTR OBM_OLD_DNARROW = 32764;
+  static const LPCTSTR OBM_OLD_RGARROW = 32763;
+  static const LPCTSTR OBM_OLD_LFARROW = 32762;
+  static const LPCTSTR OBM_BTSIZE = 32761;
+  static const LPCTSTR OBM_CHECK = 32760;
+  static const LPCTSTR OBM_CHECKBOXES = 32759;
+  static const LPCTSTR OBM_BTNCORNERS = 32758;
+  static const LPCTSTR OBM_OLD_REDUCE = 32757;
+  static const LPCTSTR OBM_OLD_ZOOM = 32756;
+  static const LPCTSTR OBM_OLD_RESTORE = 32755;
+  static const LPCTSTR OCR_NORMAL = 32512;
+  static const LPCTSTR OCR_IBEAM = 32513;
+  static const LPCTSTR OCR_WAIT = 32514;
+  static const LPCTSTR OCR_CROSS = 32515;
+  static const LPCTSTR OCR_UP = 32516;
+  static const LPCTSTR OCR_SIZE = 32640;
+  static const LPCTSTR OCR_ICON = 32641;
+  static const LPCTSTR OCR_SIZENWSE = 32642;
+  static const LPCTSTR OCR_SIZENESW = 32643;
+  static const LPCTSTR OCR_SIZEWE = 32644;
+  static const LPCTSTR OCR_SIZENS = 32645;
+  static const LPCTSTR OCR_SIZEALL = 32646;
+  static const LPCTSTR OCR_ICOCUR = 32647;
+  static const LPCTSTR OCR_NO = 32648;
+  static const LPCTSTR OCR_HAND = 32649;
+  static const LPCTSTR OCR_APPSTARTING = 32650;
+  static const LPCTSTR OIC_SAMPLE = 32512;
+  static const LPCTSTR OIC_ERROR = 32513;
+  static const LPCTSTR OIC_QUES = 32514;
+  static const LPCTSTR OIC_WARNING = 32515;
+  static const LPCTSTR OIC_INFORMATION = 32516;
+  static const LPCTSTR OIC_WINLOGO = 32517;
+  static const LPCTSTR OIC_SHIELD = 32518;
+  typedef LPCTSTR WINAPI_LoadBitmapString/LPCTSTR; //Alias
+  typedef LPCTSTR WINAPI_LoadCursorString/LPCTSTR; //Alias
+  static const LPCTSTR IDC_ARROW = 32512;
+  static const LPCTSTR IDC_IBEAM = 32513;
+  static const LPCTSTR IDC_WAIT = 32514;
+  static const LPCTSTR IDC_CROSS = 32515;
+  static const LPCTSTR IDC_UPARROW = 32516;
+  static const LPCTSTR IDC_SIZE = 32640;
+  static const LPCTSTR IDC_ICON = 32641;
+  static const LPCTSTR IDC_SIZENWSE = 32642;
+  static const LPCTSTR IDC_SIZENESW = 32643;
+  static const LPCTSTR IDC_SIZEWE = 32644;
+  static const LPCTSTR IDC_SIZENS = 32645;
+  static const LPCTSTR IDC_SIZEALL = 32646;
+  static const LPCTSTR IDC_NO = 32648;
+  static const LPCTSTR IDC_HAND = 32649;
+  static const LPCTSTR IDC_APPSTARTING = 32650;
+  static const LPCTSTR IDC_HELP = 32651;
+  typedef LPCTSTR WINAPI_LoadIconString/LPCTSTR; //Alias
+  static const LPCTSTR IDI_APPLICATION = 32512;
+  static const LPCTSTR IDI_ERROR = 32513;
+  static const LPCTSTR IDI_QUESTION = 32514;
+  static const LPCTSTR IDI_WARNING = 32515;
+  static const LPCTSTR IDI_INFORMATION = 32516;
+  static const LPCTSTR IDI_WINLOGO = 32517;
+  static const LPCTSTR IDI_SHIELD = 32518;
+  typedef DWORD WINAPI_CursorId; //Alias
+  typedef int WINAPI_WindowRegion; //Alias
+  static const int ERROR = 0;
+  static const int NULLREGION = 1;
+  static const int SIMPLEREGION = 2;
+  static const int COMPLEXREGION = 3;
+  typedef DWORD WINAPI_TOUCHINPUT_Flags; //Alias
+  typedef DWORD WINAPI_TOUCHINPUT_Mask; //Alias
+  typedef struct TOUCHINPUT {
+    LONG x;
+    LONG y;
+    HANDLE hSource;
+    DWORD dwID;
+    WINAPI_TOUCHINPUT_Flags dwFlags;
+    WINAPI_TOUCHINPUT_Mask dwMask;
+    DWORD dwTime;
+    ULONG_PTR dwExtraInfo;
+    DWORD cxContact;
+    DWORD cyContact;
+  } TOUCHINPUT;
+  typedef TOUCHINPUT *PTOUCHINPUT; //Pointer
+  typedef DWORD WINAPI_GestureId; //Alias
+  typedef struct GESTURECONFIG {
+    WINAPI_GestureId dwID;
+    DWORD dwWant;
+    DWORD dwBlock;
+  } GESTURECONFIG;
+  typedef GESTURECONFIG *PGESTURECONFIG; //Pointer
+  typedef struct POINTS {
+    SHORT x;
+    SHORT y;
+  } POINTS;
+  typedef DWORD WINAPI_GESTUREINFO_Flags; //Alias
+  typedef struct GESTUREINFO {
+    UINT cbSize;
+    WINAPI_GESTUREINFO_Flags dwFlags;
+    DWORD dwID;
+    HWND hwndTarget;
+    POINTS ptsLocation;
+    DWORD dwInstanceID;
+    DWORD dwSequenceID;
+    ULONGLONG ullArguments;
+    UINT cbExtraArgs;
+  } GESTUREINFO;
+  typedef GESTUREINFO *PGESTUREINFO; //Pointer
+  typedef struct RAWINPUTHEADER {
+    WINAPI_RIM_TYPE dwType;
+    DWORD dwSize;
+    HANDLE hDevice;
+    WPARAM wParam;
+  } RAWINPUTHEADER;
+  typedef USHORT WINAPI_RAWMOUSE_STATE; //Alias
+  typedef struct WINAPI_RAWMOUSE_u_s {
+    WINAPI_RAWMOUSE_STATE usButtonFlags;
+    USHORT usButtonData;
+  } WINAPI_RAWMOUSE_u_s;
+  typedef union WINAPI_RAWMOUSE_u {
+    ULONG ulButtons;
+    WINAPI_RAWMOUSE_u_s ;
+  } WINAPI_RAWMOUSE_u;
+  typedef USHORT WINAPI_RAWMOUSE_FLAGS; //Alias
+  typedef struct RAWMOUSE {
+    WINAPI_RAWMOUSE_FLAGS usFlags;
+    WINAPI_RAWMOUSE_u ;
+    ULONG ulRawButtons;
+    LONG lLastX;
+    LONG lLastY;
+    ULONG ulExtraInformation;
+  } RAWMOUSE;
+  typedef USHORT WINAPI_RAWKEYBOARD_FLAGS; //Alias
+  typedef struct RAWKEYBOARD {
+    USHORT MakeCode;
+    WINAPI_RAWKEYBOARD_FLAGS Flags;
+    USHORT Reserved;
+    WINAPI_VirtKeyCode VKey;
+    WINAPI_WinMsg Message;
+    ULONG ExtraInformation;
+  } RAWKEYBOARD;
+  typedef struct RAWHID {
+    DWORD dwSizeHid;
+    DWORD dwCount;
+    BYTE bRawData[1];
+  } RAWHID;
+  typedef union WINAPI_RAWINPUT_u {
+    RAWMOUSE mouse;
+    RAWKEYBOARD keyboard;
+    RAWHID hid;
+  } WINAPI_RAWINPUT_u;
+  typedef struct RAWINPUT {
+    RAWINPUTHEADER header;
+    WINAPI_RAWINPUT_u data;
+  } RAWINPUT;
+  typedef RAWINPUT *PRAWINPUT; //Pointer
+  typedef int WINAPI_CreateWindow_CW; //Alias
+  static const int CW_USEDEFAULT = 0x80000000;
+  typedef struct WINCOMPATTRDATA {
+    WINAPI_DwmWindowAttr attribute;
+    PVOID pData;
+    ULONG dataSize;
+  } WINCOMPATTRDATA;
   HWND                        CreateDialogIndirectParam(          HINSTANCE hInstance, LPCDLGTEMPLATE lpTemplate, HWND hWndParent, DLGPROC lpDialogFunc, LPARAM lParamInit);
   HWND                        CreateDialogParam(                  HINSTANCE hInstance, LPCTSTR lpTemplateName, HWND hWndParent, DLGPROC lpDialogFunc, LPARAM lParamInit);
   LRESULT                     DefDlgProc(                         HWND hDlg, WINAPI_WinMsg Msg, WPARAM wParam, LPARAM lParam);

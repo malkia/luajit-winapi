@@ -1,6 +1,11 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef LPVOID HCSBC; //Alias
+  typedef struct CSEDB_RSTMAP {
+    WCHAR* pwszDatabaseName;
+    WCHAR* pwszNewDatabaseName;
+  } CSEDB_RSTMAP;
   HRESULT CertSrvBackupClose(                  HCSBC hbc);
   HRESULT CertSrvBackupEnd(                    HCSBC hbc);
   void    CertSrvBackupFree(                   VOID* pv);

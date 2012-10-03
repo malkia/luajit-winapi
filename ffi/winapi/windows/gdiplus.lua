@@ -2,6 +2,501 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef void* IDirectDrawSurface7; //Interface
+  typedef float REAL; //Alias
+  typedef LPVOID DebugEventProc; //Alias
+  typedef LPVOID NotificationHookProc; //Alias
+  typedef LPVOID NotificationUnhookProc; //Alias
+  typedef LPVOID GetThumbnailImageAbort; //Alias
+  typedef LPVOID DrawImageAbort; //Alias
+  typedef LPVOID EnumerateMetafileProc; //Alias
+  typedef UINT GraphicsState; //Alias
+  typedef UINT GraphicsContainer; //Alias
+  typedef DWORD ARGB; //Alias
+  enum { 5][5 = 5 };
+  typedef WORD WINAPI_PropertyTagType; //Alias
+  static const WORD PropertyTagTypeByte = 1;
+  static const WORD PropertyTagTypeASCII = 2;
+  static const WORD PropertyTagTypeShort = 3;
+  static const WORD PropertyTagTypeLong = 4;
+  static const WORD PropertyTagTypeRational = 5;
+  static const WORD PropertyTagTypeUndefined = 7;
+  static const WORD PropertyTagTypeSLONG = 9;
+  static const WORD PropertyTagTypeSRational = 10;
+  typedef struct PropertyItem {
+    PROPID id;
+    ULONG length;
+    WINAPI_PropertyTagType type;
+    VOID* value;
+  } PropertyItem;
+# pragma pack( push, 2 )
+  typedef struct METAHEADER {
+    WORD mtType;
+    WORD mtHeaderSize;
+    WORD mtVersion;
+    DWORD mtSize;
+    WORD mtNoObjects;
+    DWORD mtMaxRecord;
+    WORD mtNoParameters;
+  } METAHEADER;
+# pragma pack( pop )
+  typedef struct ENHMETAHEADER3 {
+    DWORD iType;
+    DWORD nSize;
+    RECTL rclBounds;
+    RECTL rclFrame;
+    DWORD dSignature;
+    DWORD nVersion;
+    DWORD nBytes;
+    DWORD nRecords;
+    WORD nHandles;
+    WORD sReserved;
+    DWORD nDescription;
+    DWORD offDescription;
+    DWORD nPalEntries;
+    SIZEL szlDevice;
+    SIZEL szlMillimeters;
+  } ENHMETAHEADER3;
+  typedef union WINAPI_MetafileHeader_u {
+    METAHEADER WmfHeader;
+    ENHMETAHEADER3 EmfHeader;
+  } WINAPI_MetafileHeader_u;
+  typedef UINT MetafileType; //Alias
+  static const UINT MetafileTypeInvalid = 0;
+  static const UINT MetafileTypeWmf = 1;
+  static const UINT MetafileTypeWmfPlaceable = 2;
+  static const UINT MetafileTypeEmf = 3;
+  static const UINT MetafileTypeEmfPlusOnly = 4;
+  static const UINT MetafileTypeEmfPlusDual = 5;
+  typedef UINT WINAPI_GDIP_EMFPLUSFLAGS; //Alias
+  typedef struct MetafileHeader {
+    MetafileType Type;
+    UINT Size;
+    UINT Version;
+    WINAPI_GDIP_EMFPLUSFLAGS EmfPlusFlags;
+    REAL DpiX;
+    REAL DpiY;
+    INT X;
+    INT Y;
+    INT Width;
+    INT Height;
+    WINAPI_MetafileHeader_u Height;
+    INT EmfPlusHeaderSize;
+    INT LogicalDpiX;
+    INT LogicalDpiY;
+  } MetafileHeader;
+# pragma pack( push, 2 )
+  typedef struct PWMFRect16 {
+    INT16 Left;
+    INT16 Top;
+    INT16 Right;
+    INT16 Bottom;
+  } PWMFRect16;
+# pragma pack( pop )
+# pragma pack( push, 2 )
+  typedef struct WmfPlaceableFileHeader {
+    UINT32 Key;
+    INT16 Hmf;
+    PWMFRect16 BoundingBox;
+    INT16 Inch;
+    UINT32 Reserved;
+    INT16 Checksum;
+  } WmfPlaceableFileHeader;
+# pragma pack( pop )
+  typedef struct BitmapData {
+    UINT Width;
+    UINT Height;
+    INT Stride;
+    PixelFormat PixelFormat;
+    VOID* Scan0;
+    UINT_PTR Reserved;
+  } BitmapData;
+  typedef struct Color {
+    ARGB Argb;
+  } Color;
+  typedef struct ColorMap {
+    Color oldColor;
+    Color newColor;
+  } ColorMap;
+  typedef struct ColorMatrix {
+    REAL m[5][5];
+  } ColorMatrix;
+  typedef struct ImageItemData {
+    UINT Size;
+    UINT Position;
+    VOID* Desc;
+    UINT DescSize;
+    VOID* Data;
+    UINT DataSize;
+    UINT Cookie;
+  } ImageItemData;
+  typedef UINT PaletteFlags; //Alias
+  typedef struct ColorPalette {
+    PaletteFlags Flags;
+    UINT Count;
+    ARGB Entries[1];
+  } ColorPalette;
+  typedef struct GdiplusStartupOutput {
+    NotificationHookProc NotificationHook;
+    NotificationUnhookProc NotificationUnhook;
+  } GdiplusStartupOutput;
+  typedef struct GdiplusStartupInput {
+    UINT32 GdiplusVersion;
+    DebugEventProc DebugEventCallback;
+    BOOL SuppressBackgroundThread;
+    BOOL SuppressExternalCodecs;
+  } GdiplusStartupInput;
+  typedef DWORD ImageCodecFlags; //Alias
+  typedef struct ImageCodecInfo {
+    CLSID Clsid;
+    GUID FormatID;
+    WINAPI_WCHAR* CodecName;
+    WINAPI_WCHAR* DllName;
+    WINAPI_WCHAR* FormatDescription;
+    WINAPI_WCHAR* FilenameExtension;
+    WINAPI_WCHAR* MimeType;
+    ImageCodecFlags Flags;
+    DWORD Version;
+    DWORD SigCount;
+    DWORD SigSize;
+    WINAPI_BYTE* SigPattern;
+    WINAPI_BYTE* SigMask;
+  } ImageCodecInfo;
+  typedef struct Point {
+    INT X;
+    INT Y;
+  } Point;
+  typedef struct PointF {
+    REAL X;
+    REAL Y;
+  } PointF;
+  typedef struct PathData {
+    INT Count;
+    PointF* Points;
+    BYTE* Types;
+  } PathData;
+  typedef struct Rect {
+    INT X;
+    INT Y;
+    INT Width;
+    INT Height;
+  } Rect;
+  typedef struct RectF {
+    REAL X;
+    REAL Y;
+    REAL Width;
+    REAL Height;
+  } RectF;
+  typedef struct CharacterRange {
+    INT First;
+    INT Length;
+  } CharacterRange;
+  typedef UINT DitherType; //Alias
+  static const UINT DitherTypeNone = 0;
+  static const UINT DitherTypeSolid = 1;
+  static const UINT DitherTypeOrdered4x4 = 2;
+  static const UINT DitherTypeOrdered8x8 = 3;
+  static const UINT DitherTypeOrdered16x16 = 4;
+  static const UINT DitherTypeSpiral4x4 = 5;
+  static const UINT DitherTypeSpiral8x8 = 6;
+  static const UINT DitherTypeDualSpiral4x4 = 7;
+  static const UINT DitherTypeDualSpiral8x8 = 8;
+  static const UINT DitherTypeErrorDiffusion = 9;
+  static const UINT DitherTypeMax = 10;
+  typedef UINT GpFillMode; //Alias
+  static const UINT FillModeAlternate = 0;
+  static const UINT FillModeWinding = 1;
+  typedef UINT GpWrapMode; //Alias
+  static const UINT WrapModeTile = 0;
+  static const UINT WrapModeTileFlipX = 1;
+  static const UINT WrapModeTileFlipY = 2;
+  static const UINT WrapModeTileFlipXY = 3;
+  static const UINT WrapModeClamp = 4;
+  typedef UINT GpPenAlignment; //Alias
+  static const UINT PenAlignmentCenter = 0;
+  static const UINT PenAlignmentInset = 1;
+  typedef UINT PaletteType; //Alias
+  static const UINT PaletteTypeCustom = 0;
+  static const UINT PaletteTypeOptimal = 1;
+  static const UINT PaletteTypeFixedBW = 2;
+  static const UINT PaletteTypeFixedHalftone8 = 3;
+  static const UINT PaletteTypeFixedHalftone27 = 4;
+  static const UINT PaletteTypeFixedHalftone64 = 5;
+  static const UINT PaletteTypeFixedHalftone125 = 6;
+  static const UINT PaletteTypeFixedHalftone216 = 7;
+  static const UINT PaletteTypeFixedHalftone252 = 8;
+  static const UINT PaletteTypeFixedHalftone256 = 9;
+  typedef UINT HistogramFormat; //Alias
+  static const UINT HistogramFormatARGB = 0;
+  static const UINT HistogramFormatPARGB = 1;
+  static const UINT HistogramFormatRGB = 2;
+  static const UINT HistogramFormatGray = 3;
+  static const UINT HistogramFormatB = 4;
+  static const UINT HistogramFormatG = 5;
+  static const UINT HistogramFormatR = 6;
+  static const UINT HistogramFormatA = 7;
+  typedef UINT ColorMatrixFlags; //Alias
+  static const UINT ColorMatrixFlagsDefault = 0;
+  static const UINT ColorMatrixFlagsSkipGrays = 1;
+  static const UINT ColorMatrixFlagsAltGray = 2;
+  typedef UINT ColorChannelFlags; //Alias
+  static const UINT ColorChannelFlagsC = 0;
+  static const UINT ColorChannelFlagsM = 1;
+  static const UINT ColorChannelFlagsY = 2;
+  static const UINT ColorChannelFlagsK = 3;
+  static const UINT ColorChannelFlagsLast = 4;
+  typedef UINT SmoothingMode; //Alias
+  static const UINT SmoothingModeInvalid = -1;
+  static const UINT SmoothingModeDefault = 0;
+  static const UINT SmoothingModeHighSpeed = 1;
+  static const UINT SmoothingModeHighQuality = 2;
+  static const UINT SmoothingModeNone = 3;
+  static const UINT SmoothingModeAntiAlias8x4 = 4;
+  static const UINT SmoothingModeAntiAlias8x8 = 5;
+  typedef UINT StringAlignment; //Alias
+  static const UINT StringAlignmentNear = 0;
+  static const UINT StringAlignmentCenter = 1;
+  static const UINT StringAlignmentFar = 2;
+  typedef UINT WarpMode; //Alias
+  static const UINT WarpModePerspective = 0;
+  static const UINT WarpModeBilinear = 1;
+  typedef UINT GpPenType; //Alias
+  static const UINT PenTypeUnknown = -1;
+  static const UINT PenTypeSolidColor = 0;
+  static const UINT PenTypeHatchFill = 1;
+  static const UINT PenTypeTextureFill = 2;
+  static const UINT PenTypePathGradient = 3;
+  static const UINT PenTypeLinearGradient = 4;
+  typedef UINT GpDashStyle; //Alias
+  static const UINT DashStyleSolid = 0;
+  static const UINT DashStyleDash = 1;
+  static const UINT DashStyleDashDot = 2;
+  static const UINT DashStyleDashDotDot = 3;
+  static const UINT DashStyleCustom = 4;
+  typedef UINT CustomLineCapType; //Alias
+  static const UINT CustomLineCapTypeDefault = 0;
+  static const UINT CustomLineCapTypeAdjustableArrow = 1;
+  typedef UINT RotateFlipType; //Alias
+  static const UINT RotateNoneFlipNone = 0;
+  static const UINT Rotate90FlipNone = 1;
+  static const UINT Rotate180FlipNone = 2;
+  static const UINT Rotate270FlipNone = 3;
+  static const UINT RotateNoneFlipX = 4;
+  static const UINT Rotate90FlipX = 5;
+  static const UINT Rotate180FlipX = 6;
+  static const UINT Rotate270FlipX = 7;
+  typedef UINT GpFlushIntention; //Alias
+  static const UINT FlushIntentionFlush = 0;
+  static const UINT FlushIntentionSync = 1;
+  typedef UINT PixelOffsetMode; //Alias
+  static const UINT PixelOffsetModeInvalid = -1;
+  static const UINT PixelOffsetModeDefault = 0;
+  static const UINT PixelOffsetModeHighSpeed = 1;
+  static const UINT PixelOffsetModeHighQuality = 2;
+  static const UINT PixelOffsetModeNone = 3;
+  static const UINT PixelOffsetModeHalf = 4;
+  typedef UINT GpCoordinateSpace; //Alias
+  static const UINT CoordinateSpaceWorld = 0;
+  static const UINT CoordinateSpacePage = 1;
+  static const UINT CoordinateSpaceDevice = 2;
+  typedef UINT EmfType; //Alias
+  static const UINT EmfTypeEmfOnly = 3;
+  static const UINT EmfTypeEmfPlusOnly = 4;
+  static const UINT EmfTypeEmfPlusDual = 5;
+  typedef UINT MetafileFrameUnit; //Alias
+  static const UINT MetafileFrameUnitPixel = 2;
+  static const UINT MetafileFrameUnitPoint = 3;
+  static const UINT MetafileFrameUnitInch = 4;
+  static const UINT MetafileFrameUnitDocument = 5;
+  static const UINT MetafileFrameUnitMillimeter = 6;
+  static const UINT MetafileFrameUnitGdi = 7;
+  typedef UINT StringDigitSubstitute; //Alias
+  static const UINT StringDigitSubstituteUser = 0;
+  static const UINT StringDigitSubstituteNone = 1;
+  static const UINT StringDigitSubstituteNational = 2;
+  static const UINT StringDigitSubstituteTraditional = 3;
+  typedef UINT GpTestControlEnum; //Alias
+  static const UINT TestControlForceBilinear = 0;
+  static const UINT TestControlNoICM = 1;
+  static const UINT TestControlGetBuildNumber = 2;
+  typedef UINT CombineMode; //Alias
+  static const UINT CombineModeReplace = 0;
+  static const UINT CombineModeIntersect = 1;
+  static const UINT CombineModeUnion = 2;
+  static const UINT CombineModeXor = 3;
+  static const UINT CombineModeExclude = 4;
+  static const UINT CombineModeComplement = 5;
+  typedef UINT GpBrushType; //Alias
+  static const UINT BrushTypeSolidColor = 0;
+  static const UINT BrushTypeHatchFill = 1;
+  static const UINT BrushTypeTextureFill = 2;
+  static const UINT BrushTypePathGradient = 3;
+  static const UINT BrushTypeLinearGradient = 4;
+  typedef UINT GpHatchStyle; //Alias
+  static const UINT HatchStyleHorizontal = 0;
+  static const UINT HatchStyleVertical = 1;
+  static const UINT HatchStyleForwardDiagonal = 2;
+  static const UINT HatchStyleBackwardDiagonal = 3;
+  static const UINT HatchStyleCross = 4;
+  static const UINT HatchStyleDiagonalCross = 5;
+  static const UINT HatchStyle05Percent = 6;
+  static const UINT HatchStyle10Percent = 7;
+  static const UINT HatchStyle20Percent = 8;
+  static const UINT HatchStyle25Percent = 9;
+  static const UINT HatchStyle30Percent = 10;
+  static const UINT HatchStyle40Percent = 11;
+  static const UINT HatchStyle50Percent = 12;
+  static const UINT HatchStyle60Percent = 13;
+  static const UINT HatchStyle70Percent = 14;
+  static const UINT HatchStyle75Percent = 15;
+  static const UINT HatchStyle80Percent = 16;
+  static const UINT HatchStyle90Percent = 17;
+  static const UINT HatchStyleLightDownwardDiagonal = 18;
+  static const UINT HatchStyleLightUpwardDiagonal = 19;
+  static const UINT HatchStyleDarkDownwardDiagonal = 20;
+  static const UINT HatchStyleDarkUpwardDiagonal = 21;
+  static const UINT HatchStyleWideDownwardDiagonal = 22;
+  static const UINT HatchStyleWideUpwardDiagonal = 23;
+  static const UINT HatchStyleLightVertical = 24;
+  static const UINT HatchStyleLightHorizontal = 25;
+  static const UINT HatchStyleNarrowVertical = 26;
+  static const UINT HatchStyleNarrowHorizontal = 27;
+  static const UINT HatchStyleDarkVertical = 28;
+  static const UINT HatchStyleDarkHorizontal = 29;
+  static const UINT HatchStyleDashedDownwardDiagonal = 30;
+  static const UINT HatchStyleDashedUpwardDiagonal = 31;
+  static const UINT HatchStyleDashedHorizontal = 32;
+  static const UINT HatchStyleDashedVertical = 33;
+  static const UINT HatchStyleSmallConfetti = 34;
+  static const UINT HatchStyleLargeConfetti = 35;
+  static const UINT HatchStyleZigZag = 36;
+  static const UINT HatchStyleWave = 37;
+  static const UINT HatchStyleDiagonalBrick = 38;
+  static const UINT HatchStyleHorizontalBrick = 39;
+  static const UINT HatchStyleWeave = 40;
+  static const UINT HatchStylePlaid = 41;
+  static const UINT HatchStyleDivot = 42;
+  static const UINT HatchStyleDottedGrid = 43;
+  static const UINT HatchStyleDottedDiamond = 44;
+  static const UINT HatchStyleShingle = 45;
+  static const UINT HatchStyleTrellis = 46;
+  static const UINT HatchStyleSphere = 47;
+  static const UINT HatchStyleSmallGrid = 48;
+  static const UINT HatchStyleSmallCheckerBoard = 49;
+  static const UINT HatchStyleLargeCheckerBoard = 50;
+  static const UINT HatchStyleOutlinedDiamond = 51;
+  static const UINT HatchStyleSolidDiamond = 52;
+  typedef UINT LinearGradientMode; //Alias
+  static const UINT LinearGradientModeHorizontal = 0;
+  static const UINT LinearGradientModeVertical = 1;
+  static const UINT LinearGradientModeForwardDiagonal = 2;
+  static const UINT LinearGradientModeBackwardDiagonal = 3;
+  typedef UINT Unit; //Alias
+  static const UINT UnitWorld = 0;
+  static const UINT UnitDisplay = 1;
+  static const UINT UnitPixel = 2;
+  static const UINT UnitPoint = 3;
+  static const UINT UnitInch = 4;
+  static const UINT UnitDocument = 5;
+  static const UINT UnitMillimeter = 6;
+  typedef Unit GpUnit; //Alias
+  typedef UINT GpLineCap; //Alias
+  static const UINT LineCapFlat = 0;
+  static const UINT LineCapSquare = 1;
+  static const UINT LineCapRound = 2;
+  static const UINT LineCapTriangle = 3;
+  static const UINT LineCapNoAnchor = 0x10;
+  static const UINT LineCapSquareAnchor = 0x11;
+  static const UINT LineCapRoundAnchor = 0x12;
+  static const UINT LineCapDiamondAnchor = 0x13;
+  static const UINT LineCapArrowAnchor = 0x14;
+  static const UINT LineCapCustom = 0xff;
+  typedef UINT GpDashCap; //Alias
+  static const UINT DashCapFlat = 0;
+  static const UINT DashCapRound = 1;
+  static const UINT DashCapTriangle = 2;
+  typedef UINT GpLineJoin; //Alias
+  static const UINT LineJoinMiter = 0;
+  static const UINT LineJoinBevel = 1;
+  static const UINT LineJoinRound = 2;
+  static const UINT LineJoinMiterClipped = 3;
+  typedef UINT GpMatrixOrder; //Alias
+  static const UINT MatrixOrderPrepend = 0;
+  static const UINT MatrixOrderAppend = 1;
+  typedef UINT ImageType; //Alias
+  static const UINT ImageTypeUnknown = 0;
+  static const UINT ImageTypeBitmap = 1;
+  static const UINT ImageTypeMetafile = 2;
+  typedef UINT ColorAdjustType; //Alias
+  static const UINT ColorAdjustTypeDefault = 0;
+  static const UINT ColorAdjustTypeBitmap = 1;
+  static const UINT ColorAdjustTypeBrush = 2;
+  static const UINT ColorAdjustTypePen = 3;
+  static const UINT ColorAdjustTypeText = 4;
+  static const UINT ColorAdjustTypeCount = 5;
+  static const UINT ColorAdjustTypeAny = 6;
+  typedef UINT CompositingMode; //Alias
+  static const UINT CompositingModeSourceOver = 0;
+  static const UINT CompositingModeSourceCopy = 1;
+  typedef UINT CompositingQuality; //Alias
+  static const UINT CompositingQualityInvalid = -1;
+  static const UINT CompositingQualityDefault = 0;
+  static const UINT CompositingQualityHighSpeed = 1;
+  static const UINT CompositingQualityHighQuality = 2;
+  static const UINT CompositingQualityGammaCorrected = 3;
+  static const UINT CompositingQualityAssumeLinear = 4;
+  typedef UINT TextRenderingHint; //Alias
+  static const UINT TextRenderingHintSystemDefault = 0;
+  static const UINT TextRenderingHintSingleBitPerPixelGridFit = 1;
+  static const UINT TextRenderingHintSingleBitPerPixel = 2;
+  static const UINT TextRenderingHintAntiAliasGridFit = 3;
+  static const UINT TextRenderingHintAntiAlias = 4;
+  static const UINT TextRenderingHintClearTypeGridFit = 5;
+  typedef UINT StringTrimming; //Alias
+  static const UINT StringTrimmingNone = 0;
+  static const UINT StringTrimmingCharacter = 1;
+  static const UINT StringTrimmingWord = 2;
+  static const UINT StringTrimmingEllipsisCharacter = 3;
+  static const UINT StringTrimmingEllipsisWord = 4;
+  static const UINT StringTrimmingEllipsisPath = 5;
+  typedef LPVOID EmfPlusRecordType; //Alias
+  typedef UINT GpStatus; //Alias
+  static const UINT Ok = 0;
+  static const UINT GenericError = 1;
+  static const UINT InvalidParameter = 2;
+  static const UINT OutOfMemory = 3;
+  static const UINT ObjectBusy = 4;
+  static const UINT InsufficientBuffer = 5;
+  static const UINT NotImplemented = 6;
+  static const UINT Win32Error = 7;
+  static const UINT WrongState = 8;
+  static const UINT Aborted = 9;
+  static const UINT FileNotFound = 10;
+  static const UINT ValueOverflow = 11;
+  static const UINT AccessDenied = 12;
+  static const UINT UnknownImageFormat = 13;
+  static const UINT FontFamilyNotFound = 14;
+  static const UINT FontStyleNotFound = 15;
+  static const UINT NotTrueTypeFont = 16;
+  static const UINT UnsupportedGdiplusVersion = 17;
+  static const UINT GdiplusNotInitialized = 18;
+  static const UINT PropertyNotFound = 19;
+  static const UINT PropertyNotSupported = 20;
+  static const UINT ProfileNotFound = 21;
+  typedef INT WINAPI_FontStyle; //Alias
+  static const INT FontStyleRegular = 0;
+  static const INT FontStyleBold = 1;
+  static const INT FontStyleItalic = 2;
+  static const INT FontStyleBoldItalic = 3;
+  static const INT FontStyleUnderline = 4;
+  static const INT FontStyleStrikeout = 8;
+  typedef UINT WINAPI_StringFormatFlags; //Alias
+  typedef UINT WINAPI_ImageLockMode; //Alias
+  typedef INT WINAPI_HotkeyPrefix; //Alias
+  static const INT HotkeyPrefixNone = 0;
+  static const INT HotkeyPrefixShow = 1;
+  static const INT HotkeyPrefixHide = 2;
+  typedef UINT WINAPI_DriverStringOptions; //Alias
   GpStatus GdiplusStartup(                                   ULONG_PTR* token, WINAPI_GdiplusStartupInput* input, GdiplusStartupOutput* output);
   void     GdiplusShutdown(                                  ULONG_PTR token);
   GpStatus GdipCreatePath(                                   GpFillMode brushMode, GpPath** path);

@@ -1,6 +1,78 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef struct NETCONNECTINFOSTRUCT {
+    DWORD cbStructure;
+    DWORD dwFlags;
+    DWORD dwSpeed;
+    DWORD dwDelay;
+    DWORD dwOptDataSize;
+  } NETCONNECTINFOSTRUCT;
+  typedef NETCONNECTINFOSTRUCT *LPNETCONNECTINFOSTRUCT; //Pointer
+  typedef struct DISCDLGSTRUCT {
+    DWORD cbStructure;
+    HWND hwndOwner;
+    LPTSTR lpLocalName;
+    LPTSTR lpRemoteName;
+    DWORD dwFlags;
+  } DISCDLGSTRUCT;
+  typedef DISCDLGSTRUCT *LPDISCDLGSTRUCT; //Pointer
+  typedef struct NETINFOSTRUCT {
+    DWORD cbStructure;
+    DWORD dwProviderVersion;
+    DWORD dwStatus;
+    DWORD dwCharacteristics;
+    ULONG_PTR dwHandle;
+    WORD wNetType;
+    DWORD dwPrinters;
+    DWORD dwDrives;
+  } NETINFOSTRUCT;
+  typedef NETINFOSTRUCT *LPNETINFOSTRUCT; //Pointer
+  typedef DWORD WINAPI_ResourceScope; //Alias
+  static const DWORD RESOURCE_CONNECTED = 0x00000001;
+  static const DWORD RESOURCE_GLOBALNET = 0x00000002;
+  static const DWORD RESOURCE_REMEMBERED = 0x00000003;
+  static const DWORD RESOURCE_RECENT = 0x00000004;
+  static const DWORD RESOURCE_CONTEXT = 0x00000005;
+  typedef DWORD WINAPI_RESOURCETYPE; //Alias
+  typedef DWORD WINAPI_RESOURCEUSAGE; //Alias
+  typedef DWORD WINAPI_UniversalInfoLevel; //Alias
+  static const DWORD UNIVERSAL_NAME_INFO_LEVEL = 0x00000001;
+  static const DWORD REMOTE_NAME_INFO_LEVEL = 0x00000002;
+  typedef DWORD WINAPI_ConnectFlags; //Alias
+  typedef DWORD WINAPI_RESOURCEDISPLAYTYPE; //Alias
+  static const DWORD RESOURCEDISPLAYTYPE_GENERIC = 0x00000000;
+  static const DWORD RESOURCEDISPLAYTYPE_DOMAIN = 0x00000001;
+  static const DWORD RESOURCEDISPLAYTYPE_SERVER = 0x00000002;
+  static const DWORD RESOURCEDISPLAYTYPE_SHARE = 0x00000003;
+  static const DWORD RESOURCEDISPLAYTYPE_FILE = 0x00000004;
+  static const DWORD RESOURCEDISPLAYTYPE_GROUP = 0x00000005;
+  static const DWORD RESOURCEDISPLAYTYPE_NETWORK = 0x00000006;
+  static const DWORD RESOURCEDISPLAYTYPE_ROOT = 0x00000007;
+  static const DWORD RESOURCEDISPLAYTYPE_SHAREADMIN = 0x00000008;
+  static const DWORD RESOURCEDISPLAYTYPE_DIRECTORY = 0x00000009;
+  static const DWORD RESOURCEDISPLAYTYPE_TREE = 0x0000000A;
+  static const DWORD RESOURCEDISPLAYTYPE_NDSCONTAINER = 0x0000000B;
+  typedef struct NETRESOURCE {
+    WINAPI_ResourceScope dwScope;
+    WINAPI_RESOURCETYPE dwType;
+    WINAPI_RESOURCEDISPLAYTYPE dwDisplayType;
+    WINAPI_RESOURCEUSAGE dwUsage;
+    LPTSTR lpLocalName;
+    LPTSTR lpRemoteName;
+    LPTSTR lpComment;
+    LPTSTR lpProvider;
+  } NETRESOURCE;
+  typedef NETRESOURCE *LPNETRESOURCE; //Pointer
+  typedef DWORD WINAPI_CONNDLG; //Alias
+  typedef struct CONNECTDLGSTRUCT {
+    DWORD cbStructure;
+    HWND hwndOwner;
+    LPNETRESOURCE lpConnRes;
+    WINAPI_CONNDLG dwFlags;
+    DWORD dwDevNum;
+  } CONNECTDLGSTRUCT;
+  typedef CONNECTDLGSTRUCT *LPCONNECTDLGSTRUCT; //Pointer
   void              WNetSetLastError(                 DWORD err, LPTSTR lpError, LPTSTR lpProvider);
   WINAPI_ERROR_CODE MultinetGetConnectionPerformance( LPNETRESOURCE lpNetResource, LPNETCONNECTINFOSTRUCT lpNetConnectInfoStruct);
   WINAPI_ERROR_CODE WNetAddConnection2(               LPNETRESOURCE lpNetResource, LPCTSTR lpPassword, LPCTSTR lpUsername, WINAPI_ConnectFlags dwFlags);

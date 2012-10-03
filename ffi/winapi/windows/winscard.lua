@@ -1,6 +1,32 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef DWORD WINAPI_SCARD_STATE; //Alias
+  typedef struct SCARD_READERSTATE {
+    LPCTSTR szReader;
+    LPVOID pvUserData;
+    WINAPI_SCARD_STATE dwCurrentState;
+    WINAPI_SCARD_STATE dwEventState;
+    DWORD cbAtr;
+    BYTE rgbAtr[36];
+  } SCARD_READERSTATE;
+  typedef SCARD_READERSTATE *LPSCARD_READERSTATE; //Pointer
+  typedef struct SCARD_ATRMASK {
+    DWORD cbAtr;
+    BYTE rgbAtr[36];
+    BYTE rgbMask[36];
+  } SCARD_ATRMASK;
+  typedef SCARD_ATRMASK *LPSCARD_ATRMASK; //Pointer
+  typedef struct SCARD_IO_REQUEST {
+    DWORD dwProtocol;
+    DWORD cbPciLength;
+  } SCARD_IO_REQUEST;
+  typedef SCARD_IO_REQUEST *LPSCARD_IO_REQUEST; //Pointer
+  typedef SCARD_IO_REQUEST *LPCSCARD_IO_REQUEST; //Pointer
+  typedef DWORD WINAPI_SCardScope; //Alias
+  static const DWORD SCARD_SCOPE_USER = 0;
+  static const DWORD SCARD_SCOPE_TERMINAL = 1;
+  static const DWORD SCARD_SCOPE_SYSTEM = 2;
   HANDLE SCardAccessStartedEvent(      );
   LONG   SCardAddReaderToGroup(        SCARDCONTEXT hContext, LPCTSTR szReaderName, LPCTSTR szGroupName);
   LONG   SCardBeginTransaction(        SCARDHANDLE hCard);

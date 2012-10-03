@@ -52,12 +52,16 @@ ffi.cdef[[
   typedef DWORD_PTR* PDWORD_PTR; //Alias
   typedef INT_PTR LONG_PTR; //Alias
   typedef int32_t BOOL; //Integer
+  static const int32_t BOOL_TRUE = 1;
+  static const int32_t BOOL_FALSE = 0;
   typedef BOOL *PBOOL; //Pointer
   typedef PBOOL LPBOOL; //Alias
   typedef BOOL Bool; //Alias
   typedef BOOL WINAPI_BOOL; //Alias
   typedef BOOL BOOLAPI; //Alias
   typedef int8_t BOOLEAN; //Integer
+  static const int8_t BOOLEAN_TRUE = 1;
+  static const int8_t BOOLEAN_FALSE = 0;
   typedef BOOLEAN *PBOOLEAN; //Pointer
   typedef uint32_t UINT32; //Integer
   typedef UINT32 *PUINT32; //Pointer
@@ -124,12 +128,6 @@ ffi.cdef[[
   typedef FLOAT *PFLOAT; //Pointer
   typedef float WINAPI_float; //Alias
   typedef double DOUBLE; //Alias
-  enum { MAX_PATH = 260 };
-  enum { MAX_PATH = 260 };
-  enum { ANYSIZE_ARRAY = 1 };
-  enum { MAX_PATH = 260 };
-  enum { MAX_PATH = 260 };
-  enum { ANYSIZE_ARRAY = 1 };
   typedef union Stack {
     UINT_PTR uintp;
     INT_PTR intp;

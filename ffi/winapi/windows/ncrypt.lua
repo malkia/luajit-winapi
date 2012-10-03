@@ -3,6 +3,34 @@ require( 'ffi/winapi/headers/cryptography' )
 require( 'ffi/winapi/headers/security' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef ULONG_PTR NCRYPT_HANDLE; //Alias
+  typedef ULONG_PTR NCRYPT_PROV_HANDLE; //Alias
+  typedef ULONG_PTR NCRYPT_SECRET_HANDLE; //Alias
+  typedef ULONG_PTR NCRYPT_HASH_HANDLE; //Alias
+  typedef BCryptBufferDesc NCryptBufferDesc; //Alias
+  typedef NCryptBufferDesc *PNCryptBufferDesc; //Pointer
+  typedef WCHAR* WCHAR[NCRYPT_SSL_MAX_NAME_SIZE]; //Alias
+  typedef struct NCryptAlgorithmName {
+    LPWSTR pszName;
+    DWORD dwClass;
+    DWORD dwAlgOperations;
+    DWORD dwFlags;
+  } NCryptAlgorithmName;
+  typedef struct NCryptKeyName {
+    LPWSTR pszName;
+    LPWSTR pszAlgid;
+    DWORD dwLegacyKeySpec;
+    DWORD dwFlags;
+  } NCryptKeyName;
+  typedef struct NCryptProviderName {
+    LPWSTR pszName;
+    LPWSTR pszComment;
+  } NCryptProviderName;
+  typedef DWORD WINAPI_SslContentType; //Alias
+  static const DWORD CT_CHANGE_CIPHER_SPEC = 20;
+  static const DWORD CT_ALERT = 21;
+  static const DWORD CT_HANDSHAKE = 22;
+  static const DWORD CT_APPLICATIONDATA = 23;
   SECURITY_STATUS NCryptCreatePersistedKey(           NCRYPT_PROV_HANDLE hProvider, NCRYPT_KEY_HANDLE* phKey, LPCWSTR pszAlgId, LPCWSTR pszKeyName, DWORD dwLegacyKeySpec, DWORD dwFlags);
   SECURITY_STATUS NCryptDecrypt(                      NCRYPT_KEY_HANDLE hKey, PBYTE pbInput, DWORD cbInput, VOID* pPaddingInfo, PBYTE pbOutput, DWORD cbOutput, DWORD* pcbResult, DWORD dwFlags);
   SECURITY_STATUS NCryptDeleteKey(                    NCRYPT_KEY_HANDLE hKey, DWORD dwFlags);

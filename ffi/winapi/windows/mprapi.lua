@@ -1,6 +1,15 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+  typedef HANDLE RAS_SERVER_HANDLE; //Alias
+  typedef HANDLE MPR_SERVER_HANDLE; //Alias
+  typedef HANDLE MIB_SERVER_HANDLE; //Alias
+  enum { MAX_INTERFACE_NAME_LEN = 257 };
+  typedef struct MPR_IPINIP_INTERFACE_0 {
+    WCHAR wszFriendlyName[MAX_INTERFACE_NAME_LEN + 1];
+    GUID Guid;
+  } MPR_IPINIP_INTERFACE_0;
+  typedef MPR_IPINIP_INTERFACE_0 *PMPR_IPINIP_INTERFACE_0; //Pointer
   DWORD MprAdminPortEnum(                          RAS_SERVER_HANDLE hRasServer, DWORD dwLevel, HANDLE hConnection, LPBYTE* lplpbBuffer, DWORD dwPrefMaxLen, LPDWORD lpdwEntriesRead, LPDWORD lpdwTotalEntries, LPDWORD lpdwResumeHandle);
   DWORD MprAdminConnectionGetInfo(                 RAS_SERVER_HANDLE hRasServer, DWORD dwLevel, HANDLE hConnection, LPBYTE* lplpbBuffer);
   DWORD MprAdminPortGetInfo(                       RAS_SERVER_HANDLE hRasServer, DWORD dwLevel, HANDLE hPort, LPBYTE* lplpbBuffer);
