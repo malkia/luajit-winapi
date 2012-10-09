@@ -1,1 +1,1 @@
-((lua-mode . ((lua-default-application . "../luajit"))))
+((lua-mode . ((lua-default-application . "../luajit32"))))

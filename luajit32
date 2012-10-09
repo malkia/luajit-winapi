@@ -38,8 +38,9 @@ case `uname -s` in
 	OSARCH=$OS # universal
 	SO=.dylib
 	# this should go away at some point (install_name_tool with @rpath and @executable path)
+	export DYLD_LIBRARY_PATH=$absname/bin/$OSARCH:$DYLD_LIBRARY_PATH
 	# Wine - http://iweb.dl.sourceforge.net/project/darwine/wine/wine-1.3.13/Wine-1.3.13v2011.12.04.dmg
-	export DYLD_LIBRARY_PATH=$absname/bin/$OSARCH:/Applications/Wine.app/Contents/Resources/Java/lib/wine:$DYLD_LIBRARY_PATH
+	export DYLD_LIBRARY_PATH=/Applications/Wine.app/Contents/Resources/Java/lib/wine:$DYLD_LIBRARY_PATH
 	;;
     *)
 	case `uname -o` in
@@ -51,5 +52,5 @@ case `uname -s` in
 esac
 
 export LUA_PATH="$absname/?.lua;$LUA_PATH"
-"$dirname/bin/$OSARCH/luajit" "$@"
+arch -i386 "$dirname/bin/$OSARCH/luajit" "$@"
 
