@@ -11,9 +11,9 @@ ffi.cdef [[
   typedef LPVOID PMQRECEIVECALLBACK; //Alias
   typedef PROPVARIANT MQPROPVARIANT; //Alias
   typedef MQPROPVARIANT *MQPROPVARIANT[]; //Pointer
-  typedef ULONG WINAPI_MQPR_Rel; //Alias
+  typedef ULONG MQPR_Rel; //Alias
   typedef struct MQPROPERTYRESTRICTION {
-    WINAPI_MQPR_Rel rel;
+    MQPR_Rel rel;
     PROPID prop;
     MQPROPVARIANT prval;
   } MQPROPERTYRESTRICTION;
@@ -72,7 +72,7 @@ ffi.cdef [[
   HRESULT MQDeleteQueue(                   LPCWSTR lpwcsFormatName);
   VOID    MQFreeMemory(                    PVOID pvMemory);
   VOID    MQFreeSecurityContext(           HANDLE hSecurityContext);
-  HRESULT MQGetMachineProperties(          LPCWSTR lpwcsMachineName, WINAPI_GUID* pguidMachineID, MQQMPROPS* pQMProps);
+  HRESULT MQGetMachineProperties(          LPCWSTR lpwcsMachineName, GUID* pguidMachineID, MQQMPROPS* pQMProps);
   HRESULT MQGetOverlappedResult(           LPOVERLAPPED lpOverlapped);
   HRESULT MQGetPrivateComputerInformation( LPCWSTR lpwcsComputerName, MQPRIVATEPROPS* pPrivateProps);
   HRESULT MQGetQueueProperties(            LPCWSTR lpwcsFormatName, MQQUEUEPROPS* pQueueProps);
@@ -98,4 +98,4 @@ ffi.cdef [[
   HRESULT MQSetQueueProperties(            LPCWSTR lpwcsFormatName, MQQUEUEPROPS* pQueueProps);
   HRESULT MQSetQueueSecurity(              LPCWSTR lpwcsFormatName, SECURITY_INFORMATION SecurityInformation, PSECURITY_DESCRIPTOR pSecurityDescriptor);
 ]]
-return ffi.load( 'Mqrt.dll' )
+ffi.load( 'Mqrt.dll' )

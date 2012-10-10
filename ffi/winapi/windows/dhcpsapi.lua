@@ -42,15 +42,15 @@ ffi.cdef [[
     DHCP_IP_ADDRESS EndAddress;
   } DHCP_IP_RANGE;
   typedef UINT DHCP_OPTION_DATA_TYPE; //Alias
-  static const UINT DhcpByteOption = 0;
-  static const UINT DhcpWordOption = 1;
-  static const UINT DhcpDWordOption = 2;
-  static const UINT DhcpDWordDWordOption = 3;
-  static const UINT DhcpIpAddressOption = 4;
-  static const UINT DhcpStringDataOption = 5;
-  static const UINT DhcpBinaryDataOption = 6;
-  static const UINT DhcpEncapsulatedDataOption = 7;
-  static const UINT DhcpIpv6AddressOption = 8;
+  static const DHCP_OPTION_DATA_TYPE DhcpByteOption = 0;
+  static const DHCP_OPTION_DATA_TYPE DhcpWordOption = 1;
+  static const DHCP_OPTION_DATA_TYPE DhcpDWordOption = 2;
+  static const DHCP_OPTION_DATA_TYPE DhcpDWordDWordOption = 3;
+  static const DHCP_OPTION_DATA_TYPE DhcpIpAddressOption = 4;
+  static const DHCP_OPTION_DATA_TYPE DhcpStringDataOption = 5;
+  static const DHCP_OPTION_DATA_TYPE DhcpBinaryDataOption = 6;
+  static const DHCP_OPTION_DATA_TYPE DhcpEncapsulatedDataOption = 7;
+  static const DHCP_OPTION_DATA_TYPE DhcpIpv6AddressOption = 8;
   typedef struct DWORD_DWORD {
     DWORD DWord1;
     DWORD DWord2;
@@ -99,22 +99,22 @@ ffi.cdef [[
     DHCP_IP_CLUSTER* IpUsedCluster;
   } DHCP_SUBNET_ELEMENT_UNION_V5;
   typedef UINT DHCP_SUBNET_ELEMENT_TYPE; //Alias
-  static const UINT DhcpIpRanges = 0;
-  static const UINT DhcpSecondaryHosts = 1;
-  static const UINT DhcpReservedIps = 2;
-  static const UINT DhcpExcludedIpRanges = 3;
-  static const UINT DhcpIpUsedClusters = 4;
-  static const UINT DhcpIpRangesDhcpOnly = 5;
-  static const UINT DhcpIpRangesDhcpBootp = 6;
-  static const UINT DhcpIpRangesBootpOnly = 7;
+  static const DHCP_SUBNET_ELEMENT_TYPE DhcpIpRanges = 0;
+  static const DHCP_SUBNET_ELEMENT_TYPE DhcpSecondaryHosts = 1;
+  static const DHCP_SUBNET_ELEMENT_TYPE DhcpReservedIps = 2;
+  static const DHCP_SUBNET_ELEMENT_TYPE DhcpExcludedIpRanges = 3;
+  static const DHCP_SUBNET_ELEMENT_TYPE DhcpIpUsedClusters = 4;
+  static const DHCP_SUBNET_ELEMENT_TYPE DhcpIpRangesDhcpOnly = 5;
+  static const DHCP_SUBNET_ELEMENT_TYPE DhcpIpRangesDhcpBootp = 6;
+  static const DHCP_SUBNET_ELEMENT_TYPE DhcpIpRangesBootpOnly = 7;
   typedef struct DHCP_SUBNET_ELEMENT_DATA_V5 {
     DHCP_SUBNET_ELEMENT_TYPE ElementType;
     DHCP_SUBNET_ELEMENT_UNION_V5 Element;
   } DHCP_SUBNET_ELEMENT_DATA_V5;
   typedef UINT DHCP_SEARCH_INFO_TYPE; //Alias
-  static const UINT DhcpClientIpAddress = 0;
-  static const UINT DhcpClientHardwareAddress = 1;
-  static const UINT DhcpClientName = 2;
+  static const DHCP_SEARCH_INFO_TYPE DhcpClientIpAddress = 0;
+  static const DHCP_SEARCH_INFO_TYPE DhcpClientHardwareAddress = 1;
+  static const DHCP_SEARCH_INFO_TYPE DhcpClientName = 2;
   typedef union DHCP_CLIENT_SEARCH_UNION {
     DHCP_IP_ADDRESS ClientIpAddress;
     DHCP_CLIENT_UID ClientHardwareAddress;
@@ -137,11 +137,11 @@ ffi.cdef [[
     LPWSTR MScopeInfo;
   } DHCP_OPTION_SCOPE_UNION;
   typedef UINT DHCP_OPTION_SCOPE_TYPE; //Alias
-  static const UINT DhcpDefaultOptions = 0;
-  static const UINT DhcpGlobalOptions = 1;
-  static const UINT DhcpSubnetOptions = 2;
-  static const UINT DhcpReservedOptions = 3;
-  static const UINT DhcpMScopeOptions = 4;
+  static const DHCP_OPTION_SCOPE_TYPE DhcpDefaultOptions = 0;
+  static const DHCP_OPTION_SCOPE_TYPE DhcpGlobalOptions = 1;
+  static const DHCP_OPTION_SCOPE_TYPE DhcpSubnetOptions = 2;
+  static const DHCP_OPTION_SCOPE_TYPE DhcpReservedOptions = 3;
+  static const DHCP_OPTION_SCOPE_TYPE DhcpMScopeOptions = 4;
   typedef struct DHCP_OPTION_SCOPE_INFO {
     DHCP_OPTION_SCOPE_TYPE ScopeType;
     DHCP_OPTION_SCOPE_UNION ScopeInfo;
@@ -162,16 +162,16 @@ ffi.cdef [[
     LPDHCP_OPTION_VALUE Values;
   } DHCP_OPTION_VALUE_ARRAY;
   typedef DHCP_OPTION_VALUE_ARRAY *LPDHCP_OPTION_VALUE_ARRAY; //Pointer
-  typedef struct WINAPI_DHCP_ALL_OPTION_VALUES_s {
+  typedef struct DHCP_ALL_OPTION_VALUES_s {
     LPWSTR ClassName;
     LPWSTR VendorName;
     BOOL IsVendor;
     LPDHCP_OPTION_VALUE_ARRAY OptionsArray;
-  } WINAPI_DHCP_ALL_OPTION_VALUES_s;
+  } DHCP_ALL_OPTION_VALUES_s;
   typedef struct DHCP_ALL_OPTION_VALUES {
     DWORD Flags;
     DWORD NumElements;
-    WINAPI_DHCP_ALL_OPTION_VALUES_s* Options;
+    DHCP_ALL_OPTION_VALUES_s* Options;
   } DHCP_ALL_OPTION_VALUES;
   typedef struct DHCP_IP_RESERVATION {
     DHCP_IP_ADDRESS ReservedIpAddress;
@@ -190,9 +190,9 @@ ffi.cdef [[
   } DHCP_SUBNET_ELEMENT_DATA;
   typedef DHCP_SUBNET_ELEMENT_DATA *LPDHCP_SUBNET_ELEMENT_DATA; //Pointer
   typedef UINT DHCP_SUBNET_ELEMENT_TYPE_V6; //Alias
-  static const UINT Dhcpv6IpRanges = 0;
-  static const UINT Dhcpv6ReservedIps = 1;
-  static const UINT Dhcpv6ExcludedIpRanges = 2;
+  static const DHCP_SUBNET_ELEMENT_TYPE_V6 Dhcpv6IpRanges = 0;
+  static const DHCP_SUBNET_ELEMENT_TYPE_V6 Dhcpv6ReservedIps = 1;
+  static const DHCP_SUBNET_ELEMENT_TYPE_V6 Dhcpv6ExcludedIpRanges = 2;
   typedef union DHCP_SUBNET_ELEMENT_UNION_V6 {
     DHCP_IP_RANGE_V6* IpRange;
     DHCP_IP_RESERVATION_V6* ReservedIp;
@@ -204,9 +204,9 @@ ffi.cdef [[
   } DHCP_SUBNET_ELEMENT_DATA_V6;
   typedef DHCP_SUBNET_ELEMENT_DATA_V6 *LPDHCP_SUBNET_ELEMENT_DATA_V6; //Pointer
   typedef UINT DHCP_SEARCH_INFO_TYPE_V6; //Alias
-  static const UINT Dhcpv6ClientIpAddress = 0;
-  static const UINT Dhcpv6ClientDUID = 1;
-  static const UINT Dhcpv6ClientName = 2;
+  static const DHCP_SEARCH_INFO_TYPE_V6 Dhcpv6ClientIpAddress = 0;
+  static const DHCP_SEARCH_INFO_TYPE_V6 Dhcpv6ClientDUID = 1;
+  static const DHCP_SEARCH_INFO_TYPE_V6 Dhcpv6ClientName = 2;
   typedef union DHCP_CLIENT_SEARCH_UNION_V6 {
     DHCP_IPV6_ADDRESS ClientIpAddress;
     DHCP_CLIENT_UID ClientDUID;
@@ -222,10 +222,10 @@ ffi.cdef [[
     DHCP_IPV6_ADDRESS ReservedIpSubnetAddress;
   } DHCP_RESERVED_SCOPE6;
   typedef UINT DHCP_OPTION_SCOPE_TYPE6; //Alias
-  static const UINT DhcpDefaultOptions6 = 0;
-  static const UINT DhcpScopeOptions6 = 1;
-  static const UINT DhcpReservedOptions6 = 2;
-  static const UINT DhcpGlobalOptions6 = 3;
+  static const DHCP_OPTION_SCOPE_TYPE6 DhcpDefaultOptions6 = 0;
+  static const DHCP_OPTION_SCOPE_TYPE6 DhcpScopeOptions6 = 1;
+  static const DHCP_OPTION_SCOPE_TYPE6 DhcpReservedOptions6 = 2;
+  static const DHCP_OPTION_SCOPE_TYPE6 DhcpGlobalOptions6 = 3;
   typedef union DHCP_OPTION_SCOPE_UNION6 {
     PVOID DefaultScopeInfo;
     DHCP_IPV6_ADDRESS SubnetScopeInfo;
@@ -237,8 +237,8 @@ ffi.cdef [[
   } DHCP_OPTION_SCOPE_INFO6;
   typedef DHCP_OPTION_SCOPE_INFO6 *LPDHCP_OPTION_SCOPE_INFO6; //Pointer
   typedef UINT DHCP_OPTION_TYPE; //Alias
-  static const UINT DhcpUnaryElementTypeOption = 0;
-  static const UINT DhcpArrayTypeOption = 1;
+  static const DHCP_OPTION_TYPE DhcpUnaryElementTypeOption = 0;
+  static const DHCP_OPTION_TYPE DhcpArrayTypeOption = 1;
   typedef struct DHCP_OPTION {
     DHCP_OPTION_ID OptionID;
     LPWSTR OptionName;
@@ -252,21 +252,21 @@ ffi.cdef [[
     LPDHCP_OPTION Options;
   } DHCP_OPTION_ARRAY;
   typedef DHCP_OPTION_ARRAY *LPDHCP_OPTION_ARRAY; //Pointer
-  typedef struct WINAPI_DHCP_ALL_OPTIONS_s {
+  typedef struct DHCP_ALL_OPTIONS_s {
     DHCP_OPTION Option;
     LPWSTR VendorName;
     LPWSTR ClassName;
-  } WINAPI_DHCP_ALL_OPTIONS_s;
+  } DHCP_ALL_OPTIONS_s;
   typedef struct DHCP_ALL_OPTIONS {
     DWORD Flags;
     LPDHCP_OPTION_ARRAY NonVendorOptions;
     DWORD NumVendorOptions;
-    WINAPI_DHCP_ALL_OPTIONS_s* VendorOptions;
+    DHCP_ALL_OPTIONS_s* VendorOptions;
   } DHCP_ALL_OPTIONS;
   typedef DHCP_ALL_OPTIONS *LPDHCP_ALL_OPTIONS; //Pointer
   typedef UINT DHCP_FILTER_LIST_TYPE; //Alias
-  static const UINT Deny = 0;
-  static const UINT Allow = 1;
+  static const DHCP_FILTER_LIST_TYPE Deny = 0;
+  static const DHCP_FILTER_LIST_TYPE Allow = 1;
   typedef struct DHCP_FILTER_ADD_INFO {
     DHCP_ADDR_PATTERN AddrPatt;
     LPWSTR Comment;
@@ -311,13 +311,13 @@ ffi.cdef [[
     BYTE bClientType;
   } DHCP_CLIENT_INFO_V4;
   typedef UINT QuarantineStatus; //Alias
-  static const UINT NOQUARANTINE = 0;
-  static const UINT RESTRICTEDACCESS = 1;
-  static const UINT DROPPACKET = 2;
-  static const UINT PROBATION = 3;
-  static const UINT EXEMPT = 4;
-  static const UINT DEFAULTQUARSETTING = 5;
-  static const UINT NOQUARINFO = 6;
+  static const QuarantineStatus NOQUARANTINE = 0;
+  static const QuarantineStatus RESTRICTEDACCESS = 1;
+  static const QuarantineStatus DROPPACKET = 2;
+  static const QuarantineStatus PROBATION = 3;
+  static const QuarantineStatus EXEMPT = 4;
+  static const QuarantineStatus DEFAULTQUARSETTING = 5;
+  static const QuarantineStatus NOQUARINFO = 6;
   typedef struct DHCP_CLIENT_INFO_VQ {
     DHCP_IP_ADDRESS ClientIpAddress;
     DHCP_IP_MASK SubnetMask;
@@ -334,11 +334,11 @@ ffi.cdef [[
   } DHCP_CLIENT_INFO_VQ;
   typedef DHCP_CLIENT_INFO_VQ *LPDHCP_CLIENT_INFO_VQ; //Pointer
   typedef UINT DHCP_SUBNET_STATE; //Alias
-  static const UINT DhcpSubnetEnabled = 0;
-  static const UINT DhcpSubnetDisabled = 1;
-  static const UINT DhcpSubnetEnabledSwitched = 2;
-  static const UINT DhcpSubnetDisabledSwitched = 3;
-  static const UINT DhcpSubnetInvalidState = 4;
+  static const DHCP_SUBNET_STATE DhcpSubnetEnabled = 0;
+  static const DHCP_SUBNET_STATE DhcpSubnetDisabled = 1;
+  static const DHCP_SUBNET_STATE DhcpSubnetEnabledSwitched = 2;
+  static const DHCP_SUBNET_STATE DhcpSubnetDisabledSwitched = 3;
+  static const DHCP_SUBNET_STATE DhcpSubnetInvalidState = 4;
   typedef struct DHCP_SUBNET_INFO {
     DHCP_IP_ADDRESS SubnetAddress;
     DHCP_IP_MASK SubnetMask;
@@ -363,8 +363,8 @@ ffi.cdef [[
   } DHCP_SUBNET_INFO_VQ;
   typedef DHCP_SUBNET_INFO_VQ *LPDHCP_SUBNET_INFO_VQ; //Pointer
   typedef UINT DHCP_FORCE_FLAG; //Alias
-  static const UINT DhcpFullForce = 0;
-  static const UINT DhcpNoForce = 1;
+  static const DHCP_FORCE_FLAG DhcpFullForce = 0;
+  static const DHCP_FORCE_FLAG DhcpNoForce = 1;
   typedef struct DHCP_CLASS_INFO_ARRAY {
     DWORD NumElements;
     LPDHCP_CLASS_INFO Classes;
@@ -751,4 +751,4 @@ ffi.cdef [[
   DWORD DhcpServerSetConfigV6(                 DHCP_CONST WCHAR* ServerIpAddress, LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo, DWORD FieldsToSet, LPDHCP_SERVER_CONFIG_INFO_V6 ConfigInfo);
   DWORD DhcpSetSubnetInfoV6(                   DHCP_CONST WCHAR* ServerIpAddress, DHCP_IPV6_ADDRESS SubnetAddress, LPDHCP_SUBNET_INFO_V6 SubnetInfo);
 ]]
-return ffi.load( 'Dhcpsapi.dll' )
+ffi.load( 'Dhcpsapi.dll' )

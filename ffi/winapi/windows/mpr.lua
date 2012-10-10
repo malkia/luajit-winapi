@@ -28,74 +28,74 @@ ffi.cdef [[
     DWORD dwDrives;
   } NETINFOSTRUCT;
   typedef NETINFOSTRUCT *LPNETINFOSTRUCT; //Pointer
-  typedef DWORD WINAPI_ResourceScope; //Alias
-  static const DWORD RESOURCE_CONNECTED = 0x00000001;
-  static const DWORD RESOURCE_GLOBALNET = 0x00000002;
-  static const DWORD RESOURCE_REMEMBERED = 0x00000003;
-  static const DWORD RESOURCE_RECENT = 0x00000004;
-  static const DWORD RESOURCE_CONTEXT = 0x00000005;
-  typedef DWORD WINAPI_RESOURCETYPE; //Alias
-  typedef DWORD WINAPI_RESOURCEUSAGE; //Alias
-  typedef DWORD WINAPI_UniversalInfoLevel; //Alias
-  static const DWORD UNIVERSAL_NAME_INFO_LEVEL = 0x00000001;
-  static const DWORD REMOTE_NAME_INFO_LEVEL = 0x00000002;
-  typedef DWORD WINAPI_ConnectFlags; //Alias
-  typedef DWORD WINAPI_RESOURCEDISPLAYTYPE; //Alias
-  static const DWORD RESOURCEDISPLAYTYPE_GENERIC = 0x00000000;
-  static const DWORD RESOURCEDISPLAYTYPE_DOMAIN = 0x00000001;
-  static const DWORD RESOURCEDISPLAYTYPE_SERVER = 0x00000002;
-  static const DWORD RESOURCEDISPLAYTYPE_SHARE = 0x00000003;
-  static const DWORD RESOURCEDISPLAYTYPE_FILE = 0x00000004;
-  static const DWORD RESOURCEDISPLAYTYPE_GROUP = 0x00000005;
-  static const DWORD RESOURCEDISPLAYTYPE_NETWORK = 0x00000006;
-  static const DWORD RESOURCEDISPLAYTYPE_ROOT = 0x00000007;
-  static const DWORD RESOURCEDISPLAYTYPE_SHAREADMIN = 0x00000008;
-  static const DWORD RESOURCEDISPLAYTYPE_DIRECTORY = 0x00000009;
-  static const DWORD RESOURCEDISPLAYTYPE_TREE = 0x0000000A;
-  static const DWORD RESOURCEDISPLAYTYPE_NDSCONTAINER = 0x0000000B;
+  typedef DWORD ResourceScope; //Alias
+  static const ResourceScope RESOURCE_CONNECTED = 0x00000001;
+  static const ResourceScope RESOURCE_GLOBALNET = 0x00000002;
+  static const ResourceScope RESOURCE_REMEMBERED = 0x00000003;
+  static const ResourceScope RESOURCE_RECENT = 0x00000004;
+  static const ResourceScope RESOURCE_CONTEXT = 0x00000005;
+  typedef DWORD RESOURCETYPE; //Alias
+  typedef DWORD RESOURCEUSAGE; //Alias
+  typedef DWORD UniversalInfoLevel; //Alias
+  static const UniversalInfoLevel UNIVERSAL_NAME_INFO_LEVEL = 0x00000001;
+  static const UniversalInfoLevel REMOTE_NAME_INFO_LEVEL = 0x00000002;
+  typedef DWORD ConnectFlags; //Alias
+  typedef DWORD RESOURCEDISPLAYTYPE; //Alias
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_GENERIC = 0x00000000;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_DOMAIN = 0x00000001;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_SERVER = 0x00000002;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_SHARE = 0x00000003;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_FILE = 0x00000004;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_GROUP = 0x00000005;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_NETWORK = 0x00000006;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_ROOT = 0x00000007;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_SHAREADMIN = 0x00000008;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_DIRECTORY = 0x00000009;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_TREE = 0x0000000A;
+  static const RESOURCEDISPLAYTYPE RESOURCEDISPLAYTYPE_NDSCONTAINER = 0x0000000B;
   typedef struct NETRESOURCE {
-    WINAPI_ResourceScope dwScope;
-    WINAPI_RESOURCETYPE dwType;
-    WINAPI_RESOURCEDISPLAYTYPE dwDisplayType;
-    WINAPI_RESOURCEUSAGE dwUsage;
+    ResourceScope dwScope;
+    RESOURCETYPE dwType;
+    RESOURCEDISPLAYTYPE dwDisplayType;
+    RESOURCEUSAGE dwUsage;
     LPTSTR lpLocalName;
     LPTSTR lpRemoteName;
     LPTSTR lpComment;
     LPTSTR lpProvider;
   } NETRESOURCE;
   typedef NETRESOURCE *LPNETRESOURCE; //Pointer
-  typedef DWORD WINAPI_CONNDLG; //Alias
+  typedef DWORD CONNDLG; //Alias
   typedef struct CONNECTDLGSTRUCT {
     DWORD cbStructure;
     HWND hwndOwner;
     LPNETRESOURCE lpConnRes;
-    WINAPI_CONNDLG dwFlags;
+    CONNDLG dwFlags;
     DWORD dwDevNum;
   } CONNECTDLGSTRUCT;
   typedef CONNECTDLGSTRUCT *LPCONNECTDLGSTRUCT; //Pointer
-  void              WNetSetLastError(                 DWORD err, LPTSTR lpError, LPTSTR lpProvider);
-  WINAPI_ERROR_CODE MultinetGetConnectionPerformance( LPNETRESOURCE lpNetResource, LPNETCONNECTINFOSTRUCT lpNetConnectInfoStruct);
-  WINAPI_ERROR_CODE WNetAddConnection2(               LPNETRESOURCE lpNetResource, LPCTSTR lpPassword, LPCTSTR lpUsername, WINAPI_ConnectFlags dwFlags);
-  WINAPI_ERROR_CODE WNetAddConnection3(               HWND hwndOwner, LPNETRESOURCE lpNetResource, LPTSTR lpPassword, LPTSTR lpUserName, WINAPI_ConnectFlags dwFlags);
-  WINAPI_ERROR_CODE WNetCancelConnection(             LPCTSTR lpName, BOOL fForce);
-  WINAPI_ERROR_CODE WNetCancelConnection2(            LPCTSTR lpName, WINAPI_ConnectFlags dwFlags, BOOL fForce);
-  WINAPI_ERROR_CODE WNetCloseEnum(                    HANDLE hEnum);
-  WINAPI_ERROR_CODE WNetConnectionDialog(             HWND hwnd, WINAPI_RESOURCETYPE dwType);
-  WINAPI_ERROR_CODE WNetConnectionDialog1(            LPCONNECTDLGSTRUCT lpConnDlgStruct);
-  WINAPI_ERROR_CODE WNetDisconnectDialog(             HWND hwnd, WINAPI_RESOURCETYPE dwType);
-  WINAPI_ERROR_CODE WNetDisconnectDialog1(            LPDISCDLGSTRUCT lpConnDlgStruct);
-  WINAPI_ERROR_CODE WNetEnumResource(                 HANDLE hEnum, LPDWORD lpcCount, LPNETRESOURCE lpBuffer, LPDWORD lpBufferSize);
-  WINAPI_ERROR_CODE WNetGetConnection(                LPCTSTR lpLocalName, LPTSTR lpRemoteName, LPDWORD lpnLength);
-  WINAPI_ERROR_CODE WNetGetLastError(                 LPDWORD lpError, LPTSTR lpErrorBuf, DWORD nErrorBufSize, LPTSTR lpNameBuf, DWORD nNameBufSize);
-  WINAPI_ERROR_CODE WNetGetNetworkInformation(        LPCTSTR lpProvider, LPNETINFOSTRUCT lpNetInfoStruct);
-  WINAPI_ERROR_CODE WNetGetProviderName(              DWORD dwNetType, LPTSTR lpProviderName, LPDWORD lpBufferSize);
-  WINAPI_ERROR_CODE WNetGetResourceInformation(       LPNETRESOURCE lpNetResource, LPVOID lpBuffer, LPDWORD lpcbBuffer, LPTSTR* lplpSystem);
-  WINAPI_ERROR_CODE WNetGetResourceParent(            LPNETRESOURCE lpNetResource, LPNETRESOURCE lpBuffer, LPDWORD lpcbBuffer);
-  WINAPI_ERROR_CODE WNetGetUniversalName(             LPCTSTR lpLocalPath, WINAPI_UniversalInfoLevel dwInfoLevel, LPVOID lpBuffer, LPDWORD lpBufferSize);
-  WINAPI_ERROR_CODE WNetGetUser(                      LPCTSTR lpName, LPTSTR lpUserName, LPDWORD lpnLength);
-  WINAPI_ERROR_CODE WNetOpenEnum(                     WINAPI_ResourceScope dwScope, WINAPI_RESOURCETYPE dwType, WINAPI_RESOURCEUSAGE dwUsage, LPNETRESOURCE lpNetResource, LPHANDLE lphEnum);
-  WINAPI_ERROR_CODE WNetRestoreConnectionW(           HWND hwndParent, LPCWSTR lpDevice, BOOL fUseUI);
-  WINAPI_ERROR_CODE WNetUseConnection(                HWND hwndOwner, LPNETRESOURCE lpNetResource, LPCTSTR lpPassword, LPCTSTR lpUserID, WINAPI_ConnectFlags dwFlags, LPTSTR lpAccessName, LPDWORD lpBufferSize, LPDWORD lpResult);
-  WINAPI_ERROR_CODE WNetAddConnection(                LPCTSTR lpRemoteName, LPCTSTR lpPassword, LPCTSTR lpLocalName);
+  void       WNetSetLastError(                 DWORD err, LPTSTR lpError, LPTSTR lpProvider);
+  ERROR_CODE MultinetGetConnectionPerformance( LPNETRESOURCE lpNetResource, LPNETCONNECTINFOSTRUCT lpNetConnectInfoStruct);
+  ERROR_CODE WNetAddConnection2(               LPNETRESOURCE lpNetResource, LPCTSTR lpPassword, LPCTSTR lpUsername, ConnectFlags dwFlags);
+  ERROR_CODE WNetAddConnection3(               HWND hwndOwner, LPNETRESOURCE lpNetResource, LPTSTR lpPassword, LPTSTR lpUserName, ConnectFlags dwFlags);
+  ERROR_CODE WNetCancelConnection(             LPCTSTR lpName, BOOL fForce);
+  ERROR_CODE WNetCancelConnection2(            LPCTSTR lpName, ConnectFlags dwFlags, BOOL fForce);
+  ERROR_CODE WNetCloseEnum(                    HANDLE hEnum);
+  ERROR_CODE WNetConnectionDialog(             HWND hwnd, RESOURCETYPE dwType);
+  ERROR_CODE WNetConnectionDialog1(            LPCONNECTDLGSTRUCT lpConnDlgStruct);
+  ERROR_CODE WNetDisconnectDialog(             HWND hwnd, RESOURCETYPE dwType);
+  ERROR_CODE WNetDisconnectDialog1(            LPDISCDLGSTRUCT lpConnDlgStruct);
+  ERROR_CODE WNetEnumResource(                 HANDLE hEnum, LPDWORD lpcCount, LPNETRESOURCE lpBuffer, LPDWORD lpBufferSize);
+  ERROR_CODE WNetGetConnection(                LPCTSTR lpLocalName, LPTSTR lpRemoteName, LPDWORD lpnLength);
+  ERROR_CODE WNetGetLastError(                 LPDWORD lpError, LPTSTR lpErrorBuf, DWORD nErrorBufSize, LPTSTR lpNameBuf, DWORD nNameBufSize);
+  ERROR_CODE WNetGetNetworkInformation(        LPCTSTR lpProvider, LPNETINFOSTRUCT lpNetInfoStruct);
+  ERROR_CODE WNetGetProviderName(              DWORD dwNetType, LPTSTR lpProviderName, LPDWORD lpBufferSize);
+  ERROR_CODE WNetGetResourceInformation(       LPNETRESOURCE lpNetResource, LPVOID lpBuffer, LPDWORD lpcbBuffer, LPTSTR* lplpSystem);
+  ERROR_CODE WNetGetResourceParent(            LPNETRESOURCE lpNetResource, LPNETRESOURCE lpBuffer, LPDWORD lpcbBuffer);
+  ERROR_CODE WNetGetUniversalName(             LPCTSTR lpLocalPath, UniversalInfoLevel dwInfoLevel, LPVOID lpBuffer, LPDWORD lpBufferSize);
+  ERROR_CODE WNetGetUser(                      LPCTSTR lpName, LPTSTR lpUserName, LPDWORD lpnLength);
+  ERROR_CODE WNetOpenEnum(                     ResourceScope dwScope, RESOURCETYPE dwType, RESOURCEUSAGE dwUsage, LPNETRESOURCE lpNetResource, LPHANDLE lphEnum);
+  ERROR_CODE WNetRestoreConnectionW(           HWND hwndParent, LPCWSTR lpDevice, BOOL fUseUI);
+  ERROR_CODE WNetUseConnection(                HWND hwndOwner, LPNETRESOURCE lpNetResource, LPCTSTR lpPassword, LPCTSTR lpUserID, ConnectFlags dwFlags, LPTSTR lpAccessName, LPDWORD lpBufferSize, LPDWORD lpResult);
+  ERROR_CODE WNetAddConnection(                LPCTSTR lpRemoteName, LPCTSTR lpPassword, LPCTSTR lpLocalName);
 ]]
-return ffi.load( 'Mpr.dll' )
+ffi.load( 'Mpr.dll' )

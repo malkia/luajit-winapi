@@ -12,12 +12,12 @@ ffi.cdef [[
     TCHAR szDescription[STYLE_DESCRIPTION_SIZE];
   } STYLEBUF;
   typedef STYLEBUF *LPSTYLEBUF; //Pointer
-  typedef UINT WINAPI_IMFT; //Alias
-  typedef UINT WINAPI_IMFS; //Alias
+  typedef UINT IMFT; //Alias
+  typedef UINT IMFS; //Alias
   typedef struct IMEMENUITEMINFO {
     UINT cbSize;
-    WINAPI_IMFT fType;
-    WINAPI_IMFS fState;
+    IMFT fType;
+    IMFS fState;
     UINT wID;
     HBITMAP hbmpChecked;
     HBITMAP hbmpUnchecked;
@@ -26,16 +26,16 @@ ffi.cdef [[
     HBITMAP hbmpItem;
   } IMEMENUITEMINFO;
   typedef IMEMENUITEMINFO *LPIMEMENUITEMINFO; //Pointer
-  typedef DWORD WINAPI_IME_CAND; //Alias
-  static const DWORD IME_CAND_UNKNOWN = 0x0000;
-  static const DWORD IME_CAND_READ = 0x0001;
-  static const DWORD IME_CAND_CODE = 0x0002;
-  static const DWORD IME_CAND_MEANING = 0x0003;
-  static const DWORD IME_CAND_RADICAL = 0x0004;
-  static const DWORD IME_CAND_STROKE = 0x0005;
+  typedef DWORD IME_CAND; //Alias
+  static const IME_CAND IME_CAND_UNKNOWN = 0x0000;
+  static const IME_CAND IME_CAND_READ = 0x0001;
+  static const IME_CAND IME_CAND_CODE = 0x0002;
+  static const IME_CAND IME_CAND_MEANING = 0x0003;
+  static const IME_CAND IME_CAND_RADICAL = 0x0004;
+  static const IME_CAND IME_CAND_STROKE = 0x0005;
   typedef struct CANDIDATELIST {
     DWORD dwSize;
-    WINAPI_IME_CAND dwStyle;
+    IME_CAND dwStyle;
     DWORD dwCount;
     DWORD dwSelection;
     DWORD dwPageStart;
@@ -56,29 +56,29 @@ ffi.cdef [[
     RECT rcArea;
   } COMPOSITIONFORM;
   typedef COMPOSITIONFORM *LPCOMPOSITIONFORM; //Pointer
-  typedef DWORD WINAPI_ImmNotifyAction; //Alias
-  static const DWORD NI_OPENCANDIDATE = 0x0010;
-  static const DWORD NI_CLOSECANDIDATE = 0x0011;
-  static const DWORD NI_SELECTCANDIDATESTR = 0x0012;
-  static const DWORD NI_CHANGECANDIDATELIST = 0x0013;
-  static const DWORD NI_FINALIZECONVERSIONRESULT = 0x0014;
-  static const DWORD NI_COMPOSITIONSTR = 0x0015;
-  static const DWORD NI_SETCANDIDATE_PAGESTART = 0x0016;
-  static const DWORD NI_SETCANDIDATE_PAGESIZE = 0x0017;
-  static const DWORD NI_IMEMENUSELECTED = 0x0018;
-  typedef DWORD WINAPI_CompositionString; //Alias
-  static const DWORD CPS_COMPLETE = 0x0001;
-  static const DWORD CPS_CONVERT = 0x0002;
-  static const DWORD CPS_REVERT = 0x0003;
-  static const DWORD CPS_CANCEL = 0x0004;
-  typedef DWORD WINAPI_ImmGetPropertyIndex; //Alias
-  static const DWORD IGP_GETIMEVERSION = -4;
-  static const DWORD IGP_PROPERTY = 0x00000004;
-  static const DWORD IGP_CONVERSION = 0x00000008;
-  static const DWORD IGP_SENTENCE = 0x0000000c;
-  static const DWORD IGP_UI = 0x00000010;
-  static const DWORD IGP_SETCOMPSTR = 0x00000014;
-  static const DWORD IGP_SELECT = 0x00000018;
+  typedef DWORD ImmNotifyAction; //Alias
+  static const ImmNotifyAction NI_OPENCANDIDATE = 0x0010;
+  static const ImmNotifyAction NI_CLOSECANDIDATE = 0x0011;
+  static const ImmNotifyAction NI_SELECTCANDIDATESTR = 0x0012;
+  static const ImmNotifyAction NI_CHANGECANDIDATELIST = 0x0013;
+  static const ImmNotifyAction NI_FINALIZECONVERSIONRESULT = 0x0014;
+  static const ImmNotifyAction NI_COMPOSITIONSTR = 0x0015;
+  static const ImmNotifyAction NI_SETCANDIDATE_PAGESTART = 0x0016;
+  static const ImmNotifyAction NI_SETCANDIDATE_PAGESIZE = 0x0017;
+  static const ImmNotifyAction NI_IMEMENUSELECTED = 0x0018;
+  typedef DWORD CompositionString; //Alias
+  static const CompositionString CPS_COMPLETE = 0x0001;
+  static const CompositionString CPS_CONVERT = 0x0002;
+  static const CompositionString CPS_REVERT = 0x0003;
+  static const CompositionString CPS_CANCEL = 0x0004;
+  typedef DWORD ImmGetPropertyIndex; //Alias
+  static const ImmGetPropertyIndex IGP_GETIMEVERSION = -4;
+  static const ImmGetPropertyIndex IGP_PROPERTY = 0x00000004;
+  static const ImmGetPropertyIndex IGP_CONVERSION = 0x00000008;
+  static const ImmGetPropertyIndex IGP_SENTENCE = 0x0000000c;
+  static const ImmGetPropertyIndex IGP_UI = 0x00000010;
+  static const ImmGetPropertyIndex IGP_SETCOMPSTR = 0x00000014;
+  static const ImmGetPropertyIndex IGP_SELECT = 0x00000018;
   HIMC    ImmAssociateContext(        HWND hWnd, HIMC hIMC);
   BOOL    ImmAssociateContextEx(      HWND hWnd, HIMC hIMC, DWORD dwFlags);
   BOOL    ImmConfigureIME(            HKL hKL, HWND hWnd, DWORD dwMode, LPVOID lpData);
@@ -104,14 +104,14 @@ ffi.cdef [[
   UINT    ImmGetIMEFileName(          HKL hKL, LPTSTR lpszFileName, UINT uBufLen);
   DWORD   ImmGetImeMenuItems(         HIMC hIMC, DWORD dwFlags, DWORD dwType, LPIMEMENUITEMINFO lpImeParentMenu, LPIMEMENUITEMINFO lpImeMenu, DWORD dwSize);
   BOOL    ImmGetOpenStatus(           HIMC hIMC);
-  DWORD   ImmGetProperty(             HKL hKL, WINAPI_ImmGetPropertyIndex fdwIndex);
+  DWORD   ImmGetProperty(             HKL hKL, ImmGetPropertyIndex fdwIndex);
   UINT    ImmGetRegisterWordStyle(    HKL hKL, UINT nItem, LPSTYLEBUF lpStyleBuf);
   BOOL    ImmGetStatusWindowPos(      HIMC hIMC, LPPOINT lpptPos);
   UINT    ImmGetVirtualKey(           HWND hWnd);
   HKL     ImmInstallIME(              LPCTSTR lpszIMEFileName, LPCTSTR lpszLayoutText);
   BOOL    ImmIsIME(                   HKL hKL);
   BOOL    ImmIsUIMessage(             HWND hWndIME, UINT msg, WPARAM wParam, LPARAM lParam);
-  BOOL    ImmNotifyIME(               HIMC hIMC, WINAPI_ImmNotifyAction dwAction, WINAPI_CompositionString dwIndex, DWORD dwValue);
+  BOOL    ImmNotifyIME(               HIMC hIMC, ImmNotifyAction dwAction, CompositionString dwIndex, DWORD dwValue);
   BOOL    ImmRegisterWord(            HKL hKL, LPCTSTR lpszReading, DWORD dwStyle, LPCTSTR lpszRegister);
   BOOL    ImmReleaseContext(          HWND hWnd, HIMC hIMC);
   LRESULT ImmRequestMessage(          HIMC hIMC, WPARAM wParam, LPARAM lParam);
@@ -125,4 +125,4 @@ ffi.cdef [[
   BOOL    ImmSimulateHotKey(          HWND hWnd, DWORD dwHotKeyID);
   BOOL    ImmUnregisterWord(          HKL hKL, LPCTSTR lpszReading, DWORD dwStyle, LPCTSTR lpszUnregister);
 ]]
-return ffi.load( 'Imm32.dll' )
+ffi.load( 'Imm32.dll' )

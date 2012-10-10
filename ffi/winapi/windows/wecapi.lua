@@ -4,41 +4,41 @@ ffi.cdef [[
   typedef HANDLE EC_HANDLE; //Alias
   typedef HANDLE EC_OBJECT_ARRAY_PROPERTY_HANDLE; //Alias
   typedef UINT EC_SUBSCRIPTION_PROPERTY_ID; //Alias
-  static const UINT EcSubscriptionEnabled = 0;
-  static const UINT EcSubscriptionEventSources = 1;
-  static const UINT EcSubscriptionEventSourceAddress = 2;
-  static const UINT EcSubscriptionEventSourceEnabled = 3;
-  static const UINT EcSubscriptionEventSourceUserName = 4;
-  static const UINT EcSubscriptionEventSourcePassword = 5;
-  static const UINT EcSubscriptionDescription = 6;
-  static const UINT EcSubscriptionURI = 7;
-  static const UINT EcSubscriptionConfigurationMode = 8;
-  static const UINT EcSubscriptionExpires = 9;
-  static const UINT EcSubscriptionQuery = 10;
-  static const UINT EcSubscriptionTransportName = 11;
-  static const UINT EcSubscriptionTransportPort = 12;
-  static const UINT EcSubscriptionDeliveryMode = 13;
-  static const UINT EcSubscriptionDeliveryMaxItems = 14;
-  static const UINT EcSubscriptionDeliveryMaxLatencyTime = 15;
-  static const UINT EcSubscriptionHeartbeatInterval = 16;
-  static const UINT EcSubscriptionLocale = 17;
-  static const UINT EcSubscriptionContentFormat = 18;
-  static const UINT EcSubscriptionLogFile = 19;
-  static const UINT EcSubscriptionPublisherName = 20;
-  static const UINT EcSubscriptionCredentialsType = 21;
-  static const UINT EcSubscriptionCommonUserName = 22;
-  static const UINT EcSubscriptionCommonPassword = 23;
-  static const UINT EcSubscriptionHostName = 24;
-  static const UINT EcSubscriptionReadExistingEvents = 25;
-  static const UINT EcSubscriptionDialect = 26;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionEnabled = 0;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionEventSources = 1;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionEventSourceAddress = 2;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionEventSourceEnabled = 3;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionEventSourceUserName = 4;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionEventSourcePassword = 5;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionDescription = 6;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionURI = 7;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionConfigurationMode = 8;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionExpires = 9;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionQuery = 10;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionTransportName = 11;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionTransportPort = 12;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionDeliveryMode = 13;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionDeliveryMaxItems = 14;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionDeliveryMaxLatencyTime = 15;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionHeartbeatInterval = 16;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionLocale = 17;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionContentFormat = 18;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionLogFile = 19;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionPublisherName = 20;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionCredentialsType = 21;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionCommonUserName = 22;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionCommonPassword = 23;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionHostName = 24;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionReadExistingEvents = 25;
+  static const EC_SUBSCRIPTION_PROPERTY_ID EcSubscriptionDialect = 26;
   typedef UINT EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID; //Alias
-  static const UINT EcSubscriptionRunTimeStatusActive = 0;
-  static const UINT EcSubscriptionRunTimeStatusLastError = 1;
-  static const UINT EcSubscriptionRunTimeStatusLastErrorMessage = 2;
-  static const UINT EcSubscriptionRunTimeStatusLastErrorTime = 3;
-  static const UINT EcSubscriptionRunTimeStatusNextRetryTime = 4;
-  static const UINT EcSubscriptionRunTimeStatusInfoIdEND = 5;
-  typedef union WINAPI_EC_VARIANT_u {
+  static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusActive = 0;
+  static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusLastError = 1;
+  static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusLastErrorMessage = 2;
+  static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusLastErrorTime = 3;
+  static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusNextRetryTime = 4;
+  static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusInfoIdEND = 5;
+  typedef union EC_VARIANT_u {
     BOOL BooleanVal;
     UINT32 UInt32Val;
     ULONGLONG DateTimeVal;
@@ -48,10 +48,10 @@ ffi.cdef [[
     INT32* Int32Arr;
     LPWSTR* StringArr;
     EC_OBJECT_ARRAY_PROPERTY_HANDLE PropertyHandleVal;
-  } WINAPI_EC_VARIANT_u;
+  } EC_VARIANT_u;
   typedef DWORD EC_VARIANT_TYPE; //Alias
   typedef struct EC_VARIANT {
-    WINAPI_EC_VARIANT_u ;
+    EC_VARIANT_u ;
     DWORD Count;
     EC_VARIANT_TYPE Type;
   } EC_VARIANT;
@@ -72,4 +72,4 @@ ffi.cdef [[
   BOOL      EcRemoveObjectArrayElement(     EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, DWORD ArrayIndex);
   BOOL      EcRetrySubscription(            LPCWSTR SubscriptionName, LPCWSTR EventSourceName, DWORD Flags);
 ]]
-return ffi.load( 'Wecapi.dll' )
+ffi.load( 'Wecapi.dll' )

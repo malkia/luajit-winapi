@@ -19,96 +19,96 @@ ffi.cdef [[
   } HTTP_BYTE_RANGE;
   typedef HTTP_BYTE_RANGE *PHTTP_BYTE_RANGE; //Pointer
   typedef UINT HTTP_DATA_CHUNK_TYPE; //Alias
-  static const UINT HttpDataChunkFromMemory = 0;
-  static const UINT HttpDataChunkFromFileHandle = 1;
-  static const UINT HttpDataChunkFromFragmentCache = 2;
-  static const UINT HttpDataChunkFromFragmentCacheEx = 3;
-  typedef struct WINAPI_HTTP_DATA_CHUNK_u_s1 {
+  static const HTTP_DATA_CHUNK_TYPE HttpDataChunkFromMemory = 0;
+  static const HTTP_DATA_CHUNK_TYPE HttpDataChunkFromFileHandle = 1;
+  static const HTTP_DATA_CHUNK_TYPE HttpDataChunkFromFragmentCache = 2;
+  static const HTTP_DATA_CHUNK_TYPE HttpDataChunkFromFragmentCacheEx = 3;
+  typedef struct HTTP_DATA_CHUNK_u_s1 {
     PVOID pBuffer;
     ULONG BufferLength;
-  } WINAPI_HTTP_DATA_CHUNK_u_s1;
-  typedef struct WINAPI_HTTP_DATA_CHUNK_u_s2 {
+  } HTTP_DATA_CHUNK_u_s1;
+  typedef struct HTTP_DATA_CHUNK_u_s2 {
     HTTP_BYTE_RANGE ByteRange;
     HANDLE FileHandle;
-  } WINAPI_HTTP_DATA_CHUNK_u_s2;
-  typedef struct WINAPI_HTTP_DATA_CHUNK_u_s3 {
+  } HTTP_DATA_CHUNK_u_s2;
+  typedef struct HTTP_DATA_CHUNK_u_s3 {
     USHORT FragmentNameLength;
     PCWSTR pFragmentName;
-  } WINAPI_HTTP_DATA_CHUNK_u_s3;
-  typedef struct WINAPI_HTTP_DATA_CHUNK_u_s4 {
+  } HTTP_DATA_CHUNK_u_s3;
+  typedef struct HTTP_DATA_CHUNK_u_s4 {
     HTTP_BYTE_RANGE ByteRange;
     PCWSTR pFragmentName;
-  } WINAPI_HTTP_DATA_CHUNK_u_s4;
-  typedef union WINAPI_HTTP_DATA_CHUNK_u {
-    WINAPI_HTTP_DATA_CHUNK_u_s1 FromMemory;
-    WINAPI_HTTP_DATA_CHUNK_u_s2 FromFileHandle;
-    WINAPI_HTTP_DATA_CHUNK_u_s3 FromFragmentCache;
-    WINAPI_HTTP_DATA_CHUNK_u_s4 FromFragmentCacheEx;
-  } WINAPI_HTTP_DATA_CHUNK_u;
+  } HTTP_DATA_CHUNK_u_s4;
+  typedef union HTTP_DATA_CHUNK_u {
+    HTTP_DATA_CHUNK_u_s1 FromMemory;
+    HTTP_DATA_CHUNK_u_s2 FromFileHandle;
+    HTTP_DATA_CHUNK_u_s3 FromFragmentCache;
+    HTTP_DATA_CHUNK_u_s4 FromFragmentCacheEx;
+  } HTTP_DATA_CHUNK_u;
   typedef struct HTTP_DATA_CHUNK {
     HTTP_DATA_CHUNK_TYPE DataChunkType;
-    WINAPI_HTTP_DATA_CHUNK_u ;
+    HTTP_DATA_CHUNK_u ;
   } HTTP_DATA_CHUNK;
   typedef HTTP_DATA_CHUNK *PHTTP_DATA_CHUNK; //Pointer
   typedef UINT HTTP_CACHE_POLICY_TYPE; //Alias
-  static const UINT HttpCachePolicyNocache = 0;
-  static const UINT HttpCachePolicyUserInvalidates = 1;
-  static const UINT HttpCachePolicyTimeToLive = 2;
+  static const HTTP_CACHE_POLICY_TYPE HttpCachePolicyNocache = 0;
+  static const HTTP_CACHE_POLICY_TYPE HttpCachePolicyUserInvalidates = 1;
+  static const HTTP_CACHE_POLICY_TYPE HttpCachePolicyTimeToLive = 2;
   typedef struct HTTP_CACHE_POLICY {
     HTTP_CACHE_POLICY_TYPE Policy;
     ULONG SecondsToLive;
   } HTTP_CACHE_POLICY;
   typedef HTTP_CACHE_POLICY *PHTTP_CACHE_POLICY; //Pointer
   typedef UINT HTTP_LOG_DATA_TYPE; //Alias
-  static const UINT HttpLogDataTypeFields = 0;
+  static const HTTP_LOG_DATA_TYPE HttpLogDataTypeFields = 0;
   typedef struct HTTP_LOG_DATA {
     HTTP_LOG_DATA_TYPE Type;
   } HTTP_LOG_DATA;
   typedef HTTP_LOG_DATA *PHTTP_LOG_DATA; //Pointer
   typedef UINT HTTP_SERVICE_CONFIG_ID; //Alias
-  static const UINT HttpServiceConfigIPListenList = 0;
-  static const UINT HttpServiceConfigSSLCertInfo = 1;
-  static const UINT HttpServiceConfigUrlAclInfo = 2;
-  static const UINT HttpServiceConfigTimeout = 3;
-  static const UINT HttpServiceConfigMax = 4;
+  static const HTTP_SERVICE_CONFIG_ID HttpServiceConfigIPListenList = 0;
+  static const HTTP_SERVICE_CONFIG_ID HttpServiceConfigSSLCertInfo = 1;
+  static const HTTP_SERVICE_CONFIG_ID HttpServiceConfigUrlAclInfo = 2;
+  static const HTTP_SERVICE_CONFIG_ID HttpServiceConfigTimeout = 3;
+  static const HTTP_SERVICE_CONFIG_ID HttpServiceConfigMax = 4;
   typedef UINT HTTP_SERVER_PROPERTY; //Alias
-  static const UINT HttpServerAuthenticationProperty = 0;
-  static const UINT HttpServerLoggingProperty = 1;
-  static const UINT HttpServerQosProperty = 2;
-  static const UINT HttpServerTimeoutsProperty = 3;
-  static const UINT HttpServerQueueLengthProperty = 4;
-  static const UINT HttpServerStateProperty = 5;
-  static const UINT HttpServer503VerbosityProperty = 6;
-  static const UINT HttpServerBindingProperty = 7;
-  static const UINT HttpServerExtendedAuthenticationProperty = 8;
-  static const UINT HttpServerListenEndpointProperty = 9;
-  typedef ULONG WINAPI_HttpInitializeFlags; //Alias
-  typedef ULONG WINAPI_HTTP_REQUEST_FLAG; //Alias
+  static const HTTP_SERVER_PROPERTY HttpServerAuthenticationProperty = 0;
+  static const HTTP_SERVER_PROPERTY HttpServerLoggingProperty = 1;
+  static const HTTP_SERVER_PROPERTY HttpServerQosProperty = 2;
+  static const HTTP_SERVER_PROPERTY HttpServerTimeoutsProperty = 3;
+  static const HTTP_SERVER_PROPERTY HttpServerQueueLengthProperty = 4;
+  static const HTTP_SERVER_PROPERTY HttpServerStateProperty = 5;
+  static const HTTP_SERVER_PROPERTY HttpServer503VerbosityProperty = 6;
+  static const HTTP_SERVER_PROPERTY HttpServerBindingProperty = 7;
+  static const HTTP_SERVER_PROPERTY HttpServerExtendedAuthenticationProperty = 8;
+  static const HTTP_SERVER_PROPERTY HttpServerListenEndpointProperty = 9;
+  typedef ULONG HttpInitializeFlags; //Alias
+  typedef ULONG HTTP_REQUEST_FLAG; //Alias
   typedef struct HTTP_VERSION {
     USHORT MajorVersion;
     USHORT MinorVersion;
   } HTTP_VERSION;
   typedef UINT HTTP_VERB; //Alias
-  static const UINT HttpVerbUnparsed = 0;
-  static const UINT HttpVerbUnknown = 1;
-  static const UINT HttpVerbInvalid = 2;
-  static const UINT HttpVerbOPTIONS = 3;
-  static const UINT HttpVerbGET = 4;
-  static const UINT HttpVerbHEAD = 5;
-  static const UINT HttpVerbPOST = 6;
-  static const UINT HttpVerbPUT = 7;
-  static const UINT HttpVerbDELETE = 8;
-  static const UINT HttpVerbTRACE = 9;
-  static const UINT HttpVerbCONNECT = 10;
-  static const UINT HttpVerbTRACK = 11;
-  static const UINT HttpVerbMOVE = 12;
-  static const UINT HttpVerbCOPY = 13;
-  static const UINT HttpVerbPROPFIND = 14;
-  static const UINT HttpVerbPROPPATCH = 15;
-  static const UINT HttpVerbMKCOL = 16;
-  static const UINT HttpVerbLOCK = 17;
-  static const UINT HttpVerbUNLOCK = 18;
-  static const UINT HttpVerbSEARCH = 19;
+  static const HTTP_VERB HttpVerbUnparsed = 0;
+  static const HTTP_VERB HttpVerbUnknown = 1;
+  static const HTTP_VERB HttpVerbInvalid = 2;
+  static const HTTP_VERB HttpVerbOPTIONS = 3;
+  static const HTTP_VERB HttpVerbGET = 4;
+  static const HTTP_VERB HttpVerbHEAD = 5;
+  static const HTTP_VERB HttpVerbPOST = 6;
+  static const HTTP_VERB HttpVerbPUT = 7;
+  static const HTTP_VERB HttpVerbDELETE = 8;
+  static const HTTP_VERB HttpVerbTRACE = 9;
+  static const HTTP_VERB HttpVerbCONNECT = 10;
+  static const HTTP_VERB HttpVerbTRACK = 11;
+  static const HTTP_VERB HttpVerbMOVE = 12;
+  static const HTTP_VERB HttpVerbCOPY = 13;
+  static const HTTP_VERB HttpVerbPROPFIND = 14;
+  static const HTTP_VERB HttpVerbPROPPATCH = 15;
+  static const HTTP_VERB HttpVerbMKCOL = 16;
+  static const HTTP_VERB HttpVerbLOCK = 17;
+  static const HTTP_VERB HttpVerbUNLOCK = 18;
+  static const HTTP_VERB HttpVerbSEARCH = 19;
   typedef struct HTTP_COOKED_URL {
     USHORT FullUrlLength;
     USHORT HostLength;
@@ -144,7 +144,7 @@ ffi.cdef [[
     HTTP_KNOWN_HEADER KnownHeaders[HttpHeaderRequestMaximum];
   } HTTP_REQUEST_HEADERS;
   typedef struct HTTP_SSL_CLIENT_CERT_INFO {
-    WINAPI_CERT_TRUST_Error CertFlags;
+    CERT_TRUST_Error CertFlags;
     ULONG CertEncodedSize;
     PUCHAR pCertEncoded;
     HANDLE Token;
@@ -163,7 +163,7 @@ ffi.cdef [[
   } HTTP_SSL_INFO;
   typedef HTTP_SSL_INFO *PHTTP_SSL_INFO; //Pointer
   typedef struct HTTP_REQUEST_V1 {
-    WINAPI_HTTP_REQUEST_FLAG Flags;
+    HTTP_REQUEST_FLAG Flags;
     HTTP_CONNECTION_ID ConnectionId;
     HTTP_REQUEST_ID RequestId;
     HTTP_URL_CONTEXT UrlContext;
@@ -183,8 +183,8 @@ ffi.cdef [[
     PHTTP_SSL_INFO pSslInfo;
   } HTTP_REQUEST_V1;
   typedef UINT HTTP_REQUEST_INFO_TYPE; //Alias
-  static const UINT HttpRequestInfoTypeAuth = 0;
-  static const UINT HttpRequestInfoTypeChannelBind = 1;
+  static const HTTP_REQUEST_INFO_TYPE HttpRequestInfoTypeAuth = 0;
+  static const HTTP_REQUEST_INFO_TYPE HttpRequestInfoTypeChannelBind = 1;
   typedef struct HTTP_REQUEST_INFO {
     HTTP_REQUEST_INFO_TYPE InfoType;
     ULONG InfoLength;
@@ -197,7 +197,7 @@ ffi.cdef [[
     PHTTP_REQUEST_INFO pRequestInfo;
   } HTTP_REQUEST;
   typedef HTTP_REQUEST *PHTTP_REQUEST; //Pointer
-  typedef ULONG WINAPI_HTTP_RESPONSE_FLAG; //Alias
+  typedef ULONG HTTP_RESPONSE_FLAG; //Alias
   typedef struct HTTP_RESPONSE_HEADERS {
     USHORT UnknownHeaderCount;
     PHTTP_UNKNOWN_HEADER pUnknownHeaders;
@@ -206,7 +206,7 @@ ffi.cdef [[
     HTTP_KNOWN_HEADER KnownHeaders[HttpHeaderResponseMaximum];
   } HTTP_RESPONSE_HEADERS;
   typedef struct HTTP_RESPONSE_V1 {
-    WINAPI_HTTP_RESPONSE_FLAG Flags;
+    HTTP_RESPONSE_FLAG Flags;
     HTTP_VERSION Version;
     USHORT StatusCode;
     USHORT ReasonLength;
@@ -216,10 +216,10 @@ ffi.cdef [[
     PHTTP_DATA_CHUNK pEntityChunks;
   } HTTP_RESPONSE_V1;
   typedef UINT HTTP_RESPONSE_INFO_TYPE; //Alias
-  static const UINT HttpResponseInfoTypeMultipleKnownHeaders = 0;
-  static const UINT HttpResponseInfoTypeAuthenticationProperty = 1;
-  static const UINT HttpResponseInfoTypeQoSProperty = 2;
-  static const UINT HttpResponseInfoTypeChannelBind = 3;
+  static const HTTP_RESPONSE_INFO_TYPE HttpResponseInfoTypeMultipleKnownHeaders = 0;
+  static const HTTP_RESPONSE_INFO_TYPE HttpResponseInfoTypeAuthenticationProperty = 1;
+  static const HTTP_RESPONSE_INFO_TYPE HttpResponseInfoTypeQoSProperty = 2;
+  static const HTTP_RESPONSE_INFO_TYPE HttpResponseInfoTypeChannelBind = 3;
   typedef struct HTTP_RESPONSE_INFO {
     HTTP_RESPONSE_INFO_TYPE Type;
     ULONG Length;
@@ -233,8 +233,8 @@ ffi.cdef [[
   } HTTP_RESPONSE;
   typedef HTTP_RESPONSE *PHTTP_RESPONSE; //Pointer
   ULONG HttpCreateHttpHandle(           PHANDLE pReqQueueHandle, ULONG Reserved);
-  ULONG HttpInitialize(                 HTTPAPI_VERSION Version, WINAPI_HttpInitializeFlags Flags, PVOID pReserved);
-  ULONG HttpTerminate(                  WINAPI_HttpInitializeFlags Flags, PVOID pReserved);
+  ULONG HttpInitialize(                 HTTPAPI_VERSION Version, HttpInitializeFlags Flags, PVOID pReserved);
+  ULONG HttpTerminate(                  HttpInitializeFlags Flags, PVOID pReserved);
   ULONG HttpAddFragmentToCache(         HANDLE ReqQueueHandle, PCWSTR pUrlPrefix, PHTTP_DATA_CHUNK pDataChunk, PHTTP_CACHE_POLICY pCachePolicy, LPOVERLAPPED pOverlapped);
   ULONG HttpFlushResponseCache(         HANDLE ReqQueueHandle, PCWSTR pUrlPrefix, ULONG Flags, LPOVERLAPPED pOverlapped);
   ULONG HttpReadFragmentFromCache(      HANDLE ReqQueueHandle, PCWSTR pUrlPrefix, PHTTP_BYTE_RANGE pByteRange, PVOID pBuffer, ULONG BufferLength, PULONG pBytesRead, LPOVERLAPPED pOverlapped);
@@ -264,4 +264,4 @@ ffi.cdef [[
   ULONG HttpSetRequestQueueProperty(    HANDLE Handle, HTTP_SERVER_PROPERTY Property, PVOID pPropertyInformation, ULONG PropertyInformationLength, ULONG Reserved, PVOID pReserved);
   ULONG HttpWaitForDemandStart(         HANDLE ReqQueueHandle, LPOVERLAPPED pOverlapped);
 ]]
-return ffi.load( 'Httpapi.dll' )
+ffi.load( 'Httpapi.dll' )

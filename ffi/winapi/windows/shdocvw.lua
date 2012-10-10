@@ -2,12 +2,12 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef void* IEnumPrivacyRecords; //Interface
-  typedef DWORD WINAPI_SOFTDIST_Flags; //Alias
-  typedef DWORD WINAPI_SOFTDIST_AdState; //Alias
+  typedef DWORD SOFTDIST_Flags; //Alias
+  typedef DWORD SOFTDIST_AdState; //Alias
   typedef struct SOFTDISTINFO {
     ULONG cbSize;
-    WINAPI_SOFTDIST_Flags dwFlags;
-    WINAPI_SOFTDIST_AdState dwAdState;
+    SOFTDIST_Flags dwFlags;
+    SOFTDIST_AdState dwAdState;
     LPWSTR szTitle;
     LPWSTR szAbstract;
     LPWSTR szHREF;
@@ -25,4 +25,4 @@ ffi.cdef [[
   HRESULT DoPrivacyDlg(             HWND hwndParent, LPCWSTR pszUrl, IEnumPrivacyRecords* pPrivacyEnum, BOOL fReportAllSites);
   BOOL    ImportPrivacySettings(    LPCWSTR szFilename, BOOL* pfParsePrivacyPreferences, BOOL* pfParsePerSiteRules);
 ]]
-return ffi.load( 'Shdocvw.dll' )
+ffi.load( 'Shdocvw.dll' )

@@ -83,56 +83,56 @@ ffi.cdef [[
     PCRYPT_PROVIDER_REF* rgpProviders;
   } CRYPT_PROVIDER_REFS;
   typedef CRYPT_PROVIDER_REFS *PCRYPT_PROVIDER_REFS; //Pointer
-  typedef ULONG WINAPI_CryptConfigTable; //Alias
-  static const ULONG CRYPT_LOCAL = 0x00000001;
-  static const ULONG CRYPT_DOMAIN = 0x00000002;
-  typedef ULONG WINAPI_CryptInterface; //Alias
-  static const ULONG BCRYPT_CIPHER_INTERFACE = 0x00000001;
-  static const ULONG BCRYPT_HASH_INTERFACE = 0x00000002;
-  static const ULONG BCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE = 0x00000003;
-  static const ULONG BCRYPT_SECRET_AGREEMENT_INTERFACE = 0x00000004;
-  static const ULONG BCRYPT_SIGNATURE_INTERFACE = 0x00000005;
-  static const ULONG BCRYPT_RNG_INTERFACE = 0x00000006;
-  static const ULONG NCRYPT_KEY_STORAGE_INTERFACE = 0x00010001;
-  static const ULONG NCRYPT_SCHANNEL_INTERFACE = 0x00010002;
-  static const ULONG NCRYPT_SCHANNEL_SIGNATURE_INTERFACE = 0x00010003;
-  typedef ULONG WINAPI_CryptPriority; //Alias
-  static const ULONG CRYPT_PRIORITY_TOP = 0x00000000;
-  static const ULONG CRYPT_PRIORITY_BOTTOM = 0xFFFFFFFF;
-  typedef ULONG WINAPI_CryptOperation; //Alias
-  typedef ULONG WINAPI_CryptMode; //Alias
-  static const ULONG CRYPT_UM = 0x00000001;
-  static const ULONG CRYPT_KM = 0x00000002;
-  static const ULONG CRYPT_MM = 0x00000003;
-  static const ULONG CRYPT_ANY = 0x00000004;
-  typedef ULONG WINAPI_CryptEnumFlags; //Alias
-  typedef ULONG WINAPI_CryptDeriveKeyFlags; //Alias
-  typedef ULONG WINAPI_BCryptOpenAlgorithmProviderFlags; //Alias
-  NTSTATUS BCryptAddContextFunction(                WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, WINAPI_CryptPriority dwPosition);
-  NTSTATUS BCryptConfigureContext(                  WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, PCRYPT_CONTEXT_CONFIG pConfig);
-  NTSTATUS BCryptConfigureContextFunction(          WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, PCRYPT_CONTEXT_FUNCTION_CONFIG pConfig);
-  NTSTATUS BCryptCreateContext(                     WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, PCRYPT_CONTEXT_CONFIG pConfig);
-  NTSTATUS BCryptDeleteContext(                     WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext);
-  NTSTATUS BCryptEnumAlgorithms(                    WINAPI_CryptOperation dwAlgOperations, ULONG* pAlgCount, BCRYPT_ALGORITHM_IDENTIFIER** ppAlgList, ULONG dwFlags);
-  NTSTATUS BCryptEnumContextFunctionProviders(      WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, ULONG* pcbBuffer, PCRYPT_CONTEXT_FUNCTION_PROVIDERS* ppBuffer);
-  NTSTATUS BCryptEnumContextFunctions(              WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, ULONG* pcbBuffer, PCRYPT_CONTEXT_FUNCTIONS* ppBuffer);
-  NTSTATUS BCryptEnumContexts(                      WINAPI_CryptConfigTable dwTable, ULONG* pcbBuffer, PCRYPT_CONTEXTS* ppBuffer);
+  typedef ULONG CryptConfigTable; //Alias
+  static const CryptConfigTable CRYPT_LOCAL = 0x00000001;
+  static const CryptConfigTable CRYPT_DOMAIN = 0x00000002;
+  typedef ULONG CryptInterface; //Alias
+  static const CryptInterface BCRYPT_CIPHER_INTERFACE = 0x00000001;
+  static const CryptInterface BCRYPT_HASH_INTERFACE = 0x00000002;
+  static const CryptInterface BCRYPT_ASYMMETRIC_ENCRYPTION_INTERFACE = 0x00000003;
+  static const CryptInterface BCRYPT_SECRET_AGREEMENT_INTERFACE = 0x00000004;
+  static const CryptInterface BCRYPT_SIGNATURE_INTERFACE = 0x00000005;
+  static const CryptInterface BCRYPT_RNG_INTERFACE = 0x00000006;
+  static const CryptInterface NCRYPT_KEY_STORAGE_INTERFACE = 0x00010001;
+  static const CryptInterface NCRYPT_SCHANNEL_INTERFACE = 0x00010002;
+  static const CryptInterface NCRYPT_SCHANNEL_SIGNATURE_INTERFACE = 0x00010003;
+  typedef ULONG CryptPriority; //Alias
+  static const CryptPriority CRYPT_PRIORITY_TOP = 0x00000000;
+  static const CryptPriority CRYPT_PRIORITY_BOTTOM = 0xFFFFFFFF;
+  typedef ULONG CryptOperation; //Alias
+  typedef ULONG CryptMode; //Alias
+  static const CryptMode CRYPT_UM = 0x00000001;
+  static const CryptMode CRYPT_KM = 0x00000002;
+  static const CryptMode CRYPT_MM = 0x00000003;
+  static const CryptMode CRYPT_ANY = 0x00000004;
+  typedef ULONG CryptEnumFlags; //Alias
+  typedef ULONG CryptDeriveKeyFlags; //Alias
+  typedef ULONG BCryptOpenAlgorithmProviderFlags; //Alias
+  NTSTATUS BCryptAddContextFunction(                CryptConfigTable dwTable, LPCWSTR pszContext, CryptInterface dwInterface, LPCWSTR pszFunction, CryptPriority dwPosition);
+  NTSTATUS BCryptConfigureContext(                  CryptConfigTable dwTable, LPCWSTR pszContext, PCRYPT_CONTEXT_CONFIG pConfig);
+  NTSTATUS BCryptConfigureContextFunction(          CryptConfigTable dwTable, LPCWSTR pszContext, CryptInterface dwInterface, LPCWSTR pszFunction, PCRYPT_CONTEXT_FUNCTION_CONFIG pConfig);
+  NTSTATUS BCryptCreateContext(                     CryptConfigTable dwTable, LPCWSTR pszContext, PCRYPT_CONTEXT_CONFIG pConfig);
+  NTSTATUS BCryptDeleteContext(                     CryptConfigTable dwTable, LPCWSTR pszContext);
+  NTSTATUS BCryptEnumAlgorithms(                    CryptOperation dwAlgOperations, ULONG* pAlgCount, BCRYPT_ALGORITHM_IDENTIFIER** ppAlgList, ULONG dwFlags);
+  NTSTATUS BCryptEnumContextFunctionProviders(      CryptConfigTable dwTable, LPCWSTR pszContext, CryptInterface dwInterface, LPCWSTR pszFunction, ULONG* pcbBuffer, PCRYPT_CONTEXT_FUNCTION_PROVIDERS* ppBuffer);
+  NTSTATUS BCryptEnumContextFunctions(              CryptConfigTable dwTable, LPCWSTR pszContext, CryptInterface dwInterface, ULONG* pcbBuffer, PCRYPT_CONTEXT_FUNCTIONS* ppBuffer);
+  NTSTATUS BCryptEnumContexts(                      CryptConfigTable dwTable, ULONG* pcbBuffer, PCRYPT_CONTEXTS* ppBuffer);
   NTSTATUS BCryptEnumProviders(                     LPCWSTR pszAlgId, ULONG* pImplCount, BCRYPT_PROVIDER_NAME** ppImplList, ULONG dwFlags);
   NTSTATUS BCryptEnumRegisteredProviders(           ULONG* pcbBuffer, PCRYPT_PROVIDERS* ppBuffer);
   NTSTATUS BCryptGetFipsAlgorithmMode(              BOOLEAN* pfEnabled);
-  NTSTATUS BCryptQueryContextConfiguration(         WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, ULONG* pcbBuffer, PCRYPT_CONTEXT_CONFIG* ppBuffer);
-  NTSTATUS BCryptQueryContextFunctionConfiguration( WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, ULONG* pcbBuffer, PCRYPT_CONTEXT_FUNCTION_CONFIG* ppBuffer);
-  NTSTATUS BCryptQueryContextFunctionProperty(      WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, LPCWSTR pszProperty, ULONG* pcbValue, PUCHAR* ppbValue);
-  NTSTATUS BCryptQueryProviderRegistration(         LPCWSTR pszProvider, WINAPI_CryptMode dwMode, WINAPI_CryptInterface dwInterface, ULONG* pcbBuffer, PCRYPT_PROVIDER_REG* ppBuffer);
+  NTSTATUS BCryptQueryContextConfiguration(         CryptConfigTable dwTable, LPCWSTR pszContext, ULONG* pcbBuffer, PCRYPT_CONTEXT_CONFIG* ppBuffer);
+  NTSTATUS BCryptQueryContextFunctionConfiguration( CryptConfigTable dwTable, LPCWSTR pszContext, CryptInterface dwInterface, LPCWSTR pszFunction, ULONG* pcbBuffer, PCRYPT_CONTEXT_FUNCTION_CONFIG* ppBuffer);
+  NTSTATUS BCryptQueryContextFunctionProperty(      CryptConfigTable dwTable, LPCWSTR pszContext, CryptInterface dwInterface, LPCWSTR pszFunction, LPCWSTR pszProperty, ULONG* pcbValue, PUCHAR* ppbValue);
+  NTSTATUS BCryptQueryProviderRegistration(         LPCWSTR pszProvider, CryptMode dwMode, CryptInterface dwInterface, ULONG* pcbBuffer, PCRYPT_PROVIDER_REG* ppBuffer);
   NTSTATUS BCryptRegisterConfigChangeNotify(        HANDLE* phEvent);
-  NTSTATUS BCryptRemoveContextFunction(             WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction);
-  NTSTATUS BCryptResolveProviders(                  LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, LPCWSTR pszProvider, WINAPI_CryptMode dwMode, WINAPI_CryptEnumFlags dwFlags, ULONG* pcbBuffer, PCRYPT_PROVIDER_REFS* ppBuffer);
-  NTSTATUS BCryptSetContextFunctionProperty(        WINAPI_CryptConfigTable dwTable, LPCWSTR pszContext, WINAPI_CryptInterface dwInterface, LPCWSTR pszFunction, LPCWSTR pszProperty, ULONG cbValue, PUCHAR pbValue);
+  NTSTATUS BCryptRemoveContextFunction(             CryptConfigTable dwTable, LPCWSTR pszContext, CryptInterface dwInterface, LPCWSTR pszFunction);
+  NTSTATUS BCryptResolveProviders(                  LPCWSTR pszContext, CryptInterface dwInterface, LPCWSTR pszFunction, LPCWSTR pszProvider, CryptMode dwMode, CryptEnumFlags dwFlags, ULONG* pcbBuffer, PCRYPT_PROVIDER_REFS* ppBuffer);
+  NTSTATUS BCryptSetContextFunctionProperty(        CryptConfigTable dwTable, LPCWSTR pszContext, CryptInterface dwInterface, LPCWSTR pszFunction, LPCWSTR pszProperty, ULONG cbValue, PUCHAR pbValue);
   NTSTATUS BCryptUnregisterConfigChangeNotify(      HANDLE hEvent);
   NTSTATUS BCryptCloseAlgorithmProvider(            BCRYPT_ALG_HANDLE hAlgorithm, ULONG dwFlags);
   NTSTATUS BCryptCreateHash(                        BCRYPT_ALG_HANDLE hAlgorithm, BCRYPT_HASH_HANDLE* phHash, PUCHAR pbHashObject, ULONG cbHashObject, PUCHAR pbSecret, ULONG cbSecret, ULONG dwFlags);
   NTSTATUS BCryptDecrypt(                           BCRYPT_KEY_HANDLE hKey, PUCHAR pbInput, ULONG cbInput, VOID* pPaddingInfo, PUCHAR pbIV, ULONG cbIV, PUCHAR pbOutput, ULONG cbOutput, ULONG* pcbResult, ULONG dwFlags);
-  NTSTATUS BCryptDeriveKey(                         BCRYPT_SECRET_HANDLE hSharedSecret, LPCWSTR pwszKDF, BCryptBufferDesc* pParameterList, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG* pcbResult, WINAPI_CryptDeriveKeyFlags dwFlags);
+  NTSTATUS BCryptDeriveKey(                         BCRYPT_SECRET_HANDLE hSharedSecret, LPCWSTR pwszKDF, BCryptBufferDesc* pParameterList, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG* pcbResult, CryptDeriveKeyFlags dwFlags);
   NTSTATUS BCryptDestroyHash(                       BCRYPT_HASH_HANDLE hHash);
   NTSTATUS BCryptDestroyKey(                        BCRYPT_KEY_HANDLE hKey);
   NTSTATUS BCryptDestroySecret(                     BCRYPT_SECRET_HANDLE hSecret);
@@ -150,7 +150,7 @@ ffi.cdef [[
   NTSTATUS BCryptHashData(                          BCRYPT_HASH_HANDLE hHash, PUCHAR pbInput, ULONG cbInput, ULONG dwFlags);
   NTSTATUS BCryptImportKey(                         BCRYPT_ALG_HANDLE hAlgorithm, BCRYPT_KEY_HANDLE hImportKey, LPCWSTR pszBlobType, BCRYPT_KEY_HANDLE* phKey, PUCHAR pbKeyObject, ULONG cbKeyObject, PUCHAR pbInput, ULONG cbInput, ULONG dwFlags);
   NTSTATUS BCryptImportKeyPair(                     BCRYPT_ALG_HANDLE hAlgorithm, BCRYPT_KEY_HANDLE hImportKey, LPCWSTR pszBlobType, BCRYPT_KEY_HANDLE* phKey, PUCHAR pbInput, ULONG cbInput, ULONG dwFlags);
-  NTSTATUS BCryptOpenAlgorithmProvider(             BCRYPT_ALG_HANDLE* phAlgorithm, LPCWSTR pszAlgId, LPCWSTR pszImplementation, WINAPI_BCryptOpenAlgorithmProviderFlags dwFlags);
+  NTSTATUS BCryptOpenAlgorithmProvider(             BCRYPT_ALG_HANDLE* phAlgorithm, LPCWSTR pszAlgId, LPCWSTR pszImplementation, BCryptOpenAlgorithmProviderFlags dwFlags);
   NTSTATUS BCryptSecretAgreement(                   BCRYPT_KEY_HANDLE hPrivKey, BCRYPT_KEY_HANDLE hPubKey, BCRYPT_SECRET_HANDLE* phSecret, ULONG dwFlags);
   NTSTATUS BCryptSetProperty(                       BCRYPT_HANDLE hObject, LPCWSTR pszProperty, PUCHAR pbInput, ULONG cbInput, ULONG dwFlags);
   NTSTATUS BCryptSignHash(                          BCRYPT_KEY_HANDLE hKey, VOID* pPaddingInfo, PBYTE pbInput, DWORD cbInput, PBYTE pbOutput, DWORD cbOutput, DWORD* pcbResult, ULONG dwFlags);
@@ -158,4 +158,4 @@ ffi.cdef [[
   NTSTATUS BCryptDeriveKeyCapi(                     BCRYPT_HASH_HANDLE hHash, BCRYPT_ALG_HANDLE hTargetAlg, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags);
   NTSTATUS BCryptDeriveKeyPBKDF2(                   BCRYPT_ALG_HANDLE hPrf, PUCHAR pbPassword, ULONG cbPassword, PUCHAR pbSalt, ULONG cbSalt, ULONGLONG cIterations, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags);
 ]]
-return ffi.load( 'Bcrypt.dll' )
+ffi.load( 'Bcrypt.dll' )

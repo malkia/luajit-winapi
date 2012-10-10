@@ -3,17 +3,17 @@ require( 'ffi/winapi/headers/ole' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef UINT GROUP_POLICY_OBJECT_TYPE; //Alias
-  static const UINT GPOTypeLocal = 0;
-  static const UINT GPOTypeRemote = 1;
-  static const UINT GPOTypeDS = 2;
-  static const UINT GPOTypeLocalUser = 3;
-  static const UINT GPOTypeLocalGroup = 4;
+  static const GROUP_POLICY_OBJECT_TYPE GPOTypeLocal = 0;
+  static const GROUP_POLICY_OBJECT_TYPE GPOTypeRemote = 1;
+  static const GROUP_POLICY_OBJECT_TYPE GPOTypeDS = 2;
+  static const GROUP_POLICY_OBJECT_TYPE GPOTypeLocalUser = 3;
+  static const GROUP_POLICY_OBJECT_TYPE GPOTypeLocalGroup = 4;
   typedef UINT GROUP_POLICY_HINT_TYPE; //Alias
-  static const UINT GPHintUnknown = 0;
-  static const UINT GPHintMachine = 1;
-  static const UINT GPHintSite = 2;
-  static const UINT GPHintDomain = 3;
-  static const UINT GPHintOrganizationalUnit = 4;
+  static const GROUP_POLICY_HINT_TYPE GPHintUnknown = 0;
+  static const GROUP_POLICY_HINT_TYPE GPHintMachine = 1;
+  static const GROUP_POLICY_HINT_TYPE GPHintSite = 2;
+  static const GROUP_POLICY_HINT_TYPE GPHintDomain = 3;
+  static const GROUP_POLICY_HINT_TYPE GPHintOrganizationalUnit = 4;
   typedef struct GPOBROWSEINFO {
     DWORD dwSize;
     DWORD dwFlags;
@@ -35,4 +35,4 @@ ffi.cdef [[
   HRESULT ExportRSoPData(    LPOLESTR lpNameSpace, LPOLESTR lpFileName);
   HRESULT ImportRSoPData(    LPOLESTR lpNameSpace, LPOLESTR lpFileName);
 ]]
-return ffi.load( 'Gpedit.dll' )
+ffi.load( 'Gpedit.dll' )

@@ -12,20 +12,20 @@ ffi.cdef [[
     ULONG Length;
     PUCHAR Buffer;
   } LSA_FOREST_TRUST_BINARY_DATA;
-  typedef union WINAPI_LSA_FOREST_TRUST_RECORD_u {
+  typedef union LSA_FOREST_TRUST_RECORD_u {
     LSA_UNICODE_STRING TopLevelName;
     LSA_FOREST_TRUST_DOMAIN_INFO DomainInfo;
     LSA_FOREST_TRUST_BINARY_DATA Data;
-  } WINAPI_LSA_FOREST_TRUST_RECORD_u;
+  } LSA_FOREST_TRUST_RECORD_u;
   typedef UINT LSA_FOREST_TRUST_RECORD_TYPE; //Alias
-  static const UINT ForestTrustTopLevelName = 0;
-  static const UINT ForestTrustTopLevelNameEx = 1;
-  static const UINT ForestTrustDomainInfo = 2;
+  static const LSA_FOREST_TRUST_RECORD_TYPE ForestTrustTopLevelName = 0;
+  static const LSA_FOREST_TRUST_RECORD_TYPE ForestTrustTopLevelNameEx = 1;
+  static const LSA_FOREST_TRUST_RECORD_TYPE ForestTrustDomainInfo = 2;
   typedef struct LSA_FOREST_TRUST_RECORD {
     ULONG Flags;
     LSA_FOREST_TRUST_RECORD_TYPE ForestTrustType;
     LARGE_INTEGER Time;
-    WINAPI_LSA_FOREST_TRUST_RECORD_u ForestTrustData;
+    LSA_FOREST_TRUST_RECORD_u ForestTrustData;
   } LSA_FOREST_TRUST_RECORD;
   typedef LSA_FOREST_TRUST_RECORD *PLSA_FOREST_TRUST_RECORD; //Pointer
   typedef struct LSA_FOREST_TRUST_INFORMATION {
@@ -34,9 +34,9 @@ ffi.cdef [[
   } LSA_FOREST_TRUST_INFORMATION;
   typedef LSA_FOREST_TRUST_INFORMATION *PLSA_FOREST_TRUST_INFORMATION; //Pointer
   typedef UINT LSA_FOREST_TRUST_COLLISION_RECORD_TYPE; //Alias
-  static const UINT CollisionTdo = 0;
-  static const UINT CollisionXref = 1;
-  static const UINT CollisionOther = 2;
+  static const LSA_FOREST_TRUST_COLLISION_RECORD_TYPE CollisionTdo = 0;
+  static const LSA_FOREST_TRUST_COLLISION_RECORD_TYPE CollisionXref = 1;
+  static const LSA_FOREST_TRUST_COLLISION_RECORD_TYPE CollisionOther = 2;
   typedef struct LSA_FOREST_TRUST_COLLISION_RECORD {
     ULONG Index;
     LSA_FOREST_TRUST_COLLISION_RECORD_TYPE Type;

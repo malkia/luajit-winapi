@@ -5,4 +5,4 @@ ffi.cdef [[
   BOOL InternetGetProxyInfo(             LPCSTR lpszUrl, DWORD dwUrlLength, LPSTR lpszUrlHostName, DWORD dwUrlHostNameLength, LPSTR* lplpszProxyHostName, LPDWORD lpdwProxyHostNameLength);
   BOOL InternetInitializeAutoProxyDll(   DWORD dwReserved);
 ]]
-return ffi.load( 'JSProxy.dll' )
+ffi.load( 'JSProxy.dll' )

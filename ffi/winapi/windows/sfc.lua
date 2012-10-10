@@ -18,4 +18,4 @@ ffi.cdef [[
   BOOL  SRSetRestorePointA(        PRESTOREPOINTINFOA pRestorePtSpec, PSTATEMGRSTATUS pSMgrStatus);
   BOOL  SRSetRestorePointW(        PRESTOREPOINTINFOW pRestorePtSpec, PSTATEMGRSTATUS pSMgrStatus);
 ]]
-return ffi.load( 'sfc.dll' )
+ffi.load( 'sfc.dll' )

@@ -2,14 +2,14 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID PLDAPSearch; //Alias
-  typedef struct WINAPI_LDAP_s {
+  typedef struct LDAP_s {
     UINT_PTR sb_sd;
     UCHAR Reserved1[41];
     ULONG_PTR sb_naddr;
     UCHAR Reserved2[24];
-  } WINAPI_LDAP_s;
+  } LDAP_s;
   typedef struct LDAP {
-    WINAPI_LDAP_s ld_sb;
+    LDAP_s ld_sb;
     PCHAR ld_host;
     ULONG ld_version;
     UCHAR ld_lberoptions;
@@ -91,8 +91,8 @@ ffi.cdef [[
   ULONG           ldap_simple_bind(           LDAP* ld, PTCHAR dn, PTCHAR passwd);
   ULONG           ldap_simple_bind_s(         LDAP* ld, PCHAR dn, PCHAR passwd);
   ULONG           ldap_simple_bind_s(         LDAP* ld, PTCHAR dn, PTCHAR passwd);
-  ULONG           ldap_sasl_bind(             LDAP* ExternalHandle, WINAPI_PCHAR DistName, WINAPI_PCHAR AuthMechanism, WINAPI_BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, int* MessageNumber);
-  ULONG           ldap_sasl_bind_s(           LDAP* ExternalHandle, WINAPI_PCHAR DistName, WINAPI_PCHAR AuthMechanism, WINAPI_BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, PBERVAL* ServerData);
+  ULONG           ldap_sasl_bind(             LDAP* ExternalHandle, PCHAR DistName, PCHAR AuthMechanism, BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, int* MessageNumber);
+  ULONG           ldap_sasl_bind_s(           LDAP* ExternalHandle, PCHAR DistName, PCHAR AuthMechanism, BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, PBERVAL* ServerData);
   ULONG           ldap_connect(               LDAP* ld, LDAP_TIMEVAL* timeout);
   LDAP*           ldap_init(                  PCHAR HostName, ULONG PortNumber);
   LDAP*           ldap_init(                  PTCHAR HostName, ULONG PortNumber);
@@ -242,4 +242,4 @@ ffi.cdef [[
   INT             ber_printf(                 BerElement* pBerElement, PCHAR fmt);
   INT             ber_scanf(                  BerElement* pBerElement, PCHAR fmt);
 ]]
-return ffi.load( 'Wldap32.dll' )
+ffi.load( 'Wldap32.dll' )

@@ -13,16 +13,16 @@ ffi.cdef [[
   typedef void* IWSDHttpMessageParameters; //Interface
   typedef void* IWSDUdpMessageParameters; //Interface
   typedef struct WSD_LOCALIZED_STRING {
-    WINAPI_WCHAR* lang;
-    WINAPI_WCHAR* String;
+    WCHAR* lang;
+    WCHAR* String;
   } WSD_LOCALIZED_STRING;
   typedef struct WSD_LOCALIZED_STRING_LIST {
     LPVOID Next;
     WSD_LOCALIZED_STRING* Element;
   } WSD_LOCALIZED_STRING_LIST;
   typedef struct WSDXML_NAMESPACE {
-    WINAPI_WCHAR* Uri;
-    WINAPI_WCHAR* PreferredPrefix;
+    WCHAR* Uri;
+    WCHAR* PreferredPrefix;
     LPVOID Names;
     WORD NamesCount;
     WORD Encoding;
@@ -35,11 +35,11 @@ ffi.cdef [[
     WSDXML_NAME* Value;
     LPVOID Subcode;
   } WSD_SOAP_FAULT_SUBCODE;
-  typedef UINT WINAPI_WSDXML_NODE_TYPE; //Alias
-  static const UINT ElementType = 0;
-  static const UINT TextType = 1;
+  typedef UINT WSDXML_NODE_TYPE; //Alias
+  static const WSDXML_NODE_TYPE ElementType = 0;
+  static const WSDXML_NODE_TYPE TextType = 1;
   typedef struct WSDXML_NODE {
-    WINAPI_WSDXML_NODE_TYPE Type;
+    WSDXML_NODE_TYPE Type;
     LPVOID Parent;
     LPVOID Next;
   } WSDXML_NODE;
@@ -63,16 +63,16 @@ ffi.cdef [[
     WSDXML_PREFIX_MAPPING* PrefixMappings;
   } WSDXML_ELEMENT;
   typedef UINT WSD_CONFIG_PARAM_TYPE; //Alias
-  static const UINT WSD_CONFIG_MAX_INBOUND_MESSAGE_SIZE = 1;
-  static const UINT WSD_CONFIG_MAX_OUTBOUND_MESSAGE_SIZE = 2;
-  static const UINT WSD_SECURITY_SSL_CERT_FOR_CLIENT_AUTH = 3;
-  static const UINT WSD_SECURITY_SSL_SERVER_CERT_VALIDATION = 4;
-  static const UINT WSD_SECURITY_SSL_CLIENT_CERT_VALIDATION = 5;
-  static const UINT WSD_SECURITY_SSL_NEGOTIATE_CLIENT_CERT = 6;
-  static const UINT WSD_SECURITY_COMPACTSIG_SIGNING_CERT = 7;
-  static const UINT WSD_SECURITY_COMPACTSIG_VALIDATION = 8;
-  static const UINT WSD_CONFIG_HOSTING_ADDRESSES = 9;
-  static const UINT WSD_CONFIG_DEVICE_ADDRESSES = 10;
+  static const WSD_CONFIG_PARAM_TYPE WSD_CONFIG_MAX_INBOUND_MESSAGE_SIZE = 1;
+  static const WSD_CONFIG_PARAM_TYPE WSD_CONFIG_MAX_OUTBOUND_MESSAGE_SIZE = 2;
+  static const WSD_CONFIG_PARAM_TYPE WSD_SECURITY_SSL_CERT_FOR_CLIENT_AUTH = 3;
+  static const WSD_CONFIG_PARAM_TYPE WSD_SECURITY_SSL_SERVER_CERT_VALIDATION = 4;
+  static const WSD_CONFIG_PARAM_TYPE WSD_SECURITY_SSL_CLIENT_CERT_VALIDATION = 5;
+  static const WSD_CONFIG_PARAM_TYPE WSD_SECURITY_SSL_NEGOTIATE_CLIENT_CERT = 6;
+  static const WSD_CONFIG_PARAM_TYPE WSD_SECURITY_COMPACTSIG_SIGNING_CERT = 7;
+  static const WSD_CONFIG_PARAM_TYPE WSD_SECURITY_COMPACTSIG_VALIDATION = 8;
+  static const WSD_CONFIG_PARAM_TYPE WSD_CONFIG_HOSTING_ADDRESSES = 9;
+  static const WSD_CONFIG_PARAM_TYPE WSD_CONFIG_DEVICE_ADDRESSES = 10;
   typedef struct WSD_CONFIG_PARAM {
     WSD_CONFIG_PARAM_TYPE configParamType;
     PVOID pConfigData;
@@ -88,16 +88,16 @@ ffi.cdef [[
   typedef struct WSD_SOAP_FAULT {
     WSD_SOAP_FAULT_CODE* Code;
     WSD_SOAP_FAULT_REASON* Reason;
-    WINAPI_WCHAR* Node;
-    WINAPI_WCHAR* Role;
+    WCHAR* Node;
+    WCHAR* Role;
     WSDXML_ELEMENT* Detail;
   } WSD_SOAP_FAULT;
   void*   WSDAllocateLinkedMemory(           void* pParent, size_t cbSize);
   void    WSDAttachLinkedMemory(             void* pParent, void* pChild);
-  HRESULT WSDCreateDeviceHost(               WINAPI_WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceHost** ppDeviceHost);
-  HRESULT WSDCreateDeviceHostAdvanced(       WINAPI_WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDAddress** ppHostAddresses, DWORD dwHostAddressCount, IWSDDeviceHost** ppDeviceHost);
-  HRESULT WSDCreateDeviceProxy(              WINAPI_WCHAR* pszDeviceId, WINAPI_WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
-  HRESULT WSDCreateDeviceProxyAdvanced(      WINAPI_WCHAR* pszDeviceId, IWSDAddress* pDeviceAddress, WINAPI_WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
+  HRESULT WSDCreateDeviceHost(               WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceHost** ppDeviceHost);
+  HRESULT WSDCreateDeviceHostAdvanced(       WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDAddress** ppHostAddresses, DWORD dwHostAddressCount, IWSDDeviceHost** ppDeviceHost);
+  HRESULT WSDCreateDeviceProxy(              WCHAR* pszDeviceId, WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
+  HRESULT WSDCreateDeviceProxyAdvanced(      WCHAR* pszDeviceId, IWSDAddress* pDeviceAddress, WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
   HRESULT WSDCreateDiscoveryProvider(        IWSDXMLContext* pContext, IWSDiscoveryProvider** ppProvider);
   HRESULT WSDCreateDiscoveryProvider2(       IWSDXMLContext* pContext, WSD_CONFIG_PARAM* pConfigParams, DWORD dwConfigParamCount, IWSDiscoveryProvider** ppProvider);
   HRESULT WSDCreateDiscoveryPublisher(       IWSDXMLContext* pContext, IWSDiscoveryPublisher** ppPublisher);
@@ -121,6 +121,6 @@ ffi.cdef [[
   HRESULT WSDXMLCleanupElement(              WSDXML_ELEMENT* pAny);
   HRESULT WSDXMLCreateContext(               IWSDXMLContext** ppContext);
   HRESULT WSDXMLGetNameFromBuiltinNamespace( LPCWSTR pszNamespace, LPCWSTR pszName, WSDXML_NAME** ppName);
-  HRESULT WSDXMLGetValueFromAny(             WINAPI_WCHAR* pszNamespace, WINAPI_WCHAR* pszName, WSDXML_ELEMENT* pAny, LPCWSTR* ppszValue);
+  HRESULT WSDXMLGetValueFromAny(             WCHAR* pszNamespace, WCHAR* pszName, WSDXML_ELEMENT* pAny, LPCWSTR* ppszValue);
 ]]
-return ffi.load( 'Wsdapi.dll' )
+ffi.load( 'Wsdapi.dll' )

@@ -6,4 +6,4 @@ ffi.cdef [[
   int  DownlevelLCIDToLocaleName(    LCID Locale, LPWSTR lpName, int cchName, DWORD dwFlags);
   LCID DownlevelLocaleNameToLCID(    LPWSTR lpName, DWORD dwFlags);
 ]]
-return ffi.load( 'Nlsdl.dll' )
+ffi.load( 'Nlsdl.dll' )

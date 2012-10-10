@@ -29,4 +29,4 @@ ffi.cdef [[
   void    SnmpUtilVarBindFree(     SnmpVarBind* pVb);
   void    SnmpUtilVarBindListFree( SnmpVarBindList* pVbl);
 ]]
-return ffi.load( 'Snmpapi.dll' )
+ffi.load( 'Snmpapi.dll' )

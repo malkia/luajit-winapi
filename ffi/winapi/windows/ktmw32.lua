@@ -49,4 +49,4 @@ ffi.cdef [[
   BOOL   RenameTransactionManager(            LPWSTR LogFileName, LPGUID ExistingTransactionManagerGuid);
   BOOL   RollforwardTransactionManager(       HANDLE TransactionManagerHandle, PLARGE_INTEGER TmVirtualClock);
 ]]
-return ffi.load( 'Ktmw32.dll' )
+ffi.load( 'Ktmw32.dll' )

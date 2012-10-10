@@ -7,10 +7,10 @@ ffi.cdef [[
   typedef LPVOID LPOLEUILINKCONTAINER; //Alias
   typedef LPVOID LPOLEUIOBJINFO; //Alias
   typedef LPVOID LPOLEUILINKINFO; //Alias
-  typedef DWORD WINAPI_ChangeIconFlag; //Alias
+  typedef DWORD ChangeIconFlag; //Alias
   typedef struct OLEUICHANGEICON {
     DWORD cbStruct;
-    WINAPI_ChangeIconFlag dwFlags;
+    ChangeIconFlag dwFlags;
     HWND hWndOwner;
     LPCTSTR lpszCaption;
     LPFNOLEUIHOOK lpfnHook;
@@ -24,7 +24,7 @@ ffi.cdef [[
     int cchIconExe;
   } OLEUICHANGEICON;
   typedef OLEUICHANGEICON *LPOLEUICHANGEICON; //Pointer
-  typedef DWORD WINAPI_PasteSpecialFlag; //Alias
+  typedef DWORD PasteSpecialFlag; //Alias
   typedef DWORD OLEUIPASTEFLAG; //Alias
   typedef struct OLEUIPASTEENTRY {
     FORMATETC fmtetc;
@@ -36,7 +36,7 @@ ffi.cdef [[
   typedef OLEUIPASTEENTRY *LPOLEUIPASTEENTRY; //Pointer
   typedef struct OLEUIPASTESPECIAL {
     DWORD cbStruct;
-    WINAPI_PasteSpecialFlag dwFlags;
+    PasteSpecialFlag dwFlags;
     HWND hWndOwner;
     LPCTSTR lpszCaption;
     LPFNOLEUIHOOK lpfnHook;
@@ -57,7 +57,7 @@ ffi.cdef [[
     SIZEL sizel;
   } OLEUIPASTESPECIAL;
   typedef OLEUIPASTESPECIAL *LPOLEUIPASTESPECIAL; //Pointer
-  typedef DWORD WINAPI_ObjectPropFlags; //Alias
+  typedef DWORD ObjectPropFlags; //Alias
   typedef struct OLEUIGNRLPROPS {
     DWORD cbStruct;
     DWORD dwFlags;
@@ -68,10 +68,10 @@ ffi.cdef [[
     LPVOID lpOP;
   } OLEUIGNRLPROPS;
   typedef OLEUIGNRLPROPS *LPOLEUIGNRLPROPS; //Pointer
-  typedef DWORD WINAPI_ViewPropsFlags; //Alias
+  typedef DWORD ViewPropsFlags; //Alias
   typedef struct OLEUIVIEWPROPS {
     DWORD cbStruct;
-    WINAPI_ViewPropsFlags dwFlags;
+    ViewPropsFlags dwFlags;
     DWORD dwReserved1[2];
     LPFNOLEUIHOOK lpfnHook;
     LPARAM lCustData;
@@ -93,7 +93,7 @@ ffi.cdef [[
   typedef OLEUILINKPROPS *LPOLEUILINKPROPS; //Pointer
   typedef struct OLEUIOBJECTPROPS {
     DWORD cbStruct;
-    WINAPI_ObjectPropFlags dwFlags;
+    ObjectPropFlags dwFlags;
     LPPROPSHEETHEADER lpPS;
     DWORD dwObject;
     LPOLEUIOBJINFO lpObjInfo;
@@ -104,10 +104,10 @@ ffi.cdef [[
     LPOLEUILINKPROPS lpLP;
   } OLEUIOBJECTPROPS;
   typedef OLEUIOBJECTPROPS *LPOLEUIOBJECTPROPS; //Pointer
-  typedef DWORD WINAPI_ChangeSourceFlags; //Alias
+  typedef DWORD ChangeSourceFlags; //Alias
   typedef struct OLEUICHANGESOURCE {
     DWORD cbStruct;
-    WINAPI_ChangeSourceFlags dwFlags;
+    ChangeSourceFlags dwFlags;
     HWND hWndOwner;
     LPCTSTR lpszCaption;
     LPFNOLEUIHOOK lpfnHook;
@@ -215,4 +215,4 @@ ffi.cdef [[
   int  OleUIPromptUser(             int nTemplate, HWND hwndParent);
   BOOL OleUIUpdateLinks(            LPOLEUILINKCONTAINER lpOleUILinkCntr, HWND hwndParent, LPTSTR lpszTitle, int cLinks);
 ]]
-return ffi.load( 'OleDlg.dll' )
+ffi.load( 'OleDlg.dll' )

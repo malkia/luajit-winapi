@@ -6,4 +6,4 @@ ffi.cdef [[
   typedef LPVOID PFNWRITEOBJECTSECURITY; //Alias
   HRESULT DSCreateSecurityPage( LPCWSTR pwszObjectPath, LPCWSTR pwszObjectClass, DWORD dwFlags, HPROPSHEETPAGE* phPage, PFNREADOBJECTSECURITY pfnReadSD, PFNWRITEOBJECTSECURITY pfnWriteSD, LPARAM lpContext);
 ]]
-return ffi.load( 'DSSec.dll' )
+ffi.load( 'DSSec.dll' )

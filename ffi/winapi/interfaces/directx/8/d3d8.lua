@@ -62,37 +62,37 @@ ffi.cdef [[
     float Phi;
   } D3DLIGHT8;
 # pragma pack( pop )
-  typedef DWORD WINAPI_D3DCS_FLAGS; //Alias
+  typedef DWORD D3DCS_FLAGS; //Alias
 # pragma pack( push, 4 )
   typedef struct D3DCLIPSTATUS8 {
-    WINAPI_D3DCS_FLAGS ClipUnion;
-    WINAPI_D3DCS_FLAGS ClipIntersection;
+    D3DCS_FLAGS ClipUnion;
+    D3DCS_FLAGS ClipIntersection;
   } D3DCLIPSTATUS8;
 # pragma pack( pop )
 # pragma pack( push, 4 )
   typedef struct D3DCAPS8 {
     D3DDEVTYPE DeviceType;
     UINT AdapterOrdinal;
-    WINAPI_D3DCAPS Caps;
-    WINAPI_D3DCAPS2 Caps2;
-    WINAPI_D3DCAPS3 Caps3;
-    WINAPI_D3DPRESENT PresentationIntervals;
-    WINAPI_D3DCURSORCAPS CursorCaps;
-    WINAPI_D3DDEVCAPS DevCaps;
-    WINAPI_D3DPMISCCAPS PrimitiveMiscCaps;
-    WINAPI_D3DPRASTERCAPS RasterCaps;
-    WINAPI_D3DPCMPCAPS ZCmpCaps;
-    WINAPI_D3DPBLENDCAPS SrcBlendCaps;
-    WINAPI_D3DPBLENDCAPS DestBlendCaps;
-    WINAPI_D3DPCMPCAPS AlphaCmpCaps;
-    WINAPI_D3DPSHADECAPS ShadeCaps;
-    WINAPI_D3DPTEXTURECAPS TextureCaps;
-    WINAPI_D3DPTFILTERCAPS TextureFilterCaps;
-    WINAPI_D3DPTFILTERCAPS CubeTextureFilterCaps;
-    WINAPI_D3DPTFILTERCAPS VolumeTextureFilterCaps;
-    WINAPI_D3DPTADDRESSCAPS TextureAddressCaps;
-    WINAPI_D3DPTADDRESSCAPS VolumeTextureAddressCaps;
-    WINAPI_D3DLINECAPS LineCaps;
+    D3DCAPS Caps;
+    D3DCAPS2 Caps2;
+    D3DCAPS3 Caps3;
+    D3DPRESENT PresentationIntervals;
+    D3DCURSORCAPS CursorCaps;
+    D3DDEVCAPS DevCaps;
+    D3DPMISCCAPS PrimitiveMiscCaps;
+    D3DPRASTERCAPS RasterCaps;
+    D3DPCMPCAPS ZCmpCaps;
+    D3DPBLENDCAPS SrcBlendCaps;
+    D3DPBLENDCAPS DestBlendCaps;
+    D3DPCMPCAPS AlphaCmpCaps;
+    D3DPSHADECAPS ShadeCaps;
+    D3DPTEXTURECAPS TextureCaps;
+    D3DPTFILTERCAPS TextureFilterCaps;
+    D3DPTFILTERCAPS CubeTextureFilterCaps;
+    D3DPTFILTERCAPS VolumeTextureFilterCaps;
+    D3DPTADDRESSCAPS TextureAddressCaps;
+    D3DPTADDRESSCAPS VolumeTextureAddressCaps;
+    D3DLINECAPS LineCaps;
     DWORD MaxTextureWidth;
     DWORD MaxTextureHeight;
     DWORD MaxVolumeExtent;
@@ -105,12 +105,12 @@ ffi.cdef [[
     float GuardBandRight;
     float GuardBandBottom;
     float ExtentsAdjust;
-    WINAPI_D3DSTENCILCAPS StencilCaps;
-    WINAPI_D3DFVFCAPS FVFCaps;
-    WINAPI_D3DTEXOPCAPS TextureOpCaps;
+    D3DSTENCILCAPS StencilCaps;
+    D3DFVFCAPS FVFCaps;
+    D3DTEXOPCAPS TextureOpCaps;
     DWORD MaxTextureBlendStages;
     DWORD MaxSimultaneousTextures;
-    WINAPI_D3DVTXPCAPS VertexProcessingCaps;
+    D3DVTXPCAPS VertexProcessingCaps;
     DWORD MaxActiveLights;
     DWORD MaxUserClipPlanes;
     DWORD MaxVertexBlendMatrices;
@@ -128,4 +128,4 @@ ffi.cdef [[
 # pragma pack( pop )
   IDirect3D8* Direct3DCreate8( UINT SDKVersion);
 ]]
-return ffi.load( 'd3d8.dll' )
+ffi.load( 'd3d8.dll' )

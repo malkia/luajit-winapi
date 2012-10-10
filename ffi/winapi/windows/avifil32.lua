@@ -13,11 +13,11 @@ ffi.cdef [[
   typedef IAVIStream* PAVISTREAM; //Alias
   typedef IGetFrame* PGETFRAME; //Alias
   typedef PGETFRAME STDAPI_(PGETFRAME); //Alias
-  typedef DWORD WINAPI_AVISTREAMINFO_FLAGS; //Alias
+  typedef DWORD AVISTREAMINFO_FLAGS; //Alias
   typedef struct AVISTREAMINFO {
     FOURCC fccType;
     DWORD fccHandler;
-    WINAPI_AVISTREAMINFO_FLAGS dwFlags;
+    AVISTREAMINFO_FLAGS dwFlags;
     DWORD dwCaps;
     WORD wPriority;
     WORD wLanguage;
@@ -34,12 +34,12 @@ ffi.cdef [[
     DWORD dwFormatChangeCount;
     TCHAR szName[64];
   } AVISTREAMINFO;
-  typedef DWORD WINAPI_AVIFILEINFO_FLAGS; //Alias
-  typedef DWORD WINAPI_AVIFILECAPS; //Alias
+  typedef DWORD AVIFILEINFO_FLAGS; //Alias
+  typedef DWORD AVIFILECAPS; //Alias
   typedef struct AVIFILEINFO {
     DWORD dwMaxBytesPerSec;
-    WINAPI_AVIFILEINFO_FLAGS dwFlags;
-    WINAPI_AVIFILECAPS dwCaps;
+    AVIFILEINFO_FLAGS dwFlags;
+    AVIFILECAPS dwCaps;
     DWORD dwStreams;
     DWORD dwSuggestedBufferSize;
     DWORD dwWidth;
@@ -115,4 +115,4 @@ ffi.cdef [[
   STDAPI             EditStreamSetInfo(          PAVISTREAM pavi, AVISTREAMINFO* lpInfo, LONG cbInfo);
   STDAPI             EditStreamSetName(          PAVISTREAM pavi, LPCTSTR lpszName);
 ]]
-return ffi.load( 'avifil32.dll' )
+ffi.load( 'avifil32.dll' )

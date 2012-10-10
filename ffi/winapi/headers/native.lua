@@ -3,13 +3,13 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   enum { IMAGE_SIZEOF_SHORT_NAME = 8 };
-  typedef union WINAPI_IMAGE_SECTION_HEADER_u {
+  typedef union IMAGE_SECTION_HEADER_u {
     DWORD PhysicalAddress;
     DWORD VirtualSize;
-  } WINAPI_IMAGE_SECTION_HEADER_u;
+  } IMAGE_SECTION_HEADER_u;
   typedef struct IMAGE_SECTION_HEADER {
     BYTE Name[IMAGE_SIZEOF_SHORT_NAME];
-    WINAPI_IMAGE_SECTION_HEADER_u Misc;
+    IMAGE_SECTION_HEADER_u Misc;
     DWORD VirtualAddress;
     DWORD SizeOfRawData;
     DWORD PointerToRawData;
@@ -21,23 +21,23 @@ ffi.cdef [[
   } IMAGE_SECTION_HEADER;
   typedef IMAGE_SECTION_HEADER *PIMAGE_SECTION_HEADER; //Pointer
   typedef UINT EVENT_TYPE; //Alias
-  static const UINT NotificationEvent = 0;
-  static const UINT SynchronizationEvent = 1;
-  typedef DWORD WINAPI_FileShareMode; //Alias
-  typedef DWORD WINAPI_MemoryType; //Alias
-  typedef DWORD WINAPI_MemoryAllocationFlags; //Alias
-  typedef DWORD WINAPI_MemoryProtection; //Alias
-  typedef DWORD WINAPI_AclRevision; //Alias
-  static const DWORD ACL_REVISION = 2;
-  static const DWORD ACL_REVISION_DS = 4;
-  typedef DWORD WINAPI_NtVerType; //Alias
-  typedef DWORD WINAPI_TOKEN_ACCESS_MASK; //Alias
-  typedef ULONG WINAPI_ObjectAttributes; //Alias
+  static const EVENT_TYPE NotificationEvent = 0;
+  static const EVENT_TYPE SynchronizationEvent = 1;
+  typedef DWORD FileShareMode; //Alias
+  typedef DWORD MemoryType; //Alias
+  typedef DWORD MemoryAllocationFlags; //Alias
+  typedef DWORD MemoryProtection; //Alias
+  typedef DWORD AclRevision; //Alias
+  static const AclRevision ACL_REVISION = 2;
+  static const AclRevision ACL_REVISION_DS = 4;
+  typedef DWORD NtVerType; //Alias
+  typedef DWORD TOKEN_ACCESS_MASK; //Alias
+  typedef ULONG ObjectAttributes; //Alias
   typedef struct OBJECT_ATTRIBUTES {
     ULONG Length;
     HANDLE RootDirectory;
     PUNICODE_STRING ObjectName;
-    WINAPI_ObjectAttributes Attributes;
+    ObjectAttributes Attributes;
     PSECURITY_DESCRIPTOR SecurityDescriptor;
     PSECURITY_QUALITY_OF_SERVICE SecurityQualityOfService;
   } OBJECT_ATTRIBUTES;
@@ -63,24 +63,24 @@ ffi.cdef [[
   } RTL_CRITICAL_SECTION;
 # pragma pack( pop )
   typedef RTL_CRITICAL_SECTION *PRTL_CRITICAL_SECTION; //Pointer
-  typedef ULONG WINAPI_NtProtectionFlags; //Alias
-  typedef DWORD_PTR WINAPI_ProcThreadAttribute; //Alias
-  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_PARENT_PROCESS = 0x00020000;
-  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_EXTENDED_FLAGS = 0x00060001;
-  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_HANDLE_LIST = 0x00020002;
-  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_IDEAL_PROCESSOR = 0x00030005;
-  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_MITIGATION_POLICY = 0x00020007;
-  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_PREFERRED_NODE = 0x00020004;
-  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_UMS_THREAD = 0x00030006;
-  static const DWORD_PTR PROC_THREAD_ATTRIBUTE_GROUP_AFFINITY = 0x00030003;
-  typedef DWORD WINAPI_ProcThreadAttributeFlags; //Alias
+  typedef ULONG NtProtectionFlags; //Alias
+  typedef DWORD_PTR ProcThreadAttribute; //Alias
+  static const ProcThreadAttribute PROC_THREAD_ATTRIBUTE_PARENT_PROCESS = 0x00020000;
+  static const ProcThreadAttribute PROC_THREAD_ATTRIBUTE_EXTENDED_FLAGS = 0x00060001;
+  static const ProcThreadAttribute PROC_THREAD_ATTRIBUTE_HANDLE_LIST = 0x00020002;
+  static const ProcThreadAttribute PROC_THREAD_ATTRIBUTE_IDEAL_PROCESSOR = 0x00030005;
+  static const ProcThreadAttribute PROC_THREAD_ATTRIBUTE_MITIGATION_POLICY = 0x00020007;
+  static const ProcThreadAttribute PROC_THREAD_ATTRIBUTE_PREFERRED_NODE = 0x00020004;
+  static const ProcThreadAttribute PROC_THREAD_ATTRIBUTE_UMS_THREAD = 0x00030006;
+  static const ProcThreadAttribute PROC_THREAD_ATTRIBUTE_GROUP_AFFINITY = 0x00030003;
+  typedef DWORD ProcThreadAttributeFlags; //Alias
   typedef struct PROC_THREAD_ATTRIBUTE_ENTRY {
-    WINAPI_ProcThreadAttribute Attribute;
+    ProcThreadAttribute Attribute;
     SIZE_T cbSize;
     PVOID lpValue;
   } PROC_THREAD_ATTRIBUTE_ENTRY;
   typedef struct PROC_THREAD_ATTRIBUTE_LIST {
-    WINAPI_ProcThreadAttributeFlags dwFlags;
+    ProcThreadAttributeFlags dwFlags;
     ULONG Size;
     ULONG Count;
     ULONG Reserved;
@@ -88,10 +88,10 @@ ffi.cdef [[
     PROC_THREAD_ATTRIBUTE_ENTRY Entries[ANYSIZE_ARRAY];
   } PROC_THREAD_ATTRIBUTE_LIST;
   typedef PROC_THREAD_ATTRIBUTE_LIST *LPPROC_THREAD_ATTRIBUTE_LIST; //Pointer
-  typedef UINT_PTR WINAPI_HANDLE_NO_HEX; //Alias
+  typedef UINT_PTR HANDLE_NO_HEX; //Alias
   typedef struct CLIENT_ID {
-    WINAPI_HANDLE_NO_HEX UniqueProcess;
-    WINAPI_HANDLE_NO_HEX UniqueThread;
+    HANDLE_NO_HEX UniqueProcess;
+    HANDLE_NO_HEX UniqueThread;
   } CLIENT_ID;
   typedef CLIENT_ID *PCLIENT_ID; //Pointer
 ]]

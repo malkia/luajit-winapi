@@ -8,14 +8,14 @@ ffi.cdef [[
   typedef UINT_PTR ASYNCCOMPLETIONHANDLE; //Alias
   typedef PVOID PRSOPTOKEN; //Alias
   typedef UINT GPO_LINK; //Alias
-  static const UINT GPLinkUnknown = 0;
-  static const UINT GPLinkMachine = 1;
-  static const UINT GPLinkSite = 2;
-  static const UINT GPLinkDomain = 3;
-  static const UINT GPLinkOrganizationalUnit = 4;
-  typedef DWORD WINAPI_GPO_FLAG; //Alias
+  static const GPO_LINK GPLinkUnknown = 0;
+  static const GPO_LINK GPLinkMachine = 1;
+  static const GPO_LINK GPLinkSite = 2;
+  static const GPO_LINK GPLinkDomain = 3;
+  static const GPO_LINK GPLinkOrganizationalUnit = 4;
+  typedef DWORD GPO_FLAG; //Alias
   typedef struct GROUP_POLICY_OBJECT {
-    WINAPI_GPO_FLAG dwOptions;
+    GPO_FLAG dwOptions;
     DWORD dwVersion;
     LPTSTR lpDSPath;
     LPTSTR lpFileSysPath;
@@ -31,11 +31,11 @@ ffi.cdef [[
   } GROUP_POLICY_OBJECT;
   typedef GROUP_POLICY_OBJECT *PGROUP_POLICY_OBJECT; //Pointer
   typedef UINT SETTINGSTATUS; //Alias
-  static const UINT RSOPUnspecified = 0;
-  static const UINT RSOPApplied = 1;
-  static const UINT RSOPIgnored = 2;
-  static const UINT RSOPFailed = 3;
-  static const UINT RSOPSubsettingFailed = 4;
+  static const SETTINGSTATUS RSOPUnspecified = 0;
+  static const SETTINGSTATUS RSOPApplied = 1;
+  static const SETTINGSTATUS RSOPIgnored = 2;
+  static const SETTINGSTATUS RSOPFailed = 3;
+  static const SETTINGSTATUS RSOPSubsettingFailed = 4;
   typedef struct POLICYSETTINGSTATUSINFO {
     LPWSTR szKey;
     LPWSTR szEventSource;
@@ -56,7 +56,7 @@ ffi.cdef [[
     HANDLE hProfile;
   } PROFILEINFO;
   typedef PROFILEINFO *LPPROFILEINFO; //Pointer
-  typedef DWORD WINAPI_ProfileType; //Alias
+  typedef DWORD ProfileType; //Alias
   HANDLE  EnterCriticalPolicySection(      BOOL bMachine);
   BOOL    FreeGPOList(                     PGROUP_POLICY_OBJECT pGPOList);
   DWORD   GetAppliedGPOList(               DWORD dwFlags, LPCTSTR pMachineName, PSID pSidUser, GUID* pGuidExtension, PGROUP_POLICY_OBJECT* ppGPOList);
@@ -81,9 +81,9 @@ ffi.cdef [[
   BOOL    GetAllUsersProfileDirectory(     LPTSTR lpProfileDir, LPDWORD lpcchSize);
   BOOL    GetDefaultUserProfileDirectory(  LPTSTR lpProfileDir, LPDWORD lpcchSize);
   BOOL    GetProfilesDirectory(            LPTSTR lpProfilesDir, LPDWORD lpcchSize);
-  BOOL    GetProfileType(                  WINAPI_ProfileType* pdwFlags);
+  BOOL    GetProfileType(                  ProfileType* pdwFlags);
   BOOL    GetUserProfileDirectory(         HANDLE hToken, LPTSTR lpProfileDir, LPDWORD lpcchSize);
   BOOL    LoadUserProfile(                 HANDLE hToken, LPPROFILEINFO lpProfileInfo);
   BOOL    UnloadUserProfile(               HANDLE hToken, HANDLE hProfile);
 ]]
-return ffi.load( 'Userenv.dll' )
+ffi.load( 'Userenv.dll' )

@@ -32,27 +32,27 @@ ffi.cdef [[
   } CLFS_ARCHIVE_DESCRIPTOR;
   typedef CLFS_ARCHIVE_DESCRIPTOR *CLFS_ARCHIVE_DESCRIPTOR []; //Pointer
   typedef UINT8 CLFS_RECORD_TYPE; //Alias
-  static const UINT8 ClfsNullRecord = 0x00;
-  static const UINT8 ClfsDataRecord = 0x01;
-  static const UINT8 ClfsRestartRecord = 0x01;
+  static const CLFS_RECORD_TYPE ClfsNullRecord = 0x00;
+  static const CLFS_RECORD_TYPE ClfsDataRecord = 0x01;
+  static const CLFS_RECORD_TYPE ClfsRestartRecord = 0x01;
   typedef CLFS_RECORD_TYPE *PCLFS_RECORD_TYPE; //Pointer
   typedef UINT CLFS_IOSTATS_CLASS; //Alias
-  static const UINT ClfsIoStatsDefault = 0x0000;
+  static const CLFS_IOSTATS_CLASS ClfsIoStatsDefault = 0x0000;
   typedef UINT CLFS_CONTEXT_MODE; //Alias
-  static const UINT ClfsContextNone = 0x00;
-  static const UINT ClfsContextUndoNext = 0x01;
-  static const UINT ClfsContextPrevious = 0x02;
-  static const UINT ClfsContextForward = 0x03;
+  static const CLFS_CONTEXT_MODE ClfsContextNone = 0x00;
+  static const CLFS_CONTEXT_MODE ClfsContextUndoNext = 0x01;
+  static const CLFS_CONTEXT_MODE ClfsContextPrevious = 0x02;
+  static const CLFS_CONTEXT_MODE ClfsContextForward = 0x03;
   typedef UINT8 CLFS_SCAN_MODE; //Alias
   typedef UINT CLFS_LOG_ARCHIVE_MODE; //Alias
-  static const UINT ClfsLogArchiveEnabled = 0x01;
-  static const UINT ClfsLogArchiveDisabled = 0x02;
+  static const CLFS_LOG_ARCHIVE_MODE ClfsLogArchiveEnabled = 0x01;
+  static const CLFS_LOG_ARCHIVE_MODE ClfsLogArchiveDisabled = 0x02;
   typedef struct CLS_LSN {
     ULONGLONG Internal;
   } CLS_LSN;
   typedef CLS_LSN CLFS_LSN; //Alias
   typedef CLFS_LSN *PCLFS_LSN; //Pointer
-  typedef PCLFS_LSN WINAPI_PCLFS_LSN; //Alias
+  typedef PCLFS_LSN PCLFS_LSN; //Alias
   typedef struct CLFS_WRITE_ENTRY {
     PVOID Buffer;
     ULONG ByteLength;
@@ -109,7 +109,7 @@ ffi.cdef [[
   BOOL              ReadPreviousLogRestartArea(    PVOID pvReadContext, PVOID* ppvRestartBuffer, PULONG pcbRestartBuffer, PCLFS_LSN plsnRestart, LPOVERLAPPED pOverlapped);
   BOOL              WriteLogRestartArea(           PVOID pvMarshal, PVOID pvRestartBuffer, ULONG cbRestartBuffer, PCLFS_LSN plsnBase, ULONG fFlags, PULONG pcbWritten, PCLFS_LSN plsnNext, LPOVERLAPPED pOverlapped);
   BOOL              GetNextLogArchiveExtent(       CLFS_LOG_ARCHIVE_CONTEXT pvArchiveContext, CLFS_ARCHIVE_DESCRIPTOR [] rgadExtent, ULONG cDescriptors, PULONG pcDescriptorsReturned);
-  BOOL              PrepareLogArchive(             HANDLE hLog, PWSTR pszBaseLogFileName, ULONG cLen, WINAPI_PCLFS_LSN plsnLow, WINAPI_PCLFS_LSN plsnHigh, PULONG pcActualLength, PULONGLONG poffBaseLogFileData, PULONGLONG pcbBaseLogFileLength, PCLFS_LSN plsnBase, PCLFS_LSN plsnLast, PCLFS_LSN plsnCurrentArchiveTail, PCLFS_LOG_ARCHIVE_CONTEXT ppvArchiveContext);
+  BOOL              PrepareLogArchive(             HANDLE hLog, PWSTR pszBaseLogFileName, ULONG cLen, PCLFS_LSN plsnLow, PCLFS_LSN plsnHigh, PULONG pcActualLength, PULONGLONG poffBaseLogFileData, PULONGLONG pcbBaseLogFileLength, PCLFS_LSN plsnBase, PCLFS_LSN plsnLast, PCLFS_LSN plsnCurrentArchiveTail, PCLFS_LOG_ARCHIVE_CONTEXT ppvArchiveContext);
   BOOL              ReadLogArchiveMetadata(        CLFS_LOG_ARCHIVE_CONTEXT pvArchiveContext, ULONG cbOffset, ULONG cbBytesToRead, PBYTE pbReadBuffer, PULONG pcbBytesRead);
   BOOL              SetLogArchiveMode(             HANDLE hLog, CLFS_LOG_ARCHIVE_MODE eMode);
   BOOL              SetLogArchiveTail(             HANDLE hLog, PCLFS_LSN plsnArchiveTail, LPVOID pReserved);
@@ -117,13 +117,13 @@ ffi.cdef [[
   BOOL              ValidateLog(                   LPCWSTR pszLogFileName, LPSECURITY_ATTRIBUTES psaLogFile, PCLFS_INFORMATION pinfoBuffer, PULONG pcbBuffer);
   BOOL              CreateLogMarshallingArea(      HANDLE hLog, CLFS_BLOCK_ALLOCATION pfnAllocBuffer, CLFS_BLOCK_DEALLOCATION pfnFreeBuffer, PVOID pvBlockAllocContext, ULONG cbMarshallingBuffer, ULONG cMaxWriteBuffers, ULONG cMaxReadBuffers, PVOID* ppvMarshal);
   BOOL              DeleteLogMarshallingArea(      PVOID pvMarshal);
-  ULONG             LsnBlockOffset(                WINAPI_CLFS_LSN* plsn);
-  CLFS_CONTAINER_ID LsnContainer(                  WINAPI_CLFS_LSN* plsn);
+  ULONG             LsnBlockOffset(                CLFS_LSN* plsn);
+  CLFS_CONTAINER_ID LsnContainer(                  CLFS_LSN* plsn);
   CLFS_LSN          LsnCreate(                     CLFS_CONTAINER_ID cidContainer, ULONG offBlock, ULONG cRecord);
-  BOOL              LsnEqual(                      WINAPI_CLFS_LSN* plsn1, WINAPI_CLFS_LSN* plsn2);
-  BOOL              LsnGreater(                    WINAPI_CLFS_LSN* plsn1, WINAPI_CLFS_LSN* plsn2);
-  BOOL              LsnLess(                       WINAPI_CLFS_LSN* plsn1, WINAPI_CLFS_LSN* plsn2);
-  BOOL              LsnNull(                       WINAPI_CLFS_LSN* plsn);
-  ULONG             LsnRecordSequence(             WINAPI_CLFS_LSN* plsn);
+  BOOL              LsnEqual(                      CLFS_LSN* plsn1, CLFS_LSN* plsn2);
+  BOOL              LsnGreater(                    CLFS_LSN* plsn1, CLFS_LSN* plsn2);
+  BOOL              LsnLess(                       CLFS_LSN* plsn1, CLFS_LSN* plsn2);
+  BOOL              LsnNull(                       CLFS_LSN* plsn);
+  ULONG             LsnRecordSequence(             CLFS_LSN* plsn);
 ]]
-return ffi.load( 'Clfsw32.dll' )
+ffi.load( 'Clfsw32.dll' )

@@ -3,6 +3,11 @@ ffi.cdef [[
 ]]
 if ffi.arch == 'x86' then ffi.cdef[[
   typedef int32_t INT_PTR; //Integer
+]]
+end
+ffi.cdef[[
+]]
+if ffi.arch == 'x86' then ffi.cdef[[
   typedef uint32_t UINT_PTR; //Integer
 ]]
 end
@@ -10,6 +15,11 @@ ffi.cdef[[
 ]]
 if ffi.arch == 'x64' then ffi.cdef[[
   typedef int64_t INT_PTR; //Integer
+]]
+end
+ffi.cdef[[
+]]
+if ffi.arch == 'x64' then ffi.cdef[[
   typedef uint64_t UINT_PTR; //Integer
 ]]
 end
@@ -20,16 +30,16 @@ ffi.cdef[[
   typedef LPVOID LPCVOID; //Alias
   typedef LPVOID PVOID; //Alias
   typedef LPVOID PCVOID; //Alias
-  typedef PVOID WINAPI_PVOID; //Alias
+  typedef PVOID PVOID; //Alias
   typedef uint64_t PVOID64; //Integer
   typedef uint8_t BYTE; //Integer
-  typedef BYTE WINAPI_BYTE; //Alias
+  typedef BYTE BYTE; //Alias
   typedef BYTE *LPBYTE; //Pointer
   typedef LPBYTE PBYTE; //Alias
-  typedef PBYTE WINAPI_PBYTE; //Alias
-  typedef PBYTE WINAPI_PBYTE; //Alias
+  typedef PBYTE PBYTE; //Alias
+  typedef PBYTE PBYTE; //Alias
   typedef LPBYTE LPCBYTE; //Alias
-  typedef LPBYTE WINAPI_LPBYTE; //Alias
+  typedef LPBYTE LPBYTE; //Alias
   typedef BYTE byte; //Alias
   typedef uint8_t UCHAR; //Integer
   typedef UCHAR *PUCHAR; //Pointer
@@ -57,7 +67,7 @@ ffi.cdef[[
   typedef BOOL *PBOOL; //Pointer
   typedef PBOOL LPBOOL; //Alias
   typedef BOOL Bool; //Alias
-  typedef BOOL WINAPI_BOOL; //Alias
+  typedef BOOL BOOL; //Alias
   typedef BOOL BOOLAPI; //Alias
   typedef int8_t BOOLEAN; //Integer
   static const int8_t BOOLEAN_TRUE = 1;
@@ -80,7 +90,7 @@ ffi.cdef[[
   typedef int INT; //Alias
   typedef INT *PINT; //Pointer
   typedef PINT LPINT; //Alias
-  typedef LPINT WINAPI_LPINT; //Alias
+  typedef LPINT LPINT; //Alias
   typedef int64_t INT64; //Integer
   typedef INT64 LONGLONG; //Alias
   typedef LONGLONG *PLONGLONG; //Pointer
@@ -104,20 +114,20 @@ ffi.cdef[[
   typedef LPSTR PCSTR; //Alias
   typedef LPSTR PSTR; //Alias
   typedef LPSTR PCHAR; //Alias
-  typedef PCHAR WINAPI_PCHAR; //Alias
+  typedef PCHAR PCHAR; //Alias
   typedef wchar_t WCHAR;
   typedef WCHAR *LPWSTR; //Pointer
   typedef LPWSTR PWSTR; //Alias
   typedef PWSTR PCWSTR; //Alias
   typedef PWSTR LPCWSTR; //Alias
-  typedef PWSTR WINAPI_PWSTR; //Alias
+  typedef PWSTR PWSTR; //Alias
   typedef PWSTR PWCHAR; //Alias
   typedef WCHAR wchar_t; //Alias
   typedef char TCHAR;
   typedef TCHAR *LPTSTR; //Pointer
   typedef LPTSTR LPCTSTR; //Alias
   typedef LPTSTR PTSTR; //Alias
-  typedef LPTSTR WINAPI_PCTSTR; //Alias
+  typedef LPTSTR PCTSTR; //Alias
   typedef LPTSTR PCTSTR; //Alias
   typedef LPTSTR PTCHAR; //Alias
   typedef LPTSTR LPTCH; //Alias
@@ -126,8 +136,11 @@ ffi.cdef[[
   typedef SIZE_T* PSIZE_T; //Alias
   typedef float FLOAT; //Alias
   typedef FLOAT *PFLOAT; //Pointer
-  typedef float WINAPI_float; //Alias
+  typedef float float; //Alias
   typedef double DOUBLE; //Alias
+  enum { MAX_PATH = 260 };
+  enum { ANYSIZE_ARRAY = 1 };
+  enum { MAX_PATH_plus_1 = 261 };
   typedef union Stack {
     UINT_PTR uintp;
     INT_PTR intp;

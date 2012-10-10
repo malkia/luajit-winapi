@@ -34,18 +34,18 @@ ffi.cdef [[
     ADDRESS_LIST_DESCRIPTOR AddressListDesc;
   } TC_IFC_DESCRIPTOR;
   typedef TC_IFC_DESCRIPTOR *PTC_IFC_DESCRIPTOR; //Pointer
-  typedef ULONG WINAPI_QOS_OBJECT_HDR_TYPE; //Alias
-  static const ULONG QOS_OBJECT_END_OF_LIST = 2001;
-  static const ULONG QOS_OBJECT_SD_MODE = 2002;
-  static const ULONG QOS_OBJECT_SHAPING_RATE = 2003;
-  static const ULONG QOS_OBJECT_DESTADDR = 2004;
-  static const ULONG RSVP_OBJECT_STATUS_INFO = 1000;
-  static const ULONG RSVP_OBJECT_RESERVE_INFO = 1001;
-  static const ULONG RSVP_OBJECT_ADSPEC = 1002;
-  static const ULONG RSVP_OBJECT_POLICY_INFO = 1003;
-  static const ULONG RSVP_OBJECT_FILTERSPEC_LIST = 1004;
+  typedef ULONG QOS_OBJECT_HDR_TYPE; //Alias
+  static const QOS_OBJECT_HDR_TYPE QOS_OBJECT_END_OF_LIST = 2001;
+  static const QOS_OBJECT_HDR_TYPE QOS_OBJECT_SD_MODE = 2002;
+  static const QOS_OBJECT_HDR_TYPE QOS_OBJECT_SHAPING_RATE = 2003;
+  static const QOS_OBJECT_HDR_TYPE QOS_OBJECT_DESTADDR = 2004;
+  static const QOS_OBJECT_HDR_TYPE RSVP_OBJECT_STATUS_INFO = 1000;
+  static const QOS_OBJECT_HDR_TYPE RSVP_OBJECT_RESERVE_INFO = 1001;
+  static const QOS_OBJECT_HDR_TYPE RSVP_OBJECT_ADSPEC = 1002;
+  static const QOS_OBJECT_HDR_TYPE RSVP_OBJECT_POLICY_INFO = 1003;
+  static const QOS_OBJECT_HDR_TYPE RSVP_OBJECT_FILTERSPEC_LIST = 1004;
   typedef struct QOS_OBJECT_HDR {
-    WINAPI_QOS_OBJECT_HDR_TYPE ObjectType;
+    QOS_OBJECT_HDR_TYPE ObjectType;
     ULONG ObjectLength;
   } QOS_OBJECT_HDR;
   typedef struct TC_GEN_FLOW {
@@ -89,4 +89,4 @@ ffi.cdef [[
   ULONG TcSetFlow(             LPTSTR pFlowName, LPGUID pGuidParam, ULONG BufferSize, PVOID Buffer);
   ULONG TcSetInterface(        HANDLE IfcHandle, LPGUID pGuidParam, ULONG BufferSize, PVOID Buffer);
 ]]
-return ffi.load( 'Traffic.dll' )
+ffi.load( 'Traffic.dll' )

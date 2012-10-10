@@ -4,9 +4,9 @@ ffi.cdef [[
   typedef HANDLE RAS_SERVER_HANDLE; //Alias
   typedef HANDLE MPR_SERVER_HANDLE; //Alias
   typedef HANDLE MIB_SERVER_HANDLE; //Alias
-  enum { MAX_INTERFACE_NAME_LEN = 257 };
+  enum { MAX_INTERFACE_NAME_LEN_plus_1 = 257 };
   typedef struct MPR_IPINIP_INTERFACE_0 {
-    WCHAR wszFriendlyName[MAX_INTERFACE_NAME_LEN + 1];
+    WCHAR wszFriendlyName[MAX_INTERFACE_NAME_LEN_plus_1];
     GUID Guid;
   } MPR_IPINIP_INTERFACE_0;
   typedef MPR_IPINIP_INTERFACE_0 *PMPR_IPINIP_INTERFACE_0; //Pointer
@@ -18,10 +18,10 @@ ffi.cdef [[
   DWORD MprAdminPortReset(                         RAS_SERVER_HANDLE hRasServer, HANDLE hPort);
   DWORD MprAdminPortDisconnect(                    RAS_SERVER_HANDLE hRasServer, HANDLE hPort);
   DWORD MprAdminConnectionRemoveQuarantine(        HANDLE hRasServer, HANDLE hRasConnection, BOOL fIsIpAddress);
-  DWORD MprAdminUserGetInfo(                       WINAPI_WCHAR* lpszServer, WINAPI_WCHAR* lpszUser, DWORD dwLevel, LPBYTE lpbBuffer);
-  DWORD MprAdminUserSetInfo(                       WINAPI_WCHAR* lpszServer, WINAPI_WCHAR* lpszUser, DWORD dwLevel, WINAPI_LPBYTE lpbBuffer);
+  DWORD MprAdminUserGetInfo(                       WCHAR* lpszServer, WCHAR* lpszUser, DWORD dwLevel, LPBYTE lpbBuffer);
+  DWORD MprAdminUserSetInfo(                       WCHAR* lpszServer, WCHAR* lpszUser, DWORD dwLevel, LPBYTE lpbBuffer);
   DWORD MprAdminSendUserMessage(                   MPR_SERVER_HANDLE hMprServer, HANDLE hConnection, LPWSTR lpwszMessage);
-  DWORD MprAdminGetPDCServer(                      WINAPI_WCHAR* lpszDomain, WINAPI_WCHAR* lpszServer, LPWSTR lpszPDCServer);
+  DWORD MprAdminGetPDCServer(                      WCHAR* lpszDomain, WCHAR* lpszServer, LPWSTR lpszPDCServer);
   BOOL  MprAdminIsServiceRunning(                  LPWSTR lpwsServerName);
   DWORD MprAdminServerConnect(                     LPWSTR lpwsServerName, MPR_SERVER_HANDLE* phMprServer);
   VOID  MprAdminServerDisconnect(                  MPR_SERVER_HANDLE hMprServer);
@@ -116,4 +116,4 @@ ffi.cdef [[
   DWORD MprInfoBlockFind(                          LPVOID lpHeader, DWORD dwInfoType, LPDWORD lpdwItemSize, LPDWORD lpdwItemCount, LPBYTE* lplpItemData);
   DWORD MprInfoBlockQuerySize(                     LPVOID lpHeader);
 ]]
-return ffi.load( 'Mprapi.dll' )
+ffi.load( 'Mprapi.dll' )

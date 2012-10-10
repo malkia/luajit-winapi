@@ -8,4 +8,4 @@ ffi.cdef [[
   HRESULT MFCreateSourceReaderFromMediaSource( IMFMediaSource* pMediaSource, IMFAttributes* pAttributes, IMFSourceReader** ppSourceReader);
   HRESULT MFCreateSourceReaderFromURL(         LPCWSTR pwszURL, IMFAttributes* pAttributes, IMFSourceReader** ppSourceReader);
 ]]
-return ffi.load( 'Mfreadwrite.dll' )
+ffi.load( 'Mfreadwrite.dll' )

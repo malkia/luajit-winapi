@@ -9,4 +9,4 @@ ffi.cdef [[
   DWORD VerInstallFile(            DWORD uFlags, LPCTSTR szSrcFileName, LPCTSTR szDestFileName, LPCTSTR szSrcDir, LPCTSTR szDestDir, LPCTSTR szCurDir, LPTSTR szTmpFile, PUINT lpuTmpFileLen);
   BOOL  VerQueryValue(             LPCVOID pBlock, LPCTSTR lpSubBlock, LPVOID* lplpBuffer, PUINT puLen);
 ]]
-return ffi.load( 'version.dll' )
+ffi.load( 'version.dll' )

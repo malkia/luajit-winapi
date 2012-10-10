@@ -37,4 +37,4 @@ ffi.cdef [[
   RPC_STATUS RpcNsProfileEltInqNext(   RPC_NS_HANDLE InquiryContext, RPC_IF_ID* IfId, unsigned char** MemberName, unsigned long* Priority, unsigned char** Annotation);
   RPC_STATUS RpcNsProfileEltRemove(    unsigned long ProfileNameSyntax, unsigned char* ProfileName, RPC_IF_ID* IfId, unsigned long MemberNameSyntax, unsigned char* MemberName);
 ]]
-return ffi.load( 'Rpcns4.dll' )
+ffi.load( 'Rpcns4.dll' )

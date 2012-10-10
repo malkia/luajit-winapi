@@ -43,4 +43,4 @@ ffi.cdef [[
   BOOLEAN     CsrValidateMessageBuffer(    PCSR_API_MESSAGE ApiMessage, PVOID* Buffer, ULONG ArgumentSize, ULONG ArgumentCount);
   BOOLEAN     CsrValidateMessageString(    PCSR_API_MESSAGE ApiMessage, LPWSTR* MessageString);
 ]]
-return ffi.load( 'CsrSrv.dll' )
+ffi.load( 'CsrSrv.dll' )

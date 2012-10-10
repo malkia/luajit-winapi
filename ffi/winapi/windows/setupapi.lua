@@ -30,19 +30,19 @@ ffi.cdef [[
   typedef ULONG_PTR CONFLICT_LIST; //Alias
   typedef CONFLICT_LIST *PCONFLICT_LIST; //Pointer
   enum { SP_MAX_MACHINENAME_LENGTH = 263 };
-  typedef DWORD WINAPI_InfStyle; //Alias
+  typedef DWORD InfStyle; //Alias
   typedef struct SP_INF_INFORMATION {
-    WINAPI_InfStyle InfStyle;
+    InfStyle InfStyle;
     DWORD InfCount;
     BYTE VersionData[ANYSIZE_ARRAY];
   } SP_INF_INFORMATION;
   typedef SP_INF_INFORMATION *PSP_INF_INFORMATION; //Pointer
   typedef struct SP_ALTPLATFORM_INFO {
     DWORD cbSize;
-    WINAPI_VER_PLATFORM Platform;
+    VER_PLATFORM Platform;
     DWORD MajorVersion;
     DWORD MinorVersion;
-    WINAPI_PROCESSOR_ARCHITECTURE ProcessorArchitecture;
+    PROCESSOR_ARCHITECTURE ProcessorArchitecture;
     WORD Flags;
     DWORD FirstValidatedMajorVersion;
     DWORD FirstValidatedMinorVersion;
@@ -69,12 +69,12 @@ ffi.cdef [[
     TCHAR RemoteMachineName[SP_MAX_MACHINENAME_LENGTH];
   } SP_DEVINFO_LIST_DETAIL_DATA;
   typedef SP_DEVINFO_LIST_DETAIL_DATA *PSP_DEVINFO_LIST_DETAIL_DATA; //Pointer
-  typedef DWORD WINAPI_DI_FLAGS; //Alias
-  typedef DWORD WINAPI_DI_FLAGSEX; //Alias
+  typedef DWORD DI_FLAGS; //Alias
+  typedef DWORD DI_FLAGSEX; //Alias
   typedef struct SP_DEVINSTALL_PARAMS {
     DWORD cbSize;
-    WINAPI_DI_FLAGS Flags;
-    WINAPI_DI_FLAGSEX FlagsEx;
+    DI_FLAGS Flags;
+    DI_FLAGSEX FlagsEx;
     HWND hwndParent;
     PSP_FILE_CALLBACK InstallMsgHandler;
     PVOID InstallMsgHandlerContext;
@@ -101,14 +101,14 @@ ffi.cdef [[
     TCHAR HardwareID[ANYSIZE_ARRAY];
   } SP_DRVINFO_DETAIL_DATA;
   typedef SP_DRVINFO_DETAIL_DATA *PSP_DRVINFO_DETAIL_DATA; //Pointer
-  typedef ULONG WINAPI_CM_CDMASK; //Alias
-  typedef ULONG WINAPI_CM_CDFLAGS; //Alias
+  typedef ULONG CM_CDMASK; //Alias
+  typedef ULONG CM_CDFLAGS; //Alias
   typedef struct CONFLICT_DETAILS {
     ULONG CD_ulSize;
-    WINAPI_CM_CDMASK CD_ulMask;
+    CM_CDMASK CD_ulMask;
     DEVINST CD_dnDevInst;
     RES_DES CD_rdResDes;
-    WINAPI_CM_CDFLAGS CD_ulFlags;
+    CM_CDFLAGS CD_ulFlags;
     TCHAR CD_szDescription[MAX_PATH];
   } CONFLICT_DETAILS;
   typedef CONFLICT_DETAILS *PCONFLICT_DETAILS; //Pointer
@@ -148,49 +148,49 @@ ffi.cdef [[
   } SP_CLASSIMAGELIST_DATA;
   typedef SP_CLASSIMAGELIST_DATA *PSP_CLASSIMAGELIST_DATA; //Pointer
   typedef UINT DI_FUNCTION; //Alias
-  static const UINT DIF_SELECTDEVICE = 0x00000001;
-  static const UINT DIF_INSTALLDEVICE = 0x00000002;
-  static const UINT DIF_ASSIGNRESOURCES = 0x00000003;
-  static const UINT DIF_PROPERTIES = 0x00000004;
-  static const UINT DIF_REMOVE = 0x00000005;
-  static const UINT DIF_FIRSTTIMESETUP = 0x00000006;
-  static const UINT DIF_FOUNDDEVICE = 0x00000007;
-  static const UINT DIF_SELECTCLASSDRIVERS = 0x00000008;
-  static const UINT DIF_VALIDATECLASSDRIVERS = 0x00000009;
-  static const UINT DIF_INSTALLCLASSDRIVERS = 0x0000000A;
-  static const UINT DIF_CALCDISKSPACE = 0x0000000B;
-  static const UINT DIF_DESTROYPRIVATEDATA = 0x0000000C;
-  static const UINT DIF_VALIDATEDRIVER = 0x0000000D;
-  static const UINT DIF_DETECT = 0x0000000F;
-  static const UINT DIF_INSTALLWIZARD = 0x00000010;
-  static const UINT DIF_DESTROYWIZARDDATA = 0x00000011;
-  static const UINT DIF_PROPERTYCHANGE = 0x00000012;
-  static const UINT DIF_ENABLECLASS = 0x00000013;
-  static const UINT DIF_DETECTVERIFY = 0x00000014;
-  static const UINT DIF_INSTALLDEVICEFILES = 0x00000015;
-  static const UINT DIF_UNREMOVE = 0x00000016;
-  static const UINT DIF_SELECTBESTCOMPATDRV = 0x00000017;
-  static const UINT DIF_ALLOW_INSTALL = 0x00000018;
-  static const UINT DIF_REGISTERDEVICE = 0x00000019;
-  static const UINT DIF_NEWDEVICEWIZARD_PRESELECT = 0x0000001A;
-  static const UINT DIF_NEWDEVICEWIZARD_SELECT = 0x0000001B;
-  static const UINT DIF_NEWDEVICEWIZARD_PREANALYZE = 0x0000001C;
-  static const UINT DIF_NEWDEVICEWIZARD_POSTANALYZE = 0x0000001D;
-  static const UINT DIF_NEWDEVICEWIZARD_FINISHINSTALL = 0x0000001E;
-  static const UINT DIF_UNUSED1 = 0x0000001F;
-  static const UINT DIF_INSTALLINTERFACES = 0x00000020;
-  static const UINT DIF_DETECTCANCEL = 0x00000021;
-  static const UINT DIF_REGISTER_COINSTALLERS = 0x00000022;
-  static const UINT DIF_ADDPROPERTYPAGE_ADVANCED = 0x00000023;
-  static const UINT DIF_ADDPROPERTYPAGE_BASIC = 0x00000024;
-  static const UINT DIF_RESERVED1 = 0x00000025;
-  static const UINT DIF_TROUBLESHOOTER = 0x00000026;
-  static const UINT DIF_POWERMESSAGEWAKE = 0x00000027;
-  static const UINT DIF_ADDREMOTEPROPERTYPAGE_ADVANCED = 0x00000028;
-  static const UINT DIF_UPDATEDRIVER_UI = 0x00000029;
-  static const UINT DIF_FINISHINSTALL_ACTION = 0x0000002A;
-  static const UINT DIF_RESERVED2 = 0x00000030;
-  static const UINT DIF_MOVEDEVICE = 0x0000000E;
+  static const DI_FUNCTION DIF_SELECTDEVICE = 0x00000001;
+  static const DI_FUNCTION DIF_INSTALLDEVICE = 0x00000002;
+  static const DI_FUNCTION DIF_ASSIGNRESOURCES = 0x00000003;
+  static const DI_FUNCTION DIF_PROPERTIES = 0x00000004;
+  static const DI_FUNCTION DIF_REMOVE = 0x00000005;
+  static const DI_FUNCTION DIF_FIRSTTIMESETUP = 0x00000006;
+  static const DI_FUNCTION DIF_FOUNDDEVICE = 0x00000007;
+  static const DI_FUNCTION DIF_SELECTCLASSDRIVERS = 0x00000008;
+  static const DI_FUNCTION DIF_VALIDATECLASSDRIVERS = 0x00000009;
+  static const DI_FUNCTION DIF_INSTALLCLASSDRIVERS = 0x0000000A;
+  static const DI_FUNCTION DIF_CALCDISKSPACE = 0x0000000B;
+  static const DI_FUNCTION DIF_DESTROYPRIVATEDATA = 0x0000000C;
+  static const DI_FUNCTION DIF_VALIDATEDRIVER = 0x0000000D;
+  static const DI_FUNCTION DIF_DETECT = 0x0000000F;
+  static const DI_FUNCTION DIF_INSTALLWIZARD = 0x00000010;
+  static const DI_FUNCTION DIF_DESTROYWIZARDDATA = 0x00000011;
+  static const DI_FUNCTION DIF_PROPERTYCHANGE = 0x00000012;
+  static const DI_FUNCTION DIF_ENABLECLASS = 0x00000013;
+  static const DI_FUNCTION DIF_DETECTVERIFY = 0x00000014;
+  static const DI_FUNCTION DIF_INSTALLDEVICEFILES = 0x00000015;
+  static const DI_FUNCTION DIF_UNREMOVE = 0x00000016;
+  static const DI_FUNCTION DIF_SELECTBESTCOMPATDRV = 0x00000017;
+  static const DI_FUNCTION DIF_ALLOW_INSTALL = 0x00000018;
+  static const DI_FUNCTION DIF_REGISTERDEVICE = 0x00000019;
+  static const DI_FUNCTION DIF_NEWDEVICEWIZARD_PRESELECT = 0x0000001A;
+  static const DI_FUNCTION DIF_NEWDEVICEWIZARD_SELECT = 0x0000001B;
+  static const DI_FUNCTION DIF_NEWDEVICEWIZARD_PREANALYZE = 0x0000001C;
+  static const DI_FUNCTION DIF_NEWDEVICEWIZARD_POSTANALYZE = 0x0000001D;
+  static const DI_FUNCTION DIF_NEWDEVICEWIZARD_FINISHINSTALL = 0x0000001E;
+  static const DI_FUNCTION DIF_UNUSED1 = 0x0000001F;
+  static const DI_FUNCTION DIF_INSTALLINTERFACES = 0x00000020;
+  static const DI_FUNCTION DIF_DETECTCANCEL = 0x00000021;
+  static const DI_FUNCTION DIF_REGISTER_COINSTALLERS = 0x00000022;
+  static const DI_FUNCTION DIF_ADDPROPERTYPAGE_ADVANCED = 0x00000023;
+  static const DI_FUNCTION DIF_ADDPROPERTYPAGE_BASIC = 0x00000024;
+  static const DI_FUNCTION DIF_RESERVED1 = 0x00000025;
+  static const DI_FUNCTION DIF_TROUBLESHOOTER = 0x00000026;
+  static const DI_FUNCTION DIF_POWERMESSAGEWAKE = 0x00000027;
+  static const DI_FUNCTION DIF_ADDREMOTEPROPERTYPAGE_ADVANCED = 0x00000028;
+  static const DI_FUNCTION DIF_UPDATEDRIVER_UI = 0x00000029;
+  static const DI_FUNCTION DIF_FINISHINSTALL_ACTION = 0x0000002A;
+  static const DI_FUNCTION DIF_RESERVED2 = 0x00000030;
+  static const DI_FUNCTION DIF_MOVEDEVICE = 0x0000000E;
   typedef struct SP_CLASSINSTALL_HEADER {
     DWORD cbSize;
     DI_FUNCTION InstallFunction;
@@ -208,174 +208,174 @@ ffi.cdef [[
     DWORD Reserved;
   } SP_DRVINSTALL_PARAMS;
   typedef SP_DRVINSTALL_PARAMS *PSP_DRVINSTALL_PARAMS; //Pointer
-  typedef DWORD WINAPI_DeviceInfoGetFlags; //Alias
-  typedef DWORD WINAPI_OpenDeviceInterfaceFlags; //Alias
-  typedef DWORD WINAPI_OpenDeviceInfoFlags; //Alias
-  typedef DWORD WINAPI_GetCustomDevicePropertyFlags; //Alias
-  typedef DWORD WINAPI_DeviceInfoScope; //Alias
-  typedef DWORD WINAPI_DeviceInfoKeyType; //Alias
-  typedef DWORD WINAPI_SetupDiBuildClassInfoListFlags; //Alias
-  typedef DWORD WINAPI_DiClassPropertyFlags; //Alias
-  typedef ULONG WINAPI_CM_Locate_DevNode_Flags; //Alias
-  typedef ULONG WINAPI_CsConfigFlags; //Alias
-  typedef DWORD WINAPI_DiGetClassDevPropertySheetsType; //Alias
-  static const DWORD DIGCDP_FLAG_BASIC = 0x00000001;
-  static const DWORD DIGCDP_FLAG_ADVANCED = 0x00000002;
-  static const DWORD DIGCDP_FLAG_REMOTE_BASIC = 0x00000003;
-  static const DWORD DIGCDP_FLAG_REMOTE_ADVANCED = 0x00000004;
-  typedef ULONG WINAPI_LogicalConfigFlags; //Alias
-  static const ULONG BASIC_LOG_CONF = 0x00000000;
-  static const ULONG FILTERED_LOG_CONF = 0x00000001;
-  static const ULONG ALLOC_LOG_CONF = 0x00000002;
-  static const ULONG BOOT_LOG_CONF = 0x00000003;
-  static const ULONG FORCED_LOG_CONF = 0x00000004;
-  static const ULONG OVERRIDE_LOG_CONF = 0x00000005;
-  typedef ULONG WINAPI_CmProblemNumber; //Alias
-  static const ULONG CM_PROB_NOT_CONFIGURED = 0x00000001;
-  static const ULONG CM_PROB_DEVLOADER_FAILED = 0x00000002;
-  static const ULONG CM_PROB_OUT_OF_MEMORY = 0x00000003;
-  static const ULONG CM_PROB_ENTRY_IS_WRONG_TYPE = 0x00000004;
-  static const ULONG CM_PROB_LACKED_ARBITRATOR = 0x00000005;
-  static const ULONG CM_PROB_BOOT_CONFIG_CONFLICT = 0x00000006;
-  static const ULONG CM_PROB_FAILED_FILTER = 0x00000007;
-  static const ULONG CM_PROB_DEVLOADER_NOT_FOUND = 0x00000008;
-  static const ULONG CM_PROB_INVALID_DATA = 0x00000009;
-  static const ULONG CM_PROB_FAILED_START = 0x0000000A;
-  static const ULONG CM_PROB_LIAR = 0x0000000B;
-  static const ULONG CM_PROB_NORMAL_CONFLICT = 0x0000000C;
-  static const ULONG CM_PROB_NOT_VERIFIED = 0x0000000D;
-  static const ULONG CM_PROB_NEED_RESTART = 0x0000000E;
-  static const ULONG CM_PROB_REENUMERATION = 0x0000000F;
-  static const ULONG CM_PROB_PARTIAL_LOG_CONF = 0x00000010;
-  static const ULONG CM_PROB_UNKNOWN_RESOURCE = 0x00000011;
-  static const ULONG CM_PROB_REINSTALL = 0x00000012;
-  static const ULONG CM_PROB_REGISTRY = 0x00000013;
-  static const ULONG CM_PROB_VXDLDR = 0x00000014;
-  static const ULONG CM_PROB_WILL_BE_REMOVED = 0x00000015;
-  static const ULONG CM_PROB_DISABLED = 0x00000016;
-  static const ULONG CM_PROB_DEVLOADER_NOT_READY = 0x00000017;
-  static const ULONG CM_PROB_DEVICE_NOT_THERE = 0x00000018;
-  static const ULONG CM_PROB_MOVED = 0x00000019;
-  static const ULONG CM_PROB_TOO_EARLY = 0x0000001A;
-  static const ULONG CM_PROB_NO_VALID_LOG_CONF = 0x0000001B;
-  static const ULONG CM_PROB_FAILED_INSTALL = 0x0000001C;
-  static const ULONG CM_PROB_HARDWARE_DISABLED = 0x0000001D;
-  static const ULONG CM_PROB_CANT_SHARE_IRQ = 0x0000001E;
-  static const ULONG CM_PROB_FAILED_ADD = 0x0000001F;
-  static const ULONG CM_PROB_DISABLED_SERVICE = 0x00000020;
-  static const ULONG CM_PROB_TRANSLATION_FAILED = 0x00000021;
-  static const ULONG CM_PROB_NO_SOFTCONFIG = 0x00000022;
-  static const ULONG CM_PROB_BIOS_TABLE = 0x00000023;
-  static const ULONG CM_PROB_IRQ_TRANSLATION_FAILED = 0x00000024;
-  static const ULONG CM_PROB_FAILED_DRIVER_ENTRY = 0x00000025;
-  static const ULONG CM_PROB_DRIVER_FAILED_PRIOR_UNLOAD = 0x00000026;
-  static const ULONG CM_PROB_DRIVER_FAILED_LOAD = 0x00000027;
-  static const ULONG CM_PROB_DRIVER_SERVICE_KEY_INVALID = 0x00000028;
-  static const ULONG CM_PROB_LEGACY_SERVICE_NO_DEVICES = 0x00000029;
-  static const ULONG CM_PROB_DUPLICATE_DEVICE = 0x0000002A;
-  static const ULONG CM_PROB_FAILED_POST_START = 0x0000002B;
-  static const ULONG CM_PROB_HALTED = 0x0000002C;
-  static const ULONG CM_PROB_PHANTOM = 0x0000002D;
-  static const ULONG CM_PROB_SYSTEM_SHUTDOWN = 0x0000002E;
-  static const ULONG CM_PROB_HELD_FOR_EJECT = 0x0000002F;
-  static const ULONG CM_PROB_DRIVER_BLOCKED = 0x00000030;
-  static const ULONG CM_PROB_REGISTRY_TOO_LARGE = 0x00000031;
-  static const ULONG CM_PROB_SETPROPERTIES_FAILED = 0x00000032;
-  typedef DWORD WINAPI_SetupDiCreateDeviceInfoFlags; //Alias
-  typedef DWORD WINAPI_SetupDeviceRegistryProperty; //Alias
-  static const DWORD SPDRP_DEVICEDESC = 0x00000000;
-  static const DWORD SPDRP_HARDWAREID = 0x00000001;
-  static const DWORD SPDRP_COMPATIBLEIDS = 0x00000002;
-  static const DWORD SPDRP_UNUSED0 = 0x00000003;
-  static const DWORD SPDRP_SERVICE = 0x00000004;
-  static const DWORD SPDRP_UNUSED1 = 0x00000005;
-  static const DWORD SPDRP_UNUSED2 = 0x00000006;
-  static const DWORD SPDRP_CLASS = 0x00000007;
-  static const DWORD SPDRP_CLASSGUID = 0x00000008;
-  static const DWORD SPDRP_DRIVER = 0x00000009;
-  static const DWORD SPDRP_CONFIGFLAGS = 0x0000000A;
-  static const DWORD SPDRP_MFG = 0x0000000B;
-  static const DWORD SPDRP_FRIENDLYNAME = 0x0000000C;
-  static const DWORD SPDRP_LOCATION_INFORMATION = 0x0000000D;
-  static const DWORD SPDRP_PHYSICAL_DEVICE_OBJECT_NAME = 0x0000000E;
-  static const DWORD SPDRP_CAPABILITIES = 0x0000000F;
-  static const DWORD SPDRP_UI_NUMBER = 0x00000010;
-  static const DWORD SPDRP_UPPERFILTERS = 0x00000011;
-  static const DWORD SPDRP_LOWERFILTERS = 0x00000012;
-  static const DWORD SPDRP_BUSTYPEGUID = 0x00000013;
-  static const DWORD SPDRP_LEGACYBUSTYPE = 0x00000014;
-  static const DWORD SPDRP_BUSNUMBER = 0x00000015;
-  static const DWORD SPDRP_ENUMERATOR_NAME = 0x00000016;
-  static const DWORD SPDRP_SECURITY = 0x00000017;
-  static const DWORD SPDRP_SECURITY_SDS = 0x00000018;
-  static const DWORD SPDRP_DEVTYPE = 0x00000019;
-  static const DWORD SPDRP_EXCLUSIVE = 0x0000001A;
-  static const DWORD SPDRP_CHARACTERISTICS = 0x0000001B;
-  static const DWORD SPDRP_ADDRESS = 0x0000001C;
-  static const DWORD SPDRP_UI_NUMBER_DESC_FORMAT = 0X0000001D;
-  static const DWORD SPDRP_DEVICE_POWER_DATA = 0x0000001E;
-  static const DWORD SPDRP_REMOVAL_POLICY = 0x0000001F;
-  static const DWORD SPDRP_REMOVAL_POLICY_HW_DEFAULT = 0x00000020;
-  static const DWORD SPDRP_REMOVAL_POLICY_OVERRIDE = 0x00000021;
-  static const DWORD SPDRP_INSTALL_STATE = 0x00000022;
-  static const DWORD SPDRP_LOCATION_PATHS = 0x00000023;
+  typedef DWORD DeviceInfoGetFlags; //Alias
+  typedef DWORD OpenDeviceInterfaceFlags; //Alias
+  typedef DWORD OpenDeviceInfoFlags; //Alias
+  typedef DWORD GetCustomDevicePropertyFlags; //Alias
+  typedef DWORD DeviceInfoScope; //Alias
+  typedef DWORD DeviceInfoKeyType; //Alias
+  typedef DWORD SetupDiBuildClassInfoListFlags; //Alias
+  typedef DWORD DiClassPropertyFlags; //Alias
+  typedef ULONG CM_Locate_DevNode_Flags; //Alias
+  typedef ULONG CsConfigFlags; //Alias
+  typedef DWORD DiGetClassDevPropertySheetsType; //Alias
+  static const DiGetClassDevPropertySheetsType DIGCDP_FLAG_BASIC = 0x00000001;
+  static const DiGetClassDevPropertySheetsType DIGCDP_FLAG_ADVANCED = 0x00000002;
+  static const DiGetClassDevPropertySheetsType DIGCDP_FLAG_REMOTE_BASIC = 0x00000003;
+  static const DiGetClassDevPropertySheetsType DIGCDP_FLAG_REMOTE_ADVANCED = 0x00000004;
+  typedef ULONG LogicalConfigFlags; //Alias
+  static const LogicalConfigFlags BASIC_LOG_CONF = 0x00000000;
+  static const LogicalConfigFlags FILTERED_LOG_CONF = 0x00000001;
+  static const LogicalConfigFlags ALLOC_LOG_CONF = 0x00000002;
+  static const LogicalConfigFlags BOOT_LOG_CONF = 0x00000003;
+  static const LogicalConfigFlags FORCED_LOG_CONF = 0x00000004;
+  static const LogicalConfigFlags OVERRIDE_LOG_CONF = 0x00000005;
+  typedef ULONG CmProblemNumber; //Alias
+  static const CmProblemNumber CM_PROB_NOT_CONFIGURED = 0x00000001;
+  static const CmProblemNumber CM_PROB_DEVLOADER_FAILED = 0x00000002;
+  static const CmProblemNumber CM_PROB_OUT_OF_MEMORY = 0x00000003;
+  static const CmProblemNumber CM_PROB_ENTRY_IS_WRONG_TYPE = 0x00000004;
+  static const CmProblemNumber CM_PROB_LACKED_ARBITRATOR = 0x00000005;
+  static const CmProblemNumber CM_PROB_BOOT_CONFIG_CONFLICT = 0x00000006;
+  static const CmProblemNumber CM_PROB_FAILED_FILTER = 0x00000007;
+  static const CmProblemNumber CM_PROB_DEVLOADER_NOT_FOUND = 0x00000008;
+  static const CmProblemNumber CM_PROB_INVALID_DATA = 0x00000009;
+  static const CmProblemNumber CM_PROB_FAILED_START = 0x0000000A;
+  static const CmProblemNumber CM_PROB_LIAR = 0x0000000B;
+  static const CmProblemNumber CM_PROB_NORMAL_CONFLICT = 0x0000000C;
+  static const CmProblemNumber CM_PROB_NOT_VERIFIED = 0x0000000D;
+  static const CmProblemNumber CM_PROB_NEED_RESTART = 0x0000000E;
+  static const CmProblemNumber CM_PROB_REENUMERATION = 0x0000000F;
+  static const CmProblemNumber CM_PROB_PARTIAL_LOG_CONF = 0x00000010;
+  static const CmProblemNumber CM_PROB_UNKNOWN_RESOURCE = 0x00000011;
+  static const CmProblemNumber CM_PROB_REINSTALL = 0x00000012;
+  static const CmProblemNumber CM_PROB_REGISTRY = 0x00000013;
+  static const CmProblemNumber CM_PROB_VXDLDR = 0x00000014;
+  static const CmProblemNumber CM_PROB_WILL_BE_REMOVED = 0x00000015;
+  static const CmProblemNumber CM_PROB_DISABLED = 0x00000016;
+  static const CmProblemNumber CM_PROB_DEVLOADER_NOT_READY = 0x00000017;
+  static const CmProblemNumber CM_PROB_DEVICE_NOT_THERE = 0x00000018;
+  static const CmProblemNumber CM_PROB_MOVED = 0x00000019;
+  static const CmProblemNumber CM_PROB_TOO_EARLY = 0x0000001A;
+  static const CmProblemNumber CM_PROB_NO_VALID_LOG_CONF = 0x0000001B;
+  static const CmProblemNumber CM_PROB_FAILED_INSTALL = 0x0000001C;
+  static const CmProblemNumber CM_PROB_HARDWARE_DISABLED = 0x0000001D;
+  static const CmProblemNumber CM_PROB_CANT_SHARE_IRQ = 0x0000001E;
+  static const CmProblemNumber CM_PROB_FAILED_ADD = 0x0000001F;
+  static const CmProblemNumber CM_PROB_DISABLED_SERVICE = 0x00000020;
+  static const CmProblemNumber CM_PROB_TRANSLATION_FAILED = 0x00000021;
+  static const CmProblemNumber CM_PROB_NO_SOFTCONFIG = 0x00000022;
+  static const CmProblemNumber CM_PROB_BIOS_TABLE = 0x00000023;
+  static const CmProblemNumber CM_PROB_IRQ_TRANSLATION_FAILED = 0x00000024;
+  static const CmProblemNumber CM_PROB_FAILED_DRIVER_ENTRY = 0x00000025;
+  static const CmProblemNumber CM_PROB_DRIVER_FAILED_PRIOR_UNLOAD = 0x00000026;
+  static const CmProblemNumber CM_PROB_DRIVER_FAILED_LOAD = 0x00000027;
+  static const CmProblemNumber CM_PROB_DRIVER_SERVICE_KEY_INVALID = 0x00000028;
+  static const CmProblemNumber CM_PROB_LEGACY_SERVICE_NO_DEVICES = 0x00000029;
+  static const CmProblemNumber CM_PROB_DUPLICATE_DEVICE = 0x0000002A;
+  static const CmProblemNumber CM_PROB_FAILED_POST_START = 0x0000002B;
+  static const CmProblemNumber CM_PROB_HALTED = 0x0000002C;
+  static const CmProblemNumber CM_PROB_PHANTOM = 0x0000002D;
+  static const CmProblemNumber CM_PROB_SYSTEM_SHUTDOWN = 0x0000002E;
+  static const CmProblemNumber CM_PROB_HELD_FOR_EJECT = 0x0000002F;
+  static const CmProblemNumber CM_PROB_DRIVER_BLOCKED = 0x00000030;
+  static const CmProblemNumber CM_PROB_REGISTRY_TOO_LARGE = 0x00000031;
+  static const CmProblemNumber CM_PROB_SETPROPERTIES_FAILED = 0x00000032;
+  typedef DWORD SetupDiCreateDeviceInfoFlags; //Alias
+  typedef DWORD SetupDeviceRegistryProperty; //Alias
+  static const SetupDeviceRegistryProperty SPDRP_DEVICEDESC = 0x00000000;
+  static const SetupDeviceRegistryProperty SPDRP_HARDWAREID = 0x00000001;
+  static const SetupDeviceRegistryProperty SPDRP_COMPATIBLEIDS = 0x00000002;
+  static const SetupDeviceRegistryProperty SPDRP_UNUSED0 = 0x00000003;
+  static const SetupDeviceRegistryProperty SPDRP_SERVICE = 0x00000004;
+  static const SetupDeviceRegistryProperty SPDRP_UNUSED1 = 0x00000005;
+  static const SetupDeviceRegistryProperty SPDRP_UNUSED2 = 0x00000006;
+  static const SetupDeviceRegistryProperty SPDRP_CLASS = 0x00000007;
+  static const SetupDeviceRegistryProperty SPDRP_CLASSGUID = 0x00000008;
+  static const SetupDeviceRegistryProperty SPDRP_DRIVER = 0x00000009;
+  static const SetupDeviceRegistryProperty SPDRP_CONFIGFLAGS = 0x0000000A;
+  static const SetupDeviceRegistryProperty SPDRP_MFG = 0x0000000B;
+  static const SetupDeviceRegistryProperty SPDRP_FRIENDLYNAME = 0x0000000C;
+  static const SetupDeviceRegistryProperty SPDRP_LOCATION_INFORMATION = 0x0000000D;
+  static const SetupDeviceRegistryProperty SPDRP_PHYSICAL_DEVICE_OBJECT_NAME = 0x0000000E;
+  static const SetupDeviceRegistryProperty SPDRP_CAPABILITIES = 0x0000000F;
+  static const SetupDeviceRegistryProperty SPDRP_UI_NUMBER = 0x00000010;
+  static const SetupDeviceRegistryProperty SPDRP_UPPERFILTERS = 0x00000011;
+  static const SetupDeviceRegistryProperty SPDRP_LOWERFILTERS = 0x00000012;
+  static const SetupDeviceRegistryProperty SPDRP_BUSTYPEGUID = 0x00000013;
+  static const SetupDeviceRegistryProperty SPDRP_LEGACYBUSTYPE = 0x00000014;
+  static const SetupDeviceRegistryProperty SPDRP_BUSNUMBER = 0x00000015;
+  static const SetupDeviceRegistryProperty SPDRP_ENUMERATOR_NAME = 0x00000016;
+  static const SetupDeviceRegistryProperty SPDRP_SECURITY = 0x00000017;
+  static const SetupDeviceRegistryProperty SPDRP_SECURITY_SDS = 0x00000018;
+  static const SetupDeviceRegistryProperty SPDRP_DEVTYPE = 0x00000019;
+  static const SetupDeviceRegistryProperty SPDRP_EXCLUSIVE = 0x0000001A;
+  static const SetupDeviceRegistryProperty SPDRP_CHARACTERISTICS = 0x0000001B;
+  static const SetupDeviceRegistryProperty SPDRP_ADDRESS = 0x0000001C;
+  static const SetupDeviceRegistryProperty SPDRP_UI_NUMBER_DESC_FORMAT = 0X0000001D;
+  static const SetupDeviceRegistryProperty SPDRP_DEVICE_POWER_DATA = 0x0000001E;
+  static const SetupDeviceRegistryProperty SPDRP_REMOVAL_POLICY = 0x0000001F;
+  static const SetupDeviceRegistryProperty SPDRP_REMOVAL_POLICY_HW_DEFAULT = 0x00000020;
+  static const SetupDeviceRegistryProperty SPDRP_REMOVAL_POLICY_OVERRIDE = 0x00000021;
+  static const SetupDeviceRegistryProperty SPDRP_INSTALL_STATE = 0x00000022;
+  static const SetupDeviceRegistryProperty SPDRP_LOCATION_PATHS = 0x00000023;
   typedef DWORD LogSeverity; //Alias
-  static const DWORD LogSevInformation = 0x00000000;
-  static const DWORD LogSevWarning = 0x00000001;
-  static const DWORD LogSevError = 0x00000002;
-  static const DWORD LogSevFatalError = 0x00000003;
-  static const DWORD LogSevMaximum = 0x00000004;
+  static const LogSeverity LogSevInformation = 0x00000000;
+  static const LogSeverity LogSevWarning = 0x00000001;
+  static const LogSeverity LogSevError = 0x00000002;
+  static const LogSeverity LogSevFatalError = 0x00000003;
+  static const LogSeverity LogSevMaximum = 0x00000004;
   typedef UINT SetupFileLogInfo; //Alias
-  static const UINT SetupFileLogSourceFilename = 0;
-  static const UINT SetupFileLogChecksum = 1;
-  static const UINT SetupFileLogDiskTagfile = 2;
-  static const UINT SetupFileLogDiskDescription = 3;
-  static const UINT SetupFileLogOtherInfo = 4;
+  static const SetupFileLogInfo SetupFileLogSourceFilename = 0;
+  static const SetupFileLogInfo SetupFileLogChecksum = 1;
+  static const SetupFileLogInfo SetupFileLogDiskTagfile = 2;
+  static const SetupFileLogInfo SetupFileLogDiskDescription = 3;
+  static const SetupFileLogInfo SetupFileLogOtherInfo = 4;
   typedef ULONG DEVPROPTYPE; //Alias
-  static const ULONG DEVPROP_TYPE_EMPTY = 0x00000000;
-  static const ULONG DEVPROP_TYPE_NULL = 0x00000001;
-  static const ULONG DEVPROP_TYPE_SBYTE = 0x00000002;
-  static const ULONG DEVPROP_TYPE_BYTE = 0x00000003;
-  static const ULONG DEVPROP_TYPE_INT16 = 0x00000004;
-  static const ULONG DEVPROP_TYPE_UINT16 = 0x00000005;
-  static const ULONG DEVPROP_TYPE_INT32 = 0x00000006;
-  static const ULONG DEVPROP_TYPE_UINT32 = 0x00000007;
-  static const ULONG DEVPROP_TYPE_INT64 = 0x00000008;
-  static const ULONG DEVPROP_TYPE_UINT64 = 0x00000009;
-  static const ULONG DEVPROP_TYPE_FLOAT = 0x0000000A;
-  static const ULONG DEVPROP_TYPE_DOUBLE = 0x0000000B;
-  static const ULONG DEVPROP_TYPE_DECIMAL = 0x0000000C;
-  static const ULONG DEVPROP_TYPE_GUID = 0x0000000D;
-  static const ULONG DEVPROP_TYPE_CURRENCY = 0x0000000E;
-  static const ULONG DEVPROP_TYPE_DATE = 0x0000000F;
-  static const ULONG DEVPROP_TYPE_FILETIME = 0x00000010;
-  static const ULONG DEVPROP_TYPE_BOOLEAN = 0x00000011;
-  static const ULONG DEVPROP_TYPE_STRING = 0x00000012;
-  static const ULONG DEVPROP_TYPE_STRING_LIST = 0x00002012;
-  static const ULONG DEVPROP_TYPE_SECURITY_DESCRIPTOR = 0x00000013;
-  static const ULONG DEVPROP_TYPE_SECURITY_DESCRIPTOR_STRING = 0x00000014;
-  static const ULONG DEVPROP_TYPE_DEVPROPKEY = 0x00000015;
-  static const ULONG DEVPROP_TYPE_DEVPROPTYPE = 0x00000016;
-  static const ULONG DEVPROP_TYPE_BINARY = 0x00001003;
-  static const ULONG DEVPROP_TYPE_ERROR = 0x00000017;
-  static const ULONG DEVPROP_TYPE_NTSTATUS = 0x00000018;
-  static const ULONG DEVPROP_TYPE_STRING_INDIRECT = 0x00000019;
+  static const DEVPROPTYPE DEVPROP_TYPE_EMPTY = 0x00000000;
+  static const DEVPROPTYPE DEVPROP_TYPE_NULL = 0x00000001;
+  static const DEVPROPTYPE DEVPROP_TYPE_SBYTE = 0x00000002;
+  static const DEVPROPTYPE DEVPROP_TYPE_BYTE = 0x00000003;
+  static const DEVPROPTYPE DEVPROP_TYPE_INT16 = 0x00000004;
+  static const DEVPROPTYPE DEVPROP_TYPE_UINT16 = 0x00000005;
+  static const DEVPROPTYPE DEVPROP_TYPE_INT32 = 0x00000006;
+  static const DEVPROPTYPE DEVPROP_TYPE_UINT32 = 0x00000007;
+  static const DEVPROPTYPE DEVPROP_TYPE_INT64 = 0x00000008;
+  static const DEVPROPTYPE DEVPROP_TYPE_UINT64 = 0x00000009;
+  static const DEVPROPTYPE DEVPROP_TYPE_FLOAT = 0x0000000A;
+  static const DEVPROPTYPE DEVPROP_TYPE_DOUBLE = 0x0000000B;
+  static const DEVPROPTYPE DEVPROP_TYPE_DECIMAL = 0x0000000C;
+  static const DEVPROPTYPE DEVPROP_TYPE_GUID = 0x0000000D;
+  static const DEVPROPTYPE DEVPROP_TYPE_CURRENCY = 0x0000000E;
+  static const DEVPROPTYPE DEVPROP_TYPE_DATE = 0x0000000F;
+  static const DEVPROPTYPE DEVPROP_TYPE_FILETIME = 0x00000010;
+  static const DEVPROPTYPE DEVPROP_TYPE_BOOLEAN = 0x00000011;
+  static const DEVPROPTYPE DEVPROP_TYPE_STRING = 0x00000012;
+  static const DEVPROPTYPE DEVPROP_TYPE_STRING_LIST = 0x00002012;
+  static const DEVPROPTYPE DEVPROP_TYPE_SECURITY_DESCRIPTOR = 0x00000013;
+  static const DEVPROPTYPE DEVPROP_TYPE_SECURITY_DESCRIPTOR_STRING = 0x00000014;
+  static const DEVPROPTYPE DEVPROP_TYPE_DEVPROPKEY = 0x00000015;
+  static const DEVPROPTYPE DEVPROP_TYPE_DEVPROPTYPE = 0x00000016;
+  static const DEVPROPTYPE DEVPROP_TYPE_BINARY = 0x00001003;
+  static const DEVPROPTYPE DEVPROP_TYPE_ERROR = 0x00000017;
+  static const DEVPROPTYPE DEVPROP_TYPE_NTSTATUS = 0x00000018;
+  static const DEVPROPTYPE DEVPROP_TYPE_STRING_INDIRECT = 0x00000019;
   typedef UINT PPNP_VETO_TYPE; //Alias
-  static const UINT PNP_VetoTypeUnknown = 0;
-  static const UINT PNP_VetoLegacyDevice = 1;
-  static const UINT PNP_VetoPendingClose = 2;
-  static const UINT PNP_VetoWindowsApp = 3;
-  static const UINT PNP_VetoWindowsService = 4;
-  static const UINT PNP_VetoOutstandingOpen = 5;
-  static const UINT PNP_VetoDevice = 6;
-  static const UINT PNP_VetoDriver = 7;
-  static const UINT PNP_VetoIllegalDeviceRequest = 8;
-  static const UINT PNP_VetoInsufficientPower = 9;
-  static const UINT PNP_VetoNonDisableable = 10;
-  static const UINT PNP_VetoLegacyDriver = 11;
-  static const UINT PNP_VetoInsufficientRights = 12;
-  typedef UINT WINAPI_SPDSL_FLAGS; //Alias
-  typedef UINT WINAPI_SPINST_FLAGS; //Alias
+  static const PPNP_VETO_TYPE PNP_VetoTypeUnknown = 0;
+  static const PPNP_VETO_TYPE PNP_VetoLegacyDevice = 1;
+  static const PPNP_VETO_TYPE PNP_VetoPendingClose = 2;
+  static const PPNP_VETO_TYPE PNP_VetoWindowsApp = 3;
+  static const PPNP_VETO_TYPE PNP_VetoWindowsService = 4;
+  static const PPNP_VETO_TYPE PNP_VetoOutstandingOpen = 5;
+  static const PPNP_VETO_TYPE PNP_VetoDevice = 6;
+  static const PPNP_VETO_TYPE PNP_VetoDriver = 7;
+  static const PPNP_VETO_TYPE PNP_VetoIllegalDeviceRequest = 8;
+  static const PPNP_VETO_TYPE PNP_VetoInsufficientPower = 9;
+  static const PPNP_VETO_TYPE PNP_VetoNonDisableable = 10;
+  static const PPNP_VETO_TYPE PNP_VetoLegacyDriver = 11;
+  static const PPNP_VETO_TYPE PNP_VetoInsufficientRights = 12;
+  typedef UINT SPDSL_FLAGS; //Alias
+  typedef UINT SPINST_FLAGS; //Alias
   VOID         InstallHinfSection(                         HWND hwnd, HINSTANCE ModuleHandle, PCTSTR CmdLineBuffer, INT nCmdShow);
   BOOL         SetupAddInstallSectionToDiskSpaceList(      HDSKSPC DiskSpace, HINF InfHandle, HINF LayoutInfHandle, PCTSTR SectionName, PVOID Reserved1, UINT Reserved2);
   BOOL         SetupAddSectionToDiskSpaceList(             HDSKSPC DiskSpace, HINF InfHandle, HINF ListInfHandle, PCTSTR SectionName, UINT Operation, PVOID Reserved1, UINT Reserved2);
@@ -390,7 +390,7 @@ ffi.cdef [[
   BOOL         SetupConfigureWmiFromInfSection(            HINF InfHandle, PCWSTR SectionName, DWORD Flags);
   UINT         SetupCopyError(                             HWND hwndParent, PCTSTR DialogTitle, PCTSTR DiskName, PCTSTR PathToSource, PCTSTR SourceFile, PCTSTR TargetPathFile, UINT Win32ErrorCode, DWORD Style, PTSTR PathBuffer, DWORD PathBufferSize, PDWORD PathRequiredSize);
   BOOL         SetupCopyOEMInf(                            PCTSTR SourceInfFileName, PCTSTR OEMSourceMediaLocation, DWORD OEMSourceMediaType, DWORD CopyStyle, PTSTR DestinationInfFileName, DWORD DestinationInfFileNameSize, PDWORD RequiredSize, PTSTR DestinationInfFileNameComponent);
-  HDSKSPC      SetupCreateDiskSpaceList(                   PVOID Reserved1, DWORD Reserved2, WINAPI_SPDSL_FLAGS Flags);
+  HDSKSPC      SetupCreateDiskSpaceList(                   PVOID Reserved1, DWORD Reserved2, SPDSL_FLAGS Flags);
   DWORD        SetupDecompressOrCopyFile(                  PCTSTR SourceFileName, PCTSTR TargetFileName, PUINT CompressionType);
   UINT         SetupDefaultQueueCallback(                  PVOID Context, UINT Notification, UINT Param1, UINT Param2);
   UINT         SetupDeleteError(                           HWND hwndParent, PCTSTR DialogTitle, PCTSTR File, UINT Win32ErrorCode, DWORD Style);
@@ -407,7 +407,7 @@ ffi.cdef [[
   BOOL         SetupGetFileCompressionInfoEx(              PCTSTR SourceFileName, PTSTR ActualSourceFileNameBuffer, DWORD ActualSourceFileNameLen, PDWORD RequiredBufferLen, PDWORD SourceFileSize, PDWORD TargetFileSize, PUINT CompressionType);
   BOOL         SetupGetFileQueueCount(                     HSPFILEQ FileQueue, UINT SubQueueFileOp, PUINT NumOperations);
   BOOL         SetupGetFileQueueFlags(                     HSPFILEQ FileQueue, PDWORD Flags);
-  BOOL         SetupGetInfFileList(                        PCTSTR DirectoryPath, WINAPI_InfStyle InfStyle, PTSTR ReturnBuffer, DWORD ReturnBufferSize, PDWORD RequiredSize);
+  BOOL         SetupGetInfFileList(                        PCTSTR DirectoryPath, InfStyle InfStyle, PTSTR ReturnBuffer, DWORD ReturnBufferSize, PDWORD RequiredSize);
   BOOL         SetupGetInfInformation(                     LPCVOID InfSpec, DWORD SearchControl, PSP_INF_INFORMATION ReturnBuffer, DWORD ReturnBufferSize, PDWORD RequiredSize);
   BOOL         SetupGetIntField(                           PINFCONTEXT Context, DWORD FieldIndex, PINT IntegerValue);
   BOOL         SetupGetLineByIndex(                        HINF InfHandle, PCTSTR Section, DWORD Index, PINFCONTEXT Context);
@@ -425,7 +425,7 @@ ffi.cdef [[
   BOOL         SetupInstallFile(                           HINF InfHandle, PINFCONTEXT InfContext, PCTSTR SourceFile, PCTSTR SourcePathRoot, PCTSTR DestinationName, DWORD CopyStyle, PSP_FILE_CALLBACK CopyMsgHandler, PVOID Context);
   BOOL         SetupInstallFileEx(                         HINF InfHandle, PINFCONTEXT InfContext, PCTSTR SourceFile, PCTSTR SourcePathRoot, PCTSTR DestinationName, DWORD CopyStyle, PSP_FILE_CALLBACK CopyMsgHandler, PVOID Context, PBOOL FileWasInUse);
   BOOL         SetupInstallFilesFromInfSection(            HINF InfHandle, HINF LayoutInfHandle, HSPFILEQ FileQueue, PCTSTR SectionName, PCTSTR SourceRootPath, UINT CopyFlags);
-  BOOL         SetupInstallFromInfSection(                 HWND Owner, HINF InfHandle, PCTSTR SectionName, WINAPI_SPINST_FLAGS Flags, HKEY RelativeKeyRoot, PCTSTR SourceRootPath, UINT CopyFlags, PSP_FILE_CALLBACK MsgHandler, PVOID Context, HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
+  BOOL         SetupInstallFromInfSection(                 HWND Owner, HINF InfHandle, PCTSTR SectionName, SPINST_FLAGS Flags, HKEY RelativeKeyRoot, PCTSTR SourceRootPath, UINT CopyFlags, PSP_FILE_CALLBACK MsgHandler, PVOID Context, HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupInstallServicesFromInfSection(         HINF InfHandle, PCTSTR SectionName, DWORD Flags);
   BOOL         SetupInstallServicesFromInfSectionEx(       HINF InfHandle, PCTSTR SectionName, DWORD Flags, HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PVOID Reserved1, PVOID Reserved2);
   BOOL         SetupIterateCabinet(                        PCTSTR CabinetFile, DWORD Reserved, PSP_FILE_CALLBACK MsgHandler, PVOID Context);
@@ -433,7 +433,7 @@ ffi.cdef [[
   BOOL         SetupLogError(                              PCTSTR MessageString, LogSeverity Severity);
   BOOL         SetupOpenAppendInfFile(                     PCTSTR FileName, HINF InfHandle, PUINT ErrorLine);
   HSPFILEQ     SetupOpenFileQueue(                         );
-  HINF         SetupOpenInfFile(                           PCTSTR FileName, PCTSTR InfClass, WINAPI_InfStyle InfStyle, PUINT ErrorLine);
+  HINF         SetupOpenInfFile(                           PCTSTR FileName, PCTSTR InfClass, InfStyle InfStyle, PUINT ErrorLine);
   HINF         SetupOpenMasterInf(                         );
   UINT         SetupPromptForDisk(                         HWND hwndParent, PCTSTR DialogTitle, PCTSTR DiskName, PCTSTR PathToSource, PCTSTR FileSought, PCTSTR TagFile, DWORD DiskPromptStyle, PTSTR PathBuffer, DWORD PathBufferSize, PDWORD PathRequiredSize);
   INT          SetupPromptReboot(                          HSPFILEQ FileQueue, HWND Owner, BOOL ScanOnly);
@@ -475,9 +475,9 @@ ffi.cdef [[
   BOOL         SetupGetNonInteractiveMode(                 );
   BOOL         SetupSetNonInteractiveMode(                 BOOL NonInteractiveFlag);
   BOOL         SetupDiAskForOEMDisk(                       HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
-  BOOL         SetupDiBuildClassInfoList(                  WINAPI_SetupDiBuildClassInfoListFlags Flags, LPGUID ClassGuidList, DWORD ClassGuidListSize, PDWORD RequiredSize);
-  BOOL         SetupDiBuildClassInfoListEx(                WINAPI_SetupDiBuildClassInfoListFlags Flags, LPGUID ClassGuidList, DWORD ClassGuidListSize, PDWORD RequiredSize, PCTSTR MachineName, PVOID Reserved);
-  BOOL         SetupDiBuildDriverInfoList(                 HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DiDriverType DriverType);
+  BOOL         SetupDiBuildClassInfoList(                  SetupDiBuildClassInfoListFlags Flags, LPGUID ClassGuidList, DWORD ClassGuidListSize, PDWORD RequiredSize);
+  BOOL         SetupDiBuildClassInfoListEx(                SetupDiBuildClassInfoListFlags Flags, LPGUID ClassGuidList, DWORD ClassGuidListSize, PDWORD RequiredSize, PCTSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiBuildDriverInfoList(                 HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DiDriverType DriverType);
   BOOL         SetupDiCallClassInstaller(                  DI_FUNCTION InstallFunction, HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiCancelDriverInfoSearch(              HDEVINFO DeviceInfoSet);
   BOOL         SetupDiChangeState(                         HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
@@ -485,53 +485,53 @@ ffi.cdef [[
   BOOL         SetupDiClassGuidsFromNameEx(                PCTSTR ClassName, LPGUID ClassGuidList, DWORD ClassGuidListSize, PDWORD RequiredSize, PCTSTR MachineName, PVOID Reserved);
   BOOL         SetupDiClassNameFromGuid(                   LPGUID ClassGuid, PTSTR ClassName, DWORD ClassNameSize, PDWORD RequiredSize);
   BOOL         SetupDiClassNameFromGuidEx(                 LPGUID ClassGuid, PTSTR ClassName, DWORD ClassNameSize, PDWORD RequiredSize, PCTSTR MachineName, PVOID Reserved);
-  BOOL         SetupDiCreateDeviceInfo(                    HDEVINFO DeviceInfoSet, PCTSTR DeviceName, LPGUID ClassGuid, PCTSTR DeviceDescription, HWND hwndParent, WINAPI_SetupDiCreateDeviceInfoFlags CreationFlags, PSP_DEVINFO_DATA DeviceInfoData);
+  BOOL         SetupDiCreateDeviceInfo(                    HDEVINFO DeviceInfoSet, PCTSTR DeviceName, LPGUID ClassGuid, PCTSTR DeviceDescription, HWND hwndParent, SetupDiCreateDeviceInfoFlags CreationFlags, PSP_DEVINFO_DATA DeviceInfoData);
   HDEVINFO     SetupDiCreateDeviceInfoList(                LPGUID ClassGuid, HWND hwndParent);
   HDEVINFO     SetupDiCreateDeviceInfoListEx(              LPGUID ClassGuid, HWND hwndParent, PCTSTR MachineName, PVOID Reserved);
   BOOL         SetupDiCreateDeviceInterface(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, LPGUID InterfaceClassGuid, PCTSTR ReferenceString, DWORD CreationFlags, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData);
   HKEY         SetupDiCreateDeviceInterfaceRegKey(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DWORD Reserved, REGSAM samDesired, HINF InfHandle, PCTSTR InfSectionName);
-  HKEY         SetupDiCreateDevRegKey(                     HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DeviceInfoScope Scope, DWORD HwProfile, WINAPI_DeviceInfoKeyType KeyType, HINF InfHandle, PCTSTR InfSectionName);
+  HKEY         SetupDiCreateDevRegKey(                     HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DeviceInfoScope Scope, DWORD HwProfile, DeviceInfoKeyType KeyType, HINF InfHandle, PCTSTR InfSectionName);
   BOOL         SetupDiDeleteDeviceInfo(                    HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiDeleteDeviceInterfaceData(           HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData);
   BOOL         SetupDiDeleteDeviceInterfaceRegKey(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DWORD Reserved);
-  BOOL         SetupDiDeleteDevRegKey(                     HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DeviceInfoScope Scope, DWORD HwProfile, WINAPI_DeviceInfoKeyType KeyType);
+  BOOL         SetupDiDeleteDevRegKey(                     HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DeviceInfoScope Scope, DWORD HwProfile, DeviceInfoKeyType KeyType);
   BOOL         SetupDiDestroyClassImageList(               PSP_CLASSIMAGELIST_DATA ClassImageListData);
   BOOL         SetupDiDestroyDeviceInfoList(               HDEVINFO DeviceInfoSet);
-  BOOL         SetupDiDestroyDriverInfoList(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DiDriverType DriverType);
+  BOOL         SetupDiDestroyDriverInfoList(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DiDriverType DriverType);
   INT          SetupDiDrawMiniIcon(                        HDC hdc, RECT rc, INT MiniIconIndex, DWORD Flags);
   BOOL         SetupDiEnumDeviceInfo(                      HDEVINFO DeviceInfoSet, DWORD MemberIndex, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiEnumDeviceInterfaces(                HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, LPGUID InterfaceClassGuid, DWORD MemberIndex, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData);
-  BOOL         SetupDiEnumDriverInfo(                      HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DiDriverType DriverType, DWORD MemberIndex, PSP_DRVINFO_DATA DriverInfoData);
+  BOOL         SetupDiEnumDriverInfo(                      HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DiDriverType DriverType, DWORD MemberIndex, PSP_DRVINFO_DATA DriverInfoData);
   BOOL         SetupDiGetActualModelsSection(              PINFCONTEXT Context, PSP_ALTPLATFORM_INFO AlternatePlatformInfo, PTSTR DecoratedModelsSection, DWORD DecoratedModelsSectionSize, PDWORD RequiredSize, PVOID Reserved);
   BOOL         SetupDiGetActualSectionToInstall(           HINF InfHandle, PCTSTR InfSectionName, PTSTR InfSectionWithExt, DWORD InfSectionWithExtSize, PDWORD RequiredSize, PTSTR* Extension);
   BOOL         SetupDiGetActualSectionToInstallEx(         HINF InfHandle, PCTSTR InfSectionName, PSP_ALTPLATFORM_INFO AlternatePlatformInfo, PTSTR InfSectionWithExt, DWORD InfSectionWithExtSize, PDWORD RequiredSize, PTSTR* Extension, PVOID Reserved);
   BOOL         SetupDiGetClassBitmapIndex(                 LPGUID ClassGuid, PINT MiniIconIndex);
   BOOL         SetupDiGetClassDescription(                 LPGUID ClassGuid, PTSTR ClassDescription, DWORD ClassDescriptionSize, PDWORD RequiredSize);
   BOOL         SetupDiGetClassDescriptionEx(               LPGUID ClassGuid, PTSTR ClassDescription, DWORD ClassDescriptionSize, PDWORD RequiredSize, PCTSTR MachineName, PVOID Reserved);
-  BOOL         SetupDiGetClassDevPropertySheets(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, LPPROPSHEETHEADER PropertySheetHeader, DWORD PropertySheetHeaderPageListSize, PDWORD RequiredSize, WINAPI_DiGetClassDevPropertySheetsType PropertySheetType);
-  HDEVINFO     SetupDiGetClassDevs(                        LPGUID ClassGuid, PCTSTR Enumerator, HWND hwndParent, WINAPI_DeviceInfoGetFlags Flags);
-  HDEVINFO     SetupDiGetClassDevsEx(                      LPGUID ClassGuid, PCTSTR Enumerator, HWND hwndParent, WINAPI_DeviceInfoGetFlags Flags, HDEVINFO DeviceInfoSet, PCTSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiGetClassDevPropertySheets(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, LPPROPSHEETHEADER PropertySheetHeader, DWORD PropertySheetHeaderPageListSize, PDWORD RequiredSize, DiGetClassDevPropertySheetsType PropertySheetType);
+  HDEVINFO     SetupDiGetClassDevs(                        LPGUID ClassGuid, PCTSTR Enumerator, HWND hwndParent, DeviceInfoGetFlags Flags);
+  HDEVINFO     SetupDiGetClassDevsEx(                      LPGUID ClassGuid, PCTSTR Enumerator, HWND hwndParent, DeviceInfoGetFlags Flags, HDEVINFO DeviceInfoSet, PCTSTR MachineName, PVOID Reserved);
   BOOL         SetupDiGetClassImageIndex(                  PSP_CLASSIMAGELIST_DATA ClassImageListData, LPGUID ClassGuid, PINT ImageIndex);
   BOOL         SetupDiGetClassImageList(                   PSP_CLASSIMAGELIST_DATA ClassImageListData);
   BOOL         SetupDiGetClassImageListEx(                 PSP_CLASSIMAGELIST_DATA ClassImageListData, PCTSTR MachineName, PVOID Reserved);
   BOOL         SetupDiGetClassInstallParams(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_CLASSINSTALL_HEADER ClassInstallParams, DWORD ClassInstallParamsSize, PDWORD RequiredSize);
-  BOOL         SetupDiGetClassPropertyW(                   WINAPI_GUID* ClassGuid, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, WINAPI_DiClassPropertyFlags Flags);
-  BOOL         SetupDiGetClassPropertyExW(                 WINAPI_GUID* ClassGuid, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, WINAPI_DiClassPropertyFlags Flags, PCWSTR MachineName, PVOID Reserved);
-  BOOL         SetupDiGetClassPropertyKeys(                WINAPI_GUID* ClassGuid, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, WINAPI_DiClassPropertyFlags Flags);
-  BOOL         SetupDiGetClassPropertyKeysExW(             WINAPI_GUID* ClassGuid, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, WINAPI_DiClassPropertyFlags Flags, PCWSTR MachineName, PVOID Reserved);
-  BOOL         SetupDiGetClassRegistryProperty(            LPGUID ClassGuid, DWORD Property, WINAPI_RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, PCTSTR MachineName, PVOID Reserved);
-  BOOL         SetupDiGetCustomDeviceProperty(             HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PCTSTR CustomPropertyName, WINAPI_GetCustomDevicePropertyFlags Flags, WINAPI_RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize);
+  BOOL         SetupDiGetClassPropertyW(                   GUID* ClassGuid, DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DiClassPropertyFlags Flags);
+  BOOL         SetupDiGetClassPropertyExW(                 GUID* ClassGuid, DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DiClassPropertyFlags Flags, PCWSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiGetClassPropertyKeys(                GUID* ClassGuid, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, DiClassPropertyFlags Flags);
+  BOOL         SetupDiGetClassPropertyKeysExW(             GUID* ClassGuid, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, DiClassPropertyFlags Flags, PCWSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiGetClassRegistryProperty(            LPGUID ClassGuid, DWORD Property, RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, PCTSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiGetCustomDeviceProperty(             HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PCTSTR CustomPropertyName, GetCustomDevicePropertyFlags Flags, RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize);
   BOOL         SetupDiGetDeviceInfoListClass(              HDEVINFO DeviceInfoSet, LPGUID ClassGuid);
   BOOL         SetupDiGetDeviceInfoListDetail(             HDEVINFO DeviceInfoSet, PSP_DEVINFO_LIST_DETAIL_DATA DeviceInfoSetDetailData);
   BOOL         SetupDiGetDeviceInstallParams(              HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DEVINSTALL_PARAMS DeviceInstallParams);
   BOOL         SetupDiGetDeviceInstanceId(                 HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PTSTR DeviceInstanceId, DWORD DeviceInstanceIdSize, PDWORD RequiredSize);
   BOOL         SetupDiGetDeviceInterfaceAlias(             HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, LPGUID AliasInterfaceClassGuid, PSP_DEVICE_INTERFACE_DATA AliasDeviceInterfaceData);
   BOOL         SetupDiGetDeviceInterfaceDetail(            HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, PSP_DEVICE_INTERFACE_DETAIL_DATA DeviceInterfaceDetailData, DWORD DeviceInterfaceDetailDataSize, PDWORD RequiredSize, PSP_DEVINFO_DATA DeviceInfoData);
-  BOOL         SetupDiGetDeviceInterfacePropertyW(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags);
+  BOOL         SetupDiGetDeviceInterfacePropertyW(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags);
   BOOL         SetupDiGetDeviceInterfacePropertyKeys(      HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, DWORD Flags);
-  BOOL         SetupDiGetDevicePropertyW(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags);
+  BOOL         SetupDiGetDevicePropertyW(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DEVPROPKEY* PropertyKey, DEVPROPTYPE* PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize, DWORD Flags);
   BOOL         SetupDiGetDevicePropertyKeys(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DEVPROPKEY* PropertyKeyArray, DWORD PropertyKeyCount, PDWORD RequiredPropertyKeyCount, DWORD Flags);
-  BOOL         SetupDiGetDeviceRegistryProperty(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_SetupDeviceRegistryProperty Property, WINAPI_RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize);
+  BOOL         SetupDiGetDeviceRegistryProperty(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, SetupDeviceRegistryProperty Property, RegType* PropertyRegDataType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, PDWORD RequiredSize);
   BOOL         SetupDiGetDriverInfoDetail(                 HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DRVINFO_DATA DriverInfoData, PSP_DRVINFO_DETAIL_DATA DriverInfoDetailData, DWORD DriverInfoDetailDataSize, PDWORD RequiredSize);
   BOOL         SetupDiGetDriverInstallParams(              HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DRVINFO_DATA DriverInfoData, PSP_DRVINSTALL_PARAMS DriverInstallParams);
   BOOL         SetupDiGetHwProfileFriendlyName(            DWORD HwProfile, PTSTR FriendlyName, DWORD FriendlyNameSize, PDWORD RequiredSize);
@@ -550,10 +550,10 @@ ffi.cdef [[
   BOOL         SetupDiLoadDeviceIcon(                      HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, UINT cxIcon, UINT cyIcon, DWORD Flags, HICON* hIcon);
   HKEY         SetupDiOpenClassRegKey(                     LPGUID ClassGuid, REGSAM samDesired);
   HKEY         SetupDiOpenClassRegKeyEx(                   LPGUID ClassGuid, REGSAM samDesired, DWORD Flags, PCTSTR MachineName, PVOID Reserved);
-  BOOL         SetupDiOpenDeviceInfo(                      HDEVINFO DeviceInfoSet, PCTSTR DeviceInstanceId, HWND hwndParent, WINAPI_OpenDeviceInfoFlags OpenFlags, PSP_DEVINFO_DATA DeviceInfoData);
-  BOOL         SetupDiOpenDeviceInterface(                 HDEVINFO DeviceInfoSet, PCTSTR DevicePath, WINAPI_OpenDeviceInterfaceFlags OpenFlags, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData);
+  BOOL         SetupDiOpenDeviceInfo(                      HDEVINFO DeviceInfoSet, PCTSTR DeviceInstanceId, HWND hwndParent, OpenDeviceInfoFlags OpenFlags, PSP_DEVINFO_DATA DeviceInfoData);
+  BOOL         SetupDiOpenDeviceInterface(                 HDEVINFO DeviceInfoSet, PCTSTR DevicePath, OpenDeviceInterfaceFlags OpenFlags, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData);
   HKEY         SetupDiOpenDeviceInterfaceRegKey(           HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DWORD Reserved, REGSAM samDesired);
-  HKEY         SetupDiOpenDevRegKey(                       HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DeviceInfoScope Scope, DWORD HwProfile, WINAPI_DeviceInfoKeyType KeyType, REGSAM samDesired);
+  HKEY         SetupDiOpenDevRegKey(                       HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DeviceInfoScope Scope, DWORD HwProfile, DeviceInfoKeyType KeyType, REGSAM samDesired);
   BOOL         SetupDiRegisterCoDeviceInstallers(          HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiRegisterDeviceInfo(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DWORD Flags, PSP_DETSIG_CMPPROC CompareProc, PVOID CompareContext, PSP_DEVINFO_DATA DupDeviceInfoData);
   BOOL         SetupDiRemoveDevice(                        HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
@@ -563,14 +563,14 @@ ffi.cdef [[
   BOOL         SetupDiSelectDevice(                        HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiSelectOEMDrv(                        HWND hwndParent, HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiSetClassInstallParams(               HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_CLASSINSTALL_HEADER ClassInstallParams, DWORD ClassInstallParamsSize);
-  BOOL         SetupDiSetClassPropertyW(                   WINAPI_GUID* ClassGuid, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, WINAPI_PBYTE PropertyBuffer, DWORD PropertyBufferSize, WINAPI_DiClassPropertyFlags Flags);
-  BOOL         SetupDiSetClassPropertyExW(                 WINAPI_GUID* ClassGuid, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, WINAPI_BYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags, PVOID Reserved);
-  BOOL         SetupDiSetClassRegistryProperty(            LPGUID ClassGuid, DWORD Property, WINAPI_BYTE* PropertyBuffer, DWORD PropertyBufferSize, PCTSTR MachineName, PVOID Reserved);
+  BOOL         SetupDiSetClassPropertyW(                   GUID* ClassGuid, DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DiClassPropertyFlags Flags);
+  BOOL         SetupDiSetClassPropertyExW(                 GUID* ClassGuid, DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, BYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags, PVOID Reserved);
+  BOOL         SetupDiSetClassRegistryProperty(            LPGUID ClassGuid, DWORD Property, BYTE* PropertyBuffer, DWORD PropertyBufferSize, PCTSTR MachineName, PVOID Reserved);
   BOOL         SetupDiSetDeviceInstallParams(              HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DEVINSTALL_PARAMS DeviceInstallParams);
   BOOL         SetupDiSetDeviceInterfaceDefault(           HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DWORD Flags, PVOID Reserved);
-  BOOL         SetupDiSetDeviceInterfacePropertyW(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, WINAPI_PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags);
-  BOOL         SetupDiSetDevicePropertyW(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, WINAPI_PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags);
-  BOOL         SetupDiSetDeviceRegistryProperty(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, WINAPI_SetupDeviceRegistryProperty Property, WINAPI_BYTE* PropertyBuffer, DWORD PropertyBufferSize);
+  BOOL         SetupDiSetDeviceInterfacePropertyW(         HDEVINFO DeviceInfoSet, PSP_DEVICE_INTERFACE_DATA DeviceInterfaceData, DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags);
+  BOOL         SetupDiSetDevicePropertyW(                  HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, DEVPROPKEY* PropertyKey, DEVPROPTYPE PropertyType, PBYTE PropertyBuffer, DWORD PropertyBufferSize, DWORD Flags);
+  BOOL         SetupDiSetDeviceRegistryProperty(           HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, SetupDeviceRegistryProperty Property, BYTE* PropertyBuffer, DWORD PropertyBufferSize);
   BOOL         SetupDiSetDriverInstallParams(              HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DRVINFO_DATA DriverInfoData, PSP_DRVINSTALL_PARAMS DriverInstallParams);
   BOOL         SetupDiSetSelectedDevice(                   HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData);
   BOOL         SetupDiSetSelectedDriver(                   HDEVINFO DeviceInfoSet, PSP_DEVINFO_DATA DeviceInfoData, PSP_DRVINFO_DATA DriverInfoData);
@@ -614,12 +614,12 @@ ffi.cdef [[
   CONFIGRET    CM_Get_Device_ID_Size_Ex(                   PULONG pulLen, DEVINST dnDevInst, ULONG ulFlags, HMACHINE hMachine);
   CONFIGRET    CM_Get_Device_Interface_List(               LPGUID InterfaceClassGuid, DEVINSTID pDeviceID, PTCHAR Buffer, ULONG BufferLen, ULONG ulFlags);
   CONFIGRET    CM_Get_Device_Interface_List_Size(          PULONG pulLen, LPGUID InterfaceClassGuid, DEVINSTID pDeviceID, ULONG ulFlags);
-  CONFIGRET    CM_Get_DevNode_Status(                      PULONG pulStatus, WINAPI_CmProblemNumber* pulProblemNumber, DEVINST dnDevInst, ULONG ulFlags);
-  CONFIGRET    CM_Get_DevNode_Status_Ex(                   PULONG pulStatus, WINAPI_CmProblemNumber* pulProblemNumber, DEVINST dnDevInst, ULONG ulFlags, HMACHINE hMachine);
-  CONFIGRET    CM_Get_First_Log_Conf(                      PLOG_CONF plcLogConf, DEVINST dnDevInst, WINAPI_LogicalConfigFlags ulFlags);
-  CONFIGRET    CM_Get_First_Log_Conf_Ex(                   PLOG_CONF plcLogConf, DEVINST dnDevInst, WINAPI_LogicalConfigFlags ulFlags, HMACHINE hMachine);
-  CONFIGRET    CM_Get_HW_Prof_Flags(                       DEVINSTID pDeviceID, WINAPI_CsConfigFlags* pulValue, ULONG ulFlags);
-  CONFIGRET    CM_Get_HW_Prof_Flags_Ex(                    DEVINSTID pDeviceID, ULONG ulHardwareProfile, WINAPI_CsConfigFlags* pulValue, ULONG ulFlags, HMACHINE hMachine);
+  CONFIGRET    CM_Get_DevNode_Status(                      PULONG pulStatus, CmProblemNumber* pulProblemNumber, DEVINST dnDevInst, ULONG ulFlags);
+  CONFIGRET    CM_Get_DevNode_Status_Ex(                   PULONG pulStatus, CmProblemNumber* pulProblemNumber, DEVINST dnDevInst, ULONG ulFlags, HMACHINE hMachine);
+  CONFIGRET    CM_Get_First_Log_Conf(                      PLOG_CONF plcLogConf, DEVINST dnDevInst, LogicalConfigFlags ulFlags);
+  CONFIGRET    CM_Get_First_Log_Conf_Ex(                   PLOG_CONF plcLogConf, DEVINST dnDevInst, LogicalConfigFlags ulFlags, HMACHINE hMachine);
+  CONFIGRET    CM_Get_HW_Prof_Flags(                       DEVINSTID pDeviceID, CsConfigFlags* pulValue, ULONG ulFlags);
+  CONFIGRET    CM_Get_HW_Prof_Flags_Ex(                    DEVINSTID pDeviceID, ULONG ulHardwareProfile, CsConfigFlags* pulValue, ULONG ulFlags, HMACHINE hMachine);
   CONFIGRET    CM_Get_Log_Conf_Priority(                   LOG_CONF lcLogConf, PPRIORITY pPriority, ULONG ulFlags);
   CONFIGRET    CM_Get_Log_Conf_Priority_Ex(                LOG_CONF lcLogConf, PPRIORITY pPriority, ULONG ulFlags, HMACHINE hMachine);
   CONFIGRET    CM_Get_Next_Log_Conf(                       PLOG_CONF plcLogConf, LOG_CONF lcLogConf, ULONG ulFlags);
@@ -642,8 +642,8 @@ ffi.cdef [[
   CONFIGRET    CM_Is_Dock_Station_Present_Ex(              PBOOL pbPresent, HMACHINE hMachine);
   CONFIGRET    CM_Is_Version_Available(                    WORD wVersion);
   CONFIGRET    CM_Is_Version_Available_Ex(                 WORD wVersion, HMACHINE hMachine);
-  CONFIGRET    CM_Locate_DevNode(                          PDEVINST pdnDevInst, DEVINSTID pDeviceID, WINAPI_CM_Locate_DevNode_Flags ulFlags);
-  CONFIGRET    CM_Locate_DevNode_Ex(                       PDEVINST pdnDevInst, DEVINSTID pDeviceID, WINAPI_CM_Locate_DevNode_Flags ulFlags, HMACHINE hMachine);
+  CONFIGRET    CM_Locate_DevNode(                          PDEVINST pdnDevInst, DEVINSTID pDeviceID, CM_Locate_DevNode_Flags ulFlags);
+  CONFIGRET    CM_Locate_DevNode_Ex(                       PDEVINST pdnDevInst, DEVINSTID pDeviceID, CM_Locate_DevNode_Flags ulFlags, HMACHINE hMachine);
   CONFIGRET    CM_Modify_Res_Des(                          PRES_DES prdResDes, RES_DES rdResDes, RESOURCEID ResourceID, PCVOID ResourceData, ULONG ResourceLen, ULONG ulFlags);
   CONFIGRET    CM_Modify_Res_Des_Ex(                       PRES_DES prdResDes, RES_DES rdResDes, RESOURCEID ResourceID, PCVOID ResourceData, ULONG ResourceLen, ULONG ulFlags, HMACHINE hMachine);
   CONFIGRET    CM_Query_And_Remove_SubTree(                DEVINST dnAncestor, PPNP_VETO_TYPE pVetoType, LPTSTR pszVetoName, ULONG ulNameLength, ULONG ulFlags);
@@ -656,9 +656,9 @@ ffi.cdef [[
   CONFIGRET    CM_Request_Eject_PC(                        );
   CONFIGRET    CM_Request_Eject_PC_Ex(                     HMACHINE hMachine);
   CONFIGRET    CM_Set_Class_Registry_Property(             LPGUID ClassGuid, ULONG ulProperty, PCVOID Buffer, ULONG ulLength, ULONG ulFlags, HMACHINE hMachine);
-  CONFIGRET    CM_Set_DevNode_Problem(                     DEVINST dnDevInst, WINAPI_CmProblemNumber ulProblem, ULONG ulFlags);
-  CONFIGRET    CM_Set_DevNode_Problem_Ex(                  DEVINST dnDevInst, WINAPI_CmProblemNumber ulProblem, ULONG ulFlags, HMACHINE hMachine);
+  CONFIGRET    CM_Set_DevNode_Problem(                     DEVINST dnDevInst, CmProblemNumber ulProblem, ULONG ulFlags);
+  CONFIGRET    CM_Set_DevNode_Problem_Ex(                  DEVINST dnDevInst, CmProblemNumber ulProblem, ULONG ulFlags, HMACHINE hMachine);
   CONFIGRET    CM_Setup_DevNode(                           DEVINST dnDevInst, ULONG ulFlags);
   DWORD        CMP_WaitNoPendingInstallEvents(             DWORD dwTimeout);
 ]]
-return ffi.load( 'Setupapi.dll' )
+ffi.load( 'Setupapi.dll' )

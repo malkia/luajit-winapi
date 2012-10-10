@@ -4,32 +4,32 @@ ffi.cdef [[
   typedef LPVOID LPDECIMAL; //Alias
   typedef DWORD OLE_COLOR; //Alias
   typedef BSTR *LPBSTR; //Pointer
-  typedef struct WINAPI_PICTDESC_u_s1 {
+  typedef struct PICTDESC_u_s1 {
     HBITMAP hbitmap;
     HPALETTE hpal;
-  } WINAPI_PICTDESC_u_s1;
-  typedef struct WINAPI_PICTDESC_u_s2 {
+  } PICTDESC_u_s1;
+  typedef struct PICTDESC_u_s2 {
     HMETAFILE hmeta;
     int xExt;
     int yExt;
-  } WINAPI_PICTDESC_u_s2;
-  typedef struct WINAPI_PICTDESC_u_s3 {
+  } PICTDESC_u_s2;
+  typedef struct PICTDESC_u_s3 {
     HICON hicon;
-  } WINAPI_PICTDESC_u_s3;
-  typedef struct WINAPI_PICTDESC_u_s4 {
+  } PICTDESC_u_s3;
+  typedef struct PICTDESC_u_s4 {
     HENHMETAFILE hemf;
-  } WINAPI_PICTDESC_u_s4;
-  typedef union WINAPI_PICTDESC_u {
-    WINAPI_PICTDESC_u_s1 bmp;
-    WINAPI_PICTDESC_u_s2 wmf;
-    WINAPI_PICTDESC_u_s3 icon;
-    WINAPI_PICTDESC_u_s4 emf;
-  } WINAPI_PICTDESC_u;
-  typedef UINT WINAPI_PICTYPE; //Alias
+  } PICTDESC_u_s4;
+  typedef union PICTDESC_u {
+    PICTDESC_u_s1 bmp;
+    PICTDESC_u_s2 wmf;
+    PICTDESC_u_s3 icon;
+    PICTDESC_u_s4 emf;
+  } PICTDESC_u;
+  typedef UINT PICTYPE; //Alias
   typedef struct PICTDESC {
     UINT cbSizeofstruct;
-    WINAPI_PICTYPE picType;
-    WINAPI_PICTDESC_u ;
+    PICTYPE picType;
+    PICTDESC_u ;
   } PICTDESC;
   typedef PICTDESC *LPPICTDESC; //Pointer
   typedef struct CY {
@@ -62,24 +62,24 @@ ffi.cdef [[
     DISPID dispidInitialProperty;
   } OCPFIPARAMS;
   typedef OCPFIPARAMS *LPOCPFIPARAMS; //Pointer
-  typedef DWORD WINAPI_OleLoadPictureExFlags; //Alias
-  static const DWORD LP_DEFAULT = 0x00;
-  static const DWORD LP_MONOCHROME = 0x01;
-  static const DWORD LP_VGACOLOR = 0x02;
-  static const DWORD LP_COLOR = 0x04;
+  typedef DWORD OleLoadPictureExFlags; //Alias
+  static const OleLoadPictureExFlags LP_DEFAULT = 0x00;
+  static const OleLoadPictureExFlags LP_MONOCHROME = 0x01;
+  static const OleLoadPictureExFlags LP_VGACOLOR = 0x02;
+  static const OleLoadPictureExFlags LP_COLOR = 0x04;
   typedef UINT REGKIND; //Alias
-  static const UINT REGKIND_DEFAULT = 0;
-  static const UINT REGKIND_REGISTER = 1;
-  static const UINT REGKIND_NONE = 2;
+  static const REGKIND REGKIND_DEFAULT = 0;
+  static const REGKIND REGKIND_REGISTER = 1;
+  static const REGKIND REGKIND_NONE = 2;
   typedef struct UDATE {
     SYSTEMTIME st;
     USHORT wDayOfYear;
   } UDATE;
-  typedef ULONG WINAPI_NUMPRS_FLAG; //Alias
+  typedef ULONG NUMPRS_FLAG; //Alias
   typedef struct NUMPARSE {
     INT cDig;
-    WINAPI_NUMPRS_FLAG dwInFlags;
-    WINAPI_NUMPRS_FLAG dwOutFlags;
+    NUMPRS_FLAG dwInFlags;
+    NUMPRS_FLAG dwOutFlags;
     INT cchUsed;
     INT nBaseShift;
     INT nPwr10;
@@ -95,7 +95,7 @@ ffi.cdef [[
     UINT iMeth;
     CALLCONV cc;
     UINT cArgs;
-    WINAPI_InvokeFlags wFlags;
+    InvokeFlags wFlags;
     VARTYPE vtReturn;
   } METHODDATA;
   typedef struct INTERFACEDATA {
@@ -106,7 +106,7 @@ ffi.cdef [[
   HRESULT        OleCreateFontIndirect(           LPFONTDESC lpFontDesc, REFIID riid, LPVOID* lplpvObj);
   HRESULT        OleCreatePictureIndirect(        LPPICTDESC lpPictDesc, REFIID riid, BOOL fOwn, LPVOID* lplpvObj);
   HRESULT        OleLoadPicture(                  LPSTREAM lpstream, LONG lSize, BOOL fRunmode, REFIID riid, LPVOID* lplpvObj);
-  HRESULT        OleLoadPictureEx(                LPSTREAM lpstream, LONG lSize, BOOL fRunmode, REFIID riid, DWORD xSizeDesired, DWORD ySizeDesired, WINAPI_OleLoadPictureExFlags dwFlags, LPVOID* lplpvObj);
+  HRESULT        OleLoadPictureEx(                LPSTREAM lpstream, LONG lSize, BOOL fRunmode, REFIID riid, DWORD xSizeDesired, DWORD ySizeDesired, OleLoadPictureExFlags dwFlags, LPVOID* lplpvObj);
   HRESULT        OleCreatePropertyFrame(          HWND hwndOwner, UINT x, UINT y, LPCOLESTR lpszCaption, ULONG cObjects, LPUNKNOWN* ppUnk, ULONG cPages, LPCLSID pPageClsID, LCID lcid, DWORD dwReserved, LPVOID pvReserved);
   HRESULT        OleCreatePropertyFrameIndirect(  LPOCPFIPARAMS lpParams);
   HRESULT        OleLoadPicturePath(              LPOLESTR szURLorPath, LPUNKNOWN punkCaller, DWORD dwReserved, OLE_COLOR clrReserved, REFIID riid, LPVOID* ppvRet);
@@ -169,7 +169,7 @@ ffi.cdef [[
   HRESULT        VarI1FromR4(                     FLOAT fltIn, CHAR* pcOut);
   HRESULT        VarI1FromR8(                     DOUBLE dblIn, CHAR* pcOut);
   HRESULT        VarI1FromCy(                     CY cyIn, CHAR* pcOut);
-  HRESULT        VarI1FromDec(                    WINAPI_DECIMAL* pdecIn, CHAR* pcOut);
+  HRESULT        VarI1FromDec(                    DECIMAL* pdecIn, CHAR* pcOut);
   HRESULT        VarI1FromDate(                   DATE dateIn, CHAR* pcOut);
   HRESULT        VarI1FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, CHAR* pcOut);
   HRESULT        VarI1FromDisp(                   IDispatch* pdispIn, LCID lcid, CHAR* pcOut);
@@ -184,7 +184,7 @@ ffi.cdef [[
   HRESULT        VarUI1FromR4(                    FLOAT fltIn, BYTE* pbOut);
   HRESULT        VarUI1FromR8(                    DOUBLE dblIn, BYTE* pbOut);
   HRESULT        VarUI1FromCy(                    CY cyIn, BYTE* pbOut);
-  HRESULT        VarUI1FromDec(                   WINAPI_DECIMAL* pdecIn, BYTE* pbOut);
+  HRESULT        VarUI1FromDec(                   DECIMAL* pdecIn, BYTE* pbOut);
   HRESULT        VarUI1FromDate(                  DATE dateIn, BYTE* pbOut);
   HRESULT        VarUI1FromStr(                   LPCOLESTR strIn, LCID lcid, ULONG dwFlags, BYTE* pbOut);
   HRESULT        VarUI1FromDisp(                  IDispatch* pdispIn, LCID lcid, BYTE* pbOut);
@@ -199,7 +199,7 @@ ffi.cdef [[
   HRESULT        VarI2FromR4(                     FLOAT fltIn, SHORT* psOut);
   HRESULT        VarI2FromR8(                     DOUBLE dblIn, SHORT* psOut);
   HRESULT        VarI2FromCy(                     CY cyIn, SHORT* psOut);
-  HRESULT        VarI2FromDec(                    WINAPI_DECIMAL* pdecIn, SHORT* psOut);
+  HRESULT        VarI2FromDec(                    DECIMAL* pdecIn, SHORT* psOut);
   HRESULT        VarI2FromDate(                   DATE dateIn, SHORT* psOut);
   HRESULT        VarI2FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, SHORT* psOut);
   HRESULT        VarI2FromDisp(                   IDispatch* pdispIn, LCID lcid, SHORT* psOut);
@@ -214,7 +214,7 @@ ffi.cdef [[
   HRESULT        VarUI2FromR4(                    FLOAT fltIn, USHORT* puiOut);
   HRESULT        VarUI2FromR8(                    DOUBLE dblIn, USHORT* puiOut);
   HRESULT        VarUI2FromCy(                    CY cyIn, USHORT* puiOut);
-  HRESULT        VarUI2FromDec(                   WINAPI_DECIMAL* pdecIn, USHORT* puiOut);
+  HRESULT        VarUI2FromDec(                   DECIMAL* pdecIn, USHORT* puiOut);
   HRESULT        VarUI2FromDate(                  DATE dateIn, USHORT* puiOut);
   HRESULT        VarUI2FromStr(                   LPCOLESTR strIn, LCID lcid, ULONG dwFlags, USHORT* puiOut);
   HRESULT        VarUI2FromDisp(                  IDispatch* pdispIn, LCID lcid, USHORT* puiOut);
@@ -229,7 +229,7 @@ ffi.cdef [[
   HRESULT        VarI4FromR4(                     FLOAT fltIn, LONG* plOut);
   HRESULT        VarI4FromR8(                     DOUBLE dblIn, LONG* plOut);
   HRESULT        VarI4FromCy(                     CY cyIn, LONG* plOut);
-  HRESULT        VarI4FromDec(                    WINAPI_DECIMAL* pdecIn, LONG* plOut);
+  HRESULT        VarI4FromDec(                    DECIMAL* pdecIn, LONG* plOut);
   HRESULT        VarI4FromDate(                   DATE dateIn, LONG* plOut);
   HRESULT        VarI4FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, LONG* plOut);
   HRESULT        VarI4FromDisp(                   IDispatch* pdispIn, LCID lcid, LONG* plOut);
@@ -244,7 +244,7 @@ ffi.cdef [[
   HRESULT        VarUI4FromR4(                    FLOAT fltIn, ULONG* pulOut);
   HRESULT        VarUI4FromR8(                    DOUBLE dblIn, ULONG* pulOut);
   HRESULT        VarUI4FromCy(                    CY cyIn, ULONG* pulOut);
-  HRESULT        VarUI4FromDec(                   WINAPI_DECIMAL* pdecIn, ULONG* pulOut);
+  HRESULT        VarUI4FromDec(                   DECIMAL* pdecIn, ULONG* pulOut);
   HRESULT        VarUI4FromDate(                  DATE dateIn, ULONG* pulOut);
   HRESULT        VarUI4FromStr(                   LPCOLESTR strIn, LCID lcid, ULONG dwFlags, ULONG* pulOut);
   HRESULT        VarUI4FromDisp(                  IDispatch* pdispIn, LCID lcid, ULONG* pulOut);
@@ -259,7 +259,7 @@ ffi.cdef [[
   HRESULT        VarR4FromI8(                     LONG64 i64In, FLOAT* pfltOut);
   HRESULT        VarR4FromR8(                     DOUBLE dblIn, FLOAT* pfltOut);
   HRESULT        VarR4FromCy(                     CY cyIn, FLOAT* pfltOut);
-  HRESULT        VarR4FromDec(                    WINAPI_DECIMAL* pdecIn, FLOAT* pfltOut);
+  HRESULT        VarR4FromDec(                    DECIMAL* pdecIn, FLOAT* pfltOut);
   HRESULT        VarR4FromDate(                   DATE dateIn, FLOAT* pfltOut);
   HRESULT        VarR4FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, FLOAT* pfltOut);
   HRESULT        VarR4FromDisp(                   IDispatch* pdispIn, LCID lcid, FLOAT* pfltOut);
@@ -274,7 +274,7 @@ ffi.cdef [[
   HRESULT        VarR8FromI8(                     LONG64 i64In, DOUBLE* pdblOut);
   HRESULT        VarR8FromR4(                     FLOAT fltIn, DOUBLE* pdblOut);
   HRESULT        VarR8FromCy(                     CY cyIn, DOUBLE* pdblOut);
-  HRESULT        VarR8FromDec(                    WINAPI_DECIMAL* pdecIn, DOUBLE* pdblOut);
+  HRESULT        VarR8FromDec(                    DECIMAL* pdecIn, DOUBLE* pdblOut);
   HRESULT        VarR8FromDate(                   DATE dateIn, DOUBLE* pdblOut);
   HRESULT        VarR8FromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, DOUBLE* pdblOut);
   HRESULT        VarR8FromDisp(                   IDispatch* pdispIn, LCID lcid, DOUBLE* pdblOut);
@@ -290,7 +290,7 @@ ffi.cdef [[
   HRESULT        VarDateFromR4(                   FLOAT fltIn, DATE* pdateOut);
   HRESULT        VarDateFromR8(                   DOUBLE dblIn, DATE* pdateOut);
   HRESULT        VarDateFromCy(                   CY cyIn, DATE* pdateOut);
-  HRESULT        VarDateFromDec(                  WINAPI_DECIMAL* pdecIn, DATE* pdateOut);
+  HRESULT        VarDateFromDec(                  DECIMAL* pdecIn, DATE* pdateOut);
   HRESULT        VarDateFromStr(                  LPCOLESTR strIn, LCID lcid, ULONG dwFlags, DATE* pdateOut);
   HRESULT        VarDateFromDisp(                 IDispatch* pdispIn, LCID lcid, DATE* pdateOut);
   HRESULT        VarDateFromBool(                 VARIANT_BOOL boolIn, DATE* pdateOut);
@@ -304,7 +304,7 @@ ffi.cdef [[
   HRESULT        VarCyFromI8(                     LONG64 i64In, CY* pcyOut);
   HRESULT        VarCyFromR4(                     FLOAT fltIn, CY* pcyOut);
   HRESULT        VarCyFromR8(                     DOUBLE dblIn, CY* pcyOut);
-  HRESULT        VarCyFromDec(                    WINAPI_DECIMAL* pdecIn, CY* pcyOut);
+  HRESULT        VarCyFromDec(                    DECIMAL* pdecIn, CY* pcyOut);
   HRESULT        VarCyFromDate(                   DATE dateIn, CY* pcyOut);
   HRESULT        VarCyFromStr(                    LPCOLESTR strIn, LCID lcid, ULONG dwFlags, CY* pcyOut);
   HRESULT        VarCyFromDisp(                   IDispatch* pdispIn, LCID lcid, CY* pcyOut);
@@ -320,7 +320,7 @@ ffi.cdef [[
   HRESULT        VarBstrFromR4(                   FLOAT fltIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromR8(                   DOUBLE dblIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromCy(                   CY cyIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
-  HRESULT        VarBstrFromDec(                  WINAPI_DECIMAL* pdecIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
+  HRESULT        VarBstrFromDec(                  DECIMAL* pdecIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromDate(                 DATE dateIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromDisp(                 IDispatch* pdispIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
   HRESULT        VarBstrFromBool(                 VARIANT_BOOL boolIn, LCID lcid, ULONG dwFlags, BSTR* pbstrOut);
@@ -335,7 +335,7 @@ ffi.cdef [[
   HRESULT        VarBoolFromR4(                   FLOAT fltIn, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromR8(                   DOUBLE dblIn, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromCy(                   CY cyIn, VARIANT_BOOL* pboolOut);
-  HRESULT        VarBoolFromDec(                  WINAPI_DECIMAL* pdecIn, VARIANT_BOOL* pboolOut);
+  HRESULT        VarBoolFromDec(                  DECIMAL* pdecIn, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromDate(                 DATE dateIn, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromStr(                  LPCOLESTR strIn, LCID lcid, ULONG dwFlags, VARIANT_BOOL* pboolOut);
   HRESULT        VarBoolFromDisp(                 IDispatch* pdispIn, LCID lcid, VARIANT_BOOL* pboolOut);
@@ -357,7 +357,7 @@ ffi.cdef [[
   HRESULT        VarI8FromBool(                   VARIANT_BOOL boolIn, LONG64* pi64Out);
   HRESULT        VarI8FromCy(                     CY cyIn, LONG64* pi64Out);
   HRESULT        VarI8FromDate(                   DATE dateIn, LONG64* pi64Out);
-  HRESULT        VarI8FromDec(                    WINAPI_DECIMAL* pdecIn, LONG64* pi64Out);
+  HRESULT        VarI8FromDec(                    DECIMAL* pdecIn, LONG64* pi64Out);
   HRESULT        VarI8FromDisp(                   IDispatch* pdispIn, LCID lcid, LONG64* pi64Out);
   HRESULT        VarI8FromI1(                     CHAR cIn, LONG64* pi64Out);
   HRESULT        VarI8FromI2(                     SHORT sIn, LONG64* pi64Out);
@@ -371,7 +371,7 @@ ffi.cdef [[
   HRESULT        VarUI8FromBool(                  VARIANT_BOOL boolIn, ULONG64* pi64Out);
   HRESULT        VarUI8FromCy(                    CY cyIn, ULONG64* pi64Out);
   HRESULT        VarUI8FromDate(                  DATE dateIn, ULONG64* pi64Out);
-  HRESULT        VarUI8FromDec(                   WINAPI_DECIMAL* pdecIn, ULONG64* pi64Out);
+  HRESULT        VarUI8FromDec(                   DECIMAL* pdecIn, ULONG64* pi64Out);
   HRESULT        VarUI8FromDisp(                  IDispatch* pdispIn, LCID lcid, ULONG64* pi64Out);
   HRESULT        VarUI8FromI1(                    CHAR cIn, ULONG64* pi64Out);
   HRESULT        VarUI8FromI2(                    SHORT sIn, ULONG64* pi64Out);
@@ -411,9 +411,9 @@ ffi.cdef [[
   unsigned long  BSTR_UserSize64(                 unsigned long* pFlags, unsigned long Offset, BSTR* pBstr);
   unsigned char* BSTR_UserUnmarshal(              unsigned long* pFlags, unsigned char* pBuffer, BSTR* pBstr);
   unsigned char* BSTR_UserUnmarshal64(            unsigned long* pFlags, unsigned char* pBuffer, BSTR* pBstr);
-  unsigned char* LPSAFEARRAY_Marshal(             unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray, WINAPI_IID* piid);
-  unsigned long  LPSAFEARRAY_Size(                unsigned long* pFlags, unsigned long Offset, LPSAFEARRAY* ppSafeArray, WINAPI_IID* piid);
-  unsigned char* LPSAFEARRAY_Unmarshal(           unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray, WINAPI_IID* piid);
+  unsigned char* LPSAFEARRAY_Marshal(             unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray, IID* piid);
+  unsigned long  LPSAFEARRAY_Size(                unsigned long* pFlags, unsigned long Offset, LPSAFEARRAY* ppSafeArray, IID* piid);
+  unsigned char* LPSAFEARRAY_Unmarshal(           unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray, IID* piid);
   void           LPSAFEARRAY_UserFree(            unsigned long* pFlags, LPSAFEARRAY* ppSafeArray);
   unsigned char* LPSAFEARRAY_UserMarshal(         unsigned long* pFlags, unsigned char* pBuffer, LPSAFEARRAY* ppSafeArray);
   unsigned long  LPSAFEARRAY_UserSize(            unsigned long* pFlags, unsigned long Offset, LPSAFEARRAY* ppSafeArray);
@@ -426,12 +426,12 @@ ffi.cdef [[
   unsigned long  VARIANT_UserSize64(              unsigned long* pFlags, unsigned long Offset, VARIANT* pVariant);
   unsigned char* VARIANT_UserUnmarshal(           unsigned long* pFlags, unsigned char* pBuffer, VARIANT* pVariant);
   unsigned char* VARIANT_UserUnmarshal64(         unsigned long* pFlags, unsigned char* pBuffer, VARIANT* pVariant);
-  BSTR           SysAllocString(                  WINAPI_OLECHAR* psz);
+  BSTR           SysAllocString(                  OLECHAR* psz);
   BSTR           SysAllocStringByteLen(           LPCSTR psz, UINT len);
-  BSTR           SysAllocStringLen(               WINAPI_OLECHAR* strIn, UINT ui);
+  BSTR           SysAllocStringLen(               OLECHAR* strIn, UINT ui);
   void           SysFreeString(                   BSTR bstrString);
-  INT            SysReAllocString(                BSTR* pbstr, WINAPI_OLECHAR* psz);
-  INT            SysReAllocStringLen(             BSTR* pbstr, WINAPI_OLECHAR* psz, unsigned int len);
+  INT            SysReAllocString(                BSTR* pbstr, OLECHAR* psz);
+  INT            SysReAllocStringLen(             BSTR* pbstr, OLECHAR* psz, unsigned int len);
   UINT           SysStringByteLen(                BSTR bstr);
   UINT           SysStringLen(                    BSTR bstr);
   HRESULT        VarAbs(                          LPVARIANT pvarIn, LPVARIANT pvarResult);
@@ -457,11 +457,11 @@ ffi.cdef [[
   HRESULT        VarRound(                        LPVARIANT pvarIn, int cDecimals, LPVARIANT pvarResult);
   HRESULT        VarSub(                          LPVARIANT pvarLeft, LPVARIANT pvarRight, LPVARIANT pvarResult);
   HRESULT        VarXor(                          LPVARIANT pvarLeft, LPVARIANT pvarRight, LPVARIANT pvarResult);
-  HRESULT        VariantChangeType(               VARIANTARG* pvargDest, WINAPI_VARIANTARG* pvarSrc, USHORT wFlags, VARTYPE vt);
-  HRESULT        VariantChangeTypeEx(             VARIANTARG* pvargDest, WINAPI_VARIANTARG* pvarSrc, LCID lcid, USHORT wFlags, VARTYPE vt);
+  HRESULT        VariantChangeType(               VARIANTARG* pvargDest, VARIANTARG* pvarSrc, USHORT wFlags, VARTYPE vt);
+  HRESULT        VariantChangeTypeEx(             VARIANTARG* pvargDest, VARIANTARG* pvarSrc, LCID lcid, USHORT wFlags, VARTYPE vt);
   HRESULT        VariantClear(                    VARIANTARG* pvarg);
-  HRESULT        VariantCopy(                     VARIANTARG* pvargDest, WINAPI_VARIANTARG* pvargSrc);
-  HRESULT        VariantCopyInd(                  VARIANT* pvarDest, WINAPI_VARIANTARG* pvargSrc);
+  HRESULT        VariantCopy(                     VARIANTARG* pvargDest, VARIANTARG* pvargSrc);
+  HRESULT        VariantCopyInd(                  VARIANT* pvarDest, VARIANTARG* pvargSrc);
   void           VariantInit(                     VARIANTARG* pvarg);
   HRESULT        CreateDispTypeInfo(              INTERFACEDATA* pidata, LCID lcid, ITypeInfo** pptinfo);
   HRESULT        CreateStdDispatch(               IUnknown* punkOuter, void* pvThis, ITypeInfo* ptinfo, IUnknown** ppunkStdDisp);
@@ -491,7 +491,7 @@ ffi.cdef [[
   HRESULT        CreateTypeLib2(                  SYSKIND syskind, LPCOLESTR szFile, ICreateTypeLib2** ppctlib);
   HRESULT        OACreateTypeLib2(                SYSKIND syskind, LPCOLESTR szFile, ICreateTypeLib2** ppctlib);
   ULONG          OaBuildVersion(                  );
-  ULONG          LHashValOfNameSys(               SYSKIND syskind, LCID lcid, WINAPI_OLECHAR* szName);
+  ULONG          LHashValOfNameSys(               SYSKIND syskind, LCID lcid, OLECHAR* szName);
   ULONG          LHashValOfNameSysA(              SYSKIND syskind, LCID lcid, LPCSTR szName);
   HRESULT        LoadRegTypeLib(                  REFGUID rguid, WORD wVerMajor, WORD wVerMinor, LCID lcid, ITypeLib** pptlib);
   HRESULT        LoadTypeLib(                     LPCOLESTR szFile, ITypeLib** pptlib);
@@ -506,4 +506,4 @@ ffi.cdef [[
   HRESULT        GetRecordInfoFromGuids(          REFGUID rGuidTypeLib, ULONG uVerMajor, ULONG uVerMinor, LCID lcid, REFGUID rGuidTypeInfo, IRecordInfo** ppRecInfo);
   HRESULT        GetRecordInfoFromTypeInfo(       ITypeInfo* pTypeInfo, IRecordInfo** ppRecInfo);
 ]]
-return ffi.load( 'OleAut32.dll' )
+ffi.load( 'OleAut32.dll' )

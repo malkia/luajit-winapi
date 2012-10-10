@@ -138,94 +138,94 @@ ffi.cdef [[
   typedef unsigned __int64 MFWORKITEM_KEY; //Alias
   typedef LPVOID MFPERIODICCALLBACK; //Alias
   typedef DWORD MFSequencerElementId; //Alias
-  static const DWORD MFSEQUENCER_INVALID_ELEMENT_ID = 0xffffffff;
+  static const MFSequencerElementId MFSEQUENCER_INVALID_ELEMENT_ID = 0xffffffff;
   typedef UINT MF_ATTRIBUTE_TYPE; //Alias
-  static const UINT MF_ATTRIBUTE_UINT32 = 19;
-  static const UINT MF_ATTRIBUTE_UINT64 = 21;
-  static const UINT MF_ATTRIBUTE_DOUBLE = 5;
-  static const UINT MF_ATTRIBUTE_GUID = 72;
-  static const UINT MF_ATTRIBUTE_STRING = 31;
-  static const UINT MF_ATTRIBUTE_BLOB = 0x1011;
-  static const UINT MF_ATTRIBUTE_IUNKNOWN = 13;
+  static const MF_ATTRIBUTE_TYPE MF_ATTRIBUTE_UINT32 = 19;
+  static const MF_ATTRIBUTE_TYPE MF_ATTRIBUTE_UINT64 = 21;
+  static const MF_ATTRIBUTE_TYPE MF_ATTRIBUTE_DOUBLE = 5;
+  static const MF_ATTRIBUTE_TYPE MF_ATTRIBUTE_GUID = 72;
+  static const MF_ATTRIBUTE_TYPE MF_ATTRIBUTE_STRING = 31;
+  static const MF_ATTRIBUTE_TYPE MF_ATTRIBUTE_BLOB = 0x1011;
+  static const MF_ATTRIBUTE_TYPE MF_ATTRIBUTE_IUNKNOWN = 13;
   typedef UINT MF_ATTRIBUTES_MATCH_TYPE; //Alias
-  static const UINT MF_ATTRIBUTES_MATCH_OUR_ITEMS = 0;
-  static const UINT MF_ATTRIBUTES_MATCH_THEIR_ITEMS = 1;
-  static const UINT MF_ATTRIBUTES_MATCH_ALL_ITEMS = 2;
-  static const UINT MF_ATTRIBUTES_MATCH_INTERSECTION = 3;
-  static const UINT MF_ATTRIBUTES_MATCH_SMALLER = 4;
+  static const MF_ATTRIBUTES_MATCH_TYPE MF_ATTRIBUTES_MATCH_OUR_ITEMS = 0;
+  static const MF_ATTRIBUTES_MATCH_TYPE MF_ATTRIBUTES_MATCH_THEIR_ITEMS = 1;
+  static const MF_ATTRIBUTES_MATCH_TYPE MF_ATTRIBUTES_MATCH_ALL_ITEMS = 2;
+  static const MF_ATTRIBUTES_MATCH_TYPE MF_ATTRIBUTES_MATCH_INTERSECTION = 3;
+  static const MF_ATTRIBUTES_MATCH_TYPE MF_ATTRIBUTES_MATCH_SMALLER = 4;
   typedef UINT MFBYTESTREAM_SEEK_ORIGIN; //Alias
-  static const UINT msoBegin = 0;
-  static const UINT msoCurrent = 1;
+  static const MFBYTESTREAM_SEEK_ORIGIN msoBegin = 0;
+  static const MFBYTESTREAM_SEEK_ORIGIN msoCurrent = 1;
   typedef UINT MF_OBJECT_TYPE; //Alias
-  static const UINT MF_OBJECT_MEDIASOURCE = 0;
-  static const UINT MF_OBJECT_BYTESTREAM = 1;
-  static const UINT MF_OBJECT_INVALID = 2;
+  static const MF_OBJECT_TYPE MF_OBJECT_MEDIASOURCE = 0;
+  static const MF_OBJECT_TYPE MF_OBJECT_BYTESTREAM = 1;
+  static const MF_OBJECT_TYPE MF_OBJECT_INVALID = 2;
   typedef UINT MFCLOCK_STATE; //Alias
-  static const UINT MFCLOCK_STATE_INVALID = 0;
-  static const UINT MFCLOCK_STATE_RUNNING = 1;
-  static const UINT MFCLOCK_STATE_STOPPED = 2;
-  static const UINT MFCLOCK_STATE_PAUSED = 3;
+  static const MFCLOCK_STATE MFCLOCK_STATE_INVALID = 0;
+  static const MFCLOCK_STATE MFCLOCK_STATE_RUNNING = 1;
+  static const MFCLOCK_STATE MFCLOCK_STATE_STOPPED = 2;
+  static const MFCLOCK_STATE MFCLOCK_STATE_PAUSED = 3;
   typedef UINT MFPOLICYMANAGER_ACTION; //Alias
-  static const UINT PEACTION_NO = 0;
-  static const UINT PEACTION_PLAY = 1;
-  static const UINT PEACTION_COPY = 2;
-  static const UINT PEACTION_EXPORT = 3;
-  static const UINT PEACTION_EXTRACT = 4;
-  static const UINT PEACTION_RESERVED1 = 5;
-  static const UINT PEACTION_RESERVED2 = 6;
-  static const UINT PEACTION_RESERVED3 = 7;
+  static const MFPOLICYMANAGER_ACTION PEACTION_NO = 0;
+  static const MFPOLICYMANAGER_ACTION PEACTION_PLAY = 1;
+  static const MFPOLICYMANAGER_ACTION PEACTION_COPY = 2;
+  static const MFPOLICYMANAGER_ACTION PEACTION_EXPORT = 3;
+  static const MFPOLICYMANAGER_ACTION PEACTION_EXTRACT = 4;
+  static const MFPOLICYMANAGER_ACTION PEACTION_RESERVED1 = 5;
+  static const MFPOLICYMANAGER_ACTION PEACTION_RESERVED2 = 6;
+  static const MFPOLICYMANAGER_ACTION PEACTION_RESERVED3 = 7;
   typedef UINT MF_TOPOLOGY_TYPE; //Alias
-  static const UINT MF_TOPOLOGY_OUTPUT_NODE = 0;
-  static const UINT MF_TOPOLOGY_SOURCESTREAM_NODE = 1;
-  static const UINT MF_TOPOLOGY_TRANSFORM_NODE = 2;
-  static const UINT MF_TOPOLOGY_TEE_NODE = 3;
+  static const MF_TOPOLOGY_TYPE MF_TOPOLOGY_OUTPUT_NODE = 0;
+  static const MF_TOPOLOGY_TYPE MF_TOPOLOGY_SOURCESTREAM_NODE = 1;
+  static const MF_TOPOLOGY_TYPE MF_TOPOLOGY_TRANSFORM_NODE = 2;
+  static const MF_TOPOLOGY_TYPE MF_TOPOLOGY_TEE_NODE = 3;
   typedef UINT MFASYNC_WORKQUEUE_TYPE; //Alias
-  static const UINT MF_STANDARD_WORKQUEUE = 0;
-  static const UINT MF_WINDOW_WORKQUEUE = 1;
+  static const MFASYNC_WORKQUEUE_TYPE MF_STANDARD_WORKQUEUE = 0;
+  static const MFASYNC_WORKQUEUE_TYPE MF_WINDOW_WORKQUEUE = 1;
   typedef UINT MF_FILE_ACCESSMODE; //Alias
-  static const UINT MF_ACCESSMODE_READ = 1;
-  static const UINT MF_ACCESSMODE_WRITE = 2;
-  static const UINT MF_ACCESSMODE_READWRITE = 3;
+  static const MF_FILE_ACCESSMODE MF_ACCESSMODE_READ = 1;
+  static const MF_FILE_ACCESSMODE MF_ACCESSMODE_WRITE = 2;
+  static const MF_FILE_ACCESSMODE MF_ACCESSMODE_READWRITE = 3;
   typedef UINT EAllocationType; //Alias
-  static const UINT eAllocationTypeDynamic = 0;
-  static const UINT eAllocationTypeRT = 1;
-  static const UINT eAllocationTypePageable = 2;
-  static const UINT eAllocationTypeIgnore = 3;
+  static const EAllocationType eAllocationTypeDynamic = 0;
+  static const EAllocationType eAllocationTypeRT = 1;
+  static const EAllocationType eAllocationTypePageable = 2;
+  static const EAllocationType eAllocationTypeIgnore = 3;
   typedef UINT MFSHUTDOWN_STATUS; //Alias
-  static const UINT MFSHUTDOWN_INITIATED = 0;
-  static const UINT MFSHUTDOWN_COMPLETED = 1;
+  static const MFSHUTDOWN_STATUS MFSHUTDOWN_INITIATED = 0;
+  static const MFSHUTDOWN_STATUS MFSHUTDOWN_COMPLETED = 1;
   typedef UINT MFSTREAMSINK_MARKER_TYPE; //Alias
-  static const UINT MFSTREAMSINK_MARKER_DEFAULT = 0;
-  static const UINT MFSTREAMSINK_MARKER_ENDOFSEGMENT = 1;
-  static const UINT MFSTREAMSINK_MARKER_TICK = 2;
-  static const UINT MFSTREAMSINK_MARKER_EVENT = 3;
+  static const MFSTREAMSINK_MARKER_TYPE MFSTREAMSINK_MARKER_DEFAULT = 0;
+  static const MFSTREAMSINK_MARKER_TYPE MFSTREAMSINK_MARKER_ENDOFSEGMENT = 1;
+  static const MFSTREAMSINK_MARKER_TYPE MFSTREAMSINK_MARKER_TICK = 2;
+  static const MFSTREAMSINK_MARKER_TYPE MFSTREAMSINK_MARKER_EVENT = 3;
   typedef UINT MF_FILE_OPENMODE; //Alias
-  static const UINT MF_OPENMODE_FAIL_IF_NOT_EXIST = 0;
-  static const UINT MF_OPENMODE_FAIL_IF_EXIST = 1;
-  static const UINT MF_OPENMODE_RESET_IF_EXIST = 2;
-  static const UINT MF_OPENMODE_APPEND_IF_EXIST = 3;
-  static const UINT MF_OPENMODE_DELETE_IF_EXIST = 4;
+  static const MF_FILE_OPENMODE MF_OPENMODE_FAIL_IF_NOT_EXIST = 0;
+  static const MF_FILE_OPENMODE MF_OPENMODE_FAIL_IF_EXIST = 1;
+  static const MF_FILE_OPENMODE MF_OPENMODE_RESET_IF_EXIST = 2;
+  static const MF_FILE_OPENMODE MF_OPENMODE_APPEND_IF_EXIST = 3;
+  static const MF_FILE_OPENMODE MF_OPENMODE_DELETE_IF_EXIST = 4;
   typedef UINT MF_URL_TRUST_STATUS; //Alias
-  static const UINT MF_LICENSE_URL_UNTRUSTED = 0;
-  static const UINT MF_LICENSE_URL_TRUSTED = 1;
-  static const UINT MF_LICENSE_URL_TAMPERED = 2;
+  static const MF_URL_TRUST_STATUS MF_LICENSE_URL_UNTRUSTED = 0;
+  static const MF_URL_TRUST_STATUS MF_LICENSE_URL_TRUSTED = 1;
+  static const MF_URL_TRUST_STATUS MF_LICENSE_URL_TAMPERED = 2;
   typedef UINT MF_QUALITY_DROP_MODE; //Alias
-  static const UINT MF_DROP_MODE_NONE = 0;
-  static const UINT MF_DROP_MODE_1 = 0x1;
-  static const UINT MF_DROP_MODE_2 = 0x2;
-  static const UINT MF_DROP_MODE_3 = 0x3;
-  static const UINT MF_DROP_MODE_4 = 0x4;
-  static const UINT MF_DROP_MODE_5 = 0x5;
+  static const MF_QUALITY_DROP_MODE MF_DROP_MODE_NONE = 0;
+  static const MF_QUALITY_DROP_MODE MF_DROP_MODE_1 = 0x1;
+  static const MF_QUALITY_DROP_MODE MF_DROP_MODE_2 = 0x2;
+  static const MF_QUALITY_DROP_MODE MF_DROP_MODE_3 = 0x3;
+  static const MF_QUALITY_DROP_MODE MF_DROP_MODE_4 = 0x4;
+  static const MF_QUALITY_DROP_MODE MF_DROP_MODE_5 = 0x5;
   typedef UINT MF_QUALITY_LEVEL; //Alias
-  static const UINT MF_QUALITY_NORMAL = 0;
-  static const UINT MF_QUALITY_NORMAL_MINUS_1 = 0x1;
-  static const UINT MF_QUALITY_NORMAL_MINUS_2 = 0x2;
-  static const UINT MF_QUALITY_NORMAL_MINUS_3 = 0x3;
-  static const UINT MF_QUALITY_NORMAL_MINUS_4 = 0x4;
-  static const UINT MF_QUALITY_NORMAL_MINUS_5 = 0x5;
+  static const MF_QUALITY_LEVEL MF_QUALITY_NORMAL = 0;
+  static const MF_QUALITY_LEVEL MF_QUALITY_NORMAL_MINUS_1 = 0x1;
+  static const MF_QUALITY_LEVEL MF_QUALITY_NORMAL_MINUS_2 = 0x2;
+  static const MF_QUALITY_LEVEL MF_QUALITY_NORMAL_MINUS_3 = 0x3;
+  static const MF_QUALITY_LEVEL MF_QUALITY_NORMAL_MINUS_4 = 0x4;
+  static const MF_QUALITY_LEVEL MF_QUALITY_NORMAL_MINUS_5 = 0x5;
   typedef UINT MFRATE_DIRECTION; //Alias
-  static const UINT MFRATE_FORWARD = 0;
-  static const UINT MFRATE_REVERSE = 1;
+  static const MFRATE_DIRECTION MFRATE_FORWARD = 0;
+  static const MFRATE_DIRECTION MFRATE_REVERSE = 1;
   typedef UINT MF_FILE_FLAGS; //Alias
   typedef struct MF_LEAKY_BUCKET_PAIR {
     DWORD dwBitrate;
@@ -242,19 +242,19 @@ ffi.cdef [[
     float dRate;
   } MFBYTESTREAM_BUFFERING_PARAMS;
   typedef DWORD MFCLOCK_RELATIONAL_FLAGS; //Alias
-  typedef DWORD WINAPI_MFCLOCK_JITTER; //Alias
-  static const DWORD MFCLOCK_FREQUENCY_HNS = 10000000;
-  static const DWORD MFCLOCK_TOLERANCE_UNKNOWN = 50000;
-  static const DWORD MFCLOCK_JITTER_ISR = 1000;
-  static const DWORD MFCLOCK_JITTER_DPC = 4000;
-  static const DWORD MFCLOCK_JITTER_PASSIVE = 10000;
+  typedef DWORD MFCLOCK_JITTER; //Alias
+  static const MFCLOCK_JITTER MFCLOCK_FREQUENCY_HNS = 10000000;
+  static const MFCLOCK_JITTER MFCLOCK_TOLERANCE_UNKNOWN = 50000;
+  static const MFCLOCK_JITTER MFCLOCK_JITTER_ISR = 1000;
+  static const MFCLOCK_JITTER MFCLOCK_JITTER_DPC = 4000;
+  static const MFCLOCK_JITTER MFCLOCK_JITTER_PASSIVE = 10000;
   typedef struct MFCLOCK_PROPERTIES {
     unsigned __int64 qwCorrelationRate;
     GUID guidClockId;
     MFCLOCK_RELATIONAL_FLAGS dwClockFlags;
     unsigned __int64 qwClockFrequency;
     DWORD dwClockTolerance;
-    WINAPI_MFCLOCK_JITTER dwClockJitter;
+    MFCLOCK_JITTER dwClockJitter;
   } MFCLOCK_PROPERTIES;
   typedef struct MFINPUTTRUSTAUTHORITY_ACCESS_ACTION {
     MFPOLICYMANAGER_ACTION Action;
@@ -287,104 +287,104 @@ ffi.cdef [[
     MFT_REGISTER_TYPE_INFO* pOutTypes;
   } MFT_REGISTRATION_INFO;
   typedef UINT MediaEventType; //Alias
-  static const UINT MEUnknown = 0;
-  static const UINT MEError = 1;
-  static const UINT MEExtendedType = 2;
-  static const UINT MENonFatalError = 3;
-  static const UINT MESessionUnknown = 100;
-  static const UINT MESessionTopologySet = 101;
-  static const UINT MESessionTopologiesCleared = 102;
-  static const UINT MESessionStarted = 103;
-  static const UINT MESessionPaused = 104;
-  static const UINT MESessionStopped = 105;
-  static const UINT MESessionClosed = 106;
-  static const UINT MESessionEnded = 107;
-  static const UINT MESessionRateChanged = 108;
-  static const UINT MESessionScrubSampleComplete = 109;
-  static const UINT MESessionCapabilitiesChanged = 110;
-  static const UINT MESessionTopologyStatus = 111;
-  static const UINT MESessionNotifyPresentationTime = 112;
-  static const UINT MENewPresentation = 113;
-  static const UINT MELicenseAcquisitionStart = 114;
-  static const UINT MELicenseAcquisitionCompleted = 115;
-  static const UINT MEIndividualizationStart = 116;
-  static const UINT MEIndividualizationCompleted = 117;
-  static const UINT MEEnablerProgress = 118;
-  static const UINT MEEnablerCompleted = 119;
-  static const UINT MEPolicyError = 120;
-  static const UINT MEPolicyReport = 121;
-  static const UINT MEBufferingStarted = 122;
-  static const UINT MEBufferingStopped = 123;
-  static const UINT MEConnectStart = 124;
-  static const UINT MEConnectEnd = 125;
-  static const UINT MEReconnectStart = 126;
-  static const UINT MEReconnectEnd = 127;
-  static const UINT MERendererEvent = 128;
-  static const UINT MESessionStreamSinkFormatChanged = 129;
-  static const UINT MESourceUnknown = 200;
-  static const UINT MESourceStarted = 201;
-  static const UINT MEStreamStarted = 202;
-  static const UINT MESourceSeeked = 203;
-  static const UINT MEStreamSeeked = 204;
-  static const UINT MENewStream = 205;
-  static const UINT MEUpdatedStream = 206;
-  static const UINT MESourceStopped = 207;
-  static const UINT MEStreamStopped = 208;
-  static const UINT MESourcePaused = 209;
-  static const UINT MEStreamPaused = 210;
-  static const UINT MEEndOfPresentation = 211;
-  static const UINT MEEndOfStream = 212;
-  static const UINT MEMediaSample = 213;
-  static const UINT MEStreamTick = 214;
-  static const UINT MEStreamThinMode = 215;
-  static const UINT MEStreamFormatChanged = 216;
-  static const UINT MESourceRateChanged = 217;
-  static const UINT MEEndOfPresentationSegment = 218;
-  static const UINT MESourceCharacteristicsChanged = 219;
-  static const UINT MESourceRateChangeRequested = 220;
-  static const UINT MESourceMetadataChanged = 221;
-  static const UINT MESequencerSourceTopologyUpdated = 222;
-  static const UINT MESinkUnknown = 300;
-  static const UINT MEStreamSinkStarted = 301;
-  static const UINT MEStreamSinkStopped = 302;
-  static const UINT MEStreamSinkPaused = 303;
-  static const UINT MEStreamSinkRateChanged = 304;
-  static const UINT MEStreamSinkRequestSample = 305;
-  static const UINT MEStreamSinkMarker = 306;
-  static const UINT MEStreamSinkPrerolled = 307;
-  static const UINT MEStreamSinkScrubSampleComplete = 308;
-  static const UINT MEStreamSinkFormatChanged = 309;
-  static const UINT MEStreamSinkDeviceChanged = 310;
-  static const UINT MEQualityNotify = 311;
-  static const UINT MESinkInvalidated = 312;
-  static const UINT MEAudioSessionNameChanged = 313;
-  static const UINT MEAudioSessionVolumeChanged = 314;
-  static const UINT MEAudioSessionDeviceRemoved = 315;
-  static const UINT MEAudioSessionServerShutdown = 316;
-  static const UINT MEAudioSessionGroupingParamChanged = 317;
-  static const UINT MEAudioSessionIconChanged = 318;
-  static const UINT MEAudioSessionFormatChanged = 319;
-  static const UINT MEAudioSessionDisconnected = 320;
-  static const UINT MEAudioSessionExclusiveModeOverride = 321;
-  static const UINT METrustUnknown = 400;
-  static const UINT MEPolicyChanged = 401;
-  static const UINT MEContentProtectionMessage = 402;
-  static const UINT MEPolicySet = 403;
-  static const UINT MEWMDRMLicenseBackupCompleted = 500;
-  static const UINT MEWMDRMLicenseBackupProgress = 501;
-  static const UINT MEWMDRMLicenseRestoreCompleted = 502;
-  static const UINT MEWMDRMLicenseRestoreProgress = 503;
-  static const UINT MEWMDRMLicenseAcquisitionCompleted = 506;
-  static const UINT MEWMDRMIndividualizationCompleted = 508;
-  static const UINT MEWMDRMIndividualizationProgress = 513;
-  static const UINT MEWMDRMProximityCompleted = 514;
-  static const UINT MEWMDRMLicenseStoreCleaned = 515;
-  static const UINT MEWMDRMRevocationDownloadCompleted = 516;
-  static const UINT METransformUnknown = 600;
-  static const UINT METransformNeedInput = 601;
-  static const UINT METransformHaveOutput = 602;
-  static const UINT METransformDrainComplete = 603;
-  static const UINT METransformMarker = 604;
+  static const MediaEventType MEUnknown = 0;
+  static const MediaEventType MEError = 1;
+  static const MediaEventType MEExtendedType = 2;
+  static const MediaEventType MENonFatalError = 3;
+  static const MediaEventType MESessionUnknown = 100;
+  static const MediaEventType MESessionTopologySet = 101;
+  static const MediaEventType MESessionTopologiesCleared = 102;
+  static const MediaEventType MESessionStarted = 103;
+  static const MediaEventType MESessionPaused = 104;
+  static const MediaEventType MESessionStopped = 105;
+  static const MediaEventType MESessionClosed = 106;
+  static const MediaEventType MESessionEnded = 107;
+  static const MediaEventType MESessionRateChanged = 108;
+  static const MediaEventType MESessionScrubSampleComplete = 109;
+  static const MediaEventType MESessionCapabilitiesChanged = 110;
+  static const MediaEventType MESessionTopologyStatus = 111;
+  static const MediaEventType MESessionNotifyPresentationTime = 112;
+  static const MediaEventType MENewPresentation = 113;
+  static const MediaEventType MELicenseAcquisitionStart = 114;
+  static const MediaEventType MELicenseAcquisitionCompleted = 115;
+  static const MediaEventType MEIndividualizationStart = 116;
+  static const MediaEventType MEIndividualizationCompleted = 117;
+  static const MediaEventType MEEnablerProgress = 118;
+  static const MediaEventType MEEnablerCompleted = 119;
+  static const MediaEventType MEPolicyError = 120;
+  static const MediaEventType MEPolicyReport = 121;
+  static const MediaEventType MEBufferingStarted = 122;
+  static const MediaEventType MEBufferingStopped = 123;
+  static const MediaEventType MEConnectStart = 124;
+  static const MediaEventType MEConnectEnd = 125;
+  static const MediaEventType MEReconnectStart = 126;
+  static const MediaEventType MEReconnectEnd = 127;
+  static const MediaEventType MERendererEvent = 128;
+  static const MediaEventType MESessionStreamSinkFormatChanged = 129;
+  static const MediaEventType MESourceUnknown = 200;
+  static const MediaEventType MESourceStarted = 201;
+  static const MediaEventType MEStreamStarted = 202;
+  static const MediaEventType MESourceSeeked = 203;
+  static const MediaEventType MEStreamSeeked = 204;
+  static const MediaEventType MENewStream = 205;
+  static const MediaEventType MEUpdatedStream = 206;
+  static const MediaEventType MESourceStopped = 207;
+  static const MediaEventType MEStreamStopped = 208;
+  static const MediaEventType MESourcePaused = 209;
+  static const MediaEventType MEStreamPaused = 210;
+  static const MediaEventType MEEndOfPresentation = 211;
+  static const MediaEventType MEEndOfStream = 212;
+  static const MediaEventType MEMediaSample = 213;
+  static const MediaEventType MEStreamTick = 214;
+  static const MediaEventType MEStreamThinMode = 215;
+  static const MediaEventType MEStreamFormatChanged = 216;
+  static const MediaEventType MESourceRateChanged = 217;
+  static const MediaEventType MEEndOfPresentationSegment = 218;
+  static const MediaEventType MESourceCharacteristicsChanged = 219;
+  static const MediaEventType MESourceRateChangeRequested = 220;
+  static const MediaEventType MESourceMetadataChanged = 221;
+  static const MediaEventType MESequencerSourceTopologyUpdated = 222;
+  static const MediaEventType MESinkUnknown = 300;
+  static const MediaEventType MEStreamSinkStarted = 301;
+  static const MediaEventType MEStreamSinkStopped = 302;
+  static const MediaEventType MEStreamSinkPaused = 303;
+  static const MediaEventType MEStreamSinkRateChanged = 304;
+  static const MediaEventType MEStreamSinkRequestSample = 305;
+  static const MediaEventType MEStreamSinkMarker = 306;
+  static const MediaEventType MEStreamSinkPrerolled = 307;
+  static const MediaEventType MEStreamSinkScrubSampleComplete = 308;
+  static const MediaEventType MEStreamSinkFormatChanged = 309;
+  static const MediaEventType MEStreamSinkDeviceChanged = 310;
+  static const MediaEventType MEQualityNotify = 311;
+  static const MediaEventType MESinkInvalidated = 312;
+  static const MediaEventType MEAudioSessionNameChanged = 313;
+  static const MediaEventType MEAudioSessionVolumeChanged = 314;
+  static const MediaEventType MEAudioSessionDeviceRemoved = 315;
+  static const MediaEventType MEAudioSessionServerShutdown = 316;
+  static const MediaEventType MEAudioSessionGroupingParamChanged = 317;
+  static const MediaEventType MEAudioSessionIconChanged = 318;
+  static const MediaEventType MEAudioSessionFormatChanged = 319;
+  static const MediaEventType MEAudioSessionDisconnected = 320;
+  static const MediaEventType MEAudioSessionExclusiveModeOverride = 321;
+  static const MediaEventType METrustUnknown = 400;
+  static const MediaEventType MEPolicyChanged = 401;
+  static const MediaEventType MEContentProtectionMessage = 402;
+  static const MediaEventType MEPolicySet = 403;
+  static const MediaEventType MEWMDRMLicenseBackupCompleted = 500;
+  static const MediaEventType MEWMDRMLicenseBackupProgress = 501;
+  static const MediaEventType MEWMDRMLicenseRestoreCompleted = 502;
+  static const MediaEventType MEWMDRMLicenseRestoreProgress = 503;
+  static const MediaEventType MEWMDRMLicenseAcquisitionCompleted = 506;
+  static const MediaEventType MEWMDRMIndividualizationCompleted = 508;
+  static const MediaEventType MEWMDRMIndividualizationProgress = 513;
+  static const MediaEventType MEWMDRMProximityCompleted = 514;
+  static const MediaEventType MEWMDRMLicenseStoreCleaned = 515;
+  static const MediaEventType MEWMDRMRevocationDownloadCompleted = 516;
+  static const MediaEventType METransformUnknown = 600;
+  static const MediaEventType METransformNeedInput = 601;
+  static const MediaEventType METransformHaveOutput = 602;
+  static const MediaEventType METransformDrainComplete = 603;
+  static const MediaEventType METransformMarker = 604;
   typedef struct MFNetCredentialManagerGetParam {
     HRESULT hrOp;
     BOOL fAllowLoggedOnUser;
@@ -420,72 +420,72 @@ ffi.cdef [[
     IMFMediaType* pAudioMediaType;
   } MF_TRANSCODE_SINK_INFO;
   typedef UINT MFNETSOURCE_PROTOCOL_TYPE; //Alias
-  static const UINT MFNETSOURCE_UNDEFINED = 0;
-  static const UINT MFNETSOURCE_HTTP = 0x1;
-  static const UINT MFNETSOURCE_RTSP = 0x2;
-  static const UINT MFNETSOURCE_FILE = 0x3;
-  static const UINT MFNETSOURCE_MULTICAST = 0x4;
-  typedef union WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u {
+  static const MFNETSOURCE_PROTOCOL_TYPE MFNETSOURCE_UNDEFINED = 0;
+  static const MFNETSOURCE_PROTOCOL_TYPE MFNETSOURCE_HTTP = 0x1;
+  static const MFNETSOURCE_PROTOCOL_TYPE MFNETSOURCE_RTSP = 0x2;
+  static const MFNETSOURCE_PROTOCOL_TYPE MFNETSOURCE_FILE = 0x3;
+  static const MFNETSOURCE_PROTOCOL_TYPE MFNETSOURCE_MULTICAST = 0x4;
+  typedef union MFTOPONODE_ATTRIBUTE_UPDATE_u {
     UINT32 u32;
     UINT64 u64;
     double d;
-  } WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u;
+  } MFTOPONODE_ATTRIBUTE_UPDATE_u;
   typedef struct MFTOPONODE_ATTRIBUTE_UPDATE {
     TOPOID NodeId;
     GUID guidAttributeKey;
     MF_ATTRIBUTE_TYPE attrType;
-    WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u ;
+    MFTOPONODE_ATTRIBUTE_UPDATE_u ;
   } MFTOPONODE_ATTRIBUTE_UPDATE;
   typedef UINT32 MFP_CREATION_OPTIONS; //Alias
   typedef UINT MFVideoInterlaceMode; //Alias
-  static const UINT MFVideoInterlace_Unknown = 0;
-  static const UINT MFVideoInterlace_Progressive = 2;
-  static const UINT MFVideoInterlace_FieldInterleavedUpperFirst = 3;
-  static const UINT MFVideoInterlace_FieldInterleavedLowerFirst = 4;
-  static const UINT MFVideoInterlace_FieldSingleUpper = 5;
-  static const UINT MFVideoInterlace_FieldSingleLower = 6;
-  static const UINT MFVideoInterlace_MixedInterlaceOrProgressive = 7;
+  static const MFVideoInterlaceMode MFVideoInterlace_Unknown = 0;
+  static const MFVideoInterlaceMode MFVideoInterlace_Progressive = 2;
+  static const MFVideoInterlaceMode MFVideoInterlace_FieldInterleavedUpperFirst = 3;
+  static const MFVideoInterlaceMode MFVideoInterlace_FieldInterleavedLowerFirst = 4;
+  static const MFVideoInterlaceMode MFVideoInterlace_FieldSingleUpper = 5;
+  static const MFVideoInterlaceMode MFVideoInterlace_FieldSingleLower = 6;
+  static const MFVideoInterlaceMode MFVideoInterlace_MixedInterlaceOrProgressive = 7;
   typedef UINT MFVideoTransferFunction; //Alias
-  static const UINT MFVideoTransFunc_Unknown = 0;
-  static const UINT MFVideoTransFunc_10 = 1;
-  static const UINT MFVideoTransFunc_18 = 2;
-  static const UINT MFVideoTransFunc_20 = 3;
-  static const UINT MFVideoTransFunc_22 = 4;
-  static const UINT MFVideoTransFunc_709 = 5;
-  static const UINT MFVideoTransFunc_240M = 6;
-  static const UINT MFVideoTransFunc_sRGB = 7;
-  static const UINT MFVideoTransFunc_28 = 8;
-  static const UINT MFVideoTransFunc_Log_100 = 9;
-  static const UINT MFVideoTransFunc_Log_316 = 10;
-  static const UINT MFVideoTransFunc_709_sym = 11;
+  static const MFVideoTransferFunction MFVideoTransFunc_Unknown = 0;
+  static const MFVideoTransferFunction MFVideoTransFunc_10 = 1;
+  static const MFVideoTransferFunction MFVideoTransFunc_18 = 2;
+  static const MFVideoTransferFunction MFVideoTransFunc_20 = 3;
+  static const MFVideoTransferFunction MFVideoTransFunc_22 = 4;
+  static const MFVideoTransferFunction MFVideoTransFunc_709 = 5;
+  static const MFVideoTransferFunction MFVideoTransFunc_240M = 6;
+  static const MFVideoTransferFunction MFVideoTransFunc_sRGB = 7;
+  static const MFVideoTransferFunction MFVideoTransFunc_28 = 8;
+  static const MFVideoTransferFunction MFVideoTransFunc_Log_100 = 9;
+  static const MFVideoTransferFunction MFVideoTransFunc_Log_316 = 10;
+  static const MFVideoTransferFunction MFVideoTransFunc_709_sym = 11;
   typedef UINT MFVideoPrimaries; //Alias
-  static const UINT MFVideoPrimaries_Unknown = 0;
-  static const UINT MFVideoPrimaries_reserved = 1;
-  static const UINT MFVideoPrimaries_BT709 = 2;
-  static const UINT MFVideoPrimaries_BT470_2_SysM = 3;
-  static const UINT MFVideoPrimaries_BT470_2_SysBG = 4;
-  static const UINT MFVideoPrimaries_SMPTE170M = 5;
-  static const UINT MFVideoPrimaries_SMPTE240M = 6;
-  static const UINT MFVideoPrimaries_EBU3213 = 7;
-  static const UINT MFVideoPrimaries_SMPTE_C = 8;
+  static const MFVideoPrimaries MFVideoPrimaries_Unknown = 0;
+  static const MFVideoPrimaries MFVideoPrimaries_reserved = 1;
+  static const MFVideoPrimaries MFVideoPrimaries_BT709 = 2;
+  static const MFVideoPrimaries MFVideoPrimaries_BT470_2_SysM = 3;
+  static const MFVideoPrimaries MFVideoPrimaries_BT470_2_SysBG = 4;
+  static const MFVideoPrimaries MFVideoPrimaries_SMPTE170M = 5;
+  static const MFVideoPrimaries MFVideoPrimaries_SMPTE240M = 6;
+  static const MFVideoPrimaries MFVideoPrimaries_EBU3213 = 7;
+  static const MFVideoPrimaries MFVideoPrimaries_SMPTE_C = 8;
   typedef UINT MFVideoLighting; //Alias
-  static const UINT MFVideoLighting_Unknown = 0;
-  static const UINT MFVideoLighting_bright = 1;
-  static const UINT MFVideoLighting_office = 2;
-  static const UINT MFVideoLighting_dim = 3;
-  static const UINT MFVideoLighting_dark = 4;
+  static const MFVideoLighting MFVideoLighting_Unknown = 0;
+  static const MFVideoLighting MFVideoLighting_bright = 1;
+  static const MFVideoLighting MFVideoLighting_office = 2;
+  static const MFVideoLighting MFVideoLighting_dim = 3;
+  static const MFVideoLighting MFVideoLighting_dark = 4;
   typedef UINT MFVideoTransferMatrix; //Alias
-  static const UINT MFVideoTransferMatrix_Unknown = 0;
-  static const UINT MFVideoTransferMatrix_BT709 = 1;
-  static const UINT MFVideoTransferMatrix_BT601 = 2;
-  static const UINT MFVideoTransferMatrix_SMPTE240M = 3;
+  static const MFVideoTransferMatrix MFVideoTransferMatrix_Unknown = 0;
+  static const MFVideoTransferMatrix MFVideoTransferMatrix_BT709 = 1;
+  static const MFVideoTransferMatrix MFVideoTransferMatrix_BT601 = 2;
+  static const MFVideoTransferMatrix MFVideoTransferMatrix_SMPTE240M = 3;
   typedef UINT MFVideoChromaSubsampling; //Alias
   typedef UINT MFNominalRange; //Alias
-  static const UINT MFNominalRange_Unknown = 0;
-  static const UINT MFNominalRange_0_255 = 1;
-  static const UINT MFNominalRange_16_235 = 2;
-  static const UINT MFNominalRange_48_208 = 3;
-  static const UINT MFNominalRange_64_127 = 4;
+  static const MFNominalRange MFNominalRange_Unknown = 0;
+  static const MFNominalRange MFNominalRange_0_255 = 1;
+  static const MFNominalRange MFNominalRange_16_235 = 2;
+  static const MFNominalRange MFNominalRange_48_208 = 3;
+  static const MFNominalRange MFNominalRange_64_127 = 4;
   typedef unsigned __int64 MFVideoFlags; //Alias
   typedef struct MFRatio {
     DWORD Numerator;
@@ -559,19 +559,19 @@ ffi.cdef [[
     DWORD cFramesDropped;
   } ASF_MUX_STATISTICS;
   typedef UINT ASF_SELECTION_STATUS; //Alias
-  static const UINT ASF_STATUS_NOTSELECTED = 0;
-  static const UINT ASF_STATUS_CLEANPOINTSONLY = 1;
-  static const UINT ASF_STATUS_ALLDATAUNITS = 2;
+  static const ASF_SELECTION_STATUS ASF_STATUS_NOTSELECTED = 0;
+  static const ASF_SELECTION_STATUS ASF_STATUS_CLEANPOINTSONLY = 1;
+  static const ASF_SELECTION_STATUS ASF_STATUS_ALLDATAUNITS = 2;
   typedef UINT MFT_MESSAGE_TYPE; //Alias
-  static const UINT MFT_MESSAGE_COMMAND_FLUSH = 0;
-  static const UINT MFT_MESSAGE_COMMAND_DRAIN = 0x1;
-  static const UINT MFT_MESSAGE_SET_D3D_MANAGER = 0x2;
-  static const UINT MFT_MESSAGE_DROP_SAMPLES = 0x3;
-  static const UINT MFT_MESSAGE_NOTIFY_BEGIN_STREAMING = 0x10000000;
-  static const UINT MFT_MESSAGE_NOTIFY_END_STREAMING = 0x10000001;
-  static const UINT MFT_MESSAGE_NOTIFY_END_OF_STREAM = 0x10000002;
-  static const UINT MFT_MESSAGE_NOTIFY_START_OF_STREAM = 0x10000003;
-  static const UINT MFT_MESSAGE_COMMAND_MARKER = 0x20000000;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_COMMAND_FLUSH = 0;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_COMMAND_DRAIN = 0x1;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_SET_D3D_MANAGER = 0x2;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_DROP_SAMPLES = 0x3;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_NOTIFY_BEGIN_STREAMING = 0x10000000;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_NOTIFY_END_STREAMING = 0x10000001;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_NOTIFY_END_OF_STREAM = 0x10000002;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_NOTIFY_START_OF_STREAM = 0x10000003;
+  static const MFT_MESSAGE_TYPE MFT_MESSAGE_COMMAND_MARKER = 0x20000000;
   typedef DWORD MFT_INPUT_STREAM_INFO_FLAGS; //Alias
   typedef struct MFT_INPUT_STREAM_INFO {
     LONGLONG hnsMaxLatency;
@@ -593,23 +593,23 @@ ffi.cdef [[
     IMFCollection* pEvents;
   } MFT_OUTPUT_DATA_BUFFER;
   typedef UINT MFStandardVideoFormat; //Alias
-  static const UINT MFStdVideoFormat_reserved = 0;
-  static const UINT MFStdVideoFormat_NTSC = 1;
-  static const UINT MFStdVideoFormat_PAL = 2;
-  static const UINT MFStdVideoFormat_DVD_NTSC = 3;
-  static const UINT MFStdVideoFormat_DVD_PAL = 4;
-  static const UINT MFStdVideoFormat_DV_PAL = 5;
-  static const UINT MFStdVideoFormat_DV_NTSC = 6;
-  static const UINT MFStdVideoFormat_ATSC_SD480i = 7;
-  static const UINT MFStdVideoFormat_ATSC_HD1080i = 8;
-  static const UINT MFStdVideoFormat_ATSC_HD720p = 9;
+  static const MFStandardVideoFormat MFStdVideoFormat_reserved = 0;
+  static const MFStandardVideoFormat MFStdVideoFormat_NTSC = 1;
+  static const MFStandardVideoFormat MFStdVideoFormat_PAL = 2;
+  static const MFStandardVideoFormat MFStdVideoFormat_DVD_NTSC = 3;
+  static const MFStandardVideoFormat MFStdVideoFormat_DVD_PAL = 4;
+  static const MFStandardVideoFormat MFStdVideoFormat_DV_PAL = 5;
+  static const MFStandardVideoFormat MFStdVideoFormat_DV_NTSC = 6;
+  static const MFStandardVideoFormat MFStdVideoFormat_ATSC_SD480i = 7;
+  static const MFStandardVideoFormat MFStdVideoFormat_ATSC_HD1080i = 8;
+  static const MFStandardVideoFormat MFStdVideoFormat_ATSC_HD720p = 9;
   typedef UINT32 MFP_MEDIAITEM_CHARACTERISTICS; //Alias
   typedef UINT MFP_MEDIAPLAYER_STATE; //Alias
-  static const UINT MFP_MEDIAPLAYER_STATE_EMPTY = 0;
-  static const UINT MFP_MEDIAPLAYER_STATE_STOPPED = 0x1;
-  static const UINT MFP_MEDIAPLAYER_STATE_PLAYING = 0x2;
-  static const UINT MFP_MEDIAPLAYER_STATE_PAUSED = 0x3;
-  static const UINT MFP_MEDIAPLAYER_STATE_SHUTDOWN = 0x4;
+  static const MFP_MEDIAPLAYER_STATE MFP_MEDIAPLAYER_STATE_EMPTY = 0;
+  static const MFP_MEDIAPLAYER_STATE MFP_MEDIAPLAYER_STATE_STOPPED = 0x1;
+  static const MFP_MEDIAPLAYER_STATE MFP_MEDIAPLAYER_STATE_PLAYING = 0x2;
+  static const MFP_MEDIAPLAYER_STATE MFP_MEDIAPLAYER_STATE_PAUSED = 0x3;
+  static const MFP_MEDIAPLAYER_STATE MFP_MEDIAPLAYER_STATE_SHUTDOWN = 0x4;
   typedef struct MFVideoNormalizedRect {
     float left;
     float top;
@@ -617,19 +617,19 @@ ffi.cdef [[
     float bottom;
   } MFVideoNormalizedRect;
   typedef UINT MFP_EVENT_TYPE; //Alias
-  static const UINT MFP_EVENT_TYPE_PLAY = 0;
-  static const UINT MFP_EVENT_TYPE_PAUSE = 1;
-  static const UINT MFP_EVENT_TYPE_STOP = 2;
-  static const UINT MFP_EVENT_TYPE_POSITION_SET = 3;
-  static const UINT MFP_EVENT_TYPE_RATE_SET = 4;
-  static const UINT MFP_EVENT_TYPE_MEDIAITEM_CREATED = 5;
-  static const UINT MFP_EVENT_TYPE_MEDIAITEM_SET = 6;
-  static const UINT MFP_EVENT_TYPE_FRAME_STEP = 7;
-  static const UINT MFP_EVENT_TYPE_MEDIAITEM_CLEARED = 8;
-  static const UINT MFP_EVENT_TYPE_MF = 9;
-  static const UINT MFP_EVENT_TYPE_ERROR = 10;
-  static const UINT MFP_EVENT_TYPE_PLAYBACK_ENDED = 11;
-  static const UINT MFP_EVENT_TYPE_ACQUIRE_USER_CREDENTIAL = 12;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_PLAY = 0;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_PAUSE = 1;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_STOP = 2;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_POSITION_SET = 3;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_RATE_SET = 4;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_MEDIAITEM_CREATED = 5;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_MEDIAITEM_SET = 6;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_FRAME_STEP = 7;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_MEDIAITEM_CLEARED = 8;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_MF = 9;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_ERROR = 10;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_PLAYBACK_ENDED = 11;
+  static const MFP_EVENT_TYPE MFP_EVENT_TYPE_ACQUIRE_USER_CREDENTIAL = 12;
   typedef struct MFP_EVENT_HEADER {
     MFP_EVENT_TYPE eEventType;
     HRESULT hrEvent;
@@ -654,18 +654,18 @@ ffi.cdef [[
     UINT UABProtectionLevel;
     UINT Reserved;
   } DXVA2_VideoDesc;
-  typedef DWORD WINAPI_DXVA2_BufferType; //Alias
-  static const DWORD DXVA2_PictureParametersBufferType = 0;
-  static const DWORD DXVA2_MacroBlockControlBufferType = 1;
-  static const DWORD DXVA2_ResidualDifferenceBufferType = 2;
-  static const DWORD DXVA2_DeblockingControlBufferType = 3;
-  static const DWORD DXVA2_InverseQuantizationMatrixBufferType = 4;
-  static const DWORD DXVA2_SliceControlBufferType = 5;
-  static const DWORD DXVA2_BitStreamDateBufferType = 6;
-  static const DWORD DXVA2_MotionVectorBuffer = 7;
-  static const DWORD DXVA2_FilmGrainBuffer = 8;
+  typedef DWORD DXVA2_BufferType; //Alias
+  static const DXVA2_BufferType DXVA2_PictureParametersBufferType = 0;
+  static const DXVA2_BufferType DXVA2_MacroBlockControlBufferType = 1;
+  static const DXVA2_BufferType DXVA2_ResidualDifferenceBufferType = 2;
+  static const DXVA2_BufferType DXVA2_DeblockingControlBufferType = 3;
+  static const DXVA2_BufferType DXVA2_InverseQuantizationMatrixBufferType = 4;
+  static const DXVA2_BufferType DXVA2_SliceControlBufferType = 5;
+  static const DXVA2_BufferType DXVA2_BitStreamDateBufferType = 6;
+  static const DXVA2_BufferType DXVA2_MotionVectorBuffer = 7;
+  static const DXVA2_BufferType DXVA2_FilmGrainBuffer = 8;
   typedef struct DXVA2_DecodeBufferDesc {
-    WINAPI_DXVA2_BufferType CompressedBufferType;
+    DXVA2_BufferType CompressedBufferType;
     UINT BufferIndex;
     UINT DataOffset;
     UINT DataSize;
@@ -709,33 +709,33 @@ ffi.cdef [[
     USHORT ConfigDecoderSpecific;
   } DXVA2_ConfigPictureDecode;
   typedef UINT DXVA2_SurfaceType; //Alias
-  static const UINT DXVA2_SurfaceType_DecoderRenderTarget = 0;
-  static const UINT DXVA2_SurfaceType_ProcessorRenderTarget = 1;
-  static const UINT DXVA2_SurfaceType_D3DRenderTargetTexture = 2;
-  typedef UINT WINAPI_DXVA2_VPDev; //Alias
-  typedef UINT WINAPI_DXVA2_DeinterlaceTech; //Alias
-  typedef UINT WINAPI_DXVA2_ProcAmp; //Alias
-  typedef UINT WINAPI_DXVA2_VideoProcess; //Alias
-  typedef UINT WINAPI_DXVA2_NoiseFilterTech; //Alias
-  typedef UINT WINAPI_DXVA2_DetailFilterTech; //Alias
+  static const DXVA2_SurfaceType DXVA2_SurfaceType_DecoderRenderTarget = 0;
+  static const DXVA2_SurfaceType DXVA2_SurfaceType_ProcessorRenderTarget = 1;
+  static const DXVA2_SurfaceType DXVA2_SurfaceType_D3DRenderTargetTexture = 2;
+  typedef UINT DXVA2_VPDev; //Alias
+  typedef UINT DXVA2_DeinterlaceTech; //Alias
+  typedef UINT DXVA2_ProcAmp; //Alias
+  typedef UINT DXVA2_VideoProcess; //Alias
+  typedef UINT DXVA2_NoiseFilterTech; //Alias
+  typedef UINT DXVA2_DetailFilterTech; //Alias
   typedef struct DXVA2_VideoProcessorCaps {
-    WINAPI_DXVA2_VPDev DeviceCaps;
+    DXVA2_VPDev DeviceCaps;
     D3DPOOL InputPool;
     UINT NumForwardRefSamples;
     UINT NumBackwardRefSamples;
     UINT Reserved;
-    WINAPI_DXVA2_DeinterlaceTech DeinterlaceTechnology;
-    WINAPI_DXVA2_ProcAmp ProcAmpControlCaps;
-    WINAPI_DXVA2_VideoProcess VideoProcessorOperations;
-    WINAPI_DXVA2_NoiseFilterTech NoiseFilterTechnology;
-    WINAPI_DXVA2_DetailFilterTech DetailFilterTechnology;
+    DXVA2_DeinterlaceTech DeinterlaceTechnology;
+    DXVA2_ProcAmp ProcAmpControlCaps;
+    DXVA2_VideoProcess VideoProcessorOperations;
+    DXVA2_NoiseFilterTech NoiseFilterTechnology;
+    DXVA2_DetailFilterTech DetailFilterTechnology;
   } DXVA2_VideoProcessorCaps;
-  typedef struct WINAPI_DXVA2_Fixed32_s {
+  typedef struct DXVA2_Fixed32_s {
     USHORT Fraction;
     SHORT Value;
-  } WINAPI_DXVA2_Fixed32_s;
+  } DXVA2_Fixed32_s;
   typedef union DXVA2_Fixed32 {
-    WINAPI_DXVA2_Fixed32_s ;
+    DXVA2_Fixed32_s ;
     LONG ll;
   } DXVA2_Fixed32;
   typedef struct DXVA2_ValueRange {
@@ -744,7 +744,7 @@ ffi.cdef [[
     DXVA2_Fixed32 DefaultValue;
     DXVA2_Fixed32 StepSize;
   } DXVA2_ValueRange;
-  typedef DWORD WINAPI_DXVA2_DestData; //Alias
+  typedef DWORD DXVA2_DestData; //Alias
   typedef struct DXVA2_AYUVSample16 {
     USHORT Cr;
     USHORT Cb;
@@ -775,7 +775,7 @@ ffi.cdef [[
     DXVA2_FilterValues NoiseFilterChroma;
     DXVA2_FilterValues DetailFilterLuma;
     DXVA2_FilterValues DetailFilterChroma;
-    WINAPI_DXVA2_DestData DestData;
+    DXVA2_DestData DestData;
   } DXVA2_VideoProcessBltParams;
   typedef struct DXVA2_AYUVSample8 {
     UCHAR Cr;
@@ -801,69 +801,69 @@ ffi.cdef [[
     BYTE bSequenceHeader[1];
   } MPEG1VIDEOINFO;
   typedef DWORD AM_MPEG2Profile; //Alias
-  static const DWORD AM_MPEG2Profile_Simple = 1;
-  static const DWORD AM_MPEG2Profile_Main = 2;
-  static const DWORD AM_MPEG2Profile_SNRScalable = 3;
-  static const DWORD AM_MPEG2Profile_SpatiallyScalable = 4;
-  static const DWORD AM_MPEG2Profile_High = 5;
+  static const AM_MPEG2Profile AM_MPEG2Profile_Simple = 1;
+  static const AM_MPEG2Profile AM_MPEG2Profile_Main = 2;
+  static const AM_MPEG2Profile AM_MPEG2Profile_SNRScalable = 3;
+  static const AM_MPEG2Profile AM_MPEG2Profile_SpatiallyScalable = 4;
+  static const AM_MPEG2Profile AM_MPEG2Profile_High = 5;
   typedef DWORD AM_MPEG2Level; //Alias
-  static const DWORD AM_MPEG2Level_Low = 1;
-  static const DWORD AM_MPEG2Level_Main = 2;
-  static const DWORD AM_MPEG2Level_High1440 = 3;
-  static const DWORD AM_MPEG2Level_High = 4;
-  typedef DWORD WINAPI_AMMPEG2_FLAGS; //Alias
+  static const AM_MPEG2Level AM_MPEG2Level_Low = 1;
+  static const AM_MPEG2Level AM_MPEG2Level_Main = 2;
+  static const AM_MPEG2Level AM_MPEG2Level_High1440 = 3;
+  static const AM_MPEG2Level AM_MPEG2Level_High = 4;
+  typedef DWORD AMMPEG2_FLAGS; //Alias
   typedef struct MPEG2VIDEOINFO {
     VIDEOINFOHEADER2 hdr;
     DWORD dwStartTimeCode;
     DWORD cbSequenceHeader;
     AM_MPEG2Profile dwProfile;
     AM_MPEG2Level dwLevel;
-    WINAPI_AMMPEG2_FLAGS dwFlags;
+    AMMPEG2_FLAGS dwFlags;
     DWORD dwSequenceHeader[1];
   } MPEG2VIDEOINFO;
   typedef UINT DXVAHD_FILTER; //Alias
-  static const UINT DXVAHD_FILTER_BRIGHTNESS = 0;
-  static const UINT DXVAHD_FILTER_CONTRAST = 1;
-  static const UINT DXVAHD_FILTER_HUE = 2;
-  static const UINT DXVAHD_FILTER_SATURATION = 3;
-  static const UINT DXVAHD_FILTER_NOISE_REDUCTION = 4;
-  static const UINT DXVAHD_FILTER_EDGE_ENHANCEMENT = 5;
-  static const UINT DXVAHD_FILTER_ANAMORPHIC_SCALING = 6;
+  static const DXVAHD_FILTER DXVAHD_FILTER_BRIGHTNESS = 0;
+  static const DXVAHD_FILTER DXVAHD_FILTER_CONTRAST = 1;
+  static const DXVAHD_FILTER DXVAHD_FILTER_HUE = 2;
+  static const DXVAHD_FILTER DXVAHD_FILTER_SATURATION = 3;
+  static const DXVAHD_FILTER DXVAHD_FILTER_NOISE_REDUCTION = 4;
+  static const DXVAHD_FILTER DXVAHD_FILTER_EDGE_ENHANCEMENT = 5;
+  static const DXVAHD_FILTER DXVAHD_FILTER_ANAMORPHIC_SCALING = 6;
   typedef UINT DXVAHD_SURFACE_TYPE; //Alias
-  static const UINT DXVAHD_SURFACE_TYPE_VIDEO_INPUT = 0;
-  static const UINT DXVAHD_SURFACE_TYPE_VIDEO_INPUT_PRIVATE = 1;
-  static const UINT DXVAHD_SURFACE_TYPE_VIDEO_OUTPUT = 2;
+  static const DXVAHD_SURFACE_TYPE DXVAHD_SURFACE_TYPE_VIDEO_INPUT = 0;
+  static const DXVAHD_SURFACE_TYPE DXVAHD_SURFACE_TYPE_VIDEO_INPUT_PRIVATE = 1;
+  static const DXVAHD_SURFACE_TYPE DXVAHD_SURFACE_TYPE_VIDEO_OUTPUT = 2;
   typedef UINT DXVAHD_BLT_STATE; //Alias
-  static const UINT DXVAHD_BLT_STATE_TARGET_RECT = 0;
-  static const UINT DXVAHD_BLT_STATE_BACKGROUND_COLOR = 1;
-  static const UINT DXVAHD_BLT_STATE_OUTPUT_COLOR_SPACE = 2;
-  static const UINT DXVAHD_BLT_STATE_ALPHA_FILL = 3;
-  static const UINT DXVAHD_BLT_STATE_CONSTRICTION = 4;
-  static const UINT DXVAHD_BLT_STATE_PRIVATE = 1000;
+  static const DXVAHD_BLT_STATE DXVAHD_BLT_STATE_TARGET_RECT = 0;
+  static const DXVAHD_BLT_STATE DXVAHD_BLT_STATE_BACKGROUND_COLOR = 1;
+  static const DXVAHD_BLT_STATE DXVAHD_BLT_STATE_OUTPUT_COLOR_SPACE = 2;
+  static const DXVAHD_BLT_STATE DXVAHD_BLT_STATE_ALPHA_FILL = 3;
+  static const DXVAHD_BLT_STATE DXVAHD_BLT_STATE_CONSTRICTION = 4;
+  static const DXVAHD_BLT_STATE DXVAHD_BLT_STATE_PRIVATE = 1000;
   typedef UINT DXVAHD_STREAM_STATE; //Alias
-  static const UINT DXVAHD_STREAM_STATE_D3DFORMAT = 0;
-  static const UINT DXVAHD_STREAM_STATE_FRAME_FORMAT = 1;
-  static const UINT DXVAHD_STREAM_STATE_INPUT_COLOR_SPACE = 2;
-  static const UINT DXVAHD_STREAM_STATE_OUTPUT_RATE = 3;
-  static const UINT DXVAHD_STREAM_STATE_SOURCE_RECT = 4;
-  static const UINT DXVAHD_STREAM_STATE_DESTINATION_RECT = 5;
-  static const UINT DXVAHD_STREAM_STATE_ALPHA = 6;
-  static const UINT DXVAHD_STREAM_STATE_PALETTE = 7;
-  static const UINT DXVAHD_STREAM_STATE_LUMA_KEY = 8;
-  static const UINT DXVAHD_STREAM_STATE_ASPECT_RATIO = 9;
-  static const UINT DXVAHD_STREAM_STATE_FILTER_BRIGHTNESS = 100;
-  static const UINT DXVAHD_STREAM_STATE_FILTER_CONTRAST = 101;
-  static const UINT DXVAHD_STREAM_STATE_FILTER_HUE = 102;
-  static const UINT DXVAHD_STREAM_STATE_FILTER_SATURATION = 103;
-  static const UINT DXVAHD_STREAM_STATE_FILTER_NOISE_REDUCTION = 104;
-  static const UINT DXVAHD_STREAM_STATE_FILTER_EDGE_ENHANCEMENT = 105;
-  static const UINT DXVAHD_STREAM_STATE_FILTER_ANAMORPHIC_SCALING = 106;
-  static const UINT DXVAHD_STREAM_STATE_PRIVATE = 1000;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_D3DFORMAT = 0;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_FRAME_FORMAT = 1;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_INPUT_COLOR_SPACE = 2;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_OUTPUT_RATE = 3;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_SOURCE_RECT = 4;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_DESTINATION_RECT = 5;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_ALPHA = 6;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_PALETTE = 7;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_LUMA_KEY = 8;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_ASPECT_RATIO = 9;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_FILTER_BRIGHTNESS = 100;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_FILTER_CONTRAST = 101;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_FILTER_HUE = 102;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_FILTER_SATURATION = 103;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_FILTER_NOISE_REDUCTION = 104;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_FILTER_EDGE_ENHANCEMENT = 105;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_FILTER_ANAMORPHIC_SCALING = 106;
+  static const DXVAHD_STREAM_STATE DXVAHD_STREAM_STATE_PRIVATE = 1000;
   typedef UINT DXVAHD_DEVICE_TYPE; //Alias
-  static const UINT DXVAHD_DEVICE_TYPE_HARDWARE = 0;
-  static const UINT DXVAHD_DEVICE_TYPE_SOFTWARE = 1;
-  static const UINT DXVAHD_DEVICE_TYPE_REFERENCE = 2;
-  static const UINT DXVAHD_DEVICE_TYPE_OTHER = 3;
+  static const DXVAHD_DEVICE_TYPE DXVAHD_DEVICE_TYPE_HARDWARE = 0;
+  static const DXVAHD_DEVICE_TYPE DXVAHD_DEVICE_TYPE_SOFTWARE = 1;
+  static const DXVAHD_DEVICE_TYPE DXVAHD_DEVICE_TYPE_REFERENCE = 2;
+  static const DXVAHD_DEVICE_TYPE DXVAHD_DEVICE_TYPE_OTHER = 3;
   typedef UINT DXVAHD_DEVICE_CAPS; //Alias
   typedef UINT DXVAHD_FEATURE_CAPS; //Alias
   typedef UINT DXVAHD_FILTER_CAPS; //Alias

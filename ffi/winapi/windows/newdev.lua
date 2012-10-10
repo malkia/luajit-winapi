@@ -11,4 +11,4 @@ ffi.cdef [[
   BOOL UpdateDriverForPlugAndPlayDevices( HWND hwndParent, LPCTSTR HardwareId, LPCTSTR FullInfPath, DWORD InstallFlags, PBOOL bRebootRequired);
   BOOL InstallSelectedDriver(             HWND hwndParent, HDEVINFO DeviceInfoSet, LPCTSTR Reserved, BOOL Backup, PDWORD bReboot);
 ]]
-return ffi.load( 'Newdev.dll' )
+ffi.load( 'Newdev.dll' )

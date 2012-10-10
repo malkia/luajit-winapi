@@ -3,15 +3,15 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID PPATCH_PROGRESS_CALLBACK; //Alias
   typedef LPVOID PPATCH_SYMLOAD_CALLBACK; //Alias
-  typedef struct WINAPI_PATCH_INTERLEAVE_MAP_s {
+  typedef struct PATCH_INTERLEAVE_MAP_s {
     ULONG OldOffset;
     ULONG OldLength;
     ULONG NewLength;
-  } WINAPI_PATCH_INTERLEAVE_MAP_s;
+  } PATCH_INTERLEAVE_MAP_s;
   enum {  = 1 };
   typedef struct PATCH_INTERLEAVE_MAP {
     ULONG CountRanges;
-    WINAPI_PATCH_INTERLEAVE_MAP_s] Range[1;
+    PATCH_INTERLEAVE_MAP_s] Range[1;
   } PATCH_INTERLEAVE_MAP;
   typedef PATCH_INTERLEAVE_MAP *PPATCH_INTERLEAVE_MAP; //Pointer
   typedef struct PATCH_IGNORE_RANGE {
@@ -25,14 +25,14 @@ ffi.cdef [[
     ULONG OffsetInNewFile;
   } PATCH_RETAIN_RANGE;
   typedef PATCH_RETAIN_RANGE *PPATCH_RETAIN_RANGE; //Pointer
-  typedef ULONG WINAPI_PatchSymbolOptions; //Alias
-  typedef ULONG WINAPI_PatchExtendedOptions; //Alias
+  typedef ULONG PatchSymbolOptions; //Alias
+  typedef ULONG PatchExtendedOptions; //Alias
   typedef struct PATCH_OPTION_DATA {
     ULONG SizeOfThisStruct;
-    WINAPI_PatchSymbolOptions SymbolOptionFlags;
+    PatchSymbolOptions SymbolOptionFlags;
     LPCSTR NewFileSymbolPath;
     LPCSTR* OldFileSymbolPathArray;
-    WINAPI_PatchExtendedOptions ExtendedOptionFlags;
+    PatchExtendedOptions ExtendedOptionFlags;
     PPATCH_SYMLOAD_CALLBACK SymLoadCallback;
     PVOID SymLoadContext;
     PPATCH_INTERLEAVE_MAP* InterleaveMapArray;
@@ -57,5 +57,5 @@ ffi.cdef [[
     PPATCH_RETAIN_RANGE RetainRangeArray;
   } PATCH_OLD_FILE_INFO;
   typedef PATCH_OLD_FILE_INFO *PPATCH_OLD_FILE_INFO; //Pointer
-  typedef ULONG WINAPI_PatchOptionFlags; //Alias
+  typedef ULONG PatchOptionFlags; //Alias
 ]]

@@ -355,33 +355,33 @@ ffi.cdef [[
   typedef PCIDLIST_ABSOLUTE *PCIDLIST_ABSOLUTE_ARRAY; //Pointer
   typedef UINT STRRET_TYPE; //Alias
 # pragma pack( push, 8 )
-  typedef union WINAPI_STRRET_u {
+  typedef union STRRET_u {
     LPWSTR pOleStr;
     UINT uOffset;
     char cStr[260];
-  } WINAPI_STRRET_u;
+  } STRRET_u;
 # pragma pack( pop )
 # pragma pack( push, 8 )
   typedef struct STRRET {
     STRRET_TYPE uType;
-    WINAPI_STRRET_u ;
+    STRRET_u ;
   } STRRET;
 # pragma pack( pop )
   typedef STRRET *LPSTRRET; //Pointer
-  typedef UINT WINAPI_SHELLDETAILS_fmt; //Alias
+  typedef UINT SHELLDETAILS_fmt; //Alias
   typedef struct SHELLDETAILS {
-    WINAPI_SHELLDETAILS_fmt fmt;
+    SHELLDETAILS_fmt fmt;
     int cxChar;
     STRRET str;
   } SHELLDETAILS;
-  typedef UINT WINAPI_CSIDL; //Alias
+  typedef UINT CSIDL; //Alias
 # pragma pack( push, 8 )
   typedef struct PERSIST_FOLDER_TARGET_INFO {
     PIDLIST_ABSOLUTE pidlTargetFolder;
     WCHAR szTargetParsingName[260];
     WCHAR szNetworkProvider[260];
-    WINAPI_FileAttributes dwAttributes;
-    WINAPI_CSIDL csidl;
+    FileAttributes dwAttributes;
+    CSIDL csidl;
   } PERSIST_FOLDER_TARGET_INFO;
 # pragma pack( pop )
   typedef struct SHELL_ITEM_RESOURCE {
@@ -391,8 +391,8 @@ ffi.cdef [[
   typedef DWORD CM_MASK; //Alias
   typedef DWORD CM_STATE; //Alias
   typedef UINT CM_SET_WIDTH_VALUE; //Alias
-  static const UINT CM_WIDTH_USEDEFAULT = -1;
-  static const UINT CM_WIDTH_AUTOSIZE = -2;
+  static const CM_SET_WIDTH_VALUE CM_WIDTH_USEDEFAULT = -1;
+  static const CM_SET_WIDTH_VALUE CM_WIDTH_AUTOSIZE = -2;
   typedef struct CM_COLUMNINFO {
     DWORD cbSize;
     CM_MASK dwMask;
@@ -407,17 +407,17 @@ ffi.cdef [[
     CATEGORYINFO_FLAGS cif;
     WCHAR wszName[260];
   } CATEGORY_INFO;
-  typedef DWORD WINAPI_DBIM; //Alias
-  typedef DWORD WINAPI_DBIMF; //Alias
+  typedef DWORD DBIM; //Alias
+  typedef DWORD DBIMF; //Alias
 # pragma pack( push, 8 )
   typedef struct DESKBANDINFO {
-    WINAPI_DBIM dwMask;
+    DBIM dwMask;
     POINTL ptMinSize;
     POINTL ptMaxSize;
     POINTL ptIntegral;
     POINTL ptActual;
     WCHAR wszTitle[256];
-    WINAPI_DBIMF dwModeFlags;
+    DBIMF dwModeFlags;
     COLORREF crBkgnd;
   } DESKBANDINFO;
 # pragma pack( pop )
@@ -451,16 +451,16 @@ ffi.cdef [[
     int iIndent;
   } NSTCCUSTOMDRAW;
   typedef UINT FOLDERVIEWMODE; //Alias
-  static const UINT FVM_AUTO = -1;
-  static const UINT FVM_FIRST = 1;
-  static const UINT FVM_ICON = 1;
-  static const UINT FVM_SMALLICON = 2;
-  static const UINT FVM_LIST = 3;
-  static const UINT FVM_DETAILS = 4;
-  static const UINT FVM_THUMBNAIL = 5;
-  static const UINT FVM_TILE = 6;
-  static const UINT FVM_THUMBSTRIP = 7;
-  static const UINT FVM_CONTENT = 8;
+  static const FOLDERVIEWMODE FVM_AUTO = -1;
+  static const FOLDERVIEWMODE FVM_FIRST = 1;
+  static const FOLDERVIEWMODE FVM_ICON = 1;
+  static const FOLDERVIEWMODE FVM_SMALLICON = 2;
+  static const FOLDERVIEWMODE FVM_LIST = 3;
+  static const FOLDERVIEWMODE FVM_DETAILS = 4;
+  static const FOLDERVIEWMODE FVM_THUMBNAIL = 5;
+  static const FOLDERVIEWMODE FVM_TILE = 6;
+  static const FOLDERVIEWMODE FVM_THUMBSTRIP = 7;
+  static const FOLDERVIEWMODE FVM_CONTENT = 8;
   typedef UINT FOLDERFLAGS; //Alias
   typedef struct FOLDERSETTINGS {
     FOLDERVIEWMODE ViewMode;
@@ -474,15 +474,15 @@ ffi.cdef [[
     LPCFOLDERSETTINGS pfs;
     IShellBrowser* psbOwner;
     RECT* prcView;
-    WINAPI_SHELLVIEWID* pvid;
+    SHELLVIEWID* pvid;
     HWND hwndView;
   } SV2CVW2_PARAMS;
   typedef SV2CVW2_PARAMS *LPSV2CVW2_PARAMS; //Pointer
   typedef UINT KF_CATEGORY; //Alias
-  static const UINT KF_CATEGORY_VIRTUAL = 1;
-  static const UINT KF_CATEGORY_FIXED = 2;
-  static const UINT KF_CATEGORY_COMMON = 3;
-  static const UINT KF_CATEGORY_PERUSER = 4;
+  static const KF_CATEGORY KF_CATEGORY_VIRTUAL = 1;
+  static const KF_CATEGORY KF_CATEGORY_FIXED = 2;
+  static const KF_CATEGORY KF_CATEGORY_COMMON = 3;
+  static const KF_CATEGORY KF_CATEGORY_PERUSER = 4;
   typedef DWORD KF_DEFINITION_FLAGS; //Alias
   typedef struct KNOWNFOLDER_DEFINITION {
     KF_CATEGORY category;
@@ -500,8 +500,8 @@ ffi.cdef [[
     FOLDERTYPEID ftidType;
   } KNOWNFOLDER_DEFINITION;
   typedef int SORTDIRECTION; //Alias
-  static const int SORT_DESCENDING = -1;
-  static const int SORT_ASCENDING = 1;
+  static const SORTDIRECTION SORT_DESCENDING = -1;
+  static const SORTDIRECTION SORT_ASCENDING = 1;
   typedef struct SORTCOLUMN {
     PROPERTYKEY propkey;
     SORTDIRECTION direction;
@@ -513,16 +513,16 @@ ffi.cdef [[
     DWORD dwStyle;
   } BANDSITEINFO;
 # pragma pack( pop )
-  typedef DWORD WINAPI_CMIC_Mask; //Alias
+  typedef DWORD CMIC_Mask; //Alias
 # pragma pack( push, 8 )
   typedef struct CMINVOKECOMMANDINFO {
     DWORD cbSize;
-    WINAPI_CMIC_Mask fMask;
+    CMIC_Mask fMask;
     HWND hwnd;
     LPCSTR lpVerb;
     LPCSTR lpParameters;
     LPCSTR lpDirectory;
-    WINAPI_ShowWindowCmd nShow;
+    ShowWindowCmd nShow;
     DWORD dwHotKey;
     HANDLE hIcon;
   } CMINVOKECOMMANDINFO;
@@ -536,10 +536,10 @@ ffi.cdef [[
   } SHDRAGIMAGE;
 # pragma pack( pop )
   typedef SHDRAGIMAGE *LPSHDRAGIMAGE; //Pointer
-  typedef DWORD WINAPI_SMDATA_Mask; //Alias
+  typedef DWORD SMDATA_Mask; //Alias
 # pragma pack( push, 8 )
   typedef struct SMDATA {
-    WINAPI_SMDATA_Mask dwMask;
+    SMDATA_Mask dwMask;
     DWORD dwFlags;
     HMENU hmenu;
     HWND hwnd;
@@ -559,160 +559,160 @@ ffi.cdef [[
     LPCWSTR pszSpec;
   } COMDLG_FILTERSPEC;
   typedef UINT FDAP; //Alias
-  static const UINT FDAP_BOTTOM = 0;
-  static const UINT FDAP_TOP = 1;
+  static const FDAP FDAP_BOTTOM = 0;
+  static const FDAP FDAP_TOP = 1;
   typedef DWORD SHCOLSTATEF; //Alias
   typedef UINT FVTEXTTYPE; //Alias
-  static const UINT FVST_EMPTYTEXT = 0;
+  static const FVTEXTTYPE FVST_EMPTYTEXT = 0;
   typedef UINT SPACTION; //Alias
-  static const UINT SPACTION_NONE = 0;
-  static const UINT SPACTION_MOVING = 1;
-  static const UINT SPACTION_COPYING = 2;
-  static const UINT SPACTION_RECYCLING = 3;
-  static const UINT SPACTION_APPLYINGATTRIBS = 4;
-  static const UINT SPACTION_DOWNLOADING = 5;
-  static const UINT SPACTION_SEARCHING_INTERNET = 6;
-  static const UINT SPACTION_CALCULATING = 7;
-  static const UINT SPACTION_UPLOADING = 8;
-  static const UINT SPACTION_SEARCHING_FILES = 9;
-  static const UINT SPACTION_DELETING = 10;
-  static const UINT SPACTION_RENAMING = 11;
-  static const UINT SPACTION_FORMATTING = 12;
-  static const UINT SPACTION_COPY_MOVING = 13;
+  static const SPACTION SPACTION_NONE = 0;
+  static const SPACTION SPACTION_MOVING = 1;
+  static const SPACTION SPACTION_COPYING = 2;
+  static const SPACTION SPACTION_RECYCLING = 3;
+  static const SPACTION SPACTION_APPLYINGATTRIBS = 4;
+  static const SPACTION SPACTION_DOWNLOADING = 5;
+  static const SPACTION SPACTION_SEARCHING_INTERNET = 6;
+  static const SPACTION SPACTION_CALCULATING = 7;
+  static const SPACTION SPACTION_UPLOADING = 8;
+  static const SPACTION SPACTION_SEARCHING_FILES = 9;
+  static const SPACTION SPACTION_DELETING = 10;
+  static const SPACTION SPACTION_RENAMING = 11;
+  static const SPACTION SPACTION_FORMATTING = 12;
+  static const SPACTION SPACTION_COPY_MOVING = 13;
   typedef UINT SPBEGINF; //Alias
   typedef UINT SPINITF; //Alias
   typedef UINT ASSOCIATIONTYPE; //Alias
-  static const UINT AT_FILEEXTENSION = 0;
-  static const UINT AT_URLPROTOCOL = 1;
-  static const UINT AT_STARTMENUCLIENT = 2;
-  static const UINT AT_MIMETYPE = 3;
+  static const ASSOCIATIONTYPE AT_FILEEXTENSION = 0;
+  static const ASSOCIATIONTYPE AT_URLPROTOCOL = 1;
+  static const ASSOCIATIONTYPE AT_STARTMENUCLIENT = 2;
+  static const ASSOCIATIONTYPE AT_MIMETYPE = 3;
   typedef UINT APPDOCLISTTYPE; //Alias
-  static const UINT ADLT_RECENT = 0;
-  static const UINT ADLT_FREQUENT = 1;
+  static const APPDOCLISTTYPE ADLT_RECENT = 0;
+  static const APPDOCLISTTYPE ADLT_FREQUENT = 1;
   typedef UINT ATTACHMENT_PROMPT; //Alias
-  static const UINT ATTACHMENT_PROMPT_NONE = 0;
-  static const UINT ATTACHMENT_PROMPT_SAVE = 0x1;
-  static const UINT ATTACHMENT_PROMPT_EXEC = 0x2;
-  static const UINT ATTACHMENT_PROMPT_EXEC_OR_SAVE = 0x3;
+  static const ATTACHMENT_PROMPT ATTACHMENT_PROMPT_NONE = 0;
+  static const ATTACHMENT_PROMPT ATTACHMENT_PROMPT_SAVE = 0x1;
+  static const ATTACHMENT_PROMPT ATTACHMENT_PROMPT_EXEC = 0x2;
+  static const ATTACHMENT_PROMPT ATTACHMENT_PROMPT_EXEC_OR_SAVE = 0x3;
   typedef UINT SPTEXT; //Alias
-  static const UINT SPTEXT_ACTIONDESCRIPTION = 1;
-  static const UINT SPTEXT_ACTIONDETAIL = 2;
+  static const SPTEXT SPTEXT_ACTIONDESCRIPTION = 1;
+  static const SPTEXT SPTEXT_ACTIONDETAIL = 2;
   typedef UINT ASSOCIATIONLEVEL; //Alias
-  static const UINT AL_MACHINE = 0;
-  static const UINT AL_EFFECTIVE = 1;
-  static const UINT AL_USER = 2;
+  static const ASSOCIATIONLEVEL AL_MACHINE = 0;
+  static const ASSOCIATIONLEVEL AL_EFFECTIVE = 1;
+  static const ASSOCIATIONLEVEL AL_USER = 2;
   typedef UINT ATTACHMENT_ACTION; //Alias
-  static const UINT ATTACHMENT_ACTION_CANCEL = 0;
-  static const UINT ATTACHMENT_ACTION_SAVE = 0x1;
-  static const UINT ATTACHMENT_ACTION_EXEC = 0x2;
+  static const ATTACHMENT_ACTION ATTACHMENT_ACTION_CANCEL = 0;
+  static const ATTACHMENT_ACTION ATTACHMENT_ACTION_SAVE = 0x1;
+  static const ATTACHMENT_ACTION ATTACHMENT_ACTION_EXEC = 0x2;
   typedef UINT BROWSERFRAMEOPTIONS; //Alias
   typedef UINT CDBE_ACTIONS; //Alias
   typedef UINT CATSORT_FLAGS; //Alias
   typedef UINT CM_ENUM_FLAGS; //Alias
   typedef UINT KNOWNDESTCATEGORY; //Alias
-  static const UINT KDC_FREQUENT = 1;
-  static const UINT KDC_RECENT = 2;
+  static const KNOWNDESTCATEGORY KDC_FREQUENT = 1;
+  static const KNOWNDESTCATEGORY KDC_RECENT = 2;
   typedef UINT EXPCMDSTATE; //Alias
   typedef UINT FILEOPENDIALOGOPTIONS; //Alias
   typedef UINT FDE_OVERWRITE_RESPONSE; //Alias
-  static const UINT FDEOR_DEFAULT = 0;
-  static const UINT FDEOR_ACCEPT = 1;
-  static const UINT FDEOR_REFUSE = 2;
+  static const FDE_OVERWRITE_RESPONSE FDEOR_DEFAULT = 0;
+  static const FDE_OVERWRITE_RESPONSE FDEOR_ACCEPT = 1;
+  static const FDE_OVERWRITE_RESPONSE FDEOR_REFUSE = 2;
   typedef UINT CDCONTROLSTATEF; //Alias
   typedef UINT FDE_SHAREVIOLATION_RESPONSE; //Alias
-  static const UINT FDESVR_DEFAULT = 0;
-  static const UINT FDESVR_ACCEPT = 1;
-  static const UINT FDESVR_REFUSE = 2;
+  static const FDE_SHAREVIOLATION_RESPONSE FDESVR_DEFAULT = 0;
+  static const FDE_SHAREVIOLATION_RESPONSE FDESVR_ACCEPT = 1;
+  static const FDE_SHAREVIOLATION_RESPONSE FDESVR_REFUSE = 2;
   typedef UINT FILE_USAGE_TYPE; //Alias
-  static const UINT FUT_PLAYING = 0;
-  static const UINT FUT_EDITING = 1;
-  static const UINT FUT_GENERIC = 2;
+  static const FILE_USAGE_TYPE FUT_PLAYING = 0;
+  static const FILE_USAGE_TYPE FUT_EDITING = 1;
+  static const FILE_USAGE_TYPE FUT_GENERIC = 2;
   typedef UINT EXPLORERPANESTATE; //Alias
   typedef UINT FOLDERVIEWOPTIONS; //Alias
   typedef UINT FOLDERLOGICALVIEWMODE; //Alias
-  static const UINT FLVM_UNSPECIFIED = -1;
-  static const UINT FLVM_FIRST = 1;
-  static const UINT FLVM_DETAILS = 1;
-  static const UINT FLVM_TILES = 2;
-  static const UINT FLVM_ICONS = 3;
-  static const UINT FLVM_LIST = 4;
-  static const UINT FLVM_CONTENT = 5;
+  static const FOLDERLOGICALVIEWMODE FLVM_UNSPECIFIED = -1;
+  static const FOLDERLOGICALVIEWMODE FLVM_FIRST = 1;
+  static const FOLDERLOGICALVIEWMODE FLVM_DETAILS = 1;
+  static const FOLDERLOGICALVIEWMODE FLVM_TILES = 2;
+  static const FOLDERLOGICALVIEWMODE FLVM_ICONS = 3;
+  static const FOLDERLOGICALVIEWMODE FLVM_LIST = 4;
+  static const FOLDERLOGICALVIEWMODE FLVM_CONTENT = 5;
   typedef UINT NSTCSTYLE; //Alias
   typedef UINT NSTCSTYLE2; //Alias
   typedef UINT PDOPSTATUS; //Alias
-  static const UINT PDOPS_RUNNING = 1;
-  static const UINT PDOPS_PAUSED = 2;
-  static const UINT PDOPS_CANCELLED = 3;
-  static const UINT PDOPS_STOPPED = 4;
-  static const UINT PDOPS_ERRORS = 5;
+  static const PDOPSTATUS PDOPS_RUNNING = 1;
+  static const PDOPSTATUS PDOPS_PAUSED = 2;
+  static const PDOPSTATUS PDOPS_CANCELLED = 3;
+  static const PDOPSTATUS PDOPS_STOPPED = 4;
+  static const PDOPSTATUS PDOPS_ERRORS = 5;
   typedef DWORD PDMODE; //Alias
   typedef UINT NSTCEHITTEST; //Alias
   typedef UINT NSTCFOLDERCAPABILITIES; //Alias
   typedef UINT NMCII_FLAGS; //Alias
   typedef UINT FOLDER_ENUM_MODE; //Alias
-  static const UINT FEM_VIEWRESULT = 0;
-  static const UINT FEM_NAVIGATION = 1;
+  static const FOLDER_ENUM_MODE FEM_VIEWRESULT = 0;
+  static const FOLDER_ENUM_MODE FEM_NAVIGATION = 1;
   typedef UINT TRANSFER_ADVISE_STATE; //Alias
   typedef UINT NSTCECLICKTYPE; //Alias
-  static const UINT NSTCECT_LBUTTON = 0x1;
-  static const UINT NSTCECT_MBUTTON = 0x2;
-  static const UINT NSTCECT_RBUTTON = 0x3;
-  static const UINT NSTCECT_DBLCLICK = 0x4;
+  static const NSTCECLICKTYPE NSTCECT_LBUTTON = 0x1;
+  static const NSTCECLICKTYPE NSTCECT_MBUTTON = 0x2;
+  static const NSTCECLICKTYPE NSTCECT_RBUTTON = 0x3;
+  static const NSTCECLICKTYPE NSTCECT_DBLCLICK = 0x4;
   typedef UINT TRANSFER_SOURCE_FLAGS; //Alias
   typedef UINT TBPFLAG; //Alias
   typedef UINT LIBRARYFOLDERFILTER; //Alias
-  static const UINT LFF_FORCEFILESYSTEM = 1;
-  static const UINT LFF_STORAGEITEMS = 2;
-  static const UINT LFF_ALLITEMS = 3;
+  static const LIBRARYFOLDERFILTER LFF_FORCEFILESYSTEM = 1;
+  static const LIBRARYFOLDERFILTER LFF_STORAGEITEMS = 2;
+  static const LIBRARYFOLDERFILTER LFF_ALLITEMS = 3;
   typedef UINT SIATTRIBFLAGS; //Alias
   typedef UINT VPWATERMARKFLAGS; //Alias
-  static const UINT VPWF_DEFAULT = 0;
-  static const UINT VPWF_ALPHABLEND = 0x1;
+  static const VPWATERMARKFLAGS VPWF_DEFAULT = 0;
+  static const VPWATERMARKFLAGS VPWF_ALPHABLEND = 0x1;
   typedef UINT VPCOLORFLAGS; //Alias
-  static const UINT VPCF_TEXT = 1;
-  static const UINT VPCF_BACKGROUND = 2;
-  static const UINT VPCF_SORTCOLUMN = 3;
-  static const UINT VPCF_SUBTEXT = 4;
-  static const UINT VPCF_TEXTBACKGROUND = 5;
+  static const VPCOLORFLAGS VPCF_TEXT = 1;
+  static const VPCOLORFLAGS VPCF_BACKGROUND = 2;
+  static const VPCOLORFLAGS VPCF_SORTCOLUMN = 3;
+  static const VPCOLORFLAGS VPCF_SUBTEXT = 4;
+  static const VPCOLORFLAGS VPCF_TEXTBACKGROUND = 5;
   typedef UINT STPFLAG; //Alias
   typedef UINT EXPPS; //Alias
-  static const UINT EXPPS_FILETYPES = 0x1;
+  static const EXPPS EXPPS_FILETYPES = 0x1;
   typedef UINT DEFAULTSAVEFOLDERTYPE; //Alias
-  static const UINT DSFT_DETECT = 1;
-  static const UINT DSFT_PRIVATE = 2;
-  static const UINT DSFT_PUBLIC = 3;
+  static const DEFAULTSAVEFOLDERTYPE DSFT_DETECT = 1;
+  static const DEFAULTSAVEFOLDERTYPE DSFT_PRIVATE = 2;
+  static const DEFAULTSAVEFOLDERTYPE DSFT_PUBLIC = 3;
   typedef UINT LIBRARYOPTIONFLAGS; //Alias
-  static const UINT LOF_DEFAULT = 0;
-  static const UINT LOF_PINNEDTONAVPANE = 0x1;
+  static const LIBRARYOPTIONFLAGS LOF_DEFAULT = 0;
+  static const LIBRARYOPTIONFLAGS LOF_PINNEDTONAVPANE = 0x1;
   typedef UINT LIBRARYSAVEFLAGS; //Alias
   typedef UINT SIGDN; //Alias
-  static const UINT SIGDN_NORMALDISPLAY = 0;
-  static const UINT SIGDN_PARENTRELATIVEPARSING = 0x80018001;
-  static const UINT SIGDN_DESKTOPABSOLUTEPARSING = 0x80028000;
-  static const UINT SIGDN_PARENTRELATIVEEDITING = 0x80031001;
-  static const UINT SIGDN_DESKTOPABSOLUTEEDITING = 0x8004c000;
-  static const UINT SIGDN_FILESYSPATH = 0x80058000;
-  static const UINT SIGDN_URL = 0x80068000;
-  static const UINT SIGDN_PARENTRELATIVEFORADDRESSBAR = 0x8007c001;
-  static const UINT SIGDN_PARENTRELATIVE = 0x80080001;
+  static const SIGDN SIGDN_NORMALDISPLAY = 0;
+  static const SIGDN SIGDN_PARENTRELATIVEPARSING = 0x80018001;
+  static const SIGDN SIGDN_DESKTOPABSOLUTEPARSING = 0x80028000;
+  static const SIGDN SIGDN_PARENTRELATIVEEDITING = 0x80031001;
+  static const SIGDN SIGDN_DESKTOPABSOLUTEEDITING = 0x8004c000;
+  static const SIGDN SIGDN_FILESYSPATH = 0x80058000;
+  static const SIGDN SIGDN_URL = 0x80068000;
+  static const SIGDN SIGDN_PARENTRELATIVEFORADDRESSBAR = 0x8007c001;
+  static const SIGDN SIGDN_PARENTRELATIVE = 0x80080001;
   typedef DWORD SFGAOF; //Alias
   typedef DWORD SICHINTF; //Alias
   typedef UINT SHCONTF; //Alias
   typedef UINT SHGDNF; //Alias
   typedef UINT DEF_SHARE_ID; //Alias
-  static const UINT DEFSHAREID_USERS = 1;
-  static const UINT DEFSHAREID_PUBLIC = 2;
+  static const DEF_SHARE_ID DEFSHAREID_USERS = 1;
+  static const DEF_SHARE_ID DEFSHAREID_PUBLIC = 2;
   typedef UINT SHARE_ROLE; //Alias
-  static const UINT SHARE_ROLE_INVALID = -1;
-  static const UINT SHARE_ROLE_READER = 0;
-  static const UINT SHARE_ROLE_CONTRIBUTOR = 1;
-  static const UINT SHARE_ROLE_CO_OWNER = 2;
-  static const UINT SHARE_ROLE_OWNER = 3;
-  static const UINT SHARE_ROLE_CUSTOM = 4;
-  static const UINT SHARE_ROLE_MIXED = 5;
+  static const SHARE_ROLE SHARE_ROLE_INVALID = -1;
+  static const SHARE_ROLE SHARE_ROLE_READER = 0;
+  static const SHARE_ROLE SHARE_ROLE_CONTRIBUTOR = 1;
+  static const SHARE_ROLE SHARE_ROLE_CO_OWNER = 2;
+  static const SHARE_ROLE SHARE_ROLE_OWNER = 3;
+  static const SHARE_ROLE SHARE_ROLE_CUSTOM = 4;
+  static const SHARE_ROLE SHARE_ROLE_MIXED = 5;
   typedef UINT PROPERTYUI_NAME_FLAGS; //Alias
-  static const UINT PUIFNF_DEFAULT = 0;
-  static const UINT PUIFNF_MNEMONIC = 0x1;
+  static const PROPERTYUI_NAME_FLAGS PUIFNF_DEFAULT = 0;
+  static const PROPERTYUI_NAME_FLAGS PUIFNF_MNEMONIC = 0x1;
   typedef UINT PROPERTYUI_FLAGS; //Alias
   typedef UINT PROPERTYUI_FORMAT_FLAGS; //Alias
   typedef UINT HOMEGROUPSHARINGCHOICES; //Alias
@@ -721,142 +721,142 @@ ffi.cdef [[
   typedef UINT KF_REDIRECTION_CAPABILITIES; //Alias
   typedef UINT NSTCROOTSTYLE; //Alias
   typedef UINT CPVIEW; //Alias
-  static const UINT CPVIEW_CLASSIC = 0;
-  static const UINT CPVIEW_CATEGORY = 1;
+  static const CPVIEW CPVIEW_CLASSIC = 0;
+  static const CPVIEW CPVIEW_CATEGORY = 1;
   typedef UINT OPPROGDLGF; //Alias
   typedef UINT FFFP_MODE; //Alias
-  static const UINT FFFP_EXACTMATCH = 0;
-  static const UINT FFFP_NEARESTPARENTMATCH = 1;
+  static const FFFP_MODE FFFP_EXACTMATCH = 0;
+  static const FFFP_MODE FFFP_NEARESTPARENTMATCH = 1;
   typedef UINT NSTCGNI; //Alias
-  static const UINT NSTCGNI_NEXT = 0;
-  static const UINT NSTCGNI_NEXTVISIBLE = 1;
-  static const UINT NSTCGNI_PREV = 2;
-  static const UINT NSTCGNI_PREVVISIBLE = 3;
-  static const UINT NSTCGNI_PARENT = 4;
-  static const UINT NSTCGNI_CHILD = 5;
-  static const UINT NSTCGNI_FIRSTVISIBLE = 6;
-  static const UINT NSTCGNI_LASTVISIBLE = 7;
+  static const NSTCGNI NSTCGNI_NEXT = 0;
+  static const NSTCGNI NSTCGNI_NEXTVISIBLE = 1;
+  static const NSTCGNI NSTCGNI_PREV = 2;
+  static const NSTCGNI NSTCGNI_PREVVISIBLE = 3;
+  static const NSTCGNI NSTCGNI_PARENT = 4;
+  static const NSTCGNI NSTCGNI_CHILD = 5;
+  static const NSTCGNI NSTCGNI_FIRSTVISIBLE = 6;
+  static const NSTCGNI NSTCGNI_LASTVISIBLE = 7;
   typedef UINT KF_REDIRECT_FLAGS; //Alias
   typedef UINT NMCSAEI_FLAGS; //Alias
-  static const UINT NMCSAEI_SELECT = 0;
-  static const UINT NMCSAEI_EDIT = 0x1;
+  static const NMCSAEI_FLAGS NMCSAEI_SELECT = 0;
+  static const NMCSAEI_FLAGS NMCSAEI_EDIT = 0x1;
   typedef UINT SIIGBF; //Alias
   typedef UINT MP_POPUPFLAGS; //Alias
   typedef UINT SVSIF; //Alias
   typedef DWORD SV3CVW3_FLAGS; //Alias
   typedef UINT EXPLORER_BROWSER_OPTIONS; //Alias
   typedef UINT PERCEIVED; //Alias
-  static const UINT PERCEIVED_TYPE_FIRST = -3;
-  static const UINT PERCEIVED_TYPE_CUSTOM = -3;
-  static const UINT PERCEIVED_TYPE_UNSPECIFIED = -2;
-  static const UINT PERCEIVED_TYPE_FOLDER = -1;
-  static const UINT PERCEIVED_TYPE_UNKNOWN = 0;
-  static const UINT PERCEIVED_TYPE_TEXT = 1;
-  static const UINT PERCEIVED_TYPE_IMAGE = 2;
-  static const UINT PERCEIVED_TYPE_AUDIO = 3;
-  static const UINT PERCEIVED_TYPE_VIDEO = 4;
-  static const UINT PERCEIVED_TYPE_COMPRESSED = 5;
-  static const UINT PERCEIVED_TYPE_DOCUMENT = 6;
-  static const UINT PERCEIVED_TYPE_SYSTEM = 7;
-  static const UINT PERCEIVED_TYPE_APPLICATION = 8;
-  static const UINT PERCEIVED_TYPE_GAMEMEDIA = 9;
-  static const UINT PERCEIVED_TYPE_CONTACTS = 10;
+  static const PERCEIVED PERCEIVED_TYPE_FIRST = -3;
+  static const PERCEIVED PERCEIVED_TYPE_CUSTOM = -3;
+  static const PERCEIVED PERCEIVED_TYPE_UNSPECIFIED = -2;
+  static const PERCEIVED PERCEIVED_TYPE_FOLDER = -1;
+  static const PERCEIVED PERCEIVED_TYPE_UNKNOWN = 0;
+  static const PERCEIVED PERCEIVED_TYPE_TEXT = 1;
+  static const PERCEIVED PERCEIVED_TYPE_IMAGE = 2;
+  static const PERCEIVED PERCEIVED_TYPE_AUDIO = 3;
+  static const PERCEIVED PERCEIVED_TYPE_VIDEO = 4;
+  static const PERCEIVED PERCEIVED_TYPE_COMPRESSED = 5;
+  static const PERCEIVED PERCEIVED_TYPE_DOCUMENT = 6;
+  static const PERCEIVED PERCEIVED_TYPE_SYSTEM = 7;
+  static const PERCEIVED PERCEIVED_TYPE_APPLICATION = 8;
+  static const PERCEIVED PERCEIVED_TYPE_GAMEMEDIA = 9;
+  static const PERCEIVED PERCEIVED_TYPE_CONTACTS = 10;
   typedef DWORD PERCEIVEDFLAG; //Alias
   typedef WORD FILEOP_FLAGS; //Alias
-  typedef UINT WINAPI_GIL_INPUT_FLAGS; //Alias
-  typedef UINT WINAPI_GIL_OUTPUT_FLAGS; //Alias
-  typedef UINT WINAPI_MessageBoxType; //Alias
-  typedef int WINAPI_MessageBoxResult; //Alias
-  static const int IDOK = 1;
-  static const int IDCANCEL = 2;
-  static const int IDABORT = 3;
-  static const int IDRETRY = 4;
-  static const int IDIGNORE = 5;
-  static const int IDYES = 6;
-  static const int IDNO = 7;
-  static const int IDTRYAGAIN = 10;
-  static const int IDCONTINUE = 11;
-  typedef union WINAPI_SHELLEXECUTEINFO_u {
+  typedef UINT GIL_INPUT_FLAGS; //Alias
+  typedef UINT GIL_OUTPUT_FLAGS; //Alias
+  typedef UINT MessageBoxType; //Alias
+  typedef int MessageBoxResult; //Alias
+  static const MessageBoxResult IDOK = 1;
+  static const MessageBoxResult IDCANCEL = 2;
+  static const MessageBoxResult IDABORT = 3;
+  static const MessageBoxResult IDRETRY = 4;
+  static const MessageBoxResult IDIGNORE = 5;
+  static const MessageBoxResult IDYES = 6;
+  static const MessageBoxResult IDNO = 7;
+  static const MessageBoxResult IDTRYAGAIN = 10;
+  static const MessageBoxResult IDCONTINUE = 11;
+  typedef union SHELLEXECUTEINFO_u {
     HANDLE hIcon;
     HANDLE hMonitor;
-  } WINAPI_SHELLEXECUTEINFO_u;
-  typedef ULONG WINAPI_SEE_MASK; //Alias
-  typedef UINT_PTR WINAPI_SEE_HINSTANCE; //Alias
-  static const UINT_PTR SE_ERR_FNF = 2;
-  static const UINT_PTR SE_ERR_PNF = 3;
-  static const UINT_PTR SE_ERR_ACCESSDENIED = 5;
-  static const UINT_PTR SE_ERR_OOM = 8;
-  static const UINT_PTR SE_ERR_DLLNOTFOUND = 32;
-  static const UINT_PTR SE_ERR_SHARE = 26;
-  static const UINT_PTR SE_ERR_ASSOCINCOMPLETE = 27;
-  static const UINT_PTR SE_ERR_DDETIMEOUT = 28;
-  static const UINT_PTR SE_ERR_DDEFAIL = 29;
-  static const UINT_PTR SE_ERR_DDEBUSY = 30;
-  static const UINT_PTR SE_ERR_NOASSOC = 31;
+  } SHELLEXECUTEINFO_u;
+  typedef ULONG SEE_MASK; //Alias
+  typedef UINT_PTR SEE_HINSTANCE; //Alias
+  static const SEE_HINSTANCE SE_ERR_FNF = 2;
+  static const SEE_HINSTANCE SE_ERR_PNF = 3;
+  static const SEE_HINSTANCE SE_ERR_ACCESSDENIED = 5;
+  static const SEE_HINSTANCE SE_ERR_OOM = 8;
+  static const SEE_HINSTANCE SE_ERR_DLLNOTFOUND = 32;
+  static const SEE_HINSTANCE SE_ERR_SHARE = 26;
+  static const SEE_HINSTANCE SE_ERR_ASSOCINCOMPLETE = 27;
+  static const SEE_HINSTANCE SE_ERR_DDETIMEOUT = 28;
+  static const SEE_HINSTANCE SE_ERR_DDEFAIL = 29;
+  static const SEE_HINSTANCE SE_ERR_DDEBUSY = 30;
+  static const SEE_HINSTANCE SE_ERR_NOASSOC = 31;
   typedef struct SHELLEXECUTEINFO {
     DWORD cbSize;
-    WINAPI_SEE_MASK fMask;
+    SEE_MASK fMask;
     HWND hwnd;
     LPCTSTR lpVerb;
     LPCTSTR lpFile;
     LPCTSTR lpParameters;
     LPCTSTR lpDirectory;
-    WINAPI_ShowWindowCmd nShow;
-    WINAPI_SEE_HINSTANCE hInstApp;
+    ShowWindowCmd nShow;
+    SEE_HINSTANCE hInstApp;
     void* lpIDList;
     LPCTSTR lpClass;
     HKEY hkeyClass;
     DWORD dwHotKey;
-    WINAPI_SHELLEXECUTEINFO_u ;
+    SHELLEXECUTEINFO_u ;
     HANDLE hProcess;
   } SHELLEXECUTEINFO;
   typedef SHELLEXECUTEINFO *LPSHELLEXECUTEINFO; //Pointer
   typedef DWORD ASSOCF; //Alias
-  static const DWORD ASSOCF_INIT_NOREMAPCLSID = 0x00000001;
-  static const DWORD ASSOCF_INIT_BYEXENAME = 0x00000002;
-  static const DWORD ASSOCF_INIT_DEFAULTTOSTAR = 0x00000004;
-  static const DWORD ASSOCF_INIT_DEFAULTTOFOLDER = 0x00000008;
-  static const DWORD ASSOCF_NOUSERSETTINGS = 0x00000010;
-  static const DWORD ASSOCF_NOTRUNCATE = 0x00000020;
-  static const DWORD ASSOCF_VERIFY = 0x00000040;
-  static const DWORD ASSOCF_REMAPRUNDLL = 0x00000080;
-  static const DWORD ASSOCF_NOFIXUPS = 0x00000100;
-  static const DWORD ASSOCF_IGNOREBASECLASS = 0x00000200;
-  static const DWORD ASSOCF_INIT_IGNOREUNKNOWN = 0x00000400;
+  static const ASSOCF ASSOCF_INIT_NOREMAPCLSID = 0x00000001;
+  static const ASSOCF ASSOCF_INIT_BYEXENAME = 0x00000002;
+  static const ASSOCF ASSOCF_INIT_DEFAULTTOSTAR = 0x00000004;
+  static const ASSOCF ASSOCF_INIT_DEFAULTTOFOLDER = 0x00000008;
+  static const ASSOCF ASSOCF_NOUSERSETTINGS = 0x00000010;
+  static const ASSOCF ASSOCF_NOTRUNCATE = 0x00000020;
+  static const ASSOCF ASSOCF_VERIFY = 0x00000040;
+  static const ASSOCF ASSOCF_REMAPRUNDLL = 0x00000080;
+  static const ASSOCF ASSOCF_NOFIXUPS = 0x00000100;
+  static const ASSOCF ASSOCF_IGNOREBASECLASS = 0x00000200;
+  static const ASSOCF ASSOCF_INIT_IGNOREUNKNOWN = 0x00000400;
   typedef UINT ASSOCSTR; //Alias
-  static const UINT ASSOCSTR_COMMAND = 1;
-  static const UINT ASSOCSTR_EXECUTABLE = 2;
-  static const UINT ASSOCSTR_FRIENDLYDOCNAME = 3;
-  static const UINT ASSOCSTR_FRIENDLYAPPNAME = 4;
-  static const UINT ASSOCSTR_NOOPEN = 5;
-  static const UINT ASSOCSTR_SHELLNEWVALUE = 6;
-  static const UINT ASSOCSTR_DDECOMMAND = 7;
-  static const UINT ASSOCSTR_DDEIFEXEC = 8;
-  static const UINT ASSOCSTR_DDEAPPLICATION = 9;
-  static const UINT ASSOCSTR_DDETOPIC = 10;
-  static const UINT ASSOCSTR_INFOTIP = 11;
-  static const UINT ASSOCSTR_QUICKTIP = 12;
-  static const UINT ASSOCSTR_TILEINFO = 13;
-  static const UINT ASSOCSTR_CONTENTTYPE = 14;
-  static const UINT ASSOCSTR_DEFAULTICON = 15;
-  static const UINT ASSOCSTR_SHELLEXTENSION = 16;
-  static const UINT ASSOCSTR_DROPTARGET = 17;
-  static const UINT ASSOCSTR_DELEGATEEXECUTE = 18;
-  static const UINT ASSOCSTR_MAX = 19;
+  static const ASSOCSTR ASSOCSTR_COMMAND = 1;
+  static const ASSOCSTR ASSOCSTR_EXECUTABLE = 2;
+  static const ASSOCSTR ASSOCSTR_FRIENDLYDOCNAME = 3;
+  static const ASSOCSTR ASSOCSTR_FRIENDLYAPPNAME = 4;
+  static const ASSOCSTR ASSOCSTR_NOOPEN = 5;
+  static const ASSOCSTR ASSOCSTR_SHELLNEWVALUE = 6;
+  static const ASSOCSTR ASSOCSTR_DDECOMMAND = 7;
+  static const ASSOCSTR ASSOCSTR_DDEIFEXEC = 8;
+  static const ASSOCSTR ASSOCSTR_DDEAPPLICATION = 9;
+  static const ASSOCSTR ASSOCSTR_DDETOPIC = 10;
+  static const ASSOCSTR ASSOCSTR_INFOTIP = 11;
+  static const ASSOCSTR ASSOCSTR_QUICKTIP = 12;
+  static const ASSOCSTR ASSOCSTR_TILEINFO = 13;
+  static const ASSOCSTR ASSOCSTR_CONTENTTYPE = 14;
+  static const ASSOCSTR ASSOCSTR_DEFAULTICON = 15;
+  static const ASSOCSTR ASSOCSTR_SHELLEXTENSION = 16;
+  static const ASSOCSTR ASSOCSTR_DROPTARGET = 17;
+  static const ASSOCSTR ASSOCSTR_DELEGATEEXECUTE = 18;
+  static const ASSOCSTR ASSOCSTR_MAX = 19;
   typedef UINT ASSOCKEY; //Alias
-  static const UINT ASSOCKEY_SHELLEXECCLASS = 1;
-  static const UINT ASSOCKEY_APP = 2;
-  static const UINT ASSOCKEY_CLASS = 3;
-  static const UINT ASSOCKEY_BASECLASS = 4;
+  static const ASSOCKEY ASSOCKEY_SHELLEXECCLASS = 1;
+  static const ASSOCKEY ASSOCKEY_APP = 2;
+  static const ASSOCKEY ASSOCKEY_CLASS = 3;
+  static const ASSOCKEY ASSOCKEY_BASECLASS = 4;
   typedef UINT ASSOCDATA; //Alias
-  static const UINT ASSOCDATA_MSIDESCRIPTOR = 1;
-  static const UINT ASSOCDATA_NOACTIVATEHANDLER = 2;
-  static const UINT ASSOCDATA_QUERYCLASSSTORE = 3;
-  static const UINT ASSOCDATA_HASPERUSERASSOC = 4;
-  static const UINT ASSOCDATA_EDITFLAGS = 5;
-  static const UINT ASSOCDATA_VALUE = 6;
+  static const ASSOCDATA ASSOCDATA_MSIDESCRIPTOR = 1;
+  static const ASSOCDATA ASSOCDATA_NOACTIVATEHANDLER = 2;
+  static const ASSOCDATA ASSOCDATA_QUERYCLASSSTORE = 3;
+  static const ASSOCDATA ASSOCDATA_HASPERUSERASSOC = 4;
+  static const ASSOCDATA ASSOCDATA_EDITFLAGS = 5;
+  static const ASSOCDATA ASSOCDATA_VALUE = 6;
   typedef UINT ASSOCENUM; //Alias
-  static const UINT ASSOCENUM_NONE = 0;
+  static const ASSOCENUM ASSOCENUM_NONE = 0;
   typedef struct APPCATEGORYINFO {
     LCID Locale;
     LPWSTR pszDescription;
@@ -867,212 +867,212 @@ ffi.cdef [[
     APPCATEGORYINFO* pCategoryInfo;
   } APPCATEGORYINFOLIST;
   typedef UINT WTS_ALPHATYPE; //Alias
-  static const UINT WTSAT_UNKNOWN = 0;
-  static const UINT WTSAT_RGB = 1;
-  static const UINT WTSAT_ARGB = 2;
+  static const WTS_ALPHATYPE WTSAT_UNKNOWN = 0;
+  static const WTS_ALPHATYPE WTSAT_RGB = 1;
+  static const WTS_ALPHATYPE WTSAT_ARGB = 2;
   typedef DWORD WTS_FLAGS; //Alias
   typedef struct WTS_THUMBNAILID {
     BYTE rgbKey[16];
   } WTS_THUMBNAILID;
   typedef DWORD WTS_CACHEFLAGS; //Alias
-  typedef ULONG WINAPI_PROPSPEC_KIND; //Alias
-  static const ULONG PRSPEC_LPWSTR = 0;
-  static const ULONG PRSPEC_PROPID = 1;
-  typedef union WINAPI_PROPSPEC_u {
+  typedef ULONG PROPSPEC_KIND; //Alias
+  static const PROPSPEC_KIND PRSPEC_LPWSTR = 0;
+  static const PROPSPEC_KIND PRSPEC_PROPID = 1;
+  typedef union PROPSPEC_u {
     PROPID propid;
     LPOLESTR lpwstr;
-  } WINAPI_PROPSPEC_u;
+  } PROPSPEC_u;
   typedef struct PROPSPEC {
-    WINAPI_PROPSPEC_KIND ulKind;
-    WINAPI_PROPSPEC_u ;
+    PROPSPEC_KIND ulKind;
+    PROPSPEC_u ;
   } PROPSPEC;
   typedef PROPSPEC *PROPSPEC const[]; //Pointer
-  typedef UINT WINAPI_SystemParametersInfoEnum; //Alias
-  static const UINT SPI_GETBEEP = 0x0001;
-  static const UINT SPI_SETBEEP = 0x0002;
-  static const UINT SPI_GETMOUSE = 0x0003;
-  static const UINT SPI_SETMOUSE = 0x0004;
-  static const UINT SPI_GETBORDER = 0x0005;
-  static const UINT SPI_SETBORDER = 0x0006;
-  static const UINT SPI_GETKEYBOARDSPEED = 0x000A;
-  static const UINT SPI_SETKEYBOARDSPEED = 0x000B;
-  static const UINT SPI_LANGDRIVER = 0x000C;
-  static const UINT SPI_ICONHORIZONTALSPACING = 0x000D;
-  static const UINT SPI_GETSCREENSAVETIMEOUT = 0x000E;
-  static const UINT SPI_SETSCREENSAVETIMEOUT = 0x000F;
-  static const UINT SPI_GETSCREENSAVEACTIVE = 0x0010;
-  static const UINT SPI_SETSCREENSAVEACTIVE = 0x0011;
-  static const UINT SPI_GETGRIDGRANULARITY = 0x0012;
-  static const UINT SPI_SETGRIDGRANULARITY = 0x0013;
-  static const UINT SPI_SETDESKWALLPAPER = 0x0014;
-  static const UINT SPI_SETDESKPATTERN = 0x0015;
-  static const UINT SPI_GETKEYBOARDDELAY = 0x0016;
-  static const UINT SPI_SETKEYBOARDDELAY = 0x0017;
-  static const UINT SPI_ICONVERTICALSPACING = 0x0018;
-  static const UINT SPI_GETICONTITLEWRAP = 0x0019;
-  static const UINT SPI_SETICONTITLEWRAP = 0x001A;
-  static const UINT SPI_GETMENUDROPALIGNMENT = 0x001B;
-  static const UINT SPI_SETMENUDROPALIGNMENT = 0x001C;
-  static const UINT SPI_SETDOUBLECLKWIDTH = 0x001D;
-  static const UINT SPI_SETDOUBLECLKHEIGHT = 0x001E;
-  static const UINT SPI_GETICONTITLELOGFONT = 0x001F;
-  static const UINT SPI_SETDOUBLECLICKTIME = 0x0020;
-  static const UINT SPI_SETMOUSEBUTTONSWAP = 0x0021;
-  static const UINT SPI_SETICONTITLELOGFONT = 0x0022;
-  static const UINT SPI_GETFASTTASKSWITCH = 0x0023;
-  static const UINT SPI_SETFASTTASKSWITCH = 0x0024;
-  static const UINT SPI_SETDRAGFULLWINDOWS = 0x0025;
-  static const UINT SPI_GETDRAGFULLWINDOWS = 0x0026;
-  static const UINT SPI_GETNONCLIENTMETRICS = 0x0029;
-  static const UINT SPI_SETNONCLIENTMETRICS = 0x002A;
-  static const UINT SPI_GETMINIMIZEDMETRICS = 0x002B;
-  static const UINT SPI_SETMINIMIZEDMETRICS = 0x002C;
-  static const UINT SPI_GETICONMETRICS = 0x002D;
-  static const UINT SPI_SETICONMETRICS = 0x002E;
-  static const UINT SPI_SETWORKAREA = 0x002F;
-  static const UINT SPI_GETWORKAREA = 0x0030;
-  static const UINT SPI_SETPENWINDOWS = 0x0031;
-  static const UINT SPI_GETHIGHCONTRAST = 0x0042;
-  static const UINT SPI_SETHIGHCONTRAST = 0x0043;
-  static const UINT SPI_GETKEYBOARDPREF = 0x0044;
-  static const UINT SPI_SETKEYBOARDPREF = 0x0045;
-  static const UINT SPI_GETSCREENREADER = 0x0046;
-  static const UINT SPI_SETSCREENREADER = 0x0047;
-  static const UINT SPI_GETANIMATION = 0x0048;
-  static const UINT SPI_SETANIMATION = 0x0049;
-  static const UINT SPI_GETFONTSMOOTHING = 0x004A;
-  static const UINT SPI_SETFONTSMOOTHING = 0x004B;
-  static const UINT SPI_SETDRAGWIDTH = 0x004C;
-  static const UINT SPI_SETDRAGHEIGHT = 0x004D;
-  static const UINT SPI_SETHANDHELD = 0x004E;
-  static const UINT SPI_GETLOWPOWERTIMEOUT = 0x004F;
-  static const UINT SPI_GETPOWEROFFTIMEOUT = 0x0050;
-  static const UINT SPI_SETLOWPOWERTIMEOUT = 0x0051;
-  static const UINT SPI_SETPOWEROFFTIMEOUT = 0x0052;
-  static const UINT SPI_GETLOWPOWERACTIVE = 0x0053;
-  static const UINT SPI_GETPOWEROFFACTIVE = 0x0054;
-  static const UINT SPI_SETLOWPOWERACTIVE = 0x0055;
-  static const UINT SPI_SETPOWEROFFACTIVE = 0x0056;
-  static const UINT SPI_SETCURSORS = 0x0057;
-  static const UINT SPI_SETICONS = 0x0058;
-  static const UINT SPI_GETDEFAULTINPUTLANG = 0x0059;
-  static const UINT SPI_SETDEFAULTINPUTLANG = 0x005A;
-  static const UINT SPI_SETLANGTOGGLE = 0x005B;
-  static const UINT SPI_GETWINDOWSEXTENSION = 0x005C;
-  static const UINT SPI_SETMOUSETRAILS = 0x005D;
-  static const UINT SPI_GETMOUSETRAILS = 0x005E;
-  static const UINT SPI_SETSCREENSAVERRUNNING = 0x0061;
-  static const UINT SPI_GETFILTERKEYS = 0x0032;
-  static const UINT SPI_SETFILTERKEYS = 0x0033;
-  static const UINT SPI_GETTOGGLEKEYS = 0x0034;
-  static const UINT SPI_SETTOGGLEKEYS = 0x0035;
-  static const UINT SPI_GETMOUSEKEYS = 0x0036;
-  static const UINT SPI_SETMOUSEKEYS = 0x0037;
-  static const UINT SPI_GETSHOWSOUNDS = 0x0038;
-  static const UINT SPI_SETSHOWSOUNDS = 0x0039;
-  static const UINT SPI_GETSTICKYKEYS = 0x003A;
-  static const UINT SPI_SETSTICKYKEYS = 0x003B;
-  static const UINT SPI_GETACCESSTIMEOUT = 0x003C;
-  static const UINT SPI_SETACCESSTIMEOUT = 0x003D;
-  static const UINT SPI_GETSERIALKEYS = 0x003E;
-  static const UINT SPI_SETSERIALKEYS = 0x003F;
-  static const UINT SPI_GETSOUNDSENTRY = 0x0040;
-  static const UINT SPI_SETSOUNDSENTRY = 0x0041;
-  static const UINT SPI_GETSNAPTODEFBUTTON = 0x005F;
-  static const UINT SPI_SETSNAPTODEFBUTTON = 0x0060;
-  static const UINT SPI_GETMOUSEHOVERWIDTH = 0x0062;
-  static const UINT SPI_SETMOUSEHOVERWIDTH = 0x0063;
-  static const UINT SPI_GETMOUSEHOVERHEIGHT = 0x0064;
-  static const UINT SPI_SETMOUSEHOVERHEIGHT = 0x0065;
-  static const UINT SPI_GETMOUSEHOVERTIME = 0x0066;
-  static const UINT SPI_SETMOUSEHOVERTIME = 0x0067;
-  static const UINT SPI_GETWHEELSCROLLLINES = 0x0068;
-  static const UINT SPI_SETWHEELSCROLLLINES = 0x0069;
-  static const UINT SPI_GETMENUSHOWDELAY = 0x006A;
-  static const UINT SPI_SETMENUSHOWDELAY = 0x006B;
-  static const UINT SPI_GETWHEELSCROLLCHARS = 0x006C;
-  static const UINT SPI_SETWHEELSCROLLCHARS = 0x006D;
-  static const UINT SPI_GETSHOWIMEUI = 0x006E;
-  static const UINT SPI_SETSHOWIMEUI = 0x006F;
-  static const UINT SPI_GETMOUSESPEED = 0x0070;
-  static const UINT SPI_SETMOUSESPEED = 0x0071;
-  static const UINT SPI_GETSCREENSAVERRUNNING = 0x0072;
-  static const UINT SPI_GETDESKWALLPAPER = 0x0073;
-  static const UINT SPI_GETAUDIODESCRIPTION = 0x0074;
-  static const UINT SPI_SETAUDIODESCRIPTION = 0x0075;
-  static const UINT SPI_GETSCREENSAVESECURE = 0x0076;
-  static const UINT SPI_SETSCREENSAVESECURE = 0x0077;
-  static const UINT SPI_GETACTIVEWINDOWTRACKING = 0x1000;
-  static const UINT SPI_SETACTIVEWINDOWTRACKING = 0x1001;
-  static const UINT SPI_GETMENUANIMATION = 0x1002;
-  static const UINT SPI_SETMENUANIMATION = 0x1003;
-  static const UINT SPI_GETCOMBOBOXANIMATION = 0x1004;
-  static const UINT SPI_SETCOMBOBOXANIMATION = 0x1005;
-  static const UINT SPI_GETLISTBOXSMOOTHSCROLLING = 0x1006;
-  static const UINT SPI_SETLISTBOXSMOOTHSCROLLING = 0x1007;
-  static const UINT SPI_GETGRADIENTCAPTIONS = 0x1008;
-  static const UINT SPI_SETGRADIENTCAPTIONS = 0x1009;
-  static const UINT SPI_GETKEYBOARDCUES = 0x100A;
-  static const UINT SPI_SETKEYBOARDCUES = 0x100B;
-  static const UINT SPI_GETACTIVEWNDTRKZORDER = 0x100C;
-  static const UINT SPI_SETACTIVEWNDTRKZORDER = 0x100D;
-  static const UINT SPI_GETHOTTRACKING = 0x100E;
-  static const UINT SPI_SETHOTTRACKING = 0x100F;
-  static const UINT SPI_GETMENUFADE = 0x1012;
-  static const UINT SPI_SETMENUFADE = 0x1013;
-  static const UINT SPI_GETSELECTIONFADE = 0x1014;
-  static const UINT SPI_SETSELECTIONFADE = 0x1015;
-  static const UINT SPI_GETTOOLTIPANIMATION = 0x1016;
-  static const UINT SPI_SETTOOLTIPANIMATION = 0x1017;
-  static const UINT SPI_GETTOOLTIPFADE = 0x1018;
-  static const UINT SPI_SETTOOLTIPFADE = 0x1019;
-  static const UINT SPI_GETCURSORSHADOW = 0x101A;
-  static const UINT SPI_SETCURSORSHADOW = 0x101B;
-  static const UINT SPI_GETMOUSESONAR = 0x101C;
-  static const UINT SPI_SETMOUSESONAR = 0x101D;
-  static const UINT SPI_GETMOUSECLICKLOCK = 0x101E;
-  static const UINT SPI_SETMOUSECLICKLOCK = 0x101F;
-  static const UINT SPI_GETMOUSEVANISH = 0x1020;
-  static const UINT SPI_SETMOUSEVANISH = 0x1021;
-  static const UINT SPI_GETFLATMENU = 0x1022;
-  static const UINT SPI_SETFLATMENU = 0x1023;
-  static const UINT SPI_GETDROPSHADOW = 0x1024;
-  static const UINT SPI_SETDROPSHADOW = 0x1025;
-  static const UINT SPI_GETBLOCKSENDINPUTRESETS = 0x1026;
-  static const UINT SPI_SETBLOCKSENDINPUTRESETS = 0x1027;
-  static const UINT SPI_GETUIEFFECTS = 0x103E;
-  static const UINT SPI_SETUIEFFECTS = 0x103F;
-  static const UINT SPI_GETDISABLEOVERLAPPEDCONTENT = 0x1040;
-  static const UINT SPI_SETDISABLEOVERLAPPEDCONTENT = 0x1041;
-  static const UINT SPI_GETCLIENTAREAANIMATION = 0x1042;
-  static const UINT SPI_SETCLIENTAREAANIMATION = 0x1043;
-  static const UINT SPI_GETCLEARTYPE = 0x1048;
-  static const UINT SPI_SETCLEARTYPE = 0x1049;
-  static const UINT SPI_GETSPEECHRECOGNITION = 0x104A;
-  static const UINT SPI_SETSPEECHRECOGNITION = 0x104B;
-  static const UINT SPI_GETFOREGROUNDLOCKTIMEOUT = 0x2000;
-  static const UINT SPI_SETFOREGROUNDLOCKTIMEOUT = 0x2001;
-  static const UINT SPI_GETACTIVEWNDTRKTIMEOUT = 0x2002;
-  static const UINT SPI_SETACTIVEWNDTRKTIMEOUT = 0x2003;
-  static const UINT SPI_GETFOREGROUNDFLASHCOUNT = 0x2004;
-  static const UINT SPI_SETFOREGROUNDFLASHCOUNT = 0x2005;
-  static const UINT SPI_GETCARETWIDTH = 0x2006;
-  static const UINT SPI_SETCARETWIDTH = 0x2007;
-  static const UINT SPI_GETMOUSECLICKLOCKTIME = 0x2008;
-  static const UINT SPI_SETMOUSECLICKLOCKTIME = 0x2009;
-  static const UINT SPI_GETFONTSMOOTHINGTYPE = 0x200A;
-  static const UINT SPI_SETFONTSMOOTHINGTYPE = 0x200B;
-  static const UINT SPI_GETFONTSMOOTHINGCONTRAST = 0x200C;
-  static const UINT SPI_SETFONTSMOOTHINGCONTRAST = 0x200D;
-  static const UINT SPI_GETFOCUSBORDERWIDTH = 0x200E;
-  static const UINT SPI_SETFOCUSBORDERWIDTH = 0x200F;
-  static const UINT SPI_GETFOCUSBORDERHEIGHT = 0x2010;
-  static const UINT SPI_SETFOCUSBORDERHEIGHT = 0x2011;
-  static const UINT SPI_GETFONTSMOOTHINGORIENTATION = 0x2012;
-  static const UINT SPI_SETFONTSMOOTHINGORIENTATION = 0x2013;
-  static const UINT SPI_GETMINIMUMHITRADIUS = 0x2014;
-  static const UINT SPI_SETMINIMUMHITRADIUS = 0x2015;
-  static const UINT SPI_GETMESSAGEDURATION = 0x2016;
-  static const UINT SPI_SETMESSAGEDURATION = 0x2017;
-  typedef UINT WINAPI_SystemParametersInfoFlags; //Alias
+  typedef UINT SystemParametersInfoEnum; //Alias
+  static const SystemParametersInfoEnum SPI_GETBEEP = 0x0001;
+  static const SystemParametersInfoEnum SPI_SETBEEP = 0x0002;
+  static const SystemParametersInfoEnum SPI_GETMOUSE = 0x0003;
+  static const SystemParametersInfoEnum SPI_SETMOUSE = 0x0004;
+  static const SystemParametersInfoEnum SPI_GETBORDER = 0x0005;
+  static const SystemParametersInfoEnum SPI_SETBORDER = 0x0006;
+  static const SystemParametersInfoEnum SPI_GETKEYBOARDSPEED = 0x000A;
+  static const SystemParametersInfoEnum SPI_SETKEYBOARDSPEED = 0x000B;
+  static const SystemParametersInfoEnum SPI_LANGDRIVER = 0x000C;
+  static const SystemParametersInfoEnum SPI_ICONHORIZONTALSPACING = 0x000D;
+  static const SystemParametersInfoEnum SPI_GETSCREENSAVETIMEOUT = 0x000E;
+  static const SystemParametersInfoEnum SPI_SETSCREENSAVETIMEOUT = 0x000F;
+  static const SystemParametersInfoEnum SPI_GETSCREENSAVEACTIVE = 0x0010;
+  static const SystemParametersInfoEnum SPI_SETSCREENSAVEACTIVE = 0x0011;
+  static const SystemParametersInfoEnum SPI_GETGRIDGRANULARITY = 0x0012;
+  static const SystemParametersInfoEnum SPI_SETGRIDGRANULARITY = 0x0013;
+  static const SystemParametersInfoEnum SPI_SETDESKWALLPAPER = 0x0014;
+  static const SystemParametersInfoEnum SPI_SETDESKPATTERN = 0x0015;
+  static const SystemParametersInfoEnum SPI_GETKEYBOARDDELAY = 0x0016;
+  static const SystemParametersInfoEnum SPI_SETKEYBOARDDELAY = 0x0017;
+  static const SystemParametersInfoEnum SPI_ICONVERTICALSPACING = 0x0018;
+  static const SystemParametersInfoEnum SPI_GETICONTITLEWRAP = 0x0019;
+  static const SystemParametersInfoEnum SPI_SETICONTITLEWRAP = 0x001A;
+  static const SystemParametersInfoEnum SPI_GETMENUDROPALIGNMENT = 0x001B;
+  static const SystemParametersInfoEnum SPI_SETMENUDROPALIGNMENT = 0x001C;
+  static const SystemParametersInfoEnum SPI_SETDOUBLECLKWIDTH = 0x001D;
+  static const SystemParametersInfoEnum SPI_SETDOUBLECLKHEIGHT = 0x001E;
+  static const SystemParametersInfoEnum SPI_GETICONTITLELOGFONT = 0x001F;
+  static const SystemParametersInfoEnum SPI_SETDOUBLECLICKTIME = 0x0020;
+  static const SystemParametersInfoEnum SPI_SETMOUSEBUTTONSWAP = 0x0021;
+  static const SystemParametersInfoEnum SPI_SETICONTITLELOGFONT = 0x0022;
+  static const SystemParametersInfoEnum SPI_GETFASTTASKSWITCH = 0x0023;
+  static const SystemParametersInfoEnum SPI_SETFASTTASKSWITCH = 0x0024;
+  static const SystemParametersInfoEnum SPI_SETDRAGFULLWINDOWS = 0x0025;
+  static const SystemParametersInfoEnum SPI_GETDRAGFULLWINDOWS = 0x0026;
+  static const SystemParametersInfoEnum SPI_GETNONCLIENTMETRICS = 0x0029;
+  static const SystemParametersInfoEnum SPI_SETNONCLIENTMETRICS = 0x002A;
+  static const SystemParametersInfoEnum SPI_GETMINIMIZEDMETRICS = 0x002B;
+  static const SystemParametersInfoEnum SPI_SETMINIMIZEDMETRICS = 0x002C;
+  static const SystemParametersInfoEnum SPI_GETICONMETRICS = 0x002D;
+  static const SystemParametersInfoEnum SPI_SETICONMETRICS = 0x002E;
+  static const SystemParametersInfoEnum SPI_SETWORKAREA = 0x002F;
+  static const SystemParametersInfoEnum SPI_GETWORKAREA = 0x0030;
+  static const SystemParametersInfoEnum SPI_SETPENWINDOWS = 0x0031;
+  static const SystemParametersInfoEnum SPI_GETHIGHCONTRAST = 0x0042;
+  static const SystemParametersInfoEnum SPI_SETHIGHCONTRAST = 0x0043;
+  static const SystemParametersInfoEnum SPI_GETKEYBOARDPREF = 0x0044;
+  static const SystemParametersInfoEnum SPI_SETKEYBOARDPREF = 0x0045;
+  static const SystemParametersInfoEnum SPI_GETSCREENREADER = 0x0046;
+  static const SystemParametersInfoEnum SPI_SETSCREENREADER = 0x0047;
+  static const SystemParametersInfoEnum SPI_GETANIMATION = 0x0048;
+  static const SystemParametersInfoEnum SPI_SETANIMATION = 0x0049;
+  static const SystemParametersInfoEnum SPI_GETFONTSMOOTHING = 0x004A;
+  static const SystemParametersInfoEnum SPI_SETFONTSMOOTHING = 0x004B;
+  static const SystemParametersInfoEnum SPI_SETDRAGWIDTH = 0x004C;
+  static const SystemParametersInfoEnum SPI_SETDRAGHEIGHT = 0x004D;
+  static const SystemParametersInfoEnum SPI_SETHANDHELD = 0x004E;
+  static const SystemParametersInfoEnum SPI_GETLOWPOWERTIMEOUT = 0x004F;
+  static const SystemParametersInfoEnum SPI_GETPOWEROFFTIMEOUT = 0x0050;
+  static const SystemParametersInfoEnum SPI_SETLOWPOWERTIMEOUT = 0x0051;
+  static const SystemParametersInfoEnum SPI_SETPOWEROFFTIMEOUT = 0x0052;
+  static const SystemParametersInfoEnum SPI_GETLOWPOWERACTIVE = 0x0053;
+  static const SystemParametersInfoEnum SPI_GETPOWEROFFACTIVE = 0x0054;
+  static const SystemParametersInfoEnum SPI_SETLOWPOWERACTIVE = 0x0055;
+  static const SystemParametersInfoEnum SPI_SETPOWEROFFACTIVE = 0x0056;
+  static const SystemParametersInfoEnum SPI_SETCURSORS = 0x0057;
+  static const SystemParametersInfoEnum SPI_SETICONS = 0x0058;
+  static const SystemParametersInfoEnum SPI_GETDEFAULTINPUTLANG = 0x0059;
+  static const SystemParametersInfoEnum SPI_SETDEFAULTINPUTLANG = 0x005A;
+  static const SystemParametersInfoEnum SPI_SETLANGTOGGLE = 0x005B;
+  static const SystemParametersInfoEnum SPI_GETWINDOWSEXTENSION = 0x005C;
+  static const SystemParametersInfoEnum SPI_SETMOUSETRAILS = 0x005D;
+  static const SystemParametersInfoEnum SPI_GETMOUSETRAILS = 0x005E;
+  static const SystemParametersInfoEnum SPI_SETSCREENSAVERRUNNING = 0x0061;
+  static const SystemParametersInfoEnum SPI_GETFILTERKEYS = 0x0032;
+  static const SystemParametersInfoEnum SPI_SETFILTERKEYS = 0x0033;
+  static const SystemParametersInfoEnum SPI_GETTOGGLEKEYS = 0x0034;
+  static const SystemParametersInfoEnum SPI_SETTOGGLEKEYS = 0x0035;
+  static const SystemParametersInfoEnum SPI_GETMOUSEKEYS = 0x0036;
+  static const SystemParametersInfoEnum SPI_SETMOUSEKEYS = 0x0037;
+  static const SystemParametersInfoEnum SPI_GETSHOWSOUNDS = 0x0038;
+  static const SystemParametersInfoEnum SPI_SETSHOWSOUNDS = 0x0039;
+  static const SystemParametersInfoEnum SPI_GETSTICKYKEYS = 0x003A;
+  static const SystemParametersInfoEnum SPI_SETSTICKYKEYS = 0x003B;
+  static const SystemParametersInfoEnum SPI_GETACCESSTIMEOUT = 0x003C;
+  static const SystemParametersInfoEnum SPI_SETACCESSTIMEOUT = 0x003D;
+  static const SystemParametersInfoEnum SPI_GETSERIALKEYS = 0x003E;
+  static const SystemParametersInfoEnum SPI_SETSERIALKEYS = 0x003F;
+  static const SystemParametersInfoEnum SPI_GETSOUNDSENTRY = 0x0040;
+  static const SystemParametersInfoEnum SPI_SETSOUNDSENTRY = 0x0041;
+  static const SystemParametersInfoEnum SPI_GETSNAPTODEFBUTTON = 0x005F;
+  static const SystemParametersInfoEnum SPI_SETSNAPTODEFBUTTON = 0x0060;
+  static const SystemParametersInfoEnum SPI_GETMOUSEHOVERWIDTH = 0x0062;
+  static const SystemParametersInfoEnum SPI_SETMOUSEHOVERWIDTH = 0x0063;
+  static const SystemParametersInfoEnum SPI_GETMOUSEHOVERHEIGHT = 0x0064;
+  static const SystemParametersInfoEnum SPI_SETMOUSEHOVERHEIGHT = 0x0065;
+  static const SystemParametersInfoEnum SPI_GETMOUSEHOVERTIME = 0x0066;
+  static const SystemParametersInfoEnum SPI_SETMOUSEHOVERTIME = 0x0067;
+  static const SystemParametersInfoEnum SPI_GETWHEELSCROLLLINES = 0x0068;
+  static const SystemParametersInfoEnum SPI_SETWHEELSCROLLLINES = 0x0069;
+  static const SystemParametersInfoEnum SPI_GETMENUSHOWDELAY = 0x006A;
+  static const SystemParametersInfoEnum SPI_SETMENUSHOWDELAY = 0x006B;
+  static const SystemParametersInfoEnum SPI_GETWHEELSCROLLCHARS = 0x006C;
+  static const SystemParametersInfoEnum SPI_SETWHEELSCROLLCHARS = 0x006D;
+  static const SystemParametersInfoEnum SPI_GETSHOWIMEUI = 0x006E;
+  static const SystemParametersInfoEnum SPI_SETSHOWIMEUI = 0x006F;
+  static const SystemParametersInfoEnum SPI_GETMOUSESPEED = 0x0070;
+  static const SystemParametersInfoEnum SPI_SETMOUSESPEED = 0x0071;
+  static const SystemParametersInfoEnum SPI_GETSCREENSAVERRUNNING = 0x0072;
+  static const SystemParametersInfoEnum SPI_GETDESKWALLPAPER = 0x0073;
+  static const SystemParametersInfoEnum SPI_GETAUDIODESCRIPTION = 0x0074;
+  static const SystemParametersInfoEnum SPI_SETAUDIODESCRIPTION = 0x0075;
+  static const SystemParametersInfoEnum SPI_GETSCREENSAVESECURE = 0x0076;
+  static const SystemParametersInfoEnum SPI_SETSCREENSAVESECURE = 0x0077;
+  static const SystemParametersInfoEnum SPI_GETACTIVEWINDOWTRACKING = 0x1000;
+  static const SystemParametersInfoEnum SPI_SETACTIVEWINDOWTRACKING = 0x1001;
+  static const SystemParametersInfoEnum SPI_GETMENUANIMATION = 0x1002;
+  static const SystemParametersInfoEnum SPI_SETMENUANIMATION = 0x1003;
+  static const SystemParametersInfoEnum SPI_GETCOMBOBOXANIMATION = 0x1004;
+  static const SystemParametersInfoEnum SPI_SETCOMBOBOXANIMATION = 0x1005;
+  static const SystemParametersInfoEnum SPI_GETLISTBOXSMOOTHSCROLLING = 0x1006;
+  static const SystemParametersInfoEnum SPI_SETLISTBOXSMOOTHSCROLLING = 0x1007;
+  static const SystemParametersInfoEnum SPI_GETGRADIENTCAPTIONS = 0x1008;
+  static const SystemParametersInfoEnum SPI_SETGRADIENTCAPTIONS = 0x1009;
+  static const SystemParametersInfoEnum SPI_GETKEYBOARDCUES = 0x100A;
+  static const SystemParametersInfoEnum SPI_SETKEYBOARDCUES = 0x100B;
+  static const SystemParametersInfoEnum SPI_GETACTIVEWNDTRKZORDER = 0x100C;
+  static const SystemParametersInfoEnum SPI_SETACTIVEWNDTRKZORDER = 0x100D;
+  static const SystemParametersInfoEnum SPI_GETHOTTRACKING = 0x100E;
+  static const SystemParametersInfoEnum SPI_SETHOTTRACKING = 0x100F;
+  static const SystemParametersInfoEnum SPI_GETMENUFADE = 0x1012;
+  static const SystemParametersInfoEnum SPI_SETMENUFADE = 0x1013;
+  static const SystemParametersInfoEnum SPI_GETSELECTIONFADE = 0x1014;
+  static const SystemParametersInfoEnum SPI_SETSELECTIONFADE = 0x1015;
+  static const SystemParametersInfoEnum SPI_GETTOOLTIPANIMATION = 0x1016;
+  static const SystemParametersInfoEnum SPI_SETTOOLTIPANIMATION = 0x1017;
+  static const SystemParametersInfoEnum SPI_GETTOOLTIPFADE = 0x1018;
+  static const SystemParametersInfoEnum SPI_SETTOOLTIPFADE = 0x1019;
+  static const SystemParametersInfoEnum SPI_GETCURSORSHADOW = 0x101A;
+  static const SystemParametersInfoEnum SPI_SETCURSORSHADOW = 0x101B;
+  static const SystemParametersInfoEnum SPI_GETMOUSESONAR = 0x101C;
+  static const SystemParametersInfoEnum SPI_SETMOUSESONAR = 0x101D;
+  static const SystemParametersInfoEnum SPI_GETMOUSECLICKLOCK = 0x101E;
+  static const SystemParametersInfoEnum SPI_SETMOUSECLICKLOCK = 0x101F;
+  static const SystemParametersInfoEnum SPI_GETMOUSEVANISH = 0x1020;
+  static const SystemParametersInfoEnum SPI_SETMOUSEVANISH = 0x1021;
+  static const SystemParametersInfoEnum SPI_GETFLATMENU = 0x1022;
+  static const SystemParametersInfoEnum SPI_SETFLATMENU = 0x1023;
+  static const SystemParametersInfoEnum SPI_GETDROPSHADOW = 0x1024;
+  static const SystemParametersInfoEnum SPI_SETDROPSHADOW = 0x1025;
+  static const SystemParametersInfoEnum SPI_GETBLOCKSENDINPUTRESETS = 0x1026;
+  static const SystemParametersInfoEnum SPI_SETBLOCKSENDINPUTRESETS = 0x1027;
+  static const SystemParametersInfoEnum SPI_GETUIEFFECTS = 0x103E;
+  static const SystemParametersInfoEnum SPI_SETUIEFFECTS = 0x103F;
+  static const SystemParametersInfoEnum SPI_GETDISABLEOVERLAPPEDCONTENT = 0x1040;
+  static const SystemParametersInfoEnum SPI_SETDISABLEOVERLAPPEDCONTENT = 0x1041;
+  static const SystemParametersInfoEnum SPI_GETCLIENTAREAANIMATION = 0x1042;
+  static const SystemParametersInfoEnum SPI_SETCLIENTAREAANIMATION = 0x1043;
+  static const SystemParametersInfoEnum SPI_GETCLEARTYPE = 0x1048;
+  static const SystemParametersInfoEnum SPI_SETCLEARTYPE = 0x1049;
+  static const SystemParametersInfoEnum SPI_GETSPEECHRECOGNITION = 0x104A;
+  static const SystemParametersInfoEnum SPI_SETSPEECHRECOGNITION = 0x104B;
+  static const SystemParametersInfoEnum SPI_GETFOREGROUNDLOCKTIMEOUT = 0x2000;
+  static const SystemParametersInfoEnum SPI_SETFOREGROUNDLOCKTIMEOUT = 0x2001;
+  static const SystemParametersInfoEnum SPI_GETACTIVEWNDTRKTIMEOUT = 0x2002;
+  static const SystemParametersInfoEnum SPI_SETACTIVEWNDTRKTIMEOUT = 0x2003;
+  static const SystemParametersInfoEnum SPI_GETFOREGROUNDFLASHCOUNT = 0x2004;
+  static const SystemParametersInfoEnum SPI_SETFOREGROUNDFLASHCOUNT = 0x2005;
+  static const SystemParametersInfoEnum SPI_GETCARETWIDTH = 0x2006;
+  static const SystemParametersInfoEnum SPI_SETCARETWIDTH = 0x2007;
+  static const SystemParametersInfoEnum SPI_GETMOUSECLICKLOCKTIME = 0x2008;
+  static const SystemParametersInfoEnum SPI_SETMOUSECLICKLOCKTIME = 0x2009;
+  static const SystemParametersInfoEnum SPI_GETFONTSMOOTHINGTYPE = 0x200A;
+  static const SystemParametersInfoEnum SPI_SETFONTSMOOTHINGTYPE = 0x200B;
+  static const SystemParametersInfoEnum SPI_GETFONTSMOOTHINGCONTRAST = 0x200C;
+  static const SystemParametersInfoEnum SPI_SETFONTSMOOTHINGCONTRAST = 0x200D;
+  static const SystemParametersInfoEnum SPI_GETFOCUSBORDERWIDTH = 0x200E;
+  static const SystemParametersInfoEnum SPI_SETFOCUSBORDERWIDTH = 0x200F;
+  static const SystemParametersInfoEnum SPI_GETFOCUSBORDERHEIGHT = 0x2010;
+  static const SystemParametersInfoEnum SPI_SETFOCUSBORDERHEIGHT = 0x2011;
+  static const SystemParametersInfoEnum SPI_GETFONTSMOOTHINGORIENTATION = 0x2012;
+  static const SystemParametersInfoEnum SPI_SETFONTSMOOTHINGORIENTATION = 0x2013;
+  static const SystemParametersInfoEnum SPI_GETMINIMUMHITRADIUS = 0x2014;
+  static const SystemParametersInfoEnum SPI_SETMINIMUMHITRADIUS = 0x2015;
+  static const SystemParametersInfoEnum SPI_GETMESSAGEDURATION = 0x2016;
+  static const SystemParametersInfoEnum SPI_SETMESSAGEDURATION = 0x2017;
+  typedef UINT SystemParametersInfoFlags; //Alias
 ]]

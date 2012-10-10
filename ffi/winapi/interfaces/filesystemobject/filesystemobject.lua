@@ -13,31 +13,31 @@ ffi.cdef [[
   typedef void* IScriptEncoder; //Interface
   typedef void* ITextStream; //Interface
   typedef UINT CompareMethod; //Alias
-  static const UINT BinaryCompare = 0;
-  static const UINT TextCompare = 1;
-  static const UINT DatabaseCompare = 2;
+  static const CompareMethod BinaryCompare = 0;
+  static const CompareMethod TextCompare = 1;
+  static const CompareMethod DatabaseCompare = 2;
   typedef UINT IOMode; //Alias
-  static const UINT ForReading = 1;
-  static const UINT ForWriting = 2;
-  static const UINT ForAppending = 8;
+  static const IOMode ForReading = 1;
+  static const IOMode ForWriting = 2;
+  static const IOMode ForAppending = 8;
   typedef UINT Tristate; //Alias
-  static const UINT TristateTrue = -1;
-  static const UINT TristateFalse = 0;
-  static const UINT TristateUseDefault = -2;
+  static const Tristate TristateTrue = -1;
+  static const Tristate TristateFalse = 0;
+  static const Tristate TristateUseDefault = -2;
   typedef UINT FileAttribute; //Alias
   typedef UINT SpecialFolderConst; //Alias
-  static const UINT WindowsFolder = 0;
-  static const UINT SystemFolder = 1;
-  static const UINT TemporaryFolder = 2;
+  static const SpecialFolderConst WindowsFolder = 0;
+  static const SpecialFolderConst SystemFolder = 1;
+  static const SpecialFolderConst TemporaryFolder = 2;
   typedef UINT DriveTypeConst; //Alias
-  static const UINT UnknownType = 0;
-  static const UINT Removable = 1;
-  static const UINT Fixed = 2;
-  static const UINT Remote = 3;
-  static const UINT CDRom = 4;
-  static const UINT RamDisk = 5;
+  static const DriveTypeConst UnknownType = 0;
+  static const DriveTypeConst Removable = 1;
+  static const DriveTypeConst Fixed = 2;
+  static const DriveTypeConst Remote = 3;
+  static const DriveTypeConst CDRom = 4;
+  static const DriveTypeConst RamDisk = 5;
   typedef UINT StandardStreamTypes; //Alias
-  static const UINT StdIn = 0;
-  static const UINT StdOut = 1;
-  static const UINT StdErr = 2;
+  static const StandardStreamTypes StdIn = 0;
+  static const StandardStreamTypes StdOut = 1;
+  static const StandardStreamTypes StdErr = 2;
 ]]

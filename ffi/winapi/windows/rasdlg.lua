@@ -2,32 +2,32 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID RASPBDLGFUNC; //Alias
-  typedef DWORD WINAPI_RASDDFLAG; //Alias
+  typedef DWORD RASDDFLAG; //Alias
 # pragma pack( push, 4 )
   typedef struct RASENTRYDLG {
     DWORD dwSize;
     HWND hwndOwner;
-    WINAPI_RASDDFLAG dwFlags;
+    RASDDFLAG dwFlags;
     LONG xDlg;
     LONG yDlg;
-    TCHAR szEntry[RAS_MaxEntryName + 1];
+    TCHAR szEntry[RAS_MaxEntryName_plus_1];
     DWORD dwError;
     ULONG_PTR reserved;
     ULONG_PTR reserved2;
   } RASENTRYDLG;
 # pragma pack( pop )
   typedef RASENTRYDLG *LPRASENTRYDLG; //Pointer
-  typedef DWORD WINAPI_RASMDFLAG; //Alias
-  typedef DWORD WINAPI_RASMDPAGE; //Alias
-  static const DWORD RASMDPAGE_Status = 0;
-  static const DWORD RASMDPAGE_Summary = 1;
-  static const DWORD RASMDPAGE_Preferences = 2;
+  typedef DWORD RASMDFLAG; //Alias
+  typedef DWORD RASMDPAGE; //Alias
+  static const RASMDPAGE RASMDPAGE_Status = 0;
+  static const RASMDPAGE RASMDPAGE_Summary = 1;
+  static const RASMDPAGE RASMDPAGE_Preferences = 2;
 # pragma pack( push, 4 )
   typedef struct RASMONITORDLG {
     DWORD dwSize;
     HWND hwndOwner;
-    WINAPI_RASMDFLAG dwFlags;
-    WINAPI_RASMDPAGE dwStartPage;
+    RASMDFLAG dwFlags;
+    RASMDPAGE dwStartPage;
     LONG xDlg;
     LONG yDlg;
     DWORD dwError;
@@ -70,4 +70,4 @@ ffi.cdef [[
   BOOL RasMonitorDlg(   LPTSTR lpszDeviceName, LPRASMONITORDLG lpInfo);
   BOOL RasPhonebookDlg( LPTSTR lpszPhonebook, LPTSTR lpszEntry, LPRASPBDLG lpInfo);
 ]]
-return ffi.load( 'Rasdlg.dll' )
+ffi.load( 'Rasdlg.dll' )

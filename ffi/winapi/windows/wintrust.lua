@@ -9,7 +9,7 @@ ffi.cdef [[
     DWORD cbStruct;
     WCHAR wszCatalogFile[MAX_PATH];
   } CATALOG_INFO;
-  typedef DWORD WINAPI_WintrustPolicyFlags; //Alias
+  typedef DWORD WintrustPolicyFlags; //Alias
   BOOL                     OpenPersonalTrustDBDialog(             HWND hwndParent);
   BOOL                     OpenPersonalTrustDBDialogEx(           HWND hwndParent, DWORD dwFlags, PVOID* pvReserved);
   BOOL                     CryptCATCDFClose(                      CRYPTCATCDF* pCDF);
@@ -17,7 +17,7 @@ ffi.cdef [[
   CRYPTCATATTRIBUTE*       CryptCATCDFEnumCatAttributes(          CRYPTCATCDF* pCDF, CRYPTCATATTRIBUTE* pPrevAttr, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError);
   LPWSTR                   CryptCATCDFEnumMembersByCDFTagEx(      CRYPTCATCDF* pCDF, LPWSTR pwszPrevCDFTag, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError, CRYPTCATMEMBER** ppMember, BOOL fContinueOnError, LPVOID pvReserved);
   CRYPTCATCDF*             CryptCATCDFOpen(                       LPWSTR pwszFilePath, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError);
-  BOOL                     CryptCATAdminAcquireContext(           HCATADMIN* phCatAdmin, WINAPI_GUID* pgSubsystem, DWORD dwFlags);
+  BOOL                     CryptCATAdminAcquireContext(           HCATADMIN* phCatAdmin, GUID* pgSubsystem, DWORD dwFlags);
   HCATINFO                 CryptCATAdminAddCatalog(               HCATADMIN hCatAdmin, WCHAR* pwszCatalogFile, WCHAR* pwszSelectBaseName, DWORD dwFlags);
   HCATINFO                 CryptCATAdminEnumCatalogFromHash(      HCATADMIN hCatAdmin, BYTE* pbHash, DWORD cbHash, DWORD dwFlags, HCATINFO* phPrevCatInfo);
   BOOL                     CryptCATAdminRemoveCatalog(            HCATADMIN hCatAdmin, LPCWSTR pwszCatalogFile, DWORD dwFlags);
@@ -35,11 +35,11 @@ ffi.cdef [[
   CRYPTCATMEMBER*          CryptCATGetMemberInfo(                 HANDLE hCatalog, LPWSTR pwszReferenceTag);
   BOOL                     IsCatalogFile(                         HANDLE hFile, WCHAR* pwszFileName);
   BOOL                     WintrustAddActionID(                   GUID* pgActionID, DWORD fdwFlags, CRYPT_REGISTER_ACTIONID* psProvInfo);
-  void                     WintrustGetRegPolicyFlags(             WINAPI_WintrustPolicyFlags* pdwPolicyFlags);
+  void                     WintrustGetRegPolicyFlags(             WintrustPolicyFlags* pdwPolicyFlags);
   BOOL                     WintrustLoadFunctionPointers(          GUID* pgActionID, CRYPT_PROVIDER_FUNCTIONS* pPfns);
   BOOL                     WintrustRemoveActionID(                GUID* pgActionID);
   void                     WintrustSetDefaultIncludePEPageHashes( BOOL fIncludePEPageHashes);
-  BOOL                     WintrustSetRegPolicyFlags(             WINAPI_WintrustPolicyFlags dwPolicyFlags);
+  BOOL                     WintrustSetRegPolicyFlags(             WintrustPolicyFlags dwPolicyFlags);
   LONG                     WinVerifyTrust(                        HWND hWnd, GUID* pgActionID, LPVOID pWVTData);
   HRESULT                  WinVerifyTrustEx(                      HWND hwnd, GUID* pgActionID, WINTRUST_DATA* pWinTrustData);
   HRESULT                  WTHelperCertCheckValidSignature(       CRYPT_PROVIDER_DATA* pProvData);
@@ -51,4 +51,4 @@ ffi.cdef [[
   CRYPT_PROVIDER_SGNR*     WTHelperGetProvSignerFromChain(        CRYPT_PROVIDER_DATA* pProvData, DWORD idxSigner, BOOL fCounterSigner, DWORD idxCounterSigner);
   CRYPT_PROVIDER_DATA*     WTHelperProvDataFromStateData(         HANDLE hStateData);
 ]]
-return ffi.load( 'Wintrust.dll' )
+ffi.load( 'Wintrust.dll' )

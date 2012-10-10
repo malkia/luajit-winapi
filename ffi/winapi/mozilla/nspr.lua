@@ -54,15 +54,15 @@ ffi.cdef [[
     PLArenaStats stats;
   } PLArenaPool;
   typedef UINT KeyType; //Alias
-  static const UINT nullKey = 0;
-  static const UINT rsaKey = 1;
-  static const UINT dsaKey = 2;
-  static const UINT fortezzaKey = 3;
-  static const UINT dhKey = 4;
-  static const UINT keaKey = 5;
-  static const UINT ecKey = 6;
-  static const UINT rsaPssKey = 7;
-  static const UINT rsaOaepKey = 8;
+  static const KeyType nullKey = 0;
+  static const KeyType rsaKey = 1;
+  static const KeyType dsaKey = 2;
+  static const KeyType fortezzaKey = 3;
+  static const KeyType dhKey = 4;
+  static const KeyType keaKey = 5;
+  static const KeyType ecKey = 6;
+  static const KeyType rsaPssKey = 7;
+  static const KeyType rsaOaepKey = 8;
   typedef struct SECKEYPrivateKeyStr {
     PLArenaPool* arena;
     KeyType keyType;
@@ -74,22 +74,22 @@ ffi.cdef [[
   } SECKEYPrivateKeyStr;
   typedef SECKEYPrivateKeyStr SECKEYPrivateKey; //Alias
   typedef UINT SECItemType; //Alias
-  static const UINT siBuffer = 0;
-  static const UINT siClearDataBuffer = 1;
-  static const UINT siCipherDataBuffer = 2;
-  static const UINT siDERCertBuffer = 3;
-  static const UINT siEncodedCertBuffer = 4;
-  static const UINT siDERNameBuffer = 5;
-  static const UINT siEncodedNameBuffer = 6;
-  static const UINT siAsciiNameString = 7;
-  static const UINT siAsciiString = 8;
-  static const UINT siDEROID = 9;
-  static const UINT siUnsignedInteger = 10;
-  static const UINT siUTCTime = 11;
-  static const UINT siGeneralizedTime = 12;
-  static const UINT siVisibleString = 13;
-  static const UINT siUTF8String = 14;
-  static const UINT siBMPString = 15;
+  static const SECItemType siBuffer = 0;
+  static const SECItemType siClearDataBuffer = 1;
+  static const SECItemType siCipherDataBuffer = 2;
+  static const SECItemType siDERCertBuffer = 3;
+  static const SECItemType siEncodedCertBuffer = 4;
+  static const SECItemType siDERNameBuffer = 5;
+  static const SECItemType siEncodedNameBuffer = 6;
+  static const SECItemType siAsciiNameString = 7;
+  static const SECItemType siAsciiString = 8;
+  static const SECItemType siDEROID = 9;
+  static const SECItemType siUnsignedInteger = 10;
+  static const SECItemType siUTCTime = 11;
+  static const SECItemType siGeneralizedTime = 12;
+  static const SECItemType siVisibleString = 13;
+  static const SECItemType siUTF8String = 14;
+  static const SECItemType siBMPString = 15;
   typedef struct SECItem {
     SECItemType type;
     unsigned char* data;
@@ -102,9 +102,9 @@ ffi.cdef [[
     void* head;
   } CERTDistNamesStr;
   typedef UINT PRFileType; //Alias
-  static const UINT PR_FILE_FILE = 1;
-  static const UINT PR_FILE_DIRECTORY = 2;
-  static const UINT PR_FILE_OTHER = 3;
+  static const PRFileType PR_FILE_FILE = 1;
+  static const PRFileType PR_FILE_DIRECTORY = 2;
+  static const PRFileType PR_FILE_OTHER = 3;
   typedef struct PRFileInfo {
     PRFileType type;
     PROffset32 size;
@@ -122,13 +122,13 @@ ffi.cdef [[
     int iov_len;
   } PRIOVec;
   typedef struct PRDirEntry {
-    WINAPI_char* name;
+    char* name;
   } PRDirEntry;
-  typedef PRUint16 WINAPI_PRPollDesc_Flags; //Alias
+  typedef PRUint16 PRPollDesc_Flags; //Alias
   typedef struct PRPollDesc {
     PRFileDesc* fd;
-    WINAPI_PRPollDesc_Flags in_flags;
-    WINAPI_PRPollDesc_Flags out_flags;
+    PRPollDesc_Flags in_flags;
+    PRPollDesc_Flags out_flags;
   } PRPollDesc;
   typedef struct PRHostEnt {
     char* h_name;
@@ -143,77 +143,77 @@ ffi.cdef [[
     PRInt16 p_num;
   } PRProtoEnt;
   typedef int PRStatus; //Alias
-  static const int PR_FAILURE = -1;
-  static const int PR_SUCCESS = 0;
+  static const PRStatus PR_FAILURE = -1;
+  static const PRStatus PR_SUCCESS = 0;
   typedef int SECStatus; //Alias
-  static const int SECWouldBlock = -2;
-  static const int SECFailure = -1;
-  static const int SECSuccess = 0;
+  static const SECStatus SECWouldBlock = -2;
+  static const SECStatus SECFailure = -1;
+  static const SECStatus SECSuccess = 0;
   typedef int SSLKEAType; //Alias
-  static const int ssl_kea_null = 0;
-  static const int ssl_kea_rsa = 1;
-  static const int ssl_kea_dh = 2;
-  static const int ssl_kea_fortezza = 3;
-  static const int ssl_kea_ecdh = 4;
-  static const int ssl_kea_size = 5;
+  static const SSLKEAType ssl_kea_null = 0;
+  static const SSLKEAType ssl_kea_rsa = 1;
+  static const SSLKEAType ssl_kea_dh = 2;
+  static const SSLKEAType ssl_kea_fortezza = 3;
+  static const SSLKEAType ssl_kea_ecdh = 4;
+  static const SSLKEAType ssl_kea_size = 5;
   typedef UINT PRThreadType; //Alias
-  static const UINT PR_USER_THREAD = 0;
-  static const UINT PR_SYSTEM_THREAD = 1;
+  static const PRThreadType PR_USER_THREAD = 0;
+  static const PRThreadType PR_SYSTEM_THREAD = 1;
   typedef UINT PRThreadPriority; //Alias
-  static const UINT PR_PRIORITY_LOW = 0;
-  static const UINT PR_PRIORITY_NORMAL = 1;
-  static const UINT PR_PRIORITY_HIGH = 2;
-  static const UINT PR_PRIORITY_URGENT = 3;
+  static const PRThreadPriority PR_PRIORITY_LOW = 0;
+  static const PRThreadPriority PR_PRIORITY_NORMAL = 1;
+  static const PRThreadPriority PR_PRIORITY_HIGH = 2;
+  static const PRThreadPriority PR_PRIORITY_URGENT = 3;
   typedef UINT PRThreadScope; //Alias
-  static const UINT PR_LOCAL_THREAD = 0;
-  static const UINT PR_GLOBAL_THREAD = 1;
-  static const UINT PR_GLOBAL_BOUND_THREAD = 2;
+  static const PRThreadScope PR_LOCAL_THREAD = 0;
+  static const PRThreadScope PR_GLOBAL_THREAD = 1;
+  static const PRThreadScope PR_GLOBAL_BOUND_THREAD = 2;
   typedef UINT PRThreadState; //Alias
-  static const UINT PR_JOINABLE_THREAD = 0;
-  static const UINT PR_UNJOINABLE_THREAD = 1;
+  static const PRThreadState PR_JOINABLE_THREAD = 0;
+  static const PRThreadState PR_UNJOINABLE_THREAD = 1;
   typedef UINT PRAccessHow; //Alias
-  static const UINT PR_ACCESS_EXISTS = 1;
-  static const UINT PR_ACCESS_WRITE_OK = 2;
-  static const UINT PR_ACCESS_READ_OK = 3;
+  static const PRAccessHow PR_ACCESS_EXISTS = 1;
+  static const PRAccessHow PR_ACCESS_WRITE_OK = 2;
+  static const PRAccessHow PR_ACCESS_READ_OK = 3;
   typedef UINT PRSeekWhence; //Alias
-  static const UINT PR_SEEK_SET = 0;
-  static const UINT PR_SEEK_CUR = 1;
-  static const UINT PR_SEEK_END = 2;
+  static const PRSeekWhence PR_SEEK_SET = 0;
+  static const PRSeekWhence PR_SEEK_CUR = 1;
+  static const PRSeekWhence PR_SEEK_END = 2;
   typedef UINT PRDescType; //Alias
-  static const UINT PR_DESC_FILE = 1;
-  static const UINT PR_DESC_SOCKET_TCP = 2;
-  static const UINT PR_DESC_SOCKET_UDP = 3;
-  static const UINT PR_DESC_LAYERED = 4;
-  static const UINT PR_DESC_PIPE = 5;
+  static const PRDescType PR_DESC_FILE = 1;
+  static const PRDescType PR_DESC_SOCKET_TCP = 2;
+  static const PRDescType PR_DESC_SOCKET_UDP = 3;
+  static const PRDescType PR_DESC_LAYERED = 4;
+  static const PRDescType PR_DESC_PIPE = 5;
   typedef UINT PRDirFlags; //Alias
   typedef UINT PRShutdownHow; //Alias
-  static const UINT PR_SHUTDOWN_RCV = 0;
-  static const UINT PR_SHUTDOWN_SEND = 1;
-  static const UINT PR_SHUTDOWN_BOTH = 2;
+  static const PRShutdownHow PR_SHUTDOWN_RCV = 0;
+  static const PRShutdownHow PR_SHUTDOWN_SEND = 1;
+  static const PRShutdownHow PR_SHUTDOWN_BOTH = 2;
   typedef UINT PRTransmitFileFlags; //Alias
-  static const UINT PR_TRANSMITFILE_KEEP_OPEN = 0x0;
-  static const UINT PR_TRANSMITFILE_CLOSE_SOCKET = 0x1;
+  static const PRTransmitFileFlags PR_TRANSMITFILE_KEEP_OPEN = 0x0;
+  static const PRTransmitFileFlags PR_TRANSMITFILE_CLOSE_SOCKET = 0x1;
   typedef UINT PRFileMapProtect; //Alias
-  static const UINT PR_PROT_READONLY = 0;
-  static const UINT PR_PROT_READWRITE = 1;
-  static const UINT PR_PROT_WRITECOPY = 2;
+  static const PRFileMapProtect PR_PROT_READONLY = 0;
+  static const PRFileMapProtect PR_PROT_READWRITE = 1;
+  static const PRFileMapProtect PR_PROT_WRITECOPY = 2;
   typedef UINT PRNetAddrValue; //Alias
-  static const UINT PR_IpAddrNull = 0;
-  static const UINT PR_IpAddrAny = 1;
-  static const UINT PR_IpAddrLoopback = 2;
-  static const UINT PR_IpAddrV4Mapped = 3;
+  static const PRNetAddrValue PR_IpAddrNull = 0;
+  static const PRNetAddrValue PR_IpAddrAny = 1;
+  static const PRNetAddrValue PR_IpAddrLoopback = 2;
+  static const PRNetAddrValue PR_IpAddrV4Mapped = 3;
   typedef UINT PRIntervalTime; //Alias
-  static const UINT PR_INTERVAL_NO_WAIT = 0;
-  static const UINT PR_INTERVAL_NO_TIMEOUT = 0xffffffff;
+  static const PRIntervalTime PR_INTERVAL_NO_WAIT = 0;
+  static const PRIntervalTime PR_INTERVAL_NO_TIMEOUT = 0xffffffff;
   typedef UINT PRSpecialFD; //Alias
-  static const UINT PR_StandardInput = 0;
-  static const UINT PR_StandardOutput = 1;
-  static const UINT PR_StandardError = 2;
+  static const PRSpecialFD PR_StandardInput = 0;
+  static const PRSpecialFD PR_StandardOutput = 1;
+  static const PRSpecialFD PR_StandardError = 2;
   typedef PRIntn PRDescIdentity; //Alias
-  static const PRIntn PR_NSPR_IO_LAYER = 0;
-  static const PRIntn PR_INVALID_IO_LAYER = -1;
-  static const PRIntn PR_TOP_IO_LAYER = -2;
-  static const PRIntn PR_IO_LAYER_HEAD = -3;
+  static const PRDescIdentity PR_NSPR_IO_LAYER = 0;
+  static const PRDescIdentity PR_INVALID_IO_LAYER = -1;
+  static const PRDescIdentity PR_TOP_IO_LAYER = -2;
+  static const PRDescIdentity PR_IO_LAYER_HEAD = -3;
   typedef struct PRTimeParameters {
     PRInt32 tp_gmt_offset;
     PRInt32 tp_dst_offset;

@@ -4,4 +4,4 @@ ffi.cdef [[
   DWORD LoadPerfCounterTextStrings(   LPCTSTR commandLine, BOOL bQuietModeArg);
   DWORD UnloadPerfCounterTextStrings( LPCTSTR commandLine, BOOL bQuietModeArg);
 ]]
-return ffi.load( 'Loadperf.dll' )
+ffi.load( 'Loadperf.dll' )

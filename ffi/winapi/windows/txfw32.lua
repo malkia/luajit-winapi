@@ -11,4 +11,4 @@ ffi.cdef [[
   BOOL TxfLogDestroyReadContext(    PVOID TxfLogContext);
   BOOL TxfLogReadRecords(           PVOID TxfLogContext, ULONG BufferLength, PVOID Buffer, PULONG BytesUsed, PULONG RecordCount);
 ]]
-return ffi.load( 'TxfW32.dll' )
+ffi.load( 'TxfW32.dll' )

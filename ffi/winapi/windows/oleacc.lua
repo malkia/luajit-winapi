@@ -18,4 +18,4 @@ ffi.cdef [[
   LRESULT LresultFromObject(          REFIID riid, WPARAM wParam, LPUNKNOWN pAcc);
   STDAPI  ObjectFromLresult(          LRESULT lResult, REFIID riid, WPARAM wParam, void** ppvObject);
 ]]
-return ffi.load( 'Oleacc.dll' )
+ffi.load( 'Oleacc.dll' )

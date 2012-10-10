@@ -4,51 +4,170 @@ local expat = require( "ffi/expat" )
 local files = require( "etc/winapi-files" )
 local outdir = "../ffi/winapi/"
 
+print()
+
 if ffi.os == "Windows" then
    xmldir = (os.getenv("ProgramW6432") or os.getenv("ProgramFiles")).."/rohitab.com/API Monitor/API/"
 else
    xmldir = "/Users/malkia/Downloads/API Monitor (rohitab.com)/API/"
 end
 
+-- Returns the directory name of a unix-formed path
+local function dirname(filename)
+   local p = 0
+   for i=1, #filename do
+      if filename:byte(i) == 47 then p = i end
+   end
+   return filename:sub(1, p)
+end
+
+-- Replaces \ with /, removes duplicate /, and lowercases the name
 local function fixpath(name)
    local fixed, pb = {}
    for i = 1, #name do
       local b = name:byte(i)
-      if b == 92 then -- \
-	 b = 47 -- /
-      end
-      if b >= 65 and b <= 90 then -- >=A && <= Z
-	 b = b + 32 -- A->a
-      end
-      if b ~= pb or pb ~= 47 then
-	 fixed[#fixed+1] = string.char(b)
-      end
+      if b == 92             then b = 47 end
+      if b >= 65 and b <= 90 then b = b + 32 end
+      if b ~= pb or pb ~= 47 then fixed[#fixed+1] = string.char(b) end
       pb = b
    end
    return table.concat(fixed)
 end
 
-local function fixname(oid)
+local function validate_id(id)
+   return id:match("[_%a]+[_%a%d]*") == id
+end
+
+local function validate_id_ptr(id)
+   return id:match("[_%a]+[_%a%d]*%**") == id
+end
+
+-- Remove "const"
+local function filter_const(id,type,type2)
+   local o = id
+   id = id:gsub(" [Cc][Oo][Nn][Ss][Tt]%*","*")
+   id = id:gsub("^[Cc][Oo][Nn][Ss][Tt] ","")
+   if o ~= id then
+      assert(type~="Set")
+   end
+   return id
+end
+
+-- Remove "dash"
+local function filter_dash_slash(id,type)
+   id = id:gsub("[-/]","_")
+   id = id:gsub(" %+ ","_plus_")
+   id = id:gsub(" %* ","_mult_")
+   return id
+end
+
+-- Removes opening and closing square brackets
+local function filter_brackets(id,type,type2)
+   if id:sub(1,1)=="[" and id:sub(-1)=="]" then 
+      assert(type~="Set")
+      return id:sub(2,-2) 
+   end
+   return id
+end
+
+-- Remove ":" and everything after it
+local function filter_cut_to_colon(id)
+   local colon = id:find(":", 1, true)
+   if colon then return id:sub(1,colon-1) end
+   return id
+end
+
+-- Turn anything that's not _, a-zA-Z, or 0-9 to underscore
+local function filter_make_underscore(id,type,type2)
+   return id:gsub("[^_%a%d]","_")
+end
+
+local T = true
+local builtin_types = {
+   ["bool"]    = T, ["size_t"]           = T,
+   ["char"]    = T, ["unsigned char"]    = T, ["signed char"]    = T,
+   ["short"]   = T, ["unsigned short"]   = T, ["signed short"]   = T,
+   ["int"]     = T, ["unsigned int"]     = T, ["signed int"]     = T,
+   ["long"]    = T, ["unsigned long"]    = T, ["signed long"]    = T,
+   ["__int32"] = T, ["unsigned __int32"] = T, ["signed __int32"] = T,
+   ["__int64"] = T, ["unsigned __int64"] = T, ["signed __int64"] = T,
+   ["time_t"]  = T, ["va_list"]          = T,
+}
+local filters = {
+   Api               = {filter_dash_slash, filter_brackets  },
+   Param             = {filter_dash_slash, filter_brackets  }, -- Keep "const" for parameters
+   Return            = {filter_dash_slash, filter_brackets  }, -- And return types
+   Field             = {filter_dash_slash, filter_brackets, filter_const  },
+   Variable          = {filter_dash_slash, filter_brackets, filter_const  },
+   Set               = {filter_dash_slash, filter_cut_to_colon, filter_make_underscore},
+   Interface         = { Id=T, Category=T, filter_brackets, filter_const  },
+   Category          = T,
+   Condition         = T,
+   Display           = T,
+   Enum              = T,
+   ErrorDecode       = T,
+   ErrorLookupModule = T,
+   Flag              = T,
+   HelpUrl           = T,
+   SourceModule      = T,
+   Success           = T,
+   Module            = T,
+   ModuleAlias       = T,
+}
+
+local fixednames = {}
+local function fixname(oid, type, type2)
+   if fixednames[oid] then
+      return fixednames[oid]
+   end
+   fixednames[oid] = oid
+   if filters[type]==T or filters[type][type2]==T then
+      return oid
+   end
    local num = tonumber(oid)
+   if num ~= nil then
+      return oid
+   end
+   if validate_id_ptr(oid) then
+      return oid
+   end
+
    local id = oid
-   if num == nil then
-      local colon = id:find(":", 1, true)
-      if colon then
-	 id = id:sub(1,colon-1)
-	 oid = id
+
+   for _, filter in ipairs(filters[type][type2] or filters[type]) do
+      id = filter(id,type,type2)
+   end
+
+   if id ~= oid then
+      local id = id:gsub("%*","") --temp
+      if validate_id_ptr(id) == false then
+	 print('changed',type..'/'..type2,'\n','<'..oid..'>\n','<'..id..'>')
       end
-      id = id:gsub("-","_")
-      if id:sub(1,6):lower()=="const " then
-	 id = id:sub(7)
-      end
-      if id:sub(1,1)=="[" and id:sub(-1)=="]" then
-	 id = id:sub(2,-2)
+   else
+      if validate_id_ptr(id) == false then
+	 print('invalid',type..'/'..type2,'<'..oid..'>')
       end
    end
-   return (oid == id) and id or ("WINAPI_" .. id)
+   
+   fixednames[oid] = id
+   return id
 end
 
 local function normalize(t)
+   local index = 1
+   while index <= #t do
+      local cond = t[index].Condition
+      for _,e in ipairs(cond or {}) do
+	 for _,v in pairs(e) do
+	    assert(v.Architecture==nil)
+	    -- propagate Condition.Architecture
+	    v.Architecture = cond.Architecture
+	 end
+	 table.insert(t, index, e)
+	 index = index + 1
+      end
+      index = index + 1
+   end
    for index = 1, #t do
       for k,v in pairs(t[index]) do
 	 t[k] = t[k] or {}
@@ -71,7 +190,7 @@ local function parse(buffer, filename)
 	    local value = ffi.string(attr[index+1])
 	    index = index + 2
 	    assert( kv[key] == nil )
-	    kv[key] = (key == "Filename") and fixpath(value) or fixname(value)
+	    kv[key] = (key == "Filename") and fixpath(value) or fixname(value, ffi.string(name), key)
 	 end
 	 stack[#stack+1] = kv
       end)
@@ -100,17 +219,15 @@ local function parse(buffer, filename)
    return normalize(stack[1][1].ApiMonitor)
 end
 
-local function dirname(filename)
-   local p = 0
-   for i=1, #filename do
-      if filename:byte(i) == 47 then p = i end
-   end
-   return filename:sub(1, p)
-end
-
 local defined = {}
-
 local function process(var, luafile)
+   local arch
+   if var.Architecture then
+      assert( var.Architecture=="32" or var.Architecture=="64" )
+      arch = var.Architecture=="32" and "x86" or "x64"
+      luafile:write("]]\nif ffi.arch == '" .. arch .. "' then ffi.cdef[[\n")
+   end
+
    if var.Enum then
       if var.Type=="Integer" or var.Size then
 	 assert(var.Type=="Integer" and var.Size)
@@ -130,12 +247,20 @@ local function process(var, luafile)
 	 assert(var.Type=="Alias" and var.Base)
 	 luafile:write(
 	    "  typedef " .. var.Base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
-	 for _, enum in ipairs( var.Enum[1].Set ) do
-	    if defined[enum.Name]==nil then
-	       defined[enum.Name]=true
-	       luafile:write(
-		  "  static const " .. var.Base .. " " ..
+	 if defined[var.Name] then
+	    print('already defined', var.Name)
+	 else
+	    --	 assert(defined[var.Name]==nil)
+	    defined[var.Name] = true
+	    for _, enum in ipairs( var.Enum[1].Set ) do
+	       if defined[enum.Name]==nil and
+	       enum.Name:find("(",1,true)==nil
+	       then
+		  defined[enum.Name]=true
+		  luafile:write(
+		     "  static const " .. var.Name .. " " ..
 		     enum.Name .. " = " .. enum.Value .. ";\n" )
+	       end
 	    end
 	 end
       else
@@ -151,25 +276,7 @@ local function process(var, luafile)
       end
    elseif var.Type == "Pointer" or var.Type == "Alias" then
       if var.Name:find("*",1,true)==nil then
-	 if var.Name ~= "unsigned char" and
-	    var.Name ~= "unsigned short" and
-	    var.Name ~= "short" and
-	    var.Name ~= "unsigned int" and
-	    var.Name ~= "unsigned long" and
-	    var.Name ~= "WINAPI_unsigned long" and -- kludge
-	    var.Name ~= "__int32" and
-	    var.Name ~= "__int64" and
-	    var.Name ~= "unsigned __int32" and
-	    var.Name ~= "unsigned __int64" and
-	    var.Name ~= "bool" and
-	    var.Name ~= "long" and
-	    var.Name ~= "int" and
-	    var.Name ~= "char" and
-	    var.Name ~= "size_t" and
-	    var.Name ~= "time_t" and
-	    var.Name ~= "va_list" and
-	    var.Name ~= "signed int"
-	 then
+	 if builtin_types[var.Name] == nil then
 	    luafile:write(
 	       "  typedef " .. var.Base .. 
 		  ((var.Type == "Pointer") and " *" or " ") ..
@@ -184,6 +291,7 @@ local function process(var, luafile)
 	 local Type = var.Type
 	 local Name = var.Name
 	 local bracket = Name:find(" [", 1, true)
+--	 print(Type,Name,bracket)
 	 local in_brackets = bracket and Name:sub(bracket+2, -2) or ""
 	 local space = in_brackets:find(" ", 1, true)
 	 local before_space = (space and in_brackets:sub(1, space-1) or in_brackets)
@@ -246,33 +354,54 @@ local function process(var, luafile)
    else
       luafile:write("//" .. dump(var).."\n")
    end
+   if arch then
+      luafile:write("]]\nend\n")
+      luafile:write("ffi.cdef[[\n")
+   end
+end
+
+local function reorder(cdefs)
+   local depends = {}
+   local visited = {}
+   local order = {} 
+   for filename, cdef in pairs(cdefs) do
+      for _, depend in ipairs(cdef.Include or {}) do
+	 depends[ filename ] = depends[ filename ] or {}
+	 depends[ filename ][ depend.Filename ] = depends[ filename ]
+      end
+   end
+   local function recur(filename)
+      if visited[filename] then return end
+      visited[filename] = true
+      for k,_ in pairs(depends[filename] or {}) do recur(k) end
+      order[#order+1] = filename
+   end
+   for filename, cdef in pairs(cdefs) do
+      recur(filename)
+   end
+   return order
 end
 
 local function generate()
    -- All "C" definitions from the API monitor files
    local cdefs = {}
    for _, filename in ipairs(files) do
-      assert(cdefs[filename]==nil)
+      local fixedname = fixpath(filename)
+      assert(cdefs[fixedname]==nil)
+      -- Still use filename, not fixedname for reading
+      -- As it might be used on case-sensitive file systems (Wine on Linux?)
       local file = assert(io.open(xmldir .. filename))
       local contents = file:read("*all")
       file:close()
       local buffer = ffi.new("char[?]", contents:len()+1, contents)
-      cdefs[fixpath(filename)] = parse(buffer, filename)
-   end
-
-   local blacklist = {
-      "internal/exception-codes.h.xml"
-   }
-   for _, v in ipairs(blacklist) do
-      assert(cdefs[v])
-      cdefs[v] = nil
+      cdefs[fixedname] = parse(buffer, filename)
    end
 
    local luadirs={}
-   for filename, cdef in pairs(cdefs) do
+   for _, filename in ipairs(reorder(cdefs) or {}) do
+      local cdef = cdefs[filename]
       local modname = filename:gsub("%..*$", "")
-
-      local luaname = filename:gsub("%..*$", "%.lua")
+      local luaname = modname .. ".lua"
       local luadir = dirname(luaname)
       if not luadirs[luadir] then
 	 luadirs[luadir] = true
@@ -284,17 +413,15 @@ local function generate()
       end
       
       local luafile = assert(io.open(outdir..luaname, "wt"))
-
       for _, depend in ipairs(cdef.Include or {}) do
-	 local dependFilename = fixpath(depend.Filename)
-	 local dependModule = dependFilename:gsub("%..*$","")
-	 if cdefs[dependFilename] then
-	    assert(modname~=dependModule)
+	 local depname = depend.Filename:gsub("%..*$","")
+	 assert(depname ~= modname)
+	 if cdefs[depend.Filename] then
 	    luafile:write(
-	       "require( 'ffi/winapi/" .. dependModule .. "' )\n" )
+	       "require( 'ffi/winapi/" .. depname .. "' )\n" )
 	 else
 	    luafile:write(
-	       "-- require( 'ffi/winapi/" .. dependModule .. "' )\n" )
+	       "-- require( 'ffi/winapi/" .. depname .. "' )\n" )
 	 end
       end
 
@@ -302,18 +429,6 @@ local function generate()
 		     "ffi.cdef [[\n" )
  
       for _, header in ipairs(cdef.Headers or {}) do
-	 for _, var in ipairs(header.Condition or {}) do
-	    assert( var.Architecture=="32" or
-		    var.Architecture=="64" )
-	    luafile:write("]]\n")
-	    local arch = var.Architecture=="32" and "x86" or "x64"
-	    luafile:write("if ffi.arch == '" .. arch .. "' then ffi.cdef[[\n")
-	    for _, var in ipairs(var.Variable or {}) do
-	       process(var, luafile)
-	    end
-	    luafile:write("]]\nend\n")
-	    luafile:write("ffi.cdef[[\n")
-	 end
 	 for _, var in ipairs(header.Variable or {}) do
 	    process(var, luafile)
 	 end
@@ -325,6 +440,7 @@ local function generate()
 	    process(var, luafile)
 	 end
 
+	 -- TODO - Move this to process
 	 local return_type_width = 0
 	 local api_name_width = 0
 	 for _, api in ipairs(module.Api) do
@@ -351,7 +467,7 @@ local function generate()
       luafile:write( "]]\n" )
 
       if dll then
-	 luafile:write( "return ffi.load( '" .. dll .. "' )\n" )
+	 luafile:write( "ffi.load( '" .. dll .. "' )\n" )
       end
 
       luafile:close()
@@ -360,13 +476,16 @@ local function generate()
    return cdefs
 end
 
-local function test(cdef)
---   for _, filename in ipairs(files) do
-   for filename, _ in pairs(cdef) do
+local function test(cdefs)
+   for filename, _ in pairs(cdefs) do
       local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
       local status, error = pcall(require,lib)
       print(lib, error==true and "OK" or error)
    end
 end
 
-test(generate())
+generate()
+
+--test(generate())
+--categories["Api"] = {}
+--print(dump(categories.Api))

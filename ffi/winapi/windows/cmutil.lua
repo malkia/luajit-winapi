@@ -4,4 +4,4 @@ ffi.cdef [[
   void* CmFree(   void* pvPtr);
   void* CmMalloc( size_t nBytes);
 ]]
-return ffi.load( 'CmUtil.dll' )
+ffi.load( 'CmUtil.dll' )

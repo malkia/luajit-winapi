@@ -25,4 +25,4 @@ ffi.cdef [[
   HRESULT DsGetFriendlyClassName( LPWSTR pszObjectClass, LPWSTR pszBuffer, INT cchBuffer);
   HICON   DsGetIcon(              DWORD dwFlags, LPWSTR pszObjectClass, INT cxImage, INT cyImage);
 ]]
-return ffi.load( 'Dsuiext.dll' )
+ffi.load( 'Dsuiext.dll' )

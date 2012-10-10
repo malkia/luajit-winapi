@@ -5,12 +5,66 @@ ffi.cdef [[
   typedef LPVOID DIGEST_FUNCTION; //Alias
   typedef PVOID DIGEST_HANDLE; //Alias
   typedef LPVOID PIMAGEHLP_STATUS_ROUTINE; //Alias
+]]
+if ffi.arch == 'x86' then ffi.cdef[[
+  typedef struct IMAGE_LOAD_CONFIG_DIRECTORY {
+    DWORD Size;
+    DWORD TimeDateStamp;
+    WORD MajorVersion;
+    WORD MinorVersion;
+    DWORD GlobalFlagsClear;
+    DWORD GlobalFlagsSet;
+    DWORD CriticalSectionDefaultTimeout;
+    DWORD DeCommitFreeBlockThreshold;
+    DWORD DeCommitTotalFreeThreshold;
+    DWORD LockPrefixTable;
+    DWORD MaximumAllocationSize;
+    DWORD VirtualMemoryThreshold;
+    HEAP_FLAGS ProcessHeapFlags;
+    DWORD ProcessAffinityMask;
+    WORD CSDVersion;
+    WORD Reserved1;
+    DWORD EditList;
+    DWORD SecurityCookie;
+    DWORD SEHandlerTable;
+    DWORD SEHandlerCount;
+  } IMAGE_LOAD_CONFIG_DIRECTORY;
+]]
+end
+ffi.cdef[[
+]]
+if ffi.arch == 'x64' then ffi.cdef[[
+  typedef struct IMAGE_LOAD_CONFIG_DIRECTORY {
+    DWORD Size;
+    DWORD TimeDateStamp;
+    WORD MajorVersion;
+    WORD MinorVersion;
+    DWORD GlobalFlagsClear;
+    DWORD GlobalFlagsSet;
+    DWORD CriticalSectionDefaultTimeout;
+    ULONGLONG DeCommitFreeBlockThreshold;
+    ULONGLONG DeCommitTotalFreeThreshold;
+    ULONGLONG LockPrefixTable;
+    ULONGLONG MaximumAllocationSize;
+    ULONGLONG VirtualMemoryThreshold;
+    ULONGLONG ProcessAffinityMask;
+    HEAP_FLAGS ProcessHeapFlags;
+    WORD CSDVersion;
+    WORD Reserved1;
+    ULONGLONG EditList;
+    ULONGLONG SecurityCookie;
+    ULONGLONG SEHandlerTable;
+    ULONGLONG SEHandlerCount;
+  } IMAGE_LOAD_CONFIG_DIRECTORY;
+]]
+end
+ffi.cdef[[
   typedef IMAGE_LOAD_CONFIG_DIRECTORY *PIMAGE_LOAD_CONFIG_DIRECTORY; //Pointer
-  typedef WORD WINAPI_WIN_CERT_TYPE; //Alias
+  typedef WORD WIN_CERT_TYPE; //Alias
   typedef struct WIN_CERTIFICATE {
     DWORD dwLength;
     WORD wRevision;
-    WINAPI_WIN_CERT_TYPE wCertificateType;
+    WIN_CERT_TYPE wCertificateType;
     BYTE bCertificate[ANYSIZE_ARRAY];
   } WIN_CERTIFICATE;
   typedef WIN_CERTIFICATE *LPWIN_CERTIFICATE; //Pointer
@@ -22,7 +76,7 @@ ffi.cdef [[
     PIMAGE_SECTION_HEADER LastRvaSection;
     ULONG NumberOfSections;
     PIMAGE_SECTION_HEADER Sections;
-    WINAPI_IMAGE_FILE_CHARACTERISTICS_ULONG Characteristics;
+    IMAGE_FILE_CHARACTERISTICS_ULONG Characteristics;
     BOOLEAN fSystemImage;
     BOOLEAN fDOSImage;
     BOOLEAN fReadOnly;
@@ -54,4 +108,4 @@ ffi.cdef [[
   BOOL              UpdateDebugInfoFile(        PSTR ImageFileName, PSTR SymbolPath, PSTR DebugFilePath, PIMAGE_NT_HEADERS NtHeaders);
   BOOL              UpdateDebugInfoFileEx(      PSTR ImageFileName, PSTR SymbolPath, PSTR DebugFilePath, PIMAGE_NT_HEADERS NtHeaders, DWORD OldChecksum);
 ]]
-return ffi.load( 'ImageHlp.dll' )
+ffi.load( 'ImageHlp.dll' )

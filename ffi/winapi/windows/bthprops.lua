@@ -28,12 +28,12 @@ ffi.cdef [[
   BOOL                   BluetoothSelectDevices(                BLUETOOTH_SELECT_DEVICE_PARAMS* pbtsdp);
   BOOL                   BluetoothSelectDevicesFree(            BLUETOOTH_SELECT_DEVICE_PARAMS* pbtsdp);
   DWORD                  BluetoothSendAuthenticationResponse(   HANDLE hRadio, BLUETOOTH_DEVICE_INFO* pbtdi, LPWSTR pszPasskey);
-  DWORD                  BluetoothSetLocalServiceInfo(          HANDLE hRadioIn, WINAPI_GUID* pClassGuid, ULONG ulInstance, WINAPI_BLUETOOTH_LOCAL_SERVICE_INFO* pServiceInfoIn);
+  DWORD                  BluetoothSetLocalServiceInfo(          HANDLE hRadioIn, GUID* pClassGuid, ULONG ulInstance, BLUETOOTH_LOCAL_SERVICE_INFO* pServiceInfoIn);
   DWORD                  BluetoothSetServiceState(              HANDLE hRadio, BLUETOOTH_DEVICE_INFO* pbtdi, GUID* pGuidService, DWORD dwServiceFlags);
   BOOL                   BluetoothUnregisterAuthentication(     HBLUETOOTH_AUTHENTICATION_REGISTRATION hRegHandle);
   DWORD                  BluetoothUpdateDeviceRecord(           BLUETOOTH_DEVICE_INFO* pbtdi);
   HRESULT                BluetoothAuthenticateDeviceEx(         HWND hwndParentIn, HANDLE hRadioIn, BLUETOOTH_DEVICE_INFO* pbtdilInOut, PBLUETOOTH_OOB_DATA_INFO pbtdilInOut, BLUETOOTH_AUTHENTICATION_REQUIREMENTS authenticationRequirement);
-  HRESULT                BluetoothRegisterForAuthenticationEx(  WINAPI_BLUETOOTH_DEVICE_INFO* pbtdiln, HBLUETOOTH_AUTHENTICATION_REGISTRATION* phRegHandleOut, PFN_AUTHENTICATION_CALLBACK_EX pfnCallbackIn, PVOID pvParam);
+  HRESULT                BluetoothRegisterForAuthenticationEx(  BLUETOOTH_DEVICE_INFO* pbtdiln, HBLUETOOTH_AUTHENTICATION_REGISTRATION* phRegHandleOut, PFN_AUTHENTICATION_CALLBACK_EX pfnCallbackIn, PVOID pvParam);
   HRESULT                BluetoothSendAuthenticationResponseEx( HANDLE hRadioIn, PBLUETOOTH_AUTHENTICATE_RESPONSE pauthResponse);
 ]]
-return ffi.load( 'Bthprops.cpl' )
+ffi.load( 'Bthprops.cpl' )

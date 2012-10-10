@@ -4,4 +4,4 @@ ffi.cdef [[
   STDAPI  CanShareFolderW(   LPCWSTR pszPath);
   HRESULT ShowShareFolderUI( HWND hwndParent, LPCWSTR pszPath);
 ]]
-return ffi.load( 'Ntshrui.dll' )
+ffi.load( 'Ntshrui.dll' )

@@ -6,4 +6,4 @@ ffi.cdef [[
   BOOL  EndIdleDetection(   DWORD dwReserved);
   DWORD GetIdleMinutes(     DWORD dwReserved);
 ]]
-return ffi.load( 'Msidle.dll' )
+ffi.load( 'Msidle.dll' )

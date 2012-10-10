@@ -20,10 +20,10 @@ ffi.cdef [[
     LPDHCPV6CAPI_PARAMS Params;
   } DHCPV6CAPI_PARAMS_ARRAY;
   typedef UINT StatusCode; //Alias
-  static const UINT STATUS_NO_ERROR = 0;
-  static const UINT STATUS_UNSPECIFIED_FAILURE = 1;
-  static const UINT STATUS_NO_BINDING = 3;
-  static const UINT STATUS_NOPREFIX_AVAIL = 6;
+  static const StatusCode STATUS_NO_ERROR = 0;
+  static const StatusCode STATUS_UNSPECIFIED_FAILURE = 1;
+  static const StatusCode STATUS_NO_BINDING = 3;
+  static const StatusCode STATUS_NOPREFIX_AVAIL = 6;
   typedef struct DHCPV6Prefix {
     UCHAR prefix[16];
     DWORD prefixLength;
@@ -52,4 +52,4 @@ ffi.cdef [[
   DWORD Dhcpv6RenewPrefix(    LPWSTR adapterName, LPDHCPV6CAPI_CLASSID classId, LPDHCPV6PrefixLeaseInformation prefixleaseInfo, DWORD pdwTimeToWait, DWORD bValidatePrefix);
   DWORD Dhcpv6RequestPrefix(  LPWSTR adapterName, LPDHCPV6CAPI_CLASSID classId, LPDHCPV6PrefixLeaseInformation prefixleaseInfo, DWORD pdwTimeToWait);
 ]]
-return ffi.load( 'Dhcpcsvc6.dll' )
+ffi.load( 'Dhcpcsvc6.dll' )

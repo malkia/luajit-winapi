@@ -13,44 +13,44 @@ ffi.cdef [[
   } PHYSICAL_MONITOR;
   typedef PHYSICAL_MONITOR *LPPHYSICAL_MONITOR; //Pointer
   typedef UINT MC_COLOR_TEMPERATURE; //Alias
-  static const UINT MC_COLOR_TEMPERATURE_UNKNOWN = 0;
-  static const UINT MC_COLOR_TEMPERATURE_4000K = 1;
-  static const UINT MC_COLOR_TEMPERATURE_5000K = 2;
-  static const UINT MC_COLOR_TEMPERATURE_6500K = 3;
-  static const UINT MC_COLOR_TEMPERATURE_7500K = 4;
-  static const UINT MC_COLOR_TEMPERATURE_8200K = 5;
-  static const UINT MC_COLOR_TEMPERATURE_9300K = 6;
-  static const UINT MC_COLOR_TEMPERATURE_10000K = 7;
-  static const UINT MC_COLOR_TEMPERATURE_11500K = 8;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_UNKNOWN = 0;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_4000K = 1;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_5000K = 2;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_6500K = 3;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_7500K = 4;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_8200K = 5;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_9300K = 6;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_10000K = 7;
+  static const MC_COLOR_TEMPERATURE MC_COLOR_TEMPERATURE_11500K = 8;
   typedef MC_COLOR_TEMPERATURE *LPMC_COLOR_TEMPERATURE; //Pointer
   typedef UINT MC_POSITION_TYPE; //Alias
-  static const UINT MC_HORIZONTAL_POSITION = 0;
-  static const UINT MC_VERTICAL_POSITION = 1;
+  static const MC_POSITION_TYPE MC_HORIZONTAL_POSITION = 0;
+  static const MC_POSITION_TYPE MC_VERTICAL_POSITION = 1;
   typedef UINT MC_SIZE_TYPE; //Alias
-  static const UINT MC_WIDTH = 0;
-  static const UINT MC_HEIGHT = 1;
+  static const MC_SIZE_TYPE MC_WIDTH = 0;
+  static const MC_SIZE_TYPE MC_HEIGHT = 1;
   typedef UINT MC_DRIVE_TYPE; //Alias
-  static const UINT MC_RED_DRIVE = 0;
-  static const UINT MC_GREEN_DRIVE = 1;
-  static const UINT MC_BLUE_DRIVE = 2;
+  static const MC_DRIVE_TYPE MC_RED_DRIVE = 0;
+  static const MC_DRIVE_TYPE MC_GREEN_DRIVE = 1;
+  static const MC_DRIVE_TYPE MC_BLUE_DRIVE = 2;
   typedef UINT MC_GAIN_TYPE; //Alias
-  static const UINT MC_RED_GAIN = 0;
-  static const UINT MC_GREEN_GAIN = 1;
-  static const UINT MC_BLUE_GAIN = 2;
+  static const MC_GAIN_TYPE MC_RED_GAIN = 0;
+  static const MC_GAIN_TYPE MC_GREEN_GAIN = 1;
+  static const MC_GAIN_TYPE MC_BLUE_GAIN = 2;
   typedef UINT MC_DISPLAY_TECHNOLOGY_TYPE; //Alias
-  static const UINT MC_SHADOW_MASK_CATHODE_RAY_TUBE = 0;
-  static const UINT MC_APERTURE_GRILL_CATHODE_RAY_TUBE = 1;
-  static const UINT MC_THIN_FILM_TRANSISTOR = 2;
-  static const UINT MC_LIQUID_CRYSTAL_ON_SILICON = 3;
-  static const UINT MC_PLASMA = 4;
-  static const UINT MC_ORGANIC_LIGHT_EMITTING_DIODE = 5;
-  static const UINT MC_ELECTROLUMINESCENT = 6;
-  static const UINT MC_MICROELECTROMECHANICAL = 7;
-  static const UINT MC_FIELD_EMISSION_DEVICE = 8;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_SHADOW_MASK_CATHODE_RAY_TUBE = 0;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_APERTURE_GRILL_CATHODE_RAY_TUBE = 1;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_THIN_FILM_TRANSISTOR = 2;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_LIQUID_CRYSTAL_ON_SILICON = 3;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_PLASMA = 4;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_ORGANIC_LIGHT_EMITTING_DIODE = 5;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_ELECTROLUMINESCENT = 6;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_MICROELECTROMECHANICAL = 7;
+  static const MC_DISPLAY_TECHNOLOGY_TYPE MC_FIELD_EMISSION_DEVICE = 8;
   typedef MC_DISPLAY_TECHNOLOGY_TYPE *LPMC_DISPLAY_TECHNOLOGY_TYPE; //Pointer
   typedef UINT MC_VCP_CODE_TYPE; //Alias
-  static const UINT MC_MOMENTARY = 0;
-  static const UINT MC_SET_PARAMETER = 1;
+  static const MC_VCP_CODE_TYPE MC_MOMENTARY = 0;
+  static const MC_VCP_CODE_TYPE MC_SET_PARAMETER = 1;
   typedef MC_VCP_CODE_TYPE *LPMC_VCP_CODE_TYPE; //Pointer
 # pragma pack( push, 1 )
   typedef struct MC_TIMING_REPORT {
@@ -94,6 +94,6 @@ ffi.cdef [[
   BOOL    GetPhysicalMonitorsFromIDirect3DDevice9(         IDirect3DDevice9* pDirect3DDevice9, DWORD dwPhysicalMonitorArraySize, LPPHYSICAL_MONITOR pPhysicalMonitorArray);
   HRESULT DXVA2CreateDirect3DDeviceManager9(               UINT* pResetToken, IDirect3DDeviceManager9** ppDXVAManager);
   HRESULT DXVA2CreateVideoService(                         IDirect3DDevice9* pDD, REFIID riid, void** ppService);
-  HRESULT DXVAHD_CreateDevice(                             IDirect3DDevice9Ex* pD3DDevice, WINAPI_DXVAHD_CONTENT_DESC* pContentDesc, DXVAHD_DEVICE_USAGE Usage, PDXVAHDSW_Plugin pPlugin, IDXVAHD_Device** ppDevice);
+  HRESULT DXVAHD_CreateDevice(                             IDirect3DDevice9Ex* pD3DDevice, DXVAHD_CONTENT_DESC* pContentDesc, DXVAHD_DEVICE_USAGE Usage, PDXVAHDSW_Plugin pPlugin, IDXVAHD_Device** ppDevice);
 ]]
-return ffi.load( 'dxva2.dll' )
+ffi.load( 'dxva2.dll' )

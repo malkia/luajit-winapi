@@ -50,194 +50,194 @@ ffi.cdef [[
   typedef LPVOID pCryptSIPVerifyIndirectData; //Alias
   typedef LPVOID pCryptSIPRemoveSignedDataMsg; //Alias
   typedef unsigned int ALG_ID; //Alias
-  static const unsigned int CALG_MD2 = 0x00008001;
-  static const unsigned int CALG_MD4 = 0x00008002;
-  static const unsigned int CALG_MD5 = 0x00008003;
-  static const unsigned int CALG_SHA = 0x00008004;
-  static const unsigned int CALG_SHA1 = 0x00008004;
-  static const unsigned int CALG_MAC = 0x00008005;
-  static const unsigned int CALG_RSA_SIGN = 0x00002400;
-  static const unsigned int CALG_DSS_SIGN = 0x00002200;
-  static const unsigned int CALG_NO_SIGN = 0x00002000;
-  static const unsigned int CALG_RSA_KEYX = 0x0000a400;
-  static const unsigned int CALG_DES = 0x00006601;
-  static const unsigned int CALG_3DES_112 = 0x00006609;
-  static const unsigned int CALG_3DES = 0x00006603;
-  static const unsigned int CALG_DESX = 0x00006604;
-  static const unsigned int CALG_RC2 = 0x00006602;
-  static const unsigned int CALG_RC4 = 0x00006801;
-  static const unsigned int CALG_SEAL = 0x00006802;
-  static const unsigned int CALG_DH_SF = 0x0000aa01;
-  static const unsigned int CALG_DH_EPHEM = 0x0000aa02;
-  static const unsigned int CALG_AGREEDKEY_ANY = 0x0000aa03;
-  static const unsigned int CALG_KEA_KEYX = 0x0000aa04;
-  static const unsigned int CALG_HUGHES_MD5 = 0x0000a003;
-  static const unsigned int CALG_SKIPJACK = 0x0000660a;
-  static const unsigned int CALG_TEK = 0x0000660b;
-  static const unsigned int CALG_CYLINK_MEK = 0x0000660c;
-  static const unsigned int CALG_SSL3_SHAMD5 = 0x00008008;
-  static const unsigned int CALG_SSL3_MASTER = 0x00004c01;
-  static const unsigned int CALG_SCHANNEL_MASTER_HASH = 0x00004c02;
-  static const unsigned int CALG_SCHANNEL_MAC_KEY = 0x00004c03;
-  static const unsigned int CALG_SCHANNEL_ENC_KEY = 0x00004c07;
-  static const unsigned int CALG_PCT1_MASTER = 0x00004c04;
-  static const unsigned int CALG_SSL2_MASTER = 0x00004c05;
-  static const unsigned int CALG_TLS1_MASTER = 0x00004c06;
-  static const unsigned int CALG_RC5 = 0x0000660d;
-  static const unsigned int CALG_HMAC = 0x00008009;
-  static const unsigned int CALG_TLS1PRF = 0x0000800a;
-  static const unsigned int CALG_HASH_REPLACE_OWF = 0x0000800b;
-  static const unsigned int CALG_AES_128 = 0x0000660e;
-  static const unsigned int CALG_AES_192 = 0x0000660f;
-  static const unsigned int CALG_AES_256 = 0x00006610;
-  static const unsigned int CALG_AES = 0x00006611;
-  static const unsigned int CALG_SHA_256 = 0x0000800c;
-  static const unsigned int CALG_SHA_384 = 0x0000800d;
-  static const unsigned int CALG_SHA_512 = 0x0000800e;
-  static const unsigned int CALG_ECDH = 0x0000aa05;
-  static const unsigned int CALG_ECMQV = 0x0000a001;
-  static const unsigned int CALG_ECDSA = 0x00002203;
-  typedef DWORD WINAPI_CryptAcquireContextFlags; //Alias
-  typedef DWORD WINAPI_CryptProv; //Alias
-  static const DWORD PROV_RSA_FULL = 1;
-  static const DWORD PROV_RSA_SIG = 2;
-  static const DWORD PROV_DSS = 3;
-  static const DWORD PROV_FORTEZZA = 4;
-  static const DWORD PROV_MS_EXCHANGE = 5;
-  static const DWORD PROV_SSL = 6;
-  static const DWORD PROV_STT_MER = 7;
-  static const DWORD PROV_STT_ACQ = 8;
-  static const DWORD PROV_STT_BRND = 9;
-  static const DWORD PROV_STT_ROOT = 10;
-  static const DWORD PROV_STT_ISS = 11;
-  static const DWORD PROV_RSA_SCHANNEL = 12;
-  static const DWORD PROV_DSS_DH = 13;
-  static const DWORD PROV_EC_ECDSA_SIG = 14;
-  static const DWORD PROV_EC_ECNRA_SIG = 15;
-  static const DWORD PROV_EC_ECDSA_FULL = 16;
-  static const DWORD PROV_EC_ECNRA_FULL = 17;
-  static const DWORD PROV_DH_SCHANNEL = 18;
-  static const DWORD PROV_SPYRUS_LYNKS = 20;
-  static const DWORD PROV_RNG = 21;
-  static const DWORD PROV_INTEL_SEC = 22;
-  static const DWORD PROV_REPLACE_OWF = 23;
-  static const DWORD PROV_RSA_AES = 24;
-  typedef DWORD WINAPI_CryptCreateHashFlags; //Alias
-  static const DWORD CRYPT_SECRETDIGEST = 0x00000001;
-  typedef DWORD WINAPI_CryptHashDataFlags; //Alias
-  static const DWORD CRYPT_USERDATA = 1;
-  typedef DWORD WINAPI_CryptBlobType; //Alias
-  static const DWORD SIMPLEBLOB = 0x1;
-  static const DWORD PUBLICKEYBLOB = 0x6;
-  static const DWORD PRIVATEKEYBLOB = 0x7;
-  static const DWORD PLAINTEXTKEYBLOB = 0x8;
-  static const DWORD OPAQUEKEYBLOB = 0x9;
-  static const DWORD PUBLICKEYBLOBEX = 0xA;
-  static const DWORD SYMMETRICWRAPKEYBLOB = 0xB;
-  static const DWORD KEYSTATEBLOB = 0xC;
-  typedef DWORD WINAPI_CryptExportKeyFlags; //Alias
-  typedef DWORD WINAPI_CryptKeyParam; //Alias
-  static const DWORD KP_IV = 1;
-  static const DWORD KP_SALT = 2;
-  static const DWORD KP_PADDING = 3;
-  static const DWORD KP_MODE = 4;
-  static const DWORD KP_MODE_BITS = 5;
-  static const DWORD KP_PERMISSIONS = 6;
-  static const DWORD KP_ALGID = 7;
-  static const DWORD KP_BLOCKLEN = 8;
-  static const DWORD KP_KEYLEN = 9;
-  static const DWORD KP_SALT_EX = 10;
-  static const DWORD KP_P = 11;
-  static const DWORD KP_G = 12;
-  static const DWORD KP_Q = 13;
-  static const DWORD KP_X = 14;
-  static const DWORD KP_Y = 15;
-  static const DWORD KP_RA = 16;
-  static const DWORD KP_RB = 17;
-  static const DWORD KP_INFO = 18;
-  static const DWORD KP_EFFECTIVE_KEYLEN = 19;
-  static const DWORD KP_SCHANNEL_ALG = 20;
-  static const DWORD KP_CLIENT_RANDOM = 21;
-  static const DWORD KP_SERVER_RANDOM = 22;
-  static const DWORD KP_RP = 23;
-  static const DWORD KP_PRECOMP_MD5 = 24;
-  static const DWORD KP_PRECOMP_SHA = 25;
-  static const DWORD KP_CERTIFICATE = 26;
-  static const DWORD KP_CLEAR_KEY = 27;
-  static const DWORD KP_PUB_EX_LEN = 28;
-  static const DWORD KP_PUB_EX_VAL = 29;
-  static const DWORD KP_KEYVAL = 30;
-  static const DWORD KP_ADMIN_PIN = 31;
-  static const DWORD KP_KEYEXCHANGE_PIN = 32;
-  static const DWORD KP_SIGNATURE_PIN = 33;
-  static const DWORD KP_PREHASH = 34;
-  static const DWORD KP_ROUNDS = 35;
-  static const DWORD KP_OAEP_PARAMS = 36;
-  static const DWORD KP_CMS_KEY_INFO = 37;
-  static const DWORD KP_CMS_DH_KEY_INFO = 38;
-  static const DWORD KP_PUB_PARAMS = 39;
-  static const DWORD KP_VERIFY_PARAMS = 40;
-  static const DWORD KP_HIGHEST_VERSION = 41;
-  static const DWORD KP_GET_USE_COUNT = 42;
-  typedef DWORD WINAPI_CryptImportKeyFlags; //Alias
-  typedef DWORD WINAPI_CryptSignFlags; //Alias
-  typedef DWORD WINAPI_CryptKeySpec; //Alias
-  static const DWORD AT_KEYEXCHANGE = 1;
-  static const DWORD AT_SIGNATURE = 2;
-  typedef DWORD WINAPI_CryptSetProvParam; //Alias
-  static const DWORD PP_CLIENT_HWND = 1;
-  static const DWORD PP_KEYSET_SEC_DESCR = 8;
-  static const DWORD PP_CONTEXT_INFO = 11;
-  static const DWORD PP_KEYEXCHANGE_KEYSIZE = 12;
-  static const DWORD PP_SIGNATURE_KEYSIZE = 13;
-  static const DWORD PP_KEYEXCHANGE_ALG = 14;
-  static const DWORD PP_SIGNATURE_ALG = 15;
-  static const DWORD PP_UI_PROMPT = 21;
-  static const DWORD PP_DELETEKEY = 24;
-  static const DWORD PP_SIGNATURE_PIN = 33;
-  static const DWORD PP_USE_HARDWARE_RNG = 38;
-  static const DWORD PP_USER_CERTSTORE = 42;
-  static const DWORD PP_SMARTCARD_READER = 43;
-  static const DWORD PP_PIN_PROMPT_STRING = 44;
-  static const DWORD PP_SMARTCARD_GUID = 45;
-  static const DWORD PP_ROOT_CERTSTORE = 46;
-  static const DWORD PP_SECURE_KEYEXCHANGE_PIN = 47;
-  static const DWORD PP_SECURE_SIGNATURE_PIN = 48;
-  typedef DWORD WINAPI_CryptGetProvParam; //Alias
-  static const DWORD PP_ENUMALGS = 1;
-  static const DWORD PP_ENUMCONTAINERS = 2;
-  static const DWORD PP_IMPTYPE = 3;
-  static const DWORD PP_NAME = 4;
-  static const DWORD PP_VERSION = 5;
-  static const DWORD PP_CONTAINER = 6;
-  static const DWORD PP_CHANGE_PASSWORD = 7;
-  static const DWORD PP_CERTCHAIN = 9;
-  static const DWORD PP_KEY_TYPE_SUBTYPE = 10;
-  static const DWORD PP_PROVTYPE = 16;
-  static const DWORD PP_KEYSTORAGE = 17;
-  static const DWORD PP_APPLI_CERT = 18;
-  static const DWORD PP_SYM_KEYSIZE = 19;
-  static const DWORD PP_SESSION_KEYSIZE = 20;
-  static const DWORD PP_ENUMALGS_EX = 22;
-  static const DWORD PP_ENUMMANDROOTS = 25;
-  static const DWORD PP_ENUMELECTROOTS = 26;
-  static const DWORD PP_KEYSET_TYPE = 27;
-  static const DWORD PP_ADMIN_PIN = 31;
-  static const DWORD PP_KEYEXCHANGE_PIN = 32;
-  static const DWORD PP_SIG_KEYSIZE_INC = 34;
-  static const DWORD PP_KEYX_KEYSIZE_INC = 35;
-  static const DWORD PP_UNIQUE_CONTAINER = 36;
-  static const DWORD PP_SGC_INFO = 37;
-  static const DWORD PP_KEYSPEC = 39;
-  static const DWORD PP_ENUMEX_SIGNING_PROT = 40;
-  static const DWORD PP_CRYPT_COUNT_KEY_USE = 41;
-  typedef DWORD WINAPI_CryptHashParam; //Alias
-  static const DWORD HP_ALGID = 0x0001;
-  static const DWORD HP_HASHVAL = 0x0002;
-  static const DWORD HP_HASHSIZE = 0x0004;
-  static const DWORD HP_HMAC_INFO = 0x0005;
-  static const DWORD HP_TLS1PRF_LABEL = 0x0006;
-  static const DWORD HP_TLS1PRF_SEED = 0x0007;
+  static const ALG_ID CALG_MD2 = 0x00008001;
+  static const ALG_ID CALG_MD4 = 0x00008002;
+  static const ALG_ID CALG_MD5 = 0x00008003;
+  static const ALG_ID CALG_SHA = 0x00008004;
+  static const ALG_ID CALG_SHA1 = 0x00008004;
+  static const ALG_ID CALG_MAC = 0x00008005;
+  static const ALG_ID CALG_RSA_SIGN = 0x00002400;
+  static const ALG_ID CALG_DSS_SIGN = 0x00002200;
+  static const ALG_ID CALG_NO_SIGN = 0x00002000;
+  static const ALG_ID CALG_RSA_KEYX = 0x0000a400;
+  static const ALG_ID CALG_DES = 0x00006601;
+  static const ALG_ID CALG_3DES_112 = 0x00006609;
+  static const ALG_ID CALG_3DES = 0x00006603;
+  static const ALG_ID CALG_DESX = 0x00006604;
+  static const ALG_ID CALG_RC2 = 0x00006602;
+  static const ALG_ID CALG_RC4 = 0x00006801;
+  static const ALG_ID CALG_SEAL = 0x00006802;
+  static const ALG_ID CALG_DH_SF = 0x0000aa01;
+  static const ALG_ID CALG_DH_EPHEM = 0x0000aa02;
+  static const ALG_ID CALG_AGREEDKEY_ANY = 0x0000aa03;
+  static const ALG_ID CALG_KEA_KEYX = 0x0000aa04;
+  static const ALG_ID CALG_HUGHES_MD5 = 0x0000a003;
+  static const ALG_ID CALG_SKIPJACK = 0x0000660a;
+  static const ALG_ID CALG_TEK = 0x0000660b;
+  static const ALG_ID CALG_CYLINK_MEK = 0x0000660c;
+  static const ALG_ID CALG_SSL3_SHAMD5 = 0x00008008;
+  static const ALG_ID CALG_SSL3_MASTER = 0x00004c01;
+  static const ALG_ID CALG_SCHANNEL_MASTER_HASH = 0x00004c02;
+  static const ALG_ID CALG_SCHANNEL_MAC_KEY = 0x00004c03;
+  static const ALG_ID CALG_SCHANNEL_ENC_KEY = 0x00004c07;
+  static const ALG_ID CALG_PCT1_MASTER = 0x00004c04;
+  static const ALG_ID CALG_SSL2_MASTER = 0x00004c05;
+  static const ALG_ID CALG_TLS1_MASTER = 0x00004c06;
+  static const ALG_ID CALG_RC5 = 0x0000660d;
+  static const ALG_ID CALG_HMAC = 0x00008009;
+  static const ALG_ID CALG_TLS1PRF = 0x0000800a;
+  static const ALG_ID CALG_HASH_REPLACE_OWF = 0x0000800b;
+  static const ALG_ID CALG_AES_128 = 0x0000660e;
+  static const ALG_ID CALG_AES_192 = 0x0000660f;
+  static const ALG_ID CALG_AES_256 = 0x00006610;
+  static const ALG_ID CALG_AES = 0x00006611;
+  static const ALG_ID CALG_SHA_256 = 0x0000800c;
+  static const ALG_ID CALG_SHA_384 = 0x0000800d;
+  static const ALG_ID CALG_SHA_512 = 0x0000800e;
+  static const ALG_ID CALG_ECDH = 0x0000aa05;
+  static const ALG_ID CALG_ECMQV = 0x0000a001;
+  static const ALG_ID CALG_ECDSA = 0x00002203;
+  typedef DWORD CryptAcquireContextFlags; //Alias
+  typedef DWORD CryptProv; //Alias
+  static const CryptProv PROV_RSA_FULL = 1;
+  static const CryptProv PROV_RSA_SIG = 2;
+  static const CryptProv PROV_DSS = 3;
+  static const CryptProv PROV_FORTEZZA = 4;
+  static const CryptProv PROV_MS_EXCHANGE = 5;
+  static const CryptProv PROV_SSL = 6;
+  static const CryptProv PROV_STT_MER = 7;
+  static const CryptProv PROV_STT_ACQ = 8;
+  static const CryptProv PROV_STT_BRND = 9;
+  static const CryptProv PROV_STT_ROOT = 10;
+  static const CryptProv PROV_STT_ISS = 11;
+  static const CryptProv PROV_RSA_SCHANNEL = 12;
+  static const CryptProv PROV_DSS_DH = 13;
+  static const CryptProv PROV_EC_ECDSA_SIG = 14;
+  static const CryptProv PROV_EC_ECNRA_SIG = 15;
+  static const CryptProv PROV_EC_ECDSA_FULL = 16;
+  static const CryptProv PROV_EC_ECNRA_FULL = 17;
+  static const CryptProv PROV_DH_SCHANNEL = 18;
+  static const CryptProv PROV_SPYRUS_LYNKS = 20;
+  static const CryptProv PROV_RNG = 21;
+  static const CryptProv PROV_INTEL_SEC = 22;
+  static const CryptProv PROV_REPLACE_OWF = 23;
+  static const CryptProv PROV_RSA_AES = 24;
+  typedef DWORD CryptCreateHashFlags; //Alias
+  static const CryptCreateHashFlags CRYPT_SECRETDIGEST = 0x00000001;
+  typedef DWORD CryptHashDataFlags; //Alias
+  static const CryptHashDataFlags CRYPT_USERDATA = 1;
+  typedef DWORD CryptBlobType; //Alias
+  static const CryptBlobType SIMPLEBLOB = 0x1;
+  static const CryptBlobType PUBLICKEYBLOB = 0x6;
+  static const CryptBlobType PRIVATEKEYBLOB = 0x7;
+  static const CryptBlobType PLAINTEXTKEYBLOB = 0x8;
+  static const CryptBlobType OPAQUEKEYBLOB = 0x9;
+  static const CryptBlobType PUBLICKEYBLOBEX = 0xA;
+  static const CryptBlobType SYMMETRICWRAPKEYBLOB = 0xB;
+  static const CryptBlobType KEYSTATEBLOB = 0xC;
+  typedef DWORD CryptExportKeyFlags; //Alias
+  typedef DWORD CryptKeyParam; //Alias
+  static const CryptKeyParam KP_IV = 1;
+  static const CryptKeyParam KP_SALT = 2;
+  static const CryptKeyParam KP_PADDING = 3;
+  static const CryptKeyParam KP_MODE = 4;
+  static const CryptKeyParam KP_MODE_BITS = 5;
+  static const CryptKeyParam KP_PERMISSIONS = 6;
+  static const CryptKeyParam KP_ALGID = 7;
+  static const CryptKeyParam KP_BLOCKLEN = 8;
+  static const CryptKeyParam KP_KEYLEN = 9;
+  static const CryptKeyParam KP_SALT_EX = 10;
+  static const CryptKeyParam KP_P = 11;
+  static const CryptKeyParam KP_G = 12;
+  static const CryptKeyParam KP_Q = 13;
+  static const CryptKeyParam KP_X = 14;
+  static const CryptKeyParam KP_Y = 15;
+  static const CryptKeyParam KP_RA = 16;
+  static const CryptKeyParam KP_RB = 17;
+  static const CryptKeyParam KP_INFO = 18;
+  static const CryptKeyParam KP_EFFECTIVE_KEYLEN = 19;
+  static const CryptKeyParam KP_SCHANNEL_ALG = 20;
+  static const CryptKeyParam KP_CLIENT_RANDOM = 21;
+  static const CryptKeyParam KP_SERVER_RANDOM = 22;
+  static const CryptKeyParam KP_RP = 23;
+  static const CryptKeyParam KP_PRECOMP_MD5 = 24;
+  static const CryptKeyParam KP_PRECOMP_SHA = 25;
+  static const CryptKeyParam KP_CERTIFICATE = 26;
+  static const CryptKeyParam KP_CLEAR_KEY = 27;
+  static const CryptKeyParam KP_PUB_EX_LEN = 28;
+  static const CryptKeyParam KP_PUB_EX_VAL = 29;
+  static const CryptKeyParam KP_KEYVAL = 30;
+  static const CryptKeyParam KP_ADMIN_PIN = 31;
+  static const CryptKeyParam KP_KEYEXCHANGE_PIN = 32;
+  static const CryptKeyParam KP_SIGNATURE_PIN = 33;
+  static const CryptKeyParam KP_PREHASH = 34;
+  static const CryptKeyParam KP_ROUNDS = 35;
+  static const CryptKeyParam KP_OAEP_PARAMS = 36;
+  static const CryptKeyParam KP_CMS_KEY_INFO = 37;
+  static const CryptKeyParam KP_CMS_DH_KEY_INFO = 38;
+  static const CryptKeyParam KP_PUB_PARAMS = 39;
+  static const CryptKeyParam KP_VERIFY_PARAMS = 40;
+  static const CryptKeyParam KP_HIGHEST_VERSION = 41;
+  static const CryptKeyParam KP_GET_USE_COUNT = 42;
+  typedef DWORD CryptImportKeyFlags; //Alias
+  typedef DWORD CryptSignFlags; //Alias
+  typedef DWORD CryptKeySpec; //Alias
+  static const CryptKeySpec AT_KEYEXCHANGE = 1;
+  static const CryptKeySpec AT_SIGNATURE = 2;
+  typedef DWORD CryptSetProvParam; //Alias
+  static const CryptSetProvParam PP_CLIENT_HWND = 1;
+  static const CryptSetProvParam PP_KEYSET_SEC_DESCR = 8;
+  static const CryptSetProvParam PP_CONTEXT_INFO = 11;
+  static const CryptSetProvParam PP_KEYEXCHANGE_KEYSIZE = 12;
+  static const CryptSetProvParam PP_SIGNATURE_KEYSIZE = 13;
+  static const CryptSetProvParam PP_KEYEXCHANGE_ALG = 14;
+  static const CryptSetProvParam PP_SIGNATURE_ALG = 15;
+  static const CryptSetProvParam PP_UI_PROMPT = 21;
+  static const CryptSetProvParam PP_DELETEKEY = 24;
+  static const CryptSetProvParam PP_SIGNATURE_PIN = 33;
+  static const CryptSetProvParam PP_USE_HARDWARE_RNG = 38;
+  static const CryptSetProvParam PP_USER_CERTSTORE = 42;
+  static const CryptSetProvParam PP_SMARTCARD_READER = 43;
+  static const CryptSetProvParam PP_PIN_PROMPT_STRING = 44;
+  static const CryptSetProvParam PP_SMARTCARD_GUID = 45;
+  static const CryptSetProvParam PP_ROOT_CERTSTORE = 46;
+  static const CryptSetProvParam PP_SECURE_KEYEXCHANGE_PIN = 47;
+  static const CryptSetProvParam PP_SECURE_SIGNATURE_PIN = 48;
+  typedef DWORD CryptGetProvParam; //Alias
+  static const CryptGetProvParam PP_ENUMALGS = 1;
+  static const CryptGetProvParam PP_ENUMCONTAINERS = 2;
+  static const CryptGetProvParam PP_IMPTYPE = 3;
+  static const CryptGetProvParam PP_NAME = 4;
+  static const CryptGetProvParam PP_VERSION = 5;
+  static const CryptGetProvParam PP_CONTAINER = 6;
+  static const CryptGetProvParam PP_CHANGE_PASSWORD = 7;
+  static const CryptGetProvParam PP_CERTCHAIN = 9;
+  static const CryptGetProvParam PP_KEY_TYPE_SUBTYPE = 10;
+  static const CryptGetProvParam PP_PROVTYPE = 16;
+  static const CryptGetProvParam PP_KEYSTORAGE = 17;
+  static const CryptGetProvParam PP_APPLI_CERT = 18;
+  static const CryptGetProvParam PP_SYM_KEYSIZE = 19;
+  static const CryptGetProvParam PP_SESSION_KEYSIZE = 20;
+  static const CryptGetProvParam PP_ENUMALGS_EX = 22;
+  static const CryptGetProvParam PP_ENUMMANDROOTS = 25;
+  static const CryptGetProvParam PP_ENUMELECTROOTS = 26;
+  static const CryptGetProvParam PP_KEYSET_TYPE = 27;
+  static const CryptGetProvParam PP_ADMIN_PIN = 31;
+  static const CryptGetProvParam PP_KEYEXCHANGE_PIN = 32;
+  static const CryptGetProvParam PP_SIG_KEYSIZE_INC = 34;
+  static const CryptGetProvParam PP_KEYX_KEYSIZE_INC = 35;
+  static const CryptGetProvParam PP_UNIQUE_CONTAINER = 36;
+  static const CryptGetProvParam PP_SGC_INFO = 37;
+  static const CryptGetProvParam PP_KEYSPEC = 39;
+  static const CryptGetProvParam PP_ENUMEX_SIGNING_PROT = 40;
+  static const CryptGetProvParam PP_CRYPT_COUNT_KEY_USE = 41;
+  typedef DWORD CryptHashParam; //Alias
+  static const CryptHashParam HP_ALGID = 0x0001;
+  static const CryptHashParam HP_HASHVAL = 0x0002;
+  static const CryptHashParam HP_HASHSIZE = 0x0004;
+  static const CryptHashParam HP_HMAC_INFO = 0x0005;
+  static const CryptHashParam HP_TLS1PRF_LABEL = 0x0006;
+  static const CryptHashParam HP_TLS1PRF_SEED = 0x0007;
   typedef struct DATA_BLOB {
     DWORD cbData;
     BYTE* pbData;
@@ -323,9 +323,9 @@ ffi.cdef [[
     PCERT_EXTENSION rgExtension;
   } CERT_INFO;
   typedef CERT_INFO *PCERT_INFO; //Pointer
-  typedef DWORD WINAPI_CertEncodingType; //Alias
+  typedef DWORD CertEncodingType; //Alias
   typedef struct CERT_CONTEXT {
-    WINAPI_CertEncodingType dwCertEncodingType;
+    CertEncodingType dwCertEncodingType;
     BYTE* pbCertEncoded;
     DWORD cbCertEncoded;
     PCERT_INFO pCertInfo;
@@ -412,12 +412,12 @@ ffi.cdef [[
     HANDLE hCATStore;
   } CRYPTCATCDF;
 # pragma pack( pop )
-  typedef DWORD WINAPI_CryptCatTypeAndAction; //Alias
+  typedef DWORD CryptCatTypeAndAction; //Alias
 # pragma pack( push, 8 )
   typedef struct CRYPTCATATTRIBUTE {
     DWORD cbStruct;
     LPWSTR pwszReferenceTag;
-    WINAPI_CryptCatTypeAndAction dwAttrTypeAndAction;
+    CryptCatTypeAndAction dwAttrTypeAndAction;
     DWORD cbValue;
     BYTE* pbValue;
     DWORD dwReserved;
@@ -445,7 +445,7 @@ ffi.cdef [[
     DWORD cbProvData;
     void* pvProvData;
   } CRYPT_PROVIDER_PRIVDATA;
-  typedef DWORD WINAPI_CERT_CONFIDENCE; //Alias
+  typedef DWORD CERT_CONFIDENCE; //Alias
   typedef struct CTL_USAGE {
     DWORD cUsageIdentifier;
     LPSTR* rgpszUsageIdentifier;
@@ -482,11 +482,11 @@ ffi.cdef [[
     DWORD cbCtlContent;
   } CTL_CONTEXT;
   typedef CTL_CONTEXT *PCCTL_CONTEXT; //Pointer
-  typedef DWORD WINAPI_CERT_TRUST_Error; //Alias
-  typedef DWORD WINAPI_CERT_TRUST_Info; //Alias
+  typedef DWORD CERT_TRUST_Error; //Alias
+  typedef DWORD CERT_TRUST_Info; //Alias
   typedef struct CERT_TRUST_STATUS {
-    WINAPI_CERT_TRUST_Error dwErrorStatus;
-    WINAPI_CERT_TRUST_Info dwInfoStatus;
+    CERT_TRUST_Error dwErrorStatus;
+    CERT_TRUST_Info dwInfoStatus;
   } CERT_TRUST_STATUS;
   typedef struct CRL_ENTRY {
     CRYPT_INTEGER_BLOB SerialNumber;
@@ -553,7 +553,7 @@ ffi.cdef [[
     BOOL fSelfSigned;
     BOOL fTestCert;
     DWORD dwRevokedReason;
-    WINAPI_CERT_CONFIDENCE dwConfidence;
+    CERT_CONFIDENCE dwConfidence;
     DWORD dwError;
     CTL_CONTEXT* pTrustListContext;
     BOOL fTrustListSignerCert;
@@ -574,15 +574,15 @@ ffi.cdef [[
     PFN_CRYPT_FREE pfnFree;
   } CRYPT_ENCODE_PARA;
   typedef CRYPT_ENCODE_PARA *PCRYPT_ENCODE_PARA; //Pointer
-  typedef DWORD WINAPI_CryptPromptFlags; //Alias
-  static const DWORD CRYPTPROTECT_PROMPT_ON_UNPROTECT = 0x1;
-  static const DWORD CRYPTPROTECT_PROMPT_ON_PROTECT = 0x2;
-  static const DWORD CRYPTPROTECT_PROMPT_RESERVED = 0x04;
-  static const DWORD CRYPTPROTECT_PROMPT_STRONG = 0x8;
-  static const DWORD CRYPTPROTECT_PROMPT_REQUIRE_STRONG = 0x10;
+  typedef DWORD CryptPromptFlags; //Alias
+  static const CryptPromptFlags CRYPTPROTECT_PROMPT_ON_UNPROTECT = 0x1;
+  static const CryptPromptFlags CRYPTPROTECT_PROMPT_ON_PROTECT = 0x2;
+  static const CryptPromptFlags CRYPTPROTECT_PROMPT_RESERVED = 0x04;
+  static const CryptPromptFlags CRYPTPROTECT_PROMPT_STRONG = 0x8;
+  static const CryptPromptFlags CRYPTPROTECT_PROMPT_REQUIRE_STRONG = 0x10;
   typedef struct CRYPTPROTECT_PROMPTSTRUCT {
     DWORD cbSize;
-    WINAPI_CryptPromptFlags dwPromptFlags;
+    CryptPromptFlags dwPromptFlags;
     HWND hwndApp;
     LPCWSTR szPrompt;
   } CRYPTPROTECT_PROMPTSTRUCT;
@@ -631,11 +631,11 @@ ffi.cdef [[
     DWORD dwKeySpec;
   } CRYPT_KEY_PROV_INFO;
   typedef CRYPT_KEY_PROV_INFO *PCRYPT_KEY_PROV_INFO; //Pointer
-  typedef DWORD WINAPI_USAGE_MATCH_TYPE; //Alias
-  static const DWORD USAGE_MATCH_TYPE_AND = 0x00000000;
-  static const DWORD USAGE_MATCH_TYPE_OR = 0x00000001;
+  typedef DWORD USAGE_MATCH_TYPE; //Alias
+  static const USAGE_MATCH_TYPE USAGE_MATCH_TYPE_AND = 0x00000000;
+  static const USAGE_MATCH_TYPE USAGE_MATCH_TYPE_OR = 0x00000001;
   typedef struct CERT_USAGE_MATCH {
-    WINAPI_USAGE_MATCH_TYPE dwType;
+    USAGE_MATCH_TYPE dwType;
     CERT_ENHKEY_USAGE Usage;
   } CERT_USAGE_MATCH;
   typedef CERT_USAGE_MATCH *PCERT_USAGE_MATCH; //Pointer
@@ -876,265 +876,265 @@ ffi.cdef [[
     PCRYPT_DECRYPT_PRIVATE_KEY_FUNC pDecryptPrivateKeyFunc;
     LPVOID pVoidDecryptFunc;
   } CRYPT_PKCS8_IMPORT_PARAMS;
-  typedef DWORD WINAPI_CertSelectFlags; //Alias
-  static const DWORD CERT_SELECT_ALLOW_EXPIRED = 0x00000001;
-  static const DWORD CERT_SELECT_TRUSTED_ROOT = 0x00000002;
-  static const DWORD CERT_SELECT_DISALLOW_SELFSIGNED = 0x00000004;
-  static const DWORD CERT_SELECT_HAS_PRIVATE_KEY = 0x00000008;
-  static const DWORD CERT_SELECT_HAS_KEY_FOR_SIGNATURE = 0x00000010;
-  static const DWORD CERT_SELECT_HAS_KEY_FOR_KEY_EXCHANGE = 0x00000020;
-  static const DWORD CERT_SELECT_HARDWARE_ONLY = 0x00000040;
-  static const DWORD CERT_SELECT_ALLOW_DUPLICATES = 0x00000080;
-  typedef DWORD WINAPI_CertificateStoreContextType; //Alias
-  static const DWORD CERT_STORE_CERTIFICATE_CONTEXT = 1;
-  static const DWORD CERT_STORE_CRL_CONTEXT = 2;
-  static const DWORD CERT_STORE_CTL_CONTEXT = 3;
-  typedef DWORD WINAPI_CertCreateContextFlags; //Alias
-  typedef DWORD WINAPI_CertCloseStoreFlags; //Alias
-  typedef DWORD WINAPI_CertControlType; //Alias
-  static const DWORD CERT_STORE_CTRL_RESYNC = 1;
-  static const DWORD CERT_STORE_CTRL_NOTIFY_CHANGE = 2;
-  static const DWORD CERT_STORE_CTRL_COMMIT = 3;
-  static const DWORD CERT_STORE_CTRL_AUTO_RESYNC = 4;
-  static const DWORD CERT_STORE_CTRL_CANCEL_NOTIFY = 5;
-  typedef DWORD WINAPI_CryptInstallOIDFlags; //Alias
-  static const DWORD CRYPT_INSTALL_OID_FUNC_BEFORE_FLAG = 1;
-  typedef DWORD WINAPI_CertStoreAddDisposition; //Alias
-  static const DWORD CERT_STORE_ADD_NEW = 1;
-  static const DWORD CERT_STORE_ADD_USE_EXISTING = 2;
-  static const DWORD CERT_STORE_ADD_REPLACE_EXISTING = 3;
-  static const DWORD CERT_STORE_ADD_ALWAYS = 4;
-  static const DWORD CERT_STORE_ADD_REPLACE_EXISTING_INHERIT_PROPERTIES = 5;
-  static const DWORD CERT_STORE_ADD_NEWER = 6;
-  static const DWORD CERT_STORE_ADD_NEWER_INHERIT_PROPERTIES = 7;
-  typedef DWORD WINAPI_CertChainFlags; //Alias
-  typedef DWORD WINAPI_CertPropId; //Alias
-  static const DWORD CERT_KEY_PROV_HANDLE_PROP_ID = 1;
-  static const DWORD CERT_KEY_PROV_INFO_PROP_ID = 2;
-  static const DWORD CERT_SHA1_HASH_PROP_ID = 3;
-  static const DWORD CERT_MD5_HASH_PROP_ID = 4;
-  static const DWORD CERT_KEY_CONTEXT_PROP_ID = 5;
-  static const DWORD CERT_KEY_SPEC_PROP_ID = 6;
-  static const DWORD CERT_IE30_RESERVED_PROP_ID = 7;
-  static const DWORD CERT_PUBKEY_HASH_RESERVED_PROP_ID = 8;
-  static const DWORD CERT_ENHKEY_USAGE_PROP_ID = 9;
-  static const DWORD CERT_NEXT_UPDATE_LOCATION_PROP_ID = 10;
-  static const DWORD CERT_FRIENDLY_NAME_PROP_ID = 11;
-  static const DWORD CERT_PVK_FILE_PROP_ID = 12;
-  static const DWORD CERT_DESCRIPTION_PROP_ID = 13;
-  static const DWORD CERT_ACCESS_STATE_PROP_ID = 14;
-  static const DWORD CERT_SIGNATURE_HASH_PROP_ID = 15;
-  static const DWORD CERT_SMART_CARD_DATA_PROP_ID = 16;
-  static const DWORD CERT_EFS_PROP_ID = 17;
-  static const DWORD CERT_FORTEZZA_DATA_PROP_ID = 18;
-  static const DWORD CERT_ARCHIVED_PROP_ID = 19;
-  static const DWORD CERT_KEY_IDENTIFIER_PROP_ID = 20;
-  static const DWORD CERT_AUTO_ENROLL_PROP_ID = 21;
-  static const DWORD CERT_PUBKEY_ALG_PARA_PROP_ID = 22;
-  static const DWORD CERT_CROSS_CERT_DIST_POINTS_PROP_ID = 23;
-  static const DWORD CERT_ISSUER_PUBLIC_KEY_MD5_HASH_PROP_ID = 24;
-  static const DWORD CERT_SUBJECT_PUBLIC_KEY_MD5_HASH_PROP_ID = 25;
-  static const DWORD CERT_ENROLLMENT_PROP_ID = 26;
-  static const DWORD CERT_DATE_STAMP_PROP_ID = 27;
-  static const DWORD CERT_ISSUER_SERIAL_NUMBER_MD5_HASH_PROP_ID = 28;
-  static const DWORD CERT_SUBJECT_NAME_MD5_HASH_PROP_ID = 29;
-  static const DWORD CERT_EXTENDED_ERROR_INFO_PROP_ID = 30;
-  static const DWORD CERT_RENEWAL_PROP_ID = 64;
-  static const DWORD CERT_ARCHIVED_KEY_HASH_PROP_ID = 65;
-  static const DWORD CERT_AUTO_ENROLL_RETRY_PROP_ID = 66;
-  static const DWORD CERT_AIA_URL_RETRIEVED_PROP_ID = 67;
-  static const DWORD CERT_AUTHORITY_INFO_ACCESS_PROP_ID = 68;
-  static const DWORD CERT_BACKED_UP_PROP_ID = 69;
-  static const DWORD CERT_OCSP_RESPONSE_PROP_ID = 70;
-  static const DWORD CERT_REQUEST_ORIGINATOR_PROP_ID = 71;
-  static const DWORD CERT_SOURCE_LOCATION_PROP_ID = 72;
-  static const DWORD CERT_SOURCE_URL_PROP_ID = 73;
-  static const DWORD CERT_NEW_KEY_PROP_ID = 74;
-  static const DWORD CERT_OCSP_CACHE_PREFIX_PROP_ID = 75;
-  static const DWORD CERT_SMART_CARD_ROOT_INFO_PROP_ID = 76;
-  static const DWORD CERT_NO_AUTO_EXPIRE_CHECK_PROP_ID = 77;
-  static const DWORD CERT_NCRYPT_KEY_HANDLE_PROP_ID = 78;
-  static const DWORD CERT_HCRYPTPROV_OR_NCRYPT_KEY_HANDLE_PROP_ID = 79;
-  static const DWORD CERT_SUBJECT_INFO_ACCESS_PROP_ID = 80;
-  static const DWORD CERT_CA_OCSP_AUTHORITY_INFO_ACCESS_PROP_ID = 81;
-  static const DWORD CERT_CA_DISABLE_CRL_PROP_ID = 82;
-  static const DWORD CERT_ROOT_PROGRAM_CERT_POLICIES_PROP_ID = 83;
-  static const DWORD CERT_ROOT_PROGRAM_NAME_CONSTRAINTS_PROP_ID = 84;
-  static const DWORD CERT_FIRST_RESERVED_PROP_ID = 85;
-  typedef DWORD WINAPI_CertSetPropertyFlags; //Alias
-  typedef DWORD WINAPI_CryptEncodeObjectFlags; //Alias
-  typedef DWORD WINAPI_CryptStringFlags; //Alias
-  typedef DWORD WINAPI_CertStrType; //Alias
-  typedef DWORD WINAPI_CertNameType; //Alias
-  static const DWORD CERT_NAME_EMAIL_TYPE = 1;
-  static const DWORD CERT_NAME_RDN_TYPE = 2;
-  static const DWORD CERT_NAME_ATTR_TYPE = 3;
-  static const DWORD CERT_NAME_SIMPLE_DISPLAY_TYPE = 4;
-  static const DWORD CERT_NAME_FRIENDLY_DISPLAY_TYPE = 5;
-  static const DWORD CERT_NAME_DNS_TYPE = 6;
-  static const DWORD CERT_NAME_URL_TYPE = 7;
-  static const DWORD CERT_NAME_UPN_TYPE = 8;
-  typedef DWORD WINAPI_CertNameFlags; //Alias
-  typedef DWORD WINAPI_CryptObjectType; //Alias
-  static const DWORD CERT_QUERY_OBJECT_FILE = 0x00000001;
-  static const DWORD CERT_QUERY_OBJECT_BLOB = 0x00000002;
-  typedef DWORD WINAPI_CryptExpectedContentType; //Alias
-  typedef DWORD WINAPI_CryptExpectedFormatType; //Alias
-  typedef DWORD WINAPI_CryptFormatType; //Alias
-  static const DWORD CERT_QUERY_FORMAT_BINARY = 1;
-  static const DWORD CERT_QUERY_FORMAT_BASE64_ENCODED = 2;
-  static const DWORD CERT_QUERY_FORMAT_ASN_ASCII_HEX_ENCODED = 3;
-  typedef DWORD WINAPI_CryptContentType; //Alias
-  static const DWORD CERT_QUERY_CONTENT_CERT = 1;
-  static const DWORD CERT_QUERY_CONTENT_CTL = 2;
-  static const DWORD CERT_QUERY_CONTENT_CRL = 3;
-  static const DWORD CERT_QUERY_CONTENT_SERIALIZED_STORE = 4;
-  static const DWORD CERT_QUERY_CONTENT_SERIALIZED_CERT = 5;
-  static const DWORD CERT_QUERY_CONTENT_SERIALIZED_CTL = 6;
-  static const DWORD CERT_QUERY_CONTENT_SERIALIZED_CRL = 7;
-  static const DWORD CERT_QUERY_CONTENT_PKCS7_SIGNED = 8;
-  static const DWORD CERT_QUERY_CONTENT_PKCS7_UNSIGNED = 9;
-  static const DWORD CERT_QUERY_CONTENT_PKCS7_SIGNED_EMBED = 10;
-  static const DWORD CERT_QUERY_CONTENT_PKCS10 = 11;
-  static const DWORD CERT_QUERY_CONTENT_PFX = 12;
-  static const DWORD CERT_QUERY_CONTENT_CERT_PAIR = 13;
-  static const DWORD CERT_QUERY_CONTENT_PFX_AND_LOAD = 14;
-  typedef DWORD WINAPI_CryptSubjectType; //Alias
-  static const DWORD CRYPT_VERIFY_CERT_SIGN_SUBJECT_BLOB = 1;
-  static const DWORD CRYPT_VERIFY_CERT_SIGN_SUBJECT_CERT = 2;
-  static const DWORD CRYPT_VERIFY_CERT_SIGN_SUBJECT_CRL = 3;
-  static const DWORD CRYPT_VERIFY_CERT_SIGN_SUBJECT_OCSP_BASIC_SIGNED_RESPONSE = 4;
-  typedef DWORD WINAPI_CryptIssuerType; //Alias
-  static const DWORD CRYPT_VERIFY_CERT_SIGN_ISSUER_PUBKEY = 1;
-  static const DWORD CRYPT_VERIFY_CERT_SIGN_ISSUER_CERT = 2;
-  static const DWORD CRYPT_VERIFY_CERT_SIGN_ISSUER_CHAIN = 3;
-  static const DWORD CRYPT_VERIFY_CERT_SIGN_ISSUER_NULL = 4;
-  typedef DWORD WINAPI_CryptDecodeObjectFlags; //Alias
-  typedef DWORD WINAPI_CertOpenStoreFlags; //Alias
-  typedef DWORD WINAPI_CertFindFlags; //Alias
-  typedef DWORD WINAPI_CryptProtectDataFlags; //Alias
-  typedef DWORD WINAPI_CryptMsgOpenFlags; //Alias
-  typedef DWORD WINAPI_CryptMsgType; //Alias
-  static const DWORD CMSG_DATA = 1;
-  static const DWORD CMSG_SIGNED = 2;
-  static const DWORD CMSG_ENVELOPED = 3;
-  static const DWORD CMSG_SIGNED_AND_ENVELOPED = 4;
-  static const DWORD CMSG_HASHED = 5;
-  static const DWORD CMSG_ENCRYPTED = 6;
-  typedef DWORD WINAPI_CryptMsgParamType; //Alias
-  static const DWORD CMSG_TYPE_PARAM = 1;
-  static const DWORD CMSG_CONTENT_PARAM = 2;
-  static const DWORD CMSG_BARE_CONTENT_PARAM = 3;
-  static const DWORD CMSG_INNER_CONTENT_TYPE_PARAM = 4;
-  static const DWORD CMSG_SIGNER_COUNT_PARAM = 5;
-  static const DWORD CMSG_SIGNER_INFO_PARAM = 6;
-  static const DWORD CMSG_SIGNER_CERT_INFO_PARAM = 7;
-  static const DWORD CMSG_SIGNER_HASH_ALGORITHM_PARAM = 8;
-  static const DWORD CMSG_SIGNER_AUTH_ATTR_PARAM = 9;
-  static const DWORD CMSG_SIGNER_UNAUTH_ATTR_PARAM = 10;
-  static const DWORD CMSG_CERT_COUNT_PARAM = 11;
-  static const DWORD CMSG_CERT_PARAM = 12;
-  static const DWORD CMSG_CRL_COUNT_PARAM = 13;
-  static const DWORD CMSG_CRL_PARAM = 14;
-  static const DWORD CMSG_ENVELOPE_ALGORITHM_PARAM = 15;
-  static const DWORD CMSG_RECIPIENT_COUNT_PARAM = 17;
-  static const DWORD CMSG_RECIPIENT_INDEX_PARAM = 18;
-  static const DWORD CMSG_RECIPIENT_INFO_PARAM = 19;
-  static const DWORD CMSG_HASH_ALGORITHM_PARAM = 20;
-  static const DWORD CMSG_HASH_DATA_PARAM = 21;
-  static const DWORD CMSG_COMPUTED_HASH_PARAM = 22;
-  static const DWORD CMSG_ENCRYPT_PARAM = 26;
-  static const DWORD CMSG_ENCRYPTED_DIGEST = 27;
-  static const DWORD CMSG_ENCODED_SIGNER = 28;
-  static const DWORD CMSG_ENCODED_MESSAGE = 29;
-  static const DWORD CMSG_VERSION_PARAM = 30;
-  static const DWORD CMSG_ATTR_CERT_COUNT_PARAM = 31;
-  static const DWORD CMSG_ATTR_CERT_PARAM = 32;
-  static const DWORD CMSG_CMS_RECIPIENT_COUNT_PARAM = 33;
-  static const DWORD CMSG_CMS_RECIPIENT_INDEX_PARAM = 34;
-  static const DWORD CMSG_CMS_RECIPIENT_ENCRYPTED_KEY_INDEX_PARAM = 35;
-  static const DWORD CMSG_CMS_RECIPIENT_INFO_PARAM = 36;
-  static const DWORD CMSG_UNPROTECTED_ATTR_PARAM = 37;
-  static const DWORD CMSG_SIGNER_CERT_ID_PARAM = 38;
-  static const DWORD CMSG_CMS_SIGNER_INFO_PARAM = 39;
-  typedef DWORD WINAPI_CryptMsgControlType; //Alias
-  static const DWORD CMSG_CTRL_VERIFY_SIGNATURE = 1;
-  static const DWORD CMSG_CTRL_DECRYPT = 2;
-  static const DWORD CMSG_CTRL_VERIFY_HASH = 5;
-  static const DWORD CMSG_CTRL_ADD_SIGNER = 6;
-  static const DWORD CMSG_CTRL_DEL_SIGNER = 7;
-  static const DWORD CMSG_CTRL_ADD_SIGNER_UNAUTH_ATTR = 8;
-  static const DWORD CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR = 9;
-  static const DWORD CMSG_CTRL_ADD_CERT = 10;
-  static const DWORD CMSG_CTRL_DEL_CERT = 11;
-  static const DWORD CMSG_CTRL_ADD_CRL = 12;
-  static const DWORD CMSG_CTRL_DEL_CRL = 13;
-  static const DWORD CMSG_CTRL_ADD_ATTR_CERT = 14;
-  static const DWORD CMSG_CTRL_DEL_ATTR_CERT = 15;
-  static const DWORD CMSG_CTRL_KEY_TRANS_DECRYPT = 16;
-  static const DWORD CMSG_CTRL_KEY_AGREE_DECRYPT = 17;
-  static const DWORD CMSG_CTRL_MAIL_LIST_DECRYPT = 18;
-  static const DWORD CMSG_CTRL_VERIFY_SIGNATURE_EX = 19;
-  static const DWORD CMSG_CTRL_ADD_CMS_SIGNER_INFO = 20;
-  typedef DWORD WINAPI_CryptMsgControlFlags; //Alias
-  static const DWORD CMSG_CRYPT_RELEASE_CONTEXT_FLAG = 0x00008000;
-  typedef DWORD WINAPI_CryptMsgSignerType; //Alias
-  static const DWORD CMSG_VERIFY_SIGNER_PUBKEY = 1;
-  static const DWORD CMSG_VERIFY_SIGNER_CERT = 2;
-  static const DWORD CMSG_VERIFY_SIGNER_CHAIN = 3;
-  static const DWORD CMSG_VERIFY_SIGNER_NULL = 4;
-  typedef DWORD WINAPI_CertFindType; //Alias
-  typedef DWORD WINAPI_CrlFindType; //Alias
-  static const DWORD CRL_FIND_ANY = 0;
-  static const DWORD CRL_FIND_ISSUED_BY = 1;
-  static const DWORD CRL_FIND_EXISTING = 2;
-  static const DWORD CRL_FIND_ISSUED_FOR = 3;
-  typedef DWORD WINAPI_CrlFindIssuedByFlags; //Alias
-  typedef DWORD WINAPI_CryptFindOidInfoKeyType; //Alias
-  typedef DWORD WINAPI_CryptFindOidInfoGroudId; //Alias
-  typedef DWORD WINAPI_CertSystemStoreFlags; //Alias
-  typedef DWORD WINAPI_CertPhysicalStoreFlags; //Alias
-  typedef DWORD WINAPI_CryptFormatStrType; //Alias
-  typedef DWORD WINAPI_CryptGroupId; //Alias
-  static const DWORD CRYPT_HASH_ALG_OID_GROUP_ID = 1;
-  static const DWORD CRYPT_ENCRYPT_ALG_OID_GROUP_ID = 2;
-  static const DWORD CRYPT_PUBKEY_ALG_OID_GROUP_ID = 3;
-  static const DWORD CRYPT_SIGN_ALG_OID_GROUP_ID = 4;
-  static const DWORD CRYPT_RDN_ATTR_OID_GROUP_ID = 5;
-  static const DWORD CRYPT_EXT_OR_ATTR_OID_GROUP_ID = 6;
-  static const DWORD CRYPT_ENHKEY_USAGE_OID_GROUP_ID = 7;
-  static const DWORD CRYPT_POLICY_OID_GROUP_ID = 8;
-  static const DWORD CRYPT_TEMPLATE_OID_GROUP_ID = 9;
-  typedef DWORD WINAPI_CryptProtectMemoryFlags; //Alias
-  static const DWORD CRYPTPROTECTMEMORY_SAME_PROCESS = 0x00;
-  static const DWORD CRYPTPROTECTMEMORY_CROSS_PROCESS = 0x01;
-  static const DWORD CRYPTPROTECTMEMORY_SAME_LOGON = 0x02;
-  typedef union WINAPI_HcryptNcryptUnion {
+  typedef DWORD CertSelectFlags; //Alias
+  static const CertSelectFlags CERT_SELECT_ALLOW_EXPIRED = 0x00000001;
+  static const CertSelectFlags CERT_SELECT_TRUSTED_ROOT = 0x00000002;
+  static const CertSelectFlags CERT_SELECT_DISALLOW_SELFSIGNED = 0x00000004;
+  static const CertSelectFlags CERT_SELECT_HAS_PRIVATE_KEY = 0x00000008;
+  static const CertSelectFlags CERT_SELECT_HAS_KEY_FOR_SIGNATURE = 0x00000010;
+  static const CertSelectFlags CERT_SELECT_HAS_KEY_FOR_KEY_EXCHANGE = 0x00000020;
+  static const CertSelectFlags CERT_SELECT_HARDWARE_ONLY = 0x00000040;
+  static const CertSelectFlags CERT_SELECT_ALLOW_DUPLICATES = 0x00000080;
+  typedef DWORD CertificateStoreContextType; //Alias
+  static const CertificateStoreContextType CERT_STORE_CERTIFICATE_CONTEXT = 1;
+  static const CertificateStoreContextType CERT_STORE_CRL_CONTEXT = 2;
+  static const CertificateStoreContextType CERT_STORE_CTL_CONTEXT = 3;
+  typedef DWORD CertCreateContextFlags; //Alias
+  typedef DWORD CertCloseStoreFlags; //Alias
+  typedef DWORD CertControlType; //Alias
+  static const CertControlType CERT_STORE_CTRL_RESYNC = 1;
+  static const CertControlType CERT_STORE_CTRL_NOTIFY_CHANGE = 2;
+  static const CertControlType CERT_STORE_CTRL_COMMIT = 3;
+  static const CertControlType CERT_STORE_CTRL_AUTO_RESYNC = 4;
+  static const CertControlType CERT_STORE_CTRL_CANCEL_NOTIFY = 5;
+  typedef DWORD CryptInstallOIDFlags; //Alias
+  static const CryptInstallOIDFlags CRYPT_INSTALL_OID_FUNC_BEFORE_FLAG = 1;
+  typedef DWORD CertStoreAddDisposition; //Alias
+  static const CertStoreAddDisposition CERT_STORE_ADD_NEW = 1;
+  static const CertStoreAddDisposition CERT_STORE_ADD_USE_EXISTING = 2;
+  static const CertStoreAddDisposition CERT_STORE_ADD_REPLACE_EXISTING = 3;
+  static const CertStoreAddDisposition CERT_STORE_ADD_ALWAYS = 4;
+  static const CertStoreAddDisposition CERT_STORE_ADD_REPLACE_EXISTING_INHERIT_PROPERTIES = 5;
+  static const CertStoreAddDisposition CERT_STORE_ADD_NEWER = 6;
+  static const CertStoreAddDisposition CERT_STORE_ADD_NEWER_INHERIT_PROPERTIES = 7;
+  typedef DWORD CertChainFlags; //Alias
+  typedef DWORD CertPropId; //Alias
+  static const CertPropId CERT_KEY_PROV_HANDLE_PROP_ID = 1;
+  static const CertPropId CERT_KEY_PROV_INFO_PROP_ID = 2;
+  static const CertPropId CERT_SHA1_HASH_PROP_ID = 3;
+  static const CertPropId CERT_MD5_HASH_PROP_ID = 4;
+  static const CertPropId CERT_KEY_CONTEXT_PROP_ID = 5;
+  static const CertPropId CERT_KEY_SPEC_PROP_ID = 6;
+  static const CertPropId CERT_IE30_RESERVED_PROP_ID = 7;
+  static const CertPropId CERT_PUBKEY_HASH_RESERVED_PROP_ID = 8;
+  static const CertPropId CERT_ENHKEY_USAGE_PROP_ID = 9;
+  static const CertPropId CERT_NEXT_UPDATE_LOCATION_PROP_ID = 10;
+  static const CertPropId CERT_FRIENDLY_NAME_PROP_ID = 11;
+  static const CertPropId CERT_PVK_FILE_PROP_ID = 12;
+  static const CertPropId CERT_DESCRIPTION_PROP_ID = 13;
+  static const CertPropId CERT_ACCESS_STATE_PROP_ID = 14;
+  static const CertPropId CERT_SIGNATURE_HASH_PROP_ID = 15;
+  static const CertPropId CERT_SMART_CARD_DATA_PROP_ID = 16;
+  static const CertPropId CERT_EFS_PROP_ID = 17;
+  static const CertPropId CERT_FORTEZZA_DATA_PROP_ID = 18;
+  static const CertPropId CERT_ARCHIVED_PROP_ID = 19;
+  static const CertPropId CERT_KEY_IDENTIFIER_PROP_ID = 20;
+  static const CertPropId CERT_AUTO_ENROLL_PROP_ID = 21;
+  static const CertPropId CERT_PUBKEY_ALG_PARA_PROP_ID = 22;
+  static const CertPropId CERT_CROSS_CERT_DIST_POINTS_PROP_ID = 23;
+  static const CertPropId CERT_ISSUER_PUBLIC_KEY_MD5_HASH_PROP_ID = 24;
+  static const CertPropId CERT_SUBJECT_PUBLIC_KEY_MD5_HASH_PROP_ID = 25;
+  static const CertPropId CERT_ENROLLMENT_PROP_ID = 26;
+  static const CertPropId CERT_DATE_STAMP_PROP_ID = 27;
+  static const CertPropId CERT_ISSUER_SERIAL_NUMBER_MD5_HASH_PROP_ID = 28;
+  static const CertPropId CERT_SUBJECT_NAME_MD5_HASH_PROP_ID = 29;
+  static const CertPropId CERT_EXTENDED_ERROR_INFO_PROP_ID = 30;
+  static const CertPropId CERT_RENEWAL_PROP_ID = 64;
+  static const CertPropId CERT_ARCHIVED_KEY_HASH_PROP_ID = 65;
+  static const CertPropId CERT_AUTO_ENROLL_RETRY_PROP_ID = 66;
+  static const CertPropId CERT_AIA_URL_RETRIEVED_PROP_ID = 67;
+  static const CertPropId CERT_AUTHORITY_INFO_ACCESS_PROP_ID = 68;
+  static const CertPropId CERT_BACKED_UP_PROP_ID = 69;
+  static const CertPropId CERT_OCSP_RESPONSE_PROP_ID = 70;
+  static const CertPropId CERT_REQUEST_ORIGINATOR_PROP_ID = 71;
+  static const CertPropId CERT_SOURCE_LOCATION_PROP_ID = 72;
+  static const CertPropId CERT_SOURCE_URL_PROP_ID = 73;
+  static const CertPropId CERT_NEW_KEY_PROP_ID = 74;
+  static const CertPropId CERT_OCSP_CACHE_PREFIX_PROP_ID = 75;
+  static const CertPropId CERT_SMART_CARD_ROOT_INFO_PROP_ID = 76;
+  static const CertPropId CERT_NO_AUTO_EXPIRE_CHECK_PROP_ID = 77;
+  static const CertPropId CERT_NCRYPT_KEY_HANDLE_PROP_ID = 78;
+  static const CertPropId CERT_HCRYPTPROV_OR_NCRYPT_KEY_HANDLE_PROP_ID = 79;
+  static const CertPropId CERT_SUBJECT_INFO_ACCESS_PROP_ID = 80;
+  static const CertPropId CERT_CA_OCSP_AUTHORITY_INFO_ACCESS_PROP_ID = 81;
+  static const CertPropId CERT_CA_DISABLE_CRL_PROP_ID = 82;
+  static const CertPropId CERT_ROOT_PROGRAM_CERT_POLICIES_PROP_ID = 83;
+  static const CertPropId CERT_ROOT_PROGRAM_NAME_CONSTRAINTS_PROP_ID = 84;
+  static const CertPropId CERT_FIRST_RESERVED_PROP_ID = 85;
+  typedef DWORD CertSetPropertyFlags; //Alias
+  typedef DWORD CryptEncodeObjectFlags; //Alias
+  typedef DWORD CryptStringFlags; //Alias
+  typedef DWORD CertStrType; //Alias
+  typedef DWORD CertNameType; //Alias
+  static const CertNameType CERT_NAME_EMAIL_TYPE = 1;
+  static const CertNameType CERT_NAME_RDN_TYPE = 2;
+  static const CertNameType CERT_NAME_ATTR_TYPE = 3;
+  static const CertNameType CERT_NAME_SIMPLE_DISPLAY_TYPE = 4;
+  static const CertNameType CERT_NAME_FRIENDLY_DISPLAY_TYPE = 5;
+  static const CertNameType CERT_NAME_DNS_TYPE = 6;
+  static const CertNameType CERT_NAME_URL_TYPE = 7;
+  static const CertNameType CERT_NAME_UPN_TYPE = 8;
+  typedef DWORD CertNameFlags; //Alias
+  typedef DWORD CryptObjectType; //Alias
+  static const CryptObjectType CERT_QUERY_OBJECT_FILE = 0x00000001;
+  static const CryptObjectType CERT_QUERY_OBJECT_BLOB = 0x00000002;
+  typedef DWORD CryptExpectedContentType; //Alias
+  typedef DWORD CryptExpectedFormatType; //Alias
+  typedef DWORD CryptFormatType; //Alias
+  static const CryptFormatType CERT_QUERY_FORMAT_BINARY = 1;
+  static const CryptFormatType CERT_QUERY_FORMAT_BASE64_ENCODED = 2;
+  static const CryptFormatType CERT_QUERY_FORMAT_ASN_ASCII_HEX_ENCODED = 3;
+  typedef DWORD CryptContentType; //Alias
+  static const CryptContentType CERT_QUERY_CONTENT_CERT = 1;
+  static const CryptContentType CERT_QUERY_CONTENT_CTL = 2;
+  static const CryptContentType CERT_QUERY_CONTENT_CRL = 3;
+  static const CryptContentType CERT_QUERY_CONTENT_SERIALIZED_STORE = 4;
+  static const CryptContentType CERT_QUERY_CONTENT_SERIALIZED_CERT = 5;
+  static const CryptContentType CERT_QUERY_CONTENT_SERIALIZED_CTL = 6;
+  static const CryptContentType CERT_QUERY_CONTENT_SERIALIZED_CRL = 7;
+  static const CryptContentType CERT_QUERY_CONTENT_PKCS7_SIGNED = 8;
+  static const CryptContentType CERT_QUERY_CONTENT_PKCS7_UNSIGNED = 9;
+  static const CryptContentType CERT_QUERY_CONTENT_PKCS7_SIGNED_EMBED = 10;
+  static const CryptContentType CERT_QUERY_CONTENT_PKCS10 = 11;
+  static const CryptContentType CERT_QUERY_CONTENT_PFX = 12;
+  static const CryptContentType CERT_QUERY_CONTENT_CERT_PAIR = 13;
+  static const CryptContentType CERT_QUERY_CONTENT_PFX_AND_LOAD = 14;
+  typedef DWORD CryptSubjectType; //Alias
+  static const CryptSubjectType CRYPT_VERIFY_CERT_SIGN_SUBJECT_BLOB = 1;
+  static const CryptSubjectType CRYPT_VERIFY_CERT_SIGN_SUBJECT_CERT = 2;
+  static const CryptSubjectType CRYPT_VERIFY_CERT_SIGN_SUBJECT_CRL = 3;
+  static const CryptSubjectType CRYPT_VERIFY_CERT_SIGN_SUBJECT_OCSP_BASIC_SIGNED_RESPONSE = 4;
+  typedef DWORD CryptIssuerType; //Alias
+  static const CryptIssuerType CRYPT_VERIFY_CERT_SIGN_ISSUER_PUBKEY = 1;
+  static const CryptIssuerType CRYPT_VERIFY_CERT_SIGN_ISSUER_CERT = 2;
+  static const CryptIssuerType CRYPT_VERIFY_CERT_SIGN_ISSUER_CHAIN = 3;
+  static const CryptIssuerType CRYPT_VERIFY_CERT_SIGN_ISSUER_NULL = 4;
+  typedef DWORD CryptDecodeObjectFlags; //Alias
+  typedef DWORD CertOpenStoreFlags; //Alias
+  typedef DWORD CertFindFlags; //Alias
+  typedef DWORD CryptProtectDataFlags; //Alias
+  typedef DWORD CryptMsgOpenFlags; //Alias
+  typedef DWORD CryptMsgType; //Alias
+  static const CryptMsgType CMSG_DATA = 1;
+  static const CryptMsgType CMSG_SIGNED = 2;
+  static const CryptMsgType CMSG_ENVELOPED = 3;
+  static const CryptMsgType CMSG_SIGNED_AND_ENVELOPED = 4;
+  static const CryptMsgType CMSG_HASHED = 5;
+  static const CryptMsgType CMSG_ENCRYPTED = 6;
+  typedef DWORD CryptMsgParamType; //Alias
+  static const CryptMsgParamType CMSG_TYPE_PARAM = 1;
+  static const CryptMsgParamType CMSG_CONTENT_PARAM = 2;
+  static const CryptMsgParamType CMSG_BARE_CONTENT_PARAM = 3;
+  static const CryptMsgParamType CMSG_INNER_CONTENT_TYPE_PARAM = 4;
+  static const CryptMsgParamType CMSG_SIGNER_COUNT_PARAM = 5;
+  static const CryptMsgParamType CMSG_SIGNER_INFO_PARAM = 6;
+  static const CryptMsgParamType CMSG_SIGNER_CERT_INFO_PARAM = 7;
+  static const CryptMsgParamType CMSG_SIGNER_HASH_ALGORITHM_PARAM = 8;
+  static const CryptMsgParamType CMSG_SIGNER_AUTH_ATTR_PARAM = 9;
+  static const CryptMsgParamType CMSG_SIGNER_UNAUTH_ATTR_PARAM = 10;
+  static const CryptMsgParamType CMSG_CERT_COUNT_PARAM = 11;
+  static const CryptMsgParamType CMSG_CERT_PARAM = 12;
+  static const CryptMsgParamType CMSG_CRL_COUNT_PARAM = 13;
+  static const CryptMsgParamType CMSG_CRL_PARAM = 14;
+  static const CryptMsgParamType CMSG_ENVELOPE_ALGORITHM_PARAM = 15;
+  static const CryptMsgParamType CMSG_RECIPIENT_COUNT_PARAM = 17;
+  static const CryptMsgParamType CMSG_RECIPIENT_INDEX_PARAM = 18;
+  static const CryptMsgParamType CMSG_RECIPIENT_INFO_PARAM = 19;
+  static const CryptMsgParamType CMSG_HASH_ALGORITHM_PARAM = 20;
+  static const CryptMsgParamType CMSG_HASH_DATA_PARAM = 21;
+  static const CryptMsgParamType CMSG_COMPUTED_HASH_PARAM = 22;
+  static const CryptMsgParamType CMSG_ENCRYPT_PARAM = 26;
+  static const CryptMsgParamType CMSG_ENCRYPTED_DIGEST = 27;
+  static const CryptMsgParamType CMSG_ENCODED_SIGNER = 28;
+  static const CryptMsgParamType CMSG_ENCODED_MESSAGE = 29;
+  static const CryptMsgParamType CMSG_VERSION_PARAM = 30;
+  static const CryptMsgParamType CMSG_ATTR_CERT_COUNT_PARAM = 31;
+  static const CryptMsgParamType CMSG_ATTR_CERT_PARAM = 32;
+  static const CryptMsgParamType CMSG_CMS_RECIPIENT_COUNT_PARAM = 33;
+  static const CryptMsgParamType CMSG_CMS_RECIPIENT_INDEX_PARAM = 34;
+  static const CryptMsgParamType CMSG_CMS_RECIPIENT_ENCRYPTED_KEY_INDEX_PARAM = 35;
+  static const CryptMsgParamType CMSG_CMS_RECIPIENT_INFO_PARAM = 36;
+  static const CryptMsgParamType CMSG_UNPROTECTED_ATTR_PARAM = 37;
+  static const CryptMsgParamType CMSG_SIGNER_CERT_ID_PARAM = 38;
+  static const CryptMsgParamType CMSG_CMS_SIGNER_INFO_PARAM = 39;
+  typedef DWORD CryptMsgControlType; //Alias
+  static const CryptMsgControlType CMSG_CTRL_VERIFY_SIGNATURE = 1;
+  static const CryptMsgControlType CMSG_CTRL_DECRYPT = 2;
+  static const CryptMsgControlType CMSG_CTRL_VERIFY_HASH = 5;
+  static const CryptMsgControlType CMSG_CTRL_ADD_SIGNER = 6;
+  static const CryptMsgControlType CMSG_CTRL_DEL_SIGNER = 7;
+  static const CryptMsgControlType CMSG_CTRL_ADD_SIGNER_UNAUTH_ATTR = 8;
+  static const CryptMsgControlType CMSG_CTRL_DEL_SIGNER_UNAUTH_ATTR = 9;
+  static const CryptMsgControlType CMSG_CTRL_ADD_CERT = 10;
+  static const CryptMsgControlType CMSG_CTRL_DEL_CERT = 11;
+  static const CryptMsgControlType CMSG_CTRL_ADD_CRL = 12;
+  static const CryptMsgControlType CMSG_CTRL_DEL_CRL = 13;
+  static const CryptMsgControlType CMSG_CTRL_ADD_ATTR_CERT = 14;
+  static const CryptMsgControlType CMSG_CTRL_DEL_ATTR_CERT = 15;
+  static const CryptMsgControlType CMSG_CTRL_KEY_TRANS_DECRYPT = 16;
+  static const CryptMsgControlType CMSG_CTRL_KEY_AGREE_DECRYPT = 17;
+  static const CryptMsgControlType CMSG_CTRL_MAIL_LIST_DECRYPT = 18;
+  static const CryptMsgControlType CMSG_CTRL_VERIFY_SIGNATURE_EX = 19;
+  static const CryptMsgControlType CMSG_CTRL_ADD_CMS_SIGNER_INFO = 20;
+  typedef DWORD CryptMsgControlFlags; //Alias
+  static const CryptMsgControlFlags CMSG_CRYPT_RELEASE_CONTEXT_FLAG = 0x00008000;
+  typedef DWORD CryptMsgSignerType; //Alias
+  static const CryptMsgSignerType CMSG_VERIFY_SIGNER_PUBKEY = 1;
+  static const CryptMsgSignerType CMSG_VERIFY_SIGNER_CERT = 2;
+  static const CryptMsgSignerType CMSG_VERIFY_SIGNER_CHAIN = 3;
+  static const CryptMsgSignerType CMSG_VERIFY_SIGNER_NULL = 4;
+  typedef DWORD CertFindType; //Alias
+  typedef DWORD CrlFindType; //Alias
+  static const CrlFindType CRL_FIND_ANY = 0;
+  static const CrlFindType CRL_FIND_ISSUED_BY = 1;
+  static const CrlFindType CRL_FIND_EXISTING = 2;
+  static const CrlFindType CRL_FIND_ISSUED_FOR = 3;
+  typedef DWORD CrlFindIssuedByFlags; //Alias
+  typedef DWORD CryptFindOidInfoKeyType; //Alias
+  typedef DWORD CryptFindOidInfoGroudId; //Alias
+  typedef DWORD CertSystemStoreFlags; //Alias
+  typedef DWORD CertPhysicalStoreFlags; //Alias
+  typedef DWORD CryptFormatStrType; //Alias
+  typedef DWORD CryptGroupId; //Alias
+  static const CryptGroupId CRYPT_HASH_ALG_OID_GROUP_ID = 1;
+  static const CryptGroupId CRYPT_ENCRYPT_ALG_OID_GROUP_ID = 2;
+  static const CryptGroupId CRYPT_PUBKEY_ALG_OID_GROUP_ID = 3;
+  static const CryptGroupId CRYPT_SIGN_ALG_OID_GROUP_ID = 4;
+  static const CryptGroupId CRYPT_RDN_ATTR_OID_GROUP_ID = 5;
+  static const CryptGroupId CRYPT_EXT_OR_ATTR_OID_GROUP_ID = 6;
+  static const CryptGroupId CRYPT_ENHKEY_USAGE_OID_GROUP_ID = 7;
+  static const CryptGroupId CRYPT_POLICY_OID_GROUP_ID = 8;
+  static const CryptGroupId CRYPT_TEMPLATE_OID_GROUP_ID = 9;
+  typedef DWORD CryptProtectMemoryFlags; //Alias
+  static const CryptProtectMemoryFlags CRYPTPROTECTMEMORY_SAME_PROCESS = 0x00;
+  static const CryptProtectMemoryFlags CRYPTPROTECTMEMORY_CROSS_PROCESS = 0x01;
+  static const CryptProtectMemoryFlags CRYPTPROTECTMEMORY_SAME_LOGON = 0x02;
+  typedef union HcryptNcryptUnion {
     HCRYPTPROV hCryptProv;
     NCRYPT_KEY_HANDLE hNCryptKey;
-  } WINAPI_HcryptNcryptUnion;
-  typedef DWORD WINAPI_CERT_ID_Choice; //Alias
-  static const DWORD CERT_ID_ISSUER_SERIAL_NUMBER = 1;
-  static const DWORD CERT_ID_KEY_IDENTIFIER = 2;
-  static const DWORD CERT_ID_SHA1_HASH = 3;
+  } HcryptNcryptUnion;
+  typedef DWORD CERT_ID_Choice; //Alias
+  static const CERT_ID_Choice CERT_ID_ISSUER_SERIAL_NUMBER = 1;
+  static const CERT_ID_Choice CERT_ID_KEY_IDENTIFIER = 2;
+  static const CERT_ID_Choice CERT_ID_SHA1_HASH = 3;
   typedef struct CERT_ISSUER_SERIAL_NUMBER {
     CERT_NAME_BLOB Issuer;
     CRYPT_INTEGER_BLOB SerialNumber;
   } CERT_ISSUER_SERIAL_NUMBER;
-  typedef union WINAPI_CERT_ID_u {
+  typedef union CERT_ID_u {
     CERT_ISSUER_SERIAL_NUMBER IssuerSerialNumber;
     CRYPT_HASH_BLOB KeyId;
     CRYPT_HASH_BLOB HashId;
-  } WINAPI_CERT_ID_u;
+  } CERT_ID_u;
   typedef struct CERT_ID {
-    WINAPI_CERT_ID_Choice dwIdChoice;
-    WINAPI_CERT_ID_u ;
+    CERT_ID_Choice dwIdChoice;
+    CERT_ID_u ;
   } CERT_ID;
   typedef struct CMSG_SIGNER_ENCODE_INFO {
     DWORD cbSize;
     PCERT_INFO pCertInfo;
-    WINAPI_HcryptNcryptUnion ;
-    WINAPI_CryptKeySpec dwKeySpec;
+    HcryptNcryptUnion ;
+    CryptKeySpec dwKeySpec;
     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
     void* pvHashAuxInfo;
     DWORD cAuthAttr;
@@ -1161,24 +1161,24 @@ ffi.cdef [[
   typedef struct CRYPT_KEY_SIGN_MESSAGE_PARA {
     DWORD cbSize;
     DWORD dwMsgAndCertEncodingType;
-    WINAPI_HcryptNcryptUnion ;
+    HcryptNcryptUnion ;
     DWORD dwKeySpec;
     CRYPT_ALGORITHM_IDENTIFIER HashAlgorithm;
     void* pvHashAuxInfo;
     CRYPT_ALGORITHM_IDENTIFIER PubKeyAlgorithm;
   } CRYPT_KEY_SIGN_MESSAGE_PARA;
   typedef CRYPT_KEY_SIGN_MESSAGE_PARA *PCRYPT_KEY_SIGN_MESSAGE_PARA; //Pointer
-  typedef union WINAPI_CRYPT_OID_INFO_u {
+  typedef union CRYPT_OID_INFO_u {
     DWORD dwValue;
     ALG_ID Algid;
     DWORD dwLength;
-  } WINAPI_CRYPT_OID_INFO_u;
+  } CRYPT_OID_INFO_u;
   typedef struct CRYPT_OID_INFO {
     DWORD cbSize;
     LPCSTR pszOID;
     LPCWSTR pwszName;
     DWORD dwGroupId;
-    WINAPI_CRYPT_OID_INFO_u ;
+    CRYPT_OID_INFO_u ;
     CRYPT_DATA_BLOB ExtraInfo;
     LPCWSTR pwszCNGAlgid;
     LPCWSTR pwszCNGExtraAlgid;
@@ -1188,15 +1188,15 @@ ffi.cdef [[
     DWORD cbStruct;
     SIP_INDIRECT_DATA* pIndirectData;
   } MS_ADDINFO_FLAT;
-  typedef DWORD WINAPI_CRYPTCAT_OPEN; //Alias
+  typedef DWORD CRYPTCAT_OPEN; //Alias
 # pragma pack( push, 8 )
   typedef struct CRYPTCATSTORE {
     DWORD cbStruct;
     DWORD dwPublicVersion;
     LPWSTR pwszP7File;
     HCRYPTPROV hProv;
-    WINAPI_CertEncodingType dwEncodingType;
-    WINAPI_CRYPTCAT_OPEN fdwStoreFlags;
+    CertEncodingType dwEncodingType;
+    CRYPTCAT_OPEN fdwStoreFlags;
     HANDLE hReserved;
     HANDLE hAttrs;
     HCRYPTMSG hCryptMsg;
@@ -1215,18 +1215,18 @@ ffi.cdef [[
     DWORD cbMemSignedMsg;
     BYTE* pbMemSignedMsg;
   } MS_ADDINFO_BLOB;
-  typedef union WINAPI_SIP_SUBJECTINFO_u {
+  typedef union SIP_SUBJECTINFO_u {
     MS_ADDINFO_FLAT* psFlat;
     MS_ADDINFO_CATALOGMEMBER* psCatMember;
     MS_ADDINFO_BLOB* psBlob;
-  } WINAPI_SIP_SUBJECTINFO_u;
-  typedef DWORD WINAPI_SPC_PE; //Alias
-  typedef DWORD WINAPI_SIP_SUBJECTINFO_Choice; //Alias
-  static const DWORD MSSIP_ADDINFO_NONE = 0;
-  static const DWORD MSSIP_ADDINFO_FLAT = 1;
-  static const DWORD MSSIP_ADDINFO_CATMEMBER = 2;
-  static const DWORD MSSIP_ADDINFO_BLOB = 3;
-  static const DWORD MSSIP_ADDINFO_NONMSSIP = 500;
+  } SIP_SUBJECTINFO_u;
+  typedef DWORD SPC_PE; //Alias
+  typedef DWORD SIP_SUBJECTINFO_Choice; //Alias
+  static const SIP_SUBJECTINFO_Choice MSSIP_ADDINFO_NONE = 0;
+  static const SIP_SUBJECTINFO_Choice MSSIP_ADDINFO_FLAT = 1;
+  static const SIP_SUBJECTINFO_Choice MSSIP_ADDINFO_CATMEMBER = 2;
+  static const SIP_SUBJECTINFO_Choice MSSIP_ADDINFO_BLOB = 3;
+  static const SIP_SUBJECTINFO_Choice MSSIP_ADDINFO_NONMSSIP = 500;
   typedef struct SIP_SUBJECTINFO {
     DWORD cbSize;
     GUID* pgSubjectType;
@@ -1237,24 +1237,24 @@ ffi.cdef [[
     DWORD dwIntVersion;
     HCRYPTPROV hProv;
     CRYPT_ALGORITHM_IDENTIFIER DigestAlgorithm;
-    WINAPI_SPC_PE dwFlags;
-    WINAPI_CertEncodingType dwEncodingType;
+    SPC_PE dwFlags;
+    CertEncodingType dwEncodingType;
     DWORD dwReserved2;
     DWORD fdwCAPISettings;
     DWORD fdwSecuritySettings;
     DWORD dwIndex;
-    WINAPI_SIP_SUBJECTINFO_Choice dwUnionChoice;
-    WINAPI_SIP_SUBJECTINFO_u ;
+    SIP_SUBJECTINFO_Choice dwUnionChoice;
+    SIP_SUBJECTINFO_u ;
     LPVOID pClientData;
   } SIP_SUBJECTINFO;
-  typedef DWORD WINAPI_CPD_CHOICE; //Alias
-  static const DWORD CPD_CHOICE_SIP = 1;
-  typedef DWORD WINAPI_CPD_PROV_FLAGS; //Alias
-  typedef DWORD WINAPI_CPD_UISTATE_MODE; //Alias
-  static const DWORD CPD_UISTATE_MODE_PROMPT = 0x00000000;
-  static const DWORD CPD_UISTATE_MODE_BLOCK = 0x00000001;
-  static const DWORD CPD_UISTATE_MODE_ALLOW = 0x00000002;
-  static const DWORD CPD_UISTATE_MODE_MASK = 0x00000003;
+  typedef DWORD CPD_CHOICE; //Alias
+  static const CPD_CHOICE CPD_CHOICE_SIP = 1;
+  typedef DWORD CPD_PROV_FLAGS; //Alias
+  typedef DWORD CPD_UISTATE_MODE; //Alias
+  static const CPD_UISTATE_MODE CPD_UISTATE_MODE_PROMPT = 0x00000000;
+  static const CPD_UISTATE_MODE CPD_UISTATE_MODE_BLOCK = 0x00000001;
+  static const CPD_UISTATE_MODE CPD_UISTATE_MODE_ALLOW = 0x00000002;
+  static const CPD_UISTATE_MODE CPD_UISTATE_MODE_MASK = 0x00000003;
   typedef struct PROVDATA_SIP {
     DWORD cbStruct;
     GUID gSubject;
@@ -1264,18 +1264,18 @@ ffi.cdef [[
     SIP_SUBJECTINFO* psSipCATSubjectInfo;
     SIP_INDIRECT_DATA* psIndirectData;
   } PROVDATA_SIP;
-  typedef DWORD WINAPI_WTD_UI; //Alias
-  static const DWORD WTD_UI_ALL = 1;
-  static const DWORD WTD_UI_NONE = 2;
-  static const DWORD WTD_UI_NOBAD = 3;
-  static const DWORD WTD_UI_NOGOOD = 4;
-  typedef DWORD WINAPI_WTD_REVOKE; //Alias
-  typedef DWORD WINAPI_WTD_CHOICE; //Alias
-  static const DWORD WTD_CHOICE_FILE = 1;
-  static const DWORD WTD_CHOICE_CATALOG = 2;
-  static const DWORD WTD_CHOICE_BLOB = 3;
-  static const DWORD WTD_CHOICE_SIGNER = 4;
-  static const DWORD WTD_CHOICE_CERT = 5;
+  typedef DWORD WTD_UI; //Alias
+  static const WTD_UI WTD_UI_ALL = 1;
+  static const WTD_UI WTD_UI_NONE = 2;
+  static const WTD_UI WTD_UI_NOBAD = 3;
+  static const WTD_UI WTD_UI_NOGOOD = 4;
+  typedef DWORD WTD_REVOKE; //Alias
+  typedef DWORD WTD_CHOICE; //Alias
+  static const WTD_CHOICE WTD_CHOICE_FILE = 1;
+  static const WTD_CHOICE WTD_CHOICE_CATALOG = 2;
+  static const WTD_CHOICE WTD_CHOICE_BLOB = 3;
+  static const WTD_CHOICE WTD_CHOICE_SIGNER = 4;
+  static const WTD_CHOICE WTD_CHOICE_CERT = 5;
 # pragma pack( push, 8 )
   typedef struct WINTRUST_FILE_INFO {
     DWORD cbStruct;
@@ -1327,7 +1327,7 @@ ffi.cdef [[
     HCERTSTORE* pahStores;
   } WINTRUST_SGNR_INFO;
 # pragma pack( pop )
-  typedef DWORD WINAPI_WINTRUST_CERT_INFO_FLAGS; //Alias
+  typedef DWORD WINTRUST_CERT_INFO_FLAGS; //Alias
 # pragma pack( push, 8 )
   typedef struct WINTRUST_CERT_INFO {
     DWORD cbStruct;
@@ -1335,43 +1335,43 @@ ffi.cdef [[
     CERT_CONTEXT* psCertContext;
     DWORD chStores;
     HCERTSTORE* pahStores;
-    WINAPI_WINTRUST_CERT_INFO_FLAGS dwFlags;
+    WINTRUST_CERT_INFO_FLAGS dwFlags;
     FILETIME* psftVerifyAsOf;
   } WINTRUST_CERT_INFO;
 # pragma pack( pop )
 # pragma pack( push, 8 )
-  typedef union WINAPI_WINTRUST_DATA_u {
+  typedef union WINTRUST_DATA_u {
     WINTRUST_FILE_INFO* pFile;
     WINTRUST_CATALOG_INFO* pCatalog;
     WINTRUST_BLOB_INFO* pBlob;
     WINTRUST_SGNR_INFO* pSgnr;
     WINTRUST_CERT_INFO* pCert;
-  } WINAPI_WINTRUST_DATA_u;
+  } WINTRUST_DATA_u;
 # pragma pack( pop )
-  typedef DWORD WINAPI_WTD_STATEACTION; //Alias
-  static const DWORD WTD_STATEACTION_IGNORE = 0x00000000;
-  static const DWORD WTD_STATEACTION_VERIFY = 0x00000001;
-  static const DWORD WTD_STATEACTION_CLOSE = 0x00000002;
-  static const DWORD WTD_STATEACTION_AUTO_CACHE = 0x00000003;
-  static const DWORD WTD_STATEACTION_AUTO_CACHE_FLUSH = 0x00000004;
-  typedef DWORD WINAPI_WTD_PROV_FLAGS; //Alias
-  typedef DWORD WINAPI_WTD_UICONTEXT; //Alias
-  static const DWORD WTD_UICONTEXT_EXECUTE = 0;
-  static const DWORD WTD_UICONTEXT_INSTALL = 1;
+  typedef DWORD WTD_STATEACTION; //Alias
+  static const WTD_STATEACTION WTD_STATEACTION_IGNORE = 0x00000000;
+  static const WTD_STATEACTION WTD_STATEACTION_VERIFY = 0x00000001;
+  static const WTD_STATEACTION WTD_STATEACTION_CLOSE = 0x00000002;
+  static const WTD_STATEACTION WTD_STATEACTION_AUTO_CACHE = 0x00000003;
+  static const WTD_STATEACTION WTD_STATEACTION_AUTO_CACHE_FLUSH = 0x00000004;
+  typedef DWORD WTD_PROV_FLAGS; //Alias
+  typedef DWORD WTD_UICONTEXT; //Alias
+  static const WTD_UICONTEXT WTD_UICONTEXT_EXECUTE = 0;
+  static const WTD_UICONTEXT WTD_UICONTEXT_INSTALL = 1;
 # pragma pack( push, 8 )
   typedef struct WINTRUST_DATA {
     DWORD cbStruct;
     LPVOID pPolicyCallbackData;
     LPVOID pSIPClientData;
-    WINAPI_WTD_UI dwUIChoice;
-    WINAPI_WTD_REVOKE fdwRevocationChecks;
-    WINAPI_WTD_CHOICE dwUnionChoice;
-    WINAPI_WINTRUST_DATA_u ;
-    WINAPI_WTD_STATEACTION dwStateAction;
+    WTD_UI dwUIChoice;
+    WTD_REVOKE fdwRevocationChecks;
+    WTD_CHOICE dwUnionChoice;
+    WINTRUST_DATA_u ;
+    WTD_STATEACTION dwStateAction;
     HANDLE hWVTStateData;
     WCHAR* pwszURLReference;
-    WINAPI_WTD_PROV_FLAGS dwProvFlags;
-    WINAPI_WTD_UICONTEXT dwUIContext;
+    WTD_PROV_FLAGS dwProvFlags;
+    WTD_UICONTEXT dwUIContext;
   } WINTRUST_DATA;
 # pragma pack( pop )
   typedef struct CERT_TRUST_LIST_INFO {
@@ -1403,14 +1403,14 @@ ffi.cdef [[
     GUID ChainId;
   } CERT_CHAIN_CONTEXT;
   typedef CERT_CHAIN_CONTEXT *PCCERT_CHAIN_CONTEXT; //Pointer
-  typedef DWORD WINAPI_SGNR_TYPE; //Alias
-  static const DWORD SGNR_TYPE_TIMESTAMP = 0x00000010;
+  typedef DWORD SGNR_TYPE; //Alias
+  static const SGNR_TYPE SGNR_TYPE_TIMESTAMP = 0x00000010;
   typedef struct CRYPT_PROVIDER_SGNR {
     DWORD cbStruct;
     FILETIME sftVerifyAsOf;
     DWORD csCertChain;
     CRYPT_PROVIDER_CERT* pasCertChain;
-    WINAPI_SGNR_TYPE dwSignerType;
+    SGNR_TYPE dwSignerType;
     CMSG_SIGNER_INFO* psSigner;
     DWORD dwError;
     DWORD csCounterSigners;
@@ -1438,21 +1438,21 @@ ffi.cdef [[
     CRYPT_PROVIDER_SGNR* pasSigners;
     DWORD csProvPrivData;
     CRYPT_PROVIDER_PRIVDATA* pasProvPrivData;
-    WINAPI_CPD_CHOICE dwSubjectChoice;
+    CPD_CHOICE dwSubjectChoice;
     PROVDATA_SIP* pPDSip;
     char* pszUsageOID;
     BOOL fRecallWithState;
     FILETIME sftSystemTime;
     char* pszCTLSignerUsageOID;
-    WINAPI_CPD_PROV_FLAGS dwProvFlags;
+    CPD_PROV_FLAGS dwProvFlags;
     DWORD dwFinalError;
     PCERT_USAGE_MATCH pRequestUsage;
     DWORD dwTrustPubSettings;
-    WINAPI_CPD_UISTATE_MODE dwUIStateFlags;
+    CPD_UISTATE_MODE dwUIStateFlags;
   } CRYPT_PROVIDER_DATA;
-  typedef DWORD WINAPI_SIGNER_SIGNATURE_CHOICE; //Alias
-  static const DWORD SIGNER_NO_ATTR = 0;
-  static const DWORD SIGNER_AUTHCODE_ATTR = 1;
+  typedef DWORD SIGNER_SIGNATURE_CHOICE; //Alias
+  static const SIGNER_SIGNATURE_CHOICE SIGNER_NO_ATTR = 0;
+  static const SIGNER_SIGNATURE_CHOICE SIGNER_AUTHCODE_ATTR = 1;
   typedef struct SIGNER_ATTR_AUTHCODE {
     DWORD cbSize;
     BOOL fCommercial;
@@ -1463,29 +1463,29 @@ ffi.cdef [[
   typedef struct SIGNER_SIGNATURE_INFO {
     DWORD cbSize;
     ALG_ID algidHash;
-    WINAPI_SIGNER_SIGNATURE_CHOICE dwAttrChoice;
+    SIGNER_SIGNATURE_CHOICE dwAttrChoice;
     SIGNER_ATTR_AUTHCODE* pAttrAuthcode;
     PCRYPT_ATTRIBUTES psAuthenticated;
     PCRYPT_ATTRIBUTES psUnauthenticated;
   } SIGNER_SIGNATURE_INFO;
-  typedef DWORD WINAPI_PVK_TYPE; //Alias
-  static const DWORD PVK_TYPE_FILE_NAME = 1;
-  static const DWORD PVK_TYPE_KEYCONTAINER = 2;
-  typedef union WINAPI_SIGNER_PROVIDER_INFO_u {
+  typedef DWORD PVK_TYPE; //Alias
+  static const PVK_TYPE PVK_TYPE_FILE_NAME = 1;
+  static const PVK_TYPE PVK_TYPE_KEYCONTAINER = 2;
+  typedef union SIGNER_PROVIDER_INFO_u {
     LPWSTR pwszPvkFileName;
     LPWSTR pwszKeyContainer;
-  } WINAPI_SIGNER_PROVIDER_INFO_u;
+  } SIGNER_PROVIDER_INFO_u;
   typedef struct SIGNER_PROVIDER_INFO {
     DWORD cbSize;
     LPCWSTR pwszProviderName;
     DWORD dwProviderType;
     DWORD dwKeySpec;
-    WINAPI_PVK_TYPE dwPvkChoice;
-    WINAPI_SIGNER_PROVIDER_INFO_u ;
+    PVK_TYPE dwPvkChoice;
+    SIGNER_PROVIDER_INFO_u ;
   } SIGNER_PROVIDER_INFO;
-  typedef DWORD WINAPI_SIGNER_SUBJECT; //Alias
-  static const DWORD SIGNER_SUBJECT_FILE = 1;
-  static const DWORD SIGNER_SUBJECT_BLOB = 2;
+  typedef DWORD SIGNER_SUBJECT; //Alias
+  static const SIGNER_SUBJECT SIGNER_SUBJECT_FILE = 1;
+  static const SIGNER_SUBJECT SIGNER_SUBJECT_BLOB = 2;
   typedef struct SIGNER_FILE_INFO {
     DWORD cbSize;
     LPCWSTR pwszFileName;
@@ -1498,42 +1498,42 @@ ffi.cdef [[
     BYTE* pbBlob;
     LPCWSTR pwszDisplayName;
   } SIGNER_BLOB_INFO;
-  typedef union WINAPI_SIGNER_SUBJECT_INFO_u {
+  typedef union SIGNER_SUBJECT_INFO_u {
     SIGNER_FILE_INFO* pSignerFileInfo;
     SIGNER_BLOB_INFO* pSignerBlobInfo;
-  } WINAPI_SIGNER_SUBJECT_INFO_u;
+  } SIGNER_SUBJECT_INFO_u;
   typedef struct SIGNER_SUBJECT_INFO {
     DWORD cbSize;
     DWORD* pdwIndex;
-    WINAPI_SIGNER_SUBJECT dwSubjectChoice;
-    WINAPI_SIGNER_SUBJECT_INFO_u ;
+    SIGNER_SUBJECT dwSubjectChoice;
+    SIGNER_SUBJECT_INFO_u ;
   } SIGNER_SUBJECT_INFO;
-  typedef DWORD WINAPI_SIGNER_CERT_CHOICE; //Alias
-  static const DWORD SIGNER_CERT_SPC_FILE = 1;
-  static const DWORD SIGNER_CERT_STORE = 2;
-  static const DWORD SIGNER_CERT_SPC_CHAIN = 3;
-  typedef DWORD WINAPI_SIGNER_CERT_POLICY; //Alias
+  typedef DWORD SIGNER_CERT_CHOICE; //Alias
+  static const SIGNER_CERT_CHOICE SIGNER_CERT_SPC_FILE = 1;
+  static const SIGNER_CERT_CHOICE SIGNER_CERT_STORE = 2;
+  static const SIGNER_CERT_CHOICE SIGNER_CERT_SPC_CHAIN = 3;
+  typedef DWORD SIGNER_CERT_POLICY; //Alias
   typedef struct SIGNER_CERT_STORE_INFO {
     DWORD cbSize;
     PCCERT_CONTEXT pSigningCert;
-    WINAPI_SIGNER_CERT_POLICY dwCertPolicy;
+    SIGNER_CERT_POLICY dwCertPolicy;
     HCERTSTORE hCertStore;
   } SIGNER_CERT_STORE_INFO;
   typedef struct SIGNER_SPC_CHAIN_INFO {
     DWORD cbSize;
     LPCWSTR pwszSpcFile;
-    WINAPI_SIGNER_CERT_POLICY dwCertPolicy;
+    SIGNER_CERT_POLICY dwCertPolicy;
     HCERTSTORE hCertStore;
   } SIGNER_SPC_CHAIN_INFO;
-  typedef union WINAPI_SIGNER_CERT_u {
+  typedef union SIGNER_CERT_u {
     LPCWSTR pwszSpcFile;
     SIGNER_CERT_STORE_INFO* pCertStoreInfo;
     SIGNER_SPC_CHAIN_INFO* pSpcChainInfo;
-  } WINAPI_SIGNER_CERT_u;
+  } SIGNER_CERT_u;
   typedef struct SIGNER_CERT {
     DWORD cbSize;
-    WINAPI_SIGNER_CERT_CHOICE dwCertChoice;
-    WINAPI_SIGNER_CERT_u ;
+    SIGNER_CERT_CHOICE dwCertChoice;
+    SIGNER_CERT_u ;
     HWND hwnd;
   } SIGNER_CERT;
 ]]

@@ -17,42 +17,42 @@ ffi.cdef [[
   typedef unsigned char SQLCHAR; //Alias
   typedef TCHAR SQLTCHAR; //Alias
   typedef SQLSMALLINT SQLRETURN; //Alias
-  static const SQLSMALLINT SQL_SUCCESS = 0;
-  static const SQLSMALLINT SQL_SUCCESS_WITH_INFO = 1;
-  static const SQLSMALLINT SQL_NO_DATA = 100;
-  static const SQLSMALLINT SQL_PARAM_DATA_AVAILABLE = 101;
-  static const SQLSMALLINT SQL_ERROR = -1;
-  static const SQLSMALLINT SQL_INVALID_HANDLE = -2;
-  static const SQLSMALLINT SQL_STILL_EXECUTING = 2;
-  static const SQLSMALLINT SQL_NEED_DATA = 99;
-  typedef SQLUSMALLINT WINAPI_SQL_DRIVER_COMPLETION; //Alias
-  static const SQLUSMALLINT SQL_DRIVER_NOPROMPT = 0;
-  static const SQLUSMALLINT SQL_DRIVER_COMPLETE = 1;
-  static const SQLUSMALLINT SQL_DRIVER_PROMPT = 2;
-  static const SQLUSMALLINT SQL_DRIVER_COMPLETE_REQUIRED = 3;
-  typedef SQLSMALLINT WINAPI_SQL_ENDTRAN_OPTION; //Alias
-  static const SQLSMALLINT SQL_COMMIT = 0;
-  static const SQLSMALLINT SQL_ROLLBACK = 1;
-  typedef SQLSMALLINT WINAPI_SQL_FETCH_TYPE; //Alias
-  static const SQLSMALLINT SQL_FETCH_NEXT = 1;
-  static const SQLSMALLINT SQL_FETCH_FIRST = 2;
-  static const SQLSMALLINT SQL_FETCH_LAST = 3;
-  static const SQLSMALLINT SQL_FETCH_PRIOR = 4;
-  static const SQLSMALLINT SQL_FETCH_ABSOLUTE = 5;
-  static const SQLSMALLINT SQL_FETCH_RELATIVE = 6;
-  typedef SQLSMALLINT WINAPI_SQL_HANDLE_TYPE; //Alias
-  static const SQLSMALLINT SQL_HANDLE_ENV = 1;
-  static const SQLSMALLINT SQL_HANDLE_DBC = 2;
-  static const SQLSMALLINT SQL_HANDLE_STMT = 3;
-  static const SQLSMALLINT SQL_HANDLE_DESC = 4;
-  typedef SQLUSMALLINT WINAPI_SQL_FREESTMT_OPTION; //Alias
-  static const SQLUSMALLINT SQL_CLOSE = 0;
-  static const SQLUSMALLINT SQL_DROP = 1;
-  static const SQLUSMALLINT SQL_UNBIND = 2;
-  static const SQLUSMALLINT SQL_RESET_PARAMS = 3;
+  static const SQLRETURN SQL_SUCCESS = 0;
+  static const SQLRETURN SQL_SUCCESS_WITH_INFO = 1;
+  static const SQLRETURN SQL_NO_DATA = 100;
+  static const SQLRETURN SQL_PARAM_DATA_AVAILABLE = 101;
+  static const SQLRETURN SQL_ERROR = -1;
+  static const SQLRETURN SQL_INVALID_HANDLE = -2;
+  static const SQLRETURN SQL_STILL_EXECUTING = 2;
+  static const SQLRETURN SQL_NEED_DATA = 99;
+  typedef SQLUSMALLINT SQL_DRIVER_COMPLETION; //Alias
+  static const SQL_DRIVER_COMPLETION SQL_DRIVER_NOPROMPT = 0;
+  static const SQL_DRIVER_COMPLETION SQL_DRIVER_COMPLETE = 1;
+  static const SQL_DRIVER_COMPLETION SQL_DRIVER_PROMPT = 2;
+  static const SQL_DRIVER_COMPLETION SQL_DRIVER_COMPLETE_REQUIRED = 3;
+  typedef SQLSMALLINT SQL_ENDTRAN_OPTION; //Alias
+  static const SQL_ENDTRAN_OPTION SQL_COMMIT = 0;
+  static const SQL_ENDTRAN_OPTION SQL_ROLLBACK = 1;
+  typedef SQLSMALLINT SQL_FETCH_TYPE; //Alias
+  static const SQL_FETCH_TYPE SQL_FETCH_NEXT = 1;
+  static const SQL_FETCH_TYPE SQL_FETCH_FIRST = 2;
+  static const SQL_FETCH_TYPE SQL_FETCH_LAST = 3;
+  static const SQL_FETCH_TYPE SQL_FETCH_PRIOR = 4;
+  static const SQL_FETCH_TYPE SQL_FETCH_ABSOLUTE = 5;
+  static const SQL_FETCH_TYPE SQL_FETCH_RELATIVE = 6;
+  typedef SQLSMALLINT SQL_HANDLE_TYPE; //Alias
+  static const SQL_HANDLE_TYPE SQL_HANDLE_ENV = 1;
+  static const SQL_HANDLE_TYPE SQL_HANDLE_DBC = 2;
+  static const SQL_HANDLE_TYPE SQL_HANDLE_STMT = 3;
+  static const SQL_HANDLE_TYPE SQL_HANDLE_DESC = 4;
+  typedef SQLUSMALLINT SQL_FREESTMT_OPTION; //Alias
+  static const SQL_FREESTMT_OPTION SQL_CLOSE = 0;
+  static const SQL_FREESTMT_OPTION SQL_DROP = 1;
+  static const SQL_FREESTMT_OPTION SQL_UNBIND = 2;
+  static const SQL_FREESTMT_OPTION SQL_RESET_PARAMS = 3;
   SQLRETURN SQLAllocConnect(     SQLHENV EnvironmentHandle, SQLHDBC* ConnectionHandle);
   SQLRETURN SQLAllocEnv(         SQLHENV* EnvironmentHandle);
-  SQLRETURN SQLAllocHandle(      WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE InputHandle, SQLHANDLE* OutputHandlePtr);
+  SQLRETURN SQLAllocHandle(      SQL_HANDLE_TYPE HandleType, SQLHANDLE InputHandle, SQLHANDLE* OutputHandlePtr);
   SQLRETURN SQLAllocStmt(        SQLHDBC ConnectionHandle, SQLHSTMT* StatementHandle);
   SQLRETURN SQLBindCol(          SQLHSTMT StatementHandle, SQLUSMALLINT ColumnNumber, SQLSMALLINT TargetType, SQLPOINTER TargetValuePtr, SQLLEN BufferLength, SQLLEN* StrLen_or_Ind);
   SQLRETURN SQLBindParam(        SQLHSTMT StatementHandle, SQLUSMALLINT ParameterNumber, SQLSMALLINT ValueType, SQLSMALLINT ParameterType, SQLULEN LengthPrecision, SQLSMALLINT ParameterScale, SQLPOINTER ParameterValue, SQLLEN* StrLen_or_IndPtr);
@@ -61,7 +61,7 @@ ffi.cdef [[
   SQLRETURN SQLBrowseConnect(    SQLHDBC ConnectionHandle, SQLTCHAR* InConnectionString, SQLSMALLINT StringLength1, SQLTCHAR* OutConnectionString, SQLSMALLINT BufferLength, SQLSMALLINT* StringLength2Ptr);
   SQLRETURN SQLBulkOperations(   SQLHSTMT StatementHandle, SQLUSMALLINT Operation);
   SQLRETURN SQLCancel(           SQLHSTMT StatementHandle);
-  SQLRETURN SQLCancelHandle(     WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle);
+  SQLRETURN SQLCancelHandle(     SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle);
   SQLRETURN SQLCloseCursor(      SQLHSTMT StatementHandle);
   SQLRETURN SQLColAttribute(     SQLHSTMT StatementHandle, SQLUSMALLINT ColumnNumber, SQLUSMALLINT FieldIdentifier, SQLPOINTER CharacterAttributePtr, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr, SQLLEN* NumericAttributePtr);
   SQLRETURN SQLColAttribute(     SQLHSTMT StatementHandle, SQLUSMALLINT ColumnNumber, SQLUSMALLINT FieldIdentifier, SQLPOINTER CharacterAttributePtr, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr, SQLLEN* NumericAttributePtr);
@@ -81,11 +81,11 @@ ffi.cdef [[
   SQLRETURN SQLDescribeCol(      SQLHSTMT StatementHandle, SQLUSMALLINT ColumnNumber, SQLTCHAR* ColumnName, SQLSMALLINT BufferLength, SQLSMALLINT* NameLengthPtr, SQLSMALLINT* DataTypePtr, SQLULEN* ColumnSizePtr, SQLSMALLINT* DecimalDigitsPtr, SQLSMALLINT* NullablePtr);
   SQLRETURN SQLDescribeParam(    SQLHSTMT StatementHandle, SQLUSMALLINT ParameterNumber, SQLSMALLINT* DataTypePtr, SQLULEN* ParameterSizePtr, SQLSMALLINT* DecimalDigitsPtr, SQLSMALLINT* NullablePtr);
   SQLRETURN SQLDisconnect(       SQLHDBC ConnectionHandle);
-  SQLRETURN SQLDriverConnect(    SQLHDBC ConnectionHandle, SQLHWND WindowHandle, SQLCHAR* InConnectionString, SQLSMALLINT StringLength1, SQLCHAR* OutConnectionString, SQLSMALLINT BufferLength, SQLSMALLINT* StringLength2Ptr, WINAPI_SQL_DRIVER_COMPLETION DriverCompletion);
-  SQLRETURN SQLDriverConnect(    SQLHDBC ConnectionHandle, SQLHWND WindowHandle, SQLTCHAR* InConnectionString, SQLSMALLINT StringLength1, SQLTCHAR* OutConnectionString, SQLSMALLINT BufferLength, SQLSMALLINT* StringLength2Ptr, WINAPI_SQL_DRIVER_COMPLETION DriverCompletion);
+  SQLRETURN SQLDriverConnect(    SQLHDBC ConnectionHandle, SQLHWND WindowHandle, SQLCHAR* InConnectionString, SQLSMALLINT StringLength1, SQLCHAR* OutConnectionString, SQLSMALLINT BufferLength, SQLSMALLINT* StringLength2Ptr, SQL_DRIVER_COMPLETION DriverCompletion);
+  SQLRETURN SQLDriverConnect(    SQLHDBC ConnectionHandle, SQLHWND WindowHandle, SQLTCHAR* InConnectionString, SQLSMALLINT StringLength1, SQLTCHAR* OutConnectionString, SQLSMALLINT BufferLength, SQLSMALLINT* StringLength2Ptr, SQL_DRIVER_COMPLETION DriverCompletion);
   SQLRETURN SQLDrivers(          SQLHENV EnvironmentHandle, SQLUSMALLINT Direction, SQLCHAR* DriverDescription, SQLSMALLINT BufferLength1, SQLSMALLINT* DescriptionLengthPtr, SQLCHAR* DriverAttributes, SQLSMALLINT BufferLength2, SQLSMALLINT* AttributesLengthPtr);
   SQLRETURN SQLDrivers(          SQLHENV EnvironmentHandle, SQLUSMALLINT Direction, SQLTCHAR* DriverDescription, SQLSMALLINT BufferLength1, SQLSMALLINT* DescriptionLengthPtr, SQLTCHAR* DriverAttributes, SQLSMALLINT BufferLength2, SQLSMALLINT* AttributesLengthPtr);
-  SQLRETURN SQLEndTran(          WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, WINAPI_SQL_ENDTRAN_OPTION CompletionType);
+  SQLRETURN SQLEndTran(          SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQL_ENDTRAN_OPTION CompletionType);
   SQLRETURN SQLError(            SQLHENV EnvironmentHandle, SQLHDBC ConnectionHandle, SQLHSTMT StatementHandle, SQLCHAR* SQLState, SQLINTEGER* NativeError, SQLCHAR* MessageText, SQLSMALLINT BufferLength, SQLSMALLINT* TextLength);
   SQLRETURN SQLError(            SQLHENV EnvironmentHandle, SQLHDBC ConnectionHandle, SQLHSTMT StatementHandle, SQLTCHAR* SQLState, SQLINTEGER* NativeError, SQLTCHAR* MessageText, SQLSMALLINT BufferLength, SQLSMALLINT* TextLength);
   SQLRETURN SQLExecDirect(       SQLHSTMT StatementHandle, SQLCHAR* StatementText, SQLINTEGER TextLength);
@@ -93,13 +93,13 @@ ffi.cdef [[
   SQLRETURN SQLExecute(          SQLHSTMT StatementHandle);
   SQLRETURN SQLExtendedFetch(    SQLHSTMT StatementHandle, SQLUSMALLINT FetchOrientation, SQLLEN FetchOffset, SQLULEN* RowCountPtr, SQLUSMALLINT* RowStatusArray);
   SQLRETURN SQLFetch(            SQLHSTMT StatementHandle);
-  SQLRETURN SQLFetchScroll(      SQLHSTMT StatementHandle, WINAPI_SQL_FETCH_TYPE FetchOrientation, SQLLEN FetchOffset);
+  SQLRETURN SQLFetchScroll(      SQLHSTMT StatementHandle, SQL_FETCH_TYPE FetchOrientation, SQLLEN FetchOffset);
   SQLRETURN SQLForeignKeys(      SQLHSTMT StatementHandle, SQLCHAR* PKCatalogName, SQLSMALLINT NameLength1, SQLCHAR* PKSchemaName, SQLSMALLINT NameLength2, SQLCHAR* PKTableName, SQLSMALLINT NameLength3, SQLCHAR* FKCatalogName, SQLSMALLINT NameLength4, SQLCHAR* FKSchemaName, SQLSMALLINT NameLength5, SQLCHAR* FKTableName, SQLSMALLINT NameLength6);
   SQLRETURN SQLForeignKeys(      SQLHSTMT StatementHandle, SQLTCHAR* PKCatalogName, SQLSMALLINT NameLength1, SQLTCHAR* PKSchemaName, SQLSMALLINT NameLength2, SQLTCHAR* PKTableName, SQLSMALLINT NameLength3, SQLTCHAR* FKCatalogName, SQLSMALLINT NameLength4, SQLTCHAR* FKSchemaName, SQLSMALLINT NameLength5, SQLTCHAR* FKTableName, SQLSMALLINT NameLength6);
   SQLRETURN SQLFreeConnect(      SQLHDBC ConnectionHandle);
   SQLRETURN SQLFreeEnv(          SQLHENV EnvironmentHandle);
-  SQLRETURN SQLFreeHandle(       WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle);
-  SQLRETURN SQLFreeStmt(         SQLHSTMT StatementHandle, WINAPI_SQL_FREESTMT_OPTION Option);
+  SQLRETURN SQLFreeHandle(       SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle);
+  SQLRETURN SQLFreeStmt(         SQLHSTMT StatementHandle, SQL_FREESTMT_OPTION Option);
   SQLRETURN SQLGetConnectAttr(   SQLHDBC ConnectionHandle, SQLINTEGER Attribute, SQLPOINTER ValuePtr, SQLINTEGER BufferLength, SQLINTEGER* StringLengthPtr);
   SQLRETURN SQLGetConnectAttr(   SQLHDBC ConnectionHandle, SQLINTEGER Attribute, SQLPOINTER ValuePtr, SQLINTEGER BufferLength, SQLINTEGER* StringLengthPtr);
   SQLRETURN SQLGetConnectOption( SQLHDBC ConnectionHandle, SQLUSMALLINT Option, SQLPOINTER Value);
@@ -111,10 +111,10 @@ ffi.cdef [[
   SQLRETURN SQLGetDescField(     SQLHDESC DescriptorHandle, SQLSMALLINT RecNumber, SQLSMALLINT FieldIdentifier, SQLPOINTER ValuePtr, SQLINTEGER BufferLength, SQLINTEGER* StringLengthPtr);
   SQLRETURN SQLGetDescRec(       SQLHDESC DescriptorHandle, SQLSMALLINT RecNumber, SQLCHAR* Name, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr, SQLSMALLINT* TypePtr, SQLSMALLINT* SubTypePtr, SQLLEN* LengthPtr, SQLSMALLINT* PrecisionPtr, SQLSMALLINT* ScalePtr, SQLSMALLINT* NullablePtr);
   SQLRETURN SQLGetDescRec(       SQLHDESC DescriptorHandle, SQLSMALLINT RecNumber, SQLTCHAR* Name, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr, SQLSMALLINT* TypePtr, SQLSMALLINT* SubTypePtr, SQLLEN* LengthPtr, SQLSMALLINT* PrecisionPtr, SQLSMALLINT* ScalePtr, SQLSMALLINT* NullablePtr);
-  SQLRETURN SQLGetDiagField(     WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQLSMALLINT RecNumber, SQLSMALLINT DiagIdentifier, SQLPOINTER DiagInfoPtr, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr);
-  SQLRETURN SQLGetDiagField(     WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQLSMALLINT RecNumber, SQLSMALLINT DiagIdentifier, SQLPOINTER DiagInfoPtr, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr);
-  SQLRETURN SQLGetDiagRec(       WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQLSMALLINT RecNumber, SQLCHAR* SQLState, SQLINTEGER* NativeErrorPtr, SQLCHAR* MessageText, SQLSMALLINT BufferLength, SQLSMALLINT* TextLengthPtr);
-  SQLRETURN SQLGetDiagRec(       WINAPI_SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQLSMALLINT RecNumber, SQLTCHAR* SQLState, SQLINTEGER* NativeErrorPtr, SQLTCHAR* MessageText, SQLSMALLINT BufferLength, SQLSMALLINT* TextLengthPtr);
+  SQLRETURN SQLGetDiagField(     SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQLSMALLINT RecNumber, SQLSMALLINT DiagIdentifier, SQLPOINTER DiagInfoPtr, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr);
+  SQLRETURN SQLGetDiagField(     SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQLSMALLINT RecNumber, SQLSMALLINT DiagIdentifier, SQLPOINTER DiagInfoPtr, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr);
+  SQLRETURN SQLGetDiagRec(       SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQLSMALLINT RecNumber, SQLCHAR* SQLState, SQLINTEGER* NativeErrorPtr, SQLCHAR* MessageText, SQLSMALLINT BufferLength, SQLSMALLINT* TextLengthPtr);
+  SQLRETURN SQLGetDiagRec(       SQL_HANDLE_TYPE HandleType, SQLHANDLE Handle, SQLSMALLINT RecNumber, SQLTCHAR* SQLState, SQLINTEGER* NativeErrorPtr, SQLTCHAR* MessageText, SQLSMALLINT BufferLength, SQLSMALLINT* TextLengthPtr);
   SQLRETURN SQLGetEnvAttr(       SQLHENV EnvironmentHandle, SQLINTEGER Attribute, SQLPOINTER ValuePtr, SQLINTEGER BufferLength, SQLINTEGER* StringLengthPtr);
   SQLRETURN SQLGetFunctions(     SQLHDBC ConnectionHandle, SQLUSMALLINT FunctionId, SQLUSMALLINT* SupportedPtr);
   SQLRETURN SQLGetInfo(          SQLHDBC ConnectionHandle, SQLUSMALLINT InfoType, SQLPOINTER InfoValuePtr, SQLSMALLINT BufferLength, SQLSMALLINT* StringLengthPtr);
@@ -167,4 +167,4 @@ ffi.cdef [[
   SQLRETURN SQLTables(           SQLHSTMT StatementHandle, SQLTCHAR* CatalogName, SQLSMALLINT NameLength1, SQLTCHAR* SchemaName, SQLSMALLINT NameLength2, SQLTCHAR* TableName, SQLSMALLINT NameLength3, SQLTCHAR* TableType, SQLSMALLINT NameLength4);
   SQLRETURN SQLTransact(         SQLHENV EnvironmentHandle, SQLHDBC ConnectionHandle, SQLUSMALLINT CompletionType);
 ]]
-return ffi.load( 'ODBC32.DLL' )
+ffi.load( 'ODBC32.DLL' )

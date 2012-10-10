@@ -10,4 +10,4 @@ ffi.cdef [[
   HRESULT MFCreateVideoSampleFromSurface( IUnknown* pUnkSurface, IMFSample** ppSample);
   BOOL    MFIsFormatYUV(                  DWORD Format);
 ]]
-return ffi.load( 'Evr.dll' )
+ffi.load( 'Evr.dll' )

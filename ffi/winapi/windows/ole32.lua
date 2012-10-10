@@ -23,7 +23,7 @@ ffi.cdef [[
     USHORT usVersion;
     USHORT reserved;
     ULONG ulSectorSize;
-    WINAPI_WCHAR* pwcsTemplateFile;
+    WCHAR* pwcsTemplateFile;
   } STGOPTIONS;
   typedef struct COAUTHIDENTITY {
     USHORT* User;
@@ -58,11 +58,11 @@ ffi.cdef [[
   typedef DWORD EOLE_AUTHENTICATION_CAPABILITIES; //Alias
   typedef DWORD REGCLS; //Alias
   typedef DWORD STGFMT; //Alias
-  static const DWORD STGFMT_STORAGE = 0;
-  static const DWORD STGFMT_NATIVE = 1;
-  static const DWORD STGFMT_FILE = 3;
-  static const DWORD STGFMT_ANY = 4;
-  static const DWORD STGFMT_DOCFILE = 5;
+  static const STGFMT STGFMT_STORAGE = 0;
+  static const STGFMT STGFMT_NATIVE = 1;
+  static const STGFMT STGFMT_FILE = 3;
+  static const STGFMT STGFMT_ANY = 4;
+  static const STGFMT STGFMT_DOCFILE = 5;
   HRESULT                  BindMoniker(                           LPMONIKER pmk, DWORD grfOpt, REFIID iidResult, LPVOID* ppvResult);
   HRESULT                  CLSIDFromProgID(                       LPCOLESTR lpszProgID, LPCLSID lpclsid);
   HRESULT                  CLSIDFromProgIDEx(                     LPCOLESTR lpszProgID, LPCLSID lpclsid);
@@ -73,8 +73,8 @@ ffi.cdef [[
   HRESULT                  CoCopyProxy(                           IUnknown* pProxy, IUnknown** ppCopy);
   HRESULT                  CoCreateFreeThreadedMarshaler(         LPUNKNOWN punkOuter, LPUNKNOWN* ppunkMarshal);
   HRESULT                  CoCreateGuid(                          GUID* pguid);
-  HRESULT                  CoCreateInstance(                      REFCLSID rclsid, LPUNKNOWN pUnkOuter, WINAPI_CLSCTX dwClsContext, REFIID riid, LPVOID* ppv);
-  HRESULT                  CoCreateInstanceEx(                    REFCLSID rclsid, IUnknown* punkOuter, WINAPI_CLSCTX dwClsCtx, COSERVERINFO* pServerInfo, DWORD dwCount, MULTI_QI* pResults);
+  HRESULT                  CoCreateInstance(                      REFCLSID rclsid, LPUNKNOWN pUnkOuter, CLSCTX dwClsContext, REFIID riid, LPVOID* ppv);
+  HRESULT                  CoCreateInstanceEx(                    REFCLSID rclsid, IUnknown* punkOuter, CLSCTX dwClsCtx, COSERVERINFO* pServerInfo, DWORD dwCount, MULTI_QI* pResults);
   HRESULT                  CoDisableCallCancellation(             LPVOID pReserved);
   HRESULT                  CoDisconnectContext(                   DWORD dwTimeout);
   HRESULT                  CoDisconnectObject(                    LPUNKNOWN pUnk, DWORD dwReserved);
@@ -90,12 +90,12 @@ ffi.cdef [[
   HRESULT                  CoGetCallContext(                      REFIID riid, void** ppInterface);
   HRESULT                  CoGetCallerTID(                        LPDWORD lpdwTID);
   HRESULT                  CoGetCancelObject(                     DWORD dwThreadId, REFIID iid, void** ppUnk);
-  HRESULT                  CoGetClassObject(                      REFCLSID rclsid, WINAPI_CLSCTX dwClsContext, COSERVERINFO* pServerInfo, REFIID riid, LPVOID* ppv);
+  HRESULT                  CoGetClassObject(                      REFCLSID rclsid, CLSCTX dwClsContext, COSERVERINFO* pServerInfo, REFIID riid, LPVOID* ppv);
   HRESULT                  CoGetContextToken(                     ULONG_PTR* pToken);
   HRESULT                  CoGetCurrentLogicalThreadId(           GUID* pguid);
   DWORD                    CoGetCurrentProcess(                   );
-  HRESULT                  CoGetInstanceFromFile(                 COSERVERINFO* pServerInfo, CLSID* pClsid, IUnknown* punkOuter, WINAPI_CLSCTX dwClsCtx, DWORD grfMode, OLECHAR* pwszName, DWORD dwCount, MULTI_QI* pResults);
-  HRESULT                  CoGetInstanceFromIStorage(             COSERVERINFO* pServerInfo, CLSID* pClsid, IUnknown* punkOuter, WINAPI_CLSCTX dwClsCtx, struct IStorage* pstg, DWORD dwCount, MULTI_QI* pResults);
+  HRESULT                  CoGetInstanceFromFile(                 COSERVERINFO* pServerInfo, CLSID* pClsid, IUnknown* punkOuter, CLSCTX dwClsCtx, DWORD grfMode, OLECHAR* pwszName, DWORD dwCount, MULTI_QI* pResults);
+  HRESULT                  CoGetInstanceFromIStorage(             COSERVERINFO* pServerInfo, CLSID* pClsid, IUnknown* punkOuter, CLSCTX dwClsCtx, struct IStorage* pstg, DWORD dwCount, MULTI_QI* pResults);
   HRESULT                  CoGetInterceptor(                      REFIID iidIntercepted, IUnknown* punkOuter, REFIID iid, void** ppv);
   HRESULT                  CoGetInterfaceAndReleaseStream(        LPSTREAM pStm, REFIID iid, LPVOID* ppv);
   HRESULT                  CoGetMalloc(                           DWORD dwMemContext, LPMALLOC* ppMalloc);
@@ -108,8 +108,8 @@ ffi.cdef [[
   HRESULT                  CoGetTreatAsClass(                     REFCLSID clsidOld, LPCLSID pClsidNew);
   HRESULT                  CoImpersonateClient(                   );
   HRESULT                  CoInitialize(                          LPVOID pvReserved);
-  HRESULT                  CoInitializeEx(                        LPVOID pvReserved, WINAPI_COINIT_FLAG dwCoInit);
-  HRESULT                  CoInitializeSecurity(                  PSECURITY_DESCRIPTOR pSecDesc, LONG cAuthSvc, SOLE_AUTHENTICATION_SERVICE* asAuthSvc, void* pReserved1, WINAPI_RPC_C_AUTHN_LEVEL dwAuthnLevel, WINAPI_RPC_C_IMP_LEVEL dwImpLevel, void* pAuthList, EOLE_AUTHENTICATION_CAPABILITIES dwCapabilities, void* pReserved3);
+  HRESULT                  CoInitializeEx(                        LPVOID pvReserved, COINIT_FLAG dwCoInit);
+  HRESULT                  CoInitializeSecurity(                  PSECURITY_DESCRIPTOR pSecDesc, LONG cAuthSvc, SOLE_AUTHENTICATION_SERVICE* asAuthSvc, void* pReserved1, RPC_C_AUTHN_LEVEL dwAuthnLevel, RPC_C_IMP_LEVEL dwImpLevel, void* pAuthList, EOLE_AUTHENTICATION_CAPABILITIES dwCapabilities, void* pReserved3);
   HRESULT                  CoInstall(                             IBindCtx* pbc, DWORD dwFlags, uCLSSPEC* pClassSpec, QUERYCONTEXT* pQuery, LPWSTR pszCodeBase);
   HRESULT                  CoInvalidateRemoteMachineBindings(     LPOLESTR pszMachineName);
   BOOL                     CoIsHandlerConnected(                  LPUNKNOWN pUnk);
@@ -122,7 +122,7 @@ ffi.cdef [[
   HRESULT                  CoQueryAuthenticationServices(         DWORD* pcAuthSvc, SOLE_AUTHENTICATION_SERVICE** asAuthSvc);
   HRESULT                  CoQueryClientBlanket(                  DWORD* pAuthnSvc, DWORD* pAuthzSvc, OLECHAR** pServerPrincName, DWORD* pAuthnLevel, DWORD* pImpLevel, RPC_AUTHZ_HANDLE* pPrivs, DWORD* pCapabilities);
   HRESULT                  CoQueryProxyBlanket(                   IUnknown* pProxy, DWORD* pwAuthnSvc, DWORD* pAuthzSvc, OLECHAR** pServerPrincName, DWORD* pAuthnLevel, DWORD* pImpLevel, RPC_AUTH_IDENTITY_HANDLE* pAuthInfo, DWORD* pCapabilites);
-  HRESULT                  CoRegisterClassObject(                 REFCLSID rclsid, LPUNKNOWN pUnk, WINAPI_CLSCTX dwClsContext, REGCLS flags, LPDWORD lpdwRegister);
+  HRESULT                  CoRegisterClassObject(                 REFCLSID rclsid, LPUNKNOWN pUnk, CLSCTX dwClsContext, REGCLS flags, LPDWORD lpdwRegister);
   HRESULT                  CoRegisterInitializeSpy(               LPINITIALIZESPY pSpy, ULARGE_INTEGER* puliCookie);
   HRESULT                  CoRegisterMallocSpy(                   LPMALLOCSPY pMallocSpy);
   HRESULT                  CoRegisterMessageFilter(               LPMESSAGEFILTER lpMessageFilter, LPMESSAGEFILTER* lplpMessageFilter);
@@ -136,7 +136,7 @@ ffi.cdef [[
   HRESULT                  CoRevokeInitializeSpy(                 ULARGE_INTEGER uliCookie);
   HRESULT                  CoRevokeMallocSpy(                     );
   HRESULT                  CoSetCancelObject(                     IUnknown* pUnk);
-  HRESULT                  CoSetProxyBlanket(                     IUnknown* pProxy, WINAPI_RPC_C_AUTHN_SVC dwAuthnSvc, WINAPI_RPC_C_AUTHZ dwAuthzSvc, OLECHAR* pServerPrincName, WINAPI_RPC_C_AUTHN_LEVEL dwAuthnLevel, WINAPI_RPC_C_IMP_LEVEL dwImpLevel, RPC_AUTH_IDENTITY_HANDLE pAuthInfo, EOLE_AUTHENTICATION_CAPABILITIES dwCapabilities);
+  HRESULT                  CoSetProxyBlanket(                     IUnknown* pProxy, RPC_C_AUTHN_SVC dwAuthnSvc, RPC_C_AUTHZ dwAuthzSvc, OLECHAR* pServerPrincName, RPC_C_AUTHN_LEVEL dwAuthnLevel, RPC_C_IMP_LEVEL dwImpLevel, RPC_AUTH_IDENTITY_HANDLE pAuthInfo, EOLE_AUTHENTICATION_CAPABILITIES dwCapabilities);
   HRESULT                  CoSuspendClassObjects(                 );
   HRESULT                  CoSwitchCallContext(                   IUnknown* pNewObject, IUnknown** ppOldObject);
   LPVOID                   CoTaskMemAlloc(                        SIZE_T cb);
@@ -223,42 +223,42 @@ ffi.cdef [[
   HRESULT                  RevokeDragDrop(                        HWND hwnd);
   WINOLEAPI                CreateILockBytesOnHGlobal(             HGLOBAL hGlobal, BOOL fDeleteOnRelease, ILockBytes** ppLkbyt);
   WINOLEAPI                CreateStreamOnHGlobal(                 HGLOBAL hGlobal, BOOL fDeleteOnRelease, LPSTREAM* ppstm);
-  HRESULT                  FmtIdToPropStgName(                    WINAPI_FMTID* pfmtid, LPOLESTR oszName);
+  HRESULT                  FmtIdToPropStgName(                    FMTID* pfmtid, LPOLESTR oszName);
   WINOLEAPI                FreePropVariantArray(                  ULONG cVariants, PROPVARIANT* rgvars);
   WINOLEAPI                GetConvertStg(                         IStorage* pStg);
   WINOLEAPI                GetHGlobalFromILockBytes(              ILockBytes* pLkbyt, HGLOBAL* phglobal);
   WINOLEAPI                GetHGlobalFromStream(                  IStream* pstm, HGLOBAL* phglobal);
   WINOLEAPI                OleConvertIStorageToOLESTREAM(         IStorage* pStg, LPOLESTREAM lpolestream);
   WINOLEAPI                OleConvertIStorageToOLESTREAMEx(       IStorage* pStg, CLIPFORMAT cfFormat, LONG lWidth, LONG lHeight, DWORD dwSize, LPSTGMEDIUM pmedium, LPOLESTREAM lpolestm);
-  WINOLEAPI                OleConvertOLESTREAMToIStorage(         LPOLESTREAM lpolestream, IStorage* pstg, WINAPI_DVTARGETDEVICE* ptd);
+  WINOLEAPI                OleConvertOLESTREAMToIStorage(         LPOLESTREAM lpolestream, IStorage* pstg, DVTARGETDEVICE* ptd);
   WINOLEAPI                OleConvertOLESTREAMToIStorageEx(       LPOLESTREAM lpolestm, IStorage* pstg, CLIPFORMAT* pcfFormat, LONG* plWidth, LONG* plHeight, DWORD* pdwSize, LPSTGMEDIUM pmedium);
-  HRESULT                  PropStgNameToFmtId(                    WINAPI_LPOLESTR oszName, FMTID* pfmtid);
+  HRESULT                  PropStgNameToFmtId(                    LPOLESTR oszName, FMTID* pfmtid);
   WINOLEAPI                PropVariantClear(                      PROPVARIANT* pvar);
-  WINOLEAPI                PropVariantCopy(                       PROPVARIANT* pvarDest, WINAPI_PROPVARIANT* pvarSrc);
+  WINOLEAPI                PropVariantCopy(                       PROPVARIANT* pvarDest, PROPVARIANT* pvarSrc);
   WINOLEAPI                ReadClassStg(                          IStorage* pStg, CLSID* pclsid);
   WINOLEAPI                ReadClassStm(                          IStream* pStm, CLSID* pclsid);
   WINOLEAPI                ReadFmtUserTypeStg(                    IStorage* pStg, CLIPFORMAT* pcf, LPWSTR* lplpszUserType);
   BOOLEAN                  StgConvertPropertyToVariant(           SERIALIZEDPROPERTYVALUE* prop, USHORT CodePage, PROPVARIANT* pvar, IMemoryAllocator* pma);
   WINOLEAPI                SetConvertStg(                         IStorage* pStg, BOOL fConvert);
   SERIALIZEDPROPERTYVALUE* StgConvertVariantToProperty(           PROPVARIANT* pvar, USHORT CodePage, SERIALIZEDPROPERTYVALUE* pprop, ULONG* pcb, PROPID pid, BOOLEAN fReserved, ULONG* pcIndirect);
-  HRESULT                  StgCreateDocfile(                      WINAPI_WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, DWORD reserved, IStorage** ppstgOpen);
-  WINOLEAPI                StgCreateDocfileOnILockBytes(          ILockBytes* plkbyt, WINAPI_STGM_FLAGS grfMode, DWORD reserved, IStorage** ppstgOpen);
+  HRESULT                  StgCreateDocfile(                      WCHAR* pwcsName, STGM_FLAGS grfMode, DWORD reserved, IStorage** ppstgOpen);
+  WINOLEAPI                StgCreateDocfileOnILockBytes(          ILockBytes* plkbyt, STGM_FLAGS grfMode, DWORD reserved, IStorage** ppstgOpen);
   HRESULT                  StgCreatePropSetStg(                   IStorage* pStorage, DWORD dwReserved, IPropertySetStorage** ppPropSetStg);
-  HRESULT                  StgCreatePropStg(                      IUnknown* pUnk, REFFMTID fmtid, WINAPI_CLSID* pclsid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage** ppPropStg);
-  WINOLEAPI                StgCreateStorageEx(                    WINAPI_WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, STGFMT stgfmt, DWORD grfAttrs, STGOPTIONS* pStgOptions, PSECURITY_DESCRIPTOR* pSecurityDescriptor, REFIID riid, void** ppObjectOpen);
+  HRESULT                  StgCreatePropStg(                      IUnknown* pUnk, REFFMTID fmtid, CLSID* pclsid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage** ppPropStg);
+  WINOLEAPI                StgCreateStorageEx(                    WCHAR* pwcsName, STGM_FLAGS grfMode, STGFMT stgfmt, DWORD grfAttrs, STGOPTIONS* pStgOptions, PSECURITY_DESCRIPTOR* pSecurityDescriptor, REFIID riid, void** ppObjectOpen);
   WINOLEAPI                StgGetIFillLockBytesOnFile(            OLECHAR* pwcsName, IFillLockBytes** ppflb);
   WINOLEAPI                StgGetIFillLockBytesOnILockBytes(      ILockBytes* pilb, IFillLockBytes** ppflb);
-  WINOLEAPI                StgIsStorageFile(                      WINAPI_WCHAR* pwcsName);
+  WINOLEAPI                StgIsStorageFile(                      WCHAR* pwcsName);
   WINOLEAPI                StgIsStorageILockBytes(                ILockBytes* plkbyt);
   WINOLEAPI                StgOpenAsyncDocfileOnIFillLockBytes(   IFillLockBytes* ppflb, DWORD grfmode, DWORD asyncFlags, IStorage** ppstgOpen);
   HRESULT                  StgOpenPropStg(                        IUnknown* pUnk, REFFMTID fmtid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage** ppPropStg);
-  HRESULT                  StgOpenStorage(                        WINAPI_WCHAR* pwcsName, IStorage* pstgPriority, WINAPI_STGM_FLAGS grfMode, SNB snbExclude, DWORD reserved, IStorage** ppstgOpen);
-  HRESULT                  StgOpenStorageEx(                      WINAPI_WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, STGFMT stgfmt, DWORD grfAttrs, STGOPTIONS* pStgOptions, void* reserved2, REFIID riid, void** ppObjectOpen);
+  HRESULT                  StgOpenStorage(                        WCHAR* pwcsName, IStorage* pstgPriority, STGM_FLAGS grfMode, SNB snbExclude, DWORD reserved, IStorage** ppstgOpen);
+  HRESULT                  StgOpenStorageEx(                      WCHAR* pwcsName, STGM_FLAGS grfMode, STGFMT stgfmt, DWORD grfAttrs, STGOPTIONS* pStgOptions, void* reserved2, REFIID riid, void** ppObjectOpen);
   WINOLEAPI                StgOpenStorageOnILockBytes(            ILockBytes* plkbyt, IStorage* pStgPriority, DWORD grfMode, SNB snbExclude, DWORD reserved, IStorage** ppstgOpen);
   ULONG                    StgPropertyLengthAsVariant(            SERIALIZEDPROPERTYVALUE* pProp, ULONG cbProp, USHORT CodePage, BYTE bReserved);
-  WINOLEAPI                StgSetTimes(                           WCHAR const* lpszName, FILETIME const* pctime, FILETIME const* patime, FILETIME const* pmtime);
+  WINOLEAPI                StgSetTimes(                           WCHAR* lpszName, FILETIME* pctime, FILETIME* patime, FILETIME* pmtime);
   WINOLEAPI                WriteClassStg(                         IStorage* pStg, REFCLSID rclsid);
   WINOLEAPI                WriteClassStm(                         IStream* pStm, REFCLSID rclsid);
   WINOLEAPI                WriteFmtUserTypeStg(                   IStorage* pStg, CLIPFORMAT cf, LPWSTR* lpszUserType);
 ]]
-return ffi.load( 'Ole32.dll' )
+ffi.load( 'Ole32.dll' )

@@ -4,12 +4,12 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef HANDLE HPTPROVIDER; //Alias
   typedef UINT EDefaultDevmodeType; //Alias
-  static const UINT kUserDefaultDevmode = 0;
-  static const UINT kPrinterDefaultDevmode = 1;
+  static const EDefaultDevmodeType kUserDefaultDevmode = 0;
+  static const EDefaultDevmodeType kPrinterDefaultDevmode = 1;
   typedef UINT EPrintTicketScope; //Alias
-  static const UINT kPTPageScope = 0;
-  static const UINT kPTDocumentScope = 1;
-  static const UINT kPTJobScope = 3;
+  static const EPrintTicketScope kPTPageScope = 0;
+  static const EPrintTicketScope kPTDocumentScope = 1;
+  static const EPrintTicketScope kPTJobScope = 3;
   HRESULT PTConvertPrintTicketToDevMode( HPTPROVIDER hProvider, IStream* pPrintTicket, EDefaultDevmodeType baseDevmodeType, EPrintTicketScope scope, ULONG* pcbDevmode, PDEVMODE* ppDevmode, BSTR* pbstrErrorMessage);
   HRESULT PTConvertDevModeToPrintTicket( HPTPROVIDER hProvider, ULONG cbDevmode, PDEVMODE pDevmode, EPrintTicketScope scope, IStream* pPrintTicket);
   HRESULT PTReleaseMemory(               PVOID pBuffer);
@@ -20,4 +20,4 @@ ffi.cdef [[
   HRESULT PTCloseProvider(               HPTPROVIDER hProvider);
   HRESULT PTQuerySchemaVersionSupport(   PCWSTR pszPrinterName, DWORD* pMaxVersion);
 ]]
-return ffi.load( 'Prntvpt.dll' )
+ffi.load( 'Prntvpt.dll' )
