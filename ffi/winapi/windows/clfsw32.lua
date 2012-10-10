@@ -20,7 +20,7 @@ ffi.cdef [[
     LONGLONG ContainerSize;
     ULONG FileNameActualLength;
     ULONG FileNameLength;
-    WCHAR FileName[CLFS_MAX_CONTAINER_INFO];
+    WCHAR FileName_CLFS_MAX_CONTAINER_INFO_;
     CLFS_CONTAINER_STATE State;
     CLFS_CONTAINER_ID PhysicalContainerId;
     CLFS_CONTAINER_ID LogicalContainerId;

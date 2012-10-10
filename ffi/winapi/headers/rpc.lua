@@ -15,7 +15,7 @@ ffi.cdef [[
   typedef LPVOID PFN_RPCNOTIFICATION_ROUTINE; //Alias
   typedef struct RPC_PROTSEQ_VECTOR {
     unsigned int Count;
-    RPC_TSTR Protseq[1];
+    RPC_TSTR Protseq_1_;
   } RPC_PROTSEQ_VECTOR;
   typedef union RPC_BINDING_HANDLE_TEMPLATE_V1_u {
     RPC_TSTR Reserved;
@@ -95,7 +95,7 @@ ffi.cdef [[
   } RPC_BINDING_HANDLE_OPTIONS_V1;
   typedef struct RPC_BINDING_VECTOR {
     unsigned long Count;
-    RPC_BINDING_HANDLE BindingH[1];
+    RPC_BINDING_HANDLE BindingH_1_;
   } RPC_BINDING_VECTOR;
   typedef struct RPC_IF_ID {
     UUID Uuid;
@@ -104,15 +104,15 @@ ffi.cdef [[
   } RPC_IF_ID;
   typedef struct RPC_IF_ID_VECTOR {
     unsigned long Count;
-    RPC_IF_ID* IfId[1];
+    RPC_IF_ID* IfId_1_;
   } RPC_IF_ID_VECTOR;
   typedef struct RPC_STATS_VECTOR {
     unsigned int Count;
-    unsigned long Stats[1];
+    unsigned long Stats_1_;
   } RPC_STATS_VECTOR;
   typedef struct UUID_VECTOR {
     unsigned long Count;
-    UUID* Uuid[1];
+    UUID* Uuid_1_;
   } UUID_VECTOR;
   typedef struct RPC_VERSION {
     unsigned short MajorVersion;
@@ -199,7 +199,7 @@ ffi.cdef [[
     USHORT DetectionLocation;
     RPC_EE_FLAGS Flags;
     int NumberOfParameters;
-    RPC_EE_INFO_PARAM Parameters[MaxNumberOfEEInfoParams];
+    RPC_EE_INFO_PARAM Parameters_MaxNumberOfEEInfoParams_;
   } RPC_EXTENDED_ERROR_INFO;
   typedef struct RPC_ASYNC_NOTIFICATION_INFO_s1 {
     PFN_RPCNOTIFICATION_ROUTINE NotificationRoutine;
@@ -247,7 +247,7 @@ ffi.cdef [[
     RPC_ASYNC_EVENT Event;
     RPC_NOTIFICATION_TYPES NotificationType;
     RPC_ASYNC_NOTIFICATION_INFO u;
-    LONG_PTR Reserved[4];
+    LONG_PTR Reserved_4_;
   } RPC_ASYNC_STATE;
   typedef RPC_ASYNC_STATE *PRPC_ASYNC_STATE; //Pointer
 ]]

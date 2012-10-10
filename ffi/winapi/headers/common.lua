@@ -136,7 +136,6 @@ ffi.cdef[[
   typedef SIZE_T* PSIZE_T; //Alias
   typedef float FLOAT; //Alias
   typedef FLOAT *PFLOAT; //Pointer
-  typedef float float; //Alias
   typedef double DOUBLE; //Alias
   enum { MAX_PATH = 260 };
   enum { ANYSIZE_ARRAY = 1 };

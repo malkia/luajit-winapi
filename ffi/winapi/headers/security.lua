@@ -85,7 +85,7 @@ ffi.cdef [[
   } EXPLICIT_ACCESS;
   typedef EXPLICIT_ACCESS *PEXPLICIT_ACCESS; //Pointer
   typedef struct TOKEN_SOURCE {
-    CHAR SourceName[TOKEN_SOURCE_LENGTH];
+    CHAR SourceName_TOKEN_SOURCE_LENGTH_;
     LUID SourceIdentifier;
   } TOKEN_SOURCE;
   typedef TOKEN_SOURCE *PTOKEN_SOURCE; //Pointer
@@ -103,7 +103,7 @@ ffi.cdef [[
     LPCWSTR ImagePath;
     HANDLE hImageFileHandle;
     URLZONE UrlZoneId;
-    BYTE ImageHash[SAFER_MAX_HASH_SIZE];
+    BYTE ImageHash_SAFER_MAX_HASH_SIZE_;
     DWORD dwImageHashSize;
     LARGE_INTEGER ImageSize;
     ALG_ID HashAlgorithm;
@@ -114,7 +114,7 @@ ffi.cdef [[
 # pragma pack( pop )
   typedef SAFER_CODE_PROPERTIES *PSAFER_CODE_PROPERTIES; //Pointer
   typedef struct SID_IDENTIFIER_AUTHORITY {
-    BYTE Value[6];
+    BYTE Value_6_;
   } SID_IDENTIFIER_AUTHORITY;
   typedef SID_IDENTIFIER_AUTHORITY *PSID_IDENTIFIER_AUTHORITY; //Pointer
   typedef struct AUDIT_POLICY_INFORMATION {
@@ -171,12 +171,12 @@ ffi.cdef [[
   typedef struct PRIVILEGE_SET {
     DWORD PrivilegeCount;
     PRIVILEGE_SET Control;
-    LUID_AND_ATTRIBUTES Privilege[ANYSIZE_ARRAY];
+    LUID_AND_ATTRIBUTES Privilege_ANYSIZE_ARRAY_;
   } PRIVILEGE_SET;
   typedef PRIVILEGE_SET *PPRIVILEGE_SET; //Pointer
   typedef struct TOKEN_PRIVILEGES {
     DWORD PrivilegeCount;
-    LUID_AND_ATTRIBUTES Privileges[ANYSIZE_ARRAY];
+    LUID_AND_ATTRIBUTES Privileges_ANYSIZE_ARRAY_;
   } TOKEN_PRIVILEGES;
   typedef TOKEN_PRIVILEGES *PTOKEN_PRIVILEGES; //Pointer
   typedef struct ACL {
@@ -511,7 +511,7 @@ ffi.cdef [[
   typedef SID_AND_ATTRIBUTES *PSID_AND_ATTRIBUTES; //Pointer
   typedef struct TOKEN_GROUPS {
     DWORD GroupCount;
-    SID_AND_ATTRIBUTES Groups[ANYSIZE_ARRAY];
+    SID_AND_ATTRIBUTES Groups_ANYSIZE_ARRAY_;
   } TOKEN_GROUPS;
   typedef TOKEN_GROUPS *PTOKEN_GROUPS; //Pointer
   typedef struct SECURITY_DESCRIPTOR {

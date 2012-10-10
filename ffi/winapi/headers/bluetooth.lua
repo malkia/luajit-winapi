@@ -68,7 +68,7 @@ ffi.cdef [[
   typedef struct BLUETOOTH_RADIO_INFO {
     DWORD dwSize;
     BLUETOOTH_ADDRESS address;
-    WCHAR szName[BLUETOOTH_MAX_NAME_SIZE];
+    WCHAR szName_BLUETOOTH_MAX_NAME_SIZE_;
     ULONG ulClassofDevice;
     USHORT lmpSubversion;
     BTH_MFG manufacturer;
@@ -83,22 +83,22 @@ ffi.cdef [[
     BOOL fAuthenticated;
     SYSTEMTIME stLastSeen;
     SYSTEMTIME stLastUsed;
-    WCHAR szName[BLUETOOTH_MAX_NAME_SIZE];
+    WCHAR szName_BLUETOOTH_MAX_NAME_SIZE_;
   } BLUETOOTH_DEVICE_INFO;
   typedef BLUETOOTH_DEVICE_INFO *PBLUETOOTH_DEVICE_INFO; //Pointer
   typedef struct BLUETOOTH_LOCAL_SERVICE_INFO {
     BOOL Enabled;
     BLUETOOTH_ADDRESS btAddr;
-    WCHAR szName[BLUETOOTH_MAX_SERVICE_NAME_SIZE];
-    WCHAR szDeviceString[BLUETOOTH_DEVICE_NAME_SIZE];
+    WCHAR szName_BLUETOOTH_MAX_SERVICE_NAME_SIZE_;
+    WCHAR szDeviceString_BLUETOOTH_DEVICE_NAME_SIZE_;
   } BLUETOOTH_LOCAL_SERVICE_INFO;
   typedef struct BLUETOOTH_PIN_INFO {
-    UCHAR pin[BTH_MAX_PIN_SIZE];
+    UCHAR pin_BTH_MAX_PIN_SIZE_;
     UCHAR pinLength;
   } BLUETOOTH_PIN_INFO;
   typedef struct BLUETOOTH_OOB_DATA_INFO {
-    UCHAR C[16];
-    UCHAR R[16];
+    UCHAR C_16_;
+    UCHAR R_16_;
   } BLUETOOTH_OOB_DATA_INFO;
   typedef BLUETOOTH_OOB_DATA_INFO *PBLUETOOTH_OOB_DATA_INFO; //Pointer
   typedef struct BLUETOOTH_NUMERIC_COMPARISON_INFO {

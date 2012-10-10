@@ -7,7 +7,7 @@ ffi.cdef [[
   typedef LPVOID PFN_CDF_PARSE_ERROR_CALLBACK; //Alias
   typedef struct CATALOG_INFO {
     DWORD cbStruct;
-    WCHAR wszCatalogFile[MAX_PATH];
+    WCHAR wszCatalogFile_MAX_PATH_;
   } CATALOG_INFO;
   typedef DWORD WintrustPolicyFlags; //Alias
   BOOL                     OpenPersonalTrustDBDialog(             HWND hwndParent);

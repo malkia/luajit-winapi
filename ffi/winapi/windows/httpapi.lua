@@ -141,7 +141,7 @@ ffi.cdef [[
     PHTTP_UNKNOWN_HEADER pUnknownHeaders;
     USHORT TrailerCount;
     PHTTP_UNKNOWN_HEADER pTrailers;
-    HTTP_KNOWN_HEADER KnownHeaders[HttpHeaderRequestMaximum];
+    HTTP_KNOWN_HEADER KnownHeaders_HttpHeaderRequestMaximum_;
   } HTTP_REQUEST_HEADERS;
   typedef struct HTTP_SSL_CLIENT_CERT_INFO {
     CERT_TRUST_Error CertFlags;
@@ -203,7 +203,7 @@ ffi.cdef [[
     PHTTP_UNKNOWN_HEADER pUnknownHeaders;
     USHORT TrailerCount;
     PHTTP_UNKNOWN_HEADER pTrailers;
-    HTTP_KNOWN_HEADER KnownHeaders[HttpHeaderResponseMaximum];
+    HTTP_KNOWN_HEADER KnownHeaders_HttpHeaderResponseMaximum_;
   } HTTP_RESPONSE_HEADERS;
   typedef struct HTTP_RESPONSE_V1 {
     HTTP_RESPONSE_FLAG Flags;

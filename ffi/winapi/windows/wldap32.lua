@@ -4,9 +4,9 @@ ffi.cdef [[
   typedef LPVOID PLDAPSearch; //Alias
   typedef struct LDAP_s {
     UINT_PTR sb_sd;
-    UCHAR Reserved1[41];
+    UCHAR Reserved1_41_;
     ULONG_PTR sb_naddr;
-    UCHAR Reserved2[24];
+    UCHAR Reserved2_24_;
   } LDAP_s;
   typedef struct LDAP {
     LDAP_s ld_sb;
@@ -20,7 +20,7 @@ ffi.cdef [[
     PCHAR ld_matched;
     PCHAR ld_error;
     ULONG ld_msgid;
-    UCHAR Reserved3[25];
+    UCHAR Reserved3_25_;
     ULONG ld_cldaptries;
     ULONG ld_cldaptimeout;
     ULONG ld_refhoplimit;

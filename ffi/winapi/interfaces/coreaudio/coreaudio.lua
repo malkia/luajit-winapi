@@ -209,7 +209,7 @@ ffi.cdef [[
     BOOL HDCPCapable;
     BOOL AICapable;
     UCHAR SinkDescriptionLength;
-    WCHAR SinkDescription[MAX_SINK_DESCRIPTION_NAME_LENGTH];
+    WCHAR SinkDescription_MAX_SINK_DESCRIPTION_NAME_LENGTH_;
     LUID PortId;
   } KSJACK_SINK_INFORMATION;
   typedef struct AUDIO_VOLUME_NOTIFICATION_DATA {
@@ -217,7 +217,7 @@ ffi.cdef [[
     BOOL bMuted;
     float fMasterVolume;
     UINT nChannels;
-    float afChannelVolumes[1];
+    float afChannelVolumes_1_;
   } AUDIO_VOLUME_NOTIFICATION_DATA;
   typedef AUDIO_VOLUME_NOTIFICATION_DATA *PAUDIO_VOLUME_NOTIFICATION_DATA; //Pointer
 ]]

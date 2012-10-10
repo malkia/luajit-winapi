@@ -14,14 +14,14 @@ ffi.cdef [[
   typedef FontCharset FontCharset_int; //Alias
   typedef struct ENUMLOGFONTEX {
     LOGFONT elfLogFont;
-    TCHAR elfFullName[LF_FULLFACESIZE];
-    TCHAR elfStyle[LF_FACESIZE];
-    TCHAR elfScript[LF_FACESIZE];
+    TCHAR elfFullName_LF_FULLFACESIZE_;
+    TCHAR elfStyle_LF_FACESIZE_;
+    TCHAR elfScript_LF_FACESIZE_;
   } ENUMLOGFONTEX;
   typedef struct DESIGNVECTOR {
     DWORD dvReserved;
     DWORD dvNumAxes;
-    LONG dvValues[MM_MAX_NUMAXES];
+    LONG dvValues_MM_MAX_NUMAXES_;
   } DESIGNVECTOR;
   typedef struct ENUMLOGFONTEXDV {
     ENUMLOGFONTEX elfEnumLogfontEx;
@@ -36,7 +36,7 @@ ffi.cdef [[
     DWORD flAccel;
     DWORD cGlyphsSupported;
     DWORD cRanges;
-    WCRANGE ranges[1];
+    WCRANGE ranges_1_;
   } GLYPHSET;
   typedef GLYPHSET *LPGLYPHSET; //Pointer
   typedef UINT OTM_SELECTION; //Alias
@@ -193,7 +193,7 @@ ffi.cdef [[
   } OUTLINETEXTMETRIC;
   typedef OUTLINETEXTMETRIC *LPOUTLINETEXTMETRIC; //Pointer
   typedef struct HANDLETABLE {
-    HGDIOBJ objectHandle[1];
+    HGDIOBJ objectHandle_1_;
   } HANDLETABLE;
   typedef HANDLETABLE *LPHANDLETABLE; //Pointer
   typedef DWORD EMR_TYPE; //Alias
@@ -321,17 +321,17 @@ ffi.cdef [[
   typedef struct ENHMETARECORD {
     EMR_TYPE iType;
     DWORD nSize;
-    DWORD dParm[1];
+    DWORD dParm_1_;
   } ENHMETARECORD;
   typedef struct METARECORD {
     DWORD rdSize;
     WORD rdFunction;
-    WORD rdParm[1];
+    WORD rdParm_1_;
   } METARECORD;
   typedef METARECORD *LPMETARECORD; //Pointer
   typedef struct FONTSIGNATURE {
-    DWORD fsUsb[4];
-    DWORD fsCsb[2];
+    DWORD fsUsb_4_;
+    DWORD fsCsb_2_;
   } FONTSIGNATURE;
   typedef FONTSIGNATURE *LPFONTSIGNATURE; //Pointer
   typedef struct CHARSETINFO {

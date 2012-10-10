@@ -92,18 +92,18 @@ ffi.cdef [[
   typedef ULONG FlagList_FLAGS; //Alias
   typedef struct FlagList {
     ULONG cFlags;
-    FlagList_FLAGS ulFlag[MAPI_DIM];
+    FlagList_FLAGS ulFlag_MAPI_DIM_;
   } FlagList;
   typedef FlagList *LPFlagList; //Pointer
   typedef BYTE ENTRYID_FLAGS; //Alias
   typedef struct ENTRYID {
-    ENTRYID_FLAGS abFlags[4];
-    BYTE ab[MAPI_DIM];
+    ENTRYID_FLAGS abFlags_4_;
+    BYTE ab_MAPI_DIM_;
   } ENTRYID;
   typedef ENTRYID *LPENTRYID; //Pointer
   typedef struct SMessageClassArray {
     ULONG cValues;
-    LPCSTR aMessageClass[MAPI_DIM];
+    LPCSTR aMessageClass_MAPI_DIM_;
   } SMessageClassArray;
   typedef SMessageClassArray *LPSMESSAGECLASSARRAY; //Pointer
   typedef ULONG MAPINAMEID_CHOICE; //Alias
@@ -146,12 +146,12 @@ ffi.cdef [[
   typedef struct SMAPIFormPropArray {
     ULONG cProps;
     ULONG ulPad;
-    SMAPIFormProp aFormProp[MAPI_DIM];
+    SMAPIFormProp aFormProp_MAPI_DIM_;
   } SMAPIFormPropArray;
   typedef SMAPIFormPropArray *LPMAPIFORMPROPARRAY; //Pointer
   typedef struct SMAPIFormInfoArray {
     ULONG cForms;
-    LPMAPIFORMINFO aFormInfo[MAPI_DIM];
+    LPMAPIFORMINFO aFormInfo_MAPI_DIM_;
   } SMAPIFormInfoArray;
   typedef SMAPIFormInfoArray *LPSMAPIFORMINFOARRAY; //Pointer
   typedef struct SMAPIVerb {
@@ -163,17 +163,17 @@ ffi.cdef [[
   } SMAPIVerb;
   typedef struct SMAPIVerbArray {
     ULONG cMAPIVerb;
-    SMAPIVerb aMAPIVerb[MAPI_DIM];
+    SMAPIVerb aMAPIVerb_MAPI_DIM_;
   } SMAPIVerbArray;
   typedef SMAPIVerbArray *LPMAPIVERBARRAY; //Pointer
   typedef struct NOTIFKEY {
     ULONG cb;
-    BYTE ab[MAPI_DIM];
+    BYTE ab_MAPI_DIM_;
   } NOTIFKEY;
   typedef NOTIFKEY *LPNOTIFKEY; //Pointer
   typedef struct SPropTagArray {
     ULONG cValues;
-    ULONG aulPropTag[MAPI_DIM];
+    ULONG aulPropTag_MAPI_DIM_;
   } SPropTagArray;
   typedef SPropTagArray *LPSPropTagArray; //Pointer
   typedef struct SRow {
@@ -184,7 +184,7 @@ ffi.cdef [[
   typedef SRow *LPSRow; //Pointer
   typedef struct SRowSet {
     ULONG cRows;
-    SRow aRow[MAPI_DIM];
+    SRow aRow_MAPI_DIM_;
   } SRowSet;
   typedef SRowSet *LPSRowSet; //Pointer
   typedef ULONG TABLE_SORT; //Alias
@@ -196,7 +196,7 @@ ffi.cdef [[
     ULONG cSorts;
     ULONG cCategories;
     ULONG cExpanded;
-    SSortOrder aSort[MAPI_DIM];
+    SSortOrder aSort_MAPI_DIM_;
   } SSortOrderSet;
   typedef SSortOrderSet *LPSSortOrderSet; //Pointer
   typedef struct ADRENTRY {
@@ -207,13 +207,13 @@ ffi.cdef [[
   typedef ADRENTRY *LPADRENTRY; //Pointer
   typedef struct ADRLIST {
     ULONG cEntries;
-    ADRENTRY aEntries[MAPI_DIM];
+    ADRENTRY aEntries_MAPI_DIM_;
   } ADRLIST;
   typedef ADRLIST *LPADRLIST; //Pointer
   typedef ULONG PROPATTR_FLAGS; //Alias
   typedef struct SPropAttrArray {
     ULONG cValues;
-    PROPATTR_FLAGS aPropAttr[MAPI_DIM];
+    PROPATTR_FLAGS aPropAttr_MAPI_DIM_;
   } SPropAttrArray;
   typedef SPropAttrArray *LPSPropAttrArray; //Pointer
   typedef union DTPAGE_u {
@@ -234,7 +234,7 @@ ffi.cdef [[
   } SPropProblem;
   typedef struct SPropProblemArray {
     ULONG cProblem;
-    SPropProblem aProblem[MAPI_DIM];
+    SPropProblem aProblem_MAPI_DIM_;
   } SPropProblemArray;
   typedef struct STnefProblem {
     ULONG ulComponent;
@@ -244,7 +244,7 @@ ffi.cdef [[
   } STnefProblem;
   typedef struct STnefProblemArray {
     ULONG cProblem;
-    STnefProblem aProblem[MAPI_DIM];
+    STnefProblem aProblem_MAPI_DIM_;
   } STnefProblemArray;
   typedef UINT METHODS; //Alias
   typedef ULONG MapiObjType; //Alias

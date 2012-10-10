@@ -92,7 +92,7 @@ ffi.cdef [[
   } CONFIRM_CONFLICT_ITEM;
   typedef struct BYTE_BLOB {
     unsigned long clSize;
-    byte abData[1];
+    byte abData_1_;
   } BYTE_BLOB;
   typedef struct SYNCMGR_CONFLICT_ID_INFO {
     BYTE_BLOB* pblobID;

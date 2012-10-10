@@ -15,17 +15,17 @@ ffi.cdef [[
     THREAD_WRITE_FLAGS dwOtherThreadExFlags;
     MODULE_WRITE_FLAGS dwPreferredModuleFlags;
     MODULE_WRITE_FLAGS dwOtherModuleFlags;
-    WCHAR wzPreferredModuleList[WER_MAX_PREFERRED_MODULES_BUFFER];
+    WCHAR wzPreferredModuleList_WER_MAX_PREFERRED_MODULES_BUFFER_;
   } WER_DUMP_CUSTOM_OPTIONS;
   typedef WER_DUMP_CUSTOM_OPTIONS *PWER_DUMP_CUSTOM_OPTIONS; //Pointer
   typedef struct WER_REPORT_INFORMATION {
     DWORD dwSize;
     HANDLE hProcess;
-    WCHAR wzConsentKey[64];
-    WCHAR wzFriendlyEventName[128];
-    WCHAR wzApplicationName[128];
-    WCHAR wzApplicationPath[MAX_PATH];
-    WCHAR wzDescription[512];
+    WCHAR wzConsentKey_64_;
+    WCHAR wzFriendlyEventName_128_;
+    WCHAR wzApplicationName_128_;
+    WCHAR wzApplicationPath_MAX_PATH_;
+    WCHAR wzDescription_512_;
     HWND hwndParent;
   } WER_REPORT_INFORMATION;
   typedef WER_REPORT_INFORMATION *PWER_REPORT_INFORMATION; //Pointer

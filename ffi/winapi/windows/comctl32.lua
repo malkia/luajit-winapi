@@ -24,7 +24,7 @@ if ffi.arch == 'x86' then ffi.cdef[[
     int idCommand;
     BYTE fsState;
     BYTE fsStyle;
-    BYTE bReserved[2];
+    BYTE bReserved_2_;
     DWORD_PTR dwData;
     INT_PTR iString;
   } TBBUTTON;
@@ -38,7 +38,7 @@ if ffi.arch == 'x64' then ffi.cdef[[
     int idCommand;
     BYTE fsState;
     BYTE fsStyle;
-    BYTE bReserved[6];
+    BYTE bReserved_6_;
     DWORD_PTR dwData;
     INT_PTR iString;
   } TBBUTTON;

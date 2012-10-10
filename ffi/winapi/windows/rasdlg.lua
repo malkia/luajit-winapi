@@ -10,7 +10,7 @@ ffi.cdef [[
     RASDDFLAG dwFlags;
     LONG xDlg;
     LONG yDlg;
-    TCHAR szEntry[RAS_MaxEntryName_plus_1];
+    TCHAR szEntry_RAS_MaxEntryName_plus_1_;
     DWORD dwError;
     ULONG_PTR reserved;
     ULONG_PTR reserved2;

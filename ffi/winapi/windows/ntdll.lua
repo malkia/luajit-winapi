@@ -54,7 +54,7 @@ ffi.cdef [[
     LPVOID PreviousCaptureBuffer;
     ULONG PointerCount;
     ULONG_PTR BufferEnd;
-    ULONG_PTR PointerArray[1];
+    ULONG_PTR PointerArray_1_;
   } CSR_CAPTURE_BUFFER;
   typedef ULONG LDRP_FLAGS; //Alias
   typedef struct LDR_DATA_TABLE_ENTRY_u1_s {
@@ -164,7 +164,7 @@ ffi.cdef [[
     UNICODE_STRING DesktopInfo;
     UNICODE_STRING ShellInfo;
     UNICODE_STRING RuntimeData;
-    RTL_DRIVE_LETTER_CURDIR CurrentDirectories[32];
+    RTL_DRIVE_LETTER_CURDIR CurrentDirectories_32_;
   } RTL_USER_PROCESS_PARAMETERS;
   typedef RTL_USER_PROCESS_PARAMETERS *PRTL_USER_PROCESS_PARAMETERS; //Pointer
   typedef struct SECTION_IMAGE_INFORMATION {
@@ -178,7 +178,7 @@ ffi.cdef [[
     ULONG Unknown1;
     IMAGE_FILE_CHARACTERISTICS_ULONG ImageCharacteristics;
     ULONG ImageMachineType;
-    ULONG Unknown2[3];
+    ULONG Unknown2_3_;
   } SECTION_IMAGE_INFORMATION;
   typedef struct RTL_USER_PROCESS_INFORMATION {
     ULONG Size;
@@ -220,7 +220,7 @@ ffi.cdef [[
   typedef struct RTL_PROCESS_VERIFIER_OPTIONS {
     ULONG SizeStruct;
     ULONG Option;
-    UCHAR OptionData[1];
+    UCHAR OptionData_1_;
   } RTL_PROCESS_VERIFIER_OPTIONS;
   typedef RTL_PROCESS_VERIFIER_OPTIONS *PRTL_PROCESS_VERIFIER_OPTIONS; //Pointer
   typedef struct RTL_PROCESS_LOCK_INFORMATION {
@@ -237,7 +237,7 @@ ffi.cdef [[
   } RTL_PROCESS_LOCK_INFORMATION;
   typedef struct RTL_PROCESS_LOCKS {
     ULONG NumberOfLocks;
-    RTL_PROCESS_LOCK_INFORMATION Locks[1];
+    RTL_PROCESS_LOCK_INFORMATION Locks_1_;
   } RTL_PROCESS_LOCKS;
   typedef RTL_PROCESS_LOCKS *PRTL_PROCESS_LOCKS; //Pointer
   typedef struct RTL_HEAP_INFORMATION {
@@ -251,13 +251,13 @@ ffi.cdef [[
     ULONG NumberOfEntries;
     ULONG NumberOfPseudoTags;
     ULONG PseudoTagGranularity;
-    ULONG Reserved[4];
+    ULONG Reserved_4_;
     PVOID Tags;
     PVOID Entries;
   } RTL_HEAP_INFORMATION;
   typedef struct RTL_PROCESS_HEAPS {
     ULONG NumberOfHeaps;
-    RTL_HEAP_INFORMATION Heaps[1];
+    RTL_HEAP_INFORMATION Heaps_1_;
   } RTL_PROCESS_HEAPS;
   typedef RTL_PROCESS_HEAPS *PRTL_PROCESS_HEAPS; //Pointer
   typedef struct RTL_PROCESS_BACKTRACE_INFORMATION {
@@ -265,14 +265,14 @@ ffi.cdef [[
     ULONG TraceCount;
     USHORT Index;
     USHORT Depth;
-    PVOID BackTrace[16];
+    PVOID BackTrace_16_;
   } RTL_PROCESS_BACKTRACE_INFORMATION;
   typedef struct RTL_PROCESS_BACKTRACES {
     ULONG CommittedMemory;
     ULONG ReservedMemory;
     ULONG NumberOfBackTraceLookups;
     ULONG NumberOfBackTraces;
-    RTL_PROCESS_BACKTRACE_INFORMATION BackTraces[1];
+    RTL_PROCESS_BACKTRACE_INFORMATION BackTraces_1_;
   } RTL_PROCESS_BACKTRACES;
   typedef RTL_PROCESS_BACKTRACES *PRTL_PROCESS_BACKTRACES; //Pointer
   typedef struct RTL_PROCESS_MODULE_INFORMATION {
@@ -285,11 +285,11 @@ ffi.cdef [[
     USHORT InitOrderIndex;
     USHORT LoadCount;
     USHORT OffsetToFileName;
-    CHAR FullPathName[256];
+    CHAR FullPathName_256_;
   } RTL_PROCESS_MODULE_INFORMATION;
   typedef struct RTL_PROCESS_MODULES {
     ULONG NumberOfModules;
-    RTL_PROCESS_MODULE_INFORMATION Modules[1];
+    RTL_PROCESS_MODULE_INFORMATION Modules_1_;
   } RTL_PROCESS_MODULES;
   typedef RTL_PROCESS_MODULES *PRTL_PROCESS_MODULES; //Pointer
   typedef struct RTL_PROCESS_MODULE_INFORMATION_EX {
@@ -327,7 +327,7 @@ ffi.cdef [[
     HANDLE ProcessHeap;
     HANDLE CriticalSectionHandle;
     HANDLE CriticalSectionOwnerThread;
-    PVOID Reserved[4];
+    PVOID Reserved_4_;
   } RTL_DEBUG_INFORMATION;
   typedef RTL_DEBUG_INFORMATION *PRTL_DEBUG_INFORMATION; //Pointer
   typedef struct RTL_BITMAP {
@@ -373,7 +373,7 @@ ffi.cdef [[
   typedef struct RTL_HANDLE_TABLE {
     ULONG MaximumNumberOfHandles;
     ULONG SizeOfHandleTableEntry;
-    ULONG Reserved[2];
+    ULONG Reserved_2_;
     PRTL_HANDLE_TABLE_ENTRY FreeHandles;
     PRTL_HANDLE_TABLE_ENTRY CommittedHandles;
     PRTL_HANDLE_TABLE_ENTRY UnCommittedHandles;
@@ -383,7 +383,7 @@ ffi.cdef [[
   typedef struct RTL_MESSAGE_RESOURCE_ENTRY {
     USHORT Length;
     USHORT Flags;
-    CHAR Text[1];
+    CHAR Text_1_;
   } RTL_MESSAGE_RESOURCE_ENTRY;
   typedef RTL_MESSAGE_RESOURCE_ENTRY *PRTL_MESSAGE_RESOURCE_ENTRY; //Pointer
   typedef ULONG RTL_QUERY_REGISTRY_FLAGS; //Alias
@@ -405,7 +405,7 @@ ffi.cdef [[
     USHORT TransDefaultChar;
     USHORT TransUniDefaultChar;
     USHORT DBCSCodePage;
-    UCHAR LeadByte[MAXIMUM_LEADBYTES];
+    UCHAR LeadByte_MAXIMUM_LEADBYTES_;
     PUSHORT MultiByteTable;
     PVOID WideCharTable;
     PUSHORT DBCSRanges;
@@ -431,10 +431,10 @@ ffi.cdef [[
   } RTL_SYSTEM_TIME;
   typedef struct RTL_TIME_ZONE_INFORMATION {
     LONG Bias;
-    WCHAR StandardName[32];
+    WCHAR StandardName_32_;
     RTL_SYSTEM_TIME StandardDate;
     LONG StandardBias;
-    WCHAR DaylightName[32];
+    WCHAR DaylightName_32_;
     RTL_SYSTEM_TIME DaylightDate;
     LONG DaylightBias;
   } RTL_TIME_ZONE_INFORMATION;
@@ -460,7 +460,7 @@ ffi.cdef [[
     LPVOID LeftChild;
     LPVOID RightChild;
     CHAR Balance;
-    UCHAR Reserved[3];
+    UCHAR Reserved_3_;
   } RTL_BALANCED_LINKS;
   typedef RTL_BALANCED_LINKS *PRTL_BALANCED_LINKS; //Pointer
   typedef struct RTL_AVL_TABLE {
@@ -484,16 +484,16 @@ ffi.cdef [[
     UCHAR ClusterShift;
     UCHAR Reserved;
     USHORT NumberOfChunks;
-    ULONG CompressedChunkSizes[ANYSIZE_ARRAY];
+    ULONG CompressedChunkSizes_ANYSIZE_ARRAY_;
   } COMPRESSED_DATA_INFO;
   typedef COMPRESSED_DATA_INFO *PCOMPRESSED_DATA_INFO; //Pointer
   typedef struct GENERATE_NAME_CONTEXT {
     USHORT Checksum;
     BOOLEAN CheckSumInserted;
     UCHAR NameLength;
-    WCHAR NameBuffer[8];
+    WCHAR NameBuffer_8_;
     ULONG ExtensionLength;
-    WCHAR ExtensionBuffer[4];
+    WCHAR ExtensionBuffer_4_;
     ULONG LastIndexValue;
   } GENERATE_NAME_CONTEXT;
   typedef GENERATE_NAME_CONTEXT *PGENERATE_NAME_CONTEXT; //Pointer
@@ -508,7 +508,7 @@ ffi.cdef [[
     SIZE_T InitialCommit;
     SIZE_T InitialReserve;
     PRTL_HEAP_COMMIT_ROUTINE CommitRoutine;
-    SIZE_T Reserved[2];
+    SIZE_T Reserved_2_;
   } RTL_HEAP_PARAMETERS;
   typedef RTL_HEAP_PARAMETERS *PRTL_HEAP_PARAMETERS; //Pointer
   typedef struct RTL_HEAP_TAG_INFO {
@@ -530,7 +530,7 @@ ffi.cdef [[
     PRTL_HEAP_USAGE_ENTRY Entries;
     PRTL_HEAP_USAGE_ENTRY AddedEntries;
     PRTL_HEAP_USAGE_ENTRY RemovedEntries;
-    UCHAR Reserved[32];
+    UCHAR Reserved_32_;
   } RTL_HEAP_USAGE;
   typedef RTL_HEAP_USAGE *PRTL_HEAP_USAGE; //Pointer
   typedef union IO_STATUS_BLOCK_u {
@@ -585,7 +585,7 @@ ffi.cdef [[
     ULONG FriendlyNameOffset;
     ULONG BootFilePathOffset;
     ULONG OsOptionsLength;
-    CHAR OsOptions[1];
+    CHAR OsOptions_1_;
   } BOOT_ENTRY;
   typedef BOOT_ENTRY *PBOOT_ENTRY; //Pointer
   typedef struct BOOT_OPTIONS {
@@ -594,14 +594,14 @@ ffi.cdef [[
     ULONG Timeout;
     ULONG CurrentBootEntryId;
     ULONG NextBootEntryId;
-    WCHAR HeadlessRedirection[1];
+    WCHAR HeadlessRedirection_1_;
   } BOOT_OPTIONS;
   typedef BOOT_OPTIONS *PBOOT_OPTIONS; //Pointer
   typedef struct FILE_PATH {
     ULONG Version;
     ULONG Length;
     ULONG Type;
-    CHAR FilePath[1];
+    CHAR FilePath_1_;
   } FILE_PATH;
   typedef FILE_PATH *PFILE_PATH; //Pointer
   typedef struct LDR_RESOURCE_INFO {
@@ -1071,12 +1071,12 @@ ffi.cdef[[
     PVOID IFEOKey;
     PEB_u1 ;
     PEB_u2 ;
-    ULONG SystemReserved[1];
+    ULONG SystemReserved_1_;
     ULONG AtlThunkSListPtr32;
     PVOID ApiSetMap;
     ULONG TlsExpansionCounter;
     PRTL_BITMAP TlsBitmap;
-    ULONG TlsBitmapBits[2];
+    ULONG TlsBitmapBits_2_;
     PVOID ReadOnlySharedMemoryBase;
     PVOID HotpatchInformation;
     PVOID* ReadOnlyStaticServerData;
@@ -1109,7 +1109,7 @@ ffi.cdef[[
     GDI_HANDLE_BUFFER GdiHandleBuffer;
     PVOID PostProcessInitRoutine;
     PRTL_BITMAP TlsExpansionBitmap;
-    ULONG TlsExpansionBitmapBits[32];
+    ULONG TlsExpansionBitmapBits_32_;
     ULONG SessionId;
     ULARGE_INTEGER AppCompatFlags;
     ULARGE_INTEGER AppCompatFlagsUser;
@@ -1124,7 +1124,7 @@ ffi.cdef[[
     PVOID* FlsCallback;
     LIST_ENTRY FlsListHead;
     PVOID FlsBitmap;
-    ULONG FlsBitmapBits[4];
+    ULONG FlsBitmapBits_4_;
     ULONG FlsHighIndex;
     PVOID WerRegistrationData;
     PVOID WerShipAssertPtr;
@@ -1154,7 +1154,7 @@ ffi.cdef[[
   typedef struct GDI_TEB_BATCH {
     ULONG Offset;
     HANDLE HDC;
-    ULONG Buffer[GDI_BATCH_BUFFER_SIZE];
+    ULONG Buffer_GDI_BATCH_BUFFER_SIZE_;
   } GDI_TEB_BATCH;
   typedef struct TEB_ACTIVE_FRAME_CONTEXT {
     ULONG Flags;
@@ -1191,15 +1191,15 @@ if ffi.arch == 'x86' then ffi.cdef[[
     ULONG CountOfOwnedCriticalSections;
     PVOID CsrClientThread;
     PVOID Win32ThreadInfo;
-    ULONG User32Reserved[26];
-    ULONG UserReserved[5];
+    ULONG User32Reserved_26_;
+    ULONG UserReserved_5_;
     PVOID WOW32Reserved;
     LCID CurrentLocale;
     ULONG FpSoftwareStatusRegister;
-    PVOID SystemReserved1[54];
+    PVOID SystemReserved1_54_;
     NTSTATUS ExceptionCode;
     PVOID ActivationContextStackPointer;
-    UCHAR SpareBytes[36];
+    UCHAR SpareBytes_36_;
     ULONG TxFsContext;
     GDI_TEB_BATCH GdiTebBatch;
     CLIENT_ID RealClientId;
@@ -1207,9 +1207,9 @@ if ffi.arch == 'x86' then ffi.cdef[[
     ULONG GdiClientPID;
     ULONG GdiClientTID;
     PVOID GdiThreadLocaleInfo;
-    ULONG_PTR Win32ClientInfo[62];
-    PVOID glDispatchTable[233];
-    ULONG_PTR glReserved1[29];
+    ULONG_PTR Win32ClientInfo_62_;
+    PVOID glDispatchTable_233_;
+    ULONG_PTR glReserved1_29_;
     PVOID glReserved2;
     PVOID glSectionInfo;
     PVOID glSection;
@@ -1218,15 +1218,15 @@ if ffi.arch == 'x86' then ffi.cdef[[
     PVOID glContext;
     NTSTATUS LastStatusValue;
     UNICODE_STRING StaticUnicodeString;
-    WCHAR StaticUnicodeBuffer[261];
+    WCHAR StaticUnicodeBuffer_261_;
     PVOID DeallocationStack;
-    PVOID TlsSlots[64];
+    PVOID TlsSlots_64_;
     LIST_ENTRY TlsLinks;
     PVOID Vdm;
     PVOID ReservedForNtRpc;
-    PVOID DbgSsReserved[2];
+    PVOID DbgSsReserved_2_;
     ULONG HardErrorMode;
-    PVOID Instrumentation[9];
+    PVOID Instrumentation_9_;
     GUID ActivityId;
     PVOID SubProcessTag;
     PVOID EtwLocalData;
@@ -1280,15 +1280,15 @@ if ffi.arch == 'x64' then ffi.cdef[[
     ULONG CountOfOwnedCriticalSections;
     PVOID CsrClientThread;
     PVOID Win32ThreadInfo;
-    ULONG User32Reserved[26];
-    ULONG UserReserved[5];
+    ULONG User32Reserved_26_;
+    ULONG UserReserved_5_;
     PVOID WOW32Reserved;
     LCID CurrentLocale;
     ULONG FpSoftwareStatusRegister;
-    PVOID SystemReserved1[54];
+    PVOID SystemReserved1_54_;
     NTSTATUS ExceptionCode;
     PVOID ActivationContextStackPointer;
-    UCHAR SpareBytes[24];
+    UCHAR SpareBytes_24_;
     ULONG TxFsContext;
     GDI_TEB_BATCH GdiTebBatch;
     CLIENT_ID RealClientId;
@@ -1296,9 +1296,9 @@ if ffi.arch == 'x64' then ffi.cdef[[
     ULONG GdiClientPID;
     ULONG GdiClientTID;
     PVOID GdiThreadLocaleInfo;
-    ULONG_PTR Win32ClientInfo[62];
-    PVOID glDispatchTable[233];
-    ULONG_PTR glReserved1[29];
+    ULONG_PTR Win32ClientInfo_62_;
+    PVOID glDispatchTable_233_;
+    ULONG_PTR glReserved1_29_;
     PVOID glReserved2;
     PVOID glSectionInfo;
     PVOID glSection;
@@ -1307,15 +1307,15 @@ if ffi.arch == 'x64' then ffi.cdef[[
     PVOID glContext;
     NTSTATUS LastStatusValue;
     UNICODE_STRING StaticUnicodeString;
-    WCHAR StaticUnicodeBuffer[261];
+    WCHAR StaticUnicodeBuffer_261_;
     PVOID DeallocationStack;
-    PVOID TlsSlots[64];
+    PVOID TlsSlots_64_;
     LIST_ENTRY TlsLinks;
     PVOID Vdm;
     PVOID ReservedForNtRpc;
-    PVOID DbgSsReserved[2];
+    PVOID DbgSsReserved_2_;
     ULONG HardErrorMode;
-    PVOID Instrumentation[11];
+    PVOID Instrumentation_11_;
     GUID ActivityId;
     PVOID SubProcessTag;
     PVOID EtwLocalData;
@@ -1366,7 +1366,7 @@ ffi.cdef[[
     USHORT ReferenceCount;
     UCHAR Flags;
     UCHAR NameLength;
-    WCHAR Name[1];
+    WCHAR Name_1_;
   } RTL_ATOM_TABLE_ENTRY;
   typedef RTL_ATOM_TABLE_ENTRY *PRTL_ATOM_TABLE_ENTRY; //Pointer
   typedef struct RTL_ATOM_TABLE {
@@ -1374,7 +1374,7 @@ ffi.cdef[[
     RTL_CRITICAL_SECTION CriticalSection;
     RTL_HANDLE_TABLE RtlHandleTable;
     ULONG NumberOfBuckets;
-    PRTL_ATOM_TABLE_ENTRY Buckets[1];
+    PRTL_ATOM_TABLE_ENTRY Buckets_1_;
   } RTL_ATOM_TABLE;
   typedef RTL_ATOM_TABLE *PRTL_ATOM_TABLE; //Pointer
   typedef USHORT LPC_TYPE; //Alias
@@ -1420,7 +1420,7 @@ ffi.cdef[[
     ULONG Sequence;
     ULONG TimeDateStamp;
     ULONG CheckSum;
-    WCHAR ImageName[32];
+    WCHAR ImageName_32_;
   } RTL_UNLOAD_EVENT_TRACE;
   enum { RTL_UNLOAD_EVENT_TRACE_NUMBER = 64 };
   typedef HMODULE HMODULE_PVOID; //Alias

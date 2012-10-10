@@ -119,7 +119,7 @@ ffi.cdef [[
     Color newColor;
   } ColorMap;
   typedef struct ColorMatrix {
-    REAL m[5][5];
+    REAL m_5__5_;
   } ColorMatrix;
   typedef struct ImageItemData {
     UINT Size;
@@ -134,7 +134,7 @@ ffi.cdef [[
   typedef struct ColorPalette {
     PaletteFlags Flags;
     UINT Count;
-    ARGB Entries[1];
+    ARGB Entries_1_;
   } ColorPalette;
   typedef struct GdiplusStartupOutput {
     NotificationHookProc NotificationHook;

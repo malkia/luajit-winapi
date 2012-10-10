@@ -46,6 +46,7 @@ end
 local function filter_const(id,type,type2)
    local o = id
    id = id:gsub(" [Cc][Oo][Nn][Ss][Tt]%*","*")
+   id = id:gsub(" [Cc][Oo][Nn][Ss][Tt]%[","[")
    id = id:gsub("^[Cc][Oo][Nn][Ss][Tt] ","")
    if o ~= id then
       assert(type~="Set")
@@ -85,13 +86,14 @@ end
 local T = true
 local builtin_types = {
    ["bool"]    = T, ["size_t"]           = T,
+   ["float"]   = T, ["double"]           = T,
+   ["time_t"]  = T, ["va_list"]          = T,
    ["char"]    = T, ["unsigned char"]    = T, ["signed char"]    = T,
    ["short"]   = T, ["unsigned short"]   = T, ["signed short"]   = T,
    ["int"]     = T, ["unsigned int"]     = T, ["signed int"]     = T,
    ["long"]    = T, ["unsigned long"]    = T, ["signed long"]    = T,
    ["__int32"] = T, ["unsigned __int32"] = T, ["signed __int32"] = T,
    ["__int64"] = T, ["unsigned __int64"] = T, ["signed __int64"] = T,
-   ["time_t"]  = T, ["va_list"]          = T,
 }
 local filters = {
    Api               = {filter_dash_slash, filter_brackets  },
@@ -275,6 +277,13 @@ local function process(var, luafile)
 	 luafile:write( "  } " .. var.Name .. ";\n" )
       end
    elseif var.Type == "Pointer" or var.Type == "Alias" then
+      if var.Base=="LPVOID" and
+	 var.Name=="SID*" and
+	 var.Type=="Alias"
+      then
+	 var.Base = "void"
+	 var.Name = "SID"
+      end
       if var.Name:find("*",1,true)==nil then
 	 if builtin_types[var.Name] == nil then
 	    luafile:write(
@@ -319,6 +328,7 @@ local function process(var, luafile)
 	    Name = Name .. Type:sub(bracket+1)
 	    Type = Type:sub(1,bracket-1)
 	 end
+	 Name = filter_make_underscore(Name)
 	 luafile:write("    " .. Type .. " " .. Name .. ";\n") 
       end
       luafile:write( "  } " .. var.Name .. ";\n" )
@@ -484,8 +494,8 @@ local function test(cdefs)
    end
 end
 
-generate()
+--generate()
 
---test(generate())
+test(generate())
 --categories["Api"] = {}
 --print(dump(categories.Api))

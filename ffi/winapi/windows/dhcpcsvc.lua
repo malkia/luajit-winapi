@@ -4,7 +4,7 @@ ffi.cdef [[
   typedef unsigned short IP_ADDR_FAMILY; //Alias
   typedef union IPNG_ADDRESS {
     DWORD IpAddrV4;
-    BYTE IpAddrV6[16];
+    BYTE IpAddrV6_16_;
   } IPNG_ADDRESS;
   typedef struct MCAST_LEASE_REQUEST {
     LONG LeaseStartTime;

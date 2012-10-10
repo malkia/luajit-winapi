@@ -29,7 +29,7 @@ ffi.cdef [[
   } LIFE_TIME;
   typedef struct DIAG_SOCKADDR {
     USHORT family;
-    CHAR data[126];
+    CHAR data_126_;
   } DIAG_SOCKADDR;
   typedef union HELPER_ATTRIBUTE_u {
     BOOL Boolean;

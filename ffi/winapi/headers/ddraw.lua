@@ -289,7 +289,7 @@ ffi.cdef [[
     DWORD dwAlignBoundaryDest;
     DWORD dwAlignSizeDest;
     DWORD dwAlignStrideAlign;
-    DWORD dwRops[DD_ROP_SPACE];
+    DWORD dwRops_DD_ROP_SPACE_;
     DDSCAPS ddsOldCaps;
     DWORD dwMinOverlayStretch;
     DWORD dwMaxOverlayStretch;
@@ -303,15 +303,15 @@ ffi.cdef [[
     DDCAPS_FLAGS dwSVBCaps;
     DDCKEYCAPS_FLAGS dwSVBCKeyCaps;
     DDFXCAPS_FLAGS dwSVBFXCaps;
-    DWORD dwSVBRops[DD_ROP_SPACE];
+    DWORD dwSVBRops_DD_ROP_SPACE_;
     DDCAPS_FLAGS dwVSBCaps;
     DDCKEYCAPS_FLAGS dwVSBCKeyCaps;
     DDFXCAPS_FLAGS dwVSBFXCaps;
-    DWORD dwVSBRops[DD_ROP_SPACE];
+    DWORD dwVSBRops_DD_ROP_SPACE_;
     DDCAPS_FLAGS dwSSBCaps;
     DDCKEYCAPS_FLAGS dwSSBCKeyCaps;
     DDFXCAPS_FLAGS dwSSBFXCaps;
-    DWORD dwSSBRops[DD_ROP_SPACE];
+    DWORD dwSSBRops_DD_ROP_SPACE_;
     DWORD dwMaxVideoPorts;
     DWORD dwCurrVideoPorts;
     DDCAPS2_FLAGS dwSVBCaps2;
@@ -319,13 +319,13 @@ ffi.cdef [[
     DDCAPS2_FLAGS dwNLVBCaps2;
     DDCKEYCAPS_FLAGS dwNLVBCKeyCaps;
     DDFXCAPS_FLAGS dwNLVBFXCaps;
-    DWORD dwNLVBRops[DD_ROP_SPACE];
+    DWORD dwNLVBRops_DD_ROP_SPACE_;
     DDSCAPS2 ddsCaps;
   } DDCAPS;
   typedef DDCAPS *LPDDCAPS; //Pointer
   typedef struct DDDEVICEIDENTIFIER {
-    char szDriver[MAX_DDDEVICEID_STRING];
-    char szDescription[MAX_DDDEVICEID_STRING];
+    char szDriver_MAX_DDDEVICEID_STRING_;
+    char szDescription_MAX_DDDEVICEID_STRING_;
     LARGE_INTEGER liDriverVersion;
     DWORD dwVendorId;
     DWORD dwDeviceId;
@@ -349,9 +349,9 @@ ffi.cdef [[
   } DDCOLORCONTROL;
   typedef DDCOLORCONTROL *LPDDCOLORCONTROL; //Pointer
   typedef struct DDGAMMARAMP {
-    WORD red[256];
-    WORD green[256];
-    WORD blue[256];
+    WORD red_256_;
+    WORD green_256_;
+    WORD blue_256_;
   } DDGAMMARAMP;
   typedef DDGAMMARAMP *LPDDGAMMARAMP; //Pointer
   typedef DWORD DDBLTFX_FLAGS; //Alias

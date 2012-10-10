@@ -13,6 +13,7 @@ ffi.cdef [[
   typedef PVOID HDEVINFO; //Alias
   typedef LPVOID PIO_APC_ROUTINE; //Alias
   typedef LPVOID FARPROC; //Alias
+  typedef void SID; //Alias
   typedef PVOID PSID; //Alias
   typedef LPVOID PVECTORED_EXCEPTION_HANDLER; //Alias
   typedef WORD ATOM; //Alias
@@ -276,7 +277,7 @@ ffi.cdef [[
   static const DMDITHER DMDITHER_RESERVED9 = 9;
   static const DMDITHER DMDITHER_GRAYSCALE = 10;
   typedef struct DEVMODE {
-    TCHAR dmDeviceName[CCHDEVICENAME];
+    TCHAR dmDeviceName_CCHDEVICENAME_;
     WORD dmSpecVersion;
     WORD dmDriverVersion;
     WORD dmSize;
@@ -288,7 +289,7 @@ ffi.cdef [[
     short dmYResolution;
     DMTT dmTTOption;
     DMCOLLATE dmCollate;
-    TCHAR dmFormName[CCHFORMNAME];
+    TCHAR dmFormName_CCHFORMNAME_;
     WORD dmLogPixels;
     DWORD dmBitsPerPel;
     DWORD dmPelsWidth;
@@ -916,7 +917,7 @@ ffi.cdef [[
     LPVOID ExceptionRecord;
     PVOID ExceptionAddress;
     DWORD NumberParameters;
-    ULONG_PTR ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS];
+    ULONG_PTR ExceptionInformation_EXCEPTION_MAXIMUM_PARAMETERS_;
   } EXCEPTION_RECORD;
   typedef EXCEPTION_RECORD *PEXCEPTION_RECORD; //Pointer
   typedef struct EXCEPTION_POINTERS {
@@ -1038,8 +1039,8 @@ ffi.cdef [[
     DWORD nFileSizeLow;
     ReparsePoint dwReserved0;
     DWORD dwReserved1;
-    TCHAR cFileName[MAX_PATH];
-    TCHAR cAlternateFileName[14];
+    TCHAR cFileName_MAX_PATH_;
+    TCHAR cAlternateFileName_14_;
   } WIN32_FIND_DATA;
   typedef WIN32_FIND_DATA *LPWIN32_FIND_DATA; //Pointer
   typedef struct WIN32_FIND_DATAA {
@@ -1051,8 +1052,8 @@ ffi.cdef [[
     DWORD nFileSizeLow;
     ReparsePoint dwReserved0;
     DWORD dwReserved1;
-    CHAR cFileName[MAX_PATH];
-    CHAR cAlternateFileName[14];
+    CHAR cFileName_MAX_PATH_;
+    CHAR cAlternateFileName_14_;
   } WIN32_FIND_DATAA;
   typedef struct WIN32_FIND_DATAW {
     FileAttributes dwFileAttributes;
@@ -1063,15 +1064,15 @@ ffi.cdef [[
     DWORD nFileSizeLow;
     ReparsePoint dwReserved0;
     DWORD dwReserved1;
-    WCHAR cFileName[MAX_PATH];
-    WCHAR cAlternateFileName[14];
+    WCHAR cFileName_MAX_PATH_;
+    WCHAR cAlternateFileName_14_;
   } WIN32_FIND_DATAW;
   typedef struct TIME_ZONE_INFORMATION {
     LONG Bias;
-    WCHAR StandardName[32];
+    WCHAR StandardName_32_;
     SYSTEMTIME StandardDate;
     LONG StandardBias;
-    WCHAR DaylightName[32];
+    WCHAR DaylightName_32_;
     SYSTEMTIME DaylightDate;
     LONG DaylightBias;
   } TIME_ZONE_INFORMATION;
@@ -1082,7 +1083,7 @@ ffi.cdef [[
     WORD nErrCode;
     WORD Reserved1;
     WORD Reserved2;
-    CHAR szPathName[OFS_MAXPATHNAME];
+    CHAR szPathName_OFS_MAXPATHNAME_;
   } OFSTRUCT;
   typedef OFSTRUCT *LPOFSTRUCT; //Pointer
   typedef WORD PROCESSOR_ARCHITECTURE; //Alias
@@ -1256,7 +1257,7 @@ ffi.cdef [[
     DWORD dwMinorVersion;
     DWORD dwBuildNumber;
     VER_PLATFORM dwPlatformId;
-    TCHAR szCSDVersion[128];
+    TCHAR szCSDVersion_128_;
   } OSVERSIONINFO;
   typedef OSVERSIONINFO *LPOSVERSIONINFO; //Pointer
   typedef struct RTL_OSVERSIONINFOW {
@@ -1265,7 +1266,7 @@ ffi.cdef [[
     DWORD dwMinorVersion;
     DWORD dwBuildNumber;
     VER_PLATFORM dwPlatformId;
-    WCHAR szCSDVersion[128];
+    WCHAR szCSDVersion_128_;
   } RTL_OSVERSIONINFOW;
   typedef RTL_OSVERSIONINFOW *PRTL_OSVERSIONINFOW; //Pointer
   typedef WORD VER_SUITE; //Alias
@@ -1279,7 +1280,7 @@ ffi.cdef [[
     DWORD dwMinorVersion;
     DWORD dwBuildNumber;
     DWORD dwPlatformId;
-    TCHAR szCSDVersion[128];
+    TCHAR szCSDVersion_128_;
     WORD wServicePackMajor;
     WORD wServicePackMinor;
     VER_SUITE wSuiteMask;
@@ -1293,7 +1294,7 @@ ffi.cdef [[
     DWORD dwMinorVersion;
     DWORD dwBuildNumber;
     DWORD dwPlatformId;
-    WCHAR szCSDVersion[128];
+    WCHAR szCSDVersion_128_;
     WORD wServicePackMajor;
     WORD wServicePackMinor;
     VER_SUITE wSuiteMask;
@@ -1406,7 +1407,7 @@ if ffi.arch == 'x86' then ffi.cdef[[
     DWORD SizeOfHeapCommit;
     DWORD LoaderFlags;
     DWORD NumberOfRvaAndSizes;
-    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
+    IMAGE_DATA_DIRECTORY DataDirectory_IMAGE_NUMBEROF_DIRECTORY_ENTRIES_;
   } IMAGE_OPTIONAL_HEADER;
 ]]
 end
@@ -1441,7 +1442,7 @@ ffi.cdef[[
     ULONGLONG SizeOfHeapCommit;
     DWORD LoaderFlags;
     DWORD NumberOfRvaAndSizes;
-    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
+    IMAGE_DATA_DIRECTORY DataDirectory_IMAGE_NUMBEROF_DIRECTORY_ENTRIES_;
   } IMAGE_OPTIONAL_HEADER64;
 ]]
 if ffi.arch == 'x64' then ffi.cdef[[

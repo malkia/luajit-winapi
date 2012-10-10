@@ -27,14 +27,14 @@ ffi.cdef [[
     RESTOREPOINT_EVENT dwEventType;
     RESTOREPOINT_TYPE dwRestorePtType;
     INT64 llSequenceNumber;
-    CHAR szDescription[MAX_DESC];
+    CHAR szDescription_MAX_DESC_;
   } RESTOREPOINTINFOA;
   typedef RESTOREPOINTINFOA *PRESTOREPOINTINFOA; //Pointer
   typedef struct RESTOREPOINTINFOW {
     RESTOREPOINT_EVENT dwEventType;
     RESTOREPOINT_TYPE dwRestorePtType;
     INT64 llSequenceNumber;
-    WCHAR szDescription[MAX_DESC_W];
+    WCHAR szDescription_MAX_DESC_W_;
   } RESTOREPOINTINFOW;
   typedef RESTOREPOINTINFOW *PRESTOREPOINTINFOW; //Pointer
   typedef ERROR_CODE StateMgrStatus; //Alias

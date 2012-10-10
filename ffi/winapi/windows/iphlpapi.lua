@@ -256,7 +256,7 @@ ffi.cdef [[
     ADDRESS_FAMILY sin_family;
     USHORT sin_port;
     IN_ADDR sin_addr;
-    CHAR sin_zero[8];
+    CHAR sin_zero_8_;
   } SOCKADDR_IN;
   typedef struct struct sockaddr_in6 {
     ADDRESS_FAMILY sin6_family;
@@ -273,7 +273,7 @@ ffi.cdef [[
   } NET_LUID;
   typedef NET_LUID *PNET_LUID; //Pointer
   typedef struct IP_ADDRESS_STRING {
-    char String[16];
+    char String_16_;
   } IP_ADDRESS_STRING;
   typedef IP_ADDRESS_STRING IP_MASK_STRING; //Alias
   typedef struct IP_ADDR_STRING {
@@ -321,10 +321,10 @@ ffi.cdef [[
   typedef struct IP_ADAPTER_INFO {
     LPVOID Next;
     DWORD ComboIndex;
-    char AdapterName[MAX_ADAPTER_NAME_LENGTH_plus_4];
-    char Description[MAX_ADAPTER_DESCRIPTION_LENGTH_plus_4];
+    char AdapterName_MAX_ADAPTER_NAME_LENGTH_plus_4_;
+    char Description_MAX_ADAPTER_DESCRIPTION_LENGTH_plus_4_;
     UINT AddressLength;
-    BYTE Address[MAX_ADAPTER_ADDRESS_LENGTH];
+    BYTE Address_MAX_ADAPTER_ADDRESS_LENGTH_;
     DWORD Index;
     MIB_IF_TYPE Type;
     UINT DhcpEnabled;
@@ -348,7 +348,7 @@ ffi.cdef [[
   typedef IP_PER_ADAPTER_INFO *PIP_PER_ADAPTER_INFO; //Pointer
   typedef struct IP_UNIDIRECTIONAL_ADAPTER_ADDRESS {
     ULONG NumAdapters;
-    IPAddr Address[1];
+    IPAddr Address_1_;
   } IP_UNIDIRECTIONAL_ADAPTER_ADDRESS;
   typedef IP_UNIDIRECTIONAL_ADAPTER_ADDRESS *PIP_UNIDIRECTIONAL_ADAPTER_ADDRESS; //Pointer
   typedef UINT MIB_IPNET_TYPE; //Alias
@@ -359,7 +359,7 @@ ffi.cdef [[
   typedef struct MIB_IPNETROW {
     IF_INDEX dwIndex;
     DWORD dwPhysAddrLen;
-    UCHAR bPhysAddr[MAXLEN_PHYSADDR];
+    UCHAR bPhysAddr_MAXLEN_PHYSADDR_;
     DWORD dwAddr;
     MIB_IPNET_TYPE Type;
   } MIB_IPNETROW;
@@ -367,7 +367,7 @@ ffi.cdef [[
   enum { ANY_SIZE = 1 };
   typedef struct MIB_IPNETTABLE {
     DWORD dwNumEntries;
-    MIB_IPNETROW table[ANY_SIZE];
+    MIB_IPNETROW table_ANY_SIZE_;
   } MIB_IPNETTABLE;
   typedef MIB_IPNETTABLE *PMIB_IPNETTABLE; //Pointer
   typedef struct MIB_IFSTACK_ROW {
@@ -376,7 +376,7 @@ ffi.cdef [[
   } MIB_IFSTACK_ROW;
   typedef struct MIB_IFSTACK_TABLE {
     ULONG NumEntries;
-    MIB_IFSTACK_ROW Table[ANY_SIZE];
+    MIB_IFSTACK_ROW Table_ANY_SIZE_;
   } MIB_IFSTACK_TABLE;
   typedef MIB_IFSTACK_TABLE *PMIB_IFSTACK_TABLE; //Pointer
   typedef UINT INTERNAL_IF_OPER_STATUS; //Alias
@@ -387,13 +387,13 @@ ffi.cdef [[
   static const INTERNAL_IF_OPER_STATUS IF_OPER_STATUS_CONNECTED = 4;
   static const INTERNAL_IF_OPER_STATUS IF_OPER_STATUS_OPERATIONAL = 5;
   typedef struct MIB_IFROW {
-    WCHAR wszName[MAX_INTERFACE_NAME_LEN];
+    WCHAR wszName_MAX_INTERFACE_NAME_LEN_;
     IF_INDEX dwIndex;
     IFTYPE dwType;
     DWORD dwMtu;
     DWORD dwSpeed;
     DWORD dwPhysAddrLen;
-    UCHAR bPhysAddr[MAXLEN_PHYSADDR];
+    UCHAR bPhysAddr_MAXLEN_PHYSADDR_;
     DWORD dwAdminStatus;
     INTERNAL_IF_OPER_STATUS dwOperStatus;
     DWORD dwLastChange;
@@ -410,12 +410,12 @@ ffi.cdef [[
     DWORD dwOutErrors;
     DWORD dwOutQLen;
     DWORD dwDescrLen;
-    UCHAR bDescr[MAXLEN_IFDESCR];
+    UCHAR bDescr_MAXLEN_IFDESCR_;
   } MIB_IFROW;
   typedef MIB_IFROW *PMIB_IFROW; //Pointer
   typedef struct MIB_IFTABLE {
     DWORD dwNumEntries;
-    MIB_IFROW table[ANY_SIZE];
+    MIB_IFROW table_ANY_SIZE_;
   } MIB_IFTABLE;
   typedef MIB_IFTABLE *PMIB_IFTABLE; //Pointer
   typedef struct MIB_IF_ROW2_s {
@@ -506,11 +506,11 @@ ffi.cdef [[
     NET_LUID InterfaceLuid;
     NET_IFINDEX InterfaceIndex;
     GUID InterfaceGuid;
-    WCHAR Alias[IF_MAX_STRING_SIZE_plus_1];
-    WCHAR Description[IF_MAX_STRING_SIZE_plus_1];
+    WCHAR Alias_IF_MAX_STRING_SIZE_plus_1_;
+    WCHAR Description_IF_MAX_STRING_SIZE_plus_1_;
     ULONG PhysicalAddressLength;
-    UCHAR PhysicalAddress[IF_MAX_PHYS_ADDRESS_LENGTH];
-    UCHAR PermanentPhysicalAddress[IF_MAX_PHYS_ADDRESS_LENGTH];
+    UCHAR PhysicalAddress_IF_MAX_PHYS_ADDRESS_LENGTH_;
+    UCHAR PermanentPhysicalAddress_IF_MAX_PHYS_ADDRESS_LENGTH_;
     ULONG Mtu;
     IFTYPE Type;
     TUNNEL_TYPE TunnelType;
@@ -548,17 +548,17 @@ ffi.cdef [[
   typedef MIB_IF_ROW2 *PMIB_IF_ROW2; //Pointer
   typedef struct MIB_IF_TABLE2 {
     ULONG NumEntries;
-    MIB_IF_ROW2 Table[ANY_SIZE];
+    MIB_IF_ROW2 Table_ANY_SIZE_;
   } MIB_IF_TABLE2;
   typedef MIB_IF_TABLE2 *PMIB_IF_TABLE2; //Pointer
   typedef struct IP_ADAPTER_INDEX_MAP {
     ULONG Index;
-    WCHAR Name[MAX_ADAPTER_NAME];
+    WCHAR Name_MAX_ADAPTER_NAME_;
   } IP_ADAPTER_INDEX_MAP;
   typedef IP_ADAPTER_INDEX_MAP *PIP_ADAPTER_INDEX_MAP; //Pointer
   typedef struct IP_INTERFACE_INFO {
     LONG NumAdapters;
-    IP_ADAPTER_INDEX_MAP Adapter[1];
+    IP_ADAPTER_INDEX_MAP Adapter_1_;
   } IP_INTERFACE_INFO;
   typedef IP_INTERFACE_INFO *PIP_INTERFACE_INFO; //Pointer
   typedef struct MIB_INVERTEDIFSTACK_ROW {
@@ -567,7 +567,7 @@ ffi.cdef [[
   } MIB_INVERTEDIFSTACK_ROW;
   typedef struct MIB_INVERTEDIFSTACK_TABLE {
     ULONG NumEntries;
-    MIB_INVERTEDIFSTACK_ROW Table[ANY_SIZE];
+    MIB_INVERTEDIFSTACK_ROW Table_ANY_SIZE_;
   } MIB_INVERTEDIFSTACK_TABLE;
   typedef MIB_INVERTEDIFSTACK_TABLE *PMIB_INVERTEDIFSTACK_TABLE; //Pointer
   typedef UINT NL_ROUTER_DISCOVERY_BEHAVIOR; //Alias
@@ -607,7 +607,7 @@ ffi.cdef [[
     ULONG PathMtuDiscoveryTimeout;
     NL_LINK_LOCAL_ADDRESS_BEHAVIOR LinkLocalAddressBehavior;
     ULONG LinkLocalAddressTimeout;
-    ULONG ZoneIndices[ScopeLevelCount];
+    ULONG ZoneIndices_ScopeLevelCount_;
     ULONG SitePrefixLength;
     ULONG Metric;
     ULONG NlMtu;
@@ -623,7 +623,7 @@ ffi.cdef [[
   typedef MIB_IPINTERFACE_ROW *PMIB_IPINTERFACE_ROW; //Pointer
   typedef struct MIB_IPINTERFACE_TABLE {
     ULONG NumEntries;
-    MIB_IPINTERFACE_ROW Table[ANY_SIZE];
+    MIB_IPINTERFACE_ROW Table_ANY_SIZE_;
   } MIB_IPINTERFACE_TABLE;
   typedef MIB_IPINTERFACE_TABLE *PMIB_IPINTERFACE_TABLE; //Pointer
   typedef struct MIBICMPSTATS {
@@ -687,7 +687,7 @@ ffi.cdef [[
   typedef MIB_ANYCASTIPADDRESS_ROW *PMIB_ANYCASTIPADDRESS_ROW; //Pointer
   typedef struct MIB_ANYCASTIPADDRESS_TABLE {
     ULONG NumEntries;
-    MIB_ANYCASTIPADDRESS_ROW Table[ANY_SIZE];
+    MIB_ANYCASTIPADDRESS_ROW Table_ANY_SIZE_;
   } MIB_ANYCASTIPADDRESS_TABLE;
   typedef MIB_ANYCASTIPADDRESS_TABLE *PMIB_ANYCASTIPADDRESS_TABLE; //Pointer
   typedef unsigned short MIB_IPADDR_TYPE; //Alias
@@ -702,7 +702,7 @@ ffi.cdef [[
   } MIB_IPADDRROW;
   typedef struct MIB_IPADDRTABLE {
     DWORD dwNumEntries;
-    MIB_IPADDRROW table[ANY_SIZE];
+    MIB_IPADDRROW table_ANY_SIZE_;
   } MIB_IPADDRTABLE;
   typedef MIB_IPADDRTABLE *PMIB_IPADDRTABLE; //Pointer
   typedef struct MIB_MULTICASTIPADDRESS_ROW {
@@ -714,7 +714,7 @@ ffi.cdef [[
   typedef MIB_MULTICASTIPADDRESS_ROW *PMIB_MULTICASTIPADDRESS_ROW; //Pointer
   typedef struct MIB_MULTICASTIPADDRESS_TABLE {
     ULONG NumEntries;
-    MIB_MULTICASTIPADDRESS_ROW Table[ANY_SIZE];
+    MIB_MULTICASTIPADDRESS_ROW Table_ANY_SIZE_;
   } MIB_MULTICASTIPADDRESS_TABLE;
   typedef MIB_MULTICASTIPADDRESS_TABLE *PMIB_MULTICASTIPADDRESS_TABLE; //Pointer
   typedef UINT NL_PREFIX_ORIGIN; //Alias
@@ -755,7 +755,7 @@ ffi.cdef [[
   typedef MIB_UNICASTIPADDRESS_ROW *PMIB_UNICASTIPADDRESS_ROW; //Pointer
   typedef struct MIB_UNICASTIPADDRESS_TABLE {
     ULONG NumEntries;
-    MIB_UNICASTIPADDRESS_ROW Table[ANY_SIZE];
+    MIB_UNICASTIPADDRESS_ROW Table_ANY_SIZE_;
   } MIB_UNICASTIPADDRESS_TABLE;
   typedef MIB_UNICASTIPADDRESS_TABLE *PMIB_UNICASTIPADDRESS_TABLE; //Pointer
   typedef union MIB_ReachabilityTime {
@@ -775,7 +775,7 @@ ffi.cdef [[
     SOCKADDR_INET Address;
     NET_IFINDEX InterfaceIndex;
     NET_LUID InterfaceLuid;
-    UCHAR PhysicalAddress[IF_MAX_PHYS_ADDRESS_LENGTH];
+    UCHAR PhysicalAddress_IF_MAX_PHYS_ADDRESS_LENGTH_;
     ULONG PhysicalAddressLength;
     NL_NEIGHBOR_STATE State;
     UCHAR Flags;
@@ -784,7 +784,7 @@ ffi.cdef [[
   typedef MIB_IPNET_ROW2 *PMIB_IPNET_ROW2; //Pointer
   typedef struct MIB_IPNET_TABLE2 {
     ULONG NumEntries;
-    MIB_IPNET_ROW2 Table[ANY_SIZE];
+    MIB_IPNET_ROW2 Table_ANY_SIZE_;
   } MIB_IPNET_TABLE2;
   typedef MIB_IPNET_TABLE2 *PMIB_IPNET_TABLE2; //Pointer
   typedef struct MIB_IPPATH_ROW {
@@ -804,7 +804,7 @@ ffi.cdef [[
   typedef MIB_IPPATH_ROW *PMIB_IPPATH_ROW; //Pointer
   typedef struct MIB_IPPATH_TABLE {
     ULONG NumEntries;
-    MIB_IPPATH_ROW Table[ANY_SIZE];
+    MIB_IPPATH_ROW Table_ANY_SIZE_;
   } MIB_IPPATH_TABLE;
   typedef UINT MIB_IPFORWARD_TYPE; //Alias
   static const MIB_IPFORWARD_TYPE MIB_IPROUTE_TYPE_OTHER = 1;
@@ -830,7 +830,7 @@ ffi.cdef [[
   typedef MIB_IPFORWARDROW *PMIB_IPFORWARDROW; //Pointer
   typedef struct MIB_IPFORWARDTABLE {
     DWORD dwNumEntries;
-    MIB_IPFORWARDROW table[ANY_SIZE];
+    MIB_IPFORWARDROW table_ANY_SIZE_;
   } MIB_IPFORWARDTABLE;
   typedef MIB_IPFORWARDTABLE *PMIB_IPFORWARDTABLE; //Pointer
   typedef struct MIB_IPFORWARD_ROW2 {
@@ -853,7 +853,7 @@ ffi.cdef [[
   typedef MIB_IPFORWARD_ROW2 *PMIB_IPFORWARD_ROW2; //Pointer
   typedef struct MIB_IPFORWARD_TABLE2 {
     ULONG NumEntries;
-    MIB_IPFORWARD_ROW2 Table[ANY_SIZE];
+    MIB_IPFORWARD_ROW2 Table_ANY_SIZE_;
   } MIB_IPFORWARD_TABLE2;
   typedef MIB_IPFORWARD_TABLE2 *PMIB_IPFORWARD_TABLE2; //Pointer
   typedef struct SOCKADDR_IN6_PAIR {
@@ -867,8 +867,8 @@ ffi.cdef [[
   static const NET_ADDRESS_FORMAT NET_ADDRESS_IPV4 = 2;
   static const NET_ADDRESS_FORMAT NET_ADDRESS_IPV6 = 3;
   typedef struct NET_ADDRESS_INFO_u_s {
-    WCHAR Address[DNS_MAX_NAME_BUFFER_LENGTH];
-    WCHAR Port[6];
+    WCHAR Address_DNS_MAX_NAME_BUFFER_LENGTH_;
+    WCHAR Port_6_;
   } NET_ADDRESS_INFO_u_s;
   typedef union NET_ADDRESS_INFO_u {
     NET_ADDRESS_INFO_u_s NamedAddress;
@@ -887,28 +887,28 @@ ffi.cdef [[
   static const FIXED_INFO_NODETYPE MIXED_NODETYPE = 4;
   static const FIXED_INFO_NODETYPE HYBRID_NODETYPE = 8;
   typedef struct FIXED_INFO {
-    char HostName[MAX_HOSTNAME_LEN_plus_4];
-    char DomainName[MAX_DOMAIN_NAME_LEN_plus_4];
+    char HostName_MAX_HOSTNAME_LEN_plus_4_;
+    char DomainName_MAX_DOMAIN_NAME_LEN_plus_4_;
     PIP_ADDR_STRING CurrentDnsServer;
     IP_ADDR_STRING DnsServerList;
     FIXED_INFO_NODETYPE NodeType;
-    char ScopeId[MAX_SCOPE_ID_LEN_plus_4];
+    char ScopeId_MAX_SCOPE_ID_LEN_plus_4_;
     UINT EnableRouting;
     UINT EnableProxy;
     UINT EnableDns;
   } FIXED_INFO;
   typedef FIXED_INFO *PFIXED_INFO; //Pointer
   typedef struct MIB_TCP6ROW_OWNER_MODULE {
-    UCHAR ucLocalAddr[16];
+    UCHAR ucLocalAddr_16_;
     DWORD dwLocalScopeId;
     DWORD dwLocalPort;
-    UCHAR ucRemoteAddr[16];
+    UCHAR ucRemoteAddr_16_;
     DWORD dwRemoteScopeId;
     DWORD dwRemotePort;
     MIB_TCP_STATE dwState;
     DWORD dwOwningPid;
     LARGE_INTEGER liCreateTimestamp;
-    ULONGLONG OwningModuleInfo[TCPIP_OWNING_MODULE_SIZE];
+    ULONGLONG OwningModuleInfo_TCPIP_OWNING_MODULE_SIZE_;
   } MIB_TCP6ROW_OWNER_MODULE;
   typedef MIB_TCP6ROW_OWNER_MODULE *PMIB_TCP6ROW_OWNER_MODULE; //Pointer
   typedef struct MIB_TCPROW_OWNER_MODULE {
@@ -919,17 +919,17 @@ ffi.cdef [[
     DWORD dwRemotePort;
     DWORD dwOwningPid;
     LARGE_INTEGER liCreateTimestamp;
-    ULONGLONG OwningModuleInfo[TCPIP_OWNING_MODULE_SIZE];
+    ULONGLONG OwningModuleInfo_TCPIP_OWNING_MODULE_SIZE_;
   } MIB_TCPROW_OWNER_MODULE;
   typedef MIB_TCPROW_OWNER_MODULE *PMIB_TCPROW_OWNER_MODULE; //Pointer
   typedef struct MIB_UDP6ROW_OWNER_MODULE {
-    UCHAR ucLocalAddr[16];
+    UCHAR ucLocalAddr_16_;
     DWORD dwLocalScopeId;
     DWORD dwLocalPort;
     DWORD dwOwningPid;
     LARGE_INTEGER liCreateTimestamp;
     int dwFlags;
-    ULONGLONG OwningModuleInfo[TCPIP_OWNING_MODULE_SIZE];
+    ULONGLONG OwningModuleInfo_TCPIP_OWNING_MODULE_SIZE_;
   } MIB_UDP6ROW_OWNER_MODULE;
   typedef MIB_UDP6ROW_OWNER_MODULE *PMIB_UDP6ROW_OWNER_MODULE; //Pointer
   typedef struct MIB_UDPROW_OWNER_MODULE {
@@ -938,7 +938,7 @@ ffi.cdef [[
     DWORD dwOwningPid;
     LARGE_INTEGER liCreateTimestamp;
     int dwFlags;
-    ULONGLONG OwningModuleInfo[TCPIP_OWNING_MODULE_SIZE];
+    ULONGLONG OwningModuleInfo_TCPIP_OWNING_MODULE_SIZE_;
   } MIB_UDPROW_OWNER_MODULE;
   typedef MIB_UDPROW_OWNER_MODULE *PMIB_UDPROW_OWNER_MODULE; //Pointer
   typedef UINT TCP_RTO_ALGORITHM; //Alias
@@ -976,7 +976,7 @@ ffi.cdef [[
   typedef MIB_TCP6ROW *PMIB_TCP6ROW; //Pointer
   typedef struct MIB_TCP6TABLE {
     DWORD dwNumEntries;
-    MIB_TCP6ROW table[ANY_SIZE];
+    MIB_TCP6ROW table_ANY_SIZE_;
   } MIB_TCP6TABLE;
   typedef MIB_TCP6TABLE *PMIB_TCP6TABLE; //Pointer
   typedef struct MIB_TCP6ROW2 {
@@ -992,7 +992,7 @@ ffi.cdef [[
   } MIB_TCP6ROW2;
   typedef struct MIB_TCP6TABLE2 {
     DWORD dwNumEntries;
-    MIB_TCP6ROW2 table[ANY_SIZE];
+    MIB_TCP6ROW2 table_ANY_SIZE_;
   } MIB_TCP6TABLE2;
   typedef MIB_TCP6TABLE2 *PMIB_TCP6TABLE2; //Pointer
   typedef struct MIB_TCPROW {
@@ -1005,7 +1005,7 @@ ffi.cdef [[
   typedef MIB_TCPROW *PMIB_TCPROW; //Pointer
   typedef struct MIB_TCPTABLE {
     DWORD dwNumEntries;
-    MIB_TCPROW table[ANY_SIZE];
+    MIB_TCPROW table_ANY_SIZE_;
   } MIB_TCPTABLE;
   typedef MIB_TCPTABLE *PMIB_TCPTABLE; //Pointer
   typedef struct MIB_TCPROW2 {
@@ -1019,7 +1019,7 @@ ffi.cdef [[
   } MIB_TCPROW2;
   typedef struct MIB_TCPTABLE2 {
     DWORD dwNumEntries;
-    MIB_TCPROW2 table[ANY_SIZE];
+    MIB_TCPROW2 table_ANY_SIZE_;
   } MIB_TCPTABLE2;
   typedef MIB_TCPTABLE2 *PMIB_TCPTABLE2; //Pointer
   typedef struct MIB_UDP6ROW {
@@ -1029,7 +1029,7 @@ ffi.cdef [[
   } MIB_UDP6ROW;
   typedef struct MIB_UDP6TABLE {
     DWORD dwNumEntries;
-    MIB_UDP6ROW table[ANY_SIZE];
+    MIB_UDP6ROW table_ANY_SIZE_;
   } MIB_UDP6TABLE;
   typedef MIB_UDP6TABLE *PMIB_UDP6TABLE; //Pointer
   typedef struct MIB_UDPSTATS {
@@ -1046,7 +1046,7 @@ ffi.cdef [[
   } MIB_UDPROW;
   typedef struct MIB_UDPTABLE {
     DWORD dwNumEntries;
-    MIB_UDPROW table[ANY_SIZE];
+    MIB_UDPROW table_ANY_SIZE_;
   } MIB_UDPTABLE;
   typedef MIB_UDPTABLE *PMIB_UDPTABLE; //Pointer
   typedef UINT TCPIP_OWNER_MODULE_INFO_CLASS; //Alias

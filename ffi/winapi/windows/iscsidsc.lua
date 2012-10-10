@@ -149,10 +149,10 @@ ffi.cdef [[
   typedef UINT64 ISCSI_SECURITY_FLAGS; //Alias
   typedef UINT ISCSI_TARGET_FLAGS; //Alias
   typedef struct ISCSI_TARGET_PORTAL_INFO_EX {
-    TCHAR InitiatorName[MAX_ISCSI_HBANAME_LEN];
+    TCHAR InitiatorName_MAX_ISCSI_HBANAME_LEN_;
     ULONG InitiatorPortNumber;
-    TCHAR SymbolicName[MAX_ISCSI_PORTAL_NAME_LEN];
-    TCHAR Address[MAX_ISCSI_PORTAL_ADDRESS_LEN];
+    TCHAR SymbolicName_MAX_ISCSI_PORTAL_NAME_LEN_;
+    TCHAR Address_MAX_ISCSI_PORTAL_ADDRESS_LEN_;
     USHORT Socket;
     ISCSI_SECURITY_FLAGS SecurityFlags;
     ISCSI_LOGIN_OPTIONS LoginOptions;
@@ -173,9 +173,9 @@ ffi.cdef [[
   } SCSI_LUN_LIST;
   typedef SCSI_LUN_LIST *PSCSI_LUN_LIST; //Pointer
   typedef struct ISCSI_TARGET_MAPPING {
-    TCHAR InitiatorName[MAX_ISCSI_HBANAME_LEN];
-    TCHAR TargetName[MAX_ISCSI_NAME_LEN_plus_1];
-    TCHAR OSDeviceName[MAX_PATH];
+    TCHAR InitiatorName_MAX_ISCSI_HBANAME_LEN_;
+    TCHAR TargetName_MAX_ISCSI_NAME_LEN_plus_1_;
+    TCHAR OSDeviceName_MAX_PATH_;
     ISCSI_UNIQUE_SESSION_ID SessionId;
     ULONG OSBusNumber;
     ULONG OSTargetNumber;
@@ -264,32 +264,32 @@ ffi.cdef [[
     DWORD PartitionNumber;
   } STORAGE_DEVICE_NUMBER;
   typedef struct ISCSI_DEVICE_ON_SESSION {
-    TCHAR InitiatorName[MAX_ISCSI_HBANAME_LEN];
-    TCHAR TargetName[MAX_ISCSI_NAME_LEN_plus_1];
+    TCHAR InitiatorName_MAX_ISCSI_HBANAME_LEN_;
+    TCHAR TargetName_MAX_ISCSI_NAME_LEN_plus_1_;
     SCSI_ADDRESS ScsiAddress;
     GUID DeviceInterfaceType;
-    TCHAR DeviceInterfaceName[MAX_PATH];
-    TCHAR LegacyName[MAX_PATH];
+    TCHAR DeviceInterfaceName_MAX_PATH_;
+    TCHAR LegacyName_MAX_PATH_;
     STORAGE_DEVICE_NUMBER StorageDeviceNumber;
     DWORD DeviceInstance;
   } ISCSI_DEVICE_ON_SESSION;
   typedef ISCSI_DEVICE_ON_SESSION *PISCSI_DEVICE_ON_SESSION; //Pointer
   typedef struct ISCSI_TARGET_PORTAL {
-    TCHAR SymbolicName[MAX_ISCSI_PORTAL_NAME_LEN];
-    TCHAR Address[MAX_ISCSI_PORTAL_ADDRESS_LEN];
+    TCHAR SymbolicName_MAX_ISCSI_PORTAL_NAME_LEN_;
+    TCHAR Address_MAX_ISCSI_PORTAL_ADDRESS_LEN_;
     USHORT Socket;
   } ISCSI_TARGET_PORTAL;
   typedef ISCSI_TARGET_PORTAL *PISCSI_TARGET_PORTAL; //Pointer
   typedef struct ISCSI_TARGET_PORTAL_GROUP {
     ULONG Count;
-    ISCSI_TARGET_PORTAL Portals[1];
+    ISCSI_TARGET_PORTAL Portals_1_;
   } ISCSI_TARGET_PORTAL_GROUP;
   typedef ISCSI_TARGET_PORTAL_GROUP *PISCSI_TARGET_PORTAL_GROUP; //Pointer
   typedef struct ISCSI_TARGET_PORTAL_INFO {
-    TCHAR InitiatorName[MAX_ISCSI_HBANAME_LEN];
+    TCHAR InitiatorName_MAX_ISCSI_HBANAME_LEN_;
     ULONG InitiatorPortNumber;
-    TCHAR SymbolicName[MAX_ISCSI_PORTAL_NAME_LEN];
-    TCHAR Address[MAX_ISCSI_PORTAL_ADDRESS_LEN];
+    TCHAR SymbolicName_MAX_ISCSI_PORTAL_NAME_LEN_;
+    TCHAR Address_MAX_ISCSI_PORTAL_ADDRESS_LEN_;
     USHORT Socket;
   } ISCSI_TARGET_PORTAL_INFO;
   typedef ISCSI_TARGET_PORTAL_INFO *PISCSI_TARGET_PORTAL_INFO; //Pointer
@@ -299,7 +299,7 @@ ffi.cdef [[
     PTCHAR TargetAddress;
     USHORT InitiatorSocket;
     USHORT TargetSocket;
-    UCHAR CID[2];
+    UCHAR CID_2_;
   } ISCSI_CONNECTION_INFO;
   typedef ISCSI_CONNECTION_INFO *PISCSI_CONNECTION_INFO; //Pointer
   typedef struct ISCSI_SESSION_INFO {
@@ -307,16 +307,16 @@ ffi.cdef [[
     PTCHAR InitiatorName;
     PTCHAR TargetNodeName;
     PTCHAR TargetName;
-    UCHAR ISID[6];
-    UCHAR TSID[2];
+    UCHAR ISID_6_;
+    UCHAR TSID_2_;
     ULONG ConnectionCount;
     PISCSI_CONNECTION_INFO Connections;
   } ISCSI_SESSION_INFO;
   typedef ISCSI_SESSION_INFO *PISCSI_SESSION_INFO; //Pointer
   typedef struct PERSISTENT_ISCSI_LOGIN_INFO {
-    TCHAR TargetName[MAX_ISCSI_NAME_LEN_plus_1];
+    TCHAR TargetName_MAX_ISCSI_NAME_LEN_plus_1_;
     BOOLEAN IsInformationalSession;
-    TCHAR InitiatorInstance[MAX_ISCSI_HBANAME_LEN];
+    TCHAR InitiatorInstance_MAX_ISCSI_HBANAME_LEN_;
     ULONG InitiatorPortNumber;
     ISCSI_TARGET_PORTAL TargetPortal;
     ISCSI_SECURITY_FLAGS SecurityFlags;

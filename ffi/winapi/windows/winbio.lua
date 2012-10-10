@@ -36,7 +36,7 @@ ffi.cdef [[
   static const WINBIO_IDENTITY_TYPE WINBIO_ID_TYPE_SID = 3;
   typedef struct WINBIO_IDENTITY_u_s {
     ULONG Size;
-    UCHAR Data[SECURITY_MAX_SID_SIZE];
+    UCHAR Data_SECURITY_MAX_SID_SIZE_;
   } WINBIO_IDENTITY_u_s;
   typedef union WINBIO_IDENTITY_u {
     ULONG Null;

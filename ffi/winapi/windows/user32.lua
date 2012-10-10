@@ -39,17 +39,17 @@ ffi.cdef [[
   typedef struct TITLEBARINFO {
     DWORD cbSize;
     RECT rcTitleBar;
-    DWORD rgstate[CCHILDREN_TITLEBAR_plus_1];
+    DWORD rgstate_CCHILDREN_TITLEBAR_plus_1_;
   } TITLEBARINFO;
   typedef TITLEBARINFO *PTITLEBARINFO; //Pointer
   typedef DWORD DISPLAY_DEVICE_STATE; //Alias
   typedef struct DISPLAY_DEVICE {
     DWORD cb;
-    TCHAR DeviceName[32];
-    TCHAR DeviceString[128];
+    TCHAR DeviceName_32_;
+    TCHAR DeviceString_128_;
     DISPLAY_DEVICE_STATE StateFlags;
-    TCHAR DeviceID[128];
-    TCHAR DeviceKey[128];
+    TCHAR DeviceID_128_;
+    TCHAR DeviceKey_128_;
   } DISPLAY_DEVICE;
   typedef DISPLAY_DEVICE *PDISPLAY_DEVICE; //Pointer
   typedef struct ICONINFOEX {
@@ -60,8 +60,8 @@ ffi.cdef [[
     HBITMAP hbmMask;
     HBITMAP hbmColor;
     WORD wResID;
-    TCHAR szModName[MAX_PATH];
-    TCHAR szResName[MAX_PATH];
+    TCHAR szModName_MAX_PATH_;
+    TCHAR szResName_MAX_PATH_;
   } ICONINFOEX;
   typedef ICONINFOEX *PICONINFOEX; //Pointer
   typedef struct PAINTSTRUCT {
@@ -70,7 +70,7 @@ ffi.cdef [[
     RECT rcPaint;
     BOOL fRestore;
     BOOL fIncUpdate;
-    BYTE rgbReserved[32];
+    BYTE rgbReserved_32_;
   } PAINTSTRUCT;
   typedef PAINTSTRUCT *LPPAINTSTRUCT; //Pointer
   typedef struct SCROLLBARINFO {
@@ -80,7 +80,7 @@ ffi.cdef [[
     int xyThumbTop;
     int xyThumbBottom;
     int reserved;
-    DWORD rgstate[CCHILDREN_SCROLLBAR_plus_1];
+    DWORD rgstate_CCHILDREN_SCROLLBAR_plus_1_;
   } SCROLLBARINFO;
   typedef SCROLLBARINFO *PSCROLLBARINFO; //Pointer
   typedef DWORD MOUSEINPUT_Data; //Alias
@@ -859,7 +859,7 @@ ffi.cdef [[
   typedef struct RAWHID {
     DWORD dwSizeHid;
     DWORD dwCount;
-    BYTE bRawData[1];
+    BYTE bRawData_1_;
   } RAWHID;
   typedef union RAWINPUT_u {
     RAWMOUSE mouse;

@@ -12,7 +12,7 @@ ffi.cdef [[
   } PXE_PROVIDER;
   typedef PXE_PROVIDER *PPXE_PROVIDER; //Pointer
   typedef union PXE_ADDRESS_u {
-    BYTE bAddress[PXE_MAX_ADDRESS];
+    BYTE bAddress_PXE_MAX_ADDRESS_;
     ULONG uIpAddress;
   } PXE_ADDRESS_u;
   typedef ULONG PXE_ADDR_FLAGS; //Alias

@@ -43,7 +43,7 @@ ffi.cdef [[
     AUDIT_OBJECT_TYPE* pObjectTypes;
   } AUDIT_OBJECT_TYPES;
   typedef struct AUDIT_IP_ADDRESS {
-    BYTE pIpAddress[_AUTHZ_SS_MAXSIZE];
+    BYTE pIpAddress__AUTHZ_SS_MAXSIZE_;
   } AUDIT_IP_ADDRESS;
   typedef union AUDIT_PARAM_u1 {
     ULONG_PTR Data0;
@@ -127,7 +127,7 @@ ffi.cdef [[
     PWSTR szExecutableImagePath;
     GUID* pProviderGuid;
     DWORD dwObjectTypeNameCount;
-    AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET ObjectTypeNames[ANYSIZE_ARRAY];
+    AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET ObjectTypeNames_ANYSIZE_ARRAY_;
   } AUTHZ_SOURCE_SCHEMA_REGISTRATION;
   typedef AUTHZ_SOURCE_SCHEMA_REGISTRATION *PAUTHZ_SOURCE_SCHEMA_REGISTRATION; //Pointer
   typedef struct AUTHZ_ACCESS_REQUEST {

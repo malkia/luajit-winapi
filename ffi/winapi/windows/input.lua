@@ -11,13 +11,13 @@ ffi.cdef [[
     GUID catid;
     DWORD dwSubstituteLayout;
     DWORD dwFlags;
-    WCHAR szId[MAX_PATH];
+    WCHAR szId_MAX_PATH_;
   } LAYOUTORTIPPROFILE;
   typedef DWORD LAYOUTORTIP_Flags; //Alias
   typedef struct LAYOUTORTIP {
     LAYOUTORTIP_Flags dwFlags;
-    WCHAR szId[MAX_PATH];
-    WCHAR szName[MAX_PATH];
+    WCHAR szId_MAX_PATH_;
+    WCHAR szName_MAX_PATH_;
   } LAYOUTORTIP;
   typedef DWORD IlotFlags; //Alias
   typedef DWORD SdlotFlags; //Alias

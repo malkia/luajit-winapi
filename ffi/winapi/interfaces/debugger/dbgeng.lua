@@ -81,18 +81,18 @@ ffi.cdef [[
     DEBUG_VALUE_u_s1 ;
     float F32;
     double F64;
-    UCHAR F80Bytes[10];
-    UCHAR F82Bytes[11];
-    UCHAR F128Bytes[16];
-    UCHAR VI8[16];
-    USHORT VI16[8];
-    ULONG VI32[4];
-    ULONG64 VI64[2];
-    float VF32[4];
-    double VF64[2];
+    UCHAR F80Bytes_10_;
+    UCHAR F82Bytes_11_;
+    UCHAR F128Bytes_16_;
+    UCHAR VI8_16_;
+    USHORT VI16_8_;
+    ULONG VI32_4_;
+    ULONG64 VI64_2_;
+    float VF32_4_;
+    double VF64_2_;
     DEBUG_VALUE_u_s2 I64Parts32;
     DEBUG_VALUE_u_s3 F128Parts64;
-    UCHAR RawBytes[24];
+    UCHAR RawBytes_24_;
   } DEBUG_VALUE_u;
   typedef struct DEBUG_VALUE {
     DEBUG_VALUE_u ;
@@ -139,7 +139,7 @@ ffi.cdef [[
     DWORD64 ExceptionAddress;
     DWORD NumberParameters;
     DWORD __unusedAlignment;
-    DWORD64 ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS];
+    DWORD64 ExceptionInformation_EXCEPTION_MAXIMUM_PARAMETERS_;
   } EXCEPTION_RECORD64;
   typedef EXCEPTION_RECORD64 *PEXCEPTION_RECORD64; //Pointer
   typedef struct DEBUG_EXCEPTION_FILTER_PARAMETERS {
@@ -180,8 +180,8 @@ ffi.cdef [[
     ULONG64 FrameOffset;
     ULONG64 StackOffset;
     ULONG64 FuncTableEntry;
-    ULONG64 Params[4];
-    ULONG64 Reserved[6];
+    ULONG64 Params_4_;
+    ULONG64 Reserved_6_;
     BOOL Virtual;
     ULONG FrameNumber;
   } DEBUG_STACK_FRAME;
@@ -234,7 +234,7 @@ ffi.cdef [[
     ULONG LoadedImageNameSize;
     ULONG SymbolFileNameSize;
     ULONG MappedImageNameSize;
-    ULONG64 Reserved[2];
+    ULONG64 Reserved_2_;
   } DEBUG_MODULE_PARAMETERS;
   typedef DEBUG_MODULE_PARAMETERS *PDEBUG_MODULE_PARAMETERS; //Pointer
   typedef struct DEBUG_MODULE_AND_ID {

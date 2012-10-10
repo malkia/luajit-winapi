@@ -25,7 +25,7 @@ ffi.cdef [[
   static const StatusCode STATUS_NO_BINDING = 3;
   static const StatusCode STATUS_NOPREFIX_AVAIL = 6;
   typedef struct DHCPV6Prefix {
-    UCHAR prefix[16];
+    UCHAR prefix_16_;
     DWORD prefixLength;
     DWORD preferredLifeTime;
     DWORD validLifeTime;

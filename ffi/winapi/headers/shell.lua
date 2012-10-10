@@ -331,7 +331,7 @@ ffi.cdef [[
 # pragma pack( push, 1 )
   typedef struct SHITEMID {
     USHORT cb;
-    BYTE abID[1];
+    BYTE abID_1_;
   } SHITEMID;
 # pragma pack( pop )
   typedef SHITEMID *LPSHITEMID; //Pointer
@@ -358,7 +358,7 @@ ffi.cdef [[
   typedef union STRRET_u {
     LPWSTR pOleStr;
     UINT uOffset;
-    char cStr[260];
+    char cStr_260_;
   } STRRET_u;
 # pragma pack( pop )
 # pragma pack( push, 8 )
@@ -378,15 +378,15 @@ ffi.cdef [[
 # pragma pack( push, 8 )
   typedef struct PERSIST_FOLDER_TARGET_INFO {
     PIDLIST_ABSOLUTE pidlTargetFolder;
-    WCHAR szTargetParsingName[260];
-    WCHAR szNetworkProvider[260];
+    WCHAR szTargetParsingName_260_;
+    WCHAR szNetworkProvider_260_;
     FileAttributes dwAttributes;
     CSIDL csidl;
   } PERSIST_FOLDER_TARGET_INFO;
 # pragma pack( pop )
   typedef struct SHELL_ITEM_RESOURCE {
     GUID guidType;
-    WCHAR szName[260];
+    WCHAR szName_260_;
   } SHELL_ITEM_RESOURCE;
   typedef DWORD CM_MASK; //Alias
   typedef DWORD CM_STATE; //Alias
@@ -400,12 +400,12 @@ ffi.cdef [[
     UINT uWidth;
     CM_SET_WIDTH_VALUE uDefaultWidth;
     UINT uIdealWidth;
-    WCHAR wszName[80];
+    WCHAR wszName_80_;
   } CM_COLUMNINFO;
   typedef UINT CATEGORYINFO_FLAGS; //Alias
   typedef struct CATEGORY_INFO {
     CATEGORYINFO_FLAGS cif;
-    WCHAR wszName[260];
+    WCHAR wszName_260_;
   } CATEGORY_INFO;
   typedef DWORD DBIM; //Alias
   typedef DWORD DBIMF; //Alias
@@ -416,15 +416,15 @@ ffi.cdef [[
     POINTL ptMaxSize;
     POINTL ptIntegral;
     POINTL ptActual;
-    WCHAR wszTitle[256];
+    WCHAR wszTitle_256_;
     DBIMF dwModeFlags;
     COLORREF crBkgnd;
   } DESKBANDINFO;
 # pragma pack( pop )
   typedef struct EXTRASEARCH {
     GUID guidSearch;
-    WCHAR wszFriendlyName[80];
-    WCHAR wszUrl[2084];
+    WCHAR wszFriendlyName_80_;
+    WCHAR wszUrl_2084_;
   } EXTRASEARCH;
   typedef DWORD THUMBBUTTONFLAGS; //Alias
   typedef DWORD THUMBBUTTONMASK; //Alias
@@ -434,7 +434,7 @@ ffi.cdef [[
     UINT iId;
     UINT iBitmap;
     HICON hIcon;
-    WCHAR szTip[260];
+    WCHAR szTip_260_;
     THUMBBUTTONFLAGS dwFlags;
   } THUMBBUTTON;
 # pragma pack( pop )
@@ -872,7 +872,7 @@ ffi.cdef [[
   static const WTS_ALPHATYPE WTSAT_ARGB = 2;
   typedef DWORD WTS_FLAGS; //Alias
   typedef struct WTS_THUMBNAILID {
-    BYTE rgbKey[16];
+    BYTE rgbKey_16_;
   } WTS_THUMBNAILID;
   typedef DWORD WTS_CACHEFLAGS; //Alias
   typedef ULONG PROPSPEC_KIND; //Alias
@@ -886,7 +886,7 @@ ffi.cdef [[
     PROPSPEC_KIND ulKind;
     PROPSPEC_u ;
   } PROPSPEC;
-  typedef PROPSPEC *PROPSPEC const[]; //Pointer
+  typedef PROPSPEC *PROPSPEC[]; //Pointer
   typedef UINT SystemParametersInfoEnum; //Alias
   static const SystemParametersInfoEnum SPI_GETBEEP = 0x0001;
   static const SystemParametersInfoEnum SPI_SETBEEP = 0x0002;

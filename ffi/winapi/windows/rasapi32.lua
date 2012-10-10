@@ -43,12 +43,12 @@ ffi.cdef [[
 # pragma pack( push, 4 )
   typedef struct RASDIALPARAMS {
     DWORD dwSize;
-    TCHAR szEntryName[RAS_MaxEntryName_plus_1];
-    TCHAR szPhoneNumber[RAS_MaxPhoneNumber_plus_1];
-    TCHAR szCallbackNumber[RAS_MaxCallbackNumber_plus_1];
-    TCHAR szUserName[UNLEN_plus_1];
-    TCHAR szPassword[PWLEN_plus_1];
-    TCHAR szDomain[DNLEN_plus_1];
+    TCHAR szEntryName_RAS_MaxEntryName_plus_1_;
+    TCHAR szPhoneNumber_RAS_MaxPhoneNumber_plus_1_;
+    TCHAR szCallbackNumber_RAS_MaxCallbackNumber_plus_1_;
+    TCHAR szUserName_UNLEN_plus_1_;
+    TCHAR szPassword_PWLEN_plus_1_;
+    TCHAR szDomain_DNLEN_plus_1_;
     DWORD dwSubEntry;
     ULONG_PTR dwCallbackId;
     DWORD dwIfIndex;
@@ -60,10 +60,10 @@ ffi.cdef [[
   typedef struct RASCONN {
     DWORD dwSize;
     HRASCONN hrasconn;
-    TCHAR szEntryName[RAS_MaxEntryName_plus_1];
-    TCHAR szDeviceType[RAS_MaxDeviceType_plus_1];
-    TCHAR szDeviceName[RAS_MaxDeviceName_plus_1];
-    TCHAR szPhonebook[MAX_PATH];
+    TCHAR szEntryName_RAS_MaxEntryName_plus_1_;
+    TCHAR szDeviceType_RAS_MaxDeviceType_plus_1_;
+    TCHAR szDeviceName_RAS_MaxDeviceName_plus_1_;
+    TCHAR szPhonebook_MAX_PATH_;
     DWORD dwSubEntry;
     GUID guidEntry;
     RASCONN_FLAGS dwFlags;
@@ -75,8 +75,8 @@ ffi.cdef [[
 # pragma pack( push, 4 )
   typedef struct RASDEVINFO {
     DWORD dwSize;
-    TCHAR szDeviceType[RAS_MaxDeviceType_plus_1];
-    TCHAR szDeviceName[RAS_MaxDeviceName_plus_1];
+    TCHAR szDeviceType_RAS_MaxDeviceType_plus_1_;
+    TCHAR szDeviceName_RAS_MaxDeviceName_plus_1_;
   } RASDEVINFO;
 # pragma pack( pop )
   typedef RASDEVINFO *LPRASDEVINFO; //Pointer
@@ -84,9 +84,9 @@ ffi.cdef [[
 # pragma pack( push, 4 )
   typedef struct RASENTRYNAME {
     DWORD dwSize;
-    TCHAR szEntryName[RAS_MaxEntryName_plus_1];
+    TCHAR szEntryName_RAS_MaxEntryName_plus_1_;
     RASENTRYNAME_FLAGS dwFlags;
-    TCHAR szPhonebookPath[MAX_PATH_plus_1];
+    TCHAR szPhonebookPath_MAX_PATH_plus_1_;
   } RASENTRYNAME;
 # pragma pack( pop )
   typedef RASENTRYNAME *LPRASENTRYNAME; //Pointer
@@ -95,7 +95,7 @@ ffi.cdef [[
     DWORD dwSize;
     DWORD dwFlags;
     DWORD dwDialingLocation;
-    TCHAR szEntry[RAS_MaxEntryName_plus_1];
+    TCHAR szEntry_RAS_MaxEntryName_plus_1_;
   } RASAUTODIALENTRY;
 # pragma pack( pop )
   typedef RASAUTODIALENTRY *LPRASAUTODIALENTRY; //Pointer
@@ -142,9 +142,9 @@ ffi.cdef [[
     DWORD dwSize;
     RASCONNSTATE rasconnstate;
     DWORD dwError;
-    TCHAR szDeviceType[RAS_MaxDeviceType_plus_1];
-    TCHAR szDeviceName[RAS_MaxDeviceName_plus_1];
-    TCHAR szPhoneNumber[RAS_MaxPhoneNumber_plus_1];
+    TCHAR szDeviceType_RAS_MaxDeviceType_plus_1_;
+    TCHAR szDeviceName_RAS_MaxDeviceName_plus_1_;
+    TCHAR szPhoneNumber_RAS_MaxPhoneNumber_plus_1_;
     RASTUNNELENDPOINT localEndPoint;
     RASTUNNELENDPOINT remoteEndPoint;
     RASCONNSUBSTATE rasconnsubstate;
@@ -156,17 +156,17 @@ ffi.cdef [[
   typedef struct RASCREDENTIALS {
     DWORD dwSize;
     RASCM_FLAGS dwMask;
-    TCHAR szUserName[UNLEN_plus_1];
-    TCHAR szPassword[PWLEN_plus_1];
-    TCHAR szDomain[DNLEN_plus_1];
+    TCHAR szUserName_UNLEN_plus_1_;
+    TCHAR szPassword_PWLEN_plus_1_;
+    TCHAR szDomain_DNLEN_plus_1_;
   } RASCREDENTIALS;
 # pragma pack( pop )
   typedef RASCREDENTIALS *LPRASCREDENTIALS; //Pointer
 # pragma pack( push, 4 )
   typedef struct RASEAPUSERIDENTITY {
-    TCHAR szUserName[UNLEN_plus_1];
+    TCHAR szUserName_UNLEN_plus_1_;
     DWORD dwSizeofEapInfo;
-    BYTE pbEapInfo[1];
+    BYTE pbEapInfo_1_;
   } RASEAPUSERIDENTITY;
 # pragma pack( pop )
   typedef RASEAPUSERIDENTITY *LPRASEAPUSERIDENTITY; //Pointer
@@ -215,8 +215,8 @@ ffi.cdef [[
     RASEO_FLAGS dwfOptions;
     DWORD dwCountryID;
     DWORD dwCountryCode;
-    TCHAR szAreaCode[RAS_MaxAreaCode_plus_1];
-    TCHAR szLocalPhoneNumber[RAS_MaxPhoneNumber_plus_1];
+    TCHAR szAreaCode_RAS_MaxAreaCode_plus_1_;
+    TCHAR szLocalPhoneNumber_RAS_MaxPhoneNumber_plus_1_;
     DWORD dwAlternateOffset;
     RASIPADDR ipaddr;
     RASIPADDR ipaddrDns;
@@ -226,15 +226,15 @@ ffi.cdef [[
     DWORD dwFrameSize;
     RASNP_FLAGS dwfNetProtocols;
     RASFP_FLAGS dwFramingProtocol;
-    TCHAR szScript[MAX_PATH];
-    TCHAR szAutodialDll[MAX_PATH];
-    TCHAR szAutodialFunc[MAX_PATH];
-    TCHAR szDeviceType[RAS_MaxDeviceType_plus_1];
-    TCHAR szDeviceName[RAS_MaxDeviceName_plus_1];
-    TCHAR szX25PadType[RAS_MaxPadType_plus_1];
-    TCHAR szX25Address[RAS_MaxX25Address_plus_1];
-    TCHAR szX25Facilities[RAS_MaxFacilities_plus_1];
-    TCHAR szX25UserData[RAS_MaxUserData_plus_1];
+    TCHAR szScript_MAX_PATH_;
+    TCHAR szAutodialDll_MAX_PATH_;
+    TCHAR szAutodialFunc_MAX_PATH_;
+    TCHAR szDeviceType_RAS_MaxDeviceType_plus_1_;
+    TCHAR szDeviceName_RAS_MaxDeviceName_plus_1_;
+    TCHAR szX25PadType_RAS_MaxPadType_plus_1_;
+    TCHAR szX25Address_RAS_MaxX25Address_plus_1_;
+    TCHAR szX25Facilities_RAS_MaxFacilities_plus_1_;
+    TCHAR szX25UserData_RAS_MaxUserData_plus_1_;
     DWORD dwChannels;
     DWORD dwReserved1;
     DWORD dwReserved2;
@@ -249,14 +249,14 @@ ffi.cdef [[
     RAS_ENCRYPTION_TYPE dwEncryptionType;
     DWORD dwCustomAuthKey;
     GUID guidId;
-    TCHAR szCustomDialDll[MAX_PATH];
+    TCHAR szCustomDialDll_MAX_PATH_;
     RAS_VPN_STRATEGY dwVpnStrategy;
     RASEO2_FLAGS dwfOptions2;
     DWORD dwfOptions3;
-    TCHAR szDnsSuffix[RAS_MaxDnsSuffix];
+    TCHAR szDnsSuffix_RAS_MaxDnsSuffix_;
     DWORD dwTcpWindowSize;
-    TCHAR szPrerequisitePbk[MAX_PATH];
-    TCHAR szPrerequisiteEntry[RAS_MaxEntryName_plus_1];
+    TCHAR szPrerequisitePbk_MAX_PATH_;
+    TCHAR szPrerequisiteEntry_RAS_MaxEntryName_plus_1_;
     DWORD dwRedialCount;
     DWORD dwRedialPause;
     RASIPV6ADDR ipv6addrDns;
@@ -292,8 +292,8 @@ ffi.cdef [[
     RASIPO_OPTIONS dwIPv4Options;
     RASIPO_OPTIONS dwIPv4ServerOptions;
     DWORD dwIPv6NegotiationError;
-    BYTE bInterfaceIdentifier[8];
-    BYTE bServerInterfaceIdentifier[8];
+    BYTE bInterfaceIdentifier_8_;
+    BYTE bServerInterfaceIdentifier_8_;
     BOOL fBundled;
     BOOL fMultilink;
     RASLCPAP dwAuthenticationProtocol;
@@ -359,9 +359,9 @@ ffi.cdef [[
   typedef struct RASSUBENTRY {
     DWORD dwSize;
     DWORD dwfFlags;
-    TCHAR szDeviceType[RAS_MaxDeviceType_plus_1];
-    TCHAR szDeviceName[RAS_MaxDeviceName_plus_1];
-    TCHAR szLocalPhoneNumber[RAS_MaxPhoneNumber_plus_1];
+    TCHAR szDeviceType_RAS_MaxDeviceType_plus_1_;
+    TCHAR szDeviceName_RAS_MaxDeviceName_plus_1_;
+    TCHAR szLocalPhoneNumber_RAS_MaxPhoneNumber_plus_1_;
     DWORD dwAlternateOffset;
   } RASSUBENTRY;
 # pragma pack( pop )

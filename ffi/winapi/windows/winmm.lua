@@ -37,7 +37,7 @@ ffi.cdef [[
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
-    TCHAR szPname[MAXPNAMELEN];
+    TCHAR szPname_MAXPNAMELEN_;
     AUXCAPS_TECH wTechnology;
     WORD wReserved1;
     AUXCAPS_SUPPORT dwSupport;
@@ -49,7 +49,7 @@ ffi.cdef [[
   typedef struct JOYCAPS {
     WORD wMid;
     WORD wPid;
-    TCHAR szPname[MAXPNAMELEN];
+    TCHAR szPname_MAXPNAMELEN_;
     UINT wXmin;
     UINT wXmax;
     UINT wYmin;
@@ -69,8 +69,8 @@ ffi.cdef [[
     UINT wMaxAxes;
     UINT wNumAxes;
     UINT wMaxButtons;
-    TCHAR szRegKey[MAXPNAMELEN];
-    TCHAR szOEMVxD[MAX_JOYSTICKOEMVXDNAME];
+    TCHAR szRegKey_MAXPNAMELEN_;
+    TCHAR szOEMVxD_MAX_JOYSTICKOEMVXDNAME_;
   } JOYCAPS;
 # pragma pack( pop )
   typedef JOYCAPS *LPJOYCAPS; //Pointer
@@ -85,7 +85,7 @@ ffi.cdef [[
     LPVOID lpNext;
     DWORD_PTR reserved;
     DWORD dwOffset;
-    DWORD_PTR dwReserved[8];
+    DWORD_PTR dwReserved_8_;
   } MIDIHDR;
 # pragma pack( pop )
   typedef MIDIHDR *LPMIDIHDR; //Pointer
@@ -94,7 +94,7 @@ ffi.cdef [[
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
-    TCHAR szPname[MAXPNAMELEN];
+    TCHAR szPname_MAXPNAMELEN_;
     DWORD dwSupport;
   } MIDIINCAPS;
 # pragma pack( pop )
@@ -113,7 +113,7 @@ ffi.cdef [[
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
-    TCHAR szPname[MAXPNAMELEN];
+    TCHAR szPname_MAXPNAMELEN_;
     MIDIOUTCAPS_TECH wTechnology;
     WORD wVoices;
     WORD wNotes;
@@ -144,7 +144,7 @@ ffi.cdef [[
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
-    TCHAR szPname[MAXPNAMELEN];
+    TCHAR szPname_MAXPNAMELEN_;
     DWORD fdwSupport;
     DWORD cDestinations;
   } MIXERCAPS;
@@ -172,14 +172,14 @@ ffi.cdef [[
   typedef union MIXERCONTROL_u1 {
     MIXERCONTROL_u1_s1 ;
     MIXERCONTROL_u1_s2 ;
-    DWORD dwReserved[6];
+    DWORD dwReserved_6_;
   } MIXERCONTROL_u1;
 # pragma pack( pop )
 # pragma pack( push, 1 )
   typedef union MIXERCONTROL_u2 {
     DWORD cSteps;
     DWORD cbCustomData;
-    DWORD dwReserved[6];
+    DWORD dwReserved_6_;
   } MIXERCONTROL_u2;
 # pragma pack( pop )
   typedef DWORD MIXERCONTROL_CT_CLASS; //Alias
@@ -199,8 +199,8 @@ ffi.cdef [[
     MIXERCONTROL_CT_CLASS dwControlType;
     MIXERCONTROL_CONTROLF fdwControl;
     DWORD cMultipleItems;
-    TCHAR szShortName[MIXER_SHORT_NAME_CHARS];
-    TCHAR szName[MIXER_LONG_NAME_CHARS];
+    TCHAR szShortName_MIXER_SHORT_NAME_CHARS_;
+    TCHAR szName_MIXER_LONG_NAME_CHARS_;
     MIXERCONTROL_u1 Bounds;
     MIXERCONTROL_u2 Metrics;
   } MIXERCONTROL;
@@ -253,7 +253,7 @@ ffi.cdef [[
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
-    TCHAR szPname[MAXPNAMELEN];
+    TCHAR szPname_MAXPNAMELEN_;
   } MIXERLINE_s;
 # pragma pack( pop )
 # pragma pack( push, 1 )
@@ -268,8 +268,8 @@ ffi.cdef [[
     DWORD cChannels;
     DWORD cConnections;
     DWORD cControls;
-    TCHAR szShortName[MIXER_SHORT_NAME_CHARS];
-    TCHAR szName[MIXER_LONG_NAME_CHARS];
+    TCHAR szShortName_MIXER_SHORT_NAME_CHARS_;
+    TCHAR szName_MIXER_LONG_NAME_CHARS_;
     MIXERLINE_s Target;
   } MIXERLINE;
 # pragma pack( pop )
@@ -289,7 +289,7 @@ ffi.cdef [[
     HPSTR pchEndWrite;
     LONG lBufOffset;
     LONG lDiskOffset;
-    DWORD adwInfo[3];
+    DWORD adwInfo_3_;
     DWORD dwReserved1;
     DWORD dwReserved2;
     HMMIO hmmio;
@@ -316,7 +316,7 @@ ffi.cdef [[
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
-    TCHAR szPname[MAXPNAMELEN];
+    TCHAR szPname_MAXPNAMELEN_;
     WAVE_FORMAT dwFormats;
     WORD wChannels;
     WORD wReserved1;
@@ -329,7 +329,7 @@ ffi.cdef [[
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
-    TCHAR szPname[MAXPNAMELEN];
+    TCHAR szPname_MAXPNAMELEN_;
     WAVE_FORMAT dwFormats;
     WORD wChannels;
     WORD wReserved1;
@@ -483,7 +483,7 @@ ffi.cdef [[
     BYTE frame;
     BYTE fps;
     BYTE dummy;
-    BYTE pad[2];
+    BYTE pad_2_;
   } MMTIME_u_s1;
   typedef struct MMTIME_u_s2 {
     DWORD songptrpos;

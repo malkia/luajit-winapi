@@ -7,9 +7,9 @@ ffi.cdef [[
     DWORD cbSize;
     DiDriverType DriverType;
     ULONG_PTR Reserved;
-    TCHAR Description[LINE_LEN];
-    TCHAR MfgName[LINE_LEN];
-    TCHAR ProviderName[LINE_LEN];
+    TCHAR Description_LINE_LEN_;
+    TCHAR MfgName_LINE_LEN_;
+    TCHAR ProviderName_LINE_LEN_;
     FILETIME DriverDate;
     DWORDLONG DriverVersion;
   } SP_DRVINFO_DATA;

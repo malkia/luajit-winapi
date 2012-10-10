@@ -20,7 +20,7 @@ ffi.cdef [[
     HRSRC hResource;
     HGLOBAL hMetaPict;
     CLSID clsid;
-    TCHAR szIconExe[MAX_PATH];
+    TCHAR szIconExe_MAX_PATH_;
     int cchIconExe;
   } OLEUICHANGEICON;
   typedef OLEUICHANGEICON *LPOLEUICHANGEICON; //Pointer
@@ -61,10 +61,10 @@ ffi.cdef [[
   typedef struct OLEUIGNRLPROPS {
     DWORD cbStruct;
     DWORD dwFlags;
-    DWORD dwReserved1[2];
+    DWORD dwReserved1_2_;
     LPFNOLEUIHOOK lpfnHook;
     LPARAM lCustData;
-    DWORD dwReserved2[3];
+    DWORD dwReserved2_3_;
     LPVOID lpOP;
   } OLEUIGNRLPROPS;
   typedef OLEUIGNRLPROPS *LPOLEUIGNRLPROPS; //Pointer
@@ -72,10 +72,10 @@ ffi.cdef [[
   typedef struct OLEUIVIEWPROPS {
     DWORD cbStruct;
     ViewPropsFlags dwFlags;
-    DWORD dwReserved1[2];
+    DWORD dwReserved1_2_;
     LPFNOLEUIHOOK lpfnHook;
     LPARAM lCustData;
-    DWORD dwReserved2[3];
+    DWORD dwReserved2_3_;
     LPVOID lpOP;
     int nScaleMin;
     int nScaleMax;
@@ -84,10 +84,10 @@ ffi.cdef [[
   typedef struct OLEUILINKPROPS {
     DWORD cbStruct;
     DWORD dwFlags;
-    DWORD dwReserved1[2];
+    DWORD dwReserved1_2_;
     LPFNOLEUIHOOK lpfnHook;
     LPARAM lCustData;
-    DWORD dwReserved2[3];
+    DWORD dwReserved2_3_;
     LPVOID lpOP;
   } OLEUILINKPROPS;
   typedef OLEUILINKPROPS *LPOLEUILINKPROPS; //Pointer
@@ -116,7 +116,7 @@ ffi.cdef [[
     LPCTSTR lpszTemplate;
     HRSRC hResource;
     OPENFILENAME* lpOFN;
-    DWORD dwReserved1[4];
+    DWORD dwReserved1_4_;
     LPOLEUILINKCONTAINER lpOleUILinkContainer;
     DWORD dwLink;
     LPTSTR lpszDisplayName;

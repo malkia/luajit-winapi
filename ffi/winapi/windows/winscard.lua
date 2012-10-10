@@ -8,13 +8,13 @@ ffi.cdef [[
     SCARD_STATE dwCurrentState;
     SCARD_STATE dwEventState;
     DWORD cbAtr;
-    BYTE rgbAtr[36];
+    BYTE rgbAtr_36_;
   } SCARD_READERSTATE;
   typedef SCARD_READERSTATE *LPSCARD_READERSTATE; //Pointer
   typedef struct SCARD_ATRMASK {
     DWORD cbAtr;
-    BYTE rgbAtr[36];
-    BYTE rgbMask[36];
+    BYTE rgbAtr_36_;
+    BYTE rgbMask_36_;
   } SCARD_ATRMASK;
   typedef SCARD_ATRMASK *LPSCARD_ATRMASK; //Pointer
   typedef struct SCARD_IO_REQUEST {

@@ -11,7 +11,7 @@ ffi.cdef [[
     LPVOID pBuf;
   } PRINTER_NOTIFY_INFO_DATA_u_s;
   typedef union PRINTER_NOTIFY_INFO_DATA_u {
-    DWORD adwData[2];
+    DWORD adwData_2_;
     PRINTER_NOTIFY_INFO_DATA_u_s Data;
   } PRINTER_NOTIFY_INFO_DATA_u;
   typedef struct PRINTER_NOTIFY_INFO_DATA {
@@ -26,7 +26,7 @@ ffi.cdef [[
     DWORD Version;
     PRINTER_NOTIFY_INFO_FLAGS Flags;
     DWORD Count;
-    PRINTER_NOTIFY_INFO_DATA aData[1];
+    PRINTER_NOTIFY_INFO_DATA aData_1_;
   } PRINTER_NOTIFY_INFO;
   typedef PRINTER_NOTIFY_INFO *PPRINTER_NOTIFY_INFO; //Pointer
   typedef DWORD PRINTER_OPTION_FLAGS; //Alias

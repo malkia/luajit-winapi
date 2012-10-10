@@ -23,7 +23,7 @@ ffi.cdef [[
     UCHAR ThrottlePolicyDc;
     SYSTEM_POWER_STATE MaxSleepAc;
     SYSTEM_POWER_STATE MaxSleepDc;
-    ULONG Reserved[2];
+    ULONG Reserved_2_;
     ULONG VideoTimeoutAc;
     ULONG VideoTimeoutDc;
     ULONG SpindownTimeoutAc;
@@ -47,7 +47,7 @@ ffi.cdef [[
     ULONG DozeS4TimeoutDc;
     UCHAR MinThrottleAc;
     UCHAR MinThrottleDc;
-    UCHAR pad1[2];
+    UCHAR pad1_2_;
     POWER_ACTION_POLICY OverThrottledAc;
     POWER_ACTION_POLICY OverThrottledDc;
   } MACHINE_POWER_POLICY;
@@ -58,7 +58,7 @@ ffi.cdef [[
   typedef POWER_POLICY *PPOWER_POLICY; //Pointer
   typedef struct SYSTEM_POWER_LEVEL {
     BOOLEAN Enable;
-    BYTE Spare[3];
+    BYTE Spare_3_;
     DWORD BatteryLevel;
     POWER_ACTION_POLICY PowerPolicy;
     SYSTEM_POWER_STATE MinSystemState;
@@ -72,7 +72,7 @@ ffi.cdef [[
     POWER_ACTION_POLICY SleepButtonDc;
     POWER_ACTION_POLICY LidCloseAc;
     POWER_ACTION_POLICY LidCloseDc;
-    SYSTEM_POWER_LEVEL DischargePolicy[NUM_DISCHARGE_POLICIES];
+    SYSTEM_POWER_LEVEL DischargePolicy_NUM_DISCHARGE_POLICIES_;
     ULONG GlobalFlags;
   } GLOBAL_USER_POWER_POLICY;
   typedef struct GLOBAL_MACHINE_POWER_POLICY {
@@ -92,16 +92,16 @@ ffi.cdef [[
     DWORD PromoteLimit;
     BYTE DemotePercent;
     BYTE PromotePercent;
-    BYTE Spare[2];
+    BYTE Spare_2_;
     DWORD Reserved;
   } PROCESSOR_POWER_POLICY_INFO;
   typedef struct PROCESSOR_POWER_POLICY {
     DWORD Revision;
     BYTE DynamicThrottle;
-    BYTE Spare[3];
+    BYTE Spare_3_;
     DWORD Reserved;
     DWORD PolicyCount;
-    PROCESSOR_POWER_POLICY_INFO Policy[3];
+    PROCESSOR_POWER_POLICY_INFO Policy_3_;
   } PROCESSOR_POWER_POLICY;
   typedef struct MACHINE_PROCESSOR_POWER_POLICY {
     ULONG Revision;
@@ -132,12 +132,12 @@ ffi.cdef [[
     BYTE ProcessorMinThrottle;
     BYTE ProcessorMaxThrottle;
     BOOLEAN FastSystemS4;
-    BYTE spare2[3];
+    BYTE spare2_3_;
     BOOLEAN DiskSpinDown;
-    BYTE spare3[8];
+    BYTE spare3_8_;
     BOOLEAN SystemBatteriesPresent;
     BOOLEAN BatteriesAreShortTerm;
-    BATTERY_REPORTING_SCALE BatteryScale[3];
+    BATTERY_REPORTING_SCALE BatteryScale_3_;
     SYSTEM_POWER_STATE AcOnLineWake;
     SYSTEM_POWER_STATE SoftLidWake;
     SYSTEM_POWER_STATE RtcWake;

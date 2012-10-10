@@ -16,12 +16,12 @@ ffi.cdef [[
   typedef struct NETWORK_ADDRESS {
     USHORT AddressLength;
     USHORT AddressType;
-    UCHAR Address[1];
+    UCHAR Address_1_;
   } NETWORK_ADDRESS;
   typedef struct NETWORK_ADDRESS_LIST {
     LONG AddressCount;
     USHORT AddressType;
-    NETWORK_ADDRESS Address[1];
+    NETWORK_ADDRESS Address_1_;
   } NETWORK_ADDRESS_LIST;
   typedef struct ADDRESS_LIST_DESCRIPTOR {
     ULONG MediaType;
@@ -52,17 +52,17 @@ ffi.cdef [[
     FLOWSPEC SendingFlowspec;
     FLOWSPEC ReceivingFlowspec;
     ULONG TcObjectsLength;
-    QOS_OBJECT_HDR TcObjects[1];
+    QOS_OBJECT_HDR TcObjects_1_;
   } TC_GEN_FLOW;
   typedef TC_GEN_FLOW *PTC_GEN_FLOW; //Pointer
   typedef struct ENUMERATION_BUFFER {
     ULONG Length;
     ULONG OwnerProcessId;
     USHORT FlowNameLength;
-    WCHAR FlowName[MAX_STRING_LENGTH];
+    WCHAR FlowName_MAX_STRING_LENGTH_;
     PTC_GEN_FLOW pFlow;
     ULONG NumberOfFilters;
-    TC_GEN_FILTER GenericFilter[1];
+    TC_GEN_FILTER GenericFilter_1_;
   } ENUMERATION_BUFFER;
   typedef ENUMERATION_BUFFER *PENUMERATION_BUFFER; //Pointer
   typedef struct TCI_CLIENT_FUNC_LIST {

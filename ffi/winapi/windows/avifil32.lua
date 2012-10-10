@@ -32,7 +32,7 @@ ffi.cdef [[
     RECT rcFrame;
     DWORD dwEditCount;
     DWORD dwFormatChangeCount;
-    TCHAR szName[64];
+    TCHAR szName_64_;
   } AVISTREAMINFO;
   typedef DWORD AVIFILEINFO_FLAGS; //Alias
   typedef DWORD AVIFILECAPS; //Alias
@@ -48,7 +48,7 @@ ffi.cdef [[
     DWORD dwRate;
     DWORD dwLength;
     DWORD dwEditCount;
-    TCHAR szFileType[64];
+    TCHAR szFileType_64_;
   } AVIFILEINFO;
   typedef struct AVICOMPRESSOPTIONS {
     DWORD fccType;

@@ -34,8 +34,8 @@ ffi.cdef [[
     int iNextSample;
     DWORD dwLastScroll;
     BOOL bFull;
-    POINT pts[NUM_POINTS];
-    DWORD dwTimes[NUM_POINTS];
+    POINT pts_NUM_POINTS_;
+    DWORD dwTimes_NUM_POINTS_;
   } AUTO_SCROLL_DATA;
   typedef UINT BROWSEINFO_FLAG; //Alias
 # pragma pack( push, 8 )
@@ -65,12 +65,12 @@ ffi.cdef [[
     NOTIFYICON_FLAG uFlags;
     UINT uCallbackMessage;
     HICON hIcon;
-    TCHAR szTip[128];
+    TCHAR szTip_128_;
     NOTIFYICON_STATE dwState;
     NOTIFYICON_STATE dwStateMask;
-    TCHAR szInfo[256];
+    TCHAR szInfo_256_;
     NOTIFYICONDATA_u ;
-    TCHAR szInfoTitle[64];
+    TCHAR szInfoTitle_64_;
     NOTIFYICON_INFO_FLAG dwInfoFlags;
     GUID guidItem;
     HICON hBalloonIcon;
@@ -80,8 +80,8 @@ ffi.cdef [[
     HICON hIcon;
     int iIcon;
     SFGAOF dwAttributes;
-    TCHAR szDisplayName[MAX_PATH];
-    TCHAR szTypeName[80];
+    TCHAR szDisplayName_MAX_PATH_;
+    TCHAR szTypeName_80_;
   } SHFILEINFO;
   typedef DWORD SHFOLDERCUSTOMSETTINGS_MASK; //Alias
 # pragma pack( push, 8 )
@@ -109,7 +109,7 @@ ffi.cdef [[
     HICON hIcon;
     int iSysImageIndex;
     int iIcon;
-    WCHAR szPath[MAX_PATH];
+    WCHAR szPath_MAX_PATH_;
   } SHSTOCKICONINFO;
   typedef UINT OPEN_AS_INFO_FLAGS; //Alias
 # pragma pack( push, 8 )
@@ -565,7 +565,7 @@ ffi.cdef [[
   HRESULT           SHGetPropertyStoreFromIDList(                PCIDLIST_ABSOLUTE pidl, GETPROPERTYSTOREFLAGS flags, REFIID riid, void** ppv);
   HRESULT           SHGetPropertyStoreFromParsingName(           PCWSTR pszPath, IBindCtx* pbc, GETPROPERTYSTOREFLAGS flags, REFIID riid, void** ppv);
   HRESULT           SHPropStgCreate(                             IPropertySetStorage* psstg, REFFMTID fmtid, CLSID* pclsid, DWORD grfFlags, STGM_FLAGS grfMode, DWORD dwDisposition, IPropertyStorage** ppstg, UINT* puCodePage);
-  HRESULT           SHPropStgReadMultiple(                       IPropertyStorage* pps, CodePageEnum uCodePage, ULONG cpspec, PROPSPEC const[] rgpspec, PROPVARIANT[] rgvar);
+  HRESULT           SHPropStgReadMultiple(                       IPropertyStorage* pps, CodePageEnum uCodePage, ULONG cpspec, PROPSPEC[] rgpspec, PROPVARIANT[] rgvar);
   HRESULT           SHPropStgWriteMultiple(                      IPropertyStorage* pps, UINT* uCodePage, ULONG cpspec, PROPID propidNameFirst);
   LPWSTR            AddCommasExportW(                            DWORD value, LPWSTR pwszBuf);
   void              AppCompat_RunDLLW(                           HWND unusedHwnd, HINSTANCE unusedHinstance, LPWSTR commandLine, int unusedInt);
