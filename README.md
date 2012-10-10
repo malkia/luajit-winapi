@@ -1,4 +1,5 @@
 *** WORK IN PROGRES
+
 *** DO NOT USE!
 
 luajit-winapi
@@ -12,3 +13,9 @@ luajit-winapi
 http://www.rohitab.com/apimonitor
 
 
+* TODO
+  - Add interfaces
+  - Fix remaining ffi modules that don't load
+  - Clean up the source code, and the special cases
+  - Support WINE or WINELIB on OSX/Linux
+  
