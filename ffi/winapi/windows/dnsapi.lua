@@ -132,4 +132,4 @@ ffi.cdef [[
   DNS_STATUS  DnsValidateName_(               PCTSTR pszName, DNS_NAME_FORMAT Format);
   BOOL        DnsWriteQuestionToBuffer_W(     PDNS_MESSAGE_BUFFER pDnsBuffer, PDWORD pdwBufferSize, PCWSTR pszName, WINAPI_DnsRecordType wType, WORD Xid, BOOL fRecursionDesired);
 ]]
-ffi.load( 'Dnsapi.dll' )
+return ffi.load( 'Dnsapi.dll' )

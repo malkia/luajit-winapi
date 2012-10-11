@@ -65,4 +65,4 @@ ffi.cdef [[
   DWORD PxeRegisterCallback(         HANDLE hProvider, PXE_CALLBACK_TYPE CallbackType, PVOID pCallbackFunction, PVOID pContext);
   DWORD PxeTrace(                    HANDLE hProvider, PXE_SEVERITY Severity, LPCWSTR pszFormat);
 ]]
-ffi.load( 'WdsPxe.dll' )
+return ffi.load( 'WdsPxe.dll' )

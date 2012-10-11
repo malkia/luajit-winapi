@@ -54,4 +54,4 @@ ffi.cdef [[
   BOOL                  TransmitFile(         SOCKET hSocket, HANDLE hFile, DWORD nNumberOfBytesToWrite, DWORD nNumberOfBytesPerSend, LPOVERLAPPED lpOverlapped, LPTRANSMIT_FILE_BUFFERS lpTransmitBuffers, WINAPI_TransmitFile_Flags dwFlags);
   WINAPI_SocketCode_int WSARecvEx(            SOCKET s, char* buf, int len, int* flags);
 ]]
-ffi.load( 'Mswsock.dll' )
+return ffi.load( 'Mswsock.dll' )

@@ -8,4 +8,4 @@ ffi.cdef [[
   HRESULT WdsBpParseInitialize( PVOID pPacket, ULONG uPacketLen, PBYTE pbPacketType, HANDLE* phHandle);
   HRESULT WdsBpQueryOption(     HANDLE hHandle, ULONG uOption, ULONG uValueLen, PVOID pValue, PULONG puBytes);
 ]]
-ffi.load( 'Wdsbp.dll' )
+return ffi.load( 'Wdsbp.dll' )

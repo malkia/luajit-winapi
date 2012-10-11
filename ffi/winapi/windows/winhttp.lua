@@ -92,4 +92,4 @@ ffi.cdef [[
   BOOL                    WinHttpTimeToSystemTime(               LPCWSTR pwszTime, SYSTEMTIME* pst);
   BOOL                    WinHttpWriteData(                      HINTERNET hRequest, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite, LPDWORD lpdwNumberOfBytesWritten);
 ]]
-ffi.load( 'Winhttp.dll' )
+return ffi.load( 'Winhttp.dll' )

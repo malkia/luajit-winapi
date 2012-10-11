@@ -96,4 +96,4 @@ ffi.cdef [[
   HRESULT DXVA2CreateVideoService(                         IDirect3DDevice9* pDD, REFIID riid, void** ppService);
   HRESULT DXVAHD_CreateDevice(                             IDirect3DDevice9Ex* pD3DDevice, DXVAHD_CONTENT_DESC* pContentDesc, DXVAHD_DEVICE_USAGE Usage, PDXVAHDSW_Plugin pPlugin, IDXVAHD_Device** ppDevice);
 ]]
-ffi.load( 'dxva2.dll' )
+return ffi.load( 'dxva2.dll' )

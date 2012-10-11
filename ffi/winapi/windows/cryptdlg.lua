@@ -34,4 +34,4 @@ ffi.cdef [[
   DWORD   GetFriendlyNameOfCert(         PCCERT_CONTEXT pccert, LPTSTR pchBuffer, DWORD cchBuffer);
   HRESULT CertModifyCertificatesToTrust( int cCerts, PCTL_MODIFY_REQUEST rgCerts, LPCSTR szPurpose, HWND hwnd, HCERTSTORE hcertstoreTrust, PCCERT_CONTEXT pccertSigner);
 ]]
-ffi.load( 'CryptDlg.dll' )
+return ffi.load( 'CryptDlg.dll' )

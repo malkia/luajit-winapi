@@ -3,4 +3,4 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   IDirect3D9* Direct3DCreate9( UINT SDKVersion);
 ]]
-ffi.load( 'd3d9.dll' )
+return ffi.load( 'd3d9.dll' )

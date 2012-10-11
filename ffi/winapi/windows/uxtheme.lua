@@ -171,4 +171,4 @@ ffi.cdef [[
   BOOL             EndPanningFeedback(                    HWND hwnd, BOOL fAnimateBack);
   BOOL             UpdatePanningFeedback(                 HWND hwnd, LONG lTotalOverpanOffsetX, LONG lTotalOverpanOffsetY, BOOL fInInertia);
 ]]
-ffi.load( 'UxTheme.dll' )
+return ffi.load( 'UxTheme.dll' )

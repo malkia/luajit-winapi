@@ -6,4 +6,4 @@ ffi.cdef [[
   int     LegitCheck(       );
   HRESULT SetPartnerID(     int nPartnerID);
 ]]
-ffi.load( 'LegitLib.dll' )
+return ffi.load( 'LegitLib.dll' )

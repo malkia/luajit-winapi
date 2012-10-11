@@ -8,4 +8,4 @@ ffi.cdef [[
   DWORD  IcmpSendEcho(     HANDLE IcmpHandle, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
   DWORD  IcmpSendEcho2(    HANDLE IcmpHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
 ]]
-ffi.load( 'Icmp.dll' )
+return ffi.load( 'Icmp.dll' )

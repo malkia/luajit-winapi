@@ -4,4 +4,4 @@ ffi.cdef [[
   HRESULT GetNetScheduleAccountInformation( LPCWSTR pwszServerName, DWORD ccAccount);
   HRESULT SetNetScheduleAccountInformation( LPCWSTR pwszServerName, LPCWSTR pwszAccount, LPCWSTR pwszPassword);
 ]]
-ffi.load( 'Mstask.dll' )
+return ffi.load( 'Mstask.dll' )

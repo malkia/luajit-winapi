@@ -126,4 +126,4 @@ ffi.cdef [[
   BOOL              LsnNull(                       CLFS_LSN* plsn);
   ULONG             LsnRecordSequence(             CLFS_LSN* plsn);
 ]]
-ffi.load( 'Clfsw32.dll' )
+return ffi.load( 'Clfsw32.dll' )

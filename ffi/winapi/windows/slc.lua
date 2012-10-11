@@ -17,4 +17,4 @@ ffi.cdef [[
   HRESULT SLSetGenuineInformation(              SLID* pAppId, PCWSTR pwszValueName, SLDATATYPE eDataType, UINT cbValue, BYTE* pbValue);
   HRESULT SLUninstallSAMLicense(                SLID* pApplicationId);
 ]]
-ffi.load( 'Slc.dll' )
+return ffi.load( 'Slc.dll' )

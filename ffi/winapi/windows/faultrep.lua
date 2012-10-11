@@ -15,4 +15,4 @@ ffi.cdef [[
   BOOL            AddERExcludedApplication( LPCTSTR szApplication);
   EFaultRepRetVal ReportFault(              LPEXCEPTION_POINTERS pep, DWORD dwMode);
 ]]
-ffi.load( 'Faultrep.dll' )
+return ffi.load( 'Faultrep.dll' )

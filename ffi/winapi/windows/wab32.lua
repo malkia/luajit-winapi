@@ -16,4 +16,4 @@ ffi.cdef [[
   HRESULT WABOpen(   LPADRBOOK* lppAdrBook, LPWABOBJECT* lppWABObject, LPWAB_PARAM lpWABParam, DWORD Reserved2);
   HRESULT WABOpenEx( LPADRBOOK* lppAdrBook, LPWABOBJECT* lppWABObject, LPWAB_PARAM lpWABParam, DWORD Reserved2, ALLOCATEBUFFER* lpfnAllocateBuffer, ALLOCATEMORE* lpfnAllocateMore, FREEBUFFER* lpfnFreeBuffer);
 ]]
-ffi.load( 'wab32.dll' )
+return ffi.load( 'wab32.dll' )

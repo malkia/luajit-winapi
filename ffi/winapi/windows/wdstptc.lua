@@ -36,4 +36,4 @@ ffi.cdef [[
   WINAPI_ERROR_CODE WdsTransportClientStartSession(      HANDLE hSessionKey);
   WINAPI_ERROR_CODE WdsTransportClientWaitForCompletion( HANDLE hSessionKey, ULONG uTimeout);
 ]]
-ffi.load( 'Wdstptc.dll' )
+return ffi.load( 'Wdstptc.dll' )

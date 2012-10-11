@@ -25,4 +25,4 @@ ffi.cdef [[
   HRESULT CertSrvRestoreRegisterThroughFile(   HCSBC hbc, WCHAR* pwszCheckPointFilePath, WCHAR* pwszLogPath, CSEDB_RSTMAP rgrstmap, LONG crstmap, WCHAR* pwszBackupLogPath, ULONG genLow, ULONG genHigh);
   HRESULT CertSrvServerControlW(               WCHAR* pwszServerName, DWORD dwControlFlags, DWORD* pcbOut, BYTE** ppbOut);
 ]]
-ffi.load( 'Certadm.dll' )
+return ffi.load( 'Certadm.dll' )

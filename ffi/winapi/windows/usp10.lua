@@ -111,4 +111,4 @@ ffi.cdef [[
   HRESULT         ScriptTextOut(                 HDC hdc, SCRIPT_CACHE* psc, int x, int y, WINAPI_ExtTextOutFlags fuOptions, RECT* lprc, SCRIPT_ANALYSIS* psa, WCHAR* pwcReserved, int iReserved, WORD* pwGlyphs, int cGlyphs, int* piAdvance, int* piJustify, GOFFSET* pGoffset);
   HRESULT         ScriptXtoCP(                   int iX, int cChars, int cGlyphs, WORD* pwLogClust, SCRIPT_VISATTR* psva, int* piAdvance, SCRIPT_ANALYSIS* psa, int* piCP, int* piTrailing);
 ]]
-ffi.load( 'Usp10.dll' )
+return ffi.load( 'Usp10.dll' )

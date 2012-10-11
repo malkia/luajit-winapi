@@ -6,4 +6,4 @@ ffi.cdef [[
   HRESULT CreateAssemblyCache(      IAssemblyCache** ppAsmCache, DWORD dwReserved);
   HRESULT CreateAssemblyNameObject( LPASSEMBLYNAME* ppAssemblyNameObj, LPCWSTR szAssemblyName, WINAPI_CreateAsmNameObjFlags dwFlags, LPVOID pvReserved);
 ]]
-ffi.load( 'SxS.dll' )
+return ffi.load( 'SxS.dll' )

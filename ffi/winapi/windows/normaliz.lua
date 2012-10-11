@@ -9,4 +9,4 @@ ffi.cdef [[
   BOOL IsNormalizedString(   NORM_FORM NormForm, LPCWSTR lpString, int cwLength);
   int  NormalizeString(      NORM_FORM NormForm, LPCWSTR lpSrcString, int cwSrcLength, LPWSTR lpDstString, int cwDstLength);
 ]]
-ffi.load( 'Normaliz.dll' )
+return ffi.load( 'Normaliz.dll' )

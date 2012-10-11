@@ -2337,4 +2337,4 @@ ffi.cdef [[
   PVOID                        EncodeSystemPointer(                     PVOID Ptr);
   int                          MulDiv(                                  int nNumber, int nNumerator, int nDenominator);
 ]]
-ffi.load( 'Kernel32.dll' )
+return ffi.load( 'Kernel32.dll' )

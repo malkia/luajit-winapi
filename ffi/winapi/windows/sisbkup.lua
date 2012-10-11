@@ -9,4 +9,4 @@ ffi.cdef [[
   BOOL SisFreeRestoreStructure(   PVOID sisRestoreStructure);
   BOOL SisRestoredLink(           PVOID sisRestoreStructure, PWCHAR restoredFileName, PVOID reparseData, ULONG reparseDataSize, PULONG countOfCommonStoreFilesToRestore, PWCHAR** commonStoreFilesToRestore);
 ]]
-ffi.load( 'Sisbkup.dll' )
+return ffi.load( 'Sisbkup.dll' )

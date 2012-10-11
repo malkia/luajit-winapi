@@ -142,4 +142,4 @@ ffi.cdef [[
   BOOL       EvtGetObjectArraySize(           EVT_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, PDWORD ObjectArraySize);
   BOOL       EvtGetObjectArrayProperty(       EVT_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, DWORD PropertyId, DWORD ArrayIndex, DWORD Flags, DWORD PropertyValueBufferSize, PEVT_VARIANT PropertyValueBuffer, PDWORD PropertyValueBufferUsed);
 ]]
-ffi.load( 'Wevtapi.dll' )
+return ffi.load( 'Wevtapi.dll' )

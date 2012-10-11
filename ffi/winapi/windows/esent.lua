@@ -835,4 +835,4 @@ ffi.cdef[[
   JET_ERR JetUpdate(                        JET_SESID sesid, JET_TABLEID tableid, void* pvBookmark, unsigned long cbBookmark, unsigned long* pcbActual);
   JET_ERR JetUpdate2(                       JET_SESID sesid, JET_TABLEID tableid, void* pvBookmark, unsigned long cbBookmark, unsigned long* pcbActual, WINAPI_JetUpdateFlags grbit);
 ]]
-ffi.load( 'esent.dll' )
+return ffi.load( 'esent.dll' )

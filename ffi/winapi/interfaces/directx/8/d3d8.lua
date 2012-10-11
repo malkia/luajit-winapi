@@ -128,4 +128,4 @@ ffi.cdef [[
 # pragma pack( pop )
   IDirect3D8* Direct3DCreate8( UINT SDKVersion);
 ]]
-ffi.load( 'd3d8.dll' )
+return ffi.load( 'd3d8.dll' )

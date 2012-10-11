@@ -12,4 +12,4 @@ ffi.cdef [[
   BOOL               SnmpMgrStrToOid(   LPSTR string, AsnObjectIdentifier* oid);
   BOOL               SnmpMgrTrapListen( HANDLE* phTrapAvailable);
 ]]
-ffi.load( 'Mgmtapi.dll' )
+return ffi.load( 'Mgmtapi.dll' )

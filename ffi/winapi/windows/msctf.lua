@@ -78,4 +78,4 @@ ffi.cdef [[
   HRESULT TF_InvalidAssemblyListCacheIfExist( );
   BOOL    MsimtfIsWindowFiltered(             HWND hwnd);
 ]]
-ffi.load( 'msctf.dll' )
+return ffi.load( 'msctf.dll' )

@@ -118,4 +118,4 @@ ffi.cdef [[
   HRESULT Extract(              PSESSION ps, LPCSTR lpCabName);
   LPCSTR  GetDllVersion(        );
 ]]
-ffi.load( 'Cabinet.dll' )
+return ffi.load( 'Cabinet.dll' )

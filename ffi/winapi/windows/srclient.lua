@@ -50,4 +50,4 @@ ffi.cdef [[
   BOOL  SRSetRestorePointW(        PRESTOREPOINTINFOW pRestorePtSpec, PSTATEMGRSTATUS pSMgrStatus);
   BOOL  SRSetRestorePointInternal( PRESTOREPOINTINFOW pRestorePtSpec, PSTATEMGRSTATUS pSMgrStatus, BOOL fForceSurrogate);
 ]]
-ffi.load( 'SrClient.dll' )
+return ffi.load( 'SrClient.dll' )

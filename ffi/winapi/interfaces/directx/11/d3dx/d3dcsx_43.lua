@@ -11,4 +11,4 @@ ffi.cdef [[
   HRESULT D3DX11CreateFFT3DComplex(  ID3D11DeviceContext* pDeviceContext, UINT X, UINT Y, UINT Z, D3DX11_FFT_CREATE_FLAG Flags, D3DX11_FFT_BUFFER_INFO* pBufferInfo, ID3DX11FFT** ppFFT);
   HRESULT D3DX11CreateFFT3DReal(     ID3D11DeviceContext* pDeviceContext, UINT X, UINT Y, UINT Z, D3DX11_FFT_CREATE_FLAG Flags, D3DX11_FFT_BUFFER_INFO* pBufferInfo, ID3DX11FFT** ppFFT);
 ]]
-ffi.load( 'd3dcsx_43.dll' )
+return ffi.load( 'd3dcsx_43.dll' )

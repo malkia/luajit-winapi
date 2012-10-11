@@ -123,4 +123,4 @@ ffi.cdef [[
   HRESULT WSDXMLGetNameFromBuiltinNamespace( LPCWSTR pszNamespace, LPCWSTR pszName, WSDXML_NAME** ppName);
   HRESULT WSDXMLGetValueFromAny(             WCHAR* pszNamespace, WCHAR* pszName, WSDXML_ELEMENT* pAny, LPCWSTR* ppszValue);
 ]]
-ffi.load( 'Wsdapi.dll' )
+return ffi.load( 'Wsdapi.dll' )

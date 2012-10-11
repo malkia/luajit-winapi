@@ -5,4 +5,4 @@ ffi.cdef [[
   BOOL ConfigDSN(        HWND hwndParent, WINAPI_ODBC_DSN_REQUEST fRequest, LPCTSTR lpszDriver, LPCTSTR lpszAttributes);
   BOOL ConfigTranslator( HWND hwndParent, DWORD* pvOption);
 ]]
-ffi.load( 'SQLSRV32.DLL' )
+return ffi.load( 'SQLSRV32.DLL' )

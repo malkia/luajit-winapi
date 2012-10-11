@@ -1120,4 +1120,4 @@ ffi.cdef [[
   GpStatus GdipConvertToEmfPlusToFile(                       GpGraphics* refGraphics, GpMetafile* metafile, INT* conversionFailureFlag, WCHAR* filename, EmfType emfType, WCHAR* description, GpMetafile** out_metafile);
   GpStatus GdipConvertToEmfPlusToStream(                     GpGraphics* refGraphics, GpMetafile* metafile, INT* conversionFailureFlag, IStream* stream, EmfType emfType, WCHAR* description, GpMetafile** out_metafile);
 ]]
-ffi.load( 'gdiplus.dll' )
+return ffi.load( 'gdiplus.dll' )

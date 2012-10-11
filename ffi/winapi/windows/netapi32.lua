@@ -491,4 +491,4 @@ ffi.cdef [[
   NET_API_STATUS NetShareSetInfo(                   LPWSTR servername, LPWSTR netname, DWORD level, LPBYTE buf, LPDWORD parm_err);
   NET_API_STATUS NetStatisticsGet(                  LPWSTR server, LPWSTR service, DWORD level, DWORD options, LPBYTE* bufptr);
 ]]
-ffi.load( 'Netapi32.dll' )
+return ffi.load( 'Netapi32.dll' )

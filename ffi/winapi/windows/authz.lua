@@ -190,4 +190,4 @@ ffi.cdef [[
   BOOL AuthzUnregisterSecurityEventSource(     DWORD dwFlags, PAUTHZ_SECURITY_EVENT_PROVIDER_HANDLE phEventProvider);
   BOOL AuthzModifySecurityAttributes(          AUTHZ_CLIENT_CONTEXT_HANDLE AuthzClientContext, PAUTHZ_SECURITY_ATTRIBUTE_OPERATION pOperations, PAUTHZ_SECURITY_ATTRIBUTES_INFORMATION pAttributes);
 ]]
-ffi.load( 'Authz.dll' )
+return ffi.load( 'Authz.dll' )

@@ -218,4 +218,4 @@ ffi.cdef [[
   HRESULT           UnRegisterForPrintAsyncNotifications( HANDLE hRegistrationHandler);
   BOOL              WritePrinter(                         HANDLE hPrinter, LPVOID pBuf, DWORD cbBuf, LPDWORD pcWritten);
 ]]
-ffi.load( 'Winspool.drv' )
+return ffi.load( 'Winspool.drv' )

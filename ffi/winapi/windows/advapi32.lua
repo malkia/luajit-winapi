@@ -788,4 +788,4 @@ ffi.cdef [[
   NTSTATUS                  LsaSetDomainInformationPolicy(                       LSA_HANDLE PolicyHandle, POLICY_DOMAIN_INFORMATION_CLASS InformationClass, PVOID Buffer);
   NTSTATUS                  LsaSetForestTrustInformation(                        LSA_HANDLE PolicyHandle, PLSA_UNICODE_STRING TrustedDomainName, PLSA_FOREST_TRUST_INFORMATION ForestTrustInfo, BOOLEAN CheckOnly, PLSA_FOREST_TRUST_COLLISION_INFORMATION* CollisionInfo);
 ]]
-ffi.load( 'Advapi32.dll' )
+return ffi.load( 'Advapi32.dll' )

@@ -234,4 +234,4 @@ ffi.cdef [[
   HRESULT CryptXmlVerifySignature(  HCRYPTXML hSignature, BCRYPT_KEY_HANDLE hKey, DWORD dwFlags);
   HRESULT CryptXmlSign(             HCRYPTXML hSignature, HCRYPTPROV_OR_NCRYPT_KEY_HANDLE hKey, DWORD dwKeySpec, DWORD dwFlags, CRYPT_XML_KEYINFO_SPEC dwKeyInfoSpec, void* pvKeyInfoSpec, CRYPT_XML_ALGORITHM* pSignatureMethod, CRYPT_XML_ALGORITHM* pCanonicalization);
 ]]
-ffi.load( 'Cryptxml.dll' )
+return ffi.load( 'Cryptxml.dll' )

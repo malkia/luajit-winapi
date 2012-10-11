@@ -9,4 +9,4 @@ ffi.cdef [[
   static const FILE_RISK_LEVEL FRL_BLOCK = 4;
   HRESULT EstimateFileRiskLevel( LPCWSTR pszFilePath, LPCWSTR pszExt, LPCWSTR pszHandler, FILE_RISK_LEVEL* pfrlEstimate);
 ]]
-ffi.load( 'winshfhc.dll' )
+return ffi.load( 'winshfhc.dll' )

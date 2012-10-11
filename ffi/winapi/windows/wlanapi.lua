@@ -418,4 +418,4 @@ ffi.cdef [[
   WINAPI_ERROR_CODE WlanSetPsdIEDataList(                     HANDLE hClientHandle, LPCWSTR strFormat, PWLAN_RAW_DATA_LIST pPsdIEDataList, PVOID pReserved);
   WINAPI_ERROR_CODE WlanSetSecuritySettings(                  HANDLE hClientHandle, WLAN_SECURABLE_OBJECT SecurableObject, LPCWSTR strModifiedSDDL);
 ]]
-ffi.load( 'Wlanapi.dll' )
+return ffi.load( 'Wlanapi.dll' )

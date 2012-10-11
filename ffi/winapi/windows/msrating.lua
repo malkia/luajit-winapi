@@ -11,4 +11,4 @@ ffi.cdef [[
   HRESULT RatingObtainQuery(         LPCTSTR pszTargetUrl, DWORD dwUserData, DWORD dwUserData, HRESULT hr, LPCTSTR pszRating, HANDLE* phRatingObtainQuery);
   HRESULT RatingSetupUI(             HWND hDlg, LPCSTR pszUsername);
 ]]
-ffi.load( 'msrating.dll' )
+return ffi.load( 'msrating.dll' )

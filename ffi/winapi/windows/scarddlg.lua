@@ -71,4 +71,4 @@ ffi.cdef [[
   LONG GetOpenCardName(      LPOPENCARDNAME pDlgStruc);
   LONG SCardUIDlgSelectCard( LPOPENCARDNAME_EX pDlgStruc);
 ]]
-ffi.load( 'Scarddlg.dll' )
+return ffi.load( 'Scarddlg.dll' )

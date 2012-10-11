@@ -4,4 +4,4 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   HRESULT CreateHardwareEventMoniker( REFCLSID clsid, LPCTSTR pszEventHandler, IMoniker** ppmoniker);
 ]]
-ffi.load( 'Shsvcs.dll' )
+return ffi.load( 'Shsvcs.dll' )

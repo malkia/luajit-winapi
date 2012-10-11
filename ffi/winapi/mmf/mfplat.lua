@@ -110,4 +110,4 @@ ffi.cdef [[
   HRESULT  MFWrapMediaType(                              IMFMediaType* pOrig, REFGUID MajorType, REFGUID SubType, IMFMediaType** ppWrap);
   HRESULT  MFValidateMediaTypeSize(                      GUID FormatType, UINT8* pBlock, UINT32 cbSize);
 ]]
-ffi.load( 'Mfplat.dll' )
+return ffi.load( 'Mfplat.dll' )

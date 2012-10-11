@@ -16,4 +16,4 @@ ffi.cdef [[
   BOOL TestApplyPatchToFileByBuffers(  PBYTE PatchFileBuffer, ULONG PatchFileSize, PBYTE OldFileBuffer, ULONG OldFileSize, ULONG* NewFileSize);
   BOOL TestApplyPatchToFileByHandles(  HANDLE PatchFileHandle, HANDLE OldFileHandle, WINAPI_ApplyOptionFlags ApplyOptionFlags);
 ]]
-ffi.load( 'mspatcha.dll' )
+return ffi.load( 'mspatcha.dll' )

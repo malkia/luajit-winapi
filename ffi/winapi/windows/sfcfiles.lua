@@ -8,4 +8,4 @@ ffi.cdef [[
   } PPROTECT_FILE_ENTRY;
   NTSTATUS SfcGetFiles( PPROTECT_FILE_ENTRY* ProtFileData, PULONG FileCount);
 ]]
-ffi.load( 'Sfcfiles.dll' )
+return ffi.load( 'Sfcfiles.dll' )

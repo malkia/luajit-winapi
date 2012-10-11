@@ -34,4 +34,4 @@ ffi.cdef [[
   BOOL FaxSendDocument(              HANDLE FaxHandle, LPCTSTR FileName, PFAX_JOB_PARAM JobParams, FAX_COVERPAGE_INFO* CoverpageInfo, LPDWORD FaxJobId);
   BOOL FaxSetRoutingInfo(            HANDLE FaxPortHandle, LPCTSTR RoutingGuid, BYTE* RoutingInfoBuffer, DWORD RoutingInfoBufferSize);
 ]]
-ffi.load( 'FxsApi.dll' )
+return ffi.load( 'FxsApi.dll' )

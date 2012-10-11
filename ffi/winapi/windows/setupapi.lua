@@ -661,4 +661,4 @@ ffi.cdef [[
   CONFIGRET    CM_Setup_DevNode(                           DEVINST dnDevInst, ULONG ulFlags);
   DWORD        CMP_WaitNoPendingInstallEvents(             DWORD dwTimeout);
 ]]
-ffi.load( 'Setupapi.dll' )
+return ffi.load( 'Setupapi.dll' )

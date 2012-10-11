@@ -32,4 +32,4 @@ ffi.cdef [[
   BOOL    SetDefaultLayoutOrTip(         LPCWSTR psz, WINAPI_SdlotFlags dwFlags);
   BOOL    SetDefaultLayoutOrTipUserReg(  LPCWSTR pszUserReg, LPCWSTR pszSystemReg, LPCWSTR pszSoftwareReg, LPCWSTR psz, WINAPI_SdlotFlags dwFlags);
 ]]
-ffi.load( 'input.dll' )
+return ffi.load( 'input.dll' )

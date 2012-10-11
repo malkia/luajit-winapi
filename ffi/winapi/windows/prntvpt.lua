@@ -20,4 +20,4 @@ ffi.cdef [[
   HRESULT PTCloseProvider(               HPTPROVIDER hProvider);
   HRESULT PTQuerySchemaVersionSupport(   PCWSTR pszPrinterName, DWORD* pMaxVersion);
 ]]
-ffi.load( 'Prntvpt.dll' )
+return ffi.load( 'Prntvpt.dll' )

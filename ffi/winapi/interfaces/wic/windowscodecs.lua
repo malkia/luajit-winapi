@@ -274,4 +274,4 @@ ffi.cdef [[
   WINAPI_WIC_HRESULT WICMatchMetadataContent(      REFGUID guidContainerFormat, GUID* pguidVendor, IStream* pIStream, GUID* pguidMetadataFormat);
   WINAPI_WIC_HRESULT WICSerializeMetadataContent(  REFGUID guidContainerFormat, IWICMetadataWriter* pIWriter, DWORD dwPersistOptions, IStream* pIStream);
 ]]
-ffi.load( 'WindowsCodecs.dll' )
+return ffi.load( 'WindowsCodecs.dll' )

@@ -17,4 +17,4 @@ ffi.cdef [[
   BOOL    PvkPrivateKeyAcquireContextFromMemory( LPCWSTR pwszProvName, WINAPI_CryptProv dwProvType, BYTE* pbData, DWORD cbData, HWND hwndOwner, LPCWSTR pwszKeyName, DWORD* pdwKeySpec, HCRYPTPROV* phCryptProv, LPTSTR* ppwszTmpContainer);
   BOOL    PvkPrivateKeySave(                     HCRYPTPROV hCryptProv, HANDLE hFile, DWORD dwKeySpec, HWND hwndOwner, LPCWSTR pwszKeyName, DWORD dwFlags);
 ]]
-ffi.load( 'Mssign32.dll' )
+return ffi.load( 'Mssign32.dll' )

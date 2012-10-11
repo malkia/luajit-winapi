@@ -6,4 +6,4 @@ ffi.cdef [[
   char*    PL_strdup(  char* s);
   void     PL_strfree( char* s);
 ]]
-ffi.load( 'plc4.dll' )
+return ffi.load( 'plc4.dll' )

@@ -32,4 +32,4 @@ ffi.cdef [[
   HRESULT D3DX11SHProjectCubeMap(                       ID3D11DeviceContext* pContext, UINT Order, ID3D11Texture2D* pCubeMap, FLOAT* pROut, FLOAT* pGOut, FLOAT* pBOut);
   HRESULT D3DX11UnsetAllDeviceObjects(                  ID3D11DeviceContext* pContext);
 ]]
-ffi.load( 'd3dx11_43.dll' )
+return ffi.load( 'd3dx11_43.dll' )

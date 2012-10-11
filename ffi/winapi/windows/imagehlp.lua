@@ -108,4 +108,4 @@ ffi.cdef[[
   BOOL              UpdateDebugInfoFile(        PSTR ImageFileName, PSTR SymbolPath, PSTR DebugFilePath, PIMAGE_NT_HEADERS NtHeaders);
   BOOL              UpdateDebugInfoFileEx(      PSTR ImageFileName, PSTR SymbolPath, PSTR DebugFilePath, PIMAGE_NT_HEADERS NtHeaders, DWORD OldChecksum);
 ]]
-ffi.load( 'ImageHlp.dll' )
+return ffi.load( 'ImageHlp.dll' )

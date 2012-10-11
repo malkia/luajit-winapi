@@ -21,4 +21,4 @@ ffi.cdef [[
   LPVOID  ReallocADsMem(       LPVOID pOldMem, DWORD cbOld, DWORD cbNew);
   BOOL    ReallocADsStr(       LPWSTR* ppStr, LPWSTR pStr);
 ]]
-ffi.load( 'Activeds.dll' )
+return ffi.load( 'Activeds.dll' )

@@ -506,4 +506,4 @@ ffi.cdef [[
   HRESULT        GetRecordInfoFromGuids(          REFGUID rGuidTypeLib, ULONG uVerMajor, ULONG uVerMinor, LCID lcid, REFGUID rGuidTypeInfo, IRecordInfo** ppRecInfo);
   HRESULT        GetRecordInfoFromTypeInfo(       ITypeInfo* pTypeInfo, IRecordInfo** ppRecInfo);
 ]]
-ffi.load( 'OleAut32.dll' )
+return ffi.load( 'OleAut32.dll' )

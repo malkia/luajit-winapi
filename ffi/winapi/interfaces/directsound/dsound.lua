@@ -313,4 +313,4 @@ ffi.cdef [[
   WINAPI_DS_HRESULT DirectSoundFullDuplexCreate( LPCGUID pcGuidCaptureDevice, LPCGUID pcGuidRenderDevice, LPCDSCBUFFERDESC pcDSCBufferDesc, LPCDSBUFFERDESC pcDSBufferDesc, HWND hWnd, DWORD dwLevel, LPDIRECTSOUNDFULLDUPLEX* ppDSFD, LPDIRECTSOUNDCAPTUREBUFFER8* ppDSCBuffer8, LPDIRECTSOUNDBUFFER8* ppDSBuffer8, LPUNKNOWN pUnkOuter);
   WINAPI_DS_HRESULT GetDeviceID(                 LPCGUID pGuidSrc, LPGUID pGuidDest);
 ]]
-ffi.load( 'dsound.dll' )
+return ffi.load( 'dsound.dll' )

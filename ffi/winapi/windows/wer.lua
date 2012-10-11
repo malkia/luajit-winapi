@@ -86,4 +86,4 @@ ffi.cdef [[
   HRESULT WerReportSetUIOption(         HREPORT hReportHandle, WER_REPORT_UI repUITypeID, PCWSTR pwzValue);
   HRESULT WerReportSubmit(              HREPORT hReportHandle, WER_CONSENT consent, DWORD dwFlags, PWER_SUBMIT_RESULT pSubmitResult);
 ]]
-ffi.load( 'Wer.dll' )
+return ffi.load( 'Wer.dll' )

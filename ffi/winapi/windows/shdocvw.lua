@@ -25,4 +25,4 @@ ffi.cdef [[
   HRESULT DoPrivacyDlg(             HWND hwndParent, LPCWSTR pszUrl, IEnumPrivacyRecords* pPrivacyEnum, BOOL fReportAllSites);
   BOOL    ImportPrivacySettings(    LPCWSTR szFilename, BOOL* pfParsePrivacyPreferences, BOOL* pfParsePerSiteRules);
 ]]
-ffi.load( 'Shdocvw.dll' )
+return ffi.load( 'Shdocvw.dll' )

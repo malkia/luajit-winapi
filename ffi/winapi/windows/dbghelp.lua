@@ -510,4 +510,4 @@ ffi.cdef [[
   BOOL                     SymGetSymPrev64(                    WINAPI_ProcessHandle hProcess, PIMAGEHLP_SYMBOL64 Symbol);
   BOOL                     UnmapDebugInformation(              PIMAGE_DEBUG_INFORMATION DebugInfo);
 ]]
-ffi.load( 'DbgHelp.dll' )
+return ffi.load( 'DbgHelp.dll' )

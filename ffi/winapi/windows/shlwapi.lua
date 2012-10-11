@@ -405,4 +405,4 @@ ffi.cdef [[
   LSTATUS                 SHRegSetValue(                       HKEY hKey, LPCWSTR pwszSubKey, LPCWSTR pwszValue, SRRF srrfFlags, DWORD dwType, LPCVOID pvData, DWORD cbData);
   HRESULT                 SHUnicodeToAnsiCPAlloc(              UINT codePage, LPCWSTR pwszString, LPSTR* ppszConverted);
 ]]
-ffi.load( 'shlwapi.dll' )
+return ffi.load( 'shlwapi.dll' )

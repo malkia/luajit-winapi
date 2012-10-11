@@ -146,4 +146,4 @@ ffi.cdef [[
   DWORD DsUnquoteRdnValue(              DWORD cQuotedRdnValueLength, LPCTCH psQuotedRdnValue, DWORD* pcUnquotedRdnValueLength, LPTCH psUnquotedRdnValue);
   DWORD DsWriteAccountSpn(              HANDLE hDS, DS_SPN_WRITE_OP Operation, LPCTSTR pszAccount, DWORD cSpn, LPCTSTR* rpszSpn);
 ]]
-ffi.load( 'Ntdsapi.dll' )
+return ffi.load( 'Ntdsapi.dll' )

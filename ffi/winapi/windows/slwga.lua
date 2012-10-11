@@ -13,4 +13,4 @@ ffi.cdef [[
   } SL_NONGENUINE_UI_OPTIONS;
   HRESULT SLIsGenuineLocal( SLID* pAppId, SL_GENUINE_STATE* pGenuineState, SL_NONGENUINE_UI_OPTIONS* pUIOptions);
 ]]
-ffi.load( 'Slwga.dll' )
+return ffi.load( 'Slwga.dll' )

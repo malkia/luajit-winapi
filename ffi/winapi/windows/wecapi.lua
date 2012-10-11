@@ -72,4 +72,4 @@ ffi.cdef [[
   BOOL      EcRemoveObjectArrayElement(     EC_OBJECT_ARRAY_PROPERTY_HANDLE ObjectArray, DWORD ArrayIndex);
   BOOL      EcRetrySubscription(            LPCWSTR SubscriptionName, LPCWSTR EventSourceName, DWORD Flags);
 ]]
-ffi.load( 'Wecapi.dll' )
+return ffi.load( 'Wecapi.dll' )

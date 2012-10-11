@@ -22,4 +22,4 @@ ffi.cdef [[
   DWORD RmRestart(           DWORD dwSessionHandle, DWORD dwRestartFlags, RM_WRITE_STATUS_CALLBACK fnStatus);
   DWORD RmCancelCurrentTask( DWORD dwSessionHandle);
 ]]
-ffi.load( 'Rstrtmgr.dll' )
+return ffi.load( 'Rstrtmgr.dll' )

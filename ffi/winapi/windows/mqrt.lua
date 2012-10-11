@@ -98,4 +98,4 @@ ffi.cdef [[
   HRESULT MQSetQueueProperties(            LPCWSTR lpwcsFormatName, MQQUEUEPROPS* pQueueProps);
   HRESULT MQSetQueueSecurity(              LPCWSTR lpwcsFormatName, SECURITY_INFORMATION SecurityInformation, PSECURITY_DESCRIPTOR pSecurityDescriptor);
 ]]
-ffi.load( 'Mqrt.dll' )
+return ffi.load( 'Mqrt.dll' )

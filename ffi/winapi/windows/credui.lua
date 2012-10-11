@@ -48,4 +48,4 @@ ffi.cdef [[
   SECURITY_STATUS   SspiUnmarshalCredUIContext(        PUCHAR MarshaledCredUIContext, ULONG MarshaledCredUIContextLength, PSEC_WINNT_CREDUI_CONTEXT* CredUIContext);
   SECURITY_STATUS   SspiUpdateCredentials(             HANDLE ContextHandle, GUID* CredType, ULONG FlatCredUIContextLength, PUCHAR FlatCredUIContext);
 ]]
-ffi.load( 'Credui.dll' )
+return ffi.load( 'Credui.dll' )

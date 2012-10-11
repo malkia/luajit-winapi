@@ -7,4 +7,4 @@ ffi.cdef [[
   BOOL CdromKnownGoodDigitalPlayback( HDEVINFO DevInfo, PSP_DEVINFO_DATA DevInfoData);
   BOOL DvdLauncher(                   HWND HWnd, CHAR DriveLetter);
 ]]
-ffi.load( 'Storprop.dll' )
+return ffi.load( 'Storprop.dll' )

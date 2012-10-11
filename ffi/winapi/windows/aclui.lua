@@ -15,4 +15,4 @@ ffi.cdef [[
   BOOL           EditSecurity(         HWND hwndOwner, LPSECURITYINFO psi);
   HRESULT        EditSecurityAdvanced( HWND hwndOwner, LPSECURITYINFO psi, SI_PAGE_TYPE uSIPage);
 ]]
-ffi.load( 'Aclui.dll' )
+return ffi.load( 'Aclui.dll' )

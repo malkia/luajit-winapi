@@ -60,4 +60,4 @@ ffi.cdef [[
   BOOL  wglUseFontBitmaps(         HDC hdc, DWORD first, DWORD count, DWORD listBase);
   BOOL  wglUseFontOutlines(        HDC hdc, DWORD first, DWORD count, DWORD listBase, FLOAT deviation, FLOAT extrusion, int format, LPGLYPHMETRICSFLOAT lpgmf);
 ]]
-ffi.load( 'Opengl32.dll' )
+return ffi.load( 'Opengl32.dll' )

@@ -62,4 +62,4 @@ ffi.cdef [[
   HRESULT NdfCreateWinSockIncident(      SOCKET sock, LPCWSTR host, USHORT port, LPCWSTR appID, SID* userId, NDFHANDLE* handle);
   HRESULT NdfExecuteDiagnosis(           NDFHANDLE handle, HWND hwnd);
 ]]
-ffi.load( 'Ndfapi.dll' )
+return ffi.load( 'Ndfapi.dll' )

@@ -46,4 +46,4 @@ ffi.cdef [[
   HRESULT DllGetVersion(         DLLVERSIONINFO* pdvi);
   HRESULT DllInstall(            BOOL bInstall, PCWSTR pszCmdLine);
 ]]
-ffi.load( '*' )
+return ffi.load( '*' )

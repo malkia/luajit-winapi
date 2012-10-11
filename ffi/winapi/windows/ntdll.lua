@@ -2155,4 +2155,4 @@ ffi.cdef[[
   VOID                                                   RtlGetUnloadEventTraceEx(                           PULONG* ElementSize, PULONG* ElementCount, PVOID* EventTrace);
   BOOLEAN                                                RtlIsNameInExpression(                              PUNICODE_STRING Expression, PUNICODE_STRING Name, BOOLEAN IgnoreCase, PWCH UpcaseTable);
 ]]
-ffi.load( 'Ntdll.dll' )
+return ffi.load( 'Ntdll.dll' )

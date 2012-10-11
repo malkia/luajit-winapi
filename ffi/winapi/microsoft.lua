@@ -34,4 +34,4 @@ ffi.cdef [[
   HRESULT GetIdentityAuthority(              IIdentityAuthority** ppIIdentityAuthority);
   HRESULT PreBindAssemblyEx(                 IApplicationContext* pAppCtx, IAssemblyName* pName, IAssembly* pAsmParent, LPCWSTR pwzRuntimeVersion, IAssemblyName** ppNamePostPolicy, LPVOID pvReserved);
 ]]
-ffi.load( 'mscorwks.dll' )
+return ffi.load( 'mscorwks.dll' )

@@ -6,4 +6,4 @@ ffi.cdef [[
   SECStatus NSS_NoDB_Init(     char* reserved);
   SECStatus NSS_Shutdown(      );
 ]]
-ffi.load( 'nss3.dll' )
+return ffi.load( 'nss3.dll' )

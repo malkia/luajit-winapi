@@ -116,4 +116,4 @@ ffi.cdef [[
   DWORD MprInfoBlockFind(                          LPVOID lpHeader, DWORD dwInfoType, LPDWORD lpdwItemSize, LPDWORD lpdwItemCount, LPBYTE* lplpItemData);
   DWORD MprInfoBlockQuerySize(                     LPVOID lpHeader);
 ]]
-ffi.load( 'Mprapi.dll' )
+return ffi.load( 'Mprapi.dll' )

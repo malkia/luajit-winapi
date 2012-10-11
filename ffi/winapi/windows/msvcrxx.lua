@@ -1803,4 +1803,4 @@ ffi.cdef [[
   int*                          __p__commode(                                                     );
   void                          _beep(                                                            unsigned frequency, unsigned duration);
 ]]
-ffi.load( 'msvcrxx.dll' )
+return ffi.load( 'msvcrxx.dll' )

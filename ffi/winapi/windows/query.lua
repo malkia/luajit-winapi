@@ -65,4 +65,4 @@ ffi.cdef [[
   STDAPI BindIFilterFromStorage(  IStorage* pStg, IUnknown* pUnkOuter, void** ppIUnk);
   STDAPI BindIFilterFromStream(   IStream* pStm, IUnknown* pUnkOuter, void** ppIUnk);
 ]]
-ffi.load( 'query.dll' )
+return ffi.load( 'query.dll' )

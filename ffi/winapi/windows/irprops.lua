@@ -32,4 +32,4 @@ ffi.cdef [[
   BOOL                   BluetoothUnregisterAuthentication(    HBLUETOOTH_AUTHENTICATION_REGISTRATION hRegHandle);
   DWORD                  BluetoothUpdateDeviceRecord(          BLUETOOTH_DEVICE_INFO* pbtdi);
 ]]
-ffi.load( 'irprops.cpl' )
+return ffi.load( 'irprops.cpl' )

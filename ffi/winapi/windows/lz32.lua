@@ -10,4 +10,4 @@ ffi.cdef [[
   INT  LZRead(          INT hFile, LPBYTE lpBuffer, INT cbRead);
   LONG LZSeek(          INT hFile, LONG lOffset, INT iOrigin);
 ]]
-ffi.load( 'Lz32.dll' )
+return ffi.load( 'Lz32.dll' )

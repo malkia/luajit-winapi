@@ -1220,4 +1220,4 @@ ffi.cdef [[
   WINAPI_ERROR_CODE       IcmpSendEcho(                      HANDLE IcmpHandle, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
   WINAPI_ERROR_CODE       IcmpSendEcho2(                     HANDLE IcmpHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
 ]]
-ffi.load( 'Iphlpapi.dll' )
+return ffi.load( 'Iphlpapi.dll' )

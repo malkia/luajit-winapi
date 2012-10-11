@@ -242,4 +242,4 @@ ffi.cdef [[
   INT             ber_printf(                 BerElement* pBerElement, PCHAR fmt);
   INT             ber_scanf(                  BerElement* pBerElement, PCHAR fmt);
 ]]
-ffi.load( 'Wldap32.dll' )
+return ffi.load( 'Wldap32.dll' )

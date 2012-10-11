@@ -8,4 +8,4 @@ ffi.cdef [[
   static const WL_DISPLAY_PAGES WLSecurityPage = 1;
   WINAPI_ERROR_CODE WlanUIEditProfile( WINAPI_WlanVersion dwClientVersion, LPCWSTR wstrProfileName, GUID* pInterfaceGuid, HWND hWnd, WL_DISPLAY_PAGES wlStartPage, PVOID pReserved, PWLAN_REASON_CODE pWlanReasonCode);
 ]]
-ffi.load( 'Wlanui.dll' )
+return ffi.load( 'Wlanui.dll' )

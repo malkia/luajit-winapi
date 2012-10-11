@@ -51,4 +51,4 @@ ffi.cdef [[
   CRYPT_PROVIDER_SGNR*     WTHelperGetProvSignerFromChain(        CRYPT_PROVIDER_DATA* pProvData, DWORD idxSigner, BOOL fCounterSigner, DWORD idxCounterSigner);
   CRYPT_PROVIDER_DATA*     WTHelperProvDataFromStateData(         HANDLE hStateData);
 ]]
-ffi.load( 'Wintrust.dll' )
+return ffi.load( 'Wintrust.dll' )

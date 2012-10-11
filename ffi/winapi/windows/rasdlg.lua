@@ -70,4 +70,4 @@ ffi.cdef [[
   BOOL RasMonitorDlg(   LPTSTR lpszDeviceName, LPRASMONITORDLG lpInfo);
   BOOL RasPhonebookDlg( LPTSTR lpszPhonebook, LPTSTR lpszEntry, LPRASPBDLG lpInfo);
 ]]
-ffi.load( 'Rasdlg.dll' )
+return ffi.load( 'Rasdlg.dll' )

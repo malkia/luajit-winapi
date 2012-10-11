@@ -642,4 +642,4 @@ ffi.cdef [[
   MMRESULT    waveOutUnprepareHeader(      HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh);
   MMRESULT    waveOutWrite(                HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh);
 ]]
-ffi.load( 'Winmm.dll' )
+return ffi.load( 'Winmm.dll' )

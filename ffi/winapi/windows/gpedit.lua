@@ -35,4 +35,4 @@ ffi.cdef [[
   HRESULT ExportRSoPData(    LPOLESTR lpNameSpace, LPOLESTR lpFileName);
   HRESULT ImportRSoPData(    LPOLESTR lpNameSpace, LPOLESTR lpFileName);
 ]]
-ffi.load( 'Gpedit.dll' )
+return ffi.load( 'Gpedit.dll' )

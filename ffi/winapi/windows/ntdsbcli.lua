@@ -22,4 +22,4 @@ ffi.cdef [[
   HRESULT DsSetAuthIdentity(             LPCTSTR szUserName, LPCTSTR szDomainName, LPCTSTR szPassword);
   HRESULT DsSetCurrentBackupLog(         LPCWSTR szServerName, DWORD dwCurrentLog);
 ]]
-ffi.load( 'Ntdsbcli.dll' )
+return ffi.load( 'Ntdsbcli.dll' )

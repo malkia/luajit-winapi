@@ -6,4 +6,4 @@ ffi.cdef [[
   WINAPI_DXGI_HRESULT CreateDXGIFactory(  REFIID riid, void** ppFactory);
   WINAPI_DXGI_HRESULT CreateDXGIFactory1( REFIID riid, void** ppFactory);
 ]]
-ffi.load( 'dxgi.dll' )
+return ffi.load( 'dxgi.dll' )

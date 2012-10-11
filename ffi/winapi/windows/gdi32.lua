@@ -1033,4 +1033,4 @@ ffi.cdef [[
   UINT                   GetEnhMetaFilePixelFormat(    HENHMETAFILE hemf, DWORD cbBuffer, PIXELFORMATDESCRIPTOR* ppfd);
   BOOL                   SwapBuffers(                  HDC hdc);
 ]]
-ffi.load( 'Gdi32.dll' )
+return ffi.load( 'Gdi32.dll' )

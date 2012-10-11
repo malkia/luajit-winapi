@@ -108,4 +108,4 @@ ffi.cdef [[
   STDAPI       WrapStoreEntryID(           ULONG ulFlags, LPTSTR szDLLName, ULONG cbOrigEntry, LPENTRYID lpOrigEntry, ULONG* lpcbWrappedEntry, LPENTRYID* lppWrappedEntry);
   HRESULT      XPProviderInit(             HINSTANCE hInstance, LPMALLOC lpMalloc, LPALLOCATEBUFFER lpAllocateBuffer, LPALLOCATEMORE lpAllocateMore, LPFREEBUFFER lpFreeBuffer, ULONG ulFlags, ULONG ulMAPIVer, ULONG* lpulProviderVer, LPXPPROVIDER* lppXPProvider);
 ]]
-ffi.load( 'MsMapi32.dll' )
+return ffi.load( 'MsMapi32.dll' )

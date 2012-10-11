@@ -131,4 +131,4 @@ ffi.cdef [[
   BOOL     MCIWndRegisterClass(     HINSTANCE hInstance);
   void     StretchDIB(              LPBITMAPINFOHEADER biDst, LPVOID lpvDst, int DstX, int DstY, int DstXE, int DstYE, LPBITMAPINFOHEADER biSrc, LPVOID lpvSrc, int SrcX, int SrcY, int SrcXE, int SrcYE);
 ]]
-ffi.load( 'msvfw32.dll' )
+return ffi.load( 'msvfw32.dll' )

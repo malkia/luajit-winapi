@@ -9,4 +9,4 @@ ffi.cdef [[
   WINAPI_SocketCode_int WSASetSocketPeerTargetName(    SOCKET Socket, SOCKET_PEER_TARGET_NAME* PeerTargetName, ULONG PeerTargetNameLen, LPWSAOVERLAPPED Overlapped, LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine);
   WINAPI_SocketCode_int WSASetSocketSecurity(          SOCKET Socket, SOCKET_SECURITY_SETTINGS* SecuritySettings, ULONG SecuritySettingsLen, LPWSAOVERLAPPED Overlapped, LPWSAOVERLAPPED_COMPLETION_ROUTINE CompletionRoutine);
 ]]
-ffi.load( 'Fwpuclnt.dll' )
+return ffi.load( 'Fwpuclnt.dll' )

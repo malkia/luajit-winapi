@@ -215,4 +215,4 @@ ffi.cdef [[
   int  OleUIPromptUser(             int nTemplate, HWND hwndParent);
   BOOL OleUIUpdateLinks(            LPOLEUILINKCONTAINER lpOleUILinkCntr, HWND hwndParent, LPTSTR lpszTitle, int cLinks);
 ]]
-ffi.load( 'OleDlg.dll' )
+return ffi.load( 'OleDlg.dll' )

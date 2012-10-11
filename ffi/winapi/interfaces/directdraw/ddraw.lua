@@ -7,4 +7,4 @@ ffi.cdef [[
   WINAPI_DD_HRESULT DirectDrawEnumerate(     LPDDENUMCALLBACK lpCallback, LPVOID lpContext);
   WINAPI_DD_HRESULT DirectDrawEnumerateEx(   LPDDENUMCALLBACKEX lpCallback, LPVOID lpContext, WINAPI_DDENUM_FLAGS dwFlags);
 ]]
-ffi.load( 'ddraw.dll' )
+return ffi.load( 'ddraw.dll' )

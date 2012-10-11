@@ -264,4 +264,4 @@ ffi.cdef [[
   ULONG HttpSetRequestQueueProperty(    HANDLE Handle, HTTP_SERVER_PROPERTY Property, PVOID pPropertyInformation, ULONG PropertyInformationLength, ULONG Reserved, PVOID pReserved);
   ULONG HttpWaitForDemandStart(         HANDLE ReqQueueHandle, LPOVERLAPPED pOverlapped);
 ]]
-ffi.load( 'Httpapi.dll' )
+return ffi.load( 'Httpapi.dll' )

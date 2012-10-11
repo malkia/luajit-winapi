@@ -598,4 +598,4 @@ ffi.cdef [[
   HRESULT           ShellExecCmdLine(                            HWND hwnd, LPCWSTR pwszCommand, LPCWSTR pwszStartDir, WINAPI_ShowWindowCmd nShow, LPVOID pUnused, WINAPI_SECL_FLAGS dwSeclFlags);
   LPWSTR            ShortSizeFormatExportW(                      DWORD value, LPWSTR pwszBuf);
 ]]
-ffi.load( 'Shell32.dll' )
+return ffi.load( 'Shell32.dll' )

@@ -255,4 +255,4 @@ ffi.cdef [[
   ULONG TdhQueryProviderFieldInformation(     LPGUID pGuid, ULONGLONG EventFieldValue, EVENT_FIELD_TYPE EventFieldType, PPROVIDER_FIELD_INFOARRAY pBuffer, ULONG* pBufferSize);
   ULONG TdhUnloadManifest(                    PWSTR Manifest);
 ]]
-ffi.load( 'Tdh.dll' )
+return ffi.load( 'Tdh.dll' )

@@ -392,4 +392,4 @@ ffi.cdef [[
   ISDSC_STATUS SetIScsiTunnelModeOuterAddress(      PTCHAR InitiatorName, ULONG InitiatorPortNumber, PTCHAR DestinationAddress, PTCHAR OuterModeAddress, BOOLEAN Persist);
   ISDSC_STATUS SetupPersistentIScsiDevices(         );
 ]]
-ffi.load( 'Iscsidsc.dll' )
+return ffi.load( 'Iscsidsc.dll' )

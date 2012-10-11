@@ -52,4 +52,4 @@ ffi.cdef [[
   DWORD Dhcpv6RenewPrefix(    LPWSTR adapterName, LPDHCPV6CAPI_CLASSID classId, LPDHCPV6PrefixLeaseInformation prefixleaseInfo, DWORD pdwTimeToWait, DWORD bValidatePrefix);
   DWORD Dhcpv6RequestPrefix(  LPWSTR adapterName, LPDHCPV6CAPI_CLASSID classId, LPDHCPV6PrefixLeaseInformation prefixleaseInfo, DWORD pdwTimeToWait);
 ]]
-ffi.load( 'Dhcpcsvc6.dll' )
+return ffi.load( 'Dhcpcsvc6.dll' )

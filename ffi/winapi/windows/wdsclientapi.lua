@@ -41,4 +41,4 @@ ffi.cdef [[
   HRESULT WdsCliTransferImage(                    HANDLE hImage, PWSTR pwszLocalPath, DWORD dwFlags, DWORD dwReserved, PFN_WdsCliCallback pfnWdsCliCallback, PVOID pvUserData, PHANDLE phTransfer);
   HRESULT WdsCliWaitForTransfer(                  HANDLE hTransfer);
 ]]
-ffi.load( 'WdsClientAPI.dll' )
+return ffi.load( 'WdsClientAPI.dll' )

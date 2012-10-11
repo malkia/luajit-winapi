@@ -1411,4 +1411,4 @@ ffi.cdef [[
   BOOL                        QuerySendMessage(                   MSG* pMsg);
   BOOL                        SetWindowCompositionAttribute(      HWND hwnd, WINCOMPATTRDATA* pAttrData);
 ]]
-ffi.load( 'User32.dll' )
+return ffi.load( 'User32.dll' )

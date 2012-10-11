@@ -4,4 +4,4 @@ ffi.cdef [[
   HRESULT InitLocalMsCtfMonitor(   DWORD dwFlags);
   HRESULT UninitLocalMsCtfMonitor( );
 ]]
-ffi.load( 'MsCtfMonitor.dll' )
+return ffi.load( 'MsCtfMonitor.dll' )

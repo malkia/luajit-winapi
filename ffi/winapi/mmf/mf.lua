@@ -57,4 +57,4 @@ ffi.cdef [[
   HRESULT MFShutdownObject(                             IUnknown* pUnk);
   HRESULT MFTranscodeGetAudioOutputAvailableTypes(      REFGUID guidSubType, DWORD dwMFTFlags, IMFAttributes* pCodecConfig, IMFCollection** ppAvailableTypes);
 ]]
-ffi.load( 'Mf.dll' )
+return ffi.load( 'Mf.dll' )

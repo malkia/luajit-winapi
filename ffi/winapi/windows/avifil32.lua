@@ -115,4 +115,4 @@ ffi.cdef [[
   STDAPI           EditStreamSetInfo(          PAVISTREAM pavi, AVISTREAMINFO* lpInfo, LONG cbInfo);
   STDAPI           EditStreamSetName(          PAVISTREAM pavi, LPCTSTR lpszName);
 ]]
-ffi.load( 'avifil32.dll' )
+return ffi.load( 'avifil32.dll' )

@@ -108,4 +108,4 @@ ffi.cdef [[
   BOOL   WTSVirtualChannelWrite(             HANDLE hChannelHandle, LPVOID Buffer, ULONG Length, PULONG pBytesWritten);
   BOOL   WTSWaitSystemEvent(                 WINAPI_WtsServerHandle hServer, WINAPI_WtsEventFlags EventMask, WINAPI_WtsEventFlags* pEventFlags);
 ]]
-ffi.load( 'Wtsapi32.dll' )
+return ffi.load( 'Wtsapi32.dll' )

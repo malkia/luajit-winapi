@@ -185,4 +185,4 @@ ffi.cdef [[
   WINAPI_BOOL_int      UuidIsNil(                           UUID* Uuid, RPC_STATUS* Status);
   RPC_STATUS           UuidToString(                        UUID* Uuid, RPC_TSTR* StringUuid);
 ]]
-ffi.load( 'Rpcrt4.dll' )
+return ffi.load( 'Rpcrt4.dll' )

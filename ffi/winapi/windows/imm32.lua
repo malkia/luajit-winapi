@@ -125,4 +125,4 @@ ffi.cdef [[
   BOOL    ImmSimulateHotKey(          HWND hWnd, DWORD dwHotKeyID);
   BOOL    ImmUnregisterWord(          HKL hKL, LPCTSTR lpszReading, DWORD dwStyle, LPCTSTR lpszUnregister);
 ]]
-ffi.load( 'Imm32.dll' )
+return ffi.load( 'Imm32.dll' )

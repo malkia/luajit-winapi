@@ -26,4 +26,4 @@ ffi.cdef [[
   BOOL    SQLWriteFileDSN(              LPCTSTR lpszFileName, LPCTSTR lpszAppName, LPCTSTR lpszKeyName, LPCTSTR lpszString);
   BOOL    SQLWritePrivateProfileString( LPCTSTR lpszSection, LPCTSTR lpszEntry, LPCTSTR lpszString, LPCTSTR lpszFilename);
 ]]
-ffi.load( 'ODBCCP32.DLL' )
+return ffi.load( 'ODBCCP32.DLL' )

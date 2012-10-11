@@ -751,4 +751,4 @@ ffi.cdef [[
   DWORD DhcpServerSetConfigV6(                 DHCP_CONST WCHAR* ServerIpAddress, LPDHCP_OPTION_SCOPE_INFO6 ScopeInfo, DWORD FieldsToSet, LPDHCP_SERVER_CONFIG_INFO_V6 ConfigInfo);
   DWORD DhcpSetSubnetInfoV6(                   DHCP_CONST WCHAR* ServerIpAddress, DHCP_IPV6_ADDRESS SubnetAddress, LPDHCP_SUBNET_INFO_V6 SubnetInfo);
 ]]
-ffi.load( 'Dhcpsapi.dll' )
+return ffi.load( 'Dhcpsapi.dll' )

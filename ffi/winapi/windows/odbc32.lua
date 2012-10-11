@@ -167,4 +167,4 @@ ffi.cdef [[
   SQLRETURN SQLTables(           SQLHSTMT StatementHandle, SQLTCHAR* CatalogName, SQLSMALLINT NameLength1, SQLTCHAR* SchemaName, SQLSMALLINT NameLength2, SQLTCHAR* TableName, SQLSMALLINT NameLength3, SQLTCHAR* TableType, SQLSMALLINT NameLength4);
   SQLRETURN SQLTransact(         SQLHENV EnvironmentHandle, SQLHDBC ConnectionHandle, SQLUSMALLINT CompletionType);
 ]]
-ffi.load( 'ODBC32.DLL' )
+return ffi.load( 'ODBC32.DLL' )

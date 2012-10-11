@@ -106,4 +106,4 @@ ffi.cdef [[
   BOOL                    WSAIsBlocking(                   );
   BOOL                    WSAGetQOSByName(                 SOCKET s, LPWSABUF lpQOSName, LPQOS lpQOS);
 ]]
-ffi.load( 'Ws2_32.dll' )
+return ffi.load( 'Ws2_32.dll' )

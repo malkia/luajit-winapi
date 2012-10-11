@@ -3,4 +3,4 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   void PerUserInit( );
 ]]
-ffi.load( 'mydocs.dll' )
+return ffi.load( 'mydocs.dll' )

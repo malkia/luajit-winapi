@@ -28,4 +28,4 @@ ffi.cdef [[
   HRESULT WdsTransportServerTrace(            HANDLE hProvider, WDS_MC_SEVERITY Severity, LPCWSTR pwszFormat);
   HRESULT WdsTransportServerTraceV(           HANDLE hProvider, WDS_MC_SEVERITY Severity, LPCWSTR pwszFormat, va_list Params);
 ]]
-ffi.load( 'Wdsmc.dll' )
+return ffi.load( 'Wdsmc.dll' )

@@ -23,4 +23,4 @@ ffi.cdef [[
   BOOL  QueryWorkingSet(             WINAPI_ProcessHandle hProcess, PVOID pv, DWORD cb);
   BOOL  QueryWorkingSetEx(           WINAPI_ProcessHandle hProcess, PVOID pv, DWORD cb);
 ]]
-ffi.load( 'Psapi.dll' )
+return ffi.load( 'Psapi.dll' )

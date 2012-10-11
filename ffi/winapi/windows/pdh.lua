@@ -262,4 +262,4 @@ ffi.cdef [[
   PDH_STATUS PdhValidatePath(                 LPCTSTR szFullCounterPath);
   PDH_STATUS PdhValidatePathEx(               PDH_HLOG hDataSource, LPCTSTR szFullPathBuffer);
 ]]
-ffi.load( 'Pdh.dll' )
+return ffi.load( 'Pdh.dll' )

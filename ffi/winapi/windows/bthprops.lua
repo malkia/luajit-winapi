@@ -36,4 +36,4 @@ ffi.cdef [[
   HRESULT                BluetoothRegisterForAuthenticationEx(  BLUETOOTH_DEVICE_INFO* pbtdiln, HBLUETOOTH_AUTHENTICATION_REGISTRATION* phRegHandleOut, PFN_AUTHENTICATION_CALLBACK_EX pfnCallbackIn, PVOID pvParam);
   HRESULT                BluetoothSendAuthenticationResponseEx( HANDLE hRadioIn, PBLUETOOTH_AUTHENTICATE_RESPONSE pauthResponse);
 ]]
-ffi.load( 'Bthprops.cpl' )
+return ffi.load( 'Bthprops.cpl' )

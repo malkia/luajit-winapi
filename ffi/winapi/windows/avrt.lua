@@ -18,4 +18,4 @@ ffi.cdef [[
   HANDLE AvSetMmThreadCharacteristics(    LPCTSTR TaskName, LPDWORD TaskIndex);
   BOOL   AvSetMmThreadPriority(           HANDLE AvrtHandle, AVRT_PRIORITY Priority);
 ]]
-ffi.load( 'Avrt.dll' )
+return ffi.load( 'Avrt.dll' )

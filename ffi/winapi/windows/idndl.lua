@@ -5,4 +5,4 @@ ffi.cdef [[
   int  DownlevelGetStringScripts( DWORD dwFlags, LPCWSTR lpString, int cchString, LPWSTR lpScripts, int cchScripts);
   BOOL DownlevelVerifyScripts(    DWORD dwFlags, LPCWSTR lpLocaleScripts, int cchLocaleScripts, LPCWSTR lpTestScripts, int cchTestScripts);
 ]]
-ffi.load( 'Idndl.dll' )
+return ffi.load( 'Idndl.dll' )

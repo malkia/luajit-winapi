@@ -6,4 +6,4 @@ ffi.cdef [[
   char*                   inet_ntoa(   struct in_addr in);
   WINAPI_SocketCode_int   ioctlsocket( SOCKET s, WINAPI_Socket_IOCTL cmd, u_long* argp);
 ]]
-ffi.load( 'Wsock32.dll' )
+return ffi.load( 'Wsock32.dll' )

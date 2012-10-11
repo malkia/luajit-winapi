@@ -172,4 +172,4 @@ ffi.cdef [[
   HRESULT URLOpenStream(                           LPUNKNOWN pCaller, LPCSTR szURL, DWORD dwReserved, LPBINDSTATUSCALLBACK lpfnCB);
   HRESULT CompatFlagsFromClsid(                    CLSID* pclsid, LPDWORD pdwCompatFlags, LPDWORD pdwMiscStatusFlags);
 ]]
-ffi.load( 'urlmon.dll' )
+return ffi.load( 'urlmon.dll' )

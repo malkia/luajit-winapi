@@ -196,4 +196,4 @@ ffi.cdef [[
   BOOL           CryptUIDlgViewContext(                DWORD dwContextType, void* pvContext, HWND hwnd, LPCWSTR pwszTitle, DWORD dwFlags, void* pvReserved);
   BOOL           CryptUIDlgViewSignerInfo(             CRYPTUI_VIEWSIGNERINFO_STRUCT* pcvsi);
 ]]
-ffi.load( 'Cryptui.dll' )
+return ffi.load( 'Cryptui.dll' )

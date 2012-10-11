@@ -35,4 +35,4 @@ ffi.cdef [[
   PRIntn       PL_CompareStrings(            char* v1, char* v2);
   PRIntn       PL_CompareValues(             void* v1, void* v2);
 ]]
-ffi.load( 'plds4.dll' )
+return ffi.load( 'plds4.dll' )

@@ -89,4 +89,4 @@ ffi.cdef [[
   ULONG TcSetFlow(             LPTSTR pFlowName, LPGUID pGuidParam, ULONG BufferSize, PVOID Buffer);
   ULONG TcSetInterface(        HANDLE IfcHandle, LPGUID pGuidParam, ULONG BufferSize, PVOID Buffer);
 ]]
-ffi.load( 'Traffic.dll' )
+return ffi.load( 'Traffic.dll' )

@@ -5,4 +5,4 @@ ffi.cdef [[
   ULONG MountVHD(       PWCHAR VHDFileName, ULONG Flags);
   ULONG UnmountVHD(     PWCHAR VHDFileName, ULONG Flags);
 ]]
-ffi.load( 'VHDMount.dll' )
+return ffi.load( 'VHDMount.dll' )

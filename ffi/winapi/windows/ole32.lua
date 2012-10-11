@@ -261,4 +261,4 @@ ffi.cdef [[
   WINOLEAPI                WriteClassStm(                         IStream* pStm, REFCLSID rclsid);
   WINOLEAPI                WriteFmtUserTypeStg(                   IStorage* pStg, CLIPFORMAT cf, LPWSTR* lpszUserType);
 ]]
-ffi.load( 'Ole32.dll' )
+return ffi.load( 'Ole32.dll' )

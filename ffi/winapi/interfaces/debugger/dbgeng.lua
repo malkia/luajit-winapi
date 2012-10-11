@@ -511,4 +511,4 @@ ffi.cdef [[
   HRESULT DebugConnect(     PCSTR RemoteOptions, REFIID InterfaceId, PVOID* Interface);
   HRESULT DebugConnectWide( PCWSTR RemoteOptions, REFIID InterfaceId, PVOID* Interface);
 ]]
-ffi.load( 'DbgEng.dll' )
+return ffi.load( 'DbgEng.dll' )

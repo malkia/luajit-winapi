@@ -184,4 +184,4 @@ ffi.cdef [[
   PRStatus         PR_WaitProcess(                      PRProcess* process, PRInt32* exitCode);
   PRStatus         PR_KillProcess(                      PRProcess* process);
 ]]
-ffi.load( 'NSPR4.DLL' )
+return ffi.load( 'NSPR4.DLL' )

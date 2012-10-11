@@ -4,4 +4,4 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   RPC_STATUS RpcDiagnoseError( RPC_BINDING_HANDLE BindingHandle, RPC_IF_HANDLE IfSpec, RPC_STATUS RpcStatus, RPC_ERROR_ENUM_HANDLE* EnumHandle, ULONG Options, HWND ParentWindow);
 ]]
-ffi.load( 'Rpcdiag.dll' )
+return ffi.load( 'Rpcdiag.dll' )

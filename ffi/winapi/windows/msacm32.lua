@@ -210,4 +210,4 @@ ffi.cdef[[
   MMRESULT acmStreamSize(            HACMSTREAM has, DWORD cbInput, LPDWORD pdwOutputBytes, DWORD fdwSize);
   MMRESULT acmStreamUnprepareHeader( HACMSTREAM has, LPACMSTREAMHEADER pash, DWORD fdwUnprepare);
 ]]
-ffi.load( 'msacm32.dll' )
+return ffi.load( 'msacm32.dll' )

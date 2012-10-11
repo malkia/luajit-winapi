@@ -6,4 +6,4 @@ ffi.cdef [[
   HRESULT TranslateURL(          LPCSTR pcszURL, DWORD dwInFlags, LPSTR* ppszTranslatedURL);
   HRESULT URLAssociationDialog(  HWND hwndParent, DWORD dwInFlags, LPCTSTR pcszFile, LPCTSTR pcszURL, LPTSTR pszAppBuf, UINT ucAppBufLen);
 ]]
-ffi.load( 'url.dll' )
+return ffi.load( 'url.dll' )

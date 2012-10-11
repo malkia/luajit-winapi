@@ -211,4 +211,4 @@ ffi.cdef [[
   DWORD                    PrivacyGetZonePreferenceW(              DWORD dwZone, DWORD dwType, LPDWORD pdwTemplate, LPWSTR pszBuffer, LPDWORD pdwBufferLength);
   DWORD                    PrivacySetZonePreferenceW(              DWORD dwZone, DWORD dwType, DWORD dwTemplate, LPCWSTR pszPreference);
 ]]
-ffi.load( 'Wininet.dll' )
+return ffi.load( 'Wininet.dll' )

@@ -98,4 +98,4 @@ ffi.cdef [[
   WINAPI_ERROR_CODE WNetUseConnection(                HWND hwndOwner, LPNETRESOURCE lpNetResource, LPCTSTR lpPassword, LPCTSTR lpUserID, WINAPI_ConnectFlags dwFlags, LPTSTR lpAccessName, LPDWORD lpBufferSize, LPDWORD lpResult);
   WINAPI_ERROR_CODE WNetAddConnection(                LPCTSTR lpRemoteName, LPCTSTR lpPassword, LPCTSTR lpLocalName);
 ]]
-ffi.load( 'Mpr.dll' )
+return ffi.load( 'Mpr.dll' )

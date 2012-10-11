@@ -494,4 +494,4 @@ ffi.cdef [[
   DWORD RasUpdateConnection(          HRASCONN hrasconn, LPRASUPDATECONN lprasupdateconn);
   DWORD RasValidateEntryName(         LPCTSTR lpszPhonebook, LPCTSTR lpszEntry);
 ]]
-ffi.load( 'Rasapi32.dll' )
+return ffi.load( 'Rasapi32.dll' )

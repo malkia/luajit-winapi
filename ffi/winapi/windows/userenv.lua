@@ -86,4 +86,4 @@ ffi.cdef [[
   BOOL    LoadUserProfile(                 HANDLE hToken, LPPROFILEINFO lpProfileInfo);
   BOOL    UnloadUserProfile(               HANDLE hToken, HANDLE hProfile);
 ]]
-ffi.load( 'Userenv.dll' )
+return ffi.load( 'Userenv.dll' )

@@ -6,4 +6,4 @@ ffi.cdef [[
   BOOL SslEmptyCache(       LPSTR pszTargetName, DWORD dwFlags);
   void SslFreeCertificate(  PX509Certificate pCertificate);
 ]]
-ffi.load( 'Schannel.dll' )
+return ffi.load( 'Schannel.dll' )

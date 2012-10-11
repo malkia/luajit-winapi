@@ -139,4 +139,4 @@ ffi.cdef [[
   WINAPI_ERROR_CODE OpenVirtualDisk(                 PVIRTUAL_STORAGE_TYPE VirtualStorageType, PCWSTR Path, VIRTUAL_DISK_ACCESS_MASK VirtualDiskAccessMask, OPEN_VIRTUAL_DISK_FLAG Flags, POPEN_VIRTUAL_DISK_PARAMETERS Parameters, PHANDLE Handle);
   WINAPI_ERROR_CODE SetVirtualDiskInformation(       HANDLE VirtualDiskHandle, PSET_VIRTUAL_DISK_INFO VirtualDiskInfo);
 ]]
-ffi.load( 'VirtDisk.dll' )
+return ffi.load( 'VirtDisk.dll' )

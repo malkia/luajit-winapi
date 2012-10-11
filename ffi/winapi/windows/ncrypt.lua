@@ -86,4 +86,4 @@ ffi.cdef [[
   SECURITY_STATUS SslSignHash(                        NCRYPT_PROV_HANDLE hSslProvider, NCRYPT_KEY_HANDLE hPrivateKey, PBYTE pbHashValue, DWORD cbHashValue, PBYTE pbSignature, DWORD cbSignature, DWORD* pcbResult, DWORD dwFlags);
   SECURITY_STATUS SslVerifySignature(                 NCRYPT_PROV_HANDLE hSslProvider, NCRYPT_KEY_HANDLE hPublicKey, PBYTE pbHashValue, DWORD cbHashValue, PBYTE pbSignature, DWORD cbSignature, DWORD dwFlags);
 ]]
-ffi.load( 'NCrypt.dll' )
+return ffi.load( 'NCrypt.dll' )

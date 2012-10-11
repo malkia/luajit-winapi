@@ -12,4 +12,4 @@ ffi.cdef [[
   BOOL IsDestinationReachable( LPCSTR lpszDestination, LPQOCINFO lpQOCInfo);
   Bool IsNetworkAlive(         WINAPI_NetworkAliveFlags* lpdwFlags);
 ]]
-ffi.load( 'Sensapi.dll' )
+return ffi.load( 'Sensapi.dll' )

@@ -352,4 +352,4 @@ ffi.cdef [[
   WINAPI_MSI_ERROR  MsiPreviewBillboard(            MSIHANDLE hPreview, LPCTSTR szControlName, LPCTSTR szBillboard);
   WINAPI_MSI_ERROR  MsiPreviewDialog(               MSIHANDLE hPreview, LPCTSTR szDialogName);
 ]]
-ffi.load( 'Msi.dll' )
+return ffi.load( 'Msi.dll' )

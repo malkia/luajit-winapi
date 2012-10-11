@@ -6,4 +6,4 @@ ffi.cdef [[
   BOOL WSCInstallQOSTemplate( LPGUID lpProviderId, LPWSABUF lpQOSName, LPQOS lpQOS);
   BOOL WSCRemoveQOSTemplate(  LPGUID lpProviderId, LPWSABUF lpQOSName);
 ]]
-ffi.load( 'Qosname.dll' )
+return ffi.load( 'Qosname.dll' )

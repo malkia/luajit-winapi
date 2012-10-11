@@ -32,4 +32,4 @@ ffi.cdef [[
   HRESULT IEShowSaveFileDialog(            HWND hwnd, LPWSTR lpwstrInitialFileName, LPWSTR lpwstrInitialDir, LPCWSTR lpwstrFilter, LPCWSTR lpwstrDefExt, DWORD dwFilterIndex, DWORD dwFlags, LPWSTR* lppwstrDestinationFilePath, HANDLE* phState);
   HRESULT IEUnregisterWritableRegistry(    GUID guid);
 ]]
-ffi.load( 'ieframe.dll' )
+return ffi.load( 'ieframe.dll' )

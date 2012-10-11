@@ -128,4 +128,4 @@ ffi.cdef [[
   HRESULT DwmRegisterThumbnail(              HWND hwndDestination, HWND* hwndSource, PHTHUMBNAIL phThumbnailId);
   HRESULT DwmUpdateThumbnailProperties(      HTHUMBNAIL hThumbnailId, DWM_THUMBNAIL_PROPERTIES* ptnProperties);
 ]]
-ffi.load( 'dwmapi.dll' )
+return ffi.load( 'dwmapi.dll' )

@@ -223,4 +223,4 @@ ffi.cdef [[
   NTSTATUS               LsaRegisterPolicyChangeNotification(   POLICY_NOTIFICATION_INFORMATION_CLASS InformationClass, HANDLE NotificationEventHandle);
   NTSTATUS               LsaUnregisterPolicyChangeNotification( POLICY_NOTIFICATION_INFORMATION_CLASS InformationClass, HANDLE NotificationEventHandle);
 ]]
-ffi.load( 'Secur32.dll' )
+return ffi.load( 'Secur32.dll' )

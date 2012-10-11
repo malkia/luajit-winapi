@@ -226,4 +226,4 @@ ffi.cdef [[
   BOOLEAN             WriteProcessorPwrScheme(                     UINT ID, PMACHINE_PROCESSOR_POWER_POLICY pMachineProcessorPowerPolicy);
   BOOLEAN             WritePwrScheme(                              PUINT puiID, LPWSTR lpszName, LPWSTR lpszDescription, PPOWER_POLICY pPowerPolicy);
 ]]
-ffi.load( 'PowrProf.dll' )
+return ffi.load( 'PowrProf.dll' )

@@ -238,4 +238,4 @@ ffi.cdef [[
   BOOL                                PFXIsPFXBlob(                                       CRYPT_DATA_BLOB* pPFX);
   BOOL                                PFXVerifyPassword(                                  CRYPT_DATA_BLOB* pPFX, LPCWSTR szPassword, DWORD dwFlags);
 ]]
-ffi.load( 'Crypt32.dll' )
+return ffi.load( 'Crypt32.dll' )

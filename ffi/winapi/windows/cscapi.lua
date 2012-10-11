@@ -5,4 +5,4 @@ ffi.cdef [[
   WINAPI_ERROR_CODE OfflineFilesEnable(       BOOL bEnable, BOOL* pbRebootRequired);
   WINAPI_ERROR_CODE OfflineFilesQueryStatus(  BOOL* pbActive, BOOL* pbEnabled);
 ]]
-ffi.load( 'cscapi.dll' )
+return ffi.load( 'cscapi.dll' )

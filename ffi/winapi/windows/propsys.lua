@@ -41,4 +41,4 @@ ffi.cdef [[
   HRESULT   InitVariantFromGUIDAsBuffer(                 REFGUID guid, VARIANT* pvar);
   HRESULT   InitVariantFromGUIDAsString(                 REFGUID guid, VARIANT* pvar);
 ]]
-ffi.load( 'propsys.dll' )
+return ffi.load( 'propsys.dll' )

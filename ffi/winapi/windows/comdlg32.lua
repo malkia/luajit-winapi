@@ -14,4 +14,4 @@ ffi.cdef [[
   HRESULT PrintDlgEx(           LPPRINTDLGEX lppd);
   HWND    ReplaceText(          LPFINDREPLACE lpfr);
 ]]
-ffi.load( 'comdlg32.dll' )
+return ffi.load( 'comdlg32.dll' )

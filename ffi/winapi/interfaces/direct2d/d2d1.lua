@@ -310,4 +310,4 @@ ffi.cdef [[
   BOOL               D2D1IsMatrixInvertible( D2D1_MATRIX_3X2_F* matrix);
   BOOL               D2D1InvertMatrix(       D2D1_MATRIX_3X2_F* matrix);
 ]]
-ffi.load( 'd2d1.dll' )
+return ffi.load( 'd2d1.dll' )

@@ -20,4 +20,4 @@ ffi.cdef [[
   SECURITY_STATUS SspiValidateAuthIdentity(        PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData);
   SECURITY_STATUS SspiZeroAuthIdentity(            PSEC_WINNT_AUTH_IDENTITY_OPAQUE AuthData);
 ]]
-ffi.load( 'SspiCli.dll' )
+return ffi.load( 'SspiCli.dll' )

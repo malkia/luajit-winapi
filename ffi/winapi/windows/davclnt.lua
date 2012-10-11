@@ -9,4 +9,4 @@ ffi.cdef [[
   OPAQUE_HANDLE DavRegisterAuthCallback(      PFNDAVAUTHCALLBACK CallBack, ULONG Version);
   VOID          DavUnregisterAuthCallback(    OPAQUE_HANDLE hCallback);
 ]]
-ffi.load( 'Davclnt.dll' )
+return ffi.load( 'Davclnt.dll' )

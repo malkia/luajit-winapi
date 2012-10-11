@@ -69,4 +69,4 @@ ffi.cdef [[
   BOOL    ADsPropSetHwndWithTitle( HWND hNotifyObject, HWND hPage, PTSTR ptzTitle);
   BOOL    ADsPropShowErrorDialog(  HWND hNotifyObject, HWND hPage);
 ]]
-ffi.load( 'Dsprop.dll' )
+return ffi.load( 'Dsprop.dll' )

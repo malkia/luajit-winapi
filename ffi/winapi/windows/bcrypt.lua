@@ -158,4 +158,4 @@ ffi.cdef [[
   NTSTATUS BCryptDeriveKeyCapi(                     BCRYPT_HASH_HANDLE hHash, BCRYPT_ALG_HANDLE hTargetAlg, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags);
   NTSTATUS BCryptDeriveKeyPBKDF2(                   BCRYPT_ALG_HANDLE hPrf, PUCHAR pbPassword, ULONG cbPassword, PUCHAR pbSalt, ULONG cbSalt, ULONGLONG cIterations, PUCHAR pbDerivedKey, ULONG cbDerivedKey, ULONG dwFlags);
 ]]
-ffi.load( 'Bcrypt.dll' )
+return ffi.load( 'Bcrypt.dll' )

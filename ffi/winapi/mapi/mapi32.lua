@@ -84,4 +84,4 @@ ffi.cdef [[
   WINAPI_MapiErrorCode MAPISendDocuments( ULONG_PTR ulUIParam, LPSTR lpszDelimChar, LPSTR lpszFilePaths, LPSTR lpszFileNames, ULONG ulReserved);
   WINAPI_MapiErrorCode MAPISendMail(      LHANDLE lhSession, ULONG_PTR ulUIParam, lpMapiMessage lpMessage, FLAGS flFlags, ULONG ulReserved);
 ]]
-ffi.load( 'Mapi32.dll' )
+return ffi.load( 'Mapi32.dll' )

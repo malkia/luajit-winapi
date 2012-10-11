@@ -166,4 +166,4 @@ ffi.cdef [[
   SECStatus        SSL_ReHandshake(                PRFileDesc* fd, PRBool flushCache);
   SECStatus        SSL_ResetHandshake(             PRFileDesc* fd, PRBool asServer);
 ]]
-ffi.load( 'SSL3.DLL' )
+return ffi.load( 'SSL3.DLL' )

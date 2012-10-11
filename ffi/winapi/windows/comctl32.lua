@@ -294,4 +294,4 @@ ffi.cdef[[
   HRESULT        TaskDialog(                   HWND hWndParent, HINSTANCE hInstance, PCWSTR pszWindowTitle, PCWSTR pszMainInstruction, PCWSTR pszContent, TASKDIALOG_COMMON_BUTTON_FLAGS dwCommonButtons, PCWSTR pszIcon, int* pnButton);
   HRESULT        TaskDialogIndirect(           TASKDIALOGCONFIG* pTaskConfig, int* pnButton, int* pnRadioButton, BOOL* pfVerificationFlagChecked);
 ]]
-ffi.load( 'comctl32.dll' )
+return ffi.load( 'comctl32.dll' )

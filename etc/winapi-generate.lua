@@ -497,7 +497,7 @@ local function generate()
       luafile:write( "]]\n" )
 
       if dll then
-	 luafile:write( "ffi.load( '" .. dll .. "' )\n" )
+	 luafile:write( "return ffi.load( '" .. dll .. "' )\n" )
       end
 
       luafile:close()
@@ -511,7 +511,7 @@ local function test(cdefs)
    for filename, _ in pairs(cdefs) do
       local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
       local status, error = pcall(require,lib)
-      if error ~= true then
+      if status ~= true then
 	 print(lib.."\n"..(error==true and "OK" or error).."\n")
 	 bad = bad + 1
       end
