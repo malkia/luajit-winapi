@@ -14,7 +14,7 @@ ffi.cdef [[
     ULONG Size;
     ULONG Bandwidth;
     ULONG NumberOfSchedules;
-    SCHEDULE_HEADER Schedules_1_;
+    SCHEDULE_HEADER Schedules[1];
   } SCHEDULE;
   typedef SCHEDULE *PSCHEDULE; //Pointer
   typedef struct DS_NAME_RESULT_ITEM {

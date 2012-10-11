@@ -14,7 +14,7 @@ ffi.cdef [[
   } SERVICE_ADDRESS;
   typedef struct SERVICE_ADDRESSES {
     DWORD dwAddressCount;
-    SERVICE_ADDRESS Addresses_1_;
+    SERVICE_ADDRESS Addresses[1];
   } SERVICE_ADDRESSES;
   typedef SERVICE_ADDRESSES *LPSERVICE_ADDRESSES; //Pointer
   typedef struct SERVICE_ASYNC_INFO {

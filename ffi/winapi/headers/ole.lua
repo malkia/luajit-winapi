@@ -180,11 +180,11 @@ ffi.cdef [[
     WORD tdDeviceNameOffset;
     WORD tdPortNameOffset;
     WORD tdExtDevmodeOffset;
-    BYTE tdData_1_;
+    BYTE tdData[1];
   } DVTARGETDEVICE;
   typedef struct SERIALIZEDPROPERTYVALUE {
     DWORD dwType;
-    BYTE rgb_1_;
+    BYTE rgb[1];
   } SERIALIZEDPROPERTYVALUE;
   typedef struct RPCOLEMESSAGE {
     void* reserved1;
@@ -192,11 +192,11 @@ ffi.cdef [[
     void* Buffer;
     ULONG cbBuffer;
     ULONG iMethod;
-    void* reserved2_5_;
+    void* reserved2[5];
     ULONG rpcFlags;
   } RPCOLEMESSAGE;
   typedef struct OLEMENUGROUPWIDTHS {
-    LONG width_6_;
+    LONG width[6];
   } OLEMENUGROUPWIDTHS;
   typedef OLEMENUGROUPWIDTHS *LPOLEMENUGROUPWIDTHS; //Pointer
   typedef BYTE PALETTEENTRY_Flags; //Alias
@@ -210,7 +210,7 @@ ffi.cdef [[
   typedef struct LOGPALETTE {
     WORD palVersion;
     WORD palNumEntries;
-    PALETTEENTRY palPalEntry_1_;
+    PALETTEENTRY palPalEntry[1];
   } LOGPALETTE;
   typedef unsigned short VARTYPE; //Alias
   typedef struct BRECORD {
@@ -230,7 +230,7 @@ ffi.cdef [[
   } VARIANT_s;
   typedef union VARIANT {
     VARIANT_s ;
-    ULONGLONG Other_values_are_currently_unsupported;
+    ULONGLONG other_values_dummy;
   } VARIANT;
   typedef VARIANT *LPVARIANT; //Pointer
   typedef VARIANT VARIANTARG; //Alias
@@ -544,7 +544,7 @@ ffi.cdef [[
     ULONG cbElements;
     ULONG cLocks;
     PVOID pvData;
-    SAFEARRAYBOUND rgsabound_1_;
+    SAFEARRAYBOUND rgsabound[1];
   } SAFEARRAY;
   typedef SAFEARRAY *LPSAFEARRAY; //Pointer
   typedef struct CUSTDATAITEM {

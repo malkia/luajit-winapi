@@ -42,9 +42,9 @@ ffi.cdef [[
     VIDCF dwFlags;
     DWORD dwVersion;
     DWORD dwVersionICM;
-    WCHAR szName_16_;
-    WCHAR szDescription_128_;
-    WCHAR szDriver_128_;
+    WCHAR szName[16];
+    WCHAR szDescription[128];
+    WCHAR szDriver[128];
   } ICINFO;
   typedef UINT ICOpenFlags; //Alias
   typedef UINT ICMessage; //Alias

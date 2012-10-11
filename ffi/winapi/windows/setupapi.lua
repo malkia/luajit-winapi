@@ -34,7 +34,7 @@ ffi.cdef [[
   typedef struct SP_INF_INFORMATION {
     InfStyle InfStyle;
     DWORD InfCount;
-    BYTE VersionData_ANYSIZE_ARRAY_;
+    BYTE VersionData[ANYSIZE_ARRAY];
   } SP_INF_INFORMATION;
   typedef SP_INF_INFORMATION *PSP_INF_INFORMATION; //Pointer
   typedef struct SP_ALTPLATFORM_INFO {
@@ -50,15 +50,15 @@ ffi.cdef [[
   typedef SP_ALTPLATFORM_INFO *PSP_ALTPLATFORM_INFO; //Pointer
   typedef struct SP_ORIGINAL_FILE_INFO {
     DWORD cbSize;
-    TCHAR OriginalInfName_MAX_PATH_;
-    TCHAR OriginalCatalogName_MAX_PATH_;
+    TCHAR OriginalInfName[MAX_PATH];
+    TCHAR OriginalCatalogName[MAX_PATH];
   } SP_ORIGINAL_FILE_INFO;
   typedef SP_ORIGINAL_FILE_INFO *PSP_ORIGINAL_FILE_INFO; //Pointer
   typedef struct SP_INF_SIGNER_INFO {
     DWORD cbSize;
-    TCHAR CatalogFile_MAX_PATH_;
-    TCHAR DigitalSigner_MAX_PATH_;
-    TCHAR DigitalSignerVersion_MAX_PATH_;
+    TCHAR CatalogFile[MAX_PATH];
+    TCHAR DigitalSigner[MAX_PATH];
+    TCHAR DigitalSignerVersion[MAX_PATH];
     DWORD SignerScore;
   } SP_INF_SIGNER_INFO;
   typedef SP_INF_SIGNER_INFO *PSP_INF_SIGNER_INFO; //Pointer
@@ -66,7 +66,7 @@ ffi.cdef [[
     DWORD cbSize;
     GUID ClassGuid;
     HANDLE RemoteMachineHandle;
-    TCHAR RemoteMachineName_SP_MAX_MACHINENAME_LENGTH_;
+    TCHAR RemoteMachineName[SP_MAX_MACHINENAME_LENGTH];
   } SP_DEVINFO_LIST_DETAIL_DATA;
   typedef SP_DEVINFO_LIST_DETAIL_DATA *PSP_DEVINFO_LIST_DETAIL_DATA; //Pointer
   typedef DWORD DI_FLAGS; //Alias
@@ -81,12 +81,12 @@ ffi.cdef [[
     HSPFILEQ FileQueue;
     ULONG_PTR ClassInstallReserved;
     DWORD Reserved;
-    TCHAR DriverPath_MAX_PATH_;
+    TCHAR DriverPath[MAX_PATH];
   } SP_DEVINSTALL_PARAMS;
   typedef SP_DEVINSTALL_PARAMS *PSP_DEVINSTALL_PARAMS; //Pointer
   typedef struct SP_DEVICE_INTERFACE_DETAIL_DATA {
     DWORD cbSize;
-    TCHAR DevicePath_ANYSIZE_ARRAY_;
+    TCHAR DevicePath[ANYSIZE_ARRAY];
   } SP_DEVICE_INTERFACE_DETAIL_DATA;
   typedef SP_DEVICE_INTERFACE_DETAIL_DATA *PSP_DEVICE_INTERFACE_DETAIL_DATA; //Pointer
   typedef struct SP_DRVINFO_DETAIL_DATA {
@@ -95,10 +95,10 @@ ffi.cdef [[
     DWORD CompatIDsOffset;
     DWORD CompatIDsLength;
     ULONG_PTR Reserved;
-    TCHAR SectionName_LINE_LEN_;
-    TCHAR InfFileName_MAX_PATH_;
-    TCHAR DrvDescription_LINE_LEN_;
-    TCHAR HardwareID_ANYSIZE_ARRAY_;
+    TCHAR SectionName[LINE_LEN];
+    TCHAR InfFileName[MAX_PATH];
+    TCHAR DrvDescription[LINE_LEN];
+    TCHAR HardwareID[ANYSIZE_ARRAY];
   } SP_DRVINFO_DETAIL_DATA;
   typedef SP_DRVINFO_DETAIL_DATA *PSP_DRVINFO_DETAIL_DATA; //Pointer
   typedef ULONG CM_CDMASK; //Alias
@@ -109,7 +109,7 @@ ffi.cdef [[
     DEVINST CD_dnDevInst;
     RES_DES CD_rdResDes;
     CM_CDFLAGS CD_ulFlags;
-    TCHAR CD_szDescription_MAX_PATH_;
+    TCHAR CD_szDescription[MAX_PATH];
   } CONFLICT_DETAILS;
   typedef CONFLICT_DETAILS *PCONFLICT_DETAILS; //Pointer
   typedef struct INFCONTEXT {

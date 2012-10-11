@@ -8,7 +8,7 @@ ffi.cdef [[
   typedef struct FAX_CONTEXT_INFO {
     DWORD SizeOfStruct;
     HDC hDC;
-    TCHAR ServerName_MAX_COMPUTERNAME_LENGTH_plus_1_;
+    TCHAR ServerName[MAX_COMPUTERNAME_LENGTH_plus_1];
   } FAX_CONTEXT_INFO;
   typedef FAX_CONTEXT_INFO *PFAX_CONTEXT_INFO; //Pointer
   typedef struct FAX_JOB_PARAM {
@@ -26,7 +26,7 @@ ffi.cdef [[
     LPCTSTR DeliveryReportAddress;
     LPCTSTR DocumentName;
     HCALL CallHandle;
-    DWORD_PTR Reserved_3_;
+    DWORD_PTR Reserved[3];
   } FAX_JOB_PARAM;
   typedef FAX_JOB_PARAM *PFAX_JOB_PARAM; //Pointer
   typedef struct FAX_TIME {

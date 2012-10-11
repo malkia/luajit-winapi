@@ -20,7 +20,7 @@ ffi.cdef [[
   typedef MSIPATCHSEQUENCEINFO *PMSIPATCHSEQUENCEINFO; //Pointer
   typedef struct MSIFILEHASHINFO {
     ULONG dwFileHashInfoSize;
-    ULONG dwData_4_;
+    ULONG dwData[4];
   } MSIFILEHASHINFO;
   typedef MSIFILEHASHINFO *PMSIFILEHASHINFO; //Pointer
   typedef int USERINFOSTATE; //Alias

@@ -189,12 +189,12 @@ ffi.cdef [[
     DWORD CheckSum;
     DWORD NumSyms;
     SYM_TYPE SymType;
-    TCHAR ModuleName_32_;
-    TCHAR ImageName_256_;
-    TCHAR LoadedImageName_256_;
-    TCHAR LoadedPdbName_256_;
+    TCHAR ModuleName[32];
+    TCHAR ImageName[256];
+    TCHAR LoadedImageName[256];
+    TCHAR LoadedPdbName[256];
     DWORD CVSig;
-    TCHAR CVData_MAX_PATH_mult_3_;
+    TCHAR CVData[MAX_PATH_mult_3];
     DWORD PdbSig;
     GUID PdbSig70;
     DWORD PdbAge;
@@ -215,12 +215,12 @@ ffi.cdef [[
     DWORD CheckSum;
     DWORD NumSyms;
     SYM_TYPE SymType;
-    WCHAR ModuleName_32_;
-    WCHAR ImageName_256_;
-    WCHAR LoadedImageName_256_;
-    WCHAR LoadedPdbName_256_;
+    WCHAR ModuleName[32];
+    WCHAR ImageName[256];
+    WCHAR LoadedImageName[256];
+    WCHAR LoadedPdbName[256];
     DWORD CVSig;
-    WCHAR CVData_MAX_PATH_mult_3_;
+    WCHAR CVData[MAX_PATH_mult_3];
     DWORD PdbSig;
     GUID PdbSig70;
     DWORD PdbAge;
@@ -255,7 +255,7 @@ ffi.cdef [[
     DWORD64 KiUserExceptionDispatcher;
     DWORD64 StackBase;
     DWORD64 StackLimit;
-    DWORD64 Reserved_5_;
+    DWORD64 Reserved[5];
   } KDHELP64;
   typedef struct STACKFRAME64 {
     ADDRESS64 AddrPC;
@@ -264,10 +264,10 @@ ffi.cdef [[
     ADDRESS64 AddrStack;
     ADDRESS64 AddrBStore;
     PVOID FuncTableEntry;
-    DWORD64 Params_4_;
+    DWORD64 Params[4];
     BOOL Far;
     BOOL Virtual;
-    DWORD64 Reserved_3_;
+    DWORD64 Reserved[3];
     KDHELP64 KdHelp;
   } STACKFRAME64;
   typedef STACKFRAME64 *LPSTACKFRAME64; //Pointer
@@ -278,8 +278,8 @@ ffi.cdef [[
     ULONG64 StackOffset;
     ULONG64 BackingStoreOffset;
     ULONG64 FuncTableEntry;
-    ULONG64 Params_4_;
-    ULONG64 Reserved_5_;
+    ULONG64 Params[4];
+    ULONG64 Reserved[5];
     BOOL Virtual;
     ULONG Reserved2;
   } IMAGEHLP_STACK_FRAME;
@@ -288,7 +288,7 @@ ffi.cdef [[
   typedef struct SYMBOL_INFO {
     ULONG SizeOfStruct;
     ULONG TypeIndex;
-    ULONG64 Reserved_2_;
+    ULONG64 Reserved[2];
     ULONG Index;
     ULONG Size;
     ULONG64 ModBase;
@@ -300,7 +300,7 @@ ffi.cdef [[
     SymTagEnum_ULONG Tag;
     ULONG NameLen;
     ULONG MaxNameLen;
-    TCHAR Name_1_;
+    TCHAR Name[1];
   } SYMBOL_INFO;
   typedef SYMBOL_INFO *PSYMBOL_INFO; //Pointer
   typedef struct IMAGEHLP_SYMBOL64 {
@@ -309,17 +309,17 @@ ffi.cdef [[
     DWORD Size;
     DWORD Flags;
     DWORD MaxNameLength;
-    TCHAR Name_1_;
+    TCHAR Name[1];
   } IMAGEHLP_SYMBOL64;
   typedef IMAGEHLP_SYMBOL64 *PIMAGEHLP_SYMBOL64; //Pointer
   typedef struct SYMSRV_INDEX_INFO {
     DWORD sizeofstruct;
-    TCHAR file_MAX_PATH_plus_1_;
+    TCHAR file[MAX_PATH_plus_1];
     BOOL stripped;
     DWORD timestamp;
     DWORD size;
-    TCHAR dbgfile_MAX_PATH_plus_1_;
-    TCHAR pdbfile_MAX_PATH_plus_1_;
+    TCHAR dbgfile[MAX_PATH_plus_1];
+    TCHAR pdbfile[MAX_PATH_plus_1];
     GUID guid;
     DWORD sig;
     DWORD age;
@@ -397,7 +397,7 @@ ffi.cdef [[
     PIMAGE_DEBUG_DIRECTORY ReservedDebugDirectory;
     DWORD ReservedNumberOfDebugDirectories;
     DWORD ReservedOriginalFunctionTableBaseAddress;
-    DWORD Reserved_2_;
+    DWORD Reserved[2];
   } IMAGE_DEBUG_INFORMATION;
   typedef IMAGE_DEBUG_INFORMATION *PIMAGE_DEBUG_INFORMATION; //Pointer
   typedef DWORD UNDNAME_FLAGS; //Alias

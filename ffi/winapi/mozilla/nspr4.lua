@@ -7,7 +7,7 @@ ffi.cdef [[
   static const PrAddressFamily PR_AF_INET = 2;
   static const PrAddressFamily PR_AF_INET6 = 100;
   PRStatus         PR_JoinThread(                       PRThread* thread);
-  PRThread*        PR_CreateThread(                     PRThreadType type, void (*)(void*) start, void* arg, PRThreadPriority priority, PRThreadScope scope, PRThreadState state, PRUint32 stackSize);
+  PRThread*        PR_CreateThread(                     PRThreadType type, void *void* start, void* arg, PRThreadPriority priority, PRThreadScope scope, PRThreadState state, PRUint32 stackSize);
   PRThread*        PR_GetCurrentThread(                 );
   PRThread*        PR_AttachThread(                     PRThreadType type, PRThreadPriority priority, PRThreadStack* stack);
   void             PR_DetachThread(                     );

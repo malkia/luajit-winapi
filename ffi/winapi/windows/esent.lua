@@ -32,7 +32,7 @@ ffi.cdef[[
 if ffi.arch == 'x86' then ffi.cdef[[
   typedef struct JET_INDEXID {
     unsigned long cbStruct;
-    unsigned char rgbIndexId_12_;
+    unsigned char rgbIndexId[12];
   } JET_INDEXID;
 ]]
 end
@@ -46,7 +46,7 @@ ffi.cdef[[
 if ffi.arch == 'x64' then ffi.cdef[[
   typedef struct JET_INDEXID {
     unsigned long cbStruct;
-    unsigned char rgbIndexId_16_;
+    unsigned char rgbIndexId[16];
   } JET_INDEXID;
 ]]
 end
@@ -544,7 +544,7 @@ ffi.cdef[[
     unsigned long cbSize;
     unsigned long ulGenLow;
     unsigned long ulGenHigh;
-    TCHAR szBaseName_JET_BASE_NAME_LENGTH_plus_1_;
+    TCHAR szBaseName[JET_BASE_NAME_LENGTH_plus_1];
   } JET_LOGINFO;
   typedef struct JET_INSTANCE_INFO {
     JET_INSTANCE hInstanceId;

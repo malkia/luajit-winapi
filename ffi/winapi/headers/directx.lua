@@ -208,7 +208,6 @@ ffi.cdef [[
   static const DXVAHD_DEVICE_USAGE DXVAHD_DEVICE_USAGE_PLAYBACK_NORMAL = 0;
   static const DXVAHD_DEVICE_USAGE DXVAHD_DEVICE_USAGE_OPTIMAL_SPEED = 1;
   static const DXVAHD_DEVICE_USAGE DXVAHD_DEVICE_USAGE_OPTIMAL_QUALITY = 2;
-  enum { 4][4 = 4 };
   enum { D3D_OMAC_SIZE = 16 };
   enum { MAX_DEVICE_IDENTIFIER_STRING = 512 };
   typedef UINT D3DDEVTYPE; //Alias
@@ -451,9 +450,9 @@ ffi.cdef [[
   static const D3DPRIMITIVETYPE D3DPT_TRIANGLESTRIP = 5;
   static const D3DPRIMITIVETYPE D3DPT_TRIANGLEFAN = 6;
   typedef struct D3DADAPTER_IDENTIFIER9 {
-    char Driver_MAX_DEVICE_IDENTIFIER_STRING_;
-    char Description_MAX_DEVICE_IDENTIFIER_STRING_;
-    char DeviceName_32_;
+    char Driver[MAX_DEVICE_IDENTIFIER_STRING];
+    char Description[MAX_DEVICE_IDENTIFIER_STRING];
+    char DeviceName[32];
     LARGE_INTEGER DriverVersion;
     DWORD VendorId;
     DWORD DeviceId;
@@ -463,7 +462,7 @@ ffi.cdef [[
     DWORD WHQLLevel;
   } D3DADAPTER_IDENTIFIER9;
   typedef struct D3D_OMAC {
-    BYTE Omac_D3D_OMAC_SIZE_;
+    BYTE Omac[D3D_OMAC_SIZE];
   } D3D_OMAC;
   typedef struct D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT {
     D3D_OMAC omac;
@@ -473,12 +472,12 @@ ffi.cdef [[
     HRESULT ReturnCode;
   } D3DAUTHENTICATEDCHANNEL_CONFIGURE_OUTPUT;
   typedef struct D3DGAMMARAMP {
-    WORD red_256_;
-    WORD green_256_;
-    WORD blue_256_;
+    WORD red[256];
+    WORD green[256];
+    WORD blue[256];
   } D3DGAMMARAMP;
   typedef struct D3DMATRIX {
-    float m_4__4_;
+    float m[4][4];
   } D3DMATRIX;
   typedef struct D3DDISPLAYMODE {
     UINT Width;

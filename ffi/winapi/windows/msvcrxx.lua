@@ -292,7 +292,7 @@ ffi.cdef [[
     __time32_t time_access;
     __time32_t time_write;
     _fsize_t size;
-    char name_260_;
+    char name[260];
   } struct _finddata32_t;
   typedef struct struct _finddata32i64_t {
     FINDDATA_ATTRIB attrib;
@@ -300,7 +300,7 @@ ffi.cdef [[
     __time32_t time_access;
     __time32_t time_write;
     __int64 size;
-    char name_260_;
+    char name[260];
   } struct _finddata32i64_t;
   typedef struct struct _finddata64i32_t {
     FINDDATA_ATTRIB attrib;
@@ -308,7 +308,7 @@ ffi.cdef [[
     __time64_t time_access;
     __time64_t time_write;
     _fsize_t size;
-    char name_260_;
+    char name[260];
   } struct _finddata64i32_t;
   typedef struct struct __finddata64_t {
     FINDDATA_ATTRIB attrib;
@@ -316,7 +316,7 @@ ffi.cdef [[
     __time64_t time_access;
     __time64_t time_write;
     __int64 size;
-    char name_260_;
+    char name[260];
   } struct __finddata64_t;
   typedef struct struct _wfinddata32_t {
     FINDDATA_ATTRIB attrib;
@@ -324,7 +324,7 @@ ffi.cdef [[
     __time32_t time_access;
     __time32_t time_write;
     _fsize_t size;
-    wchar_t name_260_;
+    wchar_t name[260];
   } struct _wfinddata32_t;
   typedef struct struct _wfinddata32i64_t {
     FINDDATA_ATTRIB attrib;
@@ -332,7 +332,7 @@ ffi.cdef [[
     __time32_t time_access;
     __time32_t time_write;
     __int64 size;
-    wchar_t name_260_;
+    wchar_t name[260];
   } struct _wfinddata32i64_t;
   typedef struct struct _wfinddata64i32_t {
     FINDDATA_ATTRIB attrib;
@@ -340,7 +340,7 @@ ffi.cdef [[
     __time64_t time_access;
     __time64_t time_write;
     _fsize_t size;
-    wchar_t name_260_;
+    wchar_t name[260];
   } struct _wfinddata64i32_t;
   typedef struct struct _wfinddata64_t {
     FINDDATA_ATTRIB attrib;
@@ -348,7 +348,7 @@ ffi.cdef [[
     __time64_t time_access;
     __time64_t time_write;
     __int64 size;
-    wchar_t name_260_;
+    wchar_t name[260];
   } struct _wfinddata64_t;
   typedef unsigned short wctype_t; //Alias
   typedef wctype_t _ctype_t; //Alias

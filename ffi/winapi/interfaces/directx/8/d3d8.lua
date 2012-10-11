@@ -15,8 +15,8 @@ ffi.cdef [[
   typedef void* IDirect3DVolumeTexture8; //Interface
 # pragma pack( push, 4 )
   typedef struct D3DADAPTER_IDENTIFIER8 {
-    char Driver_MAX_DEVICE_IDENTIFIER_STRING_;
-    char Description_MAX_DEVICE_IDENTIFIER_STRING_;
+    char Driver[MAX_DEVICE_IDENTIFIER_STRING];
+    char Description[MAX_DEVICE_IDENTIFIER_STRING];
     LARGE_INTEGER DriverVersion;
     DWORD VendorId;
     DWORD DeviceId;

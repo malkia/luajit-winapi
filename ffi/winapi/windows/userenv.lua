@@ -20,7 +20,7 @@ ffi.cdef [[
     LPTSTR lpDSPath;
     LPTSTR lpFileSysPath;
     LPTSTR lpDisplayName;
-    TCHAR szGPOName_50_;
+    TCHAR szGPOName[50];
     GPO_LINK GPOLink;
     LPARAM lParam;
     LPVOID pNext;

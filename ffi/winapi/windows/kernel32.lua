@@ -109,7 +109,7 @@ ffi.cdef [[
   static const GEOID Chad = 0x29;
   static const GEOID Sri_Lanka = 0x2A;
   static const GEOID Congo = 0x2B;
-  static const GEOID Congo__DRC_ = 0x2C;
+  static const GEOID Congo_DRC = 0x2C;
   static const GEOID China = 0x2D;
   static const GEOID Chile = 0x2E;
   static const GEOID Cameroon = 0x31;
@@ -292,11 +292,11 @@ ffi.cdef [[
   static const GEOID Channel_Islands = 0x134;
   static const GEOID Christmas_Island = 0x135;
   static const GEOID Clipperton_Island = 0x136;
-  static const GEOID Cocos__Keeling__Islands = 0x137;
+  static const GEOID Cocos_Keeling_Islands = 0x137;
   static const GEOID Cook_Islands = 0x138;
   static const GEOID Coral_Sea_Islands = 0x139;
   static const GEOID Diego_Garcia = 0x13A;
-  static const GEOID Falkland_Islands__Islas_Malvinas_ = 0x13B;
+  static const GEOID Falkland_Islands_Islas_Malvinas = 0x13B;
   static const GEOID French_Guiana = 0x13D;
   static const GEOID French_Polynesia = 0x13E;
   static const GEOID French_Southern_and_Antarctic_Lands = 0x13F;
@@ -984,7 +984,7 @@ ffi.cdef [[
     DWORD ErrorSelector;
     DWORD DataOffset;
     DWORD DataSelector;
-    BYTE RegisterArea_WOW64_SIZE_OF_80387_REGISTERS_;
+    BYTE RegisterArea[WOW64_SIZE_OF_80387_REGISTERS];
     DWORD Cr0NpxState;
   } WOW64_FLOATING_SAVE_AREA;
   typedef DWORD WOW64_CONTEXT_FLAGS; //Alias
@@ -1014,7 +1014,7 @@ ffi.cdef [[
     DWORD EFlags;
     DWORD Esp;
     DWORD SegSs;
-    BYTE ExtendedRegisters_WOW64_MAXIMUM_SUPPORTED_EXTENSION_;
+    BYTE ExtendedRegisters[WOW64_MAXIMUM_SUPPORTED_EXTENSION];
   } WOW64_CONTEXT;
 # pragma pack( pop )
   typedef WOW64_CONTEXT *PWOW64_CONTEXT; //Pointer
@@ -1027,8 +1027,8 @@ ffi.cdef [[
     BYTE* modBaseAddr;
     DWORD modBaseSize;
     HMODULE hModule;
-    TCHAR szModule_MAX_MODULE_NAME32_plus_1_;
-    TCHAR szExePath_MAX_PATH_;
+    TCHAR szModule[MAX_MODULE_NAME32_plus_1];
+    TCHAR szExePath[MAX_PATH];
   } MODULEENTRY32;
   typedef MODULEENTRY32 *LPMODULEENTRY32; //Pointer
   typedef struct PROCESSENTRY32 {
@@ -1041,7 +1041,7 @@ ffi.cdef [[
     DWORD th32ParentProcessID;
     LONG pcPriClassBase;
     DWORD dwFlags;
-    TCHAR szExeFile_MAX_PATH_;
+    TCHAR szExeFile[MAX_PATH];
   } PROCESSENTRY32;
   typedef PROCESSENTRY32 *LPPROCESSENTRY32; //Pointer
   typedef UINT FILE_ID_TYPE; //Alias
@@ -1080,7 +1080,7 @@ ffi.cdef [[
     SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u_s1 ProcessorCore;
     SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u_s2 NumaNode;
     CACHE_DESCRIPTOR Cache;
-    ULONGLONG Reserved_2_;
+    ULONGLONG Reserved[2];
   } SYSTEM_LOGICAL_PROCESSOR_INFORMATION_u;
   typedef struct SYSTEM_LOGICAL_PROCESSOR_INFORMATION {
     ULONG_PTR ProcessorMask;
@@ -1091,20 +1091,20 @@ ffi.cdef [[
   typedef struct GROUP_AFFINITY {
     KAFFINITY Mask;
     WORD Group;
-    WORD Reserved_3_;
+    WORD Reserved[3];
   } GROUP_AFFINITY;
   typedef GROUP_AFFINITY *PGROUP_AFFINITY; //Pointer
   typedef struct PROCESSOR_GROUP_INFO {
     BYTE MaximumProcessorCount;
     BYTE ActiveProcessorCount;
-    BYTE Reserved_38_;
+    BYTE Reserved[38];
     KAFFINITY ActiveProcessorMask;
   } PROCESSOR_GROUP_INFO;
   typedef struct GROUP_RELATIONSHIP {
     WORD MaximumGroupCount;
     WORD ActiveGroupCount;
-    BYTE Reserved_20_;
-    PROCESSOR_GROUP_INFO GroupInfo_ANYSIZE_ARRAY_;
+    BYTE Reserved[20];
+    PROCESSOR_GROUP_INFO GroupInfo[ANYSIZE_ARRAY];
   } GROUP_RELATIONSHIP;
   typedef struct CACHE_RELATIONSHIP {
     BYTE Level;
@@ -1112,21 +1112,21 @@ ffi.cdef [[
     WORD LineSize;
     DWORD CacheSize;
     PROCESSOR_CACHE_TYPE Type;
-    BYTE Reserved_20_;
+    BYTE Reserved[20];
     GROUP_AFFINITY GroupMask;
   } CACHE_RELATIONSHIP;
   typedef struct NUMA_NODE_RELATIONSHIP {
     DWORD NodeNumber;
-    BYTE Reserved_20_;
+    BYTE Reserved[20];
     GROUP_AFFINITY GroupMask;
   } NUMA_NODE_RELATIONSHIP;
   typedef BYTE PROCESSOR_RELATIONSHIP_FLAGS; //Alias
   static const PROCESSOR_RELATIONSHIP_FLAGS LTP_PC_SMT = 0x1;
   typedef struct PROCESSOR_RELATIONSHIP {
     PROCESSOR_RELATIONSHIP_FLAGS Flags;
-    BYTE Reserved_21_;
+    BYTE Reserved[21];
     WORD GroupCount;
-    GROUP_AFFINITY GroupMask_ANYSIZE_ARRAY_;
+    GROUP_AFFINITY GroupMask[ANYSIZE_ARRAY];
   } PROCESSOR_RELATIONSHIP;
   typedef union SYSTEM_LOGICAL_PROCESSOR_INFORMATION_EX_u {
     PROCESSOR_RELATIONSHIP Processor;
@@ -1208,7 +1208,7 @@ ffi.cdef [[
     DWORD dwCurrentRxQueue;
     COMMPROP_SPEC dwProvSpec1;
     DWORD dwProvSpec2;
-    WCHAR wcProvChar_1_;
+    WCHAR wcProvChar[1];
   } COMMPROP;
   typedef COMMPROP *LPCOMMPROP; //Pointer
   typedef struct COMMCONFIG {
@@ -1219,7 +1219,7 @@ ffi.cdef [[
     PROVIDER_SUB_TYPE dwProviderSubType;
     DWORD dwProviderOffset;
     DWORD dwProviderSize;
-    WCHAR wcProviderData_1_;
+    WCHAR wcProviderData[1];
   } COMMCONFIG;
   typedef COMMCONFIG *LPCOMMCONFIG; //Pointer
   typedef struct CONSOLE_SCREEN_BUFFER_INFOEX {
@@ -1231,7 +1231,7 @@ ffi.cdef [[
     COORD dwMaximumWindowSize;
     WORD wPopupAttributes;
     BOOL bFullscreenSupported;
-    COLORREF ColorTable_16_;
+    COLORREF ColorTable[16];
   } CONSOLE_SCREEN_BUFFER_INFOEX;
   typedef CONSOLE_SCREEN_BUFFER_INFOEX *PCONSOLE_SCREEN_BUFFER_INFOEX; //Pointer
   typedef UINT FONT_FAMILY; //Alias
@@ -1241,7 +1241,7 @@ ffi.cdef [[
     COORD dwFontSize;
     FONT_FAMILY FontFamily;
     UINT FontWeight;
-    WCHAR FaceName_LF_FACESIZE_;
+    WCHAR FaceName[LF_FACESIZE];
   } CONSOLE_FONT_INFOEX;
   typedef CONSOLE_FONT_INFOEX *PCONSOLE_FONT_INFOEX; //Pointer
   typedef WORD INPUT_RECORD_TYPE; //Alias
@@ -1305,22 +1305,22 @@ ffi.cdef [[
     BYTE Once;
     DWORD64 LowAddress;
     DWORD64 HighAddress;
-    UNWIND_HISTORY_TABLE_ENTRY Entry_UNWIND_HISTORY_TABLE_SIZE_;
+    UNWIND_HISTORY_TABLE_ENTRY Entry[UNWIND_HISTORY_TABLE_SIZE];
   } UNWIND_HISTORY_TABLE;
   typedef UNWIND_HISTORY_TABLE *PUNWIND_HISTORY_TABLE; //Pointer
   typedef struct CPINFOEX {
     UINT MaxCharSize;
-    BYTE DefaultChar_MAX_DEFAULTCHAR_;
-    BYTE LeadByte_MAX_LEADBYTES_;
+    BYTE DefaultChar[MAX_DEFAULTCHAR];
+    BYTE LeadByte[MAX_LEADBYTES];
     WCHAR UnicodeDefaultChar;
     UINT CodePage;
-    TCHAR CodePageName_MAX_PATH_;
+    TCHAR CodePageName[MAX_PATH];
   } CPINFOEX;
   typedef CPINFOEX *LPCPINFOEX; //Pointer
   typedef struct CPINFO {
     UINT MaxCharSize;
-    BYTE DefaultChar_MAX_DEFAULTCHAR_;
-    BYTE LeadByte_MAX_LEADBYTES_;
+    BYTE DefaultChar[MAX_DEFAULTCHAR];
+    BYTE LeadByte[MAX_LEADBYTES];
   } CPINFO;
   typedef CPINFO *LPCPINFO; //Pointer
   typedef struct REASON_CONTEXT_u_s {
@@ -1344,13 +1344,13 @@ ffi.cdef [[
   typedef REASON_CONTEXT *PREASON_CONTEXT; //Pointer
   typedef struct DYNAMIC_TIME_ZONE_INFORMATION {
     LONG Bias;
-    WCHAR StandardName_32_;
+    WCHAR StandardName[32];
     SYSTEMTIME StandardDate;
     LONG StandardBias;
-    WCHAR DaylightName_32_;
+    WCHAR DaylightName[32];
     SYSTEMTIME DaylightDate;
     LONG DaylightBias;
-    WCHAR TimeZoneKeyName_128_;
+    WCHAR TimeZoneKeyName[128];
     BOOLEAN DynamicDaylightTimeDisabled;
   } DYNAMIC_TIME_ZONE_INFORMATION;
   typedef DYNAMIC_TIME_ZONE_INFORMATION *PDYNAMIC_TIME_ZONE_INFORMATION; //Pointer
@@ -1372,7 +1372,7 @@ ffi.cdef [[
   typedef TP_CALLBACK_ENVIRON_V3 *PTP_CALLBACK_ENVIRON; //Pointer
   typedef struct PROCESS_HEAP_ENTRY_u_s1 {
     HANDLE hMem;
-    DWORD dwReserved_3_;
+    DWORD dwReserved[3];
   } PROCESS_HEAP_ENTRY_u_s1;
   typedef struct PROCESS_HEAP_ENTRY_u_s2 {
     DWORD dwCommittedSize;
@@ -1411,7 +1411,7 @@ ffi.cdef [[
     DWORD64 CycleTime;
     DWORD RetryCount;
     DWORD Reserved;
-    HARDWARE_COUNTER_DATA HwCounters_MAX_HW_COUNTERS_;
+    HARDWARE_COUNTER_DATA HwCounters[MAX_HW_COUNTERS];
   } PERFORMANCE_DATA;
   typedef PERFORMANCE_DATA *PPERFORMANCE_DATA; //Pointer
   typedef DWORD DDD_FLAGS; //Alias

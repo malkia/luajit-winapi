@@ -14,7 +14,7 @@ ffi.cdef [[
     void* pfnAllocate;
     void* pfnFree;
     IRpcChannelBuffer* pRpcChannelBuffer;
-    ULONG_PTR Reserved_5_;
+    ULONG_PTR Reserved[5];
   } NDR_USER_MARSHAL_INFO_LEVEL1;
   typedef union NDR_USER_MARSHAL_INFO_u {
     NDR_USER_MARSHAL_INFO_LEVEL1 Level1;

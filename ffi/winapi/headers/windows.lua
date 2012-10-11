@@ -19,7 +19,7 @@ ffi.cdef [[
   typedef WORD ATOM; //Alias
   typedef LPVOID PSLIST_ENTRY; //Alias
   typedef ULONG_PTR KAFFINITY; //Alias
-  typedef VOID STDAPI_(VOID); //Alias
+  typedef VOID STDAPI_VOID; //Alias
   enum { OFS_MAXPATHNAME = 128 };
   enum { CCHDEVICENAME = 32 };
   enum { CCHFORMNAME = 32 };
@@ -277,7 +277,7 @@ ffi.cdef [[
   static const DMDITHER DMDITHER_RESERVED9 = 9;
   static const DMDITHER DMDITHER_GRAYSCALE = 10;
   typedef struct DEVMODE {
-    TCHAR dmDeviceName_CCHDEVICENAME_;
+    TCHAR dmDeviceName[CCHDEVICENAME];
     WORD dmSpecVersion;
     WORD dmDriverVersion;
     WORD dmSize;
@@ -289,7 +289,7 @@ ffi.cdef [[
     short dmYResolution;
     DMTT dmTTOption;
     DMCOLLATE dmCollate;
-    TCHAR dmFormName_CCHFORMNAME_;
+    TCHAR dmFormName[CCHFORMNAME];
     WORD dmLogPixels;
     DWORD dmBitsPerPel;
     DWORD dmPelsWidth;
@@ -320,9 +320,9 @@ ffi.cdef [[
   typedef HANDLE HBITMAP; //Alias
   typedef HANDLE HENHMETAFILE; //Alias
   typedef HANDLE ProcessHandle; //Alias
-  static const ProcessHandle GetCurrentProcess__ = -1;
+  static const ProcessHandle GetCurrentProcess = -1;
   typedef HANDLE ThreadHandle; //Alias
-  static const ThreadHandle GetCurrentThread__ = -2;
+  static const ThreadHandle GetCurrentThread = -2;
   typedef int32_t HRESULT; //Integer
   static const int32_t S_OK = 0;
   static const int32_t S_FALSE = 1;
@@ -893,7 +893,7 @@ ffi.cdef [[
   static const CodePageEnum CP_SYMBOL = 42;
   static const CodePageEnum MS_DOS_Latin_US = 437;
   static const CodePageEnum Thai = 874;
-  static const CodePageEnum Japanese__Shift_JIS_ = 932;
+  static const CodePageEnum Japanese_Shift_JIS = 932;
   static const CodePageEnum Chinese_Simplified = 936;
   static const CodePageEnum Korean = 949;
   static const CodePageEnum Chinese_Traditional = 950;
@@ -917,7 +917,7 @@ ffi.cdef [[
     LPVOID ExceptionRecord;
     PVOID ExceptionAddress;
     DWORD NumberParameters;
-    ULONG_PTR ExceptionInformation_EXCEPTION_MAXIMUM_PARAMETERS_;
+    ULONG_PTR ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS];
   } EXCEPTION_RECORD;
   typedef EXCEPTION_RECORD *PEXCEPTION_RECORD; //Pointer
   typedef struct EXCEPTION_POINTERS {
@@ -1039,8 +1039,8 @@ ffi.cdef [[
     DWORD nFileSizeLow;
     ReparsePoint dwReserved0;
     DWORD dwReserved1;
-    TCHAR cFileName_MAX_PATH_;
-    TCHAR cAlternateFileName_14_;
+    TCHAR cFileName[MAX_PATH];
+    TCHAR cAlternateFileName[14];
   } WIN32_FIND_DATA;
   typedef WIN32_FIND_DATA *LPWIN32_FIND_DATA; //Pointer
   typedef struct WIN32_FIND_DATAA {
@@ -1052,8 +1052,8 @@ ffi.cdef [[
     DWORD nFileSizeLow;
     ReparsePoint dwReserved0;
     DWORD dwReserved1;
-    CHAR cFileName_MAX_PATH_;
-    CHAR cAlternateFileName_14_;
+    CHAR cFileName[MAX_PATH];
+    CHAR cAlternateFileName[14];
   } WIN32_FIND_DATAA;
   typedef struct WIN32_FIND_DATAW {
     FileAttributes dwFileAttributes;
@@ -1064,15 +1064,15 @@ ffi.cdef [[
     DWORD nFileSizeLow;
     ReparsePoint dwReserved0;
     DWORD dwReserved1;
-    WCHAR cFileName_MAX_PATH_;
-    WCHAR cAlternateFileName_14_;
+    WCHAR cFileName[MAX_PATH];
+    WCHAR cAlternateFileName[14];
   } WIN32_FIND_DATAW;
   typedef struct TIME_ZONE_INFORMATION {
     LONG Bias;
-    WCHAR StandardName_32_;
+    WCHAR StandardName[32];
     SYSTEMTIME StandardDate;
     LONG StandardBias;
-    WCHAR DaylightName_32_;
+    WCHAR DaylightName[32];
     SYSTEMTIME DaylightDate;
     LONG DaylightBias;
   } TIME_ZONE_INFORMATION;
@@ -1083,7 +1083,7 @@ ffi.cdef [[
     WORD nErrCode;
     WORD Reserved1;
     WORD Reserved2;
-    CHAR szPathName_OFS_MAXPATHNAME_;
+    CHAR szPathName[OFS_MAXPATHNAME];
   } OFSTRUCT;
   typedef OFSTRUCT *LPOFSTRUCT; //Pointer
   typedef WORD PROCESSOR_ARCHITECTURE; //Alias
@@ -1257,7 +1257,7 @@ ffi.cdef [[
     DWORD dwMinorVersion;
     DWORD dwBuildNumber;
     VER_PLATFORM dwPlatformId;
-    TCHAR szCSDVersion_128_;
+    TCHAR szCSDVersion[128];
   } OSVERSIONINFO;
   typedef OSVERSIONINFO *LPOSVERSIONINFO; //Pointer
   typedef struct RTL_OSVERSIONINFOW {
@@ -1266,7 +1266,7 @@ ffi.cdef [[
     DWORD dwMinorVersion;
     DWORD dwBuildNumber;
     VER_PLATFORM dwPlatformId;
-    WCHAR szCSDVersion_128_;
+    WCHAR szCSDVersion[128];
   } RTL_OSVERSIONINFOW;
   typedef RTL_OSVERSIONINFOW *PRTL_OSVERSIONINFOW; //Pointer
   typedef WORD VER_SUITE; //Alias
@@ -1280,7 +1280,7 @@ ffi.cdef [[
     DWORD dwMinorVersion;
     DWORD dwBuildNumber;
     DWORD dwPlatformId;
-    TCHAR szCSDVersion_128_;
+    TCHAR szCSDVersion[128];
     WORD wServicePackMajor;
     WORD wServicePackMinor;
     VER_SUITE wSuiteMask;
@@ -1294,7 +1294,7 @@ ffi.cdef [[
     DWORD dwMinorVersion;
     DWORD dwBuildNumber;
     DWORD dwPlatformId;
-    WCHAR szCSDVersion_128_;
+    WCHAR szCSDVersion[128];
     WORD wServicePackMajor;
     WORD wServicePackMinor;
     VER_SUITE wSuiteMask;
@@ -1407,7 +1407,7 @@ if ffi.arch == 'x86' then ffi.cdef[[
     DWORD SizeOfHeapCommit;
     DWORD LoaderFlags;
     DWORD NumberOfRvaAndSizes;
-    IMAGE_DATA_DIRECTORY DataDirectory_IMAGE_NUMBEROF_DIRECTORY_ENTRIES_;
+    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
   } IMAGE_OPTIONAL_HEADER;
 ]]
 end
@@ -1442,7 +1442,7 @@ ffi.cdef[[
     ULONGLONG SizeOfHeapCommit;
     DWORD LoaderFlags;
     DWORD NumberOfRvaAndSizes;
-    IMAGE_DATA_DIRECTORY DataDirectory_IMAGE_NUMBEROF_DIRECTORY_ENTRIES_;
+    IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
   } IMAGE_OPTIONAL_HEADER64;
 ]]
 if ffi.arch == 'x64' then ffi.cdef[[

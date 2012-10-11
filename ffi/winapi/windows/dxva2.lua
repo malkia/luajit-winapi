@@ -9,7 +9,7 @@ ffi.cdef [[
   enum { PHYSICAL_MONITOR_DESCRIPTION_SIZE = 128 };
   typedef struct PHYSICAL_MONITOR {
     HANDLE hPhysicalMonitor;
-    WCHAR szPhysicalMonitorDescription_PHYSICAL_MONITOR_DESCRIPTION_SIZE_;
+    WCHAR szPhysicalMonitorDescription[PHYSICAL_MONITOR_DESCRIPTION_SIZE];
   } PHYSICAL_MONITOR;
   typedef PHYSICAL_MONITOR *LPPHYSICAL_MONITOR; //Pointer
   typedef UINT MC_COLOR_TEMPERATURE; //Alias

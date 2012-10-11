@@ -145,7 +145,7 @@ ffi.cdef [[
     FontClipPrecision lfClipPrecision;
     FontQuality lfQuality;
     FontPitchAndFamily lfPitchAndFamily;
-    TCHAR lfFaceName_LF_FACESIZE_;
+    TCHAR lfFaceName[LF_FACESIZE];
   } LOGFONT;
   typedef LOGFONT *LPLOGFONT; //Pointer
   typedef struct LOGFONTW {
@@ -162,7 +162,7 @@ ffi.cdef [[
     FontClipPrecision lfClipPrecision;
     FontQuality lfQuality;
     FontPitchAndFamily lfPitchAndFamily;
-    WCHAR lfFaceName_LF_FACESIZE_;
+    WCHAR lfFaceName[LF_FACESIZE];
   } LOGFONTW;
   typedef struct CHOOSEFONT {
     DWORD lStructSize;
@@ -352,7 +352,7 @@ ffi.cdef [[
   typedef BITMAPINFOHEADER *LPBITMAPINFOHEADER; //Pointer
   typedef struct BITMAPINFO {
     BITMAPINFOHEADER bmiHeader;
-    RGBQUAD bmiColors_1_;
+    RGBQUAD bmiColors[1];
   } BITMAPINFO;
   typedef BITMAPINFO *LPBITMAPINFO; //Pointer
   typedef BYTE TEXTMETRIC_Pitch; //Alias
@@ -450,7 +450,7 @@ ffi.cdef [[
   } EncoderParameter;
   typedef struct EncoderParameters {
     UINT Count;
-    EncoderParameter Parameter_1_;
+    EncoderParameter Parameter[1];
   } EncoderParameters;
   typedef struct ABC {
     int abcA;

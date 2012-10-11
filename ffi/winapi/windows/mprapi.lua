@@ -6,7 +6,7 @@ ffi.cdef [[
   typedef HANDLE MIB_SERVER_HANDLE; //Alias
   enum { MAX_INTERFACE_NAME_LEN_plus_1 = 257 };
   typedef struct MPR_IPINIP_INTERFACE_0 {
-    WCHAR wszFriendlyName_MAX_INTERFACE_NAME_LEN_plus_1_;
+    WCHAR wszFriendlyName[MAX_INTERFACE_NAME_LEN_plus_1];
     GUID Guid;
   } MPR_IPINIP_INTERFACE_0;
   typedef MPR_IPINIP_INTERFACE_0 *PMPR_IPINIP_INTERFACE_0; //Pointer

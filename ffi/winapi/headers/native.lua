@@ -8,7 +8,7 @@ ffi.cdef [[
     DWORD VirtualSize;
   } IMAGE_SECTION_HEADER_u;
   typedef struct IMAGE_SECTION_HEADER {
-    BYTE Name_IMAGE_SIZEOF_SHORT_NAME_;
+    BYTE Name[IMAGE_SIZEOF_SHORT_NAME];
     IMAGE_SECTION_HEADER_u Misc;
     DWORD VirtualAddress;
     DWORD SizeOfRawData;
@@ -49,7 +49,7 @@ ffi.cdef [[
     LIST_ENTRY ProcessLocksList;
     ULONG EntryCount;
     ULONG ContentionCount;
-    ULONG Spare_2_;
+    ULONG Spare[2];
   } RTL_CRITICAL_SECTION_DEBUG;
   typedef RTL_CRITICAL_SECTION_DEBUG *PRTL_CRITICAL_SECTION_DEBUG; //Pointer
 # pragma pack( push, 8 )
@@ -85,7 +85,7 @@ ffi.cdef [[
     ULONG Count;
     ULONG Reserved;
     PULONG Unknown;
-    PROC_THREAD_ATTRIBUTE_ENTRY Entries_ANYSIZE_ARRAY_;
+    PROC_THREAD_ATTRIBUTE_ENTRY Entries[ANYSIZE_ARRAY];
   } PROC_THREAD_ATTRIBUTE_LIST;
   typedef PROC_THREAD_ATTRIBUTE_LIST *LPPROC_THREAD_ATTRIBUTE_LIST; //Pointer
   typedef UINT_PTR HANDLE_NO_HEX; //Alias

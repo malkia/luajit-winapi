@@ -8,10 +8,9 @@ ffi.cdef [[
     ULONG OldLength;
     ULONG NewLength;
   } PATCH_INTERLEAVE_MAP_s;
-  enum {  = 1 };
   typedef struct PATCH_INTERLEAVE_MAP {
     ULONG CountRanges;
-    PATCH_INTERLEAVE_MAP_s] Range_1;
+    PATCH_INTERLEAVE_MAP_s] Range[1;
   } PATCH_INTERLEAVE_MAP;
   typedef PATCH_INTERLEAVE_MAP *PPATCH_INTERLEAVE_MAP; //Pointer
   typedef struct PATCH_IGNORE_RANGE {

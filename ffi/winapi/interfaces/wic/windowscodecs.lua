@@ -106,7 +106,7 @@ ffi.cdef [[
   } WICRawToneCurvePoint;
   typedef struct WICRawToneCurve {
     UINT cPoints;
-    WICRawToneCurvePoint aPoints_1_;
+    WICRawToneCurvePoint aPoints[1];
   } WICRawToneCurve;
   typedef REFGUID REFWICPixelFormatGUID; //Alias
   typedef GUID WICPixelFormatGUID; //Alias

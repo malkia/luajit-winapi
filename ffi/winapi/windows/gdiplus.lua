@@ -13,7 +13,6 @@ ffi.cdef [[
   typedef UINT GraphicsState; //Alias
   typedef UINT GraphicsContainer; //Alias
   typedef DWORD ARGB; //Alias
-  enum { 5][5 = 5 };
   typedef WORD PropertyTagType; //Alias
   static const PropertyTagType PropertyTagTypeByte = 1;
   static const PropertyTagType PropertyTagTypeASCII = 2;
@@ -119,7 +118,7 @@ ffi.cdef [[
     Color newColor;
   } ColorMap;
   typedef struct ColorMatrix {
-    REAL m_5__5_;
+    REAL m[5][5];
   } ColorMatrix;
   typedef struct ImageItemData {
     UINT Size;
@@ -134,7 +133,7 @@ ffi.cdef [[
   typedef struct ColorPalette {
     PaletteFlags Flags;
     UINT Count;
-    ARGB Entries_1_;
+    ARGB Entries[1];
   } ColorPalette;
   typedef struct GdiplusStartupOutput {
     NotificationHookProc NotificationHook;

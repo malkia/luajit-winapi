@@ -59,6 +59,8 @@ local function filter_dash_slash(id,type)
    id = id:gsub("[-/]","_")
    id = id:gsub(" %+ ","_plus_")
    id = id:gsub(" %* ","_mult_")
+   id = id:gsub("%(","")
+   id = id:gsub("%)","")
    return id
 end
 
@@ -305,7 +307,7 @@ local function process(var, luafile)
 	 local space = in_brackets:find(" ", 1, true)
 	 local before_space = (space and in_brackets:sub(1, space-1) or in_brackets)
 	 local after_space = (space and in_brackets:sub(space) or "0"):gsub(" ","")
-	 if tonumber(before_space) == nil and defined[before_space]==nil then
+	 if tonumber(before_space) == nil and validate_id(before_space) and defined[before_space]==nil then
 	    defined[before_space] = true
 	    luafile:write(
 	       "  enum { " .. before_space .. " = " .. var.Count .. " };\n")
@@ -328,7 +330,10 @@ local function process(var, luafile)
 	    Name = Name .. Type:sub(bracket+1)
 	    Type = Type:sub(1,bracket-1)
 	 end
-	 Name = filter_make_underscore(Name)
+	 if Name == "Other values are currently unsupported" then
+	    Name = "other_values_dummy"
+	 end
+--	 Name = filter_make_underscore(Name)
 	 luafile:write("    " .. Type .. " " .. Name .. ";\n") 
       end
       luafile:write( "  } " .. var.Name .. ";\n" )
@@ -490,7 +495,9 @@ local function test(cdefs)
    for filename, _ in pairs(cdefs) do
       local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
       local status, error = pcall(require,lib)
-      print(lib, error==true and "OK" or error)
+      if error ~= true then
+	 print(lib.."\n"..(error==true and "OK" or error).."\n")
+      end
    end
 end
 

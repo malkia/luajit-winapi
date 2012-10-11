@@ -16,8 +16,8 @@ ffi.cdef [[
   typedef ERROR_CODE REG_ERROR; //Alias
   typedef struct HW_PROFILE_INFO {
     DWORD dwDockInfo;
-    TCHAR szHwProfileGuid_HW_PROFILE_GUIDLEN_;
-    TCHAR szHwProfileName_MAX_PROFILE_LEN_;
+    TCHAR szHwProfileGuid[HW_PROFILE_GUIDLEN];
+    TCHAR szHwProfileName[MAX_PROFILE_LEN];
   } HW_PROFILE_INFO;
   typedef HW_PROFILE_INFO *LPHW_PROFILE_INFO; //Pointer
   typedef UINT WCT_OBJECT_TYPE; //Alias
@@ -45,7 +45,7 @@ ffi.cdef [[
   static const WCT_OBJECT_STATUS WctStatusUnknown = 9;
   static const WCT_OBJECT_STATUS WctStatusError = 10;
   typedef struct WAITCHAIN_NODE_INFO_u_s1 {
-    WCHAR ObjectName_WCT_OBJNAME_LENGTH_;
+    WCHAR ObjectName[WCT_OBJNAME_LENGTH];
     LARGE_INTEGER Timeout;
     BOOL Alertable;
   } WAITCHAIN_NODE_INFO_u_s1;

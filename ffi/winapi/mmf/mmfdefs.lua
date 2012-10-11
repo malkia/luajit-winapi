@@ -269,7 +269,7 @@ ffi.cdef [[
     DWORD cbExtensionOffset;
     DWORD cbExtensionSize;
     DWORD cActions;
-    MFINPUTTRUSTAUTHORITY_ACCESS_ACTION rgOutputActions_1_;
+    MFINPUTTRUSTAUTHORITY_ACCESS_ACTION rgOutputActions[1];
   } MFINPUTTRUSTAUTHORITY_ACCESS_PARAMS;
   typedef UINT32 MFT_ENUM_FLAG; //Alias
   typedef struct MFT_REGISTER_TYPE_INFO {
@@ -536,7 +536,7 @@ ffi.cdef [[
   typedef struct MFVideoSurfaceInfo {
     DWORD Format;
     DWORD PaletteEntries;
-    MFPaletteEntry Palette_1_;
+    MFPaletteEntry Palette[1];
   } MFVideoSurfaceInfo;
   typedef struct MFVideoCompressedInfo {
     LONGLONG AvgBitrate;
@@ -790,7 +790,7 @@ ffi.cdef [[
     IDirect3DSurface9* SrcSurface;
     RECT SrcRect;
     RECT DstRect;
-    DXVA2_AYUVSample8 Pal_16_;
+    DXVA2_AYUVSample8 Pal[16];
     DXVA2_Fixed32 PlanarAlpha;
     DWORD SampleData;
   } DXVA2_VideoSample;
@@ -798,7 +798,7 @@ ffi.cdef [[
     VIDEOINFOHEADER hdr;
     DWORD dwStartTimeCode;
     DWORD cbSequenceHeader;
-    BYTE bSequenceHeader_1_;
+    BYTE bSequenceHeader[1];
   } MPEG1VIDEOINFO;
   typedef DWORD AM_MPEG2Profile; //Alias
   static const AM_MPEG2Profile AM_MPEG2Profile_Simple = 1;
@@ -819,7 +819,7 @@ ffi.cdef [[
     AM_MPEG2Profile dwProfile;
     AM_MPEG2Level dwLevel;
     AMMPEG2_FLAGS dwFlags;
-    DWORD dwSequenceHeader_1_;
+    DWORD dwSequenceHeader[1];
   } MPEG2VIDEOINFO;
   typedef UINT DXVAHD_FILTER; //Alias
   static const DXVAHD_FILTER DXVAHD_FILTER_BRIGHTNESS = 0;

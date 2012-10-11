@@ -54,7 +54,7 @@ ffi.cdef [[
     LPTSTR szFullPath;
     PDH_COUNTER_INFO_u ;
     LPTSTR szExplainText;
-    DWORD DataBuffer_1_;
+    DWORD DataBuffer[1];
   } PDH_COUNTER_INFO;
   typedef PDH_COUNTER_INFO *PPDH_COUNTER_INFO; //Pointer
   typedef union PDH_FMT_COUNTERVALUE_u {
@@ -99,7 +99,7 @@ ffi.cdef [[
     DWORD dwStructureSize;
     PDH_LOG_TYPE dwRecordType;
     DWORD dwItems;
-    UCHAR RawBytes_1_;
+    UCHAR RawBytes[1];
   } PDH_RAW_LOG_RECORD;
   typedef PDH_RAW_LOG_RECORD *PPDH_RAW_LOG_RECORD; //Pointer
   typedef struct PDH_TIME_INFO {

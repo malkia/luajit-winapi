@@ -10,7 +10,7 @@ ffi.cdef [[
   typedef struct PROVIDER_ENUMERATION_INFO {
     ULONG NumberOfProviders;
     ULONG Reserved;
-    TRACE_PROVIDER_INFO TraceProviderInfoArray_ANYSIZE_ARRAY_;
+    TRACE_PROVIDER_INFO TraceProviderInfoArray[ANYSIZE_ARRAY];
   } PROVIDER_ENUMERATION_INFO;
   typedef PROVIDER_ENUMERATION_INFO *PPROVIDER_ENUMERATION_INFO; //Pointer
   typedef UINT DECODING_SOURCE; //Alias
@@ -126,7 +126,7 @@ ffi.cdef [[
     ULONG MessageOffset;
     ULONG Reserved;
     ULONG PropertyCount;
-    EVENT_PROPERTY_INFO EventPropertyInfoArray_ANYSIZE_ARRAY_;
+    EVENT_PROPERTY_INFO EventPropertyInfoArray[ANYSIZE_ARRAY];
   } PROVIDER_FILTER_INFO;
   typedef PROVIDER_FILTER_INFO *PPROVIDER_FILTER_INFO; //Pointer
   typedef struct TRACE_EVENT_INFO {
@@ -149,7 +149,7 @@ ffi.cdef [[
     ULONG PropertyCount;
     ULONG TopLevelPropertyCount;
     TEMPLATE_FLAGS Flags;
-    EVENT_PROPERTY_INFO EventPropertyInfoArray_ANYSIZE_ARRAY_;
+    EVENT_PROPERTY_INFO EventPropertyInfoArray[ANYSIZE_ARRAY];
   } TRACE_EVENT_INFO;
   typedef TRACE_EVENT_INFO *PTRACE_EVENT_INFO; //Pointer
   typedef UINT MAP_VALUETYPE; //Alias
@@ -173,7 +173,7 @@ ffi.cdef [[
     MAP_FLAGS Flag;
     ULONG EntryCount;
     EVENT_MAP_INFO_u ;
-    EVENT_MAP_ENTRY MapEntryArray_ANYSIZE_ARRAY_;
+    EVENT_MAP_ENTRY MapEntryArray[ANYSIZE_ARRAY];
   } EVENT_MAP_INFO;
   typedef EVENT_MAP_INFO *PEVENT_MAP_INFO; //Pointer
   typedef UINT EVENT_FIELD_TYPE; //Alias
@@ -190,7 +190,7 @@ ffi.cdef [[
   typedef struct PROVIDER_FIELD_INFOARRAY {
     ULONG NumberOfElements;
     EVENT_FIELD_TYPE FieldType;
-    PROVIDER_FIELD_INFO FieldInfoArray_ANYSIZE_ARRAY_;
+    PROVIDER_FIELD_INFO FieldInfoArray[ANYSIZE_ARRAY];
   } PROVIDER_FIELD_INFOARRAY;
   typedef PROVIDER_FIELD_INFOARRAY *PPROVIDER_FIELD_INFOARRAY; //Pointer
   typedef UINT TDH_CONTEXT_TYPE; //Alias

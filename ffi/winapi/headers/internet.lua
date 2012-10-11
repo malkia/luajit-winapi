@@ -37,18 +37,18 @@ ffi.cdef [[
     CACHEGROUP_TYPE dwGroupType;
     DWORD dwDiskUsage;
     DWORD dwDiskQuota;
-    DWORD dwOwnerStorage_GROUP_OWNER_STORAGE_SIZE_;
-    TCHAR szGroupName_GROUPNAME_MAX_LENGTH_;
+    DWORD dwOwnerStorage[GROUP_OWNER_STORAGE_SIZE];
+    TCHAR szGroupName[GROUPNAME_MAX_LENGTH];
   } INTERNET_CACHE_GROUP_INFO;
   typedef INTERNET_CACHE_GROUP_INFO *LPINTERNET_CACHE_GROUP_INFO; //Pointer
   typedef DWORD GopherType; //Alias
   typedef struct GOPHER_FIND_DATA {
-    TCHAR DisplayString_MAX_GOPHER_DISPLAY_TEXT_plus_1_;
+    TCHAR DisplayString[MAX_GOPHER_DISPLAY_TEXT_plus_1];
     GopherType GopherType;
     DWORD SizeLow;
     DWORD SizeHigh;
     FILETIME LastModificationTime;
-    TCHAR Locator_MAX_GOPHER_LOCATOR_LENGTH_plus_1_;
+    TCHAR Locator[MAX_GOPHER_LOCATOR_LENGTH_plus_1];
   } GOPHER_FIND_DATA;
   typedef GOPHER_FIND_DATA *LPGOPHER_FIND_DATA; //Pointer
   typedef DWORD ProxyAccessType; //Alias

@@ -65,7 +65,7 @@ ffi.cdef[[
     DWORD dwLength;
     WORD wRevision;
     WIN_CERT_TYPE wCertificateType;
-    BYTE bCertificate_ANYSIZE_ARRAY_;
+    BYTE bCertificate[ANYSIZE_ARRAY];
   } WIN_CERTIFICATE;
   typedef WIN_CERTIFICATE *LPWIN_CERTIFICATE; //Pointer
   typedef struct LOADED_IMAGE {

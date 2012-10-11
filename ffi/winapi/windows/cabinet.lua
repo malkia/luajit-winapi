@@ -78,9 +78,9 @@ ffi.cdef [[
     int iDisk;
     int fFailOnIncompressible;
     USHORT setID;
-    char szDisk_CB_MAX_DISK_NAME_;
-    char szCab_CB_MAX_CABINET_NAME_;
-    char szCabPath_CB_MAX_CAB_PATH_;
+    char szDisk[CB_MAX_DISK_NAME];
+    char szCab[CB_MAX_CABINET_NAME];
+    char szCabPath[CB_MAX_CAB_PATH];
   } CCAB;
   typedef CCAB *PCCAB; //Pointer
   typedef struct FDICABINETINFO {

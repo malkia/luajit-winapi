@@ -24,7 +24,7 @@ ffi.cdef [[
   enum { WLAN_MAX_PHY_TYPE_NUMBER = 8 };
   typedef struct DOT11_SSID {
     ULONG uSSIDLength;
-    UCHAR ucSSID_DOT11_SSID_MAX_LENGTH_;
+    UCHAR ucSSID[DOT11_SSID_MAX_LENGTH];
   } DOT11_SSID;
   typedef DOT11_SSID *PDOT11_SSID; //Pointer
   typedef DOT11_SSID *PDOT11_SSID; //Pointer
@@ -104,7 +104,7 @@ ffi.cdef [[
     NDIS_OBJECT_HEADER Header;
     ULONG uNumOfEntries;
     ULONG uTotalNumOfEntries;
-    DOT11_MAC_ADDRESS BSSIDs_1_;
+    DOT11_MAC_ADDRESS BSSIDs[1];
   } DOT11_BSSID_LIST;
   typedef DOT11_BSSID_LIST *PDOT11_BSSID_LIST; //Pointer
   typedef UINT WLAN_INTERFACE_STATE; //Alias
@@ -118,13 +118,13 @@ ffi.cdef [[
   static const WLAN_INTERFACE_STATE wlan_interface_state_authenticating = 7;
   typedef struct WLAN_INTERFACE_INFO {
     GUID InterfaceGuid;
-    WCHAR strInterfaceDescription_WLAN_MAX_NAME_LENGTH_;
+    WCHAR strInterfaceDescription[WLAN_MAX_NAME_LENGTH];
     WLAN_INTERFACE_STATE isState;
   } WLAN_INTERFACE_INFO;
   typedef struct WLAN_INTERFACE_INFO_LIST {
     DWORD dwNumberOfItems;
     DWORD dwIndex;
-    WLAN_INTERFACE_INFO InterfaceInfo_1_;
+    WLAN_INTERFACE_INFO InterfaceInfo[1];
   } WLAN_INTERFACE_INFO_LIST;
   typedef WLAN_INTERFACE_INFO_LIST *PWLAN_INTERFACE_INFO_LIST; //Pointer
   typedef struct WLAN_RAW_DATA_LIST_s {
@@ -134,20 +134,20 @@ ffi.cdef [[
   typedef struct WLAN_RAW_DATA_LIST {
     DWORD dwTotalSize;
     DWORD dwNumberOfItems;
-    WLAN_RAW_DATA_LIST_s DataList_1_;
+    WLAN_RAW_DATA_LIST_s DataList[1];
   } WLAN_RAW_DATA_LIST;
   typedef WLAN_RAW_DATA_LIST *PWLAN_RAW_DATA_LIST; //Pointer
   typedef WLAN_RAW_DATA_LIST *PWLAN_RAW_DATA_LIST; //Pointer
   typedef DWORD WLAN_AVAILABLE_NETWORK_FLAGS; //Alias
   typedef struct WLAN_AVAILABLE_NETWORK {
-    WCHAR strProfileName_WLAN_MAX_NAME_LENGTH_;
+    WCHAR strProfileName[WLAN_MAX_NAME_LENGTH];
     DOT11_SSID dot11Ssid;
     DOT11_BSS_TYPE dot11BssType;
     ULONG uNumberOfBssids;
     BOOL bNetworkConnectable;
     WLAN_REASON_CODE wlanNotConnectableReason;
     ULONG uNumberOfPhyTypes;
-    DOT11_PHY_TYPE dot11PhyTypes_WLAN_MAX_PHY_TYPE_NUMBER_;
+    DOT11_PHY_TYPE dot11PhyTypes[WLAN_MAX_PHY_TYPE_NUMBER];
     BOOL bMorePhyTypes;
     WLAN_SIGNAL_QUALITY wlanSignalQuality;
     BOOL bSecurityEnabled;
@@ -159,7 +159,7 @@ ffi.cdef [[
   typedef struct WLAN_AVAILABLE_NETWORK_LIST {
     DWORD dwNumberOfItems;
     DWORD dwIndex;
-    WLAN_AVAILABLE_NETWORK Network_1_;
+    WLAN_AVAILABLE_NETWORK Network[1];
   } WLAN_AVAILABLE_NETWORK_LIST;
   typedef WLAN_AVAILABLE_NETWORK_LIST *PWLAN_AVAILABLE_NETWORK_LIST; //Pointer
   typedef struct DOT11_NETWORK {
@@ -169,7 +169,7 @@ ffi.cdef [[
   typedef struct DOT11_NETWORK_LIST {
     DWORD dwNumberOfItems;
     DWORD dwIndex;
-    DOT11_NETWORK Network_1_;
+    DOT11_NETWORK Network[1];
   } DOT11_NETWORK_LIST;
   typedef DOT11_NETWORK_LIST *PDOT11_NETWORK_LIST; //Pointer
   typedef DOT11_NETWORK_LIST *PDOT11_NETWORK_LIST; //Pointer
@@ -183,12 +183,12 @@ ffi.cdef [[
     DWORD dwMaxDesiredSsidListSize;
     DWORD dwMaxDesiredBssidListSize;
     DWORD dwNumberOfSupportedPhys;
-    DOT11_PHY_TYPE dot11PhyTypes_WLAN_MAX_PHY_INDEX_;
+    DOT11_PHY_TYPE dot11PhyTypes[WLAN_MAX_PHY_INDEX];
   } WLAN_INTERFACE_CAPABILITY;
   typedef WLAN_INTERFACE_CAPABILITY *PWLAN_INTERFACE_CAPABILITY; //Pointer
   typedef struct WLAN_RATE_SET {
     ULONG uRateSetLength;
-    USHORT usRateSet_DOT11_RATE_SET_MAX_LENGTH_;
+    USHORT usRateSet[DOT11_RATE_SET_MAX_LENGTH];
   } WLAN_RATE_SET;
   typedef struct WLAN_BSS_ENTRY {
     DOT11_SSID dot11Ssid;
@@ -211,17 +211,17 @@ ffi.cdef [[
   typedef struct WLAN_BSS_LIST {
     DWORD dwTotalSize;
     DWORD dwNumberOfItems;
-    WLAN_BSS_ENTRY wlanBssEntries_1_;
+    WLAN_BSS_ENTRY wlanBssEntries[1];
   } WLAN_BSS_LIST;
   typedef WLAN_BSS_LIST *PWLAN_BSS_LIST; //Pointer
   typedef struct WLAN_PROFILE_INFO {
-    WCHAR strProfileName_WLAN_MAX_NAME_LENGTH_;
+    WCHAR strProfileName[WLAN_MAX_NAME_LENGTH];
     WlanProfileFlags dwFlags;
   } WLAN_PROFILE_INFO;
   typedef struct WLAN_PROFILE_INFO_LIST {
     DWORD dwNumberOfItems;
     DWORD dwIndex;
-    WLAN_PROFILE_INFO ProfileInfo_1_;
+    WLAN_PROFILE_INFO ProfileInfo[1];
   } WLAN_PROFILE_INFO_LIST;
   typedef WLAN_PROFILE_INFO_LIST *PWLAN_PROFILE_INFO_LIST; //Pointer
   typedef UINT WLAN_HOSTED_NETWORK_STATE; //Alias
@@ -242,12 +242,12 @@ ffi.cdef [[
     DOT11_PHY_TYPE dot11PhyType;
     ULONG ulChannelFrequency;
     DWORD dwNumberOfPeers;
-    WLAN_HOSTED_NETWORK_PEER_STATE PeerList_1_;
+    WLAN_HOSTED_NETWORK_PEER_STATE PeerList[1];
   } WLAN_HOSTED_NETWORK_STATUS;
   typedef WLAN_HOSTED_NETWORK_STATUS *PWLAN_HOSTED_NETWORK_STATUS; //Pointer
   typedef struct WLAN_RAW_DATA {
     DWORD dwDataSize;
-    BYTE DataBlob_1_;
+    BYTE DataBlob[1];
   } WLAN_RAW_DATA;
   typedef WLAN_RAW_DATA *PWLAN_RAW_DATA; //Pointer
   typedef UINT WLAN_CONNECTION_MODE; //Alias

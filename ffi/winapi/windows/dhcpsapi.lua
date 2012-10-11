@@ -15,7 +15,7 @@ ffi.cdef [[
     BYTE HWType;
     BOOL IsWildcard;
     BYTE Length;
-    BYTE Pattern_MAX_PATTERN_LENGTH_;
+    BYTE Pattern[MAX_PATTERN_LENGTH];
   } DHCP_ADDR_PATTERN;
   typedef DHCP_ADDR_PATTERN *LPDHCP_ADDR_PATTERN; //Pointer
   typedef struct DHCP_IPV6_ADDRESS {

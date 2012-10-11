@@ -19,8 +19,8 @@ if ffi.arch == 'x86' then ffi.cdef[[
   typedef struct WSADATA {
     WORD wVersion;
     WORD wHighVersion;
-    char szDescription_WSADESCRIPTION_LEN_plus_1_;
-    char szSystemStatus_WSASYS_STATUS_LEN_plus_1_;
+    char szDescription[WSADESCRIPTION_LEN_plus_1];
+    char szSystemStatus[WSASYS_STATUS_LEN_plus_1];
     unsigned short iMaxSockets;
     unsigned short iMaxUdpDg;
     LPVOID_char* lpVendorInfo;
@@ -58,8 +58,8 @@ if ffi.arch == 'x64' then ffi.cdef[[
     unsigned short iMaxSockets;
     unsigned short iMaxUdpDg;
     LPVOID_char* lpVendorInfo;
-    char szDescription_WSADESCRIPTION_LEN_plus_1_;
-    char szSystemStatus_WSASYS_STATUS_LEN_plus_1_;
+    char szDescription[WSADESCRIPTION_LEN_plus_1];
+    char szSystemStatus[WSASYS_STATUS_LEN_plus_1];
   } WSADATA;
 ]]
 end
@@ -158,7 +158,7 @@ ffi.cdef[[
   static const SocketProtocol IPPROTO_RAW = 255;
   typedef struct struct sockaddr {
     ADDRESS_FAMILY sa_family;
-    CHAR sa_data_14_;
+    CHAR sa_data[14];
   } struct sockaddr;
   typedef UINT AI_FLAGS; //Alias
   typedef struct struct addrinfo {
@@ -201,11 +201,11 @@ ffi.cdef[[
   enum { FD_SETSIZE = 64 };
   typedef struct fd_set {
     u_int fd_count;
-    SOCKET fd_array_FD_SETSIZE_;
+    SOCKET fd_array[FD_SETSIZE];
   } fd_set;
   typedef struct WSAPROTOCOLCHAIN {
     int ChainLen;
-    DWORD ChainEntries_MAX_PROTOCOL_CHAIN_;
+    DWORD ChainEntries[MAX_PROTOCOL_CHAIN];
   } WSAPROTOCOLCHAIN;
   typedef DWORD WSA_PROVIDER_FLAGS; //Alias
   typedef DWORD WSA_SERVICE_FLAGS_1; //Alias
@@ -234,15 +234,15 @@ ffi.cdef[[
     SecurityScheme iSecurityScheme;
     DWORD dwMessageSize;
     DWORD dwProviderReserved;
-    TCHAR szProtocol_WSAPROTOCOL_LEN_plus_1_;
+    TCHAR szProtocol[WSAPROTOCOL_LEN_plus_1];
   } WSAPROTOCOL_INFO;
   typedef WSAPROTOCOL_INFO *LPWSAPROTOCOL_INFO; //Pointer
   typedef struct sockaddr SOCKADDR; //Alias
   typedef SOCKADDR *PSOCKADDR; //Pointer
   typedef SOCKADDR *LPSOCKADDR; //Pointer
   typedef union IN6_ADDR_u {
-    UCHAR Byte_16_;
-    USHORT Word_8_;
+    UCHAR Byte[16];
+    USHORT Word[8];
   } IN6_ADDR_u;
   typedef struct IN6_ADDR {
     IN6_ADDR_u u;
@@ -250,7 +250,7 @@ ffi.cdef[[
   typedef ULONG FDEvents; //Alias
   typedef struct WSANETWORKEVENTS {
     FDEvents lNetworkEvents;
-    int iErrorCode_FD_MAX_EVENTS_;
+    int iErrorCode[FD_MAX_EVENTS];
   } WSANETWORKEVENTS;
   typedef WSANETWORKEVENTS *LPWSANETWORKEVENTS; //Pointer
   typedef struct IN_ADDR_u_s1 {
@@ -311,7 +311,7 @@ ffi.cdef[[
   typedef SOCKET_ADDRESS *PSOCKET_ADDRESS; //Pointer
   typedef struct SOCKET_ADDRESS_LIST {
     INT iAddressCount;
-    SOCKET_ADDRESS Address_1_;
+    SOCKET_ADDRESS Address[1];
   } SOCKET_ADDRESS_LIST;
   typedef SOCKET_ADDRESS_LIST *PSOCKET_ADDRESS_LIST; //Pointer
   typedef struct WSANAMESPACE_INFO {

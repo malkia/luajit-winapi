@@ -9,7 +9,7 @@ ffi.cdef [[
   enum { STYLE_DESCRIPTION_SIZE = 32 };
   typedef struct STYLEBUF {
     DWORD dwStyle;
-    TCHAR szDescription_STYLE_DESCRIPTION_SIZE_;
+    TCHAR szDescription[STYLE_DESCRIPTION_SIZE];
   } STYLEBUF;
   typedef STYLEBUF *LPSTYLEBUF; //Pointer
   typedef UINT IMFT; //Alias
@@ -22,7 +22,7 @@ ffi.cdef [[
     HBITMAP hbmpChecked;
     HBITMAP hbmpUnchecked;
     DWORD dwItemData;
-    TCHAR szString_IMEMENUITEM_STRING_SIZE_;
+    TCHAR szString[IMEMENUITEM_STRING_SIZE];
     HBITMAP hbmpItem;
   } IMEMENUITEMINFO;
   typedef IMEMENUITEMINFO *LPIMEMENUITEMINFO; //Pointer
@@ -40,7 +40,7 @@ ffi.cdef [[
     DWORD dwSelection;
     DWORD dwPageStart;
     DWORD dwPageSize;
-    DWORD dwOffset_1_;
+    DWORD dwOffset[1];
   } CANDIDATELIST;
   typedef CANDIDATELIST *LPCANDIDATELIST; //Pointer
   typedef struct CANDIDATEFORM {

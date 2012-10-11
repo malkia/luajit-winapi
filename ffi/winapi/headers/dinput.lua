@@ -114,7 +114,7 @@ ffi.cdef [[
     HINSTANCE hInstString;
     FILETIME ftTimeStamp;
     DWORD dwCRC;
-    CHAR tszActionMap_MAX_PATH_;
+    CHAR tszActionMap[MAX_PATH];
   } DIACTIONFORMATA;
   typedef DIACTIONFORMATA *LPDIACTIONFORMATA; //Pointer
   typedef union DIACTIONW_u {
@@ -145,7 +145,7 @@ ffi.cdef [[
     HINSTANCE hInstString;
     FILETIME ftTimeStamp;
     DWORD dwCRC;
-    WCHAR tszActionMap_MAX_PATH_;
+    WCHAR tszActionMap[MAX_PATH];
   } DIACTIONFORMATW;
   typedef DIACTIONFORMATW *LPDIACTIONFORMATW; //Pointer
   typedef DWORD DIDC_Flags; //Alias
@@ -244,7 +244,7 @@ ffi.cdef [[
     DWORD dwOfs;
     DIDFT_Flags dwType;
     DIDOI_Flags dwFlags;
-    CHAR tszName_MAX_PATH_;
+    CHAR tszName[MAX_PATH];
     DWORD dwFFMaxForce;
     DWORD dwFFForceResolution;
     WORD wCollectionNumber;
@@ -262,7 +262,7 @@ ffi.cdef [[
     DWORD dwOfs;
     DIDFT_Flags dwType;
     DIDOI_Flags dwFlags;
-    WCHAR tszName_MAX_PATH_;
+    WCHAR tszName[MAX_PATH];
     DWORD dwFFMaxForce;
     DWORD dwFFForceResolution;
     WORD wCollectionNumber;
@@ -279,8 +279,8 @@ ffi.cdef [[
     GUID guidInstance;
     GUID guidProduct;
     DWORD dwDevType;
-    CHAR tszInstanceName_MAX_PATH_;
-    CHAR tszProductName_MAX_PATH_;
+    CHAR tszInstanceName[MAX_PATH];
+    CHAR tszProductName[MAX_PATH];
     GUID guidFFDriver;
     WORD wUsagePage;
     WORD wUsage;
@@ -291,8 +291,8 @@ ffi.cdef [[
     GUID guidInstance;
     GUID guidProduct;
     DWORD dwDevType;
-    WCHAR tszInstanceName_MAX_PATH_;
-    WCHAR tszProductName_MAX_PATH_;
+    WCHAR tszInstanceName[MAX_PATH];
+    WCHAR tszProductName[MAX_PATH];
     GUID guidFFDriver;
     WORD wUsagePage;
     WORD wUsage;
@@ -335,7 +335,7 @@ ffi.cdef [[
     DIEFT_Flags dwEffType;
     DIEP_Flags dwStaticParams;
     DIEP_Flags dwDynamicParams;
-    CHAR tszName_MAX_PATH_;
+    CHAR tszName[MAX_PATH];
   } DIEFFECTINFOA;
   typedef DIEFFECTINFOA *LPDIEFFECTINFOA; //Pointer
   typedef struct DIEFFECTINFOW {
@@ -344,7 +344,7 @@ ffi.cdef [[
     DIEFT_Flags dwEffType;
     DIEP_Flags dwStaticParams;
     DIEP_Flags dwDynamicParams;
-    WCHAR tszName_MAX_PATH_;
+    WCHAR tszName[MAX_PATH];
   } DIEFFECTINFOW;
   typedef DIEFFECTINFOW *LPDIEFFECTINFOW; //Pointer
   typedef struct DIEFFESCAPE {
@@ -360,19 +360,19 @@ ffi.cdef [[
     DWORD dwSize;
     GUID GuidEffect;
     LPCDIEFFECT lpDiEffect;
-    CHAR szFriendlyName_MAX_PATH_;
+    CHAR szFriendlyName[MAX_PATH];
   } DIFILEEFFECT;
   typedef DIFILEEFFECT *LPDIFILEEFFECT; //Pointer
   typedef DWORD DIDIFT_Flags; //Alias
   typedef DWORD DIDAL_Flags; //Alias
   typedef struct DIDEVICEIMAGEINFOA {
-    CHAR tszImagePath_MAX_PATH_;
+    CHAR tszImagePath[MAX_PATH];
     DIDIFT_Flags dwFlags;
     DWORD dwViewID;
     RECT rcOverlay;
     DIDFT_Flags dwObjID;
     DWORD dwcValidPts;
-    POINT rgptCalloutLine_5_;
+    POINT rgptCalloutLine[5];
     RECT rcCalloutRect;
     DIDAL_Flags dwTextAlign;
   } DIDEVICEIMAGEINFOA;
@@ -390,13 +390,13 @@ ffi.cdef [[
   } DIDEVICEIMAGEINFOHEADERA;
   typedef DIDEVICEIMAGEINFOHEADERA *LPDIDEVICEIMAGEINFOHEADERA; //Pointer
   typedef struct DIDEVICEIMAGEINFOW {
-    WCHAR tszImagePath_MAX_PATH_;
+    WCHAR tszImagePath[MAX_PATH];
     DIDIFT_Flags dwFlags;
     DWORD dwViewID;
     RECT rcOverlay;
     DIDFT_Flags dwObjID;
     DWORD dwcValidPts;
-    POINT rgptCalloutLine_5_;
+    POINT rgptCalloutLine[5];
     RECT rcCalloutRect;
     DIDAL_Flags dwTextAlign;
   } DIDEVICEIMAGEINFOW;

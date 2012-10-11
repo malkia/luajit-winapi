@@ -4,7 +4,7 @@ require( 'ffi/winapi/windows/srclient' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef struct PROTECTED_FILE_DATA {
-    WCHAR FileName_MAX_PATH_;
+    WCHAR FileName[MAX_PATH];
     DWORD FileNumber;
   } PROTECTED_FILE_DATA;
   typedef PROTECTED_FILE_DATA *PPROTECTED_FILE_DATA; //Pointer
