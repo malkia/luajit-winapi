@@ -62,16 +62,16 @@ ffi.cdef[[
   typedef DWORD_PTR* PDWORD_PTR; //Alias
   typedef INT_PTR LONG_PTR; //Alias
   typedef int32_t BOOL; //Integer
-  static const int32_t BOOL_TRUE = 1;
-  static const int32_t BOOL_FALSE = 0;
+  static const BOOL BOOL_TRUE = 1;
+  static const BOOL BOOL_FALSE = 0;
   typedef BOOL *PBOOL; //Pointer
   typedef PBOOL LPBOOL; //Alias
   typedef BOOL Bool; //Alias
   typedef BOOL BOOL; //Alias
   typedef BOOL BOOLAPI; //Alias
   typedef int8_t BOOLEAN; //Integer
-  static const int8_t BOOLEAN_TRUE = 1;
-  static const int8_t BOOLEAN_FALSE = 0;
+  static const BOOLEAN BOOLEAN_TRUE = 1;
+  static const BOOLEAN BOOLEAN_FALSE = 0;
   typedef BOOLEAN *PBOOLEAN; //Pointer
   typedef uint32_t UINT32; //Integer
   typedef UINT32 *PUINT32; //Pointer

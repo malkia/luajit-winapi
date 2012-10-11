@@ -4,6 +4,9 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef DWORD WINAPI_CallbackNotificationFlags; //Alias
   typedef DWORD WINAPI_HttpOpenAccessType; //Alias
+//static const WINAPI_HttpOpenAccessType WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = 0;
+//static const WINAPI_HttpOpenAccessType WINHTTP_ACCESS_TYPE_NO_PROXY = 1;
+//static const WINAPI_HttpOpenAccessType WINHTTP_ACCESS_TYPE_NAMED_PROXY = 3;
   typedef DWORD WINAPI_WinHttpOpenFlags; //Alias
   static const WINAPI_WinHttpOpenFlags WINHTTP_FLAG_ASYNC = 0x10000000;
   typedef DWORD WINAPI_WinHttpOpenRequestFlags; //Alias

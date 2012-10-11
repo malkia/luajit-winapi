@@ -120,6 +120,38 @@ ffi.cdef[[
   static const WINAPI_AddressFamily AF_ICLFXBM = 31;
   static const WINAPI_AddressFamily AF_BTH = 32;
   typedef USHORT ADDRESS_FAMILY; //Alias
+//static const ADDRESS_FAMILY AF_UNSPEC = 0;
+//static const ADDRESS_FAMILY AF_UNIX = 1;
+//static const ADDRESS_FAMILY AF_INET = 2;
+//static const ADDRESS_FAMILY AF_IMPLINK = 3;
+//static const ADDRESS_FAMILY AF_PUP = 4;
+//static const ADDRESS_FAMILY AF_CHAOS = 5;
+//static const ADDRESS_FAMILY AF_IPX_AF_NS = 6;
+//static const ADDRESS_FAMILY AF_ISO_AF_OSI = 7;
+//static const ADDRESS_FAMILY AF_ECMA = 8;
+//static const ADDRESS_FAMILY AF_DATAKIT = 9;
+//static const ADDRESS_FAMILY AF_CCITT = 10;
+//static const ADDRESS_FAMILY AF_SNA = 11;
+//static const ADDRESS_FAMILY AF_DECnet = 12;
+//static const ADDRESS_FAMILY AF_DLI = 13;
+//static const ADDRESS_FAMILY AF_LAT = 14;
+//static const ADDRESS_FAMILY AF_HYLINK = 15;
+//static const ADDRESS_FAMILY AF_APPLETALK = 16;
+//static const ADDRESS_FAMILY AF_NETBIOS = 17;
+//static const ADDRESS_FAMILY AF_VOICEVIEW = 18;
+//static const ADDRESS_FAMILY AF_FIREFOX = 19;
+//static const ADDRESS_FAMILY AF_UNKNOWN1 = 20;
+//static const ADDRESS_FAMILY AF_BAN = 21;
+//static const ADDRESS_FAMILY AF_ATM = 22;
+//static const ADDRESS_FAMILY AF_INET6 = 23;
+//static const ADDRESS_FAMILY AF_CLUSTER = 24;
+//static const ADDRESS_FAMILY AF_12844 = 25;
+//static const ADDRESS_FAMILY AF_IRDA = 26;
+//static const ADDRESS_FAMILY AF_NETDES = 28;
+//static const ADDRESS_FAMILY AF_TCNPROCESS = 29;
+//static const ADDRESS_FAMILY AF_TCNMESSAGE = 30;
+//static const ADDRESS_FAMILY AF_ICLFXBM = 31;
+//static const ADDRESS_FAMILY AF_BTH = 32;
   typedef ADDRESS_FAMILY WINAPI_ADDRESS_FAMILY_short; //Alias
   typedef int WINAPI_SocketType; //Alias
   static const WINAPI_SocketType SOCK_STREAM = 1;
@@ -428,7 +460,11 @@ ffi.cdef[[
   } QOS;
   typedef QOS *LPQOS; //Pointer
   typedef int WINAPI_SocketLevel; //Alias
+//static const WINAPI_SocketLevel IPPROTO_IP = 0;
+//static const WINAPI_SocketLevel IPPROTO_IPV6 = 41;
   static const WINAPI_SocketLevel IPPROTO_RM = 113;
+//static const WINAPI_SocketLevel IPPROTO_TCP = 6;
+//static const WINAPI_SocketLevel IPPROTO_UDP = 17;
   static const WINAPI_SocketLevel NSPROTO_IPX = 1000;
   static const WINAPI_SocketLevel SOL_SOCKET = 0xffff;
   typedef DWORD WINAPI_SocketOption; //Alias
@@ -437,6 +473,7 @@ ffi.cdef[[
   typedef int WINAPI_SocketCode_int; //Alias
   static const WINAPI_SocketCode_int SOCKET_ERROR = -1;
   typedef int WINAPI_SocketCode_INT; //Alias
+//static const WINAPI_SocketCode_INT SOCKET_ERROR = -1;
   typedef DWORD WINAPI_NameSpaceFlags; //Alias
   typedef DWORD WINAPI_ResolutionFlags; //Alias
   typedef DWORD WINAPI_GetService_Props; //Alias

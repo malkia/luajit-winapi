@@ -23,4 +23,5 @@ ffi.cdef [[
   static const WINAPI_ExceptionCode EXCEPTION_PRIV_INSTRUCTION = 0xC0000096;
   static const WINAPI_ExceptionCode EXCEPTION_SINGLE_STEP = 0x80000004;
   static const WINAPI_ExceptionCode EXCEPTION_STACK_OVERFLOW = 0xC00000FD;
+//static const WINAPI_ExceptionCode STATUS_UNWIND_CONSOLIDATE = 0x80000029;
 ]]

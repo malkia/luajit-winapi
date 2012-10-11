@@ -29,6 +29,7 @@ ffi.cdef [[
   static const WINAPI_ServiceErrorControl SERVICE_ERROR_NORMAL = 0x00000001;
   static const WINAPI_ServiceErrorControl SERVICE_ERROR_SEVERE = 0x00000002;
   static const WINAPI_ServiceErrorControl SERVICE_ERROR_CRITICAL = 0x00000003;
+//static const WINAPI_ServiceErrorControl SERVICE_NO_CHANGE = 0xffffffff;
   typedef DWORD WINAPI_ServiceInfoLevel; //Alias
   static const WINAPI_ServiceInfoLevel SERVICE_CONFIG_DESCRIPTION = 1;
   static const WINAPI_ServiceInfoLevel SERVICE_CONFIG_FAILURE_ACTIONS = 2;

@@ -293,8 +293,8 @@ ffi.cdef [[
   static const SECURITY_IMPERSONATION_LEVEL SecurityImpersonation = 2;
   static const SECURITY_IMPERSONATION_LEVEL SecurityDelegation = 3;
   typedef int8_t SECURITY_CONTEXT_TRACKING_MODE; //Integer
-  static const int8_t SECURITY_DYNAMIC_TRACKING = 1;
-  static const int8_t SECURITY_STATIC_TRACKING = 0;
+  static const SECURITY_CONTEXT_TRACKING_MODE SECURITY_DYNAMIC_TRACKING = 1;
+  static const SECURITY_CONTEXT_TRACKING_MODE SECURITY_STATIC_TRACKING = 0;
   typedef struct SECURITY_QUALITY_OF_SERVICE {
     DWORD Length;
     SECURITY_IMPERSONATION_LEVEL ImpersonationLevel;

@@ -1448,6 +1448,7 @@ ffi.cdef [[
   typedef DWORD WINAPI_CreateToolhelp32SnapshotFlags; //Alias
   typedef DWORD WINAPI_LOAD_LIBRARY_SEARCH_FLAGS; //Alias
   typedef WINAPI_ProcessHandle WINAPI_PROCESS_THREAD_HANDLE; //Alias
+//static const WINAPI_PROCESS_THREAD_HANDLE GetCurrentThread = -2;
   BOOL                         CheckRemoteDebuggerPresent(              WINAPI_ProcessHandle hProcess, PBOOL pbDebuggerPresent);
   BOOL                         ContinueDebugEvent(                      DWORD dwProcessId, DWORD dwThreadId, WINAPI_ContinueStatusFlag dwContinueStatus);
   BOOL                         CopyExtendedContext(                     PCONTEXT_EX Destination, DWORD ContextFlags, PCONTEXT_EX Source);

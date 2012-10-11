@@ -325,19 +325,19 @@ ffi.cdef [[
   typedef HANDLE WINAPI_ThreadHandle; //Alias
   static const WINAPI_ThreadHandle GetCurrentThread = -2;
   typedef int32_t HRESULT; //Integer
-  static const int32_t S_OK = 0;
-  static const int32_t S_FALSE = 1;
-  static const int32_t E_ABORT = 0x80004004;
-  static const int32_t E_ACCESSDENIED = 0x80070005;
-  static const int32_t E_FAIL = 0x80004005;
-  static const int32_t E_HANDLE = 0x80070006;
-  static const int32_t E_INVALIDARG = 0x80070057;
-  static const int32_t E_NOINTERFACE = 0x80004002;
-  static const int32_t E_NOTIMPL = 0x80004001;
-  static const int32_t E_OUTOFMEMORY = 0x8007000E;
-  static const int32_t E_POINTER = 0x80004003;
-  static const int32_t E_UNEXPECTED = 0x8000FFFF;
-  static const int32_t CO_E_NOTINITIALIZED = 0x800401F0;
+  static const HRESULT S_OK = 0;
+  static const HRESULT S_FALSE = 1;
+  static const HRESULT E_ABORT = 0x80004004;
+  static const HRESULT E_ACCESSDENIED = 0x80070005;
+  static const HRESULT E_FAIL = 0x80004005;
+  static const HRESULT E_HANDLE = 0x80070006;
+  static const HRESULT E_INVALIDARG = 0x80070057;
+  static const HRESULT E_NOINTERFACE = 0x80004002;
+  static const HRESULT E_NOTIMPL = 0x80004001;
+  static const HRESULT E_OUTOFMEMORY = 0x8007000E;
+  static const HRESULT E_POINTER = 0x80004003;
+  static const HRESULT E_UNEXPECTED = 0x8000FFFF;
+  static const HRESULT CO_E_NOTINITIALIZED = 0x800401F0;
   typedef HRESULT STDAPI; //Alias
   typedef HRESULT SCODE; //Alias
   typedef struct WINAPI_LARGE_INTEGER_s {
@@ -912,6 +912,7 @@ ffi.cdef [[
   static const WINAPI_CodePageEnum CP_UTF7 = 65000;
   static const WINAPI_CodePageEnum CP_UTF8 = 65001;
   typedef DWORD WINAPI_EXCEPTION_FLAGS; //Alias
+//static const WINAPI_EXCEPTION_FLAGS EXCEPTION_NONCONTINUABLE_EXCEPTION = 0x1;
   typedef struct EXCEPTION_RECORD {
     WINAPI_ExceptionCode ExceptionCode;
     DWORD ExceptionFlags;
@@ -957,6 +958,20 @@ ffi.cdef [[
   static const WINAPI_ShowWindowCmd SW_SHOWDEFAULT = 10;
   static const WINAPI_ShowWindowCmd SW_FORCEMINIMIZE = 11;
   typedef WORD WINAPI_STARTUPINFO_ShowWindow; //Alias
+//static const WINAPI_STARTUPINFO_ShowWindow SW_HIDE = 0;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_SHOWNORMAL = 1;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_NORMAL = 1;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_SHOWMINIMIZED = 2;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_SHOWMAXIMIZED = 3;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_MAXIMIZE = 3;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_SHOWNOACTIVATE = 4;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_SHOW = 5;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_MINIMIZE = 6;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_SHOWMINNOACTIVE = 7;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_SHOWNA = 8;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_RESTORE = 9;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_SHOWDEFAULT = 10;
+//static const WINAPI_STARTUPINFO_ShowWindow SW_FORCEMINIMIZE = 11;
   typedef DWORD WINAPI_STARTUPINFO_Flags; //Alias
   typedef struct STARTUPINFO {
     DWORD cb;
@@ -1316,6 +1331,7 @@ ffi.cdef [[
   static const SymTagEnum SymTagLabel = 9;
   static const SymTagEnum SymTagPublicSymbol = 10;
   static const SymTagEnum SymTagUDT = 11;
+//static const SymTagEnum SymTagEnum = 12;
   static const SymTagEnum SymTagFunctionType = 13;
   static const SymTagEnum SymTagPointerType = 14;
   static const SymTagEnum SymTagArrayType = 15;
@@ -1526,6 +1542,7 @@ ffi.cdef[[
   static const WINAPI_WAIT_RESULT WAIT_ABANDONED_4 = 0x00000084;
   static const WINAPI_WAIT_RESULT WAIT_ABANDONED_5 = 0x00000085;
   static const WINAPI_WAIT_RESULT WAIT_IO_COMPLETION = 0x000000C0;
+//static const WINAPI_WAIT_RESULT WAIT_TIMEOUT = 258;
   static const WINAPI_WAIT_RESULT WAIT_FAILED = 0xFFFFFFFF;
   typedef struct PROCESSOR_NUMBER {
     WORD Group;

@@ -476,6 +476,9 @@ ffi.cdef [[
   typedef UINT WINAPI_mmioDescendFlags; //Alias
   typedef UINT WINAPI_mmioCreateChunkFlags; //Alias
   typedef int WINAPI_mmioSeekOffset; //Alias
+//static const WINAPI_mmioSeekOffset SEEK_SET = 0;
+//static const WINAPI_mmioSeekOffset SEEK_CUR = 1;
+//static const WINAPI_mmioSeekOffset SEEK_END = 2;
   typedef struct WINAPI_MMTIME_u_s1 {
     BYTE hour;
     BYTE min;

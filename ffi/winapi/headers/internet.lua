@@ -117,6 +117,8 @@ ffi.cdef [[
   } URL_COMPONENTS;
   typedef URL_COMPONENTS *LPURL_COMPONENTS; //Pointer
   typedef int WINAPI_InternetSchemeWinHttp; //Alias
+//static const WINAPI_InternetSchemeWinHttp INTERNET_SCHEME_HTTP = 1;
+//static const WINAPI_InternetSchemeWinHttp INTERNET_SCHEME_HTTPS = 2;
   typedef struct URL_COMPONENTSW {
     DWORD dwStructSize;
     LPWSTR lpszScheme;

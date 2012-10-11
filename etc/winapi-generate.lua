@@ -223,30 +223,55 @@ local function parse(buffer, filename)
    return normalize(stack[1][1].ApiMonitor)
 end
 
+--[[
+  typed enum   -> typedef base type; static const type enum1 = value1;
+  untyped enum -> typedef enum type { enum1 = value1 } type;
+--]]
+
+
 local defined = {}
+
+local function emit_typedef_int(var, f)
+   assert(var.Type=="Integer" and var.Size)
+   local Type = ((var.Unsigned=="True") and "u" or "") .. "int" .. tostring(8*tonumber(var.Size)) .. "_t"
+   f:write( "  typedef " .. Type .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+end
+
+local function emit_typed_enum(var, f)
+   local Prefix = (var.Name=="BOOL" or var.Name=="BOOLEAN") and (var.Name .. "_") or ""
+   for _, enum in ipairs(var.Enum[1].Set) do
+      local Name = Prefix .. enum.Name
+      local Comment = defined[Name] and "//" or "  "
+      defined[Name]=true
+      f:write( Comment .. "static const " .. var.Name .. " " .. 
+	       Name .. " = " .. enum.Value .. ";\n" )
+   end
+end
+
+local function emit_untyped_enum(var, f)
+   f:write( "  typedef enum " .. var.Name .. " {\n" )
+   for _, enum in ipairs(var.Enum[1].Set) do
+      local Comment = defined[Name] and "  //" or "    "
+      defined[Name]=true
+      f:write( Comment .. enum.Name .. " = " .. enum.Value .. ",\n" )
+   end
+   f:write( "  } " .. var.Name .. ";\n" )
+end
+
 local function process(var, luafile)
+   local f = luafile
+
    local arch
    if var.Architecture then
-      assert( var.Architecture=="32" or var.Architecture=="64" )
+      assert(var.Architecture=="32" or var.Architecture=="64")
       arch = var.Architecture=="32" and "x86" or "x64"
-      luafile:write("]]\nif ffi.arch == '" .. arch .. "' then ffi.cdef[[\n")
+      f:write("]]\nif ffi.arch == '" .. arch .. "' then ffi.cdef[[\n")
    end
 
    if var.Enum then
       if var.Type=="Integer" or var.Size then
-	 assert(var.Type=="Integer" and var.Size)
-	 local type =
-	    ((var.Unsigned=="True") and "u" or "") ..
-	    "int" .. tostring( 8 * tonumber(var.Size)) .. "_t"
-	 luafile:write(
-	    "  typedef " .. type .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
-	 local special_prefix =
-	    (var.Name == "BOOL" or var.Name == "BOOLEAN") and (var.Name .. "_") or ""
-	 for _, enum in ipairs( var.Enum[1].Set ) do
-	    luafile:write(
-	       "  static const " .. type .. " " ..
-		  special_prefix .. enum.Name .. " = " .. enum.Value .. ";\n" )
-	 end
+	 emit_typedef_int(var, f)
+	 emit_typed_enum(var, f)
       elseif var.Type=="Alias" or var.Base then
 	 assert(var.Type=="Alias" and var.Base)
 	 local base = var.Base
@@ -255,32 +280,18 @@ local function process(var, luafile)
 	 end
 	 luafile:write(
 	    "  typedef " .. base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
-	 if defined[var.Name] then
-	    print('already defined', var.Name)
-	 else
-	    --	 assert(defined[var.Name]==nil)
-	    defined[var.Name] = true
-	    for _, enum in ipairs( var.Enum[1].Set ) do
-	       if defined[enum.Name]==nil and
-	       enum.Name:find("(",1,true)==nil
-	       then
-		  defined[enum.Name]=true
-		  luafile:write(
-		     "  static const " .. var.Name .. " " ..
-		     enum.Name .. " = " .. enum.Value .. ";\n" )
-	       end
+	 --	 assert(defined[var.Name]==nil)
+	 defined[var.Name] = true
+	 for _, enum in ipairs( var.Enum[1].Set ) do
+	    local Comment = defined[enum.Name] and "//" or "  "
+	    defined[enum.Name]=true
+	    if enum.Name:find("(",1,true)==nil then
+	       f:write( Comment .. "static const " .. var.Name .. " " ..
+			enum.Name .. " = " .. enum.Value .. ";\n" )
 	    end
 	 end
       else
-	 luafile:write( "  typedef enum " .. var.Name .. " {\n" )
-	 for _, enum in ipairs( var.Enum[1].Set ) do
-	    if defined[enum.Name]==nil then
-	       defined[enum.Name]=true
-	       luafile:write(
-		  "    " .. enum.Name .. " = " .. enum.Value .. ",\n" )
-	    end
-	 end
-	 luafile:write( "  } " .. var.Name .. ";\n" )
+	 emit_untyped_enum(var, f)
       end
    elseif var.Type == "Pointer" or var.Type == "Alias" then
       if var.Base=="LPVOID" and	 var.Name=="SID*" and var.Type=="Alias" then
@@ -308,14 +319,12 @@ local function process(var, luafile)
 	 end
       end
    elseif var.Type == "Interface" then
-      luafile:write(
-	 "  typedef void* " .. var.Name .. "; //" .. var.Type .. "\n" )
+      luafile:write( "  typedef void* " .. var.Name .. "; //" .. var.Type .. "\n" )
    elseif var.Type == "Array" then
       if var.Base .. "*" ~= var.Name then
 	 local Type = var.Type
 	 local Name = var.Name
 	 local bracket = Name:find(" [", 1, true)
---	 print(Type,Name,bracket)
 	 local in_brackets = bracket and Name:sub(bracket+2, -2) or ""
 	 local space = in_brackets:find(" ", 1, true)
 	 local before_space = (space and in_brackets:sub(1, space-1) or in_brackets)
@@ -346,7 +355,6 @@ local function process(var, luafile)
 	 if Name == "WINAPI_Other values are currently unsupported" then
 	    Name = "other_values_dummy"
 	 end
---	 Name = filter_make_underscore(Name)
 	 luafile:write("    " .. Type .. " " .. Name .. ";\n") 
       end
       luafile:write( "  } " .. var.Name .. ";\n" )
@@ -354,11 +362,7 @@ local function process(var, luafile)
 	 luafile:write("# pragma pack( pop )\n")
       end
    elseif var.Type == "Integer" then
-      local type =
-	 ((var.Unsigned=="True") and "u" or "") ..
-	 "int" .. tostring( 8 * tonumber(var.Size)) .. "_t"
-      luafile:write(
-	 "  typedef " .. type .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+      emit_typedef_int(var, f)
    elseif var.Type == "Character" then
       assert(var.Name == "CHAR")
       luafile:write( "  typedef char CHAR;\n");
@@ -369,18 +373,16 @@ local function process(var, luafile)
       assert(var.Name == "TCHAR")
       luafile:write( "  typedef char TCHAR;\n");
    elseif var.Type == "ModuleHandle" then
-      luafile:write(
-	 "  typedef void* " .. var.Name .. "; //" .. var.Type .. "\n" )
+      luafile:write( "  typedef void* " .. var.Name .. "; //" .. var.Type .. "\n" )
    elseif var.Type == "Void" then
       assert(var.Name=="void")
    elseif var.Type == "Floating" then
-      assert(var.Name=="float" and var.Size=="4" or
-	     var.Name=="double" and var.Size=="8")
+      assert(var.Name=="float" and var.Size=="4" or var.Name=="double" and var.Size=="8")
    elseif var.Type == "Guid" then
       assert(var.Name=="GUID")
       luafile:write( "  typedef struct GUID { DWORD Data1; WORD Data2, Data3; BYTE Data4[8]; } GUID;\n")
    else
-      luafile:write("//" .. dump(var).."\n")
+      error(dump(var))
    end
    if arch then
       luafile:write("]]\nend\n")

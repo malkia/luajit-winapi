@@ -13,6 +13,7 @@ ffi.cdef [[
   typedef DWORD SECURITY_LOGON_TYPE; //Alias
   static const SECURITY_LOGON_TYPE UndefinedLogonType = 0;
   static const SECURITY_LOGON_TYPE Interactive = 2;
+//static const SECURITY_LOGON_TYPE Network = 3;
   static const SECURITY_LOGON_TYPE Batch = 4;
   static const SECURITY_LOGON_TYPE Service = 5;
   static const SECURITY_LOGON_TYPE Proxy = 6;

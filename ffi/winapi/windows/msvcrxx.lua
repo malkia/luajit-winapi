@@ -467,6 +467,16 @@ ffi.cdef [[
   static const WINAPI_disposition_type DISPOSITION_NESTED_EXCEPTION = 2;
   static const WINAPI_disposition_type DISPOSITION_COLLIDED_UNWIND = 3;
   typedef unsigned long WINAPI_xcpt_num; //Alias
+//static const WINAPI_xcpt_num STATUS_ACCESS_VIOLATION = 0xC0000005;
+//static const WINAPI_xcpt_num STATUS_ILLEGAL_INSTRUCTION = 0xC000001D;
+//static const WINAPI_xcpt_num STATUS_PRIVILEGED_INSTRUCTION = 0xC0000096;
+//static const WINAPI_xcpt_num STATUS_FLOAT_DENORMAL_OPERAND = 0xC000008D;
+//static const WINAPI_xcpt_num STATUS_FLOAT_DIVIDE_BY_ZERO = 0xC000008E;
+//static const WINAPI_xcpt_num STATUS_FLOAT_INEXACT_RESULT = 0xC000008F;
+//static const WINAPI_xcpt_num STATUS_FLOAT_INVALID_OPERATION = 0xC0000090;
+//static const WINAPI_xcpt_num STATUS_FLOAT_OVERFLOW = 0xC0000091;
+//static const WINAPI_xcpt_num STATUS_FLOAT_STACK_CHECK = 0xC0000092;
+//static const WINAPI_xcpt_num STATUS_FLOAT_UNDERFLOW = 0xC0000093;
   typedef int WINAPI_xcpt_action; //Alias
   static const WINAPI_xcpt_action EXCEPTION_EXECUTE_HANDLER = 1;
   static const WINAPI_xcpt_action EXCEPTION_CONTINUE_SEARCH = 0;
@@ -497,6 +507,7 @@ ffi.cdef [[
   typedef wint_t WINAPI_RET_WEOF; //Alias
   static const WINAPI_RET_WEOF WEOF = -1;
   typedef int WINAPI_RET_WEOF_INT; //Alias
+//static const WINAPI_RET_WEOF_INT WEOF = -1;
   typedef int WINAPI_buffer_mode; //Alias
   static const WINAPI_buffer_mode _IOFBF = 0x0000;
   static const WINAPI_buffer_mode _IOLBF = 0x0040;
