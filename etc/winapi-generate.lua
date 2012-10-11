@@ -498,7 +498,7 @@ local function generate()
 
       luafile:write( "]]\n" )
 
-      if dll then
+      if dll and dll ~= "*" then
 	 luafile:write( "return ffi.load( '" .. dll .. "' )\n" )
       end
 
@@ -509,19 +509,25 @@ local function generate()
 end
 
 local function test(cdefs)
-   local total, bad = 0, 0
+   local total, bad, missing = 0, 0, {}
    for filename, _ in pairs(cdefs) do
       local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
       local status, error = pcall(require,lib)
       if status ~= true then
 	 print(lib.."\n"..(error==true and "OK" or error).."\n")
-	 bad = bad + 1
+	 local missing_module = error:match("cannot load module '(.*)': The specified module could not be found.")
+	 if missing_module then
+	    missing[#missing+1] = missing_module
+	 else
+	    bad = bad + 1
+	 end
       end
       total = total + 1
    end
    print('total',total)
-   print('good',total-bad)
+   print('good',total-bad-#missing)
    print('bad',bad)
+   print('missing',#missing,table.concat(missing,' '))
 end
 
 --generate()

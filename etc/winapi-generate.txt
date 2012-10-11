@@ -1,0 +1,1200 @@
+
+invalid	Variable/Name	<WCHAR [BLUETOOTH_MAX_NAME_SIZE]>
+invalid	Variable/Name	<WCHAR [BLUETOOTH_MAX_SERVICE_NAME_SIZE]>
+invalid	Variable/Name	<WCHAR [BLUETOOTH_DEVICE_NAME_SIZE]>
+invalid	Variable/Name	<UCHAR [BTH_MAX_PIN_SIZE]>
+invalid	Field/Type	<UCHAR [16]>
+invalid	Field/Name	<>
+invalid	Variable/Name	<unsigned char>
+invalid	Variable/Name	<unsigned char*>
+invalid	Variable/Name	<unsigned char**>
+invalid	Variable/Name	<unsigned short>
+invalid	Variable/Name	<unsigned long>
+invalid	Variable/Name	<unsigned long*>
+changed	Variable/Name	
+	<const unsigned long>
+	<unsigned long>
+invalid	Variable/Name	<unsigned int>
+invalid	Variable/Name	<unsigned int*>
+invalid	Variable/Name	<LONG volatile*>
+invalid	Variable/Name	<signed int>
+invalid	Variable/Name	<LONGLONG volatile*>
+invalid	Variable/Name	<unsigned __int64>
+invalid	Variable/Name	<unsigned __int64*>
+invalid	Variable/Name	<CHAR [14]>
+invalid	Variable/Name	<CHAR [MAX_PATH]>
+invalid	Variable/Name	<WCHAR [1]>
+invalid	Variable/Name	<WCHAR [14]>
+invalid	Variable/Name	<WCHAR [128]>
+invalid	Variable/Name	<WCHAR [256]>
+invalid	Variable/Name	<WCHAR [MAX_PATH]>
+invalid	Variable/Name	<TCHAR [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<TCHAR [14]>
+invalid	Variable/Name	<TCHAR [32]>
+invalid	Variable/Name	<TCHAR [64]>
+invalid	Variable/Name	<TCHAR [128]>
+invalid	Variable/Name	<TCHAR [256]>
+invalid	Variable/Name	<TCHAR [MAX_PATH]>
+changed	Variable/Name	
+	<TCHAR [MAX_PATH + 1]>
+	<TCHAR [MAX_PATH_plus_1]>
+invalid	Variable/Name	<UCHAR [1]>
+invalid	Variable/Name	<UCHAR [2]>
+invalid	Variable/Name	<UCHAR [24]>
+invalid	Variable/Name	<DWORD [1]>
+invalid	Variable/Name	<DWORD [2]>
+invalid	Variable/Name	<DWORD [3]>
+invalid	Variable/Name	<DWORD [4]>
+invalid	Variable/Name	<BYTE [1]>
+invalid	Variable/Name	<BYTE [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<BYTE [2]>
+invalid	Variable/Name	<BYTE [6]>
+invalid	Variable/Name	<BYTE [8]>
+invalid	Variable/Name	<BYTE [16]>
+invalid	Variable/Name	<ULONG [2]>
+invalid	Variable/Name	<ULONG [4]>
+invalid	Variable/Name	<float [4]>
+invalid	Variable/Name	<ULONG64 [2]>
+invalid	Variable/Name	<ULONG64 [4]>
+invalid	Variable/Name	<USHORT [8]>
+invalid	Variable/Name	<WORD [256]>
+invalid	Variable/Name	<char [260]>
+invalid	Variable/Name	<CERT_EXTENSION[]>
+invalid	Variable/Name	<CRYPT_ATTRIBUTE[]>
+invalid	Variable/Name	<CRYPT_OID_FUNC_ENTRY[]>
+invalid	Variable/Name	<DWORD [DD_ROP_SPACE]>
+invalid	Variable/Name	<char [MAX_DDDEVICEID_STRING]>
+invalid	Variable/Name	<POINT [5]>
+invalid	Variable/Name	<float [4][4]>
+invalid	Variable/Name	<BYTE [D3D_OMAC_SIZE]>
+invalid	Variable/Name	<char [MAX_DEVICE_IDENTIFIER_STRING]>
+invalid	Variable/Name	<char [32]>
+changed	Variable/Name	
+	<TCHAR [MAX_COMPUTERNAME_LENGTH + 1]>
+	<TCHAR [MAX_COMPUTERNAME_LENGTH_plus_1]>
+invalid	Variable/Name	<DWORD_PTR [3]>
+invalid	Variable/Name	<TCHAR [LF_FACESIZE]>
+invalid	Variable/Name	<WCHAR [LF_FACESIZE]>
+invalid	Variable/Name	<RGBQUAD [1]>
+invalid	Field/Display	<char [1]>
+invalid	Variable/Name	<EncoderParameter [1]>
+invalid	Variable/Name	<DWORD [GROUP_OWNER_STORAGE_SIZE]>
+invalid	Variable/Name	<TCHAR [GROUPNAME_MAX_LENGTH]>
+changed	Variable/Name	
+	<TCHAR [MAX_GOPHER_DISPLAY_TEXT + 1]>
+	<TCHAR [MAX_GOPHER_DISPLAY_TEXT_plus_1]>
+changed	Variable/Name	
+	<TCHAR [MAX_GOPHER_LOCATOR_LENGTH + 1]>
+	<TCHAR [MAX_GOPHER_LOCATOR_LENGTH_plus_1]>
+invalid	Variable/Name	<IPAddr [1]>
+invalid	Variable/Name	<BYTE [IMAGE_SIZEOF_SHORT_NAME]>
+invalid	Variable/Name	<PROC_THREAD_ATTRIBUTE_ENTRY [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<struct IStorage*>
+invalid	Variable/Name	<void* [5]>
+invalid	Variable/Name	<LONG [6]>
+invalid	Variable/Name	<PALETTEENTRY [1]>
+changed	Field/Name	
+	<[Other values are currently unsupported]>
+	<WINAPI_Other values are currently unsupported>
+invalid	Variable/Name	<SAFEARRAYBOUND [1]>
+changed	Variable/Name	
+	<[PATCH_INTERLEAVE_MAP_s] [1]>
+	<WINAPI_PATCH_INTERLEAVE_MAP_s] [1>
+invalid	Variable/Name	<UUID* [1]>
+invalid	Variable/Name	<RPC_TSTR [1]>
+invalid	Variable/Name	<LONG_PTR [4]>
+invalid	Variable/Name	<unsigned long [1]>
+invalid	Variable/Name	<RPC_BINDING_HANDLE [1]>
+invalid	Variable/Name	<RPC_IF_ID* [1]>
+invalid	Variable/Name	<RPC_EE_INFO_PARAM [MaxNumberOfEEInfoParams]>
+invalid	Variable/Name	<BYTE [SAFER_MAX_HASH_SIZE]>
+invalid	Variable/Name	<CHAR [TOKEN_SOURCE_LENGTH]>
+invalid	Variable/Name	<LUID_AND_ATTRIBUTES [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<SID_AND_ATTRIBUTES [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<TCHAR [LINE_LEN]>
+invalid	Variable/Name	<WCHAR [80]>
+invalid	Variable/Name	<WCHAR [260]>
+invalid	Variable/Name	<WCHAR [2084]>
+changed	Variable/Name	
+	<PROPSPEC const[]>
+	<PROPSPEC[]>
+invalid	Variable/Name	<int [FD_MAX_EVENTS]>
+changed	Variable/Name	
+	<TCHAR [WSAPROTOCOL_LEN + 1]>
+	<TCHAR [WSAPROTOCOL_LEN_plus_1]>
+invalid	Variable/Name	<DWORD [MAX_PROTOCOL_CHAIN]>
+changed	Variable/Name	
+	<char [WSADESCRIPTION_LEN + 1]>
+	<char [WSADESCRIPTION_LEN_plus_1]>
+changed	Variable/Name	
+	<char [WSASYS_STATUS_LEN + 1]>
+	<char [WSASYS_STATUS_LEN_plus_1]>
+invalid	Variable/Name	<struct servent*>
+invalid	Variable/Name	<struct sockaddr>
+invalid	Variable/Name	<struct sockaddr*>
+changed	Variable/Name	
+	<const struct sockaddr*>
+	<struct sockaddr>
+invalid	Variable/Name	<struct addrinfo>
+invalid	Field/Display	<struct addrinfo*>
+changed	Variable/Name	
+	<const struct addrinfo*>
+	<struct addrinfo>
+invalid	Variable/Name	<struct addrinfo**>
+invalid	Variable/Name	<SOCKET [FD_SETSIZE]>
+invalid	Variable/Name	<struct in_addr>
+invalid	Variable/Name	<struct timeval>
+invalid	Variable/Name	<struct timeval*>
+changed	Variable/Name	
+	<const struct timeval*>
+	<struct timeval>
+invalid	Variable/Name	<struct hostent>
+invalid	Variable/Name	<struct hostent*>
+invalid	Variable/Name	<struct PROTOENT>
+invalid	Variable/Name	<struct PROTOENT*>
+invalid	Variable/Name	<SOCKET_ADDRESS [1]>
+invalid	Variable/Name	<WCHAR [32]>
+invalid	Variable/Name	<CHAR [OFS_MAXPATHNAME]>
+invalid	Variable/Name	<TCHAR [CCHDEVICENAME]>
+invalid	Variable/Name	<TCHAR [CCHFORMNAME]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxEntryName + 1]>
+	<TCHAR [RAS_MaxEntryName_plus_1]>
+invalid	Variable/Name	<ULONG_PTR [EXCEPTION_MAXIMUM_PARAMETERS]>
+invalid	Variable/Name	<FILE_SEGMENT_ELEMENT[]>
+invalid	Variable/Name	<IMAGE_DATA_DIRECTORY [IMAGE_NUMBEROF_DIRECTORY_ENTRIES]>
+invalid	Param/Type	<BG_FILE_RANGE[]>
+invalid	Variable/Name	<wchar_t [1]>
+invalid	Variable/Name	<OLECMD[]>
+invalid	Variable/Name	<PAGERANGE [1]>
+invalid	Variable/Name	<WCHAR [MAX_SINK_DESCRIPTION_NAME_LENGTH]>
+invalid	Variable/Name	<float [1]>
+invalid	Variable/Name	<float []>
+invalid	Variable/Name	<double [2]>
+invalid	Variable/Name	<UCHAR [10]>
+invalid	Variable/Name	<UCHAR [11]>
+invalid	Variable/Name	<ULONG64 [6]>
+invalid	Variable/Name	<DWORD64 [EXCEPTION_MAXIMUM_PARAMETERS]>
+invalid	Param/Name	<dwFlags >
+invalid	Param/Type	<const ALLOCATOR_PROPERTIES*>
+invalid	Param/Type	<const AMCOPPCommand*>
+invalid	Param/Type	<const AMCOPPStatusInput*>
+invalid	Param/Type	<const COLORKEY*>
+invalid	Param/Type	<enum DVD_TextCharSet*>
+invalid	Param/Type	<enum DVD_TextStringType*>
+invalid	Param/Type	<const AM_MEDIA_TYPE*>
+invalid	Variable/Name	<BOOL [8]>
+invalid	Variable/Name	<BYTE [256]>
+invalid	Variable/Name	<BYTE [768]>
+invalid	Variable/Name	<BYTE [4076]>
+invalid	Variable/Name	<BYTE [4056]>
+invalid	Variable/Name	<wchar_t [32]>
+invalid	Variable/Name	<wchar_t [256]>
+invalid	Variable/Name	<wchar_t [512]>
+invalid	Variable/Name	<DVD_AudioAttributes [8]>
+invalid	Variable/Name	<DVD_SubpictureAttributes [32]>
+invalid	Variable/Name	<DVD_MUA_MixingInfo [8]>
+invalid	Variable/Name	<DVD_MUA_Coeff [8]>
+invalid	Variable/Name	<DVD_MultichannelAudioAttributes [8]>
+invalid	Variable/Name	<DVD_KARAOKE_CONTENTS [8]>
+invalid	Api/Name	<GetFontCollection >
+invalid	Api/Name	<GetFontFamilyNameLength >
+invalid	Api/Name	<GetFontFamilyName >
+invalid	Api/Name	<GetFontWeight >
+invalid	Api/Name	<GetFontStyle >
+invalid	Api/Name	<GetFontStretch >
+invalid	Api/Name	<GetFontSize >
+invalid	Api/Name	<GetLocaleNameLength >
+invalid	Api/Name	<GetLocaleName >
+invalid	Param/Type	<const D3D_FEATURE_LEVEL*>
+invalid	Param/Type	<const DXGI_SWAP_CHAIN_DESC*>
+invalid	Param/Type	<const D3DX11_FFT_DESC*>
+invalid	Param/Type	<const D3D10_SHADER_MACRO*>
+invalid	Param/Type	<const D3D11_SHADER_MACRO*>
+invalid	Param/Type	<ID3D11UnorderedAccessView*const*>
+invalid	Param/Type	<const ID3D11UnorderedAccessView*>
+invalid	Variable/Name	<ID3D11Buffer*const*>
+invalid	Variable/Name	<ID3D11ShaderResourceView*const*>
+invalid	Variable/Name	<ID3D11ClassInstance*const*>
+invalid	Variable/Name	<ID3D11SamplerState*const*>
+invalid	Variable/Name	<ID3D11RenderTargetView*const*>
+invalid	Variable/Name	<FLOAT [4]>
+changed	Variable/Name	
+	<const FLOAT [4]>
+	<FLOAT [4]>
+changed	Variable/Name	
+	<const UINT [4]>
+	<UINT [4]>
+invalid	Variable/Name	<UINT [D3DX11_FFT_MAX_TEMP_BUFFERS]>
+invalid	Variable/Name	<UINT [D3DX11_FFT_MAX_PRECOMPUTE_BUFFERS]>
+invalid	Variable/Name	<UINT [D3DX11_FFT_MAX_DIMENSIONS]>
+invalid	Variable/Name	<D3D11_RENDER_TARGET_BLEND_DESC [8]>
+invalid	Param/Type	<const DXGI_SURFACE_DESC*>
+invalid	Param/Type	<const DXGI_SHARED_RESOURCE*>
+invalid	Variable/Name	<float [1025]>
+invalid	Variable/Name	<DXGI_RGB [1025]>
+changed	Field/Display	
+	<HRESULT (__stdcall *)(struct tagEXCEPINFO *)>
+	<HRESULT __stdcall struct tagEXCEPINFO >
+invalid	Variable/Name	<WCHAR [INTERNET_MAX_URL_LENGTH]>
+invalid	Variable/Name	<WCHAR [MAX_COLUMN_NAME_LEN]>
+invalid	Variable/Name	<WCHAR [MAX_COLUMN_DESC_LEN]>
+invalid	Param/Type	<const SYNCMGR_CONFLICT_ID_INFO*>
+invalid	Variable/Name	<byte [1]>
+invalid	Param/Type	<const WICRect*>
+invalid	Param/Type	<const WICRawToneCurve*>
+invalid	Variable/Name	<WICRawToneCurvePoint [1]>
+invalid	Param/Type	<const SYNC_VERSION*>
+invalid	Param/Type	<const SYNC_RANGE*>
+invalid	Variable/Name	<ULONG [MAPI_DIM]>
+invalid	Variable/Name	<BYTE [MAPI_DIM]>
+invalid	Variable/Name	<LPMAPIFORMINFO [MAPI_DIM]>
+invalid	Variable/Name	<LPCSTR [MAPI_DIM]>
+changed	Variable/Name	
+	<[FlagList_FLAGS [MAPI_DIM]]>
+	<WINAPI_FlagList_FLAGS [MAPI_DIM]>
+changed	Variable/Name	
+	<[ENTRYID_FLAGS [4]]>
+	<WINAPI_ENTRYID_FLAGS [4]>
+invalid	Variable/Name	<SMAPIFormProp [MAPI_DIM]>
+invalid	Variable/Name	<SMAPIVerb [MAPI_DIM]>
+invalid	Variable/Name	<SRow [MAPI_DIM]>
+invalid	Variable/Name	<SSortOrder [MAPI_DIM]>
+invalid	Variable/Name	<ADRENTRY [MAPI_DIM]>
+changed	Variable/Name	
+	<[PROPATTR_FLAGS [MAPI_DIM]]>
+	<WINAPI_PROPATTR_FLAGS [MAPI_DIM]>
+invalid	Variable/Name	<SPropProblem [MAPI_DIM]>
+invalid	Variable/Name	<STnefProblem [MAPI_DIM]>
+invalid	Param/Type	<const DXVA2_DecodeExecuteParams*>
+invalid	Param/Type	<const DXVA2_VideoDesc*>
+invalid	Param/Type	<const DXVA2_ConfigPictureDecode*>
+invalid	Param/Type	<const DXVA2_VideoProcessBltParams*>
+invalid	Param/Type	<const DXVA2_VideoSample*>
+invalid	Param/Type	<const DXVAHD_STREAM_DATA*>
+invalid	Param/Type	<const UINT8*>
+invalid	Param/Type	<const MFVideoNormalizedRect*>
+invalid	Return/Type	<const MFVIDEOFORMAT*>
+invalid	Param/Type	<const KS_VIDEOINFOHEADER*>
+invalid	Param/Type	<const KS_VIDEOINFOHEADER2*>
+invalid	Param/Type	<const MPEG1VIDEOINFO*>
+invalid	Param/Type	<const MPEG2VIDEOINFO*>
+invalid	Param/Type	<const MFT_REGISTER_TYPE_INFO*>
+invalid	Variable/Name	<MFINPUTTRUSTAUTHORITY_ACCESS_ACTION [1]>
+invalid	Variable/Name	<MFPaletteEntry [1]>
+invalid	Variable/Name	<DXVA2_AYUVSample8 [16]>
+changed	Variable/Name	
+	<void (*)(void*)>
+	<void void>
+invalid	Param/Type	<const VSS_ID*>
+invalid	Api/Name	<?CreateVssBackupComponents@@YAJPEAPEAVIVssBackupComponents@@@Z>
+invalid	Api/Name	<?CreateVssExamineWriterMetadata@@YAJPEAGPEAPEAVIVssExamineWriterMetadata@@@Z>
+invalid	Api/Name	<?CreateVssBackupComponents@@YGJPAPAVIVssBackupComponents@@@Z>
+invalid	Api/Name	<?CreateVssExamineWriterMetadata@@YGJPAGPAPAVIVssExamineWriterMetadata@@@Z>
+invalid	Variable/Name	<TCHAR [HW_PROFILE_GUIDLEN]>
+invalid	Variable/Name	<TCHAR [MAX_PROFILE_LEN]>
+invalid	Variable/Name	<WCHAR [WCT_OBJNAME_LENGTH]>
+invalid	Variable/Name	<BYTE [_AUTHZ_SS_MAXSIZE]>
+invalid	Variable/Name	<AUTHZ_REGISTRATION_OBJECT_TYPE_NAME_OFFSET [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<char [CB_MAX_DISK_NAME]>
+invalid	Variable/Name	<char [CB_MAX_CABINET_NAME]>
+invalid	Variable/Name	<char [CB_MAX_CAB_PATH]>
+invalid	Variable/Name	<int [cMAX_CAB_FILE_OPEN]>
+changed	Variable/Name	
+	<char [cbMAX_LINE * 2]>
+	<char [cbMAX_LINE_mult_2]>
+invalid	Variable/Name	<WCHAR [CLFS_MAX_CONTAINER_INFO]>
+invalid	Variable/Name	<LONGLONG []>
+invalid	Variable/Name	<CLFS_ARCHIVE_DESCRIPTOR []>
+invalid	Variable/Name	<DWORD64 [3]>
+invalid	Variable/Name	<DWORD64 [4]>
+invalid	Variable/Name	<DWORD64 [5]>
+invalid	Variable/Name	<ULONG64 [5]>
+invalid	Variable/Name	<TCHAR [1]>
+changed	Variable/Name	
+	<TCHAR [MAX_PATH * 3]>
+	<TCHAR [MAX_PATH_mult_3]>
+changed	Variable/Name	
+	<WCHAR [MAX_PATH * 3]>
+	<WCHAR [MAX_PATH_mult_3]>
+invalid	Variable/Name	<DHCP_CONST WCHAR*>
+invalid	Variable/Name	<DHCP_CONST DHCP_IP_ADDRESS>
+invalid	Variable/Name	<DHCP_CONST LPWSTR>
+invalid	Variable/Name	<DHCP_CONST BOOL>
+invalid	Variable/Name	<BYTE [MAX_PATTERN_LENGTH]>
+invalid	Variable/Name	<DHCP_CONST DHCP_SUBNET_ELEMENT_DATA_V5*>
+invalid	Variable/Name	<DHCP_CONST DHCP_SEARCH_INFO*>
+invalid	Variable/Name	<DHCP_CONST DHCP_OPTION_SCOPE_INFO*>
+invalid	Variable/Name	<DHCP_CONST DHCP_SEARCH_INFO_V6*>
+invalid	Variable/Name	<DHCP_CONST DHCP_CLIENT_INFO*>
+invalid	Variable/Name	<DHCP_CONST DHCP_CLIENT_INFO_V4*>
+invalid	Variable/Name	<DHCP_CONST DHCP_SUBNET_INFO*>
+invalid	Variable/Name	<DHCP_CONST DHCP_SUBNET_INFO_VQ*>
+invalid	Variable/Name	<WCHAR [PHYSICAL_MONITOR_DESCRIPTION_SIZE]>
+changed	Variable/Name	
+	<TCHAR [JET_BASE_NAME_LENGTH + 1]>
+	<TCHAR [JET_BASE_NAME_LENGTH_plus_1]>
+invalid	Variable/Name	<unsigned char [12]>
+invalid	Variable/Name	<unsigned char [16]>
+invalid	Variable/Name	<WORD [1]>
+invalid	Variable/Name	<HGDIOBJ [1]>
+invalid	Variable/Name	<LONG [MM_MAX_NUMAXES]>
+invalid	Variable/Name	<TCHAR [LF_FULLFACESIZE]>
+invalid	Variable/Name	<WCRANGE [1]>
+invalid	Variable/Name	<GDIPCONST LOGFONT*>
+invalid	Variable/Name	<GDIPCONST GUID*>
+invalid	Variable/Name	<GDIPCONST WCHAR*>
+invalid	Variable/Name	<GDIPCONST REAL*>
+invalid	Variable/Name	<GDIPCONST UINT16*>
+invalid	Variable/Name	<GDIPCONST void*>
+invalid	Variable/Name	<GDIPCONST BITMAPINFO*>
+invalid	Variable/Name	<GDIPCONST CLSID*>
+invalid	Variable/Name	<GDIPCONST BYTE*>
+invalid	Variable/Name	<GDIPCONST ARGB*>
+invalid	Variable/Name	<GDIPCONST EncoderParameters*>
+invalid	Variable/Name	<ARGB [1]>
+invalid	Variable/Name	<REAL [5]>
+invalid	Variable/Name	<REAL [5][5]>
+invalid	Variable/Name	<GDIPCONST GpPath*>
+invalid	Variable/Name	<GDIPCONST GpFontFamily*>
+invalid	Variable/Name	<GDIPCONST GpPen*>
+invalid	Variable/Name	<GDIPCONST GpGraphics*>
+invalid	Variable/Name	<GDIPCONST GpBrush*>
+invalid	Variable/Name	<GDIPCONST GpImageAttributes*>
+invalid	Variable/Name	<GDIPCONST GpMetafile*>
+invalid	Variable/Name	<GDIPCONST GpFont*>
+invalid	Variable/Name	<GDIPCONST GpStringFormat*>
+invalid	Variable/Name	<GDIPCONST GpMatrix*>
+invalid	Variable/Name	<GDIPCONST PropertyItem*>
+invalid	Variable/Name	<GDIPCONST WmfPlaceableFileHeader*>
+invalid	Variable/Name	<GDIPCONST ColorMap*>
+invalid	Variable/Name	<GDIPCONST ColorMatrix*>
+invalid	Variable/Name	<GDIPCONST ColorPalette*>
+invalid	Variable/Name	<GDIPCONST Point*>
+invalid	Variable/Name	<GDIPCONST GpPoint*>
+invalid	Variable/Name	<GDIPCONST PointF*>
+invalid	Variable/Name	<GDIPCONST GpPointF*>
+invalid	Variable/Name	<GDIPCONST Rect*>
+invalid	Variable/Name	<GDIPCONST GpRect*>
+invalid	Variable/Name	<GDIPCONST RectF*>
+invalid	Variable/Name	<GDIPCONST GpRectF*>
+invalid	Variable/Name	<GDIPCONST CharacterRange*>
+invalid	Variable/Name	<HTTP_KNOWN_HEADER [HttpHeaderRequestMaximum]>
+invalid	Variable/Name	<HTTP_KNOWN_HEADER [HttpHeaderResponseMaximum]>
+invalid	Variable/Name	<TCHAR [IMEMENUITEM_STRING_SIZE]>
+invalid	Variable/Name	<TCHAR [STYLE_DESCRIPTION_SIZE]>
+invalid	Variable/Name	<BYTE [MAX_ADAPTER_ADDRESS_LENGTH]>
+invalid	Variable/Name	<CHAR [8]>
+invalid	Variable/Name	<char [16]>
+changed	Variable/Name	
+	<char [MAX_HOSTNAME_LEN + 4]>
+	<char [MAX_HOSTNAME_LEN_plus_4]>
+changed	Variable/Name	
+	<char [MAX_DOMAIN_NAME_LEN + 4]>
+	<char [MAX_DOMAIN_NAME_LEN_plus_4]>
+changed	Variable/Name	
+	<char [MAX_SCOPE_ID_LEN + 4]>
+	<char [MAX_SCOPE_ID_LEN_plus_4]>
+changed	Variable/Name	
+	<char [MAX_ADAPTER_NAME_LENGTH + 4]>
+	<char [MAX_ADAPTER_NAME_LENGTH_plus_4]>
+changed	Variable/Name	
+	<char [MAX_ADAPTER_DESCRIPTION_LENGTH + 4]>
+	<char [MAX_ADAPTER_DESCRIPTION_LENGTH_plus_4]>
+invalid	Variable/Name	<WCHAR [6]>
+invalid	Variable/Name	<WCHAR [MAX_ADAPTER_NAME]>
+changed	Variable/Name	
+	<WCHAR [IF_MAX_STRING_SIZE + 1]>
+	<WCHAR [IF_MAX_STRING_SIZE_plus_1]>
+invalid	Variable/Name	<WCHAR [DNS_MAX_NAME_BUFFER_LENGTH]>
+invalid	Variable/Name	<WCHAR [MAX_INTERFACE_NAME_LEN]>
+invalid	Variable/Name	<ULONGLONG [TCPIP_OWNING_MODULE_SIZE]>
+invalid	Variable/Name	<UCHAR [MAXLEN_PHYSADDR]>
+invalid	Variable/Name	<UCHAR [MAXLEN_IFDESCR]>
+invalid	Variable/Name	<UCHAR [IF_MAX_PHYS_ADDRESS_LENGTH]>
+invalid	Variable/Name	<ULONG [ScopeLevelCount]>
+invalid	Variable/Name	<struct sockaddr_in6>
+invalid	Variable/Name	<struct sockaddr_in6*>
+invalid	Variable/Name	<MIB_IPNETROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IFSTACK_ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IFROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IF_ROW2 [ANY_SIZE]>
+invalid	Variable/Name	<IP_ADAPTER_INDEX_MAP [1]>
+invalid	Variable/Name	<MIB_INVERTEDIFSTACK_ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IPINTERFACE_ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_ANYCASTIPADDRESS_ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IPADDRROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_MULTICASTIPADDRESS_ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_UNICASTIPADDRESS_ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IPNET_ROW2 [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IPPATH_ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IPFORWARDROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_IPFORWARD_ROW2 [ANY_SIZE]>
+invalid	Variable/Name	<MIB_TCP6ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_TCP6ROW2 [ANY_SIZE]>
+invalid	Variable/Name	<MIB_TCPROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_TCPROW2 [ANY_SIZE]>
+invalid	Variable/Name	<MIB_UDP6ROW [ANY_SIZE]>
+invalid	Variable/Name	<MIB_UDPROW [ANY_SIZE]>
+invalid	Variable/Name	<TCHAR [MAX_ISCSI_PORTAL_NAME_LEN]>
+invalid	Variable/Name	<TCHAR [MAX_ISCSI_PORTAL_ADDRESS_LEN]>
+invalid	Variable/Name	<TCHAR [MAX_ISCSI_HBANAME_LEN]>
+changed	Variable/Name	
+	<TCHAR [MAX_ISCSI_NAME_LEN + 1]>
+	<TCHAR [MAX_ISCSI_NAME_LEN_plus_1]>
+invalid	Variable/Name	<UCHAR [6]>
+invalid	Variable/Name	<ISCSI_TARGET_PORTAL [1]>
+invalid	Variable/Name	<BYTE [20]>
+invalid	Variable/Name	<BYTE [21]>
+invalid	Variable/Name	<BYTE [38]>
+invalid	Variable/Name	<BYTE [MAX_DEFAULTCHAR]>
+invalid	Variable/Name	<BYTE [MAX_LEADBYTES]>
+invalid	Variable/Name	<BYTE [WOW64_MAXIMUM_SUPPORTED_EXTENSION]>
+invalid	Variable/Name	<BYTE [WOW64_SIZE_OF_80387_REGISTERS]>
+invalid	Variable/Name	<WORD [3]>
+invalid	Variable/Name	<COLORREF [16]>
+invalid	Variable/Name	<ULONGLONG [2]>
+changed	Variable/Name	
+	<TCHAR [MAX_MODULE_NAME32 + 1]>
+	<TCHAR [MAX_MODULE_NAME32_plus_1]>
+invalid	Variable/Name	<GROUP_AFFINITY [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<PROCESSOR_GROUP_INFO [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<UNWIND_HISTORY_TABLE_ENTRY [UNWIND_HISTORY_TABLE_SIZE]>
+invalid	Variable/Name	<HARDWARE_COUNTER_DATA [MAX_HW_COUNTERS]>
+changed	Variable/Name	
+	<WCHAR [MAX_INTERFACE_NAME_LEN + 1]>
+	<WCHAR [MAX_INTERFACE_NAME_LEN_plus_1]>
+invalid	Variable/Name	<MQPROPVARIANT[]>
+invalid	Variable/Name	<DWORD [5]>
+invalid	Variable/Name	<TCHAR [ACMFORMATTAGDETAILS_FORMATTAG_CHARS]>
+invalid	Variable/Name	<TCHAR [ACMFILTERTAGDETAILS_FILTERTAG_CHARS]>
+invalid	Variable/Name	<TCHAR [ACMFORMATDETAILS_FORMAT_CHARS]>
+invalid	Variable/Name	<TCHAR [ACMFILTERDETAILS_FILTER_CHARS]>
+invalid	Variable/Name	<TCHAR [ACMDRIVERDETAILS_SHORTNAME_CHARS]>
+invalid	Variable/Name	<TCHAR [ACMDRIVERDETAILS_LONGNAME_CHARS]>
+invalid	Variable/Name	<TCHAR [ACMDRIVERDETAILS_COPYRIGHT_CHARS]>
+invalid	Variable/Name	<TCHAR [ACMDRIVERDETAILS_LICENSING_CHARS]>
+invalid	Variable/Name	<TCHAR [ACMDRIVERDETAILS_FEATURES_CHARS]>
+invalid	Variable/Name	<DWORD [_DRVRESERVED]>
+invalid	Variable/Name	<TCHAR [39]>
+invalid	Variable/Name	<struct _stati64*>
+invalid	Variable/Name	<struct _finddata_t*>
+invalid	Variable/Name	<struct _finddatai64_t*>
+invalid	Variable/Name	<struct _wfinddata_t*>
+invalid	Variable/Name	<struct _wfinddatai64_t*>
+invalid	Variable/Name	<long int>
+changed	Variable/Name	
+	<const unsigned char*>
+	<unsigned char>
+changed	Variable/Name	
+	<const unsigned short*>
+	<unsigned short>
+invalid	Variable/Name	<struct _EXCEPTION_POINTERS*>
+invalid	Variable/Name	<wchar_t [260]>
+invalid	Variable/Name	<unsigned char[10]>
+invalid	Variable/Name	<struct _diskfree_t>
+invalid	Variable/Name	<struct _diskfree_t*>
+invalid	Variable/Name	<struct _stat>
+invalid	Variable/Name	<struct _stat*>
+invalid	Variable/Name	<struct _stat32>
+invalid	Variable/Name	<struct _stat32*>
+invalid	Variable/Name	<struct _stat64>
+invalid	Variable/Name	<struct _stat64*>
+invalid	Variable/Name	<struct _stat32i64>
+invalid	Variable/Name	<struct _stat32i64*>
+invalid	Variable/Name	<struct _stat64i32>
+invalid	Variable/Name	<struct _stat64i32*>
+invalid	Variable/Name	<struct _complex>
+invalid	Variable/Name	<struct tm>
+invalid	Variable/Name	<struct tm*>
+changed	Variable/Name	
+	<const struct tm*>
+	<struct tm>
+invalid	Variable/Name	<struct _timeb>
+invalid	Variable/Name	<struct _timeb*>
+invalid	Variable/Name	<struct __timeb32>
+invalid	Variable/Name	<struct __timeb32*>
+invalid	Variable/Name	<struct __timeb64>
+invalid	Variable/Name	<struct __timeb64*>
+invalid	Variable/Name	<struct _utimbuf>
+invalid	Variable/Name	<struct _utimbuf*>
+invalid	Variable/Name	<struct __utimbuf32>
+invalid	Variable/Name	<struct __utimbuf32*>
+invalid	Variable/Name	<struct __utimbuf64>
+invalid	Variable/Name	<struct __utimbuf64*>
+invalid	Variable/Name	<struct _finddata32_t>
+invalid	Variable/Name	<struct _finddata32_t*>
+invalid	Variable/Name	<struct _finddata32i64_t>
+invalid	Variable/Name	<struct _finddata32i64_t*>
+invalid	Variable/Name	<struct _finddata64i32_t>
+invalid	Variable/Name	<struct _finddata64i32_t*>
+invalid	Variable/Name	<struct __finddata64_t>
+invalid	Variable/Name	<struct __finddata64_t*>
+invalid	Variable/Name	<struct _wfinddata32_t>
+invalid	Variable/Name	<struct _wfinddata32_t*>
+invalid	Variable/Name	<struct _wfinddata32i64_t>
+invalid	Variable/Name	<struct _wfinddata32i64_t*>
+invalid	Variable/Name	<struct _wfinddata64i32_t>
+invalid	Variable/Name	<struct _wfinddata64i32_t*>
+invalid	Variable/Name	<struct _wfinddata64_t>
+invalid	Variable/Name	<struct _wfinddata64_t*>
+invalid	Variable/Name	<struct _exception>
+invalid	Variable/Name	<struct _exception*>
+invalid	Variable/Name	<struct lconv>
+invalid	Variable/Name	<struct lconv*>
+changed	Param/Display	
+	<void (__cdecl*)(void*, void*)>
+	<void __cdeclvoid, void>
+invalid	Api/Name	<?_set_se_translator@@YAP6AXIPAU_EXCEPTION_POINTERS@@@ZP6AXI0@Z@Z>
+invalid	Api/Name	<?set_terminate@@YAP6AXXZP6AXXZ@Z>
+invalid	Api/Name	<?set_unexpected@@YAP6AXXZP6AXXZ@Z>
+invalid	Api/Name	<?terminate@@YAXXZ>
+invalid	Api/Name	<?unexpected@@YAXXZ>
+changed	Param/Display	
+	<int (__cdecl*)(_FPIEEE_RECORD *)>
+	<int __cdecl_FPIEEE_RECORD >
+invalid	Api/Name	<??3@YAXPAX@Z>
+invalid	Api/Name	<??3@YAXPEAX@Z>
+invalid	Api/Name	<??_V@YAXPAX@Z>
+invalid	Api/Name	<??_V@YAXPEAX@Z>
+invalid	Api/Name	<??2@YAPAXI@Z>
+invalid	Api/Name	<??2@YAPEAX_K@Z>
+invalid	Api/Name	<??_U@YAPAXI@Z>
+invalid	Api/Name	<??_U@YAPEAX_K@Z>
+invalid	Api/Name	<?_query_new_handler@@YAP6AHI@ZXZ>
+invalid	Api/Name	<?_query_new_mode@@YAHXZ>
+invalid	Api/Name	<?_set_new_handler@@YAP6AHI@ZP6AHI@Z@Z>
+invalid	Api/Name	<?_set_new_mode@@YAHH@Z>
+changed	Param/Display	
+	<void (__cdecl*)()>
+	<void __cdecl>
+changed	Param/Display	
+	<void (__cdecl*)(void*)>
+	<void __cdeclvoid>
+changed	Param/Display	
+	<unsigned (__stdcall*)(void*)>
+	<unsigned __stdcallvoid>
+changed	Return/Display	
+	<int (__cdecl*)()>
+	<int __cdecl>
+invalid	Variable/Name	<WCHAR [16]>
+invalid	Variable/Name	<SERVICE_ADDRESS [1]>
+invalid	Variable/Name	<WCHAR[NCRYPT_SSL_MAX_NAME_SIZE]>
+invalid	Variable/Name	<CHAR [126]>
+invalid	Variable/Name	<HANDLE []>
+invalid	Variable/Name	<SIZE_T [2]>
+invalid	Variable/Name	<UCHAR [3]>
+invalid	Variable/Name	<UCHAR [32]>
+invalid	Variable/Name	<UCHAR [36]>
+invalid	Variable/Name	<UCHAR [MAXIMUM_LEADBYTES]>
+invalid	Variable/Name	<CHAR [1]>
+invalid	Variable/Name	<CHAR [256]>
+invalid	Variable/Name	<WCHAR [4]>
+invalid	Variable/Name	<WCHAR [8]>
+invalid	Variable/Name	<WCHAR [261]>
+invalid	Variable/Name	<ULONG [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<ULONG [1]>
+invalid	Variable/Name	<ULONG [3]>
+invalid	Variable/Name	<ULONG [5]>
+invalid	Variable/Name	<ULONG [26]>
+invalid	Variable/Name	<ULONG [32]>
+invalid	Variable/Name	<ULONG [GDI_BATCH_BUFFER_SIZE]>
+invalid	Variable/Name	<PVOID [2]>
+invalid	Variable/Name	<PVOID [4]>
+invalid	Variable/Name	<PVOID [9]>
+invalid	Variable/Name	<PVOID [11]>
+invalid	Variable/Name	<PVOID [16]>
+invalid	Variable/Name	<PVOID [54]>
+invalid	Variable/Name	<PVOID [64]>
+invalid	Variable/Name	<PVOID [233]>
+invalid	Variable/Name	<ULONG_PTR [1]>
+invalid	Variable/Name	<ULONG_PTR [29]>
+invalid	Variable/Name	<ULONG_PTR [62]>
+invalid	Variable/Name	<RTL_DRIVE_LETTER_CURDIR [32]>
+invalid	Variable/Name	<RTL_PROCESS_LOCK_INFORMATION [1]>
+invalid	Variable/Name	<RTL_HEAP_INFORMATION [1]>
+invalid	Variable/Name	<RTL_PROCESS_BACKTRACE_INFORMATION [1]>
+invalid	Variable/Name	<RTL_PROCESS_MODULE_INFORMATION [1]>
+invalid	Variable/Name	<PRTL_ATOM_TABLE_ENTRY [1]>
+invalid	Variable/Name	<RTL_UNLOAD_EVENT_TRACE [RTL_UNLOAD_EVENT_TRACE_NUMBER]>
+invalid	Variable/Name	<SCHEDULE_HEADER [1]>
+invalid	Variable/Name	<volatile DWORD>
+invalid	Variable/Name	<BYTE [3]>
+invalid	Variable/Name	<SYSTEM_POWER_LEVEL [NUM_DISCHARGE_POLICIES]>
+invalid	Variable/Name	<PROCESSOR_POWER_POLICY_INFO [3]>
+invalid	Variable/Name	<BATTERY_REPORTING_SCALE [3]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxDeviceType + 1]>
+	<TCHAR [RAS_MaxDeviceType_plus_1]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxDeviceName + 1]>
+	<TCHAR [RAS_MaxDeviceName_plus_1]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxPhoneNumber + 1]>
+	<TCHAR [RAS_MaxPhoneNumber_plus_1]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxCallbackNumber + 1]>
+	<TCHAR [RAS_MaxCallbackNumber_plus_1]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxAreaCode + 1]>
+	<TCHAR [RAS_MaxAreaCode_plus_1]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxPadType + 1]>
+	<TCHAR [RAS_MaxPadType_plus_1]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxX25Address + 1]>
+	<TCHAR [RAS_MaxX25Address_plus_1]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxFacilities + 1]>
+	<TCHAR [RAS_MaxFacilities_plus_1]>
+changed	Variable/Name	
+	<TCHAR [RAS_MaxUserData + 1]>
+	<TCHAR [RAS_MaxUserData_plus_1]>
+invalid	Variable/Name	<TCHAR [RAS_MaxDnsSuffix]>
+changed	Variable/Name	
+	<TCHAR [UNLEN + 1]>
+	<TCHAR [UNLEN_plus_1]>
+changed	Variable/Name	
+	<TCHAR [PWLEN + 1]>
+	<TCHAR [PWLEN_plus_1]>
+changed	Variable/Name	
+	<TCHAR [DNLEN + 1]>
+	<TCHAR [DNLEN_plus_1]>
+invalid	Variable/Name	<ULONG_PTR [5]>
+invalid	Variable/Name	<void SEC_FAR*>
+invalid	Variable/Name	<TCHAR [SP_MAX_MACHINENAME_LENGTH]>
+invalid	Variable/Name	<PROPVARIANT[]>
+invalid	Variable/Name	<TCHAR [80]>
+invalid	Variable/Name	<POINT [NUM_POINTS]>
+invalid	Variable/Name	<DWORD [NUM_POINTS]>
+invalid	Variable/Name	<CHAR [MAX_DESC]>
+invalid	Variable/Name	<WCHAR [MAX_DESC_W]>
+invalid	Variable/Name	<TRACE_PROVIDER_INFO [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<EVENT_PROPERTY_INFO [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<EVENT_MAP_ENTRY [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<PROVIDER_FIELD_INFO [ANYSIZE_ARRAY]>
+invalid	Variable/Name	<WCHAR [MAX_STRING_LENGTH]>
+invalid	Variable/Name	<TC_GEN_FILTER [1]>
+invalid	Variable/Name	<NETWORK_ADDRESS [1]>
+invalid	Variable/Name	<QOS_OBJECT_HDR [1]>
+changed	Variable/Name	
+	<DWORD [CCHILDREN_TITLEBAR + 1]>
+	<DWORD [CCHILDREN_TITLEBAR_plus_1]>
+changed	Variable/Name	
+	<DWORD [CCHILDREN_SCROLLBAR + 1]>
+	<DWORD [CCHILDREN_SCROLLBAR_plus_1]>
+invalid	Variable/Name	<BYTE [32]>
+invalid	Variable/Name	<TCHAR [50]>
+invalid	Variable/Name	<BYTE [PXE_MAX_ADDRESS]>
+invalid	Variable/Name	<WCHAR [WER_MAX_PREFERRED_MODULES_BUFFER]>
+invalid	Variable/Name	<WCHAR [64]>
+invalid	Variable/Name	<WCHAR [512]>
+invalid	Variable/Name	<UCHAR [SECURITY_MAX_SID_SIZE]>
+invalid	Variable/Name	<DWORD [6]>
+invalid	Variable/Name	<DWORD_PTR [8]>
+invalid	Variable/Name	<TCHAR [MAXPNAMELEN]>
+invalid	Variable/Name	<TCHAR [MIXER_SHORT_NAME_CHARS]>
+invalid	Variable/Name	<TCHAR [MIXER_LONG_NAME_CHARS]>
+invalid	Variable/Name	<TCHAR [MAX_JOYSTICKOEMVXDNAME]>
+invalid	Variable/Name	<BYTE [36]>
+invalid	Variable/Name	<PRINTER_NOTIFY_INFO_DATA [1]>
+invalid	Variable/Name	<WCHAR [WLAN_MAX_NAME_LENGTH]>
+invalid	Variable/Name	<UCHAR [DOT11_SSID_MAX_LENGTH]>
+invalid	Variable/Name	<USHORT [DOT11_RATE_SET_MAX_LENGTH]>
+invalid	Variable/Name	<DOT11_MAC_ADDRESS [1]>
+invalid	Variable/Name	<DOT11_PHY_TYPE [WLAN_MAX_PHY_INDEX]>
+invalid	Variable/Name	<DOT11_PHY_TYPE [WLAN_MAX_PHY_TYPE_NUMBER]>
+invalid	Variable/Name	<WLAN_INTERFACE_INFO [1]>
+changed	Variable/Name	
+	<[WLAN_RAW_DATA_LIST_s [1]]>
+	<WINAPI_WLAN_RAW_DATA_LIST_s [1]>
+invalid	Variable/Name	<WLAN_AVAILABLE_NETWORK [1]>
+invalid	Variable/Name	<DOT11_NETWORK [1]>
+invalid	Variable/Name	<WLAN_BSS_ENTRY [1]>
+invalid	Variable/Name	<WLAN_PROFILE_INFO [1]>
+invalid	Variable/Name	<WLAN_HOSTED_NETWORK_PEER_STATE [1]>
+invalid	Variable/Name	<UCHAR [25]>
+invalid	Variable/Name	<UCHAR [41]>
+invalid	Variable/Name	<struct berval>
+invalid	Variable/Name	<struct berval*>
+invalid	Variable/Name	<struct berval**>
+invalid	Variable/Name	<struct l_timeval>
+invalid	Variable/Name	<struct l_timeval*>
+ffi/winapi/mozilla/nspr
+E:\p\luajit-winapi\\ffi/winapi/mozilla/nspr.lua:233: declaration specifier expected near 'PK11SlotInfo' at line 66
+
+ffi/winapi/headers/sockets
+E:\p\luajit-winapi\\ffi/winapi/headers/sockets.lua:28: declaration specifier expected near 'WINAPI_LPVOID_char' at line 8
+
+ffi/winapi/headers/patch
+E:\p\luajit-winapi\\ffi/winapi/headers/patch.lua:60: ';' expected near ']' at line 10
+
+ffi/winapi/interfaces/coreaudio/iksjackdescription
+...it-winapi\\ffi/winapi/interfaces/coreaudio/coreaudio.lua:223: '<identifier>' expected near 'float' at line 54
+
+ffi/winapi/windows/shell32
+E:\p\luajit-winapi\\ffi/winapi/windows/shell32.lua:600: declaration specifier expected near 'CABINETSTATE' at line 399
+
+ffi/winapi/interfaces/directinput/idirectinputdevice2a
+E:\p\luajit-winapi\\ffi/winapi/headers/dinput.lua:477: invalid C type at line 417
+
+ffi/winapi/windows/ntdll
+E:\p\luajit-winapi\\ffi/winapi/windows/ntdll.lua:7: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/interfaces/coreaudio/immdevicecollection
+...\ffi/winapi/interfaces/coreaudio/immdevicecollection.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/dhcpcsvc6
+E:\p\luajit-winapi\\ffi/winapi/windows/dhcpcsvc6.lua:54: declaration specifier expected near 'time_t' at line 36
+
+ffi/winapi/windows/mqrt
+cannot load module 'Mqrt.dll': The specified module could not be found.
+
+
+ffi/winapi/mmf/mfplat
+E:\p\luajit-winapi\\ffi/winapi/mmf/mfplat.lua:112: declaration specifier expected near 'AM_MEDIA_TYPE' at line 22
+
+ffi/winapi/interfaces/coreaudio/iaudiostreamvolume
+...\\ffi/winapi/interfaces/coreaudio/iaudiostreamvolume.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/advapi32
+E:\p\luajit-winapi\\ffi/winapi/windows/advapi32.lua:790: declaration specifier expected near 'PAUDIT_POLICY_INFORMATION' at line 700
+
+ffi/winapi/windows/wdsbp
+cannot load module 'Wdsbp.dll': The specified module could not be found.
+
+
+ffi/winapi/interfaces/coreaudio/icontrolinterface
+...i\\ffi/winapi/interfaces/coreaudio/icontrolinterface.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiovolumeducknotification
+...pi/interfaces/coreaudio/iaudiovolumeducknotification.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iksjacksinkinformation
+...i/winapi/interfaces/coreaudio/iksjacksinkinformation.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/immendpoint
+...-winapi\\ffi/winapi/interfaces/coreaudio/immendpoint.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/directinput/idirectinputdevicew
+...fi/winapi/interfaces/directinput/idirectinputdevicew.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/coreaudio/iaudiosessionnotification
+...inapi/interfaces/coreaudio/iaudiosessionnotification.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/ichannelaudiovolume
+...\ffi/winapi/interfaces/coreaudio/ichannelaudiovolume.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/winmm
+E:\p\luajit-winapi\\ffi/winapi/windows/winmm.lua:647: declaration specifier expected near 'WINAPI_LPVOID_char' at line 598
+
+ffi/winapi/windows/vhdmount
+cannot load module 'VHDMount.dll': The specified module could not be found.
+
+
+ffi/winapi/interfaces/coreaudio/iaudiosessionenumerator
+.../winapi/interfaces/coreaudio/iaudiosessionenumerator.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/mspatcha
+E:\p\luajit-winapi\\ffi/winapi/windows/mspatcha.lua:2: loop or previous error loading module 'ffi/winapi/headers/patch'
+
+ffi/winapi/windows/winbio
+E:\p\luajit-winapi\\ffi/winapi/windows/winbio.lua:175: declaration specifier expected near 'WINBIO_STRING' at line 48
+
+ffi/winapi/interfaces/debugger/dbgeng
+...luajit-winapi\\ffi/winapi/interfaces/debugger/dbgeng.lua:514: invalid C type at line 102
+
+ffi/winapi/interfaces/directinput/idirectinputdevice7a
+...i/winapi/interfaces/directinput/idirectinputdevice7a.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinputdevice2a'
+
+ffi/winapi/windows/rpcrt4
+E:\p\luajit-winapi\\ffi/winapi/windows/rpcrt4.lua:187: declaration specifier expected near 'WINAPI_LPVOID_char' at line 41
+
+ffi/winapi/interfaces/coreaudio/ipart
+...luajit-winapi\\ffi/winapi/interfaces/coreaudio/ipart.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/headers/dinput
+loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/directsound/dsound
+...jit-winapi\\ffi/winapi/interfaces/directsound/dsound.lua:321: declaration specifier expected near 'IDirectSoundCapture8' at line 28
+
+ffi/winapi/windows/iphlpapi
+E:\p\luajit-winapi\\ffi/winapi/windows/iphlpapi.lua:3: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/windows/traffic
+E:\p\luajit-winapi\\ffi/winapi/windows/traffic.lua:91: declaration specifier expected near 'FLOWSPEC' at line 49
+
+ffi/winapi/windows/mswsock
+E:\p\luajit-winapi\\ffi/winapi/windows/mswsock.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/interfaces/coreaudio/immdevice
+...it-winapi\\ffi/winapi/interfaces/coreaudio/immdevice.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/wsock32
+E:\p\luajit-winapi\\ffi/winapi/windows/wsock32.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/interfaces/coreaudio/iaudiosessionmanager2
+...ffi/winapi/interfaces/coreaudio/iaudiosessionmanager.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/ws2_32
+E:\p\luajit-winapi\\ffi/winapi/windows/ws2_32.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/windows/wldap32
+E:\p\luajit-winapi\\ffi/winapi/windows/wldap32.lua:244: declaration specifier expected near 'BERVAL' at line 91
+
+ffi/winapi/windows/winspool
+E:\p\luajit-winapi\\ffi/winapi/windows/winspool.lua:220: declaration specifier expected near 'PrintAsyncNotificationType' at line 195
+
+ffi/winapi/windows/winfax
+cannot load module 'WinFax.dll': The specified module could not be found.
+
+
+ffi/winapi/windows/wdsmc
+cannot load module 'Wdsmc.dll': The specified module could not be found.
+
+
+ffi/winapi/windows/wdsclientapi
+cannot load module 'WdsClientAPI.dll': The specified module could not be found.
+
+
+ffi/winapi/windows/wab32
+E:\p\luajit-winapi\\ffi/winapi/windows/wab32.lua:18: declaration specifier expected near 'ALLOCATEBUFFER' at line 13
+
+ffi/winapi/windows/usp10
+E:\p\luajit-winapi\\ffi/winapi/windows/usp10.lua:113: declaration specifier expected near 'WINAPI_ExtTextOutFlags' at line 100
+
+ffi/winapi/interfaces/directx/dxgi/dxgi
+...ajit-winapi\\ffi/winapi/interfaces/directx/dxgi/dxgi.lua:8: declaration specifier expected near 'WINAPI_DXGI_HRESULT'
+
+ffi/winapi/windows/secur32
+E:\p\luajit-winapi\\ffi/winapi/windows/secur32.lua:226: declaration specifier expected near 'SEC_TCHAR' at line 59
+
+ffi/winapi/windows/rasapi32
+E:\p\luajit-winapi\\ffi/winapi/windows/rasapi32.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/windows/query
+E:\p\luajit-winapi\\ffi/winapi/windows/query.lua:67: declaration specifier expected near 'DBCOMMANDTREE' at line 53
+
+ffi/winapi/vss/vssapi
+E:\p\luajit-winapi\\ffi/winapi/vss/vssapi.lua:19: declaration specifier expected near 'CVssWriter' at line 4
+
+ffi/winapi/mozilla/nss3
+E:\p\luajit-winapi\\ffi/winapi/mozilla/nss3.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
+
+ffi/winapi/windows/oleaut32
+E:\p\luajit-winapi\\ffi/winapi/windows/oleaut32.lua:508: declaration specifier expected near 'DECIMAL' at line 169
+
+ffi/winapi/windows/ole32
+E:\p\luajit-winapi\\ffi/winapi/windows/ole32.lua:263: declaration specifier expected near 'LPENUMFORMATETC' at line 205
+
+ffi/winapi/windows/ntdsbcli
+cannot load module 'Ntdsbcli.dll': The specified module could not be found.
+
+
+ffi/winapi/interfaces/coreaudio/iaudiorenderclient
+...\\ffi/winapi/interfaces/coreaudio/iaudiorenderclient.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/netapi32
+E:\p\luajit-winapi\\ffi/winapi/windows/netapi32.lua:493: invalid C type at line 352
+
+ffi/winapi/windows/ndfapi
+E:\p\luajit-winapi\\ffi/winapi/windows/ndfapi.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/windows/ncrypt
+E:\p\luajit-winapi\\ffi/winapi/windows/ncrypt.lua:88: unexpected symbol near 'NCRYPT_SSL_MAX_NAME_SIZE' at line 7
+
+ffi/winapi/windows/httpapi
+E:\p\luajit-winapi\\ffi/winapi/windows/httpapi.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/windows/mspatchc
+E:\p\luajit-winapi\\ffi/winapi/windows/mspatchc.lua:2: loop or previous error loading module 'ffi/winapi/headers/patch'
+
+ffi/winapi/windows/msi
+E:\p\luajit-winapi\\ffi/winapi/windows/msi.lua:354: ')' expected near 'szInstalledProductCode' at line 246
+
+ffi/winapi/windows/legitlib
+cannot load module 'LegitLib.dll': The specified module could not be found.
+
+
+ffi/winapi/mozilla/ssl3
+E:\p\luajit-winapi\\ffi/winapi/mozilla/ssl3.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
+
+ffi/winapi/windows/irprops
+E:\p\luajit-winapi\\ffi/winapi/headers/bluetooth.lua:253: invalid C type at line 14
+
+ffi/winapi/windows/gdiplus
+E:\p\luajit-winapi\\ffi/winapi/windows/gdiplus.lua:1122: declaration specifier expected near 'GpPath' at line 497
+
+ffi/winapi/windows/fxsutility
+cannot load module 'FxsUtility.dll': The specified module could not be found.
+
+
+ffi/winapi/windows/fxsapi
+cannot load module 'FxsApi.dll': The specified module could not be found.
+
+
+ffi/winapi/windows/fwpuclnt
+E:\p\luajit-winapi\\ffi/winapi/windows/fwpuclnt.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/windows/esent
+E:\p\luajit-winapi\\ffi/winapi/windows/esent.lua:837: declaration specifier expected near 'tchar' at line 688
+
+ffi/winapi/headers/bluetooth
+loop or previous error loading module 'ffi/winapi/headers/bluetooth'
+
+ffi/winapi/windows/dhcpsapi
+E:\p\luajit-winapi\\ffi/winapi/windows/dhcpsapi.lua:753: ';' expected near 'DHCP_IP_ADDRESS' at line 5
+
+ffi/winapi/windows/csrsrv
+cannot load module 'CsrSrv.dll': The specified module could not be found.
+
+
+ffi/winapi/windows/cscapi
+E:\p\luajit-winapi\\ffi/winapi/windows/cscapi.lua:7: declaration specifier expected near 'CCscSearchApiInterface'
+
+ffi/winapi/interfaces/coreaudio/iaudioinputselector
+...\ffi/winapi/interfaces/coreaudio/iaudioinputselector.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/crypt32
+E:\p\luajit-winapi\\ffi/winapi/windows/crypt32.lua:240: invalid C type at line 2
+
+ffi/winapi/windows/ntdsapi
+E:\p\luajit-winapi\\ffi/winapi/windows/ntdsapi.lua:148: declaration specifier expected near 'LPCWCH' at line 110
+
+ffi/winapi/interfaces/coreaudio/iksformatsupport
+...pi\\ffi/winapi/interfaces/coreaudio/iksformatsupport.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/icontrolchangenotify
+...ffi/winapi/interfaces/coreaudio/icontrolchangenotify.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/certadm
+cannot load module 'Certadm.dll': The specified module could not be found.
+
+
+ffi/winapi/mozilla/plc4
+E:\p\luajit-winapi\\ffi/winapi/mozilla/plc4.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
+
+ffi/winapi/interfaces/directinput/idirectinputdevice2w
+...i/winapi/interfaces/directinput/idirectinputdevice2w.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinputdevicew'
+
+ffi/winapi/interfaces/coreaudio/immnotificationclient
+...fi/winapi/interfaces/coreaudio/immnotificationclient.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiotreble
+...\\ffi/winapi/interfaces/coreaudio/iperchanneldblevel.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/microsoft
+E:\p\luajit-winapi\\ffi/winapi/microsoft.lua:36: declaration specifier expected near 'AssemblyConfig' at line 21
+
+ffi/winapi/interfaces/coreaudio/iaudiochannelconfig
+...\ffi/winapi/interfaces/coreaudio/iaudiochannelconfig.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiovolumelevel
+...i\\ffi/winapi/interfaces/coreaudio/iaudiovolumelevel.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/iperchanneldblevel'
+
+ffi/winapi/interfaces/coreaudio/coreaudio
+loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iperchanneldblevel
+loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/iperchanneldblevel'
+
+ffi/winapi/interfaces/coreaudio/isimpleaudiovolume
+...\\ffi/winapi/interfaces/coreaudio/isimpleaudiovolume.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/microsoft
+loop or previous error loading module 'ffi/winapi/microsoft'
+
+ffi/winapi/microsoft
+loop or previous error loading module 'ffi/winapi/microsoft'
+
+ffi/winapi/windows/uxtheme
+E:\p\luajit-winapi\\ffi/winapi/windows/uxtheme.lua:173: declaration specifier expected near 'INTLIST' at line 133
+
+ffi/winapi/windows/wdspxe
+cannot load module 'WdsPxe.dll': The specified module could not be found.
+
+
+ffi/winapi/interfaces/directinput/idirectinputeffect
+...ffi/winapi/interfaces/directinput/idirectinputeffect.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/directinput/idirectinput8a
+...pi\\ffi/winapi/interfaces/directinput/idirectinput8a.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/coreaudio/iaudioendpointvolume
+...ffi/winapi/interfaces/coreaudio/iaudioendpointvolume.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudioendpointvolumecallback
+...pi/interfaces/coreaudio/iaudioendpointvolumecallback.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iksjackdescription2
+...\ffi/winapi/interfaces/coreaudio/iksjackdescription2.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudioautogaincontrol
+...fi/winapi/interfaces/coreaudio/iaudioautogaincontrol.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiobass
+...t-winapi\\ffi/winapi/interfaces/coreaudio/iaudiobass.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/iperchanneldblevel'
+
+ffi/winapi/interfaces/coreaudio/iaudiocaptureclient
+...\ffi/winapi/interfaces/coreaudio/iaudiocaptureclient.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/mozilla/plds4
+E:\p\luajit-winapi\\ffi/winapi/mozilla/plds4.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
+
+ffi/winapi/interfaces/coreaudio/iaudiopeakmeter
+...api\\ffi/winapi/interfaces/coreaudio/iaudiopeakmeter.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudioclock
+...-winapi\\ffi/winapi/interfaces/coreaudio/iaudioclock.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiomidrange
+...napi\\ffi/winapi/interfaces/coreaudio/iaudiomidrange.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/iperchanneldblevel'
+
+ffi/winapi/interfaces/directinput/idirectinputdevice8w
+...i/winapi/interfaces/directinput/idirectinputdevice8w.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/directinput/idirectinputdevice8a
+...i/winapi/interfaces/directinput/idirectinputdevice8a.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/directinput/idirectinputdevice7w
+...i/winapi/interfaces/directinput/idirectinputdevice7w.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinputdevice2w'
+
+ffi/winapi/interfaces/directinput/idirectinputa
+...api\\ffi/winapi/interfaces/directinput/idirectinputa.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/directinput/idirectinput8w
+...pi\\ffi/winapi/interfaces/directinput/idirectinput8w.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/directinput/idirectinput2a
+...pi\\ffi/winapi/interfaces/directinput/idirectinput2a.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinputa'
+
+ffi/winapi/interfaces/coreaudio/iaudioendpointvolumeex
+...i/winapi/interfaces/coreaudio/iaudioendpointvolumeex.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/iaudioendpointvolume'
+
+ffi/winapi/interfaces/coreaudio/iaudiosessioncontrol
+...ffi/winapi/interfaces/coreaudio/iaudiosessioncontrol.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/qosname
+E:\p\luajit-winapi\\ffi/winapi/windows/qosname.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+
+ffi/winapi/interfaces/directx/11/d3dx/d3dcsx_43
+...api\\ffi/winapi/interfaces/directx/11/d3dx/d3dx11_43.lua:34: declaration specifier expected near 'D3D10_SHADER_MACRO'
+
+ffi/winapi/windows/bthprops
+E:\p\luajit-winapi\\ffi/winapi/windows/bthprops.lua:2: loop or previous error loading module 'ffi/winapi/headers/bluetooth'
+
+ffi/winapi/interfaces/coreaudio/ipartslist
+...t-winapi\\ffi/winapi/interfaces/coreaudio/ipartslist.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudioloudness
+...napi\\ffi/winapi/interfaces/coreaudio/iaudioloudness.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/isubunit
+...jit-winapi\\ffi/winapi/interfaces/coreaudio/isubunit.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/immdeviceenumerator
+...\ffi/winapi/interfaces/coreaudio/immdeviceenumerator.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/directinput/dinput8
+...it-winapi\\ffi/winapi/interfaces/directinput/dinput8.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/coreaudio/iaudiosessioncontrol2
+...fi/winapi/interfaces/coreaudio/iaudiosessioncontrol2.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/iaudiosessioncontrol'
+
+ffi/winapi/windows/sfcfiles
+cannot load module 'Sfcfiles.dll': The specified module could not be found.
+
+
+ffi/winapi/interfaces/coreaudio/iaudioclockadjustment
+...fi/winapi/interfaces/coreaudio/iaudioclockadjustment.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/idevicespecificproperty
+.../winapi/interfaces/coreaudio/idevicespecificproperty.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/wdstptc
+cannot load module 'Wdstptc.dll': The specified module could not be found.
+
+
+ffi/winapi/mapi/msmapi32
+E:\p\luajit-winapi\\ffi/winapi/mapi/msmapi32.lua:110: declaration specifier expected near 'LPABPROVIDER' at line 2
+
+ffi/winapi/interfaces/coreaudio/iaudiosessionevents
+...\ffi/winapi/interfaces/coreaudio/iaudiosessionevents.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiometerinformation
+...i/winapi/interfaces/coreaudio/iaudiometerinformation.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiomute
+...t-winapi\\ffi/winapi/interfaces/coreaudio/iaudiomute.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiooutputselector
+...ffi/winapi/interfaces/coreaudio/iaudiooutputselector.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/directinput/idirectinput2w
+...api\\ffi/winapi/interfaces/directinput/idirectinputw.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/coreaudio/iaudioclient
+...winapi\\ffi/winapi/interfaces/coreaudio/iaudioclient.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iconnector
+...t-winapi\\ffi/winapi/interfaces/coreaudio/iconnector.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/coreaudio/iaudiosessionmanager
+loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/iaudiosessionmanager'
+
+ffi/winapi/interfaces/coreaudio/ikscontrol
+...t-winapi\\ffi/winapi/interfaces/coreaudio/ikscontrol.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/directinput/dinput
+...jit-winapi\\ffi/winapi/interfaces/directinput/dinput.lua:1: loop or previous error loading module 'ffi/winapi/headers/dinput'
+
+ffi/winapi/interfaces/directinput/idirectinput7a
+...pi\\ffi/winapi/interfaces/directinput/idirectinput7a.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinput2a'
+
+ffi/winapi/microsoft
+loop or previous error loading module 'ffi/winapi/microsoft'
+
+ffi/winapi/windows/msvcrxx
+E:\p\luajit-winapi\\ffi/winapi/windows/msvcrxx.lua:1816: '<identifier>' expected near ';' at line 2
+
+ffi/winapi/interfaces/directx/11/d3dx/d3dx11_43
+loop or previous error loading module 'ffi/winapi/interfaces/directx/11/d3dx/d3dx11_43'
+
+ffi/winapi/interfaces/directx/11/d3d11
+...uajit-winapi\\ffi/winapi/interfaces/directx/11/d3d11.lua:8: declaration specifier expected near 'IDXGIAdapter'
+
+ffi/winapi/interfaces/directx/9/d3d9
+...\luajit-winapi\\ffi/winapi/interfaces/directx/9/d3d9.lua:5: declaration specifier expected near 'IDirect3D9'
+
+ffi/winapi/microsoft
+loop or previous error loading module 'ffi/winapi/microsoft'
+
+ffi/winapi/interfaces/directinput/idirectinputdevicea
+loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinputdevicea'
+
+ffi/winapi/interfaces/directinput/idirectinputw
+loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinputw'
+
+ffi/winapi/interfaces/coreaudio/immdeviceactivator
+...\\ffi/winapi/interfaces/coreaudio/immdeviceactivator.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/interfaces/directinput/idirectinput7w
+...pi\\ffi/winapi/interfaces/directinput/idirectinput7w.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinput2w'
+
+ffi/winapi/interfaces/coreaudio/iaudioclock2
+...winapi\\ffi/winapi/interfaces/coreaudio/iaudioclock2.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/windows/wlanapi
+E:\p\luajit-winapi\\ffi/winapi/windows/wlanapi.lua:420: declaration specifier expected near 'DOT11_MAC_ADDRESS' at line 104
+
+ffi/winapi/interfaces/coreaudio/idevicetopology
+...api\\ffi/winapi/interfaces/coreaudio/idevicetopology.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
+
+ffi/winapi/mozilla/nspr4
+E:\p\luajit-winapi\\ffi/winapi/mozilla/nspr4.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
+
+total	1646
+good	1493
+bad	138
+missing	15	Mqrt.dll Wdsbp.dll VHDMount.dll WinFax.dll Wdsmc.dll WdsClientAPI.dll Ntdsbcli.dll LegitLib.dll FxsUtility.dll FxsApi.dll CsrSrv.dll Certadm.dll WdsPxe.dll Sfcfiles.dll Wdstptc.dll
