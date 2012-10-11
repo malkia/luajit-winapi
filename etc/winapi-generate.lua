@@ -249,8 +249,12 @@ local function process(var, luafile)
 	 end
       elseif var.Type=="Alias" or var.Base then
 	 assert(var.Type=="Alias" and var.Base)
+	 local base = var.Base
+	 if base == "LPCTSTR" then
+	    base = "uintptr_t"
+	 end
 	 luafile:write(
-	    "  typedef " .. var.Base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+	    "  typedef " .. base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
 	 if defined[var.Name] then
 	    print('already defined', var.Name)
 	 else
@@ -279,12 +283,13 @@ local function process(var, luafile)
 	 luafile:write( "  } " .. var.Name .. ";\n" )
       end
    elseif var.Type == "Pointer" or var.Type == "Alias" then
-      if var.Base=="LPVOID" and
-	 var.Name=="SID*" and
-	 var.Type=="Alias"
-      then
+      if var.Base=="LPVOID" and	 var.Name=="SID*" and var.Type=="Alias" then
 	 var.Base = "void"
 	 var.Name = "SID"
+      end
+      if var.Base=="LPVOID" and	 var.Name=="ACTIVATION_CONTEXT*" and var.Type=="Alias" then
+	 var.Base = "void"
+	 var.Name = "ACTIVATION_CONTEXT"
       end
       if var.Name:find("*",1,true)==nil then
 	 if builtin_types[var.Name] == nil then
@@ -492,13 +497,19 @@ local function generate()
 end
 
 local function test(cdefs)
+   local total, bad = 0, 0
    for filename, _ in pairs(cdefs) do
       local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
       local status, error = pcall(require,lib)
       if error ~= true then
 	 print(lib.."\n"..(error==true and "OK" or error).."\n")
+	 bad = bad + 1
       end
+      total = total + 1
    end
+   print('total',total)
+   print('good',total-bad)
+   print('bad',bad)
 end
 
 --generate()

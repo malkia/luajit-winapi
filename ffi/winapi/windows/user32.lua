@@ -2,6 +2,7 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/shell' )
 require( 'ffi/winapi/headers/gdi' )
 require( 'ffi/winapi/headers/security' )
+require( 'ffi/winapi/windows/kernel32' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID PMENUBARINFO; //Alias
@@ -694,7 +695,7 @@ ffi.cdef [[
   typedef DWORD DeviceNotificationFlags; //Alias
   typedef UINT TrackPopupMenuFlags; //Alias
   typedef UINT GetMenuDefaultItemFlags; //Alias
-  typedef LPCTSTR LoadImageString_LPCTSTR; //Alias
+  typedef uintptr_t LoadImageString_LPCTSTR; //Alias
   static const LoadImageString_LPCTSTR OBM_CLOSE = 32754;
   static const LoadImageString_LPCTSTR OBM_UPARROW = 32753;
   static const LoadImageString_LPCTSTR OBM_DNARROW = 32752;
@@ -752,8 +753,8 @@ ffi.cdef [[
   static const LoadImageString_LPCTSTR OIC_INFORMATION = 32516;
   static const LoadImageString_LPCTSTR OIC_WINLOGO = 32517;
   static const LoadImageString_LPCTSTR OIC_SHIELD = 32518;
-  typedef LPCTSTR LoadBitmapString_LPCTSTR; //Alias
-  typedef LPCTSTR LoadCursorString_LPCTSTR; //Alias
+  typedef uintptr_t LoadBitmapString_LPCTSTR; //Alias
+  typedef uintptr_t LoadCursorString_LPCTSTR; //Alias
   static const LoadCursorString_LPCTSTR IDC_ARROW = 32512;
   static const LoadCursorString_LPCTSTR IDC_IBEAM = 32513;
   static const LoadCursorString_LPCTSTR IDC_WAIT = 32514;
@@ -770,7 +771,7 @@ ffi.cdef [[
   static const LoadCursorString_LPCTSTR IDC_HAND = 32649;
   static const LoadCursorString_LPCTSTR IDC_APPSTARTING = 32650;
   static const LoadCursorString_LPCTSTR IDC_HELP = 32651;
-  typedef LPCTSTR LoadIconString_LPCTSTR; //Alias
+  typedef uintptr_t LoadIconString_LPCTSTR; //Alias
   static const LoadIconString_LPCTSTR IDI_APPLICATION = 32512;
   static const LoadIconString_LPCTSTR IDI_ERROR = 32513;
   static const LoadIconString_LPCTSTR IDI_QUESTION = 32514;

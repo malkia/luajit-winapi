@@ -1,4 +1,4 @@
-diff -r broken/API/Interfaces/CoreAudio/IAudioSessionControl.xml fixed/API/Interfaces/CoreAudio/IAudioSessionControl.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioSessionControl.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioSessionControl.xml
 51,100d50
 < <!--
 <     API Monitor Definitions
@@ -50,7 +50,7 @@ diff -r broken/API/Interfaces/CoreAudio/IAudioSessionControl.xml fixed/API/Inter
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/CoreAudio/IAudioSessionControl2.xml fixed/API/Interfaces/CoreAudio/IAudioSessionControl2.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioSessionControl2.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioSessionControl2.xml
 31,60d30
 < <!--
 <     API Monitor Definitions
@@ -82,7 +82,7 @@ diff -r broken/API/Interfaces/CoreAudio/IAudioSessionControl2.xml fixed/API/Inte
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/CoreAudio/IAudioSessionEnumerator.xml fixed/API/Interfaces/CoreAudio/IAudioSessionEnumerator.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioSessionEnumerator.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioSessionEnumerator.xml
 21,40d20
 < <!--
 <     API Monitor Definitions
@@ -104,7 +104,7 @@ diff -r broken/API/Interfaces/CoreAudio/IAudioSessionEnumerator.xml fixed/API/In
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/CoreAudio/IAudioSessionEvents.xml fixed/API/Interfaces/CoreAudio/IAudioSessionEvents.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioSessionEvents.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioSessionEvents.xml
 48,94d47
 < <!--
 <     API Monitor Definitions
@@ -153,7 +153,7 @@ diff -r broken/API/Interfaces/CoreAudio/IAudioSessionEvents.xml fixed/API/Interf
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/CoreAudio/IAudioSessionManager.xml fixed/API/Interfaces/CoreAudio/IAudioSessionManager.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioSessionManager.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioSessionManager.xml
 24,46d23
 < <!--
 <     API Monitor Definitions
@@ -178,7 +178,7 @@ diff -r broken/API/Interfaces/CoreAudio/IAudioSessionManager.xml fixed/API/Inter
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/CoreAudio/IAudioSessionManager2.xml fixed/API/Interfaces/CoreAudio/IAudioSessionManager2.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioSessionManager2.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioSessionManager2.xml
 33,64d32
 < <!--
 <     API Monitor Definitions
@@ -212,7 +212,7 @@ diff -r broken/API/Interfaces/CoreAudio/IAudioSessionManager2.xml fixed/API/Inte
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/CoreAudio/IAudioSessionNotification.xml fixed/API/Interfaces/CoreAudio/IAudioSessionNotification.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioSessionNotification.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioSessionNotification.xml
 16,30d15
 < <!--
 <     API Monitor Definitions
@@ -229,7 +229,7 @@ diff -r broken/API/Interfaces/CoreAudio/IAudioSessionNotification.xml fixed/API/
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/CoreAudio/IAudioVolumeDuckNotification.xml fixed/API/Interfaces/CoreAudio/IAudioVolumeDuckNotification.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioVolumeDuckNotification.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioVolumeDuckNotification.xml
 21,40d20
 < <!--
 <     API Monitor Definitions
@@ -251,7 +251,7 @@ diff -r broken/API/Interfaces/CoreAudio/IAudioVolumeDuckNotification.xml fixed/A
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/Shell/IShellImageData.xml fixed/API/Interfaces/Shell/IShellImageData.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/Shell/IShellImageData.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/Shell/IShellImageData.xml
 131,260d130
 < <!--
 <     API Monitor Definitions
@@ -383,7 +383,7 @@ diff -r broken/API/Interfaces/Shell/IShellImageData.xml fixed/API/Interfaces/She
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/Shell/IShellImageDataAbort.xml fixed/API/Interfaces/Shell/IShellImageDataAbort.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/Shell/IShellImageDataAbort.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/Shell/IShellImageDataAbort.xml
 14,26d13
 < <!--
 <     API Monitor Definitions
@@ -398,7 +398,7 @@ diff -r broken/API/Interfaces/Shell/IShellImageDataAbort.xml fixed/API/Interface
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/Interfaces/Shell/IShellImageDataFactory.xml fixed/API/Interfaces/Shell/IShellImageDataFactory.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/Shell/IShellImageDataFactory.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/Shell/IShellImageDataFactory.xml
 30,58d29
 < <!--
 <     API Monitor Definitions
@@ -429,18 +429,21 @@ diff -r broken/API/Interfaces/Shell/IShellImageDataFactory.xml fixed/API/Interfa
 <         </Api>
 <     </Interface>
 < </ApiMonitor>
-diff -r broken/API/MAPI/IMAPISession.xml fixed/API/MAPI/IMAPISession.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/MAPI/IMAPISession.xml C:\Program Files\rohitab.com\API Monitor\API/MAPI/IMAPISession.xml
 9c9
 <     <Interface Name="IMAPISession" Id="{00020300-0000-0000-C000-000000000046}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Office Development/Microsoft Office/Outlook/Outlook MAPI Reference/Interfaces" Category="Office Development/Microsoft Office/Outlook/Outlook MAPI Reference/Interfaces">
 ---
 >     <Interface Name="IMAPISession" Id="{00020300-0000-0000-C000-000000000046}" BaseInterface="IUnknown" OnlineHelp="MSDN" ErrorFunc="HRESULT" Category="Office Development/Microsoft Office/Outlook/Outlook MAPI Reference/Interfaces">
-diff -r broken/API/Windows/Netapi32.xml fixed/API/Windows/Netapi32.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Windows/Netapi32.xml C:\Program Files\rohitab.com\API Monitor\API/Windows/Netapi32.xml
 499c499
 <         <!-- TODO: DWORD return should be [ERROR_CODE]
 ---
 >         <!-- TODO: DWORD return should be [ERROR_CODE] -->
-diff -r broken/API/Windows/Rpcrt4.xml fixed/API/Windows/Rpcrt4.xml
+diff -r E:\apps\API Monitor (rohitab.com)\API/Windows/Rpcrt4.xml C:\Program Files\rohitab.com\API Monitor\API/Windows/Rpcrt4.xml
 979c979
 <             <Param Type="RPC_TSTR"n Name="StringUuid" />
 ---
 >             <Param Type="RPC_TSTR" Name="StringUuid" />
+diff -r E:\apps\API Monitor (rohitab.com)\API/Windows/User32.xml C:\Program Files\rohitab.com\API Monitor\API/Windows/User32.xml
+10a11
+>     <Include Filename="Windows\kernel32.xml" />

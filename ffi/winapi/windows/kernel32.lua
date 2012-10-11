@@ -66,6 +66,7 @@ ffi.cdef [[
   typedef PRTL_CRITICAL_SECTION LPCRITICAL_SECTION; //Alias
   typedef PRTL_CRITICAL_SECTION PCRITICAL_SECTION; //Alias
   typedef DWORD TP_VERSION; //Alias
+  typedef void ACTIVATION_CONTEXT; //Alias
   enum { MAX_DEFAULTCHAR = 2 };
   enum { MAX_LEADBYTES = 12 };
   enum { WOW64_MAXIMUM_SUPPORTED_EXTENSION = 512 };
