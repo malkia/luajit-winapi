@@ -56,18 +56,18 @@ ffi.cdef [[
   static const FDIERROR FDIERROR_RESERVE_MISMATCH = 9;
   static const FDIERROR FDIERROR_WRONG_CABINET = 10;
   static const FDIERROR FDIERROR_USER_ABORT = 11;
-  typedef struct ERF_FCI {
+  typedef struct WINAPI_ERF_FCI {
     FCIERROR erfOper;
     int erfType;
     BOOL fError;
-  } ERF_FCI;
-  typedef ERF_FCI *PERF_FCI; //Pointer
-  typedef struct ERF_FDI {
+  } WINAPI_ERF_FCI;
+  typedef WINAPI_ERF_FCI *WINAPI_PERF_FCI; //Pointer
+  typedef struct WINAPI_ERF_FDI {
     FDIERROR erfOper;
     int erfType;
     BOOL fError;
-  } ERF_FDI;
-  typedef ERF_FDI *PERF_FDI; //Pointer
+  } WINAPI_ERF_FDI;
+  typedef WINAPI_ERF_FDI *WINAPI_PERF_FDI; //Pointer
   typedef struct CCAB {
     ULONG cb;
     ULONG cbFolderThresh;
@@ -104,12 +104,12 @@ ffi.cdef [[
   } CABINETDLLVERSIONINFO;
   typedef CABINETDLLVERSIONINFO *PCABINETDLLVERSIONINFO; //Pointer
   BOOL    FCIAddFile(           HFCI hfci, LPSTR pszSourceFile, LPSTR pszFileName, BOOL fExecute, PFNFCIGETNEXTCABINET GetNextCab, PFNFCISTATUS pfnProgress, PFNFCIGETOPENINFO pfnOpenInfo, TCOMP typeCompress);
-  HFCI    FCICreate(            PERF_FCI perf, PFNFCIFILEPLACED pfnfiledest, PFNFCIALLOC pfnalloc, PFNFCIFREE pfnfree, PFNFCIOPEN pfnopen, PFNFCIREAD pfnread, PFNFCIWRITE pfnwrite, PFNFCICLOSE pfnclose, PFNFCISEEK pfnseek, PFNFCIDELETE pfndelete, PFNFCIGETTEMPFILE pfnfcigtf, PCCAB pccab, void* pv);
+  HFCI    FCICreate(            WINAPI_PERF_FCI perf, PFNFCIFILEPLACED pfnfiledest, PFNFCIALLOC pfnalloc, PFNFCIFREE pfnfree, PFNFCIOPEN pfnopen, PFNFCIREAD pfnread, PFNFCIWRITE pfnwrite, PFNFCICLOSE pfnclose, PFNFCISEEK pfnseek, PFNFCIDELETE pfndelete, PFNFCIGETTEMPFILE pfnfcigtf, PCCAB pccab, void* pv);
   BOOL    FCIDestroy(           HFCI hfci);
   BOOL    FCIFlushCabinet(      HFCI hfci, BOOL fGetNextCab, PFNFCIGETNEXTCABINET GetNextCab, PFNFCISTATUS pfnProgress);
   BOOL    FCIFlushFolder(       HFCI hfci, PFNFCIGETNEXTCABINET GetNextCab, PFNFCISTATUS pfnProgress);
   BOOL    FDICopy(              HFDI hfdi, LPSTR pszCabinet, LPSTR pszCabPath, INT flags, PFNFDINOTIFY pfnfdin, PFNFDIDECRYPT pfnfdid, void* pvUser);
-  HFDI    FDICreate(            PFNALLOC pfnalloc, PFNFREE pfnfree, PFNOPEN pfnopen, PFNREAD pfnread, PFNWRITE pfnwrite, PFNCLOSE pfnclose, PFNSEEK pfnseek, int cpuType, PERF_FDI perf);
+  HFDI    FDICreate(            PFNALLOC pfnalloc, PFNFREE pfnfree, PFNOPEN pfnopen, PFNREAD pfnread, PFNWRITE pfnwrite, PFNCLOSE pfnclose, PFNSEEK pfnseek, int cpuType, WINAPI_PERF_FDI perf);
   BOOL    FDIDestroy(           BOOL hfdi);
   BOOL    FDIIsCabinet(         HFDI hfdi, INT_PTR hf, PFDICABINETINFO pfdici);
   BOOL    FDITruncateCabinet(   HFDI hfdi, LPSTR* pszCabinetName, USHORT iFolderToDelete);

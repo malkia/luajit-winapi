@@ -88,16 +88,16 @@ ffi.cdef [[
   enum { MAPI_DIM = 1 };
   typedef GUID MAPIUID; //Alias
   typedef MAPIUID *LPMAPIUID; //Pointer
-  typedef ULONG MapiUnicodeFlag; //Alias
-  typedef ULONG FlagList_FLAGS; //Alias
+  typedef ULONG WINAPI_MapiUnicodeFlag; //Alias
+  typedef ULONG WINAPI_FlagList_FLAGS; //Alias
   typedef struct FlagList {
     ULONG cFlags;
-    FlagList_FLAGS ulFlag[MAPI_DIM];
+    WINAPI_FlagList_FLAGS ulFlag[MAPI_DIM];
   } FlagList;
   typedef FlagList *LPFlagList; //Pointer
-  typedef BYTE ENTRYID_FLAGS; //Alias
+  typedef BYTE WINAPI_ENTRYID_FLAGS; //Alias
   typedef struct ENTRYID {
-    ENTRYID_FLAGS abFlags[4];
+    WINAPI_ENTRYID_FLAGS abFlags[4];
     BYTE ab[MAPI_DIM];
   } ENTRYID;
   typedef ENTRYID *LPENTRYID; //Pointer
@@ -106,17 +106,17 @@ ffi.cdef [[
     LPCSTR aMessageClass[MAPI_DIM];
   } SMessageClassArray;
   typedef SMessageClassArray *LPSMESSAGECLASSARRAY; //Pointer
-  typedef ULONG MAPINAMEID_CHOICE; //Alias
-  static const MAPINAMEID_CHOICE MNID_ID = 0;
-  static const MAPINAMEID_CHOICE MNID_STRING = 1;
-  typedef union MAPINAMEID_u {
+  typedef ULONG WINAPI_MAPINAMEID_CHOICE; //Alias
+  static const WINAPI_MAPINAMEID_CHOICE MNID_ID = 0;
+  static const WINAPI_MAPINAMEID_CHOICE MNID_STRING = 1;
+  typedef union WINAPI_MAPINAMEID_u {
     LONG lID;
     LPWSTR lpwstrName;
-  } MAPINAMEID_u;
+  } WINAPI_MAPINAMEID_u;
   typedef struct MAPINAMEID {
     LPGUID lpguid;
-    MAPINAMEID_CHOICE ulKind;
-    MAPINAMEID_u Kind;
+    WINAPI_MAPINAMEID_CHOICE ulKind;
+    WINAPI_MAPINAMEID_u Kind;
   } MAPINAMEID;
   typedef MAPINAMEID *LPMAPINAMEID; //Pointer
   typedef struct SMAPIFormPropEnumVal {
@@ -124,24 +124,24 @@ ffi.cdef [[
     ULONG nVal;
   } SMAPIFormPropEnumVal;
   typedef SMAPIFormPropEnumVal *LPMAPIFORMPROPENUMVAL; //Pointer
-  typedef struct SMAPIFormProp_u_s {
+  typedef struct WINAPI_SMAPIFormProp_u_s {
     MAPINAMEID nmidIdx;
     ULONG cfpevAvailable;
     LPMAPIFORMPROPENUMVAL pfpevAvailable;
-  } SMAPIFormProp_u_s;
-  typedef union SMAPIFormProp_u {
-    SMAPIFormProp_u_s s1;
-  } SMAPIFormProp_u;
+  } WINAPI_SMAPIFormProp_u_s;
+  typedef union WINAPI_SMAPIFormProp_u {
+    WINAPI_SMAPIFormProp_u_s s1;
+  } WINAPI_SMAPIFormProp_u;
   typedef ULONG FORMPROPSPECIALTYPE; //Alias
   static const FORMPROPSPECIALTYPE FPST_VANILLA = 0;
   static const FORMPROPSPECIALTYPE FPST_ENUM_PROP = 1;
   typedef struct SMAPIFormProp {
-    MapiUnicodeFlag ulFlags;
+    WINAPI_MapiUnicodeFlag ulFlags;
     ULONG nPropType;
     MAPINAMEID nmid;
     LPTSTR pszDisplayName;
     FORMPROPSPECIALTYPE nSpecialType;
-    SMAPIFormProp_u u;
+    WINAPI_SMAPIFormProp_u u;
   } SMAPIFormProp;
   typedef struct SMAPIFormPropArray {
     ULONG cProps;
@@ -159,7 +159,7 @@ ffi.cdef [[
     LPTSTR szVerbname;
     DWORD fuFlags;
     DWORD grfAttribs;
-    MapiUnicodeFlag ulFlags;
+    WINAPI_MapiUnicodeFlag ulFlags;
   } SMAPIVerb;
   typedef struct SMAPIVerbArray {
     ULONG cMAPIVerb;
@@ -187,10 +187,10 @@ ffi.cdef [[
     SRow aRow[MAPI_DIM];
   } SRowSet;
   typedef SRowSet *LPSRowSet; //Pointer
-  typedef ULONG TABLE_SORT; //Alias
+  typedef ULONG WINAPI_TABLE_SORT; //Alias
   typedef struct SSortOrder {
     ULONG ulPropTag;
-    TABLE_SORT ulOrder;
+    WINAPI_TABLE_SORT ulOrder;
   } SSortOrder;
   typedef struct SSortOrderSet {
     ULONG cSorts;
@@ -210,20 +210,20 @@ ffi.cdef [[
     ADRENTRY aEntries[MAPI_DIM];
   } ADRLIST;
   typedef ADRLIST *LPADRLIST; //Pointer
-  typedef ULONG PROPATTR_FLAGS; //Alias
+  typedef ULONG WINAPI_PROPATTR_FLAGS; //Alias
   typedef struct SPropAttrArray {
     ULONG cValues;
-    PROPATTR_FLAGS aPropAttr[MAPI_DIM];
+    WINAPI_PROPATTR_FLAGS aPropAttr[MAPI_DIM];
   } SPropAttrArray;
   typedef SPropAttrArray *LPSPropAttrArray; //Pointer
-  typedef union DTPAGE_u {
+  typedef union WINAPI_DTPAGE_u {
     LPTSTR lpszComponent;
     ULONG ulItemID;
-  } DTPAGE_u;
+  } WINAPI_DTPAGE_u;
   typedef struct DTPAGE {
     ULONG cctl;
     LPTSTR lpszResourceName;
-    DTPAGE_u ;
+    WINAPI_DTPAGE_u ;
     LPDTCTL lpctl;
   } DTPAGE;
   typedef DTPAGE *LPDTPAGE; //Pointer
@@ -247,38 +247,38 @@ ffi.cdef [[
     STnefProblem aProblem[MAPI_DIM];
   } STnefProblemArray;
   typedef UINT METHODS; //Alias
-  typedef ULONG MapiObjType; //Alias
-  static const MapiObjType MAPI_STORE = 0x00000001;
-  static const MapiObjType MAPI_ADDRBOOK = 0x00000002;
-  static const MapiObjType MAPI_FOLDER = 0x00000003;
-  static const MapiObjType MAPI_ABCONT = 0x00000004;
-  static const MapiObjType MAPI_MESSAGE = 0x00000005;
-  static const MapiObjType MAPI_MAILUSER = 0x00000006;
-  static const MapiObjType MAPI_ATTACH = 0x00000007;
-  static const MapiObjType MAPI_DISTLIST = 0x00000008;
-  static const MapiObjType MAPI_PROFSECT = 0x00000009;
-  static const MapiObjType MAPI_STATUS = 0x0000000A;
-  static const MapiObjType MAPI_SESSION = 0x0000000B;
-  static const MapiObjType MAPI_FORMINFO = 0x0000000C;
+  typedef ULONG WINAPI_MapiObjType; //Alias
+  static const WINAPI_MapiObjType MAPI_STORE = 0x00000001;
+  static const WINAPI_MapiObjType MAPI_ADDRBOOK = 0x00000002;
+  static const WINAPI_MapiObjType MAPI_FOLDER = 0x00000003;
+  static const WINAPI_MapiObjType MAPI_ABCONT = 0x00000004;
+  static const WINAPI_MapiObjType MAPI_MESSAGE = 0x00000005;
+  static const WINAPI_MapiObjType MAPI_MAILUSER = 0x00000006;
+  static const WINAPI_MapiObjType MAPI_ATTACH = 0x00000007;
+  static const WINAPI_MapiObjType MAPI_DISTLIST = 0x00000008;
+  static const WINAPI_MapiObjType MAPI_PROFSECT = 0x00000009;
+  static const WINAPI_MapiObjType MAPI_STATUS = 0x0000000A;
+  static const WINAPI_MapiObjType MAPI_SESSION = 0x0000000B;
+  static const WINAPI_MapiObjType MAPI_FORMINFO = 0x0000000C;
   typedef ULONG FLAGS; //Alias
-  typedef ULONG MapiTableType; //Alias
-  static const MapiTableType TBLTYPE_SNAPSHOT = 0;
-  static const MapiTableType TBLTYPE_KEYSET = 1;
-  static const MapiTableType TBLTYPE_DYNAMIC = 2;
-  typedef ULONG MapiTableStatus; //Alias
-  static const MapiTableStatus TBLSTAT_COMPLETE = 0;
-  static const MapiTableStatus TBLSTAT_QCHANGED = 7;
-  static const MapiTableStatus TBLSTAT_SORTING = 9;
-  static const MapiTableStatus TBLSTAT_SORT_ERROR = 10;
-  static const MapiTableStatus TBLSTAT_SETTING_COLS = 11;
-  static const MapiTableStatus TBLSTAT_SETCOL_ERROR = 13;
-  static const MapiTableStatus TBLSTAT_RESTRICTING = 14;
-  static const MapiTableStatus TBLSTAT_RESTRICT_ERROR = 15;
-  typedef ULONG ADRPARM_Flags; //Alias
+  typedef ULONG WINAPI_MapiTableType; //Alias
+  static const WINAPI_MapiTableType TBLTYPE_SNAPSHOT = 0;
+  static const WINAPI_MapiTableType TBLTYPE_KEYSET = 1;
+  static const WINAPI_MapiTableType TBLTYPE_DYNAMIC = 2;
+  typedef ULONG WINAPI_MapiTableStatus; //Alias
+  static const WINAPI_MapiTableStatus TBLSTAT_COMPLETE = 0;
+  static const WINAPI_MapiTableStatus TBLSTAT_QCHANGED = 7;
+  static const WINAPI_MapiTableStatus TBLSTAT_SORTING = 9;
+  static const WINAPI_MapiTableStatus TBLSTAT_SORT_ERROR = 10;
+  static const WINAPI_MapiTableStatus TBLSTAT_SETTING_COLS = 11;
+  static const WINAPI_MapiTableStatus TBLSTAT_SETCOL_ERROR = 13;
+  static const WINAPI_MapiTableStatus TBLSTAT_RESTRICTING = 14;
+  static const WINAPI_MapiTableStatus TBLSTAT_RESTRICT_ERROR = 15;
+  typedef ULONG WINAPI_ADRPARM_Flags; //Alias
   typedef struct ADRPARM {
     ULONG cbABContEntryID;
     LPENTRYID lpABContEntryID;
-    ADRPARM_Flags ulFlags;
+    WINAPI_ADRPARM_Flags ulFlags;
     LPVOID lpReserved;
     ULONG ulHelpContext;
     LPTSTR lpszHelpFileName;
@@ -297,14 +297,14 @@ ffi.cdef [[
   } ADRPARM;
   typedef ADRPARM *LPADRPARM; //Pointer
   typedef struct FORMPRINTSETUP {
-    MapiUnicodeFlag ulFlags;
+    WINAPI_MapiUnicodeFlag ulFlags;
     HGLOBAL hDevMode;
     HGLOBAL hDevNames;
     ULONG ulFirstPageNumber;
     ULONG fPrintAttachments;
   } FORMPRINTSETUP;
   typedef FORMPRINTSETUP *LPFORMPRINTSETUP; //Pointer
-  typedef ULONG WABEXTDISPLAY_Flags; //Alias
+  typedef ULONG WINAPI_WABEXTDISPLAY_Flags; //Alias
   typedef struct WABEXTDISPLAY {
     ULONG cbSize;
     LPWABOBJECT lpWABObject;
@@ -312,7 +312,7 @@ ffi.cdef [[
     LPMAPIPROP lpPropObj;
     BOOL fReadOnly;
     BOOL fDataChanged;
-    WABEXTDISPLAY_Flags ulFlags;
+    WINAPI_WABEXTDISPLAY_Flags ulFlags;
     LPVOID lpv;
     LPTSTR lpsz;
   } WABEXTDISPLAY;
@@ -354,11 +354,11 @@ ffi.cdef [[
     ULONG ulContext;
   } MAPIERROR;
   typedef MAPIERROR *LPMAPIERROR; //Pointer
-  typedef ULONG MapiInitVersion; //Alias
-  typedef ULONG MapiInitFlags; //Alias
+  typedef ULONG WINAPI_MapiInitVersion; //Alias
+  typedef ULONG WINAPI_MapiInitFlags; //Alias
   typedef struct MAPIINIT_0 {
-    MapiInitVersion ulVersion;
-    MapiInitFlags ulFlags;
+    WINAPI_MapiInitVersion ulVersion;
+    WINAPI_MapiInitFlags ulFlags;
   } MAPIINIT_0;
   typedef MAPIINIT_0 *LPMAPIINIT_0; //Pointer
 ]]

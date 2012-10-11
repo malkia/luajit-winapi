@@ -124,11 +124,11 @@ ffi.cdef [[
   typedef struct PRDirEntry {
     char* name;
   } PRDirEntry;
-  typedef PRUint16 PRPollDesc_Flags; //Alias
+  typedef PRUint16 WINAPI_PRPollDesc_Flags; //Alias
   typedef struct PRPollDesc {
     PRFileDesc* fd;
-    PRPollDesc_Flags in_flags;
-    PRPollDesc_Flags out_flags;
+    WINAPI_PRPollDesc_Flags in_flags;
+    WINAPI_PRPollDesc_Flags out_flags;
   } PRPollDesc;
   typedef struct PRHostEnt {
     char* h_name;

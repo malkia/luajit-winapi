@@ -27,24 +27,24 @@ ffi.cdef [[
   enum { MIXER_SHORT_NAME_CHARS = 16 };
   enum { MIXER_LONG_NAME_CHARS = 64 };
   enum { MAX_JOYSTICKOEMVXDNAME = 260 };
-  typedef DWORD WAVE_FORMAT; //Alias
-  typedef WORD AUXCAPS_TECH; //Alias
-  static const AUXCAPS_TECH AUXCAPS_CDAUDIO = 1;
-  static const AUXCAPS_TECH AUXCAPS_AUXIN = 2;
-  typedef DWORD AUXCAPS_SUPPORT; //Alias
+  typedef DWORD WINAPI_WAVE_FORMAT; //Alias
+  typedef WORD WINAPI_AUXCAPS_TECH; //Alias
+  static const WINAPI_AUXCAPS_TECH AUXCAPS_CDAUDIO = 1;
+  static const WINAPI_AUXCAPS_TECH AUXCAPS_AUXIN = 2;
+  typedef DWORD WINAPI_AUXCAPS_SUPPORT; //Alias
 # pragma pack( push, 1 )
   typedef struct AUXCAPS {
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
     TCHAR szPname[MAXPNAMELEN];
-    AUXCAPS_TECH wTechnology;
+    WINAPI_AUXCAPS_TECH wTechnology;
     WORD wReserved1;
-    AUXCAPS_SUPPORT dwSupport;
+    WINAPI_AUXCAPS_SUPPORT dwSupport;
   } AUXCAPS;
 # pragma pack( pop )
   typedef AUXCAPS *LPAUXCAPS; //Pointer
-  typedef UINT JOYCAPS_FLAGS; //Alias
+  typedef UINT WINAPI_JOYCAPS_FLAGS; //Alias
 # pragma pack( push, 1 )
   typedef struct JOYCAPS {
     WORD wMid;
@@ -65,7 +65,7 @@ ffi.cdef [[
     UINT wUmax;
     UINT wVmin;
     UINT wVmax;
-    JOYCAPS_FLAGS wCaps;
+    WINAPI_JOYCAPS_FLAGS wCaps;
     UINT wMaxAxes;
     UINT wNumAxes;
     UINT wMaxButtons;
@@ -74,14 +74,14 @@ ffi.cdef [[
   } JOYCAPS;
 # pragma pack( pop )
   typedef JOYCAPS *LPJOYCAPS; //Pointer
-  typedef DWORD MIDIHDR_FLAGS; //Alias
+  typedef DWORD WINAPI_MIDIHDR_FLAGS; //Alias
 # pragma pack( push, 1 )
   typedef struct MIDIHDR {
     LPVOID lpData;
     DWORD dwBufferLength;
     DWORD dwBytesRecorded;
     DWORD_PTR dwUser;
-    MIDIHDR_FLAGS dwFlags;
+    WINAPI_MIDIHDR_FLAGS dwFlags;
     LPVOID lpNext;
     DWORD_PTR reserved;
     DWORD dwOffset;
@@ -99,41 +99,41 @@ ffi.cdef [[
   } MIDIINCAPS;
 # pragma pack( pop )
   typedef MIDIINCAPS *LPMIDIINCAPS; //Pointer
-  typedef WORD MIDIOUTCAPS_TECH; //Alias
-  static const MIDIOUTCAPS_TECH MOD_MIDIPORT = 1;
-  static const MIDIOUTCAPS_TECH MOD_SYNTH = 2;
-  static const MIDIOUTCAPS_TECH MOD_SQSYNTH = 3;
-  static const MIDIOUTCAPS_TECH MOD_FMSYNTH = 4;
-  static const MIDIOUTCAPS_TECH MOD_MAPPER = 5;
-  static const MIDIOUTCAPS_TECH MOD_WAVETABLE = 6;
-  static const MIDIOUTCAPS_TECH MOD_SWSYNTH = 7;
-  typedef DWORD MIDICAPS_FLAGS; //Alias
+  typedef WORD WINAPI_MIDIOUTCAPS_TECH; //Alias
+  static const WINAPI_MIDIOUTCAPS_TECH MOD_MIDIPORT = 1;
+  static const WINAPI_MIDIOUTCAPS_TECH MOD_SYNTH = 2;
+  static const WINAPI_MIDIOUTCAPS_TECH MOD_SQSYNTH = 3;
+  static const WINAPI_MIDIOUTCAPS_TECH MOD_FMSYNTH = 4;
+  static const WINAPI_MIDIOUTCAPS_TECH MOD_MAPPER = 5;
+  static const WINAPI_MIDIOUTCAPS_TECH MOD_WAVETABLE = 6;
+  static const WINAPI_MIDIOUTCAPS_TECH MOD_SWSYNTH = 7;
+  typedef DWORD WINAPI_MIDICAPS_FLAGS; //Alias
 # pragma pack( push, 1 )
   typedef struct MIDIOUTCAPS {
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
     TCHAR szPname[MAXPNAMELEN];
-    MIDIOUTCAPS_TECH wTechnology;
+    WINAPI_MIDIOUTCAPS_TECH wTechnology;
     WORD wVoices;
     WORD wNotes;
     WORD wChannelMask;
-    MIDICAPS_FLAGS dwSupport;
+    WINAPI_MIDICAPS_FLAGS dwSupport;
   } MIDIOUTCAPS;
 # pragma pack( pop )
   typedef MIDIOUTCAPS *LPMIDIOUTCAPS; //Pointer
 # pragma pack( push, 1 )
-  typedef union MIXERCONTROLDETAILS_u {
+  typedef union WINAPI_MIXERCONTROLDETAILS_u {
     HWND hwndOwner;
     DWORD cMultipleItems;
-  } MIXERCONTROLDETAILS_u;
+  } WINAPI_MIXERCONTROLDETAILS_u;
 # pragma pack( pop )
 # pragma pack( push, 1 )
   typedef struct MIXERCONTROLDETAILS {
     DWORD cbStruct;
     DWORD dwControlID;
     DWORD cChannels;
-    MIXERCONTROLDETAILS_u ;
+    WINAPI_MIXERCONTROLDETAILS_u ;
     DWORD cbDetails;
     LPVOID paDetails;
   } MIXERCONTROLDETAILS;
@@ -151,58 +151,58 @@ ffi.cdef [[
 # pragma pack( pop )
   typedef MIXERCAPS *LPMIXERCAPS; //Pointer
 # pragma pack( push, 1 )
-  typedef union MIXERLINECONTROLS_u {
+  typedef union WINAPI_MIXERLINECONTROLS_u {
     DWORD dwControlID;
     DWORD dwControlType;
-  } MIXERLINECONTROLS_u;
+  } WINAPI_MIXERLINECONTROLS_u;
 # pragma pack( pop )
 # pragma pack( push, 1 )
-  typedef struct MIXERCONTROL_u1_s1 {
+  typedef struct WINAPI_MIXERCONTROL_u1_s1 {
     LONG lMinimum;
     LONG lMaximum;
-  } MIXERCONTROL_u1_s1;
+  } WINAPI_MIXERCONTROL_u1_s1;
 # pragma pack( pop )
 # pragma pack( push, 1 )
-  typedef struct MIXERCONTROL_u1_s2 {
+  typedef struct WINAPI_MIXERCONTROL_u1_s2 {
     DWORD dwMinimum;
     DWORD dwMaximum;
-  } MIXERCONTROL_u1_s2;
+  } WINAPI_MIXERCONTROL_u1_s2;
 # pragma pack( pop )
 # pragma pack( push, 1 )
-  typedef union MIXERCONTROL_u1 {
-    MIXERCONTROL_u1_s1 ;
-    MIXERCONTROL_u1_s2 ;
+  typedef union WINAPI_MIXERCONTROL_u1 {
+    WINAPI_MIXERCONTROL_u1_s1 ;
+    WINAPI_MIXERCONTROL_u1_s2 ;
     DWORD dwReserved[6];
-  } MIXERCONTROL_u1;
+  } WINAPI_MIXERCONTROL_u1;
 # pragma pack( pop )
 # pragma pack( push, 1 )
-  typedef union MIXERCONTROL_u2 {
+  typedef union WINAPI_MIXERCONTROL_u2 {
     DWORD cSteps;
     DWORD cbCustomData;
     DWORD dwReserved[6];
-  } MIXERCONTROL_u2;
+  } WINAPI_MIXERCONTROL_u2;
 # pragma pack( pop )
-  typedef DWORD MIXERCONTROL_CT_CLASS; //Alias
-  static const MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_CUSTOM = 0x00000000;
-  static const MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_METER = 0x10000000;
-  static const MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_SWITCH = 0x20000000;
-  static const MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_NUMBER = 0x30000000;
-  static const MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_SLIDER = 0x40000000;
-  static const MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_FADER = 0x50000000;
-  static const MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_TIME = 0x60000000;
-  static const MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_LIST = 0x70000000;
-  typedef DWORD MIXERCONTROL_CONTROLF; //Alias
+  typedef DWORD WINAPI_MIXERCONTROL_CT_CLASS; //Alias
+  static const WINAPI_MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_CUSTOM = 0x00000000;
+  static const WINAPI_MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_METER = 0x10000000;
+  static const WINAPI_MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_SWITCH = 0x20000000;
+  static const WINAPI_MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_NUMBER = 0x30000000;
+  static const WINAPI_MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_SLIDER = 0x40000000;
+  static const WINAPI_MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_FADER = 0x50000000;
+  static const WINAPI_MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_TIME = 0x60000000;
+  static const WINAPI_MIXERCONTROL_CT_CLASS MIXERCONTROL_CT_CLASS_LIST = 0x70000000;
+  typedef DWORD WINAPI_MIXERCONTROL_CONTROLF; //Alias
 # pragma pack( push, 1 )
   typedef struct MIXERCONTROL {
     DWORD cbStruct;
     DWORD dwControlID;
-    MIXERCONTROL_CT_CLASS dwControlType;
-    MIXERCONTROL_CONTROLF fdwControl;
+    WINAPI_MIXERCONTROL_CT_CLASS dwControlType;
+    WINAPI_MIXERCONTROL_CONTROLF fdwControl;
     DWORD cMultipleItems;
     TCHAR szShortName[MIXER_SHORT_NAME_CHARS];
     TCHAR szName[MIXER_LONG_NAME_CHARS];
-    MIXERCONTROL_u1 Bounds;
-    MIXERCONTROL_u2 Metrics;
+    WINAPI_MIXERCONTROL_u1 Bounds;
+    WINAPI_MIXERCONTROL_u2 Metrics;
   } MIXERCONTROL;
 # pragma pack( pop )
   typedef MIXERCONTROL *LPMIXERCONTROL; //Pointer
@@ -210,51 +210,51 @@ ffi.cdef [[
   typedef struct MIXERLINECONTROLS {
     DWORD cbStruct;
     DWORD dwLineID;
-    MIXERLINECONTROLS_u ;
+    WINAPI_MIXERLINECONTROLS_u ;
     DWORD cControls;
     DWORD cbmxctrl;
     LPMIXERCONTROL pamxctrl;
   } MIXERLINECONTROLS;
 # pragma pack( pop )
   typedef MIXERLINECONTROLS *LPMIXERLINECONTROLS; //Pointer
-  typedef DWORD MIXERLINE_LINEF; //Alias
-  typedef DWORD MIXERLINE_COMPONENTTYPE; //Alias
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_UNDEFINED = 0;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_DIGITAL = 1;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_LINE = 2;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_MONITOR = 3;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_SPEAKERS = 4;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_HEADPHONES = 5;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_TELEPHONE = 6;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_WAVEIN = 7;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_VOICEIN = 8;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED = 0x00001000;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_DIGITAL = 0x00001001;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_LINE = 0x00001002;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE = 0x00001003;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER = 0x00001004;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC = 0x00001005;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE = 0x00001006;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER = 0x00001007;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT = 0x00001008;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY = 0x00001009;
-  static const MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_ANALOG = 0x0000100A;
-  typedef DWORD MIXERLINE_TARGETTYPE; //Alias
-  static const MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_UNDEFINED = 0;
-  static const MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_WAVEOUT = 1;
-  static const MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_WAVEIN = 2;
-  static const MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_MIDIOUT = 3;
-  static const MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_MIDIIN = 4;
-  static const MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_AUX = 5;
+  typedef DWORD WINAPI_MIXERLINE_LINEF; //Alias
+  typedef DWORD WINAPI_MIXERLINE_COMPONENTTYPE; //Alias
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_UNDEFINED = 0;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_DIGITAL = 1;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_LINE = 2;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_MONITOR = 3;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_SPEAKERS = 4;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_HEADPHONES = 5;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_TELEPHONE = 6;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_WAVEIN = 7;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_DST_VOICEIN = 8;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_UNDEFINED = 0x00001000;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_DIGITAL = 0x00001001;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_LINE = 0x00001002;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_MICROPHONE = 0x00001003;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_SYNTHESIZER = 0x00001004;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_COMPACTDISC = 0x00001005;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_TELEPHONE = 0x00001006;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_PCSPEAKER = 0x00001007;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_WAVEOUT = 0x00001008;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_AUXILIARY = 0x00001009;
+  static const WINAPI_MIXERLINE_COMPONENTTYPE MIXERLINE_COMPONENTTYPE_SRC_ANALOG = 0x0000100A;
+  typedef DWORD WINAPI_MIXERLINE_TARGETTYPE; //Alias
+  static const WINAPI_MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_UNDEFINED = 0;
+  static const WINAPI_MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_WAVEOUT = 1;
+  static const WINAPI_MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_WAVEIN = 2;
+  static const WINAPI_MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_MIDIOUT = 3;
+  static const WINAPI_MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_MIDIIN = 4;
+  static const WINAPI_MIXERLINE_TARGETTYPE MIXERLINE_TARGETTYPE_AUX = 5;
 # pragma pack( push, 1 )
-  typedef struct MIXERLINE_s {
-    MIXERLINE_TARGETTYPE dwType;
+  typedef struct WINAPI_MIXERLINE_s {
+    WINAPI_MIXERLINE_TARGETTYPE dwType;
     DWORD dwDeviceID;
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
     TCHAR szPname[MAXPNAMELEN];
-  } MIXERLINE_s;
+  } WINAPI_MIXERLINE_s;
 # pragma pack( pop )
 # pragma pack( push, 1 )
   typedef struct MIXERLINE {
@@ -262,22 +262,22 @@ ffi.cdef [[
     DWORD dwDestination;
     DWORD dwSource;
     DWORD dwLineID;
-    MIXERLINE_LINEF fdwLine;
+    WINAPI_MIXERLINE_LINEF fdwLine;
     DWORD_PTR dwUser;
-    MIXERLINE_COMPONENTTYPE dwComponentType;
+    WINAPI_MIXERLINE_COMPONENTTYPE dwComponentType;
     DWORD cChannels;
     DWORD cConnections;
     DWORD cControls;
     TCHAR szShortName[MIXER_SHORT_NAME_CHARS];
     TCHAR szName[MIXER_LONG_NAME_CHARS];
-    MIXERLINE_s Target;
+    WINAPI_MIXERLINE_s Target;
   } MIXERLINE;
 # pragma pack( pop )
   typedef MIXERLINE *LPMIXERLINE; //Pointer
-  typedef DWORD MMIOINFO_FLAGS; //Alias
+  typedef DWORD WINAPI_MMIOINFO_FLAGS; //Alias
 # pragma pack( push, 1 )
   typedef struct MMIOINFO {
-    MMIOINFO_FLAGS dwFlags;
+    WINAPI_MMIOINFO_FLAGS dwFlags;
     FOURCC fccIOProc;
     LPMMIOPROC pIOProc;
     UINT wErrorRet;
@@ -297,14 +297,14 @@ ffi.cdef [[
 # pragma pack( pop )
   typedef MMIOINFO *LPMMIOINFO; //Pointer
   typedef MMIOINFO *LPMMIOINFO; //Pointer
-  typedef DWORD WHDR_FLAGS; //Alias
+  typedef DWORD WINAPI_WHDR_FLAGS; //Alias
 # pragma pack( push, 1 )
   typedef struct WAVEHDR {
     LPVOID lpData;
     DWORD dwBufferLength;
     DWORD dwBytesRecorded;
     DWORD_PTR dwUser;
-    WHDR_FLAGS dwFlags;
+    WINAPI_WHDR_FLAGS dwFlags;
     DWORD dwLoops;
     LPVOID lpNext;
     DWORD_PTR reserved;
@@ -317,70 +317,70 @@ ffi.cdef [[
     WORD wPid;
     MMVERSION vDriverVersion;
     TCHAR szPname[MAXPNAMELEN];
-    WAVE_FORMAT dwFormats;
+    WINAPI_WAVE_FORMAT dwFormats;
     WORD wChannels;
     WORD wReserved1;
   } WAVEINCAPS;
 # pragma pack( pop )
   typedef WAVEINCAPS *LPWAVEINCAPS; //Pointer
-  typedef DWORD WAVEOUTCAPS_SUPPORT; //Alias
+  typedef DWORD WINAPI_WAVEOUTCAPS_SUPPORT; //Alias
 # pragma pack( push, 1 )
   typedef struct WAVEOUTCAPS {
     WORD wMid;
     WORD wPid;
     MMVERSION vDriverVersion;
     TCHAR szPname[MAXPNAMELEN];
-    WAVE_FORMAT dwFormats;
+    WINAPI_WAVE_FORMAT dwFormats;
     WORD wChannels;
     WORD wReserved1;
-    WAVEOUTCAPS_SUPPORT dwSupport;
+    WINAPI_WAVEOUTCAPS_SUPPORT dwSupport;
   } WAVEOUTCAPS;
 # pragma pack( pop )
   typedef WAVEOUTCAPS *LPWAVEOUTCAPS; //Pointer
-  typedef UINT JoyButton; //Alias
+  typedef UINT WINAPI_JoyButton; //Alias
 # pragma pack( push, 1 )
   typedef struct JOYINFO {
     UINT wXpos;
     UINT wYpos;
     UINT wZpos;
-    JoyButton wButtons;
+    WINAPI_JoyButton wButtons;
   } JOYINFO;
 # pragma pack( pop )
   typedef JOYINFO *LPJOYINFO; //Pointer
-  typedef DWORD JoyPov; //Alias
-  static const JoyPov JOY_POVCENTERED = 0xFFFF;
-  static const JoyPov JOY_POVFORWARD = 0;
-  static const JoyPov JOY_POVRIGHT = 9000;
-  static const JoyPov JOY_POVBACKWARD = 18000;
-  static const JoyPov JOY_POVLEFT = 27000;
-  typedef DWORD JoyButtonAll; //Alias
-  typedef DWORD JOYINFOEX_Flags; //Alias
+  typedef DWORD WINAPI_JoyPov; //Alias
+  static const WINAPI_JoyPov JOY_POVCENTERED = 0xFFFF;
+  static const WINAPI_JoyPov JOY_POVFORWARD = 0;
+  static const WINAPI_JoyPov JOY_POVRIGHT = 9000;
+  static const WINAPI_JoyPov JOY_POVBACKWARD = 18000;
+  static const WINAPI_JoyPov JOY_POVLEFT = 27000;
+  typedef DWORD WINAPI_JoyButtonAll; //Alias
+  typedef DWORD WINAPI_JOYINFOEX_Flags; //Alias
 # pragma pack( push, 1 )
   typedef struct JOYINFOEX {
     DWORD dwSize;
-    JOYINFOEX_Flags dwFlags;
+    WINAPI_JOYINFOEX_Flags dwFlags;
     DWORD dwXpos;
     DWORD dwYpos;
     DWORD dwZpos;
     DWORD dwRpos;
     DWORD dwUpos;
     DWORD dwVpos;
-    JoyButtonAll dwButtons;
+    WINAPI_JoyButtonAll dwButtons;
     DWORD dwButtonNumber;
-    JoyPov dwPOV;
+    WINAPI_JoyPov dwPOV;
     DWORD dwReserved1;
     DWORD dwReserved2;
   } JOYINFOEX;
 # pragma pack( pop )
   typedef JOYINFOEX *LPJOYINFOEX; //Pointer
-  typedef DWORD MMCKINFO_Flags; //Alias
+  typedef DWORD WINAPI_MMCKINFO_Flags; //Alias
 # pragma pack( push, 1 )
   typedef struct MMCKINFO {
     FOURCC ckid;
     DWORD cksize;
     FOURCC fccType;
     DWORD dwDataOffset;
-    MMCKINFO_Flags dwFlags;
+    WINAPI_MMCKINFO_Flags dwFlags;
   } MMCKINFO;
 # pragma pack( pop )
   typedef MMCKINFO *LPMMCKINFO; //Pointer
@@ -467,16 +467,16 @@ ffi.cdef [[
   static const MCIERROR MCIERR_FILE_READ = 348;
   static const MCIERROR MCIERR_FILE_WRITE = 349;
   static const MCIERROR MCIERR_NO_IDENTITY = 350;
-  typedef DWORD waveInOutOpenFlags; //Alias
-  typedef DWORD midiInOutOpenFlags; //Alias
-  typedef DWORD mmioInstallIOProcFlags; //Alias
-  typedef UINT mmioCloseFlags; //Alias
-  typedef UINT mmioFlushFlags; //Alias
-  typedef UINT mmioStringToFOURCCFlags; //Alias
-  typedef UINT mmioDescendFlags; //Alias
-  typedef UINT mmioCreateChunkFlags; //Alias
-  typedef int mmioSeekOffset; //Alias
-  typedef struct MMTIME_u_s1 {
+  typedef DWORD WINAPI_waveInOutOpenFlags; //Alias
+  typedef DWORD WINAPI_midiInOutOpenFlags; //Alias
+  typedef DWORD WINAPI_mmioInstallIOProcFlags; //Alias
+  typedef UINT WINAPI_mmioCloseFlags; //Alias
+  typedef UINT WINAPI_mmioFlushFlags; //Alias
+  typedef UINT WINAPI_mmioStringToFOURCCFlags; //Alias
+  typedef UINT WINAPI_mmioDescendFlags; //Alias
+  typedef UINT WINAPI_mmioCreateChunkFlags; //Alias
+  typedef int WINAPI_mmioSeekOffset; //Alias
+  typedef struct WINAPI_MMTIME_u_s1 {
     BYTE hour;
     BYTE min;
     BYTE sec;
@@ -484,28 +484,28 @@ ffi.cdef [[
     BYTE fps;
     BYTE dummy;
     BYTE pad[2];
-  } MMTIME_u_s1;
-  typedef struct MMTIME_u_s2 {
+  } WINAPI_MMTIME_u_s1;
+  typedef struct WINAPI_MMTIME_u_s2 {
     DWORD songptrpos;
-  } MMTIME_u_s2;
-  typedef union MMTIME_u {
+  } WINAPI_MMTIME_u_s2;
+  typedef union WINAPI_MMTIME_u {
     DWORD ms;
     DWORD sample;
     DWORD cb;
     DWORD ticks;
-    MMTIME_u_s1 smpte;
-    MMTIME_u_s2 midi;
-  } MMTIME_u;
-  typedef UINT MMTIME_TYPE; //Alias
-  static const MMTIME_TYPE TIME_MS = 0x0001;
-  static const MMTIME_TYPE TIME_SAMPLES = 0x0002;
-  static const MMTIME_TYPE TIME_BYTES = 0x0004;
-  static const MMTIME_TYPE TIME_SMPTE = 0x0008;
-  static const MMTIME_TYPE TIME_MIDI = 0x0010;
-  static const MMTIME_TYPE TIME_TICKS = 0x0020;
+    WINAPI_MMTIME_u_s1 smpte;
+    WINAPI_MMTIME_u_s2 midi;
+  } WINAPI_MMTIME_u;
+  typedef UINT WINAPI_MMTIME_TYPE; //Alias
+  static const WINAPI_MMTIME_TYPE TIME_MS = 0x0001;
+  static const WINAPI_MMTIME_TYPE TIME_SAMPLES = 0x0002;
+  static const WINAPI_MMTIME_TYPE TIME_BYTES = 0x0004;
+  static const WINAPI_MMTIME_TYPE TIME_SMPTE = 0x0008;
+  static const WINAPI_MMTIME_TYPE TIME_MIDI = 0x0010;
+  static const WINAPI_MMTIME_TYPE TIME_TICKS = 0x0020;
   typedef struct MMTIME {
-    MMTIME_TYPE wType;
-    MMTIME_u u;
+    WINAPI_MMTIME_TYPE wType;
+    WINAPI_MMTIME_u u;
   } MMTIME;
   typedef MMTIME *LPMMTIME; //Pointer
   MMRESULT    auxGetDevCaps(               UINT_PTR uDeviceID, LPAUXCAPS lpCaps, UINT cbCaps);
@@ -540,7 +540,7 @@ ffi.cdef [[
   MMRESULT    midiInGetID(                 HMIDIIN hmi, LPUINT puDeviceID);
   UINT        midiInGetNumDevs(            );
   MMRESULT    midiInMessage(               HMIDIIN deviceID, UINT msg, DWORD_PTR dw1, DWORD_PTR dw2);
-  MMRESULT    midiInOpen(                  LPHMIDIIN lphMidiIn, UINT_PTR uDeviceID, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, midiInOutOpenFlags dwFlags);
+  MMRESULT    midiInOpen(                  LPHMIDIIN lphMidiIn, UINT_PTR uDeviceID, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, WINAPI_midiInOutOpenFlags dwFlags);
   MMRESULT    midiInPrepareHeader(         HMIDIIN hMidiIn, LPMIDIHDR lpMidiInHdr, UINT cbMidiInHdr);
   MMRESULT    midiInReset(                 HMIDIIN hMidiIn);
   MMRESULT    midiInStart(                 HMIDIIN hMidiIn);
@@ -556,7 +556,7 @@ ffi.cdef [[
   MMRESULT    midiOutGetVolume(            HMIDIOUT hmo, LPDWORD lpdwVolume);
   MMRESULT    midiOutLongMsg(              HMIDIOUT hmo, LPMIDIHDR lpMidiOutHdr, UINT cbMidiOutHdr);
   MMRESULT    midiOutMessage(              HMIDIOUT deviceID, UINT msg, DWORD_PTR dw1, DWORD_PTR dw2);
-  MMRESULT    midiOutOpen(                 LPHMIDIOUT lphmo, UINT_PTR uDeviceID, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, midiInOutOpenFlags dwFlags);
+  MMRESULT    midiOutOpen(                 LPHMIDIOUT lphmo, UINT_PTR uDeviceID, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, WINAPI_midiInOutOpenFlags dwFlags);
   MMRESULT    midiOutPrepareHeader(        HMIDIOUT hmo, LPMIDIHDR lpMidiOutHdr, UINT cbMidiOutHdr);
   MMRESULT    midiOutReset(                HMIDIOUT hmo);
   MMRESULT    midiOutSetVolume(            HMIDIOUT hmo, DWORD dwVolume);
@@ -582,21 +582,21 @@ ffi.cdef [[
   MMRESULT    mixerSetControlDetails(      HMIXEROBJ hmxobj, LPMIXERCONTROLDETAILS pmxcd, DWORD fdwDetails);
   MMRESULT    mmioAdvance(                 HMMIO hmmio, LPMMIOINFO lpmmioinfo, UINT wFlags);
   MMRESULT    mmioAscend(                  HMMIO hmmio, LPMMCKINFO lpck, UINT wFlags);
-  MMRESULT    mmioClose(                   HMMIO hmmio, mmioCloseFlags wFlags);
-  MMRESULT    mmioCreateChunk(             HMMIO hmmio, LPMMCKINFO lpck, mmioCreateChunkFlags wFlags);
-  MMRESULT    mmioDescend(                 HMMIO hmmio, LPMMCKINFO lpck, LPMMCKINFO lpckParent, mmioDescendFlags wFlags);
-  MMRESULT    mmioFlush(                   HMMIO hmmio, mmioFlushFlags fuFlush);
+  MMRESULT    mmioClose(                   HMMIO hmmio, WINAPI_mmioCloseFlags wFlags);
+  MMRESULT    mmioCreateChunk(             HMMIO hmmio, LPMMCKINFO lpck, WINAPI_mmioCreateChunkFlags wFlags);
+  MMRESULT    mmioDescend(                 HMMIO hmmio, LPMMCKINFO lpck, LPMMCKINFO lpckParent, WINAPI_mmioDescendFlags wFlags);
+  MMRESULT    mmioFlush(                   HMMIO hmmio, WINAPI_mmioFlushFlags fuFlush);
   MMRESULT    mmioGetInfo(                 HMMIO hmmio, LPMMIOINFO lpmmioinfo, UINT wFlags);
-  LPMMIOPROC  mmioInstallIOProc(           FOURCC fccIOProc, LPMMIOPROC pIOProc, mmioInstallIOProcFlags dwFlags);
+  LPMMIOPROC  mmioInstallIOProc(           FOURCC fccIOProc, LPMMIOPROC pIOProc, WINAPI_mmioInstallIOProcFlags dwFlags);
   HMMIO       mmioOpen(                    LPTSTR szFilename, LPMMIOINFO lpmmioinfo, DWORD dwOpenFlags);
   LONG        mmioRead(                    HMMIO hmmio, HPSTR pch, LONG cch);
   MMRESULT    mmioRename(                  LPCTSTR szFilename, LPCTSTR szNewFilename, LPMMIOINFO lpmmioinfo, DWORD dwRenameFlags);
-  LONG        mmioSeek(                    HMMIO hmmio, LONG lOffset, mmioSeekOffset iOrigin);
+  LONG        mmioSeek(                    HMMIO hmmio, LONG lOffset, WINAPI_mmioSeekOffset iOrigin);
   LRESULT     mmioSendMessage(             HMMIO hmmio, UINT wMsg, LPARAM lParam1, LPARAM lParam2);
   MMRESULT    mmioSetBuffer(               HMMIO hmmio, LPSTR pchBuffer, LONG cchBuffer, UINT wFlags);
   MMRESULT    mmioSetInfo(                 HMMIO hmmio, LPMMIOINFO lpmmioinfo, UINT wFlags);
-  FOURCC      mmioStringToFOURCC(          LPCTSTR sz, mmioStringToFOURCCFlags wFlags);
-  LONG        mmioWrite(                   HMMIO hmmio, LPVOID_char* pch, LONG cch);
+  FOURCC      mmioStringToFOURCC(          LPCTSTR sz, WINAPI_mmioStringToFOURCCFlags wFlags);
+  LONG        mmioWrite(                   HMMIO hmmio, WINAPI_LPVOID_char* pch, LONG cch);
   BOOL        PlaySound(                   LPCTSTR pszSound, HMODULE hmod, DWORD fdwSound);
   BOOL        sndPlaySound(                LPCTSTR lpszSound, UINT fuSound);
   MMRESULT    timeBeginPeriod(             UINT uPeriod);
@@ -614,7 +614,7 @@ ffi.cdef [[
   UINT        waveInGetNumDevs(            );
   MMRESULT    waveInGetPosition(           HWAVEIN hwi, LPMMTIME pmmt, UINT cbmmt);
   MMRESULT    waveInMessage(               HWAVEIN deviceID, UINT uMsg, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
-  MMRESULT    waveInOpen(                  LPHWAVEIN phwi, UINT_PTR uDeviceID, LPWAVEFORMATEX pwfx, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, waveInOutOpenFlags fdwOpen);
+  MMRESULT    waveInOpen(                  LPHWAVEIN phwi, UINT_PTR uDeviceID, LPWAVEFORMATEX pwfx, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, WINAPI_waveInOutOpenFlags fdwOpen);
   MMRESULT    waveInPrepareHeader(         HWAVEIN hwi, LPWAVEHDR pwh, UINT cbwh);
   MMRESULT    waveInReset(                 HWAVEIN hwi);
   MMRESULT    waveInStart(                 HWAVEIN hwi);
@@ -631,7 +631,7 @@ ffi.cdef [[
   MMRESULT    waveOutGetPosition(          HWAVEOUT hwo, LPMMTIME pmmt, UINT cbmmt);
   MMRESULT    waveOutGetVolume(            HWAVEOUT hwo, LPDWORD pdwVolume);
   MMRESULT    waveOutMessage(              HWAVEOUT deviceID, UINT uMsg, DWORD_PTR dwParam1, DWORD_PTR dwParam2);
-  MMRESULT    waveOutOpen(                 LPHWAVEOUT phwo, UINT_PTR uDeviceID, LPWAVEFORMATEX pwfx, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, waveInOutOpenFlags fdwOpen);
+  MMRESULT    waveOutOpen(                 LPHWAVEOUT phwo, UINT_PTR uDeviceID, LPWAVEFORMATEX pwfx, DWORD_PTR dwCallback, DWORD_PTR dwCallbackInstance, WINAPI_waveInOutOpenFlags fdwOpen);
   MMRESULT    waveOutPause(                HWAVEOUT hwo);
   MMRESULT    waveOutPrepareHeader(        HWAVEOUT hwo, LPWAVEHDR pwh, UINT cbwh);
   MMRESULT    waveOutReset(                HWAVEOUT hwo);

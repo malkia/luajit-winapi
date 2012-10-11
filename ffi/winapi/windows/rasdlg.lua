@@ -2,12 +2,12 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID RASPBDLGFUNC; //Alias
-  typedef DWORD RASDDFLAG; //Alias
+  typedef DWORD WINAPI_RASDDFLAG; //Alias
 # pragma pack( push, 4 )
   typedef struct RASENTRYDLG {
     DWORD dwSize;
     HWND hwndOwner;
-    RASDDFLAG dwFlags;
+    WINAPI_RASDDFLAG dwFlags;
     LONG xDlg;
     LONG yDlg;
     TCHAR szEntry[RAS_MaxEntryName_plus_1];
@@ -17,17 +17,17 @@ ffi.cdef [[
   } RASENTRYDLG;
 # pragma pack( pop )
   typedef RASENTRYDLG *LPRASENTRYDLG; //Pointer
-  typedef DWORD RASMDFLAG; //Alias
-  typedef DWORD RASMDPAGE; //Alias
-  static const RASMDPAGE RASMDPAGE_Status = 0;
-  static const RASMDPAGE RASMDPAGE_Summary = 1;
-  static const RASMDPAGE RASMDPAGE_Preferences = 2;
+  typedef DWORD WINAPI_RASMDFLAG; //Alias
+  typedef DWORD WINAPI_RASMDPAGE; //Alias
+  static const WINAPI_RASMDPAGE RASMDPAGE_Status = 0;
+  static const WINAPI_RASMDPAGE RASMDPAGE_Summary = 1;
+  static const WINAPI_RASMDPAGE RASMDPAGE_Preferences = 2;
 # pragma pack( push, 4 )
   typedef struct RASMONITORDLG {
     DWORD dwSize;
     HWND hwndOwner;
-    RASMDFLAG dwFlags;
-    RASMDPAGE dwStartPage;
+    WINAPI_RASMDFLAG dwFlags;
+    WINAPI_RASMDPAGE dwStartPage;
     LONG xDlg;
     LONG yDlg;
     DWORD dwError;

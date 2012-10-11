@@ -37,41 +37,41 @@ ffi.cdef [[
     POINT pts[NUM_POINTS];
     DWORD dwTimes[NUM_POINTS];
   } AUTO_SCROLL_DATA;
-  typedef UINT BROWSEINFO_FLAG; //Alias
+  typedef UINT WINAPI_BROWSEINFO_FLAG; //Alias
 # pragma pack( push, 8 )
   typedef struct BROWSEINFO {
     HWND hwndOwner;
     PCIDLIST_ABSOLUTE pidlRoot;
     LPTSTR pszDisplayName;
     LPCTSTR lpszTitle;
-    BROWSEINFO_FLAG ulFlags;
+    WINAPI_BROWSEINFO_FLAG ulFlags;
     BFFCALLBACK lpfn;
     LPARAM lParam;
     int iImage;
   } BROWSEINFO;
 # pragma pack( pop )
   typedef BROWSEINFO *LPBROWSEINFO; //Pointer
-  typedef union NOTIFYICONDATA_u {
+  typedef union WINAPI_NOTIFYICONDATA_u {
     UINT uTimeout;
     UINT uVersion;
-  } NOTIFYICONDATA_u;
-  typedef UINT NOTIFYICON_FLAG; //Alias
-  typedef DWORD NOTIFYICON_STATE; //Alias
-  typedef DWORD NOTIFYICON_INFO_FLAG; //Alias
+  } WINAPI_NOTIFYICONDATA_u;
+  typedef UINT WINAPI_NOTIFYICON_FLAG; //Alias
+  typedef DWORD WINAPI_NOTIFYICON_STATE; //Alias
+  typedef DWORD WINAPI_NOTIFYICON_INFO_FLAG; //Alias
   typedef struct NOTIFYICONDATA {
     DWORD cbSize;
     HWND hWnd;
     UINT uID;
-    NOTIFYICON_FLAG uFlags;
+    WINAPI_NOTIFYICON_FLAG uFlags;
     UINT uCallbackMessage;
     HICON hIcon;
     TCHAR szTip[128];
-    NOTIFYICON_STATE dwState;
-    NOTIFYICON_STATE dwStateMask;
+    WINAPI_NOTIFYICON_STATE dwState;
+    WINAPI_NOTIFYICON_STATE dwStateMask;
     TCHAR szInfo[256];
-    NOTIFYICONDATA_u ;
+    WINAPI_NOTIFYICONDATA_u ;
     TCHAR szInfoTitle[64];
-    NOTIFYICON_INFO_FLAG dwInfoFlags;
+    WINAPI_NOTIFYICON_INFO_FLAG dwInfoFlags;
     GUID guidItem;
     HICON hBalloonIcon;
   } NOTIFYICONDATA;
@@ -83,11 +83,11 @@ ffi.cdef [[
     TCHAR szDisplayName[MAX_PATH];
     TCHAR szTypeName[80];
   } SHFILEINFO;
-  typedef DWORD SHFOLDERCUSTOMSETTINGS_MASK; //Alias
+  typedef DWORD WINAPI_SHFOLDERCUSTOMSETTINGS_MASK; //Alias
 # pragma pack( push, 8 )
   typedef struct SHFOLDERCUSTOMSETTINGS {
     DWORD dwSize;
-    SHFOLDERCUSTOMSETTINGS_MASK dwMask;
+    WINAPI_SHFOLDERCUSTOMSETTINGS_MASK dwMask;
     SHELLVIEWID* pvid;
     LPWSTR pszWebViewTemplate;
     DWORD cchWebViewTemplate;
@@ -216,16 +216,16 @@ ffi.cdef [[
     DWORDLONG i64NumItems;
   } SHQUERYRBINFO;
   typedef SHQUERYRBINFO *LPSHQUERYRBINFO; //Pointer
-  typedef int SHGetDataFromIDListFormats; //Alias
-  static const SHGetDataFromIDListFormats SHGDFIL_FINDDATA = 1;
-  static const SHGetDataFromIDListFormats SHGDFIL_NETRESOURCE = 2;
-  static const SHGetDataFromIDListFormats SHGDFIL_DESCRIPTIONID = 3;
+  typedef int WINAPI_SHGetDataFromIDListFormats; //Alias
+  static const WINAPI_SHGetDataFromIDListFormats SHGDFIL_FINDDATA = 1;
+  static const WINAPI_SHGetDataFromIDListFormats SHGDFIL_NETRESOURCE = 2;
+  static const WINAPI_SHGetDataFromIDListFormats SHGDFIL_DESCRIPTIONID = 3;
   typedef DWORD KNOWN_FOLDER_FLAG; //Alias
-  typedef DWORD SHGetFolderPathFlags; //Alias
-  static const SHGetFolderPathFlags SHGFP_TYPE_CURRENT = 0;
-  static const SHGetFolderPathFlags SHGFP_TYPE_DEFAULT = 1;
-  typedef ULONG ShellChangeNotifyEvent; //Alias
-  typedef UINT ShellChangeNotifyFlag; //Alias
+  typedef DWORD WINAPI_SHGetFolderPathFlags; //Alias
+  static const WINAPI_SHGetFolderPathFlags SHGFP_TYPE_CURRENT = 0;
+  static const WINAPI_SHGetFolderPathFlags SHGFP_TYPE_DEFAULT = 1;
+  typedef ULONG WINAPI_ShellChangeNotifyEvent; //Alias
+  typedef UINT WINAPI_ShellChangeNotifyFlag; //Alias
   typedef UINT ASSOC_FILTER; //Alias
   static const ASSOC_FILTER ASSOC_FILTER_NONE = 0;
   static const ASSOC_FILTER ASSOC_FILTER_RECOMMENDED = 0x1;
@@ -329,16 +329,16 @@ ffi.cdef [[
   typedef UINT LIBRARYMANAGEDIALOGOPTIONS; //Alias
   static const LIBRARYMANAGEDIALOGOPTIONS LMD_DEFAULT = 0x00000000;
   static const LIBRARYMANAGEDIALOGOPTIONS LMD_ALLOWUNINDEXABLENETWORKLOCATIONS = 0x00000001;
-  typedef UINT RunFileDlgFlags; //Alias
-  typedef DWORD NUMBERFMT_FLAGS; //Alias
-  typedef DWORD SGUPP_FLAGS; //Alias
-  typedef DWORD SECL_FLAGS; //Alias
+  typedef UINT WINAPI_RunFileDlgFlags; //Alias
+  typedef DWORD WINAPI_NUMBERFMT_FLAGS; //Alias
+  typedef DWORD WINAPI_SGUPP_FLAGS; //Alias
+  typedef DWORD WINAPI_SECL_FLAGS; //Alias
   typedef struct CLASSPIDL {
     HWND hwnd;
     HANDLE hData;
     HICON hPrinterIcon;
   } CLASSPIDL;
-  typedef DWORD SSF_FLAGS; //Alias
+  typedef DWORD WINAPI_SSF_FLAGS; //Alias
   HICON             DuplicateIcon(                               HINSTANCE hInst, HICON hIcon);
   HICON             ExtractAssociatedIcon(                       HINSTANCE hInst, LPTSTR lpIconPath, LPWORD lpiIcon);
   HICON             ExtractIcon(                                 HINSTANCE hInst, LPCTSTR lpszExeFileName, UINT nIconIndex);
@@ -389,9 +389,9 @@ ffi.cdef [[
   BOOL              LinkWindow_RegisterClass(                    );
   BOOL              LinkWindow_UnregisterClass(                  );
   BOOL              NTSHChangeNotifyDeregister(                  ULONG ulID);
-  void              SHChangeNotify(                              ShellChangeNotifyEvent wEventId, ShellChangeNotifyFlag uFlags, LPCVOID dwItem1, LPCVOID dwItem2);
+  void              SHChangeNotify(                              WINAPI_ShellChangeNotifyEvent wEventId, WINAPI_ShellChangeNotifyFlag uFlags, LPCVOID dwItem1, LPCVOID dwItem2);
   ULONG             NTSHChangeNotifyRegister(                    HWND hwnd, int fSources, LONG fEvents, UINT wMsg, int cEntries, SHChangeNotifyEntry* pfsne);
-  IStream*          OpenRegStream(                               HKEY hkey, LPCWSTR pszSubkey, LPCWSTR pszValue, STGM_FLAGS grfMode);
+  IStream*          OpenRegStream(                               HKEY hkey, LPCWSTR pszSubkey, LPCWSTR pszValue, WINAPI_STGM_FLAGS grfMode);
   bool              ParseField(                                  LPCTSTR* szData, int n, LPTSTR* szBuf, int iBufLen);
   int               PathCleanupSpec(                             LPCWSTR pszDir, LPWSTR pszSpec);
   void              PathGetShortPath(                            LPWSTR pszLongPath);
@@ -422,7 +422,7 @@ ffi.cdef [[
   BOOL              SHChangeNotifyDeregister(                    ULONG ulID);
   ULONG             SHChangeNotifyRegister(                      HWND hwnd, int fSources, LONG fEvents, UINT wMsg, int cEntries, SHChangeNotifyEntry* pshcne);
   void              SHChangeNotifyRegisterThread(                SCNRT_STATUS status);
-  PIDLIST_ABSOLUTE  SHCloneSpecialIDList(                        HWND hwndOwner, CSIDL csidl, BOOL fCreate);
+  PIDLIST_ABSOLUTE  SHCloneSpecialIDList(                        HWND hwndOwner, WINAPI_CSIDL csidl, BOOL fCreate);
   HRESULT           SHCLSIDFromString(                           LPCWSTR psz, CLSID* pclsid);
   HRESULT           SHCoCreateInstance(                          LPCWSTR pszCLSID, CLSID* pclsid, IUnknown* pUnkOuter, REFIID riid, void** ppv);
   HRESULT           SHCreateAssociationRegistration(             REFIID riid, void** ppv);
@@ -463,8 +463,8 @@ ffi.cdef [[
   HRESULT           SHEmptyRecycleBin(                           HWND hwnd, LPCTSTR pszRootPath, DWORD dwFlags);
   HRESULT           SHEnumerateUnreadMailAccountsW(              HKEY hKeyUser, DWORD dwIndex, LPWSTR pszMailAddress, int cchMailAddress);
   HRESULT           SHEvaluateSystemCommandTemplate(             PCWSTR pszCmdTemplate, PWSTR* ppszApplication, PWSTR* ppszCommandLine, PWSTR* ppszParameters);
-  HINSTANCE         ShellExecute(                                HWND hwnd, LPCTSTR lpOperation, LPCTSTR lpFile, LPCTSTR lpParameters, LPCTSTR lpDirectory, ShowWindowCmd nShowCmd);
-  UINT              SHExtractIconsW(                             LPCWSTR pszFileName, int nIconIndex, int cxIcon, int cyIcon, HICON* phIcon, UINT* pIconId, UINT nIcons, LRFlags flags);
+  HINSTANCE         ShellExecute(                                HWND hwnd, LPCTSTR lpOperation, LPCTSTR lpFile, LPCTSTR lpParameters, LPCTSTR lpDirectory, WINAPI_ShowWindowCmd nShowCmd);
+  UINT              SHExtractIconsW(                             LPCWSTR pszFileName, int nIconIndex, int cxIcon, int cyIcon, HICON* phIcon, UINT* pIconId, UINT nIcons, WINAPI_LRFlags flags);
   IContextMenu*     SHFind_InitMenuPopup(                        HMENU hmenu, HWND hwnd, UINT idCmdFirst, UINT idCmdLast);
   BOOL              SHFindFiles(                                 PCIDLIST_ABSOLUTE pidlFolder, PCIDLIST_ABSOLUTE pidlSaveFile);
   HRESULT           SHFlushClipboard(                            );
@@ -474,15 +474,15 @@ ffi.cdef [[
   void              SHFreeNameMappings(                          HANDLE hNameMappings);
   int               SHFileOperation(                             LPSHFILEOPSTRUCT lpFileOp);
   HRESULT           SHGetAttributesFromDataObject(               IDataObject* pdo, DWORD dwAttributeMask, DWORD* pdwAttributes, UINT* pcItems);
-  HRESULT           SHGetDataFromIDList(                         IShellFolder* psf, PCUITEMID_CHILD pidl, SHGetDataFromIDListFormats nFormat, PVOID pv, int cb);
+  HRESULT           SHGetDataFromIDList(                         IShellFolder* psf, PCUITEMID_CHILD pidl, WINAPI_SHGetDataFromIDListFormats nFormat, PVOID pv, int cb);
   HRESULT           SHGetDesktopFolder(                          IShellFolder** ppshf);
   BOOL              SHGetDiskFreeSpace(                          LPCTSTR pszVolume, ULARGE_INTEGER* pqwFreeCaller, ULARGE_INTEGER* pqwTot, ULARGE_INTEGER* pqwFree);
   BOOL              SHGetDiskFreeSpaceEx(                        LPCTSTR pszVolume, ULARGE_INTEGER* pqwFreeCaller, ULARGE_INTEGER* pqwTot, ULARGE_INTEGER* pqwFree);
   HRESULT           SHGetDriveMedia(                             LPCWSTR pszDrive, DWORD* pdwMediaContent);
   DWORD_PTR         SHGetFileInfo(                               LPCTSTR pszPath, DWORD dwFileAttributes, SHFILEINFO* psfi, UINT cbFileInfo, UINT uFlags);
-  HRESULT           SHGetFolderLocation(                         HWND hwndOwner, CSIDL nFolder, HANDLE hToken, DWORD dwReserved, PIDLIST_ABSOLUTE* ppidl);
-  HRESULT           SHGetFolderPath(                             HWND hwndOwner, int nFolder, HANDLE hToken, SHGetFolderPathFlags dwFlags, LPTSTR pszPath);
-  HRESULT           SHGetFolderPathAndSubDir(                    HWND hwnd, CSIDL csidl, HANDLE hToken, SHGetFolderPathFlags dwFlags, LPCTSTR pszSubDir, LPTSTR pszPath);
+  HRESULT           SHGetFolderLocation(                         HWND hwndOwner, WINAPI_CSIDL nFolder, HANDLE hToken, DWORD dwReserved, PIDLIST_ABSOLUTE* ppidl);
+  HRESULT           SHGetFolderPath(                             HWND hwndOwner, int nFolder, HANDLE hToken, WINAPI_SHGetFolderPathFlags dwFlags, LPTSTR pszPath);
+  HRESULT           SHGetFolderPathAndSubDir(                    HWND hwnd, WINAPI_CSIDL csidl, HANDLE hToken, WINAPI_SHGetFolderPathFlags dwFlags, LPCTSTR pszSubDir, LPTSTR pszPath);
   int               SHGetIconOverlayIndex(                       LPCTSTR pszIconPath, int iIconIndex);
   HRESULT           SHGetIDListFromObject(                       IUnknown* punk, PIDLIST_ABSOLUTE* ppidl);
   HRESULT           SHGetImageList(                              int iImageList, REFIID riid, void** ppv);
@@ -501,12 +501,12 @@ ffi.cdef [[
   BOOL              SHGetPathFromIDList(                         PCIDLIST_ABSOLUTE pidl, LPTSTR pszPath);
   HRESULT           SHGetRealIDL(                                IShellFolder* psf, PCUITEMID_CHILD pidlSimple, PITEMID_CHILD* ppidlReal);
   HRESULT           SHGetSetFolderCustomSettings(                LPSHFOLDERCUSTOMSETTINGS pfcs, LPCTSTR pszPath, DWORD dwReadWrite);
-  void              SHGetSetSettings(                            LPSHELLSTATE lpss, SSF_FLAGS dwMask, BOOL bSet);
-  void              SHGetSettings(                               LPSHELLFLAGSTATE lpsfs, SSF_FLAGS dwMask);
+  void              SHGetSetSettings(                            LPSHELLSTATE lpss, WINAPI_SSF_FLAGS dwMask, BOOL bSet);
+  void              SHGetSettings(                               LPSHELLFLAGSTATE lpsfs, WINAPI_SSF_FLAGS dwMask);
   HINSTANCE         SHGetShellStyleHInstance(                    );
-  HRESULT           SHGetSpecialFolderLocation(                  HWND hwndOwner, CSIDL nFolder, PIDLIST_ABSOLUTE* ppidl);
-  BOOL              SHGetSpecialFolderPath(                      HWND hwndOwner, LPWSTR lpwszPath, CSIDL csidl, BOOL fCreate);
-  BOOL              SHGetSpecialFolderPath(                      HWND hwndOwner, LPTSTR lpszPath, CSIDL csidl, BOOL fCreate);
+  HRESULT           SHGetSpecialFolderLocation(                  HWND hwndOwner, WINAPI_CSIDL nFolder, PIDLIST_ABSOLUTE* ppidl);
+  BOOL              SHGetSpecialFolderPath(                      HWND hwndOwner, LPWSTR lpwszPath, WINAPI_CSIDL csidl, BOOL fCreate);
+  BOOL              SHGetSpecialFolderPath(                      HWND hwndOwner, LPTSTR lpszPath, WINAPI_CSIDL csidl, BOOL fCreate);
   HRESULT           SHGetStockIconInfo(                          SHSTOCKICONID siid, UINT uFlags, SHSTOCKICONINFO* psii);
   HRESULT           SHGetTemporaryPropertyForItem(               IShellItem* psi, REFPROPERTYKEY pk, PROPVARIANT* ppropvarInk);
   HRESULT           SHGetUnreadMailCountW(                       HKEY hKeyUser, LPCWSTR pszMailAddress, DWORD* pdwCount, FILETIME* pFileTime, LPCWSTR pszShellExecuteCommand, int cchShellExecuteCommand);
@@ -519,7 +519,7 @@ ffi.cdef [[
   HRESULT           SHLoadNonloadedIconOverlayIdentifiers(       );
   HRESULT           SHLoadOLE(                                   LPARAM lParam);
   HRESULT           SHLocalStrDup(                               LPCWSTR psz, LPWSTR* ppsz);
-  HRESULT           SHMapIDListToImageListIndexAsync(            IShellTaskScheduler* pts, IShellFolder* psf, LPCITEMIDLIST pidl, GIL_INPUT_FLAGS flags, PFNASYNCICONTASKBALLBACK pfn, void* pvData, void* pvHint, int* piIndex, int* piIndexSel);
+  HRESULT           SHMapIDListToImageListIndexAsync(            IShellTaskScheduler* pts, IShellFolder* psf, LPCITEMIDLIST pidl, WINAPI_GIL_INPUT_FLAGS flags, PFNASYNCICONTASKBALLBACK pfn, void* pvData, void* pvHint, int* piIndex, int* piIndexSel);
   int               SHMapPIDLToSystemImageListIndex(             IShellFolder* psf, PCUITEMID_CHILD pidl, int* piIndex);
   HRESULT           SHMultiFileProperties(                       IDataObject* pdtobj, DWORD dwFlags);
   BOOL              SHObjectProperties(                          HWND hwnd, DWORD shopObjectType, PCWSTR pszObjectName, PCWSTR pszPropertyPage);
@@ -536,7 +536,7 @@ ffi.cdef [[
   DWORD             SHRestricted(                                RESTRICTIONS rest);
   BOOL              SHRunControlPanel(                           LPCWSTR lpcszCmdLine, HWND hwndMsgParent);
   HRESULT           SHSetDefaultProperties(                      HWND hwnd, IShellItem* psi, DWORD dwFileOpFlags, IFileOperationProgressSink* pfops);
-  HRESULT           SHSetFolderPath(                             CSIDL csidl, HANDLE hToken, DWORD dwFlags, LPCTSTR pszPath);
+  HRESULT           SHSetFolderPath(                             WINAPI_CSIDL csidl, HANDLE hToken, DWORD dwFlags, LPCTSTR pszPath);
   void              SHSetInstanceExplorer(                       IUnknown* punk);
   HRESULT           SHSetKnownFolderPath(                        REFKNOWNFOLDERID rfid, DWORD dwFlags, HANDLE hToken, PCWSTR pszPath);
   HRESULT           SHSetLocalizedName(                          LPCWSTR pszPath, LPCWSTR pszResModule, int idsRes);
@@ -550,11 +550,11 @@ ffi.cdef [[
   void              SHUpdateImage(                               LPCTSTR pszHashItem, int iIndex, UINT uFlags, int iImageIndex);
   BOOL              SHValidateUNC(                               HWND hwndOwner, LPWSTR pszFile, UINT fConnect);
   BOOL              SignalFileOpen(                              PCIDLIST_ABSOLUTE pidl);
-  HRESULT           StgMakeUniqueName(                           IStorage* pstgParent, PCWSTR pszFileSpec, STGM_FLAGS grfMode, REFIID riid, void** ppv);
+  HRESULT           StgMakeUniqueName(                           IStorage* pstgParent, PCWSTR pszFileSpec, WINAPI_STGM_FLAGS grfMode, REFIID riid, void** ppv);
   BOOL              Win32DeleteFile(                             LPCTSTR pszFileName);
-  HINSTANCE         WOWShellExecute(                             HWND hwnd, LPCTSTR lpOperation, LPCTSTR lpFile, LPCTSTR lpParameters, LPCTSTR lpDirectory, ShowWindowCmd nShowCmd, void* lpfnCBWinExec);
+  HINSTANCE         WOWShellExecute(                             HWND hwnd, LPCTSTR lpOperation, LPCTSTR lpFile, LPCTSTR lpParameters, LPCTSTR lpDirectory, WINAPI_ShowWindowCmd nShowCmd, void* lpfnCBWinExec);
   BOOL              WriteCabinetState(                           CABINETSTATE* pcs);
-  VOID              RunFileDlg(                                  HWND hwndOwner, HICON hIcon, LPCWSTR lpszDirectory, LPCWSTR lpszTitle, LPCWSTR lpszDescription, RunFileDlgFlags uFlags);
+  VOID              RunFileDlg(                                  HWND hwndOwner, HICON hIcon, LPCWSTR lpszDirectory, LPCWSTR lpszTitle, LPCWSTR lpszDescription, WINAPI_RunFileDlgFlags uFlags);
   BOOL              StrRetToStrN(                                LPTSTR pszOut, UINT cchOut, LPSTRRET pStrRet, LPCITEMIDLIST pidl);
   int               PifMgr_CloseProperties(                      HANDLE hProps, UINT flOpt);
   HANDLE            PifMgr_OpenProperties(                       LPCWSTR pszApp, LPCWSTR lpszPIF, UINT hInf, UINT flOpt);
@@ -564,8 +564,8 @@ ffi.cdef [[
   HRESULT           SHGetPropertyStoreForWindow(                 HWND hwnd, REFIID riid, void** ppv);
   HRESULT           SHGetPropertyStoreFromIDList(                PCIDLIST_ABSOLUTE pidl, GETPROPERTYSTOREFLAGS flags, REFIID riid, void** ppv);
   HRESULT           SHGetPropertyStoreFromParsingName(           PCWSTR pszPath, IBindCtx* pbc, GETPROPERTYSTOREFLAGS flags, REFIID riid, void** ppv);
-  HRESULT           SHPropStgCreate(                             IPropertySetStorage* psstg, REFFMTID fmtid, CLSID* pclsid, DWORD grfFlags, STGM_FLAGS grfMode, DWORD dwDisposition, IPropertyStorage** ppstg, UINT* puCodePage);
-  HRESULT           SHPropStgReadMultiple(                       IPropertyStorage* pps, CodePageEnum uCodePage, ULONG cpspec, PROPSPEC[] rgpspec, PROPVARIANT[] rgvar);
+  HRESULT           SHPropStgCreate(                             IPropertySetStorage* psstg, REFFMTID fmtid, CLSID* pclsid, DWORD grfFlags, WINAPI_STGM_FLAGS grfMode, DWORD dwDisposition, IPropertyStorage** ppstg, UINT* puCodePage);
+  HRESULT           SHPropStgReadMultiple(                       IPropertyStorage* pps, WINAPI_CodePageEnum uCodePage, ULONG cpspec, PROPSPEC* rgpspec, PROPVARIANT* rgvar);
   HRESULT           SHPropStgWriteMultiple(                      IPropertyStorage* pps, UINT* uCodePage, ULONG cpspec, PROPID propidNameFirst);
   LPWSTR            AddCommasExportW(                            DWORD value, LPWSTR pwszBuf);
   void              AppCompat_RunDLLW(                           HWND unusedHwnd, HINSTANCE unusedHinstance, LPWSTR commandLine, int unusedInt);
@@ -576,10 +576,10 @@ ffi.cdef [[
   void              DisconnectWindowDialog(                      HWND hwndUnused);
   HRESULT           GetAppPathFromLink(                          IShellItem* pItem, LPWSTR pwszPathBuffer, DWORD dwBufferLen);
   BOOL              GetSqmableFileName(                          LPCWSTR pwszFileName, LPWSTR pwszSqmName, UINT sqmNameBufLen);
-  int               Int64ToString(                               INT64 number, LPWSTR pwszBuf, UINT bufLen, BOOL useNumberFormat, NUMBERFMT* pFormatInfo, NUMBERFMT_FLAGS dwFlags);
+  int               Int64ToString(                               INT64 number, LPWSTR pwszBuf, UINT bufLen, BOOL useNumberFormat, NUMBERFMT* pFormatInfo, WINAPI_NUMBERFMT_FLAGS dwFlags);
   BOOL              IsElevationRequired(                         LPCWSTR lpwszExeFile);
   BOOL              IsSearchEnabled(                             );
-  int               LargeIntegerToString(                        LARGE_INTEGER* pNumber, LPWSTR pwszBuf, UINT bufLen, BOOL useNumberFormat, NUMBERFMT* pFormatInfo, NUMBERFMT_FLAGS dwFlags);
+  int               LargeIntegerToString(                        LARGE_INTEGER* pNumber, LPWSTR pwszBuf, UINT bufLen, BOOL useNumberFormat, NUMBERFMT* pFormatInfo, WINAPI_NUMBERFMT_FLAGS dwFlags);
   HRESULT           PathGetPathDisplayName(                      LPCWSTR pwszPath, LPWSTR pwszDisplayName, DWORD displayNameLen);
   BOOL              PathIsTemporary(                             LPCTSTR pszFile);
   void              Printer_AddPrinterPropPages(                 LPCWSTR printer, PROPSHEETHEADER* pPropHeader);
@@ -587,15 +587,15 @@ ffi.cdef [[
   BOOL              Printers_RegisterWindowW(                    LPCWSTR pwszPrinter, DWORD pidlType, BOOL* pWinCreated, HWND* phwnd);
   void              Printers_UnregisterWindow(                   CLASSPIDL* pClassPidl, HWND hwnd);
   HRESULT           RefreshBrowserLayout(                        IShellItem* pItem);
-  int               RunAsNewUser_RunDLLW(                        HWND hWnd, HINSTANCE hIinstance, LPCWSTR lpszFileMapName, ShowWindowCmd nCmdShow);
+  int               RunAsNewUser_RunDLLW(                        HWND hWnd, HINSTANCE hIinstance, LPCWSTR lpszFileMapName, WINAPI_ShowWindowCmd nCmdShow);
   HRESULT           SHGetUserDisplayName(                        LPWSTR pwszName, UINT pBufLen);
-  HRESULT           SHGetUserPicturePathEx(                      LPCWSTR pwszUserOrPicName, SGUPP_FLAGS sguppFlags, LPCWSTR pwszDesiredSrcExt, LPWSTR pwszPicPath, UINT picPathLen, LPWSTR pwszSrcPath, UINT srcLen);
+  HRESULT           SHGetUserPicturePathEx(                      LPCWSTR pwszUserOrPicName, WINAPI_SGUPP_FLAGS sguppFlags, LPCWSTR pwszDesiredSrcExt, LPWSTR pwszPicPath, UINT picPathLen, LPWSTR pwszSrcPath, UINT srcLen);
   void              SHHelpShortcuts_RunDLL(                      HWND hwndParent, HINSTANCE unusedHinstance, LPCTSTR commandLine, int unusedInt);
   HRESULT           SHResolveUserNames(                          LPCWSTR pwszSids, LPWSTR pwszNames, UINT nameLen);
   void              SHSettingsChanged(                           WPARAM wParam, LPCWSTR lParam);
   BOOL              SHShouldShowWizards(                         IUnknown* pUnk);
   BOOL              SHTestTokenPrivilegeW(                       HANDLE hToken, LPCWSTR pwszPrivilege);
-  HRESULT           ShellExecCmdLine(                            HWND hwnd, LPCWSTR pwszCommand, LPCWSTR pwszStartDir, ShowWindowCmd nShow, LPVOID pUnused, SECL_FLAGS dwSeclFlags);
+  HRESULT           ShellExecCmdLine(                            HWND hwnd, LPCWSTR pwszCommand, LPCWSTR pwszStartDir, WINAPI_ShowWindowCmd nShow, LPVOID pUnused, WINAPI_SECL_FLAGS dwSeclFlags);
   LPWSTR            ShortSizeFormatExportW(                      DWORD value, LPWSTR pwszBuf);
 ]]
 ffi.load( 'Shell32.dll' )

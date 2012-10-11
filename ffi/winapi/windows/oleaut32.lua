@@ -4,32 +4,32 @@ ffi.cdef [[
   typedef LPVOID LPDECIMAL; //Alias
   typedef DWORD OLE_COLOR; //Alias
   typedef BSTR *LPBSTR; //Pointer
-  typedef struct PICTDESC_u_s1 {
+  typedef struct WINAPI_PICTDESC_u_s1 {
     HBITMAP hbitmap;
     HPALETTE hpal;
-  } PICTDESC_u_s1;
-  typedef struct PICTDESC_u_s2 {
+  } WINAPI_PICTDESC_u_s1;
+  typedef struct WINAPI_PICTDESC_u_s2 {
     HMETAFILE hmeta;
     int xExt;
     int yExt;
-  } PICTDESC_u_s2;
-  typedef struct PICTDESC_u_s3 {
+  } WINAPI_PICTDESC_u_s2;
+  typedef struct WINAPI_PICTDESC_u_s3 {
     HICON hicon;
-  } PICTDESC_u_s3;
-  typedef struct PICTDESC_u_s4 {
+  } WINAPI_PICTDESC_u_s3;
+  typedef struct WINAPI_PICTDESC_u_s4 {
     HENHMETAFILE hemf;
-  } PICTDESC_u_s4;
-  typedef union PICTDESC_u {
-    PICTDESC_u_s1 bmp;
-    PICTDESC_u_s2 wmf;
-    PICTDESC_u_s3 icon;
-    PICTDESC_u_s4 emf;
-  } PICTDESC_u;
-  typedef UINT PICTYPE; //Alias
+  } WINAPI_PICTDESC_u_s4;
+  typedef union WINAPI_PICTDESC_u {
+    WINAPI_PICTDESC_u_s1 bmp;
+    WINAPI_PICTDESC_u_s2 wmf;
+    WINAPI_PICTDESC_u_s3 icon;
+    WINAPI_PICTDESC_u_s4 emf;
+  } WINAPI_PICTDESC_u;
+  typedef UINT WINAPI_PICTYPE; //Alias
   typedef struct PICTDESC {
     UINT cbSizeofstruct;
-    PICTYPE picType;
-    PICTDESC_u ;
+    WINAPI_PICTYPE picType;
+    WINAPI_PICTDESC_u ;
   } PICTDESC;
   typedef PICTDESC *LPPICTDESC; //Pointer
   typedef struct CY {
@@ -62,11 +62,11 @@ ffi.cdef [[
     DISPID dispidInitialProperty;
   } OCPFIPARAMS;
   typedef OCPFIPARAMS *LPOCPFIPARAMS; //Pointer
-  typedef DWORD OleLoadPictureExFlags; //Alias
-  static const OleLoadPictureExFlags LP_DEFAULT = 0x00;
-  static const OleLoadPictureExFlags LP_MONOCHROME = 0x01;
-  static const OleLoadPictureExFlags LP_VGACOLOR = 0x02;
-  static const OleLoadPictureExFlags LP_COLOR = 0x04;
+  typedef DWORD WINAPI_OleLoadPictureExFlags; //Alias
+  static const WINAPI_OleLoadPictureExFlags LP_DEFAULT = 0x00;
+  static const WINAPI_OleLoadPictureExFlags LP_MONOCHROME = 0x01;
+  static const WINAPI_OleLoadPictureExFlags LP_VGACOLOR = 0x02;
+  static const WINAPI_OleLoadPictureExFlags LP_COLOR = 0x04;
   typedef UINT REGKIND; //Alias
   static const REGKIND REGKIND_DEFAULT = 0;
   static const REGKIND REGKIND_REGISTER = 1;
@@ -75,11 +75,11 @@ ffi.cdef [[
     SYSTEMTIME st;
     USHORT wDayOfYear;
   } UDATE;
-  typedef ULONG NUMPRS_FLAG; //Alias
+  typedef ULONG WINAPI_NUMPRS_FLAG; //Alias
   typedef struct NUMPARSE {
     INT cDig;
-    NUMPRS_FLAG dwInFlags;
-    NUMPRS_FLAG dwOutFlags;
+    WINAPI_NUMPRS_FLAG dwInFlags;
+    WINAPI_NUMPRS_FLAG dwOutFlags;
     INT cchUsed;
     INT nBaseShift;
     INT nPwr10;
@@ -95,7 +95,7 @@ ffi.cdef [[
     UINT iMeth;
     CALLCONV cc;
     UINT cArgs;
-    InvokeFlags wFlags;
+    WINAPI_InvokeFlags wFlags;
     VARTYPE vtReturn;
   } METHODDATA;
   typedef struct INTERFACEDATA {
@@ -106,7 +106,7 @@ ffi.cdef [[
   HRESULT        OleCreateFontIndirect(           LPFONTDESC lpFontDesc, REFIID riid, LPVOID* lplpvObj);
   HRESULT        OleCreatePictureIndirect(        LPPICTDESC lpPictDesc, REFIID riid, BOOL fOwn, LPVOID* lplpvObj);
   HRESULT        OleLoadPicture(                  LPSTREAM lpstream, LONG lSize, BOOL fRunmode, REFIID riid, LPVOID* lplpvObj);
-  HRESULT        OleLoadPictureEx(                LPSTREAM lpstream, LONG lSize, BOOL fRunmode, REFIID riid, DWORD xSizeDesired, DWORD ySizeDesired, OleLoadPictureExFlags dwFlags, LPVOID* lplpvObj);
+  HRESULT        OleLoadPictureEx(                LPSTREAM lpstream, LONG lSize, BOOL fRunmode, REFIID riid, DWORD xSizeDesired, DWORD ySizeDesired, WINAPI_OleLoadPictureExFlags dwFlags, LPVOID* lplpvObj);
   HRESULT        OleCreatePropertyFrame(          HWND hwndOwner, UINT x, UINT y, LPCOLESTR lpszCaption, ULONG cObjects, LPUNKNOWN* ppUnk, ULONG cPages, LPCLSID pPageClsID, LCID lcid, DWORD dwReserved, LPVOID pvReserved);
   HRESULT        OleCreatePropertyFrameIndirect(  LPOCPFIPARAMS lpParams);
   HRESULT        OleLoadPicturePath(              LPOLESTR szURLorPath, LPUNKNOWN punkCaller, DWORD dwReserved, OLE_COLOR clrReserved, REFIID riid, LPVOID* ppvRet);

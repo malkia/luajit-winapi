@@ -11,9 +11,9 @@ ffi.cdef [[
   typedef LPVOID PMQRECEIVECALLBACK; //Alias
   typedef PROPVARIANT MQPROPVARIANT; //Alias
   typedef MQPROPVARIANT *MQPROPVARIANT[]; //Pointer
-  typedef ULONG MQPR_Rel; //Alias
+  typedef ULONG WINAPI_MQPR_Rel; //Alias
   typedef struct MQPROPERTYRESTRICTION {
-    MQPR_Rel rel;
+    WINAPI_MQPR_Rel rel;
     PROPID prop;
     MQPROPVARIANT prval;
   } MQPROPERTYRESTRICTION;
@@ -83,7 +83,7 @@ ffi.cdef [[
   HRESULT MQInstanceToFormatName(          GUID* pGUID, LPWSTR lpwcsFormatName, LPDWORD lpdwCount);
   HRESULT MQLocateBegin(                   LPCWSTR lpwcsContext, MQRESTRICTION* pRestriction, MQCOLUMNSET* pColumns, MQSORTSET* pSort, PHANDLE phEnum);
   HRESULT MQLocateEnd(                     HANDLE hEnum);
-  HRESULT MQLocateNext(                    HANDLE hEnum, DWORD* pcProps, MQPROPVARIANT[] aPropVar);
+  HRESULT MQLocateNext(                    HANDLE hEnum, DWORD* pcProps, MQPROPVARIANT* aPropVar);
   HRESULT MQMarkMessageRejected(           QUEUEHANDLE hQueue, ULONGLONG ullLookupId);
   HRESULT MQMgmtAction(                    LPCWSTR pMachineName, LPCWSTR pObjectName, LPCWSTR pAction);
   HRESULT MQMgmtGetInfo(                   LPCWSTR pMachineName, LPCWSTR pObjectName, MQMGMTPROPS* pMgmtProps);

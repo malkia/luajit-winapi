@@ -57,17 +57,17 @@ ffi.cdef [[
   static const EVT_PUBLISHER_METADATA_PROPERTY_ID EvtPublisherMetadataKeywordName = 26;
   static const EVT_PUBLISHER_METADATA_PROPERTY_ID EvtPublisherMetadataKeywordValue = 27;
   static const EVT_PUBLISHER_METADATA_PROPERTY_ID EvtPublisherMetadataKeywordMessageID = 28;
-  typedef DWORD EvtFormatMessageFlags; //Alias
-  static const EvtFormatMessageFlags EvtFormatMessageEvent = 1;
-  static const EvtFormatMessageFlags EvtFormatMessageLevel = 2;
-  static const EvtFormatMessageFlags EvtFormatMessageTask = 3;
-  static const EvtFormatMessageFlags EvtFormatMessageOpcode = 4;
-  static const EvtFormatMessageFlags EvtFormatMessageKeyword = 5;
-  static const EvtFormatMessageFlags EvtFormatMessageChannel = 6;
-  static const EvtFormatMessageFlags EvtFormatMessageProvider = 7;
-  static const EvtFormatMessageFlags EvtFormatMessageId = 8;
-  static const EvtFormatMessageFlags EvtFormatMessageXml = 9;
-  typedef DWORD EvtOpenFlags; //Alias
+  typedef DWORD WINAPI_EvtFormatMessageFlags; //Alias
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageEvent = 1;
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageLevel = 2;
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageTask = 3;
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageOpcode = 4;
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageKeyword = 5;
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageChannel = 6;
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageProvider = 7;
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageId = 8;
+  static const WINAPI_EvtFormatMessageFlags EvtFormatMessageXml = 9;
+  typedef DWORD WINAPI_EvtOpenFlags; //Alias
   typedef UINT EVT_LOG_PROPERTY_ID; //Alias
   static const EVT_LOG_PROPERTY_ID EvtLogCreationTime = 0;
   static const EVT_LOG_PROPERTY_ID EvtLogLastAccessTime = 1;
@@ -77,24 +77,24 @@ ffi.cdef [[
   static const EVT_LOG_PROPERTY_ID EvtLogNumberOfLogRecords = 5;
   static const EVT_LOG_PROPERTY_ID EvtLogOldestRecordNumber = 6;
   static const EVT_LOG_PROPERTY_ID EvtLogFull = 7;
-  typedef DWORD EvtRenderFlags; //Alias
-  static const EvtRenderFlags EvtRenderEventValues = 0;
-  static const EvtRenderFlags EvtRenderEventXml = 1;
-  static const EvtRenderFlags EvtRenderBookmark = 2;
-  typedef DWORD EvtQueryFlags; //Alias
-  typedef DWORD EvtRenderContextFlags; //Alias
-  static const EvtRenderContextFlags EvtRenderContextValues = 0;
-  static const EvtRenderContextFlags EvtRenderContextSystem = 1;
-  static const EvtRenderContextFlags EvtRenderContextUser = 2;
+  typedef DWORD WINAPI_EvtRenderFlags; //Alias
+  static const WINAPI_EvtRenderFlags EvtRenderEventValues = 0;
+  static const WINAPI_EvtRenderFlags EvtRenderEventXml = 1;
+  static const WINAPI_EvtRenderFlags EvtRenderBookmark = 2;
+  typedef DWORD WINAPI_EvtQueryFlags; //Alias
+  typedef DWORD WINAPI_EvtRenderContextFlags; //Alias
+  static const WINAPI_EvtRenderContextFlags EvtRenderContextValues = 0;
+  static const WINAPI_EvtRenderContextFlags EvtRenderContextSystem = 1;
+  static const WINAPI_EvtRenderContextFlags EvtRenderContextUser = 2;
   typedef UINT EVT_QUERY_PROPERTY_ID; //Alias
   static const EVT_QUERY_PROPERTY_ID EvtQueryNames = 0;
   static const EVT_QUERY_PROPERTY_ID EvtQueryStatuses = 1;
-  typedef DWORD EvtSubscribeFlags; //Alias
+  typedef DWORD WINAPI_EvtSubscribeFlags; //Alias
   typedef UINT EVT_EVENT_PROPERTY_ID; //Alias
   static const EVT_EVENT_PROPERTY_ID EvtEventQueryIDs = 0;
   static const EVT_EVENT_PROPERTY_ID EvtEventPath = 1;
-  typedef DWORD EvtSeekFlags; //Alias
-  typedef DWORD EvtExportLogFlags; //Alias
+  typedef DWORD WINAPI_EvtSeekFlags; //Alias
+  typedef DWORD WINAPI_EvtExportLogFlags; //Alias
   typedef UINT EVT_LOGIN_CLASS; //Alias
   static const EVT_LOGIN_CLASS EvtRpcLogin = 1;
   typedef UINT EVT_EVENT_METADATA_PROPERTY_ID; //Alias
@@ -111,20 +111,20 @@ ffi.cdef [[
   BOOL       EvtClose(                        EVT_HANDLE Object);
   BOOL       EvtGetExtendedStatus(            DWORD BufferSize, LPWSTR Buffer, PDWORD BufferUsed);
   BOOL       EvtGetQueryInfo(                 EVT_HANDLE QueryOrSubscription, EVT_QUERY_PROPERTY_ID PropertyId, DWORD PropertyValueBufferSize, PEVT_VARIANT PropertyValueBuffer, PDWORD PropertyValueBufferUsed);
-  EVT_HANDLE EvtQuery(                        EVT_HANDLE Session, LPCWSTR Path, LPCWSTR Query, EvtQueryFlags Flags);
-  BOOL       EvtNext(                         EVT_HANDLE ResultSet, DWORD EventArraySize, EVT_HANDLE* EventArray, WaitTimeout Timeout, DWORD Flags, PDWORD Returned);
-  BOOL       EvtSeek(                         EVT_HANDLE ResultSet, LONGLONG Position, EVT_HANDLE Bookmark, DWORD Timeout, EvtSeekFlags Flags);
-  EVT_HANDLE EvtSubscribe(                    EVT_HANDLE Session, HANDLE SignalEvent, LPCWSTR ChannelPath, LPCWSTR Query, EVT_HANDLE Bookmark, PVOID context, EVT_SUBSCRIBE_CALLBACK Callback, EvtSubscribeFlags Flags);
+  EVT_HANDLE EvtQuery(                        EVT_HANDLE Session, LPCWSTR Path, LPCWSTR Query, WINAPI_EvtQueryFlags Flags);
+  BOOL       EvtNext(                         EVT_HANDLE ResultSet, DWORD EventArraySize, EVT_HANDLE* EventArray, WINAPI_WaitTimeout Timeout, DWORD Flags, PDWORD Returned);
+  BOOL       EvtSeek(                         EVT_HANDLE ResultSet, LONGLONG Position, EVT_HANDLE Bookmark, DWORD Timeout, WINAPI_EvtSeekFlags Flags);
+  EVT_HANDLE EvtSubscribe(                    EVT_HANDLE Session, HANDLE SignalEvent, LPCWSTR ChannelPath, LPCWSTR Query, EVT_HANDLE Bookmark, PVOID context, EVT_SUBSCRIBE_CALLBACK Callback, WINAPI_EvtSubscribeFlags Flags);
   EVT_HANDLE EvtCreateBookmark(               LPCWSTR BookmarkXml);
   BOOL       EvtUpdateBookmark(               EVT_HANDLE Bookmark, EVT_HANDLE Event);
   BOOL       EvtGetEventInfo(                 EVT_HANDLE Event, EVT_EVENT_PROPERTY_ID PropertyId, DWORD PropertyValueBufferSize, PEVT_VARIANT PropertyValueBuffer, PDWORD PropertyValueBufferUsed);
-  EVT_HANDLE EvtCreateRenderContext(          DWORD ValuePathsCount, LPCWSTR* ValuePaths, EvtRenderContextFlags Flags);
-  BOOL       EvtRender(                       EVT_HANDLE Context, EVT_HANDLE Fragment, EvtRenderFlags Flags, DWORD BufferSize, PVOID Buffer, PDWORD BufferUsed, PDWORD PropertyCount);
-  BOOL       EvtFormatMessage(                EVT_HANDLE PublisherMetadata, EVT_HANDLE Event, DWORD MessageId, DWORD ValueCount, PEVT_VARIANT Values, EvtFormatMessageFlags Flags, DWORD BufferSize, LPWSTR Buffer, PDWORD BufferUsed);
-  EVT_HANDLE EvtOpenLog(                      EVT_HANDLE Session, LPCWSTR Path, EvtOpenFlags Flags);
+  EVT_HANDLE EvtCreateRenderContext(          DWORD ValuePathsCount, LPCWSTR* ValuePaths, WINAPI_EvtRenderContextFlags Flags);
+  BOOL       EvtRender(                       EVT_HANDLE Context, EVT_HANDLE Fragment, WINAPI_EvtRenderFlags Flags, DWORD BufferSize, PVOID Buffer, PDWORD BufferUsed, PDWORD PropertyCount);
+  BOOL       EvtFormatMessage(                EVT_HANDLE PublisherMetadata, EVT_HANDLE Event, DWORD MessageId, DWORD ValueCount, PEVT_VARIANT Values, WINAPI_EvtFormatMessageFlags Flags, DWORD BufferSize, LPWSTR Buffer, PDWORD BufferUsed);
+  EVT_HANDLE EvtOpenLog(                      EVT_HANDLE Session, LPCWSTR Path, WINAPI_EvtOpenFlags Flags);
   BOOL       EvtGetLogInfo(                   EVT_HANDLE Log, EVT_LOG_PROPERTY_ID PropertyId, DWORD PropertyValueBufferSize, PEVT_VARIANT PropertyValueBuffer, PDWORD PropertyValueBufferUsed);
   BOOL       EvtClearLog(                     EVT_HANDLE Session, LPCWSTR ChannelPath, LPCWSTR TargetFilePath, DWORD Flags);
-  BOOL       EvtExportLog(                    EVT_HANDLE Session, LPCWSTR Path, LPCWSTR Query, LPCWSTR TargetFilePath, EvtExportLogFlags Flags);
+  BOOL       EvtExportLog(                    EVT_HANDLE Session, LPCWSTR Path, LPCWSTR Query, LPCWSTR TargetFilePath, WINAPI_EvtExportLogFlags Flags);
   BOOL       EvtArchiveExportedLog(           EVT_HANDLE Session, LPCWSTR LogFilePath, LCID Locale, DWORD Flags);
   EVT_HANDLE EvtOpenChannelEnum(              EVT_HANDLE Session, DWORD Flags);
   BOOL       EvtNextChannelPath(              EVT_HANDLE ChannelEnum, DWORD ChannelPathBufferSize, LPWSTR ChannelPathBuffer, PDWORD ChannelPathBufferUsed);

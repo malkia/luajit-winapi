@@ -6,7 +6,7 @@ ffi.cdef [[
   typedef HANDLE SAFER_LEVEL_HANDLE; //Alias
   enum { SAFER_MAX_HASH_SIZE = 64 };
   enum { TOKEN_SOURCE_LENGTH = 8 };
-  typedef DWORD AceFlags; //Alias
+  typedef DWORD WINAPI_AceFlags; //Alias
   typedef UINT ACCESS_MODE; //Alias
   static const ACCESS_MODE NOT_USED_ACCESS = 0;
   static const ACCESS_MODE GRANT_ACCESS = 1;
@@ -63,24 +63,24 @@ ffi.cdef [[
     LPTSTR ptstrName;
   } OBJECTS_AND_NAME;
   typedef OBJECTS_AND_NAME *POBJECTS_AND_NAME; //Pointer
-  typedef union TRUSTEE_u {
+  typedef union WINAPI_TRUSTEE_u {
     LPTSTR ptstrName;
     SID* pSid;
     OBJECTS_AND_SID* pObjectsAndSid;
     OBJECTS_AND_NAME* pObjectsAndName;
-  } TRUSTEE_u;
+  } WINAPI_TRUSTEE_u;
   typedef struct TRUSTEE {
     LPVOID pMultipleTrustee;
     MULTIPLE_TRUSTEE_OPERATION MultipleTrusteeOperation;
     TRUSTEE_FORM TrusteeForm;
     TRUSTEE_TYPE TrusteeType;
-    TRUSTEE_u ;
+    WINAPI_TRUSTEE_u ;
   } TRUSTEE;
   typedef TRUSTEE *PTRUSTEE; //Pointer
   typedef struct EXPLICIT_ACCESS {
     ACCESS_MASK grfAccessPermissions;
     ACCESS_MODE grfAccessMode;
-    AceFlags grfInheritance;
+    WINAPI_AceFlags grfInheritance;
     TRUSTEE Trustee;
   } EXPLICIT_ACCESS;
   typedef EXPLICIT_ACCESS *PEXPLICIT_ACCESS; //Pointer
@@ -89,7 +89,7 @@ ffi.cdef [[
     LUID SourceIdentifier;
   } TOKEN_SOURCE;
   typedef TOKEN_SOURCE *PTOKEN_SOURCE; //Pointer
-  typedef DWORD SAFER_CRITERIA; //Alias
+  typedef DWORD WINAPI_SAFER_CRITERIA; //Alias
   typedef DWORD URLZONE; //Alias
   static const URLZONE URLZONE_LOCAL_MACHINE = 0;
   static const URLZONE URLZONE_INTRANET = 1;
@@ -99,7 +99,7 @@ ffi.cdef [[
 # pragma pack( push, 8 )
   typedef struct SAFER_CODE_PROPERTIES {
     DWORD cbSize;
-    SAFER_CRITERIA dwCheckFlags;
+    WINAPI_SAFER_CRITERIA dwCheckFlags;
     LPCWSTR ImagePath;
     HANDLE hImageFileHandle;
     URLZONE UrlZoneId;
@@ -109,7 +109,7 @@ ffi.cdef [[
     ALG_ID HashAlgorithm;
     LPBYTE pByteBlock;
     HWND hWndParent;
-    WTD_UI dwWVTUIChoice;
+    WINAPI_WTD_UI dwWVTUIChoice;
   } SAFER_CODE_PROPERTIES;
 # pragma pack( pop )
   typedef SAFER_CODE_PROPERTIES *PSAFER_CODE_PROPERTIES; //Pointer
@@ -123,29 +123,29 @@ ffi.cdef [[
     GUID AuditCategoryGuid;
   } AUDIT_POLICY_INFORMATION;
   typedef AUDIT_POLICY_INFORMATION *PCAUDIT_POLICY_INFORMATION; //Pointer
-  typedef BYTE AceType; //Alias
-  static const AceType ACCESS_ALLOWED = 0x0;
-  static const AceType ACCESS_DENIED = 0x1;
-  static const AceType SYSTEM_AUDIT = 0x2;
-  static const AceType SYSTEM_ALARM = 0x3;
-  static const AceType ACCESS_ALLOWED_COMPOUND = 0x4;
-  static const AceType ACCESS_ALLOWED_OBJECT = 0x5;
-  static const AceType ACCESS_DENIED_OBJECT = 0x6;
-  static const AceType SYSTEM_AUDIT_OBJECT = 0x7;
-  static const AceType SYSTEM_ALARM_OBJECT = 0x8;
-  static const AceType ACCESS_ALLOWED_CALLBACK = 0x9;
-  static const AceType ACCESS_DENIED_CALLBACK = 0xA;
-  static const AceType ACCESS_ALLOWED_CALLBACK_OBJECT = 0xB;
-  static const AceType ACCESS_DENIED_CALLBACK_OBJECT = 0xC;
-  static const AceType SYSTEM_AUDIT_CALLBACK = 0xD;
-  static const AceType SYSTEM_ALARM_CALLBACK = 0xE;
-  static const AceType SYSTEM_AUDIT_CALLBACK_OBJECT = 0xF;
-  static const AceType SYSTEM_ALARM_CALLBACK_OBJECT = 0x10;
-  static const AceType SYSTEM_MANDATORY_LABEL = 0x11;
-  typedef BYTE AceFlags_BYTE; //Alias
+  typedef BYTE WINAPI_AceType; //Alias
+  static const WINAPI_AceType ACCESS_ALLOWED = 0x0;
+  static const WINAPI_AceType ACCESS_DENIED = 0x1;
+  static const WINAPI_AceType SYSTEM_AUDIT = 0x2;
+  static const WINAPI_AceType SYSTEM_ALARM = 0x3;
+  static const WINAPI_AceType ACCESS_ALLOWED_COMPOUND = 0x4;
+  static const WINAPI_AceType ACCESS_ALLOWED_OBJECT = 0x5;
+  static const WINAPI_AceType ACCESS_DENIED_OBJECT = 0x6;
+  static const WINAPI_AceType SYSTEM_AUDIT_OBJECT = 0x7;
+  static const WINAPI_AceType SYSTEM_ALARM_OBJECT = 0x8;
+  static const WINAPI_AceType ACCESS_ALLOWED_CALLBACK = 0x9;
+  static const WINAPI_AceType ACCESS_DENIED_CALLBACK = 0xA;
+  static const WINAPI_AceType ACCESS_ALLOWED_CALLBACK_OBJECT = 0xB;
+  static const WINAPI_AceType ACCESS_DENIED_CALLBACK_OBJECT = 0xC;
+  static const WINAPI_AceType SYSTEM_AUDIT_CALLBACK = 0xD;
+  static const WINAPI_AceType SYSTEM_ALARM_CALLBACK = 0xE;
+  static const WINAPI_AceType SYSTEM_AUDIT_CALLBACK_OBJECT = 0xF;
+  static const WINAPI_AceType SYSTEM_ALARM_CALLBACK_OBJECT = 0x10;
+  static const WINAPI_AceType SYSTEM_MANDATORY_LABEL = 0x11;
+  typedef BYTE WINAPI_AceFlags_BYTE; //Alias
   typedef struct ACE_HEADER {
-    AceType AceType;
-    AceFlags_BYTE AceFlags;
+    WINAPI_AceType AceType;
+    WINAPI_AceFlags_BYTE AceFlags;
     WORD AceSize;
   } ACE_HEADER;
   typedef struct ACE {
@@ -167,10 +167,10 @@ ffi.cdef [[
   } LUID_AND_ATTRIBUTES;
 # pragma pack( pop )
   typedef LUID_AND_ATTRIBUTES *PLUID_AND_ATTRIBUTES; //Pointer
-  typedef DWORD PRIVILEGE_SET; //Alias
+  typedef DWORD WINAPI_PRIVILEGE_SET; //Alias
   typedef struct PRIVILEGE_SET {
     DWORD PrivilegeCount;
-    PRIVILEGE_SET Control;
+    WINAPI_PRIVILEGE_SET Control;
     LUID_AND_ATTRIBUTES Privilege[ANYSIZE_ARRAY];
   } PRIVILEGE_SET;
   typedef PRIVILEGE_SET *PPRIVILEGE_SET; //Pointer

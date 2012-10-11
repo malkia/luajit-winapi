@@ -8,8 +8,8 @@ ffi.cdef [[
     DWORD dwOutSpeed;
   } QOCINFO;
   typedef QOCINFO *LPQOCINFO; //Pointer
-  typedef DWORD NetworkAliveFlags; //Alias
+  typedef DWORD WINAPI_NetworkAliveFlags; //Alias
   BOOL IsDestinationReachable( LPCSTR lpszDestination, LPQOCINFO lpQOCInfo);
-  Bool IsNetworkAlive(         NetworkAliveFlags* lpdwFlags);
+  Bool IsNetworkAlive(         WINAPI_NetworkAliveFlags* lpdwFlags);
 ]]
 ffi.load( 'Sensapi.dll' )

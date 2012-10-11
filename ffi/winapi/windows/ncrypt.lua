@@ -26,11 +26,11 @@ ffi.cdef [[
     LPWSTR pszName;
     LPWSTR pszComment;
   } NCryptProviderName;
-  typedef DWORD SslContentType; //Alias
-  static const SslContentType CT_CHANGE_CIPHER_SPEC = 20;
-  static const SslContentType CT_ALERT = 21;
-  static const SslContentType CT_HANDSHAKE = 22;
-  static const SslContentType CT_APPLICATIONDATA = 23;
+  typedef DWORD WINAPI_SslContentType; //Alias
+  static const WINAPI_SslContentType CT_CHANGE_CIPHER_SPEC = 20;
+  static const WINAPI_SslContentType CT_ALERT = 21;
+  static const WINAPI_SslContentType CT_HANDSHAKE = 22;
+  static const WINAPI_SslContentType CT_APPLICATIONDATA = 23;
   SECURITY_STATUS NCryptCreatePersistedKey(           NCRYPT_PROV_HANDLE hProvider, NCRYPT_KEY_HANDLE* phKey, LPCWSTR pszAlgId, LPCWSTR pszKeyName, DWORD dwLegacyKeySpec, DWORD dwFlags);
   SECURITY_STATUS NCryptDecrypt(                      NCRYPT_KEY_HANDLE hKey, PBYTE pbInput, DWORD cbInput, VOID* pPaddingInfo, PBYTE pbOutput, DWORD cbOutput, DWORD* pcbResult, DWORD dwFlags);
   SECURITY_STATUS NCryptDeleteKey(                    NCRYPT_KEY_HANDLE hKey, DWORD dwFlags);
@@ -64,7 +64,7 @@ ffi.cdef [[
   SECURITY_STATUS SslCreateHandshakeHash(             NCRYPT_PROV_HANDLE hSslProvider, NCRYPT_HASH_HANDLE* phHandshakeHash, DWORD dwProtocol, DWORD dwCipherSuite, DWORD dwFlags);
   SECURITY_STATUS SslDecrementProviderReferenceCount( NCRYPT_PROV_HANDLE hSslProvider);
   SECURITY_STATUS SslDecryptPacket(                   NCRYPT_PROV_HANDLE hSslProvider, NCRYPT_KEY_HANDLE hKey, PBYTE pbInput, DWORD cbInput, PBYTE pbOutput, DWORD cbOutput, DWORD* pcbResult, ULONGLONG SequenceNumber, DWORD dwFlags);
-  SECURITY_STATUS SslEncryptPacket(                   NCRYPT_PROV_HANDLE hSslProvider, NCRYPT_KEY_HANDLE hKey, PBYTE pbInput, DWORD cbInput, PBYTE pbOutput, DWORD cbOutput, DWORD* pcbResult, ULONGLONG SequenceNumber, SslContentType dwContentType, DWORD dwFlags);
+  SECURITY_STATUS SslEncryptPacket(                   NCRYPT_PROV_HANDLE hSslProvider, NCRYPT_KEY_HANDLE hKey, PBYTE pbInput, DWORD cbInput, PBYTE pbOutput, DWORD cbOutput, DWORD* pcbResult, ULONGLONG SequenceNumber, WINAPI_SslContentType dwContentType, DWORD dwFlags);
   SECURITY_STATUS SslEnumCipherSuites(                NCRYPT_PROV_HANDLE hSslProvider, NCRYPT_KEY_HANDLE hPrivateKey, NCRYPT_SSL_CIPHER_SUITE** ppCipherSuite, PVOID* ppEnumState, DWORD dwFlags);
   SECURITY_STATUS SslEnumProtocolProviders(           DWORD* pdwProviderCount, NCryptProviderName** ppProviderList, DWORD dwFlags);
   SECURITY_STATUS SslExportKey(                       NCRYPT_PROV_HANDLE hSslProvider, NCRYPT_KEY_HANDLE hKey, LPCWSTR pszBlobType, PBYTE pbOutput, DWORD cbOutput, DWORD* pcbResult, DWORD dwFlags);

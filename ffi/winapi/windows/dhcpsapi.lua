@@ -162,16 +162,16 @@ ffi.cdef [[
     LPDHCP_OPTION_VALUE Values;
   } DHCP_OPTION_VALUE_ARRAY;
   typedef DHCP_OPTION_VALUE_ARRAY *LPDHCP_OPTION_VALUE_ARRAY; //Pointer
-  typedef struct DHCP_ALL_OPTION_VALUES_s {
+  typedef struct WINAPI_DHCP_ALL_OPTION_VALUES_s {
     LPWSTR ClassName;
     LPWSTR VendorName;
     BOOL IsVendor;
     LPDHCP_OPTION_VALUE_ARRAY OptionsArray;
-  } DHCP_ALL_OPTION_VALUES_s;
+  } WINAPI_DHCP_ALL_OPTION_VALUES_s;
   typedef struct DHCP_ALL_OPTION_VALUES {
     DWORD Flags;
     DWORD NumElements;
-    DHCP_ALL_OPTION_VALUES_s* Options;
+    WINAPI_DHCP_ALL_OPTION_VALUES_s* Options;
   } DHCP_ALL_OPTION_VALUES;
   typedef struct DHCP_IP_RESERVATION {
     DHCP_IP_ADDRESS ReservedIpAddress;
@@ -252,16 +252,16 @@ ffi.cdef [[
     LPDHCP_OPTION Options;
   } DHCP_OPTION_ARRAY;
   typedef DHCP_OPTION_ARRAY *LPDHCP_OPTION_ARRAY; //Pointer
-  typedef struct DHCP_ALL_OPTIONS_s {
+  typedef struct WINAPI_DHCP_ALL_OPTIONS_s {
     DHCP_OPTION Option;
     LPWSTR VendorName;
     LPWSTR ClassName;
-  } DHCP_ALL_OPTIONS_s;
+  } WINAPI_DHCP_ALL_OPTIONS_s;
   typedef struct DHCP_ALL_OPTIONS {
     DWORD Flags;
     LPDHCP_OPTION_ARRAY NonVendorOptions;
     DWORD NumVendorOptions;
-    DHCP_ALL_OPTIONS_s* VendorOptions;
+    WINAPI_DHCP_ALL_OPTIONS_s* VendorOptions;
   } DHCP_ALL_OPTIONS;
   typedef DHCP_ALL_OPTIONS *LPDHCP_ALL_OPTIONS; //Pointer
   typedef UINT DHCP_FILTER_LIST_TYPE; //Alias

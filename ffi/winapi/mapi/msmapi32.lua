@@ -8,7 +8,7 @@ ffi.cdef [[
   HRESULT      CheckParms(                 METHODS eMethod, LPVOID First);
   VOID         CloseIMsgSession(           LPMSGSESS lpMsgSess);
   SCODE        CreateIProp(                LPCIID lpInterface, ALLOCATEBUFFER* lpAllocateBuffer, ALLOCATEMORE* lpAllocateMore, FREEBUFFER* lpFreeBuffer, LPVOID lpvReserved, LPPROPDATA* lppPropData);
-  SCODE        CreateTable(                LPCIID lpInterface, ALLOCATEBUFFER* lpAllocateBuffer, ALLOCATEMORE* lpAllocateMore, FREEBUFFER* lpFreeBuffer, LPVOID lpvReserved, MapiTableType ulTableType, ULONG ulPropTagIndexColumn, LPSPropTagArray lpSPropTagArrayColumns, LPTABLEDATA* lppTableData);
+  SCODE        CreateTable(                LPCIID lpInterface, ALLOCATEBUFFER* lpAllocateBuffer, ALLOCATEMORE* lpAllocateMore, FREEBUFFER* lpFreeBuffer, LPVOID lpvReserved, WINAPI_MapiTableType ulTableType, ULONG ulPropTagIndexColumn, LPSPropTagArray lpSPropTagArrayColumns, LPTABLEDATA* lppTableData);
   VOID         DeinitMapiUtil(             );
   VOID         DeregisterIdleRoutine(      FTG ftg);
   VOID         EnableIdleRoutine(          FTG ftg, BOOL fEnable);

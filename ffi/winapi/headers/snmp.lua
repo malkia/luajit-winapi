@@ -29,25 +29,25 @@ ffi.cdef [[
   typedef AsnOctetString AsnSequence; //Alias
   typedef AsnOctetString AsnIPAddress; //Alias
   typedef AsnOctetString AsnOpaque; //Alias
-  typedef BYTE ASN_TYPE; //Alias
-  static const ASN_TYPE ASN_INTEGER = 0x02;
-  static const ASN_TYPE ASN_BITS = 0x03;
-  static const ASN_TYPE ASN_OCTETSTRING = 0x04;
-  static const ASN_TYPE ASN_NULL = 0x05;
-  static const ASN_TYPE ASN_OBJECTIDENTIFIER = 0x06;
-  static const ASN_TYPE ASN_SEQUENCE = 0x30;
-  static const ASN_TYPE ASN_IPADDRESS = 0x40;
-  static const ASN_TYPE ASN_COUNTER32 = 0x41;
-  static const ASN_TYPE ASN_GAUGE32 = 0x42;
-  static const ASN_TYPE ASN_TIMETICKS = 0x43;
-  static const ASN_TYPE ASN_OPAQUE = 0x44;
-  static const ASN_TYPE ASN_COUNTER64 = 0x46;
-  static const ASN_TYPE ASN_UINTEGER32 = 0x47;
-  static const ASN_TYPE SNMP_EXCEPTION_NOSUCHOBJECT = 0x80;
-  static const ASN_TYPE SNMP_EXCEPTION_NOSUCHINSTANCE = 0x81;
-  static const ASN_TYPE SNMP_EXCEPTION_ENDOFMIBVIEW = 0x82;
+  typedef BYTE WINAPI_ASN_TYPE; //Alias
+  static const WINAPI_ASN_TYPE ASN_INTEGER = 0x02;
+  static const WINAPI_ASN_TYPE ASN_BITS = 0x03;
+  static const WINAPI_ASN_TYPE ASN_OCTETSTRING = 0x04;
+  static const WINAPI_ASN_TYPE ASN_NULL = 0x05;
+  static const WINAPI_ASN_TYPE ASN_OBJECTIDENTIFIER = 0x06;
+  static const WINAPI_ASN_TYPE ASN_SEQUENCE = 0x30;
+  static const WINAPI_ASN_TYPE ASN_IPADDRESS = 0x40;
+  static const WINAPI_ASN_TYPE ASN_COUNTER32 = 0x41;
+  static const WINAPI_ASN_TYPE ASN_GAUGE32 = 0x42;
+  static const WINAPI_ASN_TYPE ASN_TIMETICKS = 0x43;
+  static const WINAPI_ASN_TYPE ASN_OPAQUE = 0x44;
+  static const WINAPI_ASN_TYPE ASN_COUNTER64 = 0x46;
+  static const WINAPI_ASN_TYPE ASN_UINTEGER32 = 0x47;
+  static const WINAPI_ASN_TYPE SNMP_EXCEPTION_NOSUCHOBJECT = 0x80;
+  static const WINAPI_ASN_TYPE SNMP_EXCEPTION_NOSUCHINSTANCE = 0x81;
+  static const WINAPI_ASN_TYPE SNMP_EXCEPTION_ENDOFMIBVIEW = 0x82;
 # pragma pack( push, 4 )
-  typedef union AsnAny_u {
+  typedef union WINAPI_AsnAny_u {
     AsnInteger32 number;
     AsnUnsigned32 unsigned32;
     AsnCounter64 counter64;
@@ -60,12 +60,12 @@ ffi.cdef [[
     AsnGauge32 gauge;
     AsnTimeticks ticks;
     AsnOpaque arbitrary;
-  } AsnAny_u;
+  } WINAPI_AsnAny_u;
 # pragma pack( pop )
 # pragma pack( push, 4 )
   typedef struct AsnAny {
-    ASN_TYPE asnType;
-    AsnAny_u asnValue;
+    WINAPI_ASN_TYPE asnType;
+    WINAPI_AsnAny_u asnValue;
   } AsnAny;
 # pragma pack( pop )
   typedef AsnAny AsnObjectSyntax; //Alias

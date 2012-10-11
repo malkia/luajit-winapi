@@ -1,9 +1,9 @@
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  HRESULT D3DX11CompileFromFile(                        LPCTSTR pSrcFile, const D3D10_SHADER_MACRO* pDefines, LPD3D10INCLUDE pInclude, LPCSTR pFunctionName, LPCSTR pProfile, D3D10_SHADER Flags1, D3D10_EFFECT Flags2, ID3DX11ThreadPump* pPump, ID3D10Blob** ppShader, ID3D10Blob** ppErrorMsgs, HRESULT* pHResult);
+  HRESULT D3DX11CompileFromFile(                        LPCTSTR pSrcFile, const D3D10_SHADER_MACRO* pDefines, LPD3D10INCLUDE pInclude, LPCSTR pFunctionName, LPCSTR pProfile, WINAPI_D3D10_SHADER Flags1, WINAPI_D3D10_EFFECT Flags2, ID3DX11ThreadPump* pPump, ID3D10Blob** ppShader, ID3D10Blob** ppErrorMsgs, HRESULT* pHResult);
   HRESULT D3DX11CompileFromMemory(                      LPCSTR pSrcData, SIZE_T SrcDataLen, LPCSTR pFileName, const D3D10_SHADER_MACRO* pDefines, LPD3D10INCLUDE pInclude, LPCSTR pFunctionName, LPCSTR pProfile, UINT Flags1, UINT Flags2, ID3DX11ThreadPump* pPump, ID3D10Blob** ppShader, ID3D10Blob** ppErrorMsgs, HRESULT* pHResult);
   HRESULT D3DX11CompileFromResource(                    HMODULE hSrcModule, LPCTSTR pSrcResource, LPCTSTR pSrcFileName, const D3D10_SHADER_MACRO* pDefines, LPD3D10INCLUDE pInclude, LPCSTR pFunctionName, LPCSTR pProfile, UINT Flags1, UINT Flags2, ID3DX11ThreadPump* pPump, ID3D10Blob** ppShader, ID3D10Blob** ppErrorMsgs, HRESULT* pHResult);
-  HRESULT D3DX11ComputeNormalMap(                       ID3D11DeviceContext* pContext, ID3D11Texture2D* pSrcTexture, D3DX_NORMALMAP Flags, UINT Channel, FLOAT Amplitude, ID3D11Texture2D* pDestTexture);
+  HRESULT D3DX11ComputeNormalMap(                       ID3D11DeviceContext* pContext, ID3D11Texture2D* pSrcTexture, WINAPI_D3DX_NORMALMAP Flags, UINT Channel, FLOAT Amplitude, ID3D11Texture2D* pDestTexture);
   HRESULT D3DX11CreateAsyncCompilerProcessor(           LPCSTR pFileName, const D3D11_SHADER_MACRO* pDefines, LPD3D10INCLUDE pInclude, LPCSTR pFunctionName, LPCSTR pProfile, UINT Flags1, UINT Flags2, ID3D10Blob** ppCompiledShader, ID3D10Blob** ppErrorBuffer, ID3DX11DataProcessor** ppDataProcessor);
   HRESULT D3DX11CreateAsyncFileLoader(                  LPCTSTR pFileName, ID3DX11DataLoader** ppDataLoader);
   HRESULT D3DX11CreateAsyncMemoryLoader(                LPCVOID pData, SIZE_T cbData, ID3DX11DataLoader** ppDataLoader);

@@ -14,7 +14,7 @@ ffi.cdef [[
   typedef LPVOID PIPINTERFACE_CHANGE_CALLBACK; //Alias
   typedef LPVOID PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK; //Alias
   typedef GUID NET_IF_NETWORK_GUID; //Alias
-  typedef ERROR_CODE NETIO_STATUS; //Alias
+  typedef WINAPI_ERROR_CODE NETIO_STATUS; //Alias
   typedef NETIO_STATUS NETIOAPI_API; //Alias
   enum { MAX_ADAPTER_ADDRESS_LENGTH = 8 };
   enum { MAX_HOSTNAME_LEN_plus_4 = 132 };
@@ -317,7 +317,7 @@ ffi.cdef [[
     SOCKADDR_INET Prefix;
     UINT8 PrefixLength;
   } IP_ADDRESS_PREFIX;
-  typedef IFTYPE MIB_IF_TYPE; //Alias
+  typedef IFTYPE WINAPI_MIB_IF_TYPE; //Alias
   typedef struct IP_ADAPTER_INFO {
     LPVOID Next;
     DWORD ComboIndex;
@@ -326,7 +326,7 @@ ffi.cdef [[
     UINT AddressLength;
     BYTE Address[MAX_ADAPTER_ADDRESS_LENGTH];
     DWORD Index;
-    MIB_IF_TYPE Type;
+    WINAPI_MIB_IF_TYPE Type;
     UINT DhcpEnabled;
     PIP_ADDR_STRING CurrentIpAddress;
     IP_ADDR_STRING IpAddressList;
@@ -418,9 +418,9 @@ ffi.cdef [[
     MIB_IFROW table[ANY_SIZE];
   } MIB_IFTABLE;
   typedef MIB_IFTABLE *PMIB_IFTABLE; //Pointer
-  typedef struct MIB_IF_ROW2_s {
+  typedef struct WINAPI_MIB_IF_ROW2_s {
     BOOLEAN Flags;
-  } MIB_IF_ROW2_s;
+  } WINAPI_MIB_IF_ROW2_s;
   typedef UINT TUNNEL_TYPE; //Alias
   static const TUNNEL_TYPE TUNNEL_TYPE_NONE = 0;
   static const TUNNEL_TYPE TUNNEL_TYPE_OTHER = 1;
@@ -518,7 +518,7 @@ ffi.cdef [[
     NDIS_PHYSICAL_MEDIUM PhysicalMediumType;
     NET_IF_ACCESS_TYPE AccessType;
     NET_IF_DIRECTION_TYPE DirectionType;
-    MIB_IF_ROW2_s InterfaceAndOperStatusFlags;
+    WINAPI_MIB_IF_ROW2_s InterfaceAndOperStatusFlags;
     IF_OPER_STATUS OperStatus;
     NET_IF_ADMIN_STATUS AdminStatus;
     NET_IF_MEDIA_CONNECT_STATE MediaConnectState;
@@ -690,7 +690,7 @@ ffi.cdef [[
     MIB_ANYCASTIPADDRESS_ROW Table[ANY_SIZE];
   } MIB_ANYCASTIPADDRESS_TABLE;
   typedef MIB_ANYCASTIPADDRESS_TABLE *PMIB_ANYCASTIPADDRESS_TABLE; //Pointer
-  typedef unsigned short MIB_IPADDR_TYPE; //Alias
+  typedef unsigned short WINAPI_MIB_IPADDR_TYPE; //Alias
   typedef struct MIB_IPADDRROW {
     DWORD dwAddr;
     IF_INDEX dwIndex;
@@ -698,7 +698,7 @@ ffi.cdef [[
     DWORD dwBCastAddr;
     DWORD dwReasmSize;
     unsigned short unused1;
-    MIB_IPADDR_TYPE wType;
+    WINAPI_MIB_IPADDR_TYPE wType;
   } MIB_IPADDRROW;
   typedef struct MIB_IPADDRTABLE {
     DWORD dwNumEntries;
@@ -758,10 +758,10 @@ ffi.cdef [[
     MIB_UNICASTIPADDRESS_ROW Table[ANY_SIZE];
   } MIB_UNICASTIPADDRESS_TABLE;
   typedef MIB_UNICASTIPADDRESS_TABLE *PMIB_UNICASTIPADDRESS_TABLE; //Pointer
-  typedef union MIB_ReachabilityTime {
+  typedef union WINAPI_MIB_ReachabilityTime {
     ULONG LastReachable;
     ULONG LastUnreachable;
-  } MIB_ReachabilityTime;
+  } WINAPI_MIB_ReachabilityTime;
   typedef UINT NL_NEIGHBOR_STATE; //Alias
   static const NL_NEIGHBOR_STATE NlnsUnreachable = 0;
   static const NL_NEIGHBOR_STATE NlnsIncomplete = 1;
@@ -779,7 +779,7 @@ ffi.cdef [[
     ULONG PhysicalAddressLength;
     NL_NEIGHBOR_STATE State;
     UCHAR Flags;
-    MIB_ReachabilityTime ReachabilityTime;
+    WINAPI_MIB_ReachabilityTime ReachabilityTime;
   } MIB_IPNET_ROW2;
   typedef MIB_IPNET_ROW2 *PMIB_IPNET_ROW2; //Pointer
   typedef struct MIB_IPNET_TABLE2 {
@@ -796,7 +796,7 @@ ffi.cdef [[
     ULONG PathMtu;
     ULONG RttMean;
     ULONG RttDeviation;
-    MIB_ReachabilityTime ;
+    WINAPI_MIB_ReachabilityTime ;
     BOOLEAN IsReachable;
     ULONG64 LinkTransmitSpeed;
     ULONG64 LinkReceiveSpeed;
@@ -866,32 +866,32 @@ ffi.cdef [[
   static const NET_ADDRESS_FORMAT NET_ADDRESS_DNS_NAME = 1;
   static const NET_ADDRESS_FORMAT NET_ADDRESS_IPV4 = 2;
   static const NET_ADDRESS_FORMAT NET_ADDRESS_IPV6 = 3;
-  typedef struct NET_ADDRESS_INFO_u_s {
+  typedef struct WINAPI_NET_ADDRESS_INFO_u_s {
     WCHAR Address[DNS_MAX_NAME_BUFFER_LENGTH];
     WCHAR Port[6];
-  } NET_ADDRESS_INFO_u_s;
-  typedef union NET_ADDRESS_INFO_u {
-    NET_ADDRESS_INFO_u_s NamedAddress;
+  } WINAPI_NET_ADDRESS_INFO_u_s;
+  typedef union WINAPI_NET_ADDRESS_INFO_u {
+    WINAPI_NET_ADDRESS_INFO_u_s NamedAddress;
     SOCKADDR_IN Ipv4Address;
     SOCKADDR_IN6 Ipv6Address;
     SOCKADDR IpAddress;
-  } NET_ADDRESS_INFO_u;
+  } WINAPI_NET_ADDRESS_INFO_u;
   typedef struct NET_ADDRESS_INFO {
     NET_ADDRESS_FORMAT Format;
-    NET_ADDRESS_INFO_u ;
+    WINAPI_NET_ADDRESS_INFO_u ;
   } NET_ADDRESS_INFO;
   typedef NET_ADDRESS_INFO *PNET_ADDRESS_INFO; //Pointer
-  typedef UINT FIXED_INFO_NODETYPE; //Alias
-  static const FIXED_INFO_NODETYPE BROADCAST_NODETYPE = 1;
-  static const FIXED_INFO_NODETYPE PEER_TO_PEER_NODETYPE = 2;
-  static const FIXED_INFO_NODETYPE MIXED_NODETYPE = 4;
-  static const FIXED_INFO_NODETYPE HYBRID_NODETYPE = 8;
+  typedef UINT WINAPI_FIXED_INFO_NODETYPE; //Alias
+  static const WINAPI_FIXED_INFO_NODETYPE BROADCAST_NODETYPE = 1;
+  static const WINAPI_FIXED_INFO_NODETYPE PEER_TO_PEER_NODETYPE = 2;
+  static const WINAPI_FIXED_INFO_NODETYPE MIXED_NODETYPE = 4;
+  static const WINAPI_FIXED_INFO_NODETYPE HYBRID_NODETYPE = 8;
   typedef struct FIXED_INFO {
     char HostName[MAX_HOSTNAME_LEN_plus_4];
     char DomainName[MAX_DOMAIN_NAME_LEN_plus_4];
     PIP_ADDR_STRING CurrentDnsServer;
     IP_ADDR_STRING DnsServerList;
-    FIXED_INFO_NODETYPE NodeType;
+    WINAPI_FIXED_INFO_NODETYPE NodeType;
     char ScopeId[MAX_SCOPE_ID_LEN_plus_4];
     UINT EnableRouting;
     UINT EnableProxy;
@@ -1079,145 +1079,145 @@ ffi.cdef [[
   static const UDP_TABLE_CLASS UDP_TABLE_BASIC = 0;
   static const UDP_TABLE_CLASS UDP_TABLE_OWNER_PID = 1;
   static const UDP_TABLE_CLASS UDP_TABLE_OWNER_MODULE = 2;
-  typedef ULONG GetAdaptersAddressesFlags; //Alias
-  ERROR_CODE       GetAdapterIndex(                   LPWSTR AdapterName, PULONG IfIndex);
-  ERROR_CODE_ULONG GetAdaptersAddresses(              ADDRESS_FAMILY Family, GetAdaptersAddressesFlags Flags, PVOID Reserved, PIP_ADAPTER_ADDRESSES AdapterAddresses, PULONG SizePointer);
-  ERROR_CODE       GetAdaptersInfo(                   PIP_ADAPTER_INFO pAdapterInfo, PULONG pOutBufLen);
-  ERROR_CODE       GetPerAdapterInfo(                 ULONG IfIndex, PIP_PER_ADAPTER_INFO pPerAdapterInfo, PULONG pOutBufLen);
-  ERROR_CODE       GetUniDirectionalAdapterInfo(      PIP_UNIDIRECTIONAL_ADAPTER_ADDRESS pIPIfInfo, PULONG dwOutBufLen);
-  ERROR_CODE       CreateIpNetEntry(                  PMIB_IPNETROW pArpEntry);
-  ERROR_CODE       CreateProxyArpEntry(               DWORD dwAddress, DWORD dwMask, DWORD dwIfIndex);
-  ERROR_CODE       DeleteIpNetEntry(                  PMIB_IPNETROW pArpEntry);
-  ERROR_CODE       DeleteProxyArpEntry(               DWORD dwAddress, DWORD dwMask, DWORD dwIfIndex);
-  ERROR_CODE       FlushIpNetTable(                   DWORD dwIfIndex);
-  ERROR_CODE       GetIpNetTable(                     PMIB_IPNETTABLE pIpNetTable, PULONG pdwSize, BOOL bOrder);
-  ERROR_CODE       SendARP(                           IPAddr DestIP, IPAddr SrcIP, PULONG pMacAddr, PULONG PhyAddrLen);
-  ERROR_CODE       SetIpNetEntry(                     PMIB_IPNETROW pArpEntry);
-  NETIO_STATUS     ConvertInterfaceAliasToLuid(       WCHAR* InterfaceAlias, PNET_LUID InterfaceLuid);
-  NETIO_STATUS     ConvertInterfaceGuidToLuid(        GUID* InterfaceGuid, PNET_LUID InterfaceLuid);
-  NETIO_STATUS     ConvertInterfaceIndexToLuid(       NET_IFINDEX InterfaceIndex, PNET_LUID InterfaceLuid);
-  NETIO_STATUS     ConvertInterfaceLuidToAlias(       NET_LUID* InterfaceLuid, PWSTR InterfaceAlias, SIZE_T Length);
-  NETIO_STATUS     ConvertInterfaceLuidToGuid(        NET_LUID* InterfaceLuid, GUID* InterfaceGuid);
-  NETIO_STATUS     ConvertInterfaceLuidToIndex(       NET_LUID* InterfaceLuid, PNET_IFINDEX InterfaceIndex);
-  NETIO_STATUS     ConvertInterfaceLuidToNameA(       NET_LUID* InterfaceLuid, PSTR InterfaceName, SIZE_T Length);
-  NETIO_STATUS     ConvertInterfaceLuidToNameW(       NET_LUID* InterfaceLuid, PWSTR InterfaceName, SIZE_T Length);
-  NETIO_STATUS     ConvertInterfaceNameToLuidA(       CHAR* InterfaceName, PNET_LUID InterfaceLuid);
-  NETIO_STATUS     ConvertInterfaceNameToLuidW(       WCHAR* InterfaceName, PNET_LUID InterfaceLuid);
-  PCHAR            if_indextoname(                    NET_IFINDEX InterfaceIndex, PCHAR InterfaceName);
-  NET_IFINDEX      if_nametoindex(                    PCSTR InterfaceName);
-  ERROR_CODE       GetFriendlyIfIndex(                DWORD IfIndex);
-  ERROR_CODE       GetIfEntry(                        PMIB_IFROW pIfRow);
-  NETIOAPI_API     GetIfEntry2(                       PMIB_IF_ROW2 Row);
-  NETIOAPI_API     GetIfStackTable(                   PMIB_IFSTACK_TABLE* Table);
-  ERROR_CODE       GetIfTable(                        PMIB_IFTABLE pIfTable, PULONG pdwSize, BOOL bOrder);
-  NETIOAPI_API     GetIfTable2(                       PMIB_IF_TABLE2* Table);
-  NETIOAPI_API     GetIfTable2Ex(                     MIB_IF_TABLE_LEVEL Level, PMIB_IF_TABLE2* Table);
-  ERROR_CODE       GetInterfaceInfo(                  PIP_INTERFACE_INFO pIfTable, PULONG dwOutBufLen);
-  NETIOAPI_API     GetInvertedIfStackTable(           PMIB_INVERTEDIFSTACK_TABLE* Table);
-  NETIOAPI_API     GetIpInterfaceEntry(               PMIB_IPINTERFACE_ROW Row);
-  NETIOAPI_API     GetIpInterfaceTable(               ADDRESS_FAMILY Family, PMIB_IPINTERFACE_TABLE* Table);
-  ERROR_CODE       GetNumberOfInterfaces(             PDWORD pdwNumIf);
-  VOID             InitializeIpInterfaceEntry(        PMIB_IPINTERFACE_ROW Row);
-  ERROR_CODE       SetIfEntry(                        PMIB_IFROW pIfRow);
-  NETIOAPI_API     SetIpInterfaceEntry(               PMIB_IPINTERFACE_ROW Row);
-  ERROR_CODE       GetIcmpStatistics(                 PMIB_ICMP pStats);
-  ERROR_CODE       GetIpStatistics(                   PMIB_IPSTATS pStats);
-  FILE_HANDLE      Icmp6CreateFile(                   );
-  ERROR_CODE       Icmp6ParseReplies(                 LPVOID ReplyBuffer, DWORD ReplySize);
-  ERROR_CODE       Icmp6SendEcho2(                    HANDLE IcmpHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, struct sockaddr_in6* SourceAddress, struct sockaddr_in6* DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
-  ERROR_CODE       IcmpSendEcho2Ex(                   HANDLE IcmpHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, IPAddr SourceAddress, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
-  ERROR_CODE       SetIpTTL(                          UINT nTTL);
-  ERROR_CODE       AddIPAddress(                      IPAddr Address, IPMask IpMask, DWORD IfIndex, PULONG NTEContext, PULONG NTEInstance);
-  NETIOAPI_API     CreateAnycastIpAddressEntry(       MIB_ANYCASTIPADDRESS_ROW* Row);
-  NETIOAPI_API     CreateUnicastIpAddressEntry(       MIB_UNICASTIPADDRESS_ROW* Row);
-  ERROR_CODE       DeleteIPAddress(                   ULONG NTEContext);
-  NETIOAPI_API     DeleteAnycastIpAddressEntry(       MIB_ANYCASTIPADDRESS_ROW* Row);
-  NETIOAPI_API     DeleteUnicastIpAddressEntry(       MIB_UNICASTIPADDRESS_ROW* Row);
-  NETIOAPI_API     GetAnycastIpAddressEntry(          PMIB_ANYCASTIPADDRESS_ROW Row);
-  NETIOAPI_API     GetAnycastIpAddressTable(          ADDRESS_FAMILY Family, PMIB_ANYCASTIPADDRESS_TABLE* Table);
-  ERROR_CODE       GetIpAddrTable(                    PMIB_IPADDRTABLE pIpAddrTable, PULONG pdwSize, BOOL bOrder);
-  NETIOAPI_API     GetMulticastIpAddressEntry(        PMIB_MULTICASTIPADDRESS_ROW Row);
-  NETIOAPI_API     GetMulticastIpAddressTable(        ADDRESS_FAMILY Family, PMIB_MULTICASTIPADDRESS_TABLE* Table);
-  NETIOAPI_API     GetUnicastIpAddressEntry(          PMIB_UNICASTIPADDRESS_ROW Row);
-  NETIOAPI_API     GetUnicastIpAddressTable(          ADDRESS_FAMILY Family, PMIB_UNICASTIPADDRESS_TABLE* Table);
-  VOID             InitializeUnicastIpAddressEntry(   PMIB_UNICASTIPADDRESS_ROW Row);
-  ERROR_CODE       IpReleaseAddress(                  PIP_ADAPTER_INDEX_MAP AdapterInfo);
-  ERROR_CODE       IpRenewAddress(                    PIP_ADAPTER_INDEX_MAP AdapterInfo);
-  NETIOAPI_API     NotifyStableUnicastIpAddressTable( ADDRESS_FAMILY Family, PMIB_UNICASTIPADDRESS_TABLE* Table, PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK CallerCallback, PVOID CallerContext, HANDLE* NotificationHandle);
-  NETIOAPI_API     SetUnicastIpAddressEntry(          MIB_UNICASTIPADDRESS_ROW* Row);
-  NETIOAPI_API     CreateIpNetEntry2(                 MIB_IPNET_ROW2* Row);
-  NETIOAPI_API     DeleteIpNetEntry2(                 MIB_IPNET_ROW2* Row);
-  NETIOAPI_API     FlushIpNetTable2(                  ADDRESS_FAMILY Family, NET_IFINDEX InterfaceIndex);
-  NETIOAPI_API     GetIpNetEntry2(                    PMIB_IPNET_ROW2 Row);
-  NETIOAPI_API     GetIpNetTable2(                    ADDRESS_FAMILY Family, PMIB_IPNET_TABLE2* Table);
-  NETIOAPI_API     ResolveIpNetEntry2(                PMIB_IPNET_ROW2 Row, SOCKADDR_INET* SourceAddress);
-  ERROR_CODE_ULONG ResolveNeighbor(                   SOCKADDR* NetworkAddress, PVOID PhysicalAddress, PULONG PhysicalAddressLength);
-  NETIOAPI_API     SetIpNetEntry2(                    PMIB_IPNET_ROW2 Row);
-  NETIOAPI_API     FlushIpPathTable(                  ADDRESS_FAMILY Family);
-  NETIOAPI_API     GetIpPathEntry(                    PMIB_IPPATH_ROW Row);
-  NETIOAPI_API     GetIpPathTable(                    ADDRESS_FAMILY Family, MIB_IPPATH_TABLE* Table);
-  ERROR_CODE       CreateIpForwardEntry(              PMIB_IPFORWARDROW pRoute);
-  NETIOAPI_API     CreateIpForwardEntry2(             MIB_IPFORWARD_ROW2* Row);
-  ERROR_CODE       DeleteIpForwardEntry(              PMIB_IPFORWARDROW pRoute);
-  NETIOAPI_API     DeleteIpForwardEntry2(             MIB_IPFORWARD_ROW2* Row);
-  ERROR_CODE       EnableRouter(                      HANDLE* pHandle, OVERLAPPED* pOverlapped);
-  ERROR_CODE       GetBestInterface(                  IPAddr dwDestAddr, PDWORD pdwBestIfIndex);
-  ERROR_CODE       GetBestInterfaceEx(                struct sockaddr* pDestAddr, PDWORD pdwBestIfIndex);
-  ERROR_CODE       GetBestRoute(                      DWORD dwDestAddr, DWORD dwSourceAddr, PMIB_IPFORWARDROW pBestRoute);
-  NETIOAPI_API     GetBestRoute2(                     NET_LUID* InterfaceLuid, NET_IFINDEX InterfaceIndex, SOCKADDR_INET* SourceAddress, SOCKADDR_INET* DestinationAddress, ULONG AddressSortOptions, PMIB_IPFORWARD_ROW2 BestRoute, SOCKADDR_INET* BestSourceAddress);
-  NETIOAPI_API     GetIpForwardEntry2(                PMIB_IPFORWARD_ROW2 Row);
-  ERROR_CODE       GetIpForwardTable(                 PMIB_IPFORWARDTABLE pIpForwardTable, PULONG pdwSize, BOOL bOrder);
-  NETIOAPI_API     GetIpForwardTable2(                ADDRESS_FAMILY Family, PMIB_IPFORWARD_TABLE2* Table);
-  BOOL             GetRTTAndHopCount(                 IPAddr DestIpAddress, PULONG HopCount, ULONG MaxHops, PULONG RTT);
-  VOID             InitializeIpForwardEntry(          PMIB_IPFORWARD_ROW2 Row);
-  ERROR_CODE       SetIpForwardEntry(                 PMIB_IPFORWARDROW pRoute);
-  NETIOAPI_API     SetIpForwardEntry2(                MIB_IPFORWARD_ROW2* Route);
-  ERROR_CODE       SetIpStatistics(                   PMIB_IPSTATS pIpStats);
-  ERROR_CODE       SetIpStatisticsEx(                 PMIB_IPSTATS pIpStats, ULONG Family);
-  ERROR_CODE       UnenableRouter(                    OVERLAPPED* pOverlapped, LPDWORD lpdwEnableCount);
-  VOID             FreeMibTable(                      PVOID Memory);
-  NETIO_STATUS     ConvertIpv4MaskToLength(           ULONG Mask, PUINT8 MaskLength);
-  NETIO_STATUS     ConvertLengthToIpv4Mask(           ULONG MaskLength, PULONG Mask);
-  NETIOAPI_API     CreateSortedAddressPairs(          PSOCKADDR_IN6 SourceAddressList, ULONG SourceAddressCount, PSOCKADDR_IN6 DestinationAddressList, ULONG DestinationAddressCount, ULONG AddressSortOptions, PSOCKADDR_IN6_PAIR* SortedAddressPairList, ULONG* SortedAddressPairCount);
-  ERROR_CODE       ParseNetworkString(                WCHAR* NetworkString, DWORD Types, PNET_ADDRESS_INFO AddressInfo, USHORT* PortNumber, BYTE* PrefixLength);
-  ERROR_CODE       GetNetworkParams(                  PFIXED_INFO pFixedInfo, PULONG pOutBufLen);
-  NETIOAPI_API     CancelMibChangeNotify2(            HANDLE NotificationHandle);
-  ERROR_CODE       NotifyAddrChange(                  PHANDLE Handle, LPOVERLAPPED overlapped);
-  NETIOAPI_API     NotifyIpInterfaceChange(           ADDRESS_FAMILY Family, PIPINTERFACE_CHANGE_CALLBACK Callback, PVOID CallerContext, BOOLEAN InitialNotification, HANDLE* NotificationHandle);
-  ERROR_CODE       NotifyRouteChange(                 PHANDLE Handle, LPOVERLAPPED overlapped);
-  NETIOAPI_API     NotifyRouteChange2(                ADDRESS_FAMILY Family, PIPFORWARD_CHANGE_CALLBACK Callback, PVOID CallerContext, BOOLEAN InitialNotification, HANDLE* NotificationHandle);
-  NETIOAPI_API     NotifyUnicastIpAddressChange(      ADDRESS_FAMILY Family, PUNICAST_IPADDRESS_CHANGE_CALLBACK Callback, PVOID CallerContext, BOOLEAN InitialNotification, HANDLE* NotificationHandle);
-  BOOL             CancelSecurityHealthChangeNotify(  LPOVERLAPPED notifyOverlapped);
-  ERROR_CODE       NotifySecurityHealthChange(        PHANDLE pHandle, LPOVERLAPPED pOverLapped, PULONG SecurityHealthFlags);
-  NETIOAPI_API     GetTeredoPort(                     USHORT* Port);
-  NETIOAPI_API     NotifyTeredoPortChange(            PTEREDO_PORT_CHANGE_CALLBACK Callback, PVOID CallerContext, BOOLEAN InitialNotification, HANDLE* NotificationHandle);
-  ERROR_CODE       GetExtendedTcpTable(               PVOID pTcpTable, PDWORD pdwSize, BOOL bOrder, ADDRESS_FAMILY ulAf, TCP_TABLE_CLASS TableClass, ULONG Reserved);
-  ERROR_CODE       GetExtendedUdpTable(               PVOID pUdpTable, PDWORD pdwSize, BOOL bOrder, ADDRESS_FAMILY ulAf, UDP_TABLE_CLASS TableClass, ULONG Reserved);
-  ERROR_CODE       GetOwnerModuleFromTcp6Entry(       PMIB_TCP6ROW_OWNER_MODULE pTcpEntry, TCPIP_OWNER_MODULE_INFO_CLASS Class, PVOID Buffer, PDWORD pdwSize);
-  ERROR_CODE       GetOwnerModuleFromTcpEntry(        PMIB_TCPROW_OWNER_MODULE pTcpEntry, TCPIP_OWNER_MODULE_INFO_CLASS Class, PVOID Buffer, PDWORD pdwSize);
-  ERROR_CODE       GetOwnerModuleFromUdp6Entry(       PMIB_UDP6ROW_OWNER_MODULE pUdpEntry, TCPIP_OWNER_MODULE_INFO_CLASS Class, PVOID Buffer, PDWORD pdwSize);
-  ERROR_CODE       GetOwnerModuleFromUdpEntry(        PMIB_UDPROW_OWNER_MODULE pUdpEntry, TCPIP_OWNER_MODULE_INFO_CLASS Class, PVOID Buffer, PDWORD pdwSize);
-  ERROR_CODE_ULONG GetPerTcp6ConnectionEStats(        PMIB_TCP6ROW Row, TCP_ESTATS_TYPE EstatsType, PUCHAR Rw, ULONG RwVersion, ULONG RwSize, PUCHAR Ros, ULONG RosVersion, ULONG RosSize, PUCHAR Rod, ULONG RodVersion, ULONG RodSize);
-  ERROR_CODE_ULONG GetPerTcpConnectionEStats(         PMIB_TCPROW Row, TCP_ESTATS_TYPE EstatsType, PUCHAR Rw, ULONG RwVersion, ULONG RwSize, PUCHAR Ros, ULONG RosVersion, ULONG RosSize, PUCHAR Rod, ULONG RodVersion, ULONG RodSize);
-  ERROR_CODE       GetTcpStatistics(                  PMIB_TCPSTATS pStats);
-  ERROR_CODE       GetTcpStatisticsEx(                PMIB_TCPSTATS pStats, ADDRESS_FAMILY dwFamily);
-  ERROR_CODE_ULONG GetTcp6Table(                      PMIB_TCP6TABLE TcpTable, PULONG SizePointer, BOOL Order);
-  ERROR_CODE_ULONG GetTcp6Table2(                     PMIB_TCP6TABLE2 TcpTable, PULONG SizePointer, BOOL Order);
-  ERROR_CODE       GetTcpTable(                       PMIB_TCPTABLE pTcpTable, PDWORD pdwSize, BOOL bOrder);
-  ERROR_CODE_ULONG GetTcpTable2(                      PMIB_TCPTABLE2 TcpTable, PULONG SizePointer, BOOL Order);
-  ERROR_CODE_ULONG SetPerTcp6ConnectionEStats(        PMIB_TCP6ROW Row, TCP_ESTATS_TYPE EstatsType, PUCHAR Rw, ULONG RwVersion, ULONG RwSize, ULONG Offset);
-  ERROR_CODE_ULONG SetPerTcpConnectionEStats(         PMIB_TCP6ROW Row, TCP_ESTATS_TYPE EstatsType, PUCHAR Rw, ULONG RwVersion, ULONG RwSize, ULONG Offset);
-  ERROR_CODE       SetTcpEntry(                       PMIB_TCPROW pTcpRow);
-  ERROR_CODE_ULONG GetUdp6Table(                      PMIB_UDP6TABLE Udp6Table, PULONG SizePointer, BOOL Order);
-  ERROR_CODE       GetUdpStatistics(                  PMIB_UDPSTATS pStats);
-  ERROR_CODE       GetUdpStatisticsEx(                PMIB_UDPSTATS pStats, ADDRESS_FAMILY dwFamily);
-  ERROR_CODE       GetUdpTable(                       PMIB_UDPTABLE pUdpTable, PDWORD pdwSize, BOOL bOrder);
-  ERROR_CODE       AllocateAndGetTcpExTableFromStack( PVOID* ppTcpTable, BOOL bOrder, HANDLE hHeap, DWORD dwFlags, ADDRESS_FAMILY dwFamily);
-  ERROR_CODE       AllocateAndGetUdpExTableFromStack( PVOID* ppUDPTable, BOOL bOrder, HANDLE hHeap, DWORD dwFlags, ADDRESS_FAMILY dwFamily);
-  BOOL             IcmpCloseHandle(                   HANDLE IcmpHandle);
-  FILE_HANDLE      IcmpCreateFile(                    );
-  DWORD            IcmpParseReplies(                  LPVOID ReplyBuffer, DWORD ReplySize);
-  ERROR_CODE       IcmpSendEcho(                      HANDLE IcmpHandle, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
-  ERROR_CODE       IcmpSendEcho2(                     HANDLE IcmpHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
+  typedef ULONG WINAPI_GetAdaptersAddressesFlags; //Alias
+  WINAPI_ERROR_CODE       GetAdapterIndex(                   LPWSTR AdapterName, PULONG IfIndex);
+  WINAPI_ERROR_CODE_ULONG GetAdaptersAddresses(              ADDRESS_FAMILY Family, WINAPI_GetAdaptersAddressesFlags Flags, PVOID Reserved, PIP_ADAPTER_ADDRESSES AdapterAddresses, PULONG SizePointer);
+  WINAPI_ERROR_CODE       GetAdaptersInfo(                   PIP_ADAPTER_INFO pAdapterInfo, PULONG pOutBufLen);
+  WINAPI_ERROR_CODE       GetPerAdapterInfo(                 ULONG IfIndex, PIP_PER_ADAPTER_INFO pPerAdapterInfo, PULONG pOutBufLen);
+  WINAPI_ERROR_CODE       GetUniDirectionalAdapterInfo(      PIP_UNIDIRECTIONAL_ADAPTER_ADDRESS pIPIfInfo, PULONG dwOutBufLen);
+  WINAPI_ERROR_CODE       CreateIpNetEntry(                  PMIB_IPNETROW pArpEntry);
+  WINAPI_ERROR_CODE       CreateProxyArpEntry(               DWORD dwAddress, DWORD dwMask, DWORD dwIfIndex);
+  WINAPI_ERROR_CODE       DeleteIpNetEntry(                  PMIB_IPNETROW pArpEntry);
+  WINAPI_ERROR_CODE       DeleteProxyArpEntry(               DWORD dwAddress, DWORD dwMask, DWORD dwIfIndex);
+  WINAPI_ERROR_CODE       FlushIpNetTable(                   DWORD dwIfIndex);
+  WINAPI_ERROR_CODE       GetIpNetTable(                     PMIB_IPNETTABLE pIpNetTable, PULONG pdwSize, BOOL bOrder);
+  WINAPI_ERROR_CODE       SendARP(                           IPAddr DestIP, IPAddr SrcIP, PULONG pMacAddr, PULONG PhyAddrLen);
+  WINAPI_ERROR_CODE       SetIpNetEntry(                     PMIB_IPNETROW pArpEntry);
+  NETIO_STATUS            ConvertInterfaceAliasToLuid(       WCHAR* InterfaceAlias, PNET_LUID InterfaceLuid);
+  NETIO_STATUS            ConvertInterfaceGuidToLuid(        GUID* InterfaceGuid, PNET_LUID InterfaceLuid);
+  NETIO_STATUS            ConvertInterfaceIndexToLuid(       NET_IFINDEX InterfaceIndex, PNET_LUID InterfaceLuid);
+  NETIO_STATUS            ConvertInterfaceLuidToAlias(       NET_LUID* InterfaceLuid, PWSTR InterfaceAlias, SIZE_T Length);
+  NETIO_STATUS            ConvertInterfaceLuidToGuid(        NET_LUID* InterfaceLuid, GUID* InterfaceGuid);
+  NETIO_STATUS            ConvertInterfaceLuidToIndex(       NET_LUID* InterfaceLuid, PNET_IFINDEX InterfaceIndex);
+  NETIO_STATUS            ConvertInterfaceLuidToNameA(       NET_LUID* InterfaceLuid, PSTR InterfaceName, SIZE_T Length);
+  NETIO_STATUS            ConvertInterfaceLuidToNameW(       NET_LUID* InterfaceLuid, PWSTR InterfaceName, SIZE_T Length);
+  NETIO_STATUS            ConvertInterfaceNameToLuidA(       CHAR* InterfaceName, PNET_LUID InterfaceLuid);
+  NETIO_STATUS            ConvertInterfaceNameToLuidW(       WCHAR* InterfaceName, PNET_LUID InterfaceLuid);
+  PCHAR                   if_indextoname(                    NET_IFINDEX InterfaceIndex, PCHAR InterfaceName);
+  NET_IFINDEX             if_nametoindex(                    PCSTR InterfaceName);
+  WINAPI_ERROR_CODE       GetFriendlyIfIndex(                DWORD IfIndex);
+  WINAPI_ERROR_CODE       GetIfEntry(                        PMIB_IFROW pIfRow);
+  NETIOAPI_API            GetIfEntry2(                       PMIB_IF_ROW2 Row);
+  NETIOAPI_API            GetIfStackTable(                   PMIB_IFSTACK_TABLE* Table);
+  WINAPI_ERROR_CODE       GetIfTable(                        PMIB_IFTABLE pIfTable, PULONG pdwSize, BOOL bOrder);
+  NETIOAPI_API            GetIfTable2(                       PMIB_IF_TABLE2* Table);
+  NETIOAPI_API            GetIfTable2Ex(                     MIB_IF_TABLE_LEVEL Level, PMIB_IF_TABLE2* Table);
+  WINAPI_ERROR_CODE       GetInterfaceInfo(                  PIP_INTERFACE_INFO pIfTable, PULONG dwOutBufLen);
+  NETIOAPI_API            GetInvertedIfStackTable(           PMIB_INVERTEDIFSTACK_TABLE* Table);
+  NETIOAPI_API            GetIpInterfaceEntry(               PMIB_IPINTERFACE_ROW Row);
+  NETIOAPI_API            GetIpInterfaceTable(               ADDRESS_FAMILY Family, PMIB_IPINTERFACE_TABLE* Table);
+  WINAPI_ERROR_CODE       GetNumberOfInterfaces(             PDWORD pdwNumIf);
+  VOID                    InitializeIpInterfaceEntry(        PMIB_IPINTERFACE_ROW Row);
+  WINAPI_ERROR_CODE       SetIfEntry(                        PMIB_IFROW pIfRow);
+  NETIOAPI_API            SetIpInterfaceEntry(               PMIB_IPINTERFACE_ROW Row);
+  WINAPI_ERROR_CODE       GetIcmpStatistics(                 PMIB_ICMP pStats);
+  WINAPI_ERROR_CODE       GetIpStatistics(                   PMIB_IPSTATS pStats);
+  WINAPI_FILE_HANDLE      Icmp6CreateFile(                   );
+  WINAPI_ERROR_CODE       Icmp6ParseReplies(                 LPVOID ReplyBuffer, DWORD ReplySize);
+  WINAPI_ERROR_CODE       Icmp6SendEcho2(                    HANDLE IcmpHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, struct sockaddr_in6* SourceAddress, struct sockaddr_in6* DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
+  WINAPI_ERROR_CODE       IcmpSendEcho2Ex(                   HANDLE IcmpHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, IPAddr SourceAddress, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
+  WINAPI_ERROR_CODE       SetIpTTL(                          UINT nTTL);
+  WINAPI_ERROR_CODE       AddIPAddress(                      IPAddr Address, IPMask IpMask, DWORD IfIndex, PULONG NTEContext, PULONG NTEInstance);
+  NETIOAPI_API            CreateAnycastIpAddressEntry(       MIB_ANYCASTIPADDRESS_ROW* Row);
+  NETIOAPI_API            CreateUnicastIpAddressEntry(       MIB_UNICASTIPADDRESS_ROW* Row);
+  WINAPI_ERROR_CODE       DeleteIPAddress(                   ULONG NTEContext);
+  NETIOAPI_API            DeleteAnycastIpAddressEntry(       MIB_ANYCASTIPADDRESS_ROW* Row);
+  NETIOAPI_API            DeleteUnicastIpAddressEntry(       MIB_UNICASTIPADDRESS_ROW* Row);
+  NETIOAPI_API            GetAnycastIpAddressEntry(          PMIB_ANYCASTIPADDRESS_ROW Row);
+  NETIOAPI_API            GetAnycastIpAddressTable(          ADDRESS_FAMILY Family, PMIB_ANYCASTIPADDRESS_TABLE* Table);
+  WINAPI_ERROR_CODE       GetIpAddrTable(                    PMIB_IPADDRTABLE pIpAddrTable, PULONG pdwSize, BOOL bOrder);
+  NETIOAPI_API            GetMulticastIpAddressEntry(        PMIB_MULTICASTIPADDRESS_ROW Row);
+  NETIOAPI_API            GetMulticastIpAddressTable(        ADDRESS_FAMILY Family, PMIB_MULTICASTIPADDRESS_TABLE* Table);
+  NETIOAPI_API            GetUnicastIpAddressEntry(          PMIB_UNICASTIPADDRESS_ROW Row);
+  NETIOAPI_API            GetUnicastIpAddressTable(          ADDRESS_FAMILY Family, PMIB_UNICASTIPADDRESS_TABLE* Table);
+  VOID                    InitializeUnicastIpAddressEntry(   PMIB_UNICASTIPADDRESS_ROW Row);
+  WINAPI_ERROR_CODE       IpReleaseAddress(                  PIP_ADAPTER_INDEX_MAP AdapterInfo);
+  WINAPI_ERROR_CODE       IpRenewAddress(                    PIP_ADAPTER_INDEX_MAP AdapterInfo);
+  NETIOAPI_API            NotifyStableUnicastIpAddressTable( ADDRESS_FAMILY Family, PMIB_UNICASTIPADDRESS_TABLE* Table, PSTABLE_UNICAST_IPADDRESS_TABLE_CALLBACK CallerCallback, PVOID CallerContext, HANDLE* NotificationHandle);
+  NETIOAPI_API            SetUnicastIpAddressEntry(          MIB_UNICASTIPADDRESS_ROW* Row);
+  NETIOAPI_API            CreateIpNetEntry2(                 MIB_IPNET_ROW2* Row);
+  NETIOAPI_API            DeleteIpNetEntry2(                 MIB_IPNET_ROW2* Row);
+  NETIOAPI_API            FlushIpNetTable2(                  ADDRESS_FAMILY Family, NET_IFINDEX InterfaceIndex);
+  NETIOAPI_API            GetIpNetEntry2(                    PMIB_IPNET_ROW2 Row);
+  NETIOAPI_API            GetIpNetTable2(                    ADDRESS_FAMILY Family, PMIB_IPNET_TABLE2* Table);
+  NETIOAPI_API            ResolveIpNetEntry2(                PMIB_IPNET_ROW2 Row, SOCKADDR_INET* SourceAddress);
+  WINAPI_ERROR_CODE_ULONG ResolveNeighbor(                   SOCKADDR* NetworkAddress, PVOID PhysicalAddress, PULONG PhysicalAddressLength);
+  NETIOAPI_API            SetIpNetEntry2(                    PMIB_IPNET_ROW2 Row);
+  NETIOAPI_API            FlushIpPathTable(                  ADDRESS_FAMILY Family);
+  NETIOAPI_API            GetIpPathEntry(                    PMIB_IPPATH_ROW Row);
+  NETIOAPI_API            GetIpPathTable(                    ADDRESS_FAMILY Family, MIB_IPPATH_TABLE* Table);
+  WINAPI_ERROR_CODE       CreateIpForwardEntry(              PMIB_IPFORWARDROW pRoute);
+  NETIOAPI_API            CreateIpForwardEntry2(             MIB_IPFORWARD_ROW2* Row);
+  WINAPI_ERROR_CODE       DeleteIpForwardEntry(              PMIB_IPFORWARDROW pRoute);
+  NETIOAPI_API            DeleteIpForwardEntry2(             MIB_IPFORWARD_ROW2* Row);
+  WINAPI_ERROR_CODE       EnableRouter(                      HANDLE* pHandle, OVERLAPPED* pOverlapped);
+  WINAPI_ERROR_CODE       GetBestInterface(                  IPAddr dwDestAddr, PDWORD pdwBestIfIndex);
+  WINAPI_ERROR_CODE       GetBestInterfaceEx(                struct sockaddr* pDestAddr, PDWORD pdwBestIfIndex);
+  WINAPI_ERROR_CODE       GetBestRoute(                      DWORD dwDestAddr, DWORD dwSourceAddr, PMIB_IPFORWARDROW pBestRoute);
+  NETIOAPI_API            GetBestRoute2(                     NET_LUID* InterfaceLuid, NET_IFINDEX InterfaceIndex, SOCKADDR_INET* SourceAddress, SOCKADDR_INET* DestinationAddress, ULONG AddressSortOptions, PMIB_IPFORWARD_ROW2 BestRoute, SOCKADDR_INET* BestSourceAddress);
+  NETIOAPI_API            GetIpForwardEntry2(                PMIB_IPFORWARD_ROW2 Row);
+  WINAPI_ERROR_CODE       GetIpForwardTable(                 PMIB_IPFORWARDTABLE pIpForwardTable, PULONG pdwSize, BOOL bOrder);
+  NETIOAPI_API            GetIpForwardTable2(                ADDRESS_FAMILY Family, PMIB_IPFORWARD_TABLE2* Table);
+  BOOL                    GetRTTAndHopCount(                 IPAddr DestIpAddress, PULONG HopCount, ULONG MaxHops, PULONG RTT);
+  VOID                    InitializeIpForwardEntry(          PMIB_IPFORWARD_ROW2 Row);
+  WINAPI_ERROR_CODE       SetIpForwardEntry(                 PMIB_IPFORWARDROW pRoute);
+  NETIOAPI_API            SetIpForwardEntry2(                MIB_IPFORWARD_ROW2* Route);
+  WINAPI_ERROR_CODE       SetIpStatistics(                   PMIB_IPSTATS pIpStats);
+  WINAPI_ERROR_CODE       SetIpStatisticsEx(                 PMIB_IPSTATS pIpStats, ULONG Family);
+  WINAPI_ERROR_CODE       UnenableRouter(                    OVERLAPPED* pOverlapped, LPDWORD lpdwEnableCount);
+  VOID                    FreeMibTable(                      PVOID Memory);
+  NETIO_STATUS            ConvertIpv4MaskToLength(           ULONG Mask, PUINT8 MaskLength);
+  NETIO_STATUS            ConvertLengthToIpv4Mask(           ULONG MaskLength, PULONG Mask);
+  NETIOAPI_API            CreateSortedAddressPairs(          PSOCKADDR_IN6 SourceAddressList, ULONG SourceAddressCount, PSOCKADDR_IN6 DestinationAddressList, ULONG DestinationAddressCount, ULONG AddressSortOptions, PSOCKADDR_IN6_PAIR* SortedAddressPairList, ULONG* SortedAddressPairCount);
+  WINAPI_ERROR_CODE       ParseNetworkString(                WCHAR* NetworkString, DWORD Types, PNET_ADDRESS_INFO AddressInfo, USHORT* PortNumber, BYTE* PrefixLength);
+  WINAPI_ERROR_CODE       GetNetworkParams(                  PFIXED_INFO pFixedInfo, PULONG pOutBufLen);
+  NETIOAPI_API            CancelMibChangeNotify2(            HANDLE NotificationHandle);
+  WINAPI_ERROR_CODE       NotifyAddrChange(                  PHANDLE Handle, LPOVERLAPPED overlapped);
+  NETIOAPI_API            NotifyIpInterfaceChange(           ADDRESS_FAMILY Family, PIPINTERFACE_CHANGE_CALLBACK Callback, PVOID CallerContext, BOOLEAN InitialNotification, HANDLE* NotificationHandle);
+  WINAPI_ERROR_CODE       NotifyRouteChange(                 PHANDLE Handle, LPOVERLAPPED overlapped);
+  NETIOAPI_API            NotifyRouteChange2(                ADDRESS_FAMILY Family, PIPFORWARD_CHANGE_CALLBACK Callback, PVOID CallerContext, BOOLEAN InitialNotification, HANDLE* NotificationHandle);
+  NETIOAPI_API            NotifyUnicastIpAddressChange(      ADDRESS_FAMILY Family, PUNICAST_IPADDRESS_CHANGE_CALLBACK Callback, PVOID CallerContext, BOOLEAN InitialNotification, HANDLE* NotificationHandle);
+  BOOL                    CancelSecurityHealthChangeNotify(  LPOVERLAPPED notifyOverlapped);
+  WINAPI_ERROR_CODE       NotifySecurityHealthChange(        PHANDLE pHandle, LPOVERLAPPED pOverLapped, PULONG SecurityHealthFlags);
+  NETIOAPI_API            GetTeredoPort(                     USHORT* Port);
+  NETIOAPI_API            NotifyTeredoPortChange(            PTEREDO_PORT_CHANGE_CALLBACK Callback, PVOID CallerContext, BOOLEAN InitialNotification, HANDLE* NotificationHandle);
+  WINAPI_ERROR_CODE       GetExtendedTcpTable(               PVOID pTcpTable, PDWORD pdwSize, BOOL bOrder, ADDRESS_FAMILY ulAf, TCP_TABLE_CLASS TableClass, ULONG Reserved);
+  WINAPI_ERROR_CODE       GetExtendedUdpTable(               PVOID pUdpTable, PDWORD pdwSize, BOOL bOrder, ADDRESS_FAMILY ulAf, UDP_TABLE_CLASS TableClass, ULONG Reserved);
+  WINAPI_ERROR_CODE       GetOwnerModuleFromTcp6Entry(       PMIB_TCP6ROW_OWNER_MODULE pTcpEntry, TCPIP_OWNER_MODULE_INFO_CLASS Class, PVOID Buffer, PDWORD pdwSize);
+  WINAPI_ERROR_CODE       GetOwnerModuleFromTcpEntry(        PMIB_TCPROW_OWNER_MODULE pTcpEntry, TCPIP_OWNER_MODULE_INFO_CLASS Class, PVOID Buffer, PDWORD pdwSize);
+  WINAPI_ERROR_CODE       GetOwnerModuleFromUdp6Entry(       PMIB_UDP6ROW_OWNER_MODULE pUdpEntry, TCPIP_OWNER_MODULE_INFO_CLASS Class, PVOID Buffer, PDWORD pdwSize);
+  WINAPI_ERROR_CODE       GetOwnerModuleFromUdpEntry(        PMIB_UDPROW_OWNER_MODULE pUdpEntry, TCPIP_OWNER_MODULE_INFO_CLASS Class, PVOID Buffer, PDWORD pdwSize);
+  WINAPI_ERROR_CODE_ULONG GetPerTcp6ConnectionEStats(        PMIB_TCP6ROW Row, TCP_ESTATS_TYPE EstatsType, PUCHAR Rw, ULONG RwVersion, ULONG RwSize, PUCHAR Ros, ULONG RosVersion, ULONG RosSize, PUCHAR Rod, ULONG RodVersion, ULONG RodSize);
+  WINAPI_ERROR_CODE_ULONG GetPerTcpConnectionEStats(         PMIB_TCPROW Row, TCP_ESTATS_TYPE EstatsType, PUCHAR Rw, ULONG RwVersion, ULONG RwSize, PUCHAR Ros, ULONG RosVersion, ULONG RosSize, PUCHAR Rod, ULONG RodVersion, ULONG RodSize);
+  WINAPI_ERROR_CODE       GetTcpStatistics(                  PMIB_TCPSTATS pStats);
+  WINAPI_ERROR_CODE       GetTcpStatisticsEx(                PMIB_TCPSTATS pStats, ADDRESS_FAMILY dwFamily);
+  WINAPI_ERROR_CODE_ULONG GetTcp6Table(                      PMIB_TCP6TABLE TcpTable, PULONG SizePointer, BOOL Order);
+  WINAPI_ERROR_CODE_ULONG GetTcp6Table2(                     PMIB_TCP6TABLE2 TcpTable, PULONG SizePointer, BOOL Order);
+  WINAPI_ERROR_CODE       GetTcpTable(                       PMIB_TCPTABLE pTcpTable, PDWORD pdwSize, BOOL bOrder);
+  WINAPI_ERROR_CODE_ULONG GetTcpTable2(                      PMIB_TCPTABLE2 TcpTable, PULONG SizePointer, BOOL Order);
+  WINAPI_ERROR_CODE_ULONG SetPerTcp6ConnectionEStats(        PMIB_TCP6ROW Row, TCP_ESTATS_TYPE EstatsType, PUCHAR Rw, ULONG RwVersion, ULONG RwSize, ULONG Offset);
+  WINAPI_ERROR_CODE_ULONG SetPerTcpConnectionEStats(         PMIB_TCP6ROW Row, TCP_ESTATS_TYPE EstatsType, PUCHAR Rw, ULONG RwVersion, ULONG RwSize, ULONG Offset);
+  WINAPI_ERROR_CODE       SetTcpEntry(                       PMIB_TCPROW pTcpRow);
+  WINAPI_ERROR_CODE_ULONG GetUdp6Table(                      PMIB_UDP6TABLE Udp6Table, PULONG SizePointer, BOOL Order);
+  WINAPI_ERROR_CODE       GetUdpStatistics(                  PMIB_UDPSTATS pStats);
+  WINAPI_ERROR_CODE       GetUdpStatisticsEx(                PMIB_UDPSTATS pStats, ADDRESS_FAMILY dwFamily);
+  WINAPI_ERROR_CODE       GetUdpTable(                       PMIB_UDPTABLE pUdpTable, PDWORD pdwSize, BOOL bOrder);
+  WINAPI_ERROR_CODE       AllocateAndGetTcpExTableFromStack( PVOID* ppTcpTable, BOOL bOrder, HANDLE hHeap, DWORD dwFlags, ADDRESS_FAMILY dwFamily);
+  WINAPI_ERROR_CODE       AllocateAndGetUdpExTableFromStack( PVOID* ppUDPTable, BOOL bOrder, HANDLE hHeap, DWORD dwFlags, ADDRESS_FAMILY dwFamily);
+  BOOL                    IcmpCloseHandle(                   HANDLE IcmpHandle);
+  WINAPI_FILE_HANDLE      IcmpCreateFile(                    );
+  DWORD                   IcmpParseReplies(                  LPVOID ReplyBuffer, DWORD ReplySize);
+  WINAPI_ERROR_CODE       IcmpSendEcho(                      HANDLE IcmpHandle, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
+  WINAPI_ERROR_CODE       IcmpSendEcho2(                     HANDLE IcmpHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, IPAddr DestinationAddress, LPVOID RequestData, WORD RequestSize, PIP_OPTION_INFORMATION RequestOptions, LPVOID ReplyBuffer, DWORD ReplySize, DWORD Timeout);
 ]]
 ffi.load( 'Iphlpapi.dll' )

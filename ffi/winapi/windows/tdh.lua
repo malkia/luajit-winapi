@@ -90,34 +90,34 @@ ffi.cdef [[
   static const TDH_OUT_TYPE TDH_OUTTYPE_REDUCEDSTRING = 300;
   static const TDH_OUT_TYPE TDH_OUTTYPE_NOPRINT = 301;
   typedef UINT PROPERTY_FLAGS; //Alias
-  typedef struct EVENT_PROPERTY_INFO_u1_s1 {
+  typedef struct WINAPI_EVENT_PROPERTY_INFO_u1_s1 {
     TDH_IN_TYPE InType;
     TDH_OUT_TYPE OutType;
     ULONG MapNameOffset;
-  } EVENT_PROPERTY_INFO_u1_s1;
-  typedef struct EVENT_PROPERTY_INFO_u1_s2 {
+  } WINAPI_EVENT_PROPERTY_INFO_u1_s1;
+  typedef struct WINAPI_EVENT_PROPERTY_INFO_u1_s2 {
     USHORT StructStartIndex;
     USHORT NumOfStructMembers;
     ULONG padding;
-  } EVENT_PROPERTY_INFO_u1_s2;
-  typedef union EVENT_PROPERTY_INFO_u1 {
-    EVENT_PROPERTY_INFO_u1_s1 nonStructType;
-    EVENT_PROPERTY_INFO_u1_s2 structType;
-  } EVENT_PROPERTY_INFO_u1;
-  typedef union EVENT_PROPERTY_INFO_u2 {
+  } WINAPI_EVENT_PROPERTY_INFO_u1_s2;
+  typedef union WINAPI_EVENT_PROPERTY_INFO_u1 {
+    WINAPI_EVENT_PROPERTY_INFO_u1_s1 nonStructType;
+    WINAPI_EVENT_PROPERTY_INFO_u1_s2 structType;
+  } WINAPI_EVENT_PROPERTY_INFO_u1;
+  typedef union WINAPI_EVENT_PROPERTY_INFO_u2 {
     USHORT count;
     USHORT countPropertyIndex;
-  } EVENT_PROPERTY_INFO_u2;
-  typedef union EVENT_PROPERTY_INFO_u3 {
+  } WINAPI_EVENT_PROPERTY_INFO_u2;
+  typedef union WINAPI_EVENT_PROPERTY_INFO_u3 {
     USHORT length;
     USHORT lengthPropertyIndex;
-  } EVENT_PROPERTY_INFO_u3;
+  } WINAPI_EVENT_PROPERTY_INFO_u3;
   typedef struct EVENT_PROPERTY_INFO {
     PROPERTY_FLAGS Flags;
     ULONG NameOffset;
-    EVENT_PROPERTY_INFO_u1 ;
-    EVENT_PROPERTY_INFO_u2 ;
-    EVENT_PROPERTY_INFO_u3 ;
+    WINAPI_EVENT_PROPERTY_INFO_u1 ;
+    WINAPI_EVENT_PROPERTY_INFO_u2 ;
+    WINAPI_EVENT_PROPERTY_INFO_u3 ;
     ULONG Reserved;
   } EVENT_PROPERTY_INFO;
   typedef struct PROVIDER_FILTER_INFO {
@@ -156,23 +156,23 @@ ffi.cdef [[
   static const MAP_VALUETYPE EVENTMAP_ENTRY_VALUETYPE_ULONG = 0;
   static const MAP_VALUETYPE EVENTMAP_ENTRY_VALUETYPE_STRING = 1;
   typedef UINT MAP_FLAGS; //Alias
-  typedef union EVENT_MAP_ENTRY_u {
+  typedef union WINAPI_EVENT_MAP_ENTRY_u {
     ULONG Value;
     ULONG InputOffset;
-  } EVENT_MAP_ENTRY_u;
+  } WINAPI_EVENT_MAP_ENTRY_u;
   typedef struct EVENT_MAP_ENTRY {
     ULONG OutputOffset;
-    EVENT_MAP_ENTRY_u ;
+    WINAPI_EVENT_MAP_ENTRY_u ;
   } EVENT_MAP_ENTRY;
-  typedef union EVENT_MAP_INFO_u {
+  typedef union WINAPI_EVENT_MAP_INFO_u {
     MAP_VALUETYPE MapEntryValueType;
     ULONG FormatStringOffset;
-  } EVENT_MAP_INFO_u;
+  } WINAPI_EVENT_MAP_INFO_u;
   typedef struct EVENT_MAP_INFO {
     ULONG NameOffset;
     MAP_FLAGS Flag;
     ULONG EntryCount;
-    EVENT_MAP_INFO_u ;
+    WINAPI_EVENT_MAP_INFO_u ;
     EVENT_MAP_ENTRY MapEntryArray[ANYSIZE_ARRAY];
   } EVENT_MAP_INFO;
   typedef EVENT_MAP_INFO *PEVENT_MAP_INFO; //Pointer
@@ -210,27 +210,27 @@ ffi.cdef [[
     ULONG Reserved;
   } PROPERTY_DATA_DESCRIPTOR;
   typedef PROPERTY_DATA_DESCRIPTOR *PPROPERTY_DATA_DESCRIPTOR; //Pointer
-  typedef struct EVENT_HEADER_u_s {
+  typedef struct WINAPI_EVENT_HEADER_u_s {
     ULONG KernelTime;
     ULONG UserTime;
-  } EVENT_HEADER_u_s;
-  typedef union EVENT_HEADER_u {
-    EVENT_HEADER_u_s ;
+  } WINAPI_EVENT_HEADER_u_s;
+  typedef union WINAPI_EVENT_HEADER_u {
+    WINAPI_EVENT_HEADER_u_s ;
     ULONG64 ProcessorTime;
-  } EVENT_HEADER_u;
-  typedef USHORT EVENT_HEADER_FLAG; //Alias
-  typedef USHORT EVENT_HEADER_PROPERTY; //Alias
+  } WINAPI_EVENT_HEADER_u;
+  typedef USHORT WINAPI_EVENT_HEADER_FLAG; //Alias
+  typedef USHORT WINAPI_EVENT_HEADER_PROPERTY; //Alias
   typedef struct EVENT_HEADER {
     USHORT Size;
     USHORT HeaderType;
-    EVENT_HEADER_FLAG Flags;
-    EVENT_HEADER_PROPERTY EventProperty;
+    WINAPI_EVENT_HEADER_FLAG Flags;
+    WINAPI_EVENT_HEADER_PROPERTY EventProperty;
     ULONG ThreadId;
     ULONG ProcessId;
     LARGE_INTEGER TimeStamp;
     GUID ProviderId;
     EVENT_DESCRIPTOR EventDescriptor;
-    EVENT_HEADER_u ;
+    WINAPI_EVENT_HEADER_u ;
     GUID ActivityId;
   } EVENT_HEADER;
   typedef struct EVENT_RECORD {

@@ -35,11 +35,11 @@ ffi.cdef [[
     WSDXML_NAME* Value;
     LPVOID Subcode;
   } WSD_SOAP_FAULT_SUBCODE;
-  typedef UINT WSDXML_NODE_TYPE; //Alias
-  static const WSDXML_NODE_TYPE ElementType = 0;
-  static const WSDXML_NODE_TYPE TextType = 1;
+  typedef UINT WINAPI_WSDXML_NODE_TYPE; //Alias
+  static const WINAPI_WSDXML_NODE_TYPE ElementType = 0;
+  static const WINAPI_WSDXML_NODE_TYPE TextType = 1;
   typedef struct WSDXML_NODE {
-    WSDXML_NODE_TYPE Type;
+    WINAPI_WSDXML_NODE_TYPE Type;
     LPVOID Parent;
     LPVOID Next;
   } WSDXML_NODE;

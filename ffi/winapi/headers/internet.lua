@@ -29,34 +29,34 @@ ffi.cdef [[
     DWORD dwExemptDelta;
   } INTERNET_CACHE_ENTRY_INFO;
   typedef INTERNET_CACHE_ENTRY_INFO *LPINTERNET_CACHE_ENTRY_INFO; //Pointer
-  typedef DWORD CACHEGROUP_FLAG; //Alias
-  typedef DWORD CACHEGROUP_TYPE; //Alias
+  typedef DWORD WINAPI_CACHEGROUP_FLAG; //Alias
+  typedef DWORD WINAPI_CACHEGROUP_TYPE; //Alias
   typedef struct INTERNET_CACHE_GROUP_INFO {
     DWORD dwGroupSize;
-    CACHEGROUP_FLAG dwGroupFlags;
-    CACHEGROUP_TYPE dwGroupType;
+    WINAPI_CACHEGROUP_FLAG dwGroupFlags;
+    WINAPI_CACHEGROUP_TYPE dwGroupType;
     DWORD dwDiskUsage;
     DWORD dwDiskQuota;
     DWORD dwOwnerStorage[GROUP_OWNER_STORAGE_SIZE];
     TCHAR szGroupName[GROUPNAME_MAX_LENGTH];
   } INTERNET_CACHE_GROUP_INFO;
   typedef INTERNET_CACHE_GROUP_INFO *LPINTERNET_CACHE_GROUP_INFO; //Pointer
-  typedef DWORD GopherType; //Alias
+  typedef DWORD WINAPI_GopherType; //Alias
   typedef struct GOPHER_FIND_DATA {
     TCHAR DisplayString[MAX_GOPHER_DISPLAY_TEXT_plus_1];
-    GopherType GopherType;
+    WINAPI_GopherType GopherType;
     DWORD SizeLow;
     DWORD SizeHigh;
     FILETIME LastModificationTime;
     TCHAR Locator[MAX_GOPHER_LOCATOR_LENGTH_plus_1];
   } GOPHER_FIND_DATA;
   typedef GOPHER_FIND_DATA *LPGOPHER_FIND_DATA; //Pointer
-  typedef DWORD ProxyAccessType; //Alias
-  static const ProxyAccessType WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = 0;
-  static const ProxyAccessType WINHTTP_ACCESS_TYPE_NO_PROXY = 1;
-  static const ProxyAccessType WINHTTP_ACCESS_TYPE_NAMED_PROXY = 3;
+  typedef DWORD WINAPI_ProxyAccessType; //Alias
+  static const WINAPI_ProxyAccessType WINHTTP_ACCESS_TYPE_DEFAULT_PROXY = 0;
+  static const WINAPI_ProxyAccessType WINHTTP_ACCESS_TYPE_NO_PROXY = 1;
+  static const WINAPI_ProxyAccessType WINHTTP_ACCESS_TYPE_NAMED_PROXY = 3;
   typedef struct WINHTTP_PROXY_INFO {
-    ProxyAccessType dwAccessType;
+    WINAPI_ProxyAccessType dwAccessType;
     LPWSTR lpszProxy;
     LPWSTR lpszProxyBypass;
   } WINHTTP_PROXY_INFO;
@@ -66,11 +66,11 @@ ffi.cdef [[
     LPWSTR lpszProxy;
     LPWSTR lpszProxyBypass;
   } WINHTTP_CURRENT_USER_IE_PROXY_CONFIG;
-  typedef DWORD AutoProxyFlags; //Alias
-  typedef DWORD AutoDetectFlags; //Alias
+  typedef DWORD WINAPI_AutoProxyFlags; //Alias
+  typedef DWORD WINAPI_AutoDetectFlags; //Alias
   typedef struct WINHTTP_AUTOPROXY_OPTIONS {
-    AutoProxyFlags dwFlags;
-    AutoDetectFlags dwAutoDetectFlags;
+    WINAPI_AutoProxyFlags dwFlags;
+    WINAPI_AutoDetectFlags dwAutoDetectFlags;
     LPCWSTR lpszAutoConfigUrl;
     LPVOID lpvReserved;
     DWORD dwReserved;
@@ -116,12 +116,12 @@ ffi.cdef [[
     DWORD dwExtraInfoLength;
   } URL_COMPONENTS;
   typedef URL_COMPONENTS *LPURL_COMPONENTS; //Pointer
-  typedef int InternetSchemeWinHttp; //Alias
+  typedef int WINAPI_InternetSchemeWinHttp; //Alias
   typedef struct URL_COMPONENTSW {
     DWORD dwStructSize;
     LPWSTR lpszScheme;
     DWORD dwSchemeLength;
-    InternetSchemeWinHttp nScheme;
+    WINAPI_InternetSchemeWinHttp nScheme;
     LPWSTR lpszHostName;
     DWORD dwHostNameLength;
     INTERNET_PORT nPort;
@@ -135,8 +135,8 @@ ffi.cdef [[
     DWORD dwExtraInfoLength;
   } URL_COMPONENTSW;
   typedef URL_COMPONENTSW *LPURL_COMPONENTSW; //Pointer
-  typedef DWORD InternetCanonicalizeUrlFlags; //Alias
-  typedef DWORD InternetCrackUrlFlags; //Alias
+  typedef DWORD WINAPI_InternetCanonicalizeUrlFlags; //Alias
+  typedef DWORD WINAPI_InternetCrackUrlFlags; //Alias
   typedef struct INTERNET_BUFFERS {
     DWORD dwStructSize;
     LPVOID Next;

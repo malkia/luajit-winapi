@@ -3,10 +3,10 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef HANDLE HREPORT; //Alias
   enum { WER_MAX_PREFERRED_MODULES_BUFFER = 256 };
-  typedef DWORD WER_DUMP_MASK; //Alias
+  typedef DWORD WINAPI_WER_DUMP_MASK; //Alias
   typedef struct WER_DUMP_CUSTOM_OPTIONS {
     DWORD dwSize;
-    WER_DUMP_MASK dwMask;
+    WINAPI_WER_DUMP_MASK dwMask;
     MINIDUMP_TYPE dwDumpFlags;
     BOOL bOnlyThisThread;
     THREAD_WRITE_FLAGS dwExceptionThreadFlags;
@@ -78,7 +78,7 @@ ffi.cdef [[
   typedef WER_SUBMIT_RESULT *PWER_SUBMIT_RESULT; //Pointer
   HRESULT WerAddExcludedApplication(    PCWSTR pwzExeName, BOOL bAllUsers);
   HRESULT WerRemoveExcludedApplication( PCWSTR pwzExeName, BOOL bAllUsers);
-  HRESULT WerReportAddDump(             HREPORT hReportHandle, ProcessHandle hProcess, ThreadHandle hThread, WER_DUMP_TYPE dumpType, PWER_EXCEPTION_INFORMATION pExceptionParam, PWER_DUMP_CUSTOM_OPTIONS pDumpCustomOptions, DWORD dwFlags);
+  HRESULT WerReportAddDump(             HREPORT hReportHandle, WINAPI_ProcessHandle hProcess, WINAPI_ThreadHandle hThread, WER_DUMP_TYPE dumpType, PWER_EXCEPTION_INFORMATION pExceptionParam, PWER_DUMP_CUSTOM_OPTIONS pDumpCustomOptions, DWORD dwFlags);
   HRESULT WerReportAddFile(             HREPORT hReportHandle, PCWSTR pwzPath, WER_FILE_TYPE repFileType, DWORD dwFileFlags);
   HRESULT WerReportCloseHandle(         HREPORT hReportHandle);
   HRESULT WerReportCreate(              PCWSTR pwzEventType, WER_REPORT_TYPE repType, PWER_REPORT_INFORMATION pReportInformation, HREPORT* phReportHandle);

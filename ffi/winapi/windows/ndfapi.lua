@@ -31,7 +31,7 @@ ffi.cdef [[
     USHORT family;
     CHAR data[126];
   } DIAG_SOCKADDR;
-  typedef union HELPER_ATTRIBUTE_u {
+  typedef union WINAPI_HELPER_ATTRIBUTE_u {
     BOOL Boolean;
     char Char;
     byte Byte;
@@ -46,11 +46,11 @@ ffi.cdef [[
     LIFE_TIME LifeTime;
     DIAG_SOCKADDR Address;
     OCTET_STRING OctetString;
-  } HELPER_ATTRIBUTE_u;
+  } WINAPI_HELPER_ATTRIBUTE_u;
   typedef struct HELPER_ATTRIBUTE {
     LPWSTR pwszName;
     ATTRIBUTE_TYPE type;
-    HELPER_ATTRIBUTE_u ;
+    WINAPI_HELPER_ATTRIBUTE_u ;
   } HELPER_ATTRIBUTE;
   HRESULT NdfCloseIncident(              NDFHANDLE handle);
   HRESULT NdfCreateConnectivityIncident( NDFHANDLE* handle);

@@ -44,7 +44,7 @@ ffi.cdef [[
   typedef PWCHAR PWCH; //Alias
   enum { MAXIMUM_LEADBYTES = 12 };
   enum { GDI_BATCH_BUFFER_SIZE = 310 };
-  typedef ULONG RTL_DEBUG_QUERY_FLAGS; //Alias
+  typedef ULONG WINAPI_RTL_DEBUG_QUERY_FLAGS; //Alias
   typedef struct CURDIR {
     UNICODE_STRING DosPath;
     HANDLE Handle;
@@ -56,19 +56,19 @@ ffi.cdef [[
     ULONG_PTR BufferEnd;
     ULONG_PTR PointerArray[1];
   } CSR_CAPTURE_BUFFER;
-  typedef ULONG LDRP_FLAGS; //Alias
-  typedef struct LDR_DATA_TABLE_ENTRY_u1_s {
+  typedef ULONG WINAPI_LDRP_FLAGS; //Alias
+  typedef struct WINAPI_LDR_DATA_TABLE_ENTRY_u1_s {
     PVOID SectionPointer;
     ULONG CheckSum;
-  } LDR_DATA_TABLE_ENTRY_u1_s;
-  typedef union LDR_DATA_TABLE_ENTRY_u1 {
+  } WINAPI_LDR_DATA_TABLE_ENTRY_u1_s;
+  typedef union WINAPI_LDR_DATA_TABLE_ENTRY_u1 {
     LIST_ENTRY HashLinks;
-    LDR_DATA_TABLE_ENTRY_u1_s ;
-  } LDR_DATA_TABLE_ENTRY_u1;
-  typedef union LDR_DATA_TABLE_ENTRY_u2 {
+    WINAPI_LDR_DATA_TABLE_ENTRY_u1_s ;
+  } WINAPI_LDR_DATA_TABLE_ENTRY_u1;
+  typedef union WINAPI_LDR_DATA_TABLE_ENTRY_u2 {
     ULONG TimeDateStamp;
     PVOID LoadedImports;
-  } LDR_DATA_TABLE_ENTRY_u2;
+  } WINAPI_LDR_DATA_TABLE_ENTRY_u2;
   typedef struct LDR_DATA_TABLE_ENTRY {
     LIST_ENTRY InLoadOrderLinks;
     LIST_ENTRY InMemoryOrderModuleList;
@@ -78,11 +78,11 @@ ffi.cdef [[
     ULONG SizeOfImage;
     UNICODE_STRING FullDllName;
     UNICODE_STRING BaseDllName;
-    LDRP_FLAGS Flags;
+    WINAPI_LDRP_FLAGS Flags;
     USHORT LoadCount;
     USHORT TlsIndex;
-    LDR_DATA_TABLE_ENTRY_u1 ;
-    LDR_DATA_TABLE_ENTRY_u2 ;
+    WINAPI_LDR_DATA_TABLE_ENTRY_u1 ;
+    WINAPI_LDR_DATA_TABLE_ENTRY_u2 ;
     PVOID EntryPointActivationContext;
     PVOID PatchInformation;
   } LDR_DATA_TABLE_ENTRY;
@@ -123,23 +123,23 @@ ffi.cdef [[
     ULONG TimeStamp;
     UNICODE_STRING DosPath;
   } RTL_DRIVE_LETTER_CURDIR;
-  typedef ULONG RTL_USER_PROCESS_PARAMETERS_FLAGS; //Alias
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_NORMALIZED = 0x01;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROFILE_USER = 0x02;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROFILE_SERVER = 0x04;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROFILE_KERNEL = 0x08;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_UNKNOWN = 0x10;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_RESERVE_1MB = 0x20;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_DISABLE_HEAP_CHECKS = 0x100;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROCESS_OR_1 = 0x200;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROCESS_OR_2 = 0x400;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PRIVATE_DLL_PATH = 0x1000;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_LOCAL_DLL_PATH = 0x2000;
-  static const RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_NX = 0x20000;
+  typedef ULONG WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS; //Alias
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_NORMALIZED = 0x01;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROFILE_USER = 0x02;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROFILE_SERVER = 0x04;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROFILE_KERNEL = 0x08;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_UNKNOWN = 0x10;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_RESERVE_1MB = 0x20;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_DISABLE_HEAP_CHECKS = 0x100;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROCESS_OR_1 = 0x200;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PROCESS_OR_2 = 0x400;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_PRIVATE_DLL_PATH = 0x1000;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_LOCAL_DLL_PATH = 0x2000;
+  static const WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS RTL_USER_PROCESS_PARAMETERS_NX = 0x20000;
   typedef struct RTL_USER_PROCESS_PARAMETERS {
     ULONG MaximumLength;
     ULONG Length;
-    RTL_USER_PROCESS_PARAMETERS_FLAGS Flags;
+    WINAPI_RTL_USER_PROCESS_PARAMETERS_FLAGS Flags;
     ULONG DebugFlags;
     HANDLE ConsoleHandle;
     ULONG ConsoleFlags;
@@ -158,8 +158,8 @@ ffi.cdef [[
     ULONG CountCharsX;
     ULONG CountCharsY;
     ULONG FillAttribute;
-    STARTUPINFO_Flags WindowFlags;
-    ShowWindowCmd ShowWindowFlags;
+    WINAPI_STARTUPINFO_Flags WindowFlags;
+    WINAPI_ShowWindowCmd ShowWindowFlags;
     UNICODE_STRING WindowTitle;
     UNICODE_STRING DesktopInfo;
     UNICODE_STRING ShellInfo;
@@ -176,7 +176,7 @@ ffi.cdef [[
     WORD SubsystemVersionLow;
     WORD SubsystemVersionHigh;
     ULONG Unknown1;
-    IMAGE_FILE_CHARACTERISTICS_ULONG ImageCharacteristics;
+    WINAPI_IMAGE_FILE_CHARACTERISTICS_ULONG ImageCharacteristics;
     ULONG ImageMachineType;
     ULONG Unknown2[3];
   } SECTION_IMAGE_INFORMATION;
@@ -300,10 +300,10 @@ ffi.cdef [[
     PVOID DefaultBase;
   } RTL_PROCESS_MODULE_INFORMATION_EX;
   typedef RTL_PROCESS_MODULE_INFORMATION_EX *PRTL_PROCESS_MODULE_INFORMATION_EX; //Pointer
-  typedef union RTL_DEBUG_INFORMATION_u {
+  typedef union WINAPI_RTL_DEBUG_INFORMATION_u {
     PRTL_PROCESS_MODULES Modules;
     PRTL_PROCESS_MODULE_INFORMATION_EX ModulesEx;
-  } RTL_DEBUG_INFORMATION_u;
+  } WINAPI_RTL_DEBUG_INFORMATION_u;
   typedef struct RTL_DEBUG_INFORMATION {
     HANDLE SectionHandleClient;
     PVOID ViewBaseClient;
@@ -313,11 +313,11 @@ ffi.cdef [[
     PVOID EventPairTarget;
     HANDLE TargetProcessId;
     HANDLE TargetThreadHandle;
-    RTL_DEBUG_QUERY_FLAGS Flags;
+    WINAPI_RTL_DEBUG_QUERY_FLAGS Flags;
     ULONG_PTR OffsetFree;
     ULONG_PTR CommitSize;
     ULONG_PTR ViewSize;
-    RTL_DEBUG_INFORMATION_u ;
+    WINAPI_RTL_DEBUG_INFORMATION_u ;
     PRTL_PROCESS_BACKTRACES BackTraces;
     PRTL_PROCESS_HEAPS Heaps;
     PRTL_PROCESS_LOCKS Locks;
@@ -386,10 +386,10 @@ ffi.cdef [[
     CHAR Text[1];
   } RTL_MESSAGE_RESOURCE_ENTRY;
   typedef RTL_MESSAGE_RESOURCE_ENTRY *PRTL_MESSAGE_RESOURCE_ENTRY; //Pointer
-  typedef ULONG RTL_QUERY_REGISTRY_FLAGS; //Alias
+  typedef ULONG WINAPI_RTL_QUERY_REGISTRY_FLAGS; //Alias
   typedef struct RTL_QUERY_REGISTRY_TABLE {
     PRTL_QUERY_REGISTRY_ROUTINE QueryRoutine;
-    RTL_QUERY_REGISTRY_FLAGS Flags;
+    WINAPI_RTL_QUERY_REGISTRY_FLAGS Flags;
     PWSTR Name;
     PVOID EntryContext;
     ULONG DefaultType;
@@ -533,12 +533,12 @@ ffi.cdef [[
     UCHAR Reserved[32];
   } RTL_HEAP_USAGE;
   typedef RTL_HEAP_USAGE *PRTL_HEAP_USAGE; //Pointer
-  typedef union IO_STATUS_BLOCK_u {
+  typedef union WINAPI_IO_STATUS_BLOCK_u {
     NTSTATUS Status;
     PVOID Pointer;
-  } IO_STATUS_BLOCK_u;
+  } WINAPI_IO_STATUS_BLOCK_u;
   typedef struct IO_STATUS_BLOCK {
-    IO_STATUS_BLOCK_u ;
+    WINAPI_IO_STATUS_BLOCK_u ;
     ULONG_PTR Information;
   } IO_STATUS_BLOCK;
   typedef IO_STATUS_BLOCK *PIO_STATUS_BLOCK; //Pointer
@@ -558,13 +558,13 @@ ffi.cdef [[
     ULONG DriverFilePathOffset;
   } EFI_DRIVER_ENTRY;
   typedef EFI_DRIVER_ENTRY *PEFI_DRIVER_ENTRY; //Pointer
-  typedef FileAttributes FILE_ATTRIBUTES_ULONG; //Alias
+  typedef WINAPI_FileAttributes WINAPI_FILE_ATTRIBUTES_ULONG; //Alias
   typedef struct FILE_BASIC_INFORMATION {
     LARGE_INTEGER CreationTime;
     LARGE_INTEGER LastAccessTime;
     LARGE_INTEGER LastWriteTime;
     LARGE_INTEGER ChangeTime;
-    FILE_ATTRIBUTES_ULONG FileAttributes;
+    WINAPI_FILE_ATTRIBUTES_ULONG FileAttributes;
   } FILE_BASIC_INFORMATION;
   typedef FILE_BASIC_INFORMATION *PFILE_BASIC_INFORMATION; //Pointer
   typedef struct FILE_NETWORK_OPEN_INFORMATION {
@@ -650,7 +650,7 @@ ffi.cdef [[
   typedef struct IMAGE_RESOURCE_DATA_ENTRY {
     DWORD OffsetToData;
     DWORD Size;
-    CodePageEnum CodePage;
+    WINAPI_CodePageEnum CodePage;
     DWORD Reserved;
   } IMAGE_RESOURCE_DATA_ENTRY;
   typedef IMAGE_RESOURCE_DATA_ENTRY *PIMAGE_RESOURCE_DATA_ENTRY; //Pointer
@@ -1017,14 +1017,14 @@ ffi.cdef [[
   static const SYSTEM_INFORMATION_CLASS SystemMemoryTopologyInformation = 138;
   static const SYSTEM_INFORMATION_CLASS SystemMemoryChannelInformation = 139;
   static const SYSTEM_INFORMATION_CLASS SystemBootLogoInformation = 140;
-  typedef ULONG NtCreateDisposition; //Alias
-  static const NtCreateDisposition FILE_SUPERSEDE = 0x00000000;
-  static const NtCreateDisposition FILE_OPEN = 0x00000001;
-  static const NtCreateDisposition FILE_CREATE = 0x00000002;
-  static const NtCreateDisposition FILE_OPEN_IF = 0x00000003;
-  static const NtCreateDisposition FILE_OVERWRITE = 0x00000004;
-  static const NtCreateDisposition FILE_OVERWRITE_IF = 0x00000005;
-  typedef ULONG NtCreateOptions; //Alias
+  typedef ULONG WINAPI_NtCreateDisposition; //Alias
+  static const WINAPI_NtCreateDisposition FILE_SUPERSEDE = 0x00000000;
+  static const WINAPI_NtCreateDisposition FILE_OPEN = 0x00000001;
+  static const WINAPI_NtCreateDisposition FILE_CREATE = 0x00000002;
+  static const WINAPI_NtCreateDisposition FILE_OPEN_IF = 0x00000003;
+  static const WINAPI_NtCreateDisposition FILE_OVERWRITE = 0x00000004;
+  static const WINAPI_NtCreateDisposition FILE_OVERWRITE_IF = 0x00000005;
+  typedef ULONG WINAPI_NtCreateOptions; //Alias
 ]]
 if ffi.arch == 'x86' then ffi.cdef[[
 ]]
@@ -1047,14 +1047,14 @@ ffi.cdef[[
     HANDLE ShutdownThreadId;
   } PEB_LDR_DATA;
   typedef PEB_LDR_DATA *PPEB_LDR_DATA; //Pointer
-  typedef union PEB_u1 {
+  typedef union WINAPI_PEB_u1 {
     ULONG CrossProcessFlags;
     ULONG EnvironmentUpdateCount;
-  } PEB_u1;
-  typedef union PEB_u2 {
+  } WINAPI_PEB_u1;
+  typedef union WINAPI_PEB_u2 {
     PVOID KernelCallbackTable;
     PVOID UserSharedInfoPtr;
-  } PEB_u2;
+  } WINAPI_PEB_u2;
   typedef struct PEB {
     BOOLEAN InheritedAddressSpace;
     BOOLEAN ReadImageFileExecOptions;
@@ -1069,8 +1069,8 @@ ffi.cdef[[
     PRTL_CRITICAL_SECTION FastPebLock;
     PVOID AtlThunkSListPtr;
     PVOID IFEOKey;
-    PEB_u1 ;
-    PEB_u2 ;
+    WINAPI_PEB_u1 ;
+    WINAPI_PEB_u2 ;
     ULONG SystemReserved[1];
     ULONG AtlThunkSListPtr32;
     PVOID ApiSetMap;
@@ -1138,16 +1138,16 @@ ffi.cdef[[
     LPVOID Next;
     PEXCEPTION_ROUTINE Handler;
   } EXCEPTION_REGISTRATION_RECORD;
-  typedef union NT_TIB_u {
+  typedef union WINAPI_NT_TIB_u {
     PVOID FiberData;
     DWORD Version;
-  } NT_TIB_u;
+  } WINAPI_NT_TIB_u;
   typedef struct NT_TIB {
     EXCEPTION_REGISTRATION_RECORD* ExceptionList;
     PVOID StackBase;
     PVOID StackLimit;
     PVOID SubSystemTib;
-    NT_TIB_u ;
+    WINAPI_NT_TIB_u ;
     PVOID ArbitraryUserPointer;
     LPVOID Self;
   } NT_TIB;
@@ -1167,17 +1167,17 @@ ffi.cdef[[
     PTEB_ACTIVE_FRAME_CONTEXT Context;
   } TEB_ACTIVE_FRAME;
   typedef TEB_ACTIVE_FRAME *PTEB_ACTIVE_FRAME; //Pointer
-  typedef struct TEB_u1_s {
+  typedef struct WINAPI_TEB_u1_s {
     UCHAR ReservedPad0;
     UCHAR ReservedPad2;
     UCHAR ReservedPad2;
     UCHAR IdealProcessor;
-  } TEB_u1_s;
-  typedef union TEB_u1 {
+  } WINAPI_TEB_u1_s;
+  typedef union WINAPI_TEB_u1 {
     PROCESSOR_NUMBER CurrentIdealProcessor;
     ULONG IdealProcessorValue;
-    TEB_u1_s ;
-  } TEB_u1;
+    WINAPI_TEB_u1_s ;
+  } WINAPI_TEB_u1;
 ]]
 if ffi.arch == 'x86' then ffi.cdef[[
   typedef struct TEB {
@@ -1233,7 +1233,7 @@ if ffi.arch == 'x86' then ffi.cdef[[
     PVOID EtwTraceData;
     PVOID WinSockData;
     ULONG GdiBatchCount;
-    TEB_u1 ;
+    WINAPI_TEB_u1 ;
     ULONG GuaranteedStackBytes;
     PVOID ReservedForPerf;
     PVOID ReservedForOle;
@@ -1322,7 +1322,7 @@ if ffi.arch == 'x64' then ffi.cdef[[
     PVOID EtwTraceData;
     PVOID WinSockData;
     ULONG GdiBatchCount;
-    TEB_u1 ;
+    WINAPI_TEB_u1 ;
     ULONG GuaranteedStackBytes;
     PVOID ReservedForPerf;
     PVOID ReservedForOle;
@@ -1400,7 +1400,7 @@ ffi.cdef[[
     ULONG SectionSize;
   } PORT_MESSAGE;
   typedef PORT_MESSAGE *PPORT_MESSAGE; //Pointer
-  typedef DWORD ElevationFlags; //Alias
+  typedef DWORD WINAPI_ElevationFlags; //Alias
   typedef struct THREADEX_DATA {
     SIZE_T cbSize;
     UINT_PTR Unknown1;
@@ -1413,7 +1413,7 @@ ffi.cdef[[
     UINT_PTR Unknown4;
   } THREADEX_DATA;
   typedef THREADEX_DATA *PTHREADEX_DATA; //Pointer
-  typedef ULONG REG_NOTIFY_CHANGE_FLAGS; //Alias
+  typedef ULONG WINAPI_REG_NOTIFY_CHANGE_FLAGS; //Alias
   typedef struct RTL_UNLOAD_EVENT_TRACE {
     PVOID BaseAddress;
     SIZE_T SizeOfImage;
@@ -1423,39 +1423,39 @@ ffi.cdef[[
     WCHAR ImageName[32];
   } RTL_UNLOAD_EVENT_TRACE;
   enum { RTL_UNLOAD_EVENT_TRACE_NUMBER = 64 };
-  typedef HMODULE HMODULE_PVOID; //Alias
-  typedef ULONG LDR_LOCK_LOADER_LOCK_FLAG; //Alias
-  typedef ULONG LDR_UNLOCK_LOADER_LOCK_FLAG; //Alias
-  typedef ULONG LDR_LOCK_LOADER_LOCK_DISPOSITION; //Alias
-  static const LDR_LOCK_LOADER_LOCK_DISPOSITION LDR_LOCK_LOADER_LOCK_DISPOSITION_INVALID = 0;
-  static const LDR_LOCK_LOADER_LOCK_DISPOSITION LDR_LOCK_LOADER_LOCK_DISPOSITION_LOCK_ACQUIRED = 1;
-  static const LDR_LOCK_LOADER_LOCK_DISPOSITION LDR_LOCK_LOADER_LOCK_DISPOSITION_LOCK_NOT_ACQUIRED = 2;
-  typedef DWORD LDR_DLL_CHARACTERISTICS; //Alias
-  typedef ULONG LDR_ADDREF_DLL_FLAGS; //Alias
-  typedef ULONG LDR_GET_DLL_HANDLE_EX_FLAGS; //Alias
-  typedef NTSTATUS NT_WAIT_RESULT; //Alias
-  typedef REGSAM REGISTRY_ACCESS_MASK; //Alias
-  typedef ACCESS_MASK EVENT_ACCESS_MASK; //Alias
-  typedef ACCESS_MASK SEMAPHORE_ACCESS_MASK; //Alias
-  typedef ACCESS_MASK MUTANT_ACCESS_MASK; //Alias
-  typedef ACCESS_MASK IO_COMPLETION_ACCESS_MASK; //Alias
-  typedef ACCESS_MASK SECTION_ACCESS_MASK; //Alias
-  typedef ACCESS_MASK DIRECTORY_ACCESS_MASK; //Alias
-  typedef ACCESS_MASK DEBUG_OBJECT_ACCESS_MASK; //Alias
-  typedef ACCESS_MASK PIPE_ACCESS_MASK; //Alias
-  typedef ULONG SECTION_ALLOCATION; //Alias
+  typedef HMODULE WINAPI_HMODULE_PVOID; //Alias
+  typedef ULONG WINAPI_LDR_LOCK_LOADER_LOCK_FLAG; //Alias
+  typedef ULONG WINAPI_LDR_UNLOCK_LOADER_LOCK_FLAG; //Alias
+  typedef ULONG WINAPI_LDR_LOCK_LOADER_LOCK_DISPOSITION; //Alias
+  static const WINAPI_LDR_LOCK_LOADER_LOCK_DISPOSITION LDR_LOCK_LOADER_LOCK_DISPOSITION_INVALID = 0;
+  static const WINAPI_LDR_LOCK_LOADER_LOCK_DISPOSITION LDR_LOCK_LOADER_LOCK_DISPOSITION_LOCK_ACQUIRED = 1;
+  static const WINAPI_LDR_LOCK_LOADER_LOCK_DISPOSITION LDR_LOCK_LOADER_LOCK_DISPOSITION_LOCK_NOT_ACQUIRED = 2;
+  typedef DWORD WINAPI_LDR_DLL_CHARACTERISTICS; //Alias
+  typedef ULONG WINAPI_LDR_ADDREF_DLL_FLAGS; //Alias
+  typedef ULONG WINAPI_LDR_GET_DLL_HANDLE_EX_FLAGS; //Alias
+  typedef NTSTATUS WINAPI_NT_WAIT_RESULT; //Alias
+  typedef REGSAM WINAPI_REGISTRY_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_EVENT_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_SEMAPHORE_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_MUTANT_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_IO_COMPLETION_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_SECTION_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_DIRECTORY_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_DEBUG_OBJECT_ACCESS_MASK; //Alias
+  typedef ACCESS_MASK WINAPI_PIPE_ACCESS_MASK; //Alias
+  typedef ULONG WINAPI_SECTION_ALLOCATION; //Alias
   NTSTATUS                                               NtClearEvent(                                       HANDLE EventHandle);
-  NTSTATUS                                               NtCreateEvent(                                      PHANDLE EventHandle, EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, EVENT_TYPE EventType, BOOLEAN InitialState);
+  NTSTATUS                                               NtCreateEvent(                                      PHANDLE EventHandle, WINAPI_EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, EVENT_TYPE EventType, BOOLEAN InitialState);
   NTSTATUS                                               NtCreateEventPair(                                  PHANDLE EventPairHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
-  NTSTATUS                                               NtCreateKeyedEvent(                                 PHANDLE KeyedEventHandle, EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG Flags);
-  NTSTATUS                                               NtCreateMutant(                                     PHANDLE MutantHandle, MUTANT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, BOOLEAN InitialOwner);
-  NTSTATUS                                               NtCreateSemaphore(                                  PHANDLE SemaphoreHandle, SEMAPHORE_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, LONG InitialCount, LONG MaximumCount);
+  NTSTATUS                                               NtCreateKeyedEvent(                                 PHANDLE KeyedEventHandle, WINAPI_EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG Flags);
+  NTSTATUS                                               NtCreateMutant(                                     PHANDLE MutantHandle, WINAPI_MUTANT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, BOOLEAN InitialOwner);
+  NTSTATUS                                               NtCreateSemaphore(                                  PHANDLE SemaphoreHandle, WINAPI_SEMAPHORE_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, LONG InitialCount, LONG MaximumCount);
   NTSTATUS                                               NtCreateTimer(                                      PHANDLE TimerHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, TIMER_TYPE TimerType);
-  NTSTATUS                                               NtOpenEvent(                                        PHANDLE EventHandle, EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
-  NTSTATUS                                               NtOpenKeyedEvent(                                   PHANDLE EventHandle, EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtOpenEvent(                                        PHANDLE EventHandle, WINAPI_EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtOpenKeyedEvent(                                   PHANDLE EventHandle, WINAPI_EVENT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
   NTSTATUS                                               NtOpenEventPair(                                    PHANDLE EventPairHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
-  NTSTATUS                                               NtOpenMutant(                                       PHANDLE MutantHandle, MUTANT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
-  NTSTATUS                                               NtOpenSemaphore(                                    PHANDLE SemaphoreHandle, SEMAPHORE_ACCESS_MASK DesiredAcces, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtOpenMutant(                                       PHANDLE MutantHandle, WINAPI_MUTANT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtOpenSemaphore(                                    PHANDLE SemaphoreHandle, WINAPI_SEMAPHORE_ACCESS_MASK DesiredAcces, POBJECT_ATTRIBUTES ObjectAttributes);
   NTSTATUS                                               NtOpenTimer(                                        PHANDLE TimerHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
   NTSTATUS                                               NtPulseEvent(                                       HANDLE EventHandle, PLONG PulseCount);
   NTSTATUS                                               NtQueryEvent(                                       HANDLE EventHandle, EVENT_INFORMATION_CLASS EventInformationClass, PVOID EventInformation, ULONG EventInformationLength, PULONG ReturnLength);
@@ -1478,13 +1478,13 @@ ffi.cdef[[
   NTSTATUS                                               NtWaitHighEventPair(                                HANDLE EventPairHandle);
   NTSTATUS                                               NtWaitLowEventPair(                                 HANDLE EventPairHandle);
   NTSTATUS                                               NtTraceEvent(                                       ULONG TraceHandle, ULONG Flags, ULONG TraceHeaderLength, PEVENT_TRACE_HEADER TraceHeader);
-  NT_WAIT_RESULT                                         NtSignalAndWaitForSingleObject(                     HANDLE SignalObject, HANDLE WaitObject, BOOLEAN Alertable, PLARGE_INTEGER Time);
-  NT_WAIT_RESULT                                         NtWaitForMultipleObjects(                           ULONG Count, HANDLE [] Object, WAIT_TYPE WaitType, BOOLEAN Alertable, PLARGE_INTEGER Time);
-  NT_WAIT_RESULT                                         NtWaitForMultipleObjects32(                         ULONG ObjectCount, PLONG Handles, WAIT_TYPE WaitType, BOOLEAN Alertable, PLARGE_INTEGER TimeOut);
-  NT_WAIT_RESULT                                         NtWaitForSingleObject(                              HANDLE Object, BOOLEAN Alertable, PLARGE_INTEGER Time);
+  WINAPI_NT_WAIT_RESULT                                  NtSignalAndWaitForSingleObject(                     HANDLE SignalObject, HANDLE WaitObject, BOOLEAN Alertable, PLARGE_INTEGER Time);
+  WINAPI_NT_WAIT_RESULT                                  NtWaitForMultipleObjects(                           ULONG Count, HANDLE * Object, WAIT_TYPE WaitType, BOOLEAN Alertable, PLARGE_INTEGER Time);
+  WINAPI_NT_WAIT_RESULT                                  NtWaitForMultipleObjects32(                         ULONG ObjectCount, PLONG Handles, WAIT_TYPE WaitType, BOOLEAN Alertable, PLARGE_INTEGER TimeOut);
+  WINAPI_NT_WAIT_RESULT                                  NtWaitForSingleObject(                              HANDLE Object, BOOLEAN Alertable, PLARGE_INTEGER Time);
   NTSTATUS                                               NtCompressKey(                                      HANDLE Key);
-  NTSTATUS                                               NtCreateKey(                                        PHANDLE KeyHandle, REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG TitleIndex, PUNICODE_STRING Class, ULONG CreateOptions, RegDisposition_PULONG Disposition);
-  NTSTATUS                                               NtCreateKeyTransacted(                              PHANDLE KeyHandle, REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG TitleIndex, PUNICODE_STRING Class, ULONG CreateOptions, HANDLE TransactionHandle, RegDisposition_PULONG Disposition);
+  NTSTATUS                                               NtCreateKey(                                        PHANDLE KeyHandle, WINAPI_REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG TitleIndex, PUNICODE_STRING Class, ULONG CreateOptions, WINAPI_RegDisposition_PULONG Disposition);
+  NTSTATUS                                               NtCreateKeyTransacted(                              PHANDLE KeyHandle, WINAPI_REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG TitleIndex, PUNICODE_STRING Class, ULONG CreateOptions, HANDLE TransactionHandle, WINAPI_RegDisposition_PULONG Disposition);
   NTSTATUS                                               NtDeleteKey(                                        HANDLE KeyHandle);
   NTSTATUS                                               NtDeleteValueKey(                                   HANDLE KeyHandle, PUNICODE_STRING ValueName);
   NTSTATUS                                               NtEnumerateKey(                                     HANDLE KeyHandle, ULONG Index, KEY_INFORMATION_CLASS KeyInformationClass, PVOID KeyInformation, ULONG Length, PULONG ResultLength);
@@ -1495,12 +1495,12 @@ ffi.cdef[[
   NTSTATUS                                               NtLoadKey2(                                         POBJECT_ATTRIBUTES KeyObjectAttributes, POBJECT_ATTRIBUTES FileObjectAttributes, ULONG Flags);
   NTSTATUS                                               NtLoadKeyEx(                                        POBJECT_ATTRIBUTES TargetKey, POBJECT_ATTRIBUTES SourceFile, ULONG Flags, HANDLE TrustClassKey);
   NTSTATUS                                               NtLockRegistryKey(                                  HANDLE KeyHandle);
-  NTSTATUS                                               NtNotifyChangeKey(                                  HANDLE KeyHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, REG_NOTIFY_CHANGE_FLAGS CompletionFilter, BOOLEAN Asynchroneous, PVOID ChangeBuffer, ULONG Length, BOOLEAN WatchSubtree);
-  NTSTATUS                                               NtNotifyChangeMultipleKeys(                         HANDLE MasterKeyHandle, ULONG Count, POBJECT_ATTRIBUTES SubordinateObjects, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, REG_NOTIFY_CHANGE_FLAGS CompletionFilter, BOOLEAN WatchTree, PVOID Buffer, ULONG Length, BOOLEAN Asynchronous);
-  NTSTATUS                                               NtOpenKey(                                          PHANDLE KeyHandle, REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
-  NTSTATUS                                               NtOpenKeyEx(                                        PHANDLE KeyHandle, REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG OpenOptions);
-  NTSTATUS                                               NtOpenKeyTransacted(                                PHANDLE KeyHandle, REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, HANDLE TransactionHandle);
-  NTSTATUS                                               NtOpenKeyTransactedEx(                              PHANDLE KeyHandle, REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG OpenOptions, HANDLE TransactionHandle);
+  NTSTATUS                                               NtNotifyChangeKey(                                  HANDLE KeyHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, WINAPI_REG_NOTIFY_CHANGE_FLAGS CompletionFilter, BOOLEAN Asynchroneous, PVOID ChangeBuffer, ULONG Length, BOOLEAN WatchSubtree);
+  NTSTATUS                                               NtNotifyChangeMultipleKeys(                         HANDLE MasterKeyHandle, ULONG Count, POBJECT_ATTRIBUTES SubordinateObjects, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, WINAPI_REG_NOTIFY_CHANGE_FLAGS CompletionFilter, BOOLEAN WatchTree, PVOID Buffer, ULONG Length, BOOLEAN Asynchronous);
+  NTSTATUS                                               NtOpenKey(                                          PHANDLE KeyHandle, WINAPI_REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtOpenKeyEx(                                        PHANDLE KeyHandle, WINAPI_REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG OpenOptions);
+  NTSTATUS                                               NtOpenKeyTransacted(                                PHANDLE KeyHandle, WINAPI_REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, HANDLE TransactionHandle);
+  NTSTATUS                                               NtOpenKeyTransactedEx(                              PHANDLE KeyHandle, WINAPI_REGISTRY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG OpenOptions, HANDLE TransactionHandle);
   NTSTATUS                                               NtQueryKey(                                         HANDLE KeyHandle, KEY_INFORMATION_CLASS KeyInformationClass, PVOID KeyInformation, ULONG Length, PULONG ResultLength);
   NTSTATUS                                               NtQueryMultipleValueKey(                            HANDLE KeyHandle, PKEY_VALUE_ENTRY ValueList, ULONG NumberOfValues, PVOID Buffer, PULONG Length, PULONG ReturnLength);
   NTSTATUS                                               NtQueryOpenSubKeys(                                 POBJECT_ATTRIBUTES TargetKey, PULONG HandleCount);
@@ -1557,43 +1557,43 @@ ffi.cdef[[
   VOID                                                   DbgUiRemoteBreakin(                                 );
   NTSTATUS                                               DbgUiIssueRemoteBreakin(                            HANDLE Process);
   HANDLE                                                 DbgUiGetThreadDebugObject(                          );
-  NTSTATUS                                               LdrAccessResource(                                  HMODULE_PVOID BaseAddress, PIMAGE_RESOURCE_DATA_ENTRY ResourceDataEntry, PVOID* Resource, PULONG Size);
-  NTSTATUS                                               LdrFindResource_U(                                  HMODULE_PVOID BaseAddress, PLDR_RESOURCE_INFO ResourceInfo, ULONG Level, PIMAGE_RESOURCE_DATA_ENTRY* ResourceDataEntry);
-  NTSTATUS                                               LdrFindResourceDirectory_U(                         HMODULE_PVOID BaseAddress, PLDR_RESOURCE_INFO ResourceInfo, ULONG Level, PIMAGE_RESOURCE_DIRECTORY* ResourceDirectory);
-  BOOLEAN                                                LdrUnloadAlternateResourceModule(                   HMODULE_PVOID BaseAddress);
+  NTSTATUS                                               LdrAccessResource(                                  WINAPI_HMODULE_PVOID BaseAddress, PIMAGE_RESOURCE_DATA_ENTRY ResourceDataEntry, PVOID* Resource, PULONG Size);
+  NTSTATUS                                               LdrFindResource_U(                                  WINAPI_HMODULE_PVOID BaseAddress, PLDR_RESOURCE_INFO ResourceInfo, ULONG Level, PIMAGE_RESOURCE_DATA_ENTRY* ResourceDataEntry);
+  NTSTATUS                                               LdrFindResourceDirectory_U(                         WINAPI_HMODULE_PVOID BaseAddress, PLDR_RESOURCE_INFO ResourceInfo, ULONG Level, PIMAGE_RESOURCE_DIRECTORY* ResourceDirectory);
+  BOOLEAN                                                LdrUnloadAlternateResourceModule(                   WINAPI_HMODULE_PVOID BaseAddress);
   ULONG                                                  LdrRelocateImage(                                   PVOID NewBase, PUCHAR LoaderName, ULONG Success, ULONG Conflict, ULONG Invalid);
-  NTSTATUS                                               LdrLockLoaderLock(                                  LDR_LOCK_LOADER_LOCK_FLAG Flags, LDR_LOCK_LOADER_LOCK_DISPOSITION* Disposition, PULONG Cookie);
-  NTSTATUS                                               LdrUnlockLoaderLock(                                LDR_UNLOCK_LOADER_LOCK_FLAG Flags, ULONG Cookie);
-  BOOLEAN                                                LdrVerifyMappedImageMatchesChecksum(                HMODULE_PVOID BaseAddress, ULONG NumberOfBytes, ULONG FileLength);
-  NTSTATUS                                               LdrAddRefDll(                                       LDR_ADDREF_DLL_FLAGS Flags, HMODULE_PVOID BaseAddress);
-  NTSTATUS                                               LdrDisableThreadCalloutsForDll(                     HMODULE_PVOID BaseAddress);
+  NTSTATUS                                               LdrLockLoaderLock(                                  WINAPI_LDR_LOCK_LOADER_LOCK_FLAG Flags, WINAPI_LDR_LOCK_LOADER_LOCK_DISPOSITION* Disposition, PULONG Cookie);
+  NTSTATUS                                               LdrUnlockLoaderLock(                                WINAPI_LDR_UNLOCK_LOADER_LOCK_FLAG Flags, ULONG Cookie);
+  BOOLEAN                                                LdrVerifyMappedImageMatchesChecksum(                WINAPI_HMODULE_PVOID BaseAddress, ULONG NumberOfBytes, ULONG FileLength);
+  NTSTATUS                                               LdrAddRefDll(                                       WINAPI_LDR_ADDREF_DLL_FLAGS Flags, WINAPI_HMODULE_PVOID BaseAddress);
+  NTSTATUS                                               LdrDisableThreadCalloutsForDll(                     WINAPI_HMODULE_PVOID BaseAddress);
   NTSTATUS                                               LdrGetDllHandle(                                    PWSTR DllPath, PULONG DllCharacteristics, PUNICODE_STRING DllName, HMODULE* DllHandle);
-  NTSTATUS                                               LdrGetDllHandleEx(                                  LDR_GET_DLL_HANDLE_EX_FLAGS Flags, PWSTR DllPath, PULONG DllCharacteristics, PUNICODE_STRING DllName, HMODULE* DllHandle);
+  NTSTATUS                                               LdrGetDllHandleEx(                                  WINAPI_LDR_GET_DLL_HANDLE_EX_FLAGS Flags, PWSTR DllPath, PULONG DllCharacteristics, PUNICODE_STRING DllName, HMODULE* DllHandle);
   NTSTATUS                                               LdrFindEntryForAddress(                             PVOID Address, PLDR_DATA_TABLE_ENTRY* Module);
   NTSTATUS                                               LdrGetProcedureAddress(                             HMODULE BaseAddress, PANSI_STRING Name, ULONG Ordinal, PVOID* ProcedureAddress);
   VOID                                                   LdrInitializeThunk(                                 ULONG Unknown1, ULONG Unknown2, ULONG Unknown3, ULONG Unknown4);
-  NTSTATUS                                               LdrLoadDll(                                         PWSTR SearchPath, IMAGE_FILE_CHARACTERISTICS_ULONG* DllCharacteristics, PUNICODE_STRING Name, HMODULE_PVOID* BaseAddress);
+  NTSTATUS                                               LdrLoadDll(                                         PWSTR SearchPath, WINAPI_IMAGE_FILE_CHARACTERISTICS_ULONG* DllCharacteristics, PUNICODE_STRING Name, WINAPI_HMODULE_PVOID* BaseAddress);
   PIMAGE_BASE_RELOCATION                                 LdrProcessRelocationBlock(                          ULONG_PTR Address, ULONG Count, PUSHORT TypeOffset, LONG_PTR Delta);
   NTSTATUS                                               LdrQueryImageFileExecutionOptions(                  PUNICODE_STRING SubKey, PCWSTR ValueName, ULONG ValueSize, PVOID Buffer, ULONG BufferSize, PULONG RetunedLength);
   NTSTATUS                                               LdrQueryProcessModuleInformation(                   PRTL_PROCESS_MODULES ModuleInformation, ULONG Size, PULONG ReturnedSize);
   NTSTATUS                                               LdrShutdownThread(                                  );
-  NTSTATUS                                               LdrUnloadDll(                                       HMODULE_PVOID BaseAddress);
+  NTSTATUS                                               LdrUnloadDll(                                       WINAPI_HMODULE_PVOID BaseAddress);
   NTSTATUS                                               LdrVerifyImageMatchesChecksum(                      HANDLE FileHandle, ULONG Unknown1, ULONG Unknown2, ULONG Unknown3);
   ULONG                                                  LdrRelocateImageWithBias(                           PVOID NewAddress, LONGLONG AdditionalBias, PCCH LoaderName, ULONG Success, ULONG Conflict, ULONG Invalid);
-  NTSTATUS                                               LdrResFindResourceDirectory(                        HMODULE_PVOID BaseAddress, PVOID Unknown1, PVOID Unknown2, PVOID* ResourceDirectory, PVOID Unknown3, PVOID Unknown4, PVOID Unknown5);
+  NTSTATUS                                               LdrResFindResourceDirectory(                        WINAPI_HMODULE_PVOID BaseAddress, PVOID Unknown1, PVOID Unknown2, PVOID* ResourceDirectory, PVOID Unknown3, PVOID Unknown4, PVOID Unknown5);
   NTSTATUS                                               RtlAbsoluteToSelfRelativeSD(                        PSECURITY_DESCRIPTOR AbsoluteSecurityDescriptor, PSECURITY_DESCRIPTOR_RELATIVE SelfRelativeSecurityDescriptor, PULONG BufferLength);
-  NTSTATUS                                               RtlAddAccessAllowedAce(                             PACL Acl, AclRevision AceRevision, ACCESS_MASK AccessMask, PSID Sid);
+  NTSTATUS                                               RtlAddAccessAllowedAce(                             PACL Acl, WINAPI_AclRevision AceRevision, ACCESS_MASK AccessMask, PSID Sid);
   NTSTATUS                                               RtlAddAccessAllowedAceEx(                           PACL pAcl, ULONG AceRevision, ULONG AceFlags, ACCESS_MASK AccessMask, PSID Sid);
   NTSTATUS                                               RtlAddAccessAllowedObjectAce(                       PACL pAcl, ULONG dwAceRevision, ULONG AceFlags, ACCESS_MASK AccessMask, GUID* ObjectTypeGuid, GUID* InheritedObjectTypeGuid, PSID pSid);
-  NTSTATUS                                               RtlAddAccessDeniedAce(                              PACL Acl, AclRevision Revision, ACCESS_MASK AccessMask, PSID Sid);
-  NTSTATUS                                               RtlAddAccessDeniedAceEx(                            PACL Acl, AclRevision Revision, ULONG Flags, ACCESS_MASK AccessMask, PSID Sid);
+  NTSTATUS                                               RtlAddAccessDeniedAce(                              PACL Acl, WINAPI_AclRevision Revision, ACCESS_MASK AccessMask, PSID Sid);
+  NTSTATUS                                               RtlAddAccessDeniedAceEx(                            PACL Acl, WINAPI_AclRevision Revision, ULONG Flags, ACCESS_MASK AccessMask, PSID Sid);
   NTSTATUS                                               RtlAddAccessDeniedObjectAce(                        PACL pAcl, ULONG dwAceRevision, ULONG AceFlags, ACCESS_MASK AccessMask, GUID* ObjectTypeGuid, GUID* InheritedObjectTypeGuid, PSID pSid);
   NTSTATUS                                               RtlAddAce(                                          PACL Acl, ULONG AceRevision, ULONG StartingAceIndex, PVOID AceList, ULONG AceListLength);
-  NTSTATUS                                               RtlAddAuditAccessAce(                               PACL Acl, AclRevision Revision, ACCESS_MASK AccessMask, PSID Sid, BOOLEAN Success, BOOLEAN Failure);
+  NTSTATUS                                               RtlAddAuditAccessAce(                               PACL Acl, WINAPI_AclRevision Revision, ACCESS_MASK AccessMask, PSID Sid, BOOLEAN Success, BOOLEAN Failure);
   NTSTATUS                                               RtlAcquirePrivilege(                                PULONG Privilege, ULONG NumPriv, ULONG Flags, PVOID* ReturnedState);
-  NTSTATUS                                               RtlAddAuditAccessAceEx(                             PACL Acl, AclRevision Revision, ULONG Flags, ACCESS_MASK AccessMask, PSID Sid, BOOLEAN Success, BOOLEAN Failure);
-  NTSTATUS                                               RtlAddAuditAccessObjectAce(                         PACL Acl, AclRevision Revision, ULONG Flags, ACCESS_MASK AccessMask, GUID* ObjectTypeGuid, GUID* InheritedObjectTypeGuid, PSID Sid, BOOLEAN Success, BOOLEAN Failure);
-  NTSTATUS                                               RtlAddMandatoryAce(                                 PACL Acl, AclRevision Revision, ULONG Flags, ULONG MandatoryFlags, ULONG AceType, PSID LabelSid);
+  NTSTATUS                                               RtlAddAuditAccessAceEx(                             PACL Acl, WINAPI_AclRevision Revision, ULONG Flags, ACCESS_MASK AccessMask, PSID Sid, BOOLEAN Success, BOOLEAN Failure);
+  NTSTATUS                                               RtlAddAuditAccessObjectAce(                         PACL Acl, WINAPI_AclRevision Revision, ULONG Flags, ACCESS_MASK AccessMask, GUID* ObjectTypeGuid, GUID* InheritedObjectTypeGuid, PSID Sid, BOOLEAN Success, BOOLEAN Failure);
+  NTSTATUS                                               RtlAddMandatoryAce(                                 PACL Acl, WINAPI_AclRevision Revision, ULONG Flags, ULONG MandatoryFlags, ULONG AceType, PSID LabelSid);
   NTSTATUS                                               RtlAdjustPrivilege(                                 ULONG Privilege, BOOLEAN NewValue, BOOLEAN ForThread, PBOOLEAN OldValue);
   NTSTATUS                                               RtlAllocateAndInitializeSid(                        PSID_IDENTIFIER_AUTHORITY IdentifierAuthority, UCHAR SubAuthorityCount, ULONG SubAuthority0, ULONG SubAuthority1, ULONG SubAuthority2, ULONG SubAuthority3, ULONG SubAuthority4, ULONG SubAuthority5, ULONG SubAuthority6, ULONG SubAuthority7, PSID* Sid);
   BOOLEAN                                                RtlAreAllAccessesGranted(                           ACCESS_MASK GrantedAccess, ACCESS_MASK DesiredAccess);
@@ -1603,7 +1603,7 @@ ffi.cdef[[
   NTSTATUS                                               RtlCopySidAndAttributesArray(                       ULONG Count, PSID_AND_ATTRIBUTES Src, ULONG SidAreaSize, PSID_AND_ATTRIBUTES Dest, PVOID SidArea, PVOID* RemainingSidArea, PULONG RemainingSidAreaSize);
   NTSTATUS                                               RtlConvertSidToUnicodeString(                       PUNICODE_STRING DestinationString, PSID Sid, BOOLEAN AllocateDestinationString);
   NTSTATUS                                               RtlCopySid(                                         ULONG Length, PSID Destination, PSID Source);
-  NTSTATUS                                               RtlCreateAcl(                                       PACL Acl, ULONG AclSize, AclRevision AclRevision);
+  NTSTATUS                                               RtlCreateAcl(                                       PACL Acl, ULONG AclSize, WINAPI_AclRevision AclRevision);
   NTSTATUS                                               RtlCreateSecurityDescriptor(                        PSECURITY_DESCRIPTOR SecurityDescriptor, ULONG Revision);
   NTSTATUS                                               RtlCreateSecurityDescriptorRelative(                PISECURITY_DESCRIPTOR_RELATIVE SecurityDescriptor, ULONG Revision);
   NTSTATUS                                               RtlCopySecurityDescriptor(                          PSECURITY_DESCRIPTOR pSourceSecurityDescriptor, PSECURITY_DESCRIPTOR pDestinationSecurityDescriptor);
@@ -1686,7 +1686,7 @@ ffi.cdef[[
   NTSTATUS                                               RtlHashUnicodeString(                               UNICODE_STRING* String, BOOLEAN CaseInSensitive, ULONG HashAlgorithm, PULONG HashValue);
   VOID                                                   RtlInitUnicodeString(                               PUNICODE_STRING DestinationString, PCWSTR SourceString);
   NTSTATUS                                               RtlInitUnicodeStringEx(                             PUNICODE_STRING DestinationString, PCWSTR SourceString);
-  BOOLEAN                                                RtlIsTextUnicode(                                   PVOID Buffer, INT Length, IsTextUnicodeFlags* Flags);
+  BOOLEAN                                                RtlIsTextUnicode(                                   PVOID Buffer, INT Length, WINAPI_IsTextUnicodeFlags* Flags);
   BOOLEAN                                                RtlPrefixString(                                    PCANSI_STRING String1, PCANSI_STRING String2, BOOLEAN CaseInsensitive);
   BOOLEAN                                                RtlPrefixUnicodeString(                             PCUNICODE_STRING String1, PCUNICODE_STRING String2, BOOLEAN CaseInsensitive);
   NTSTATUS                                               RtlUpcaseUnicodeString(                             PUNICODE_STRING DestinationString, PCUNICODE_STRING SourceString, BOOLEAN AllocateDestinationString);
@@ -1710,11 +1710,11 @@ ffi.cdef[[
   VOID                                                   RtlAcquirePebLock(                                  );
   NTSTATUS                                               RtlCreateProcessParameters(                         PRTL_USER_PROCESS_PARAMETERS* ProcessParameters, PUNICODE_STRING ImagePathName, PUNICODE_STRING DllPath, PUNICODE_STRING CurrentDirectory, PUNICODE_STRING CommandLine, PWSTR Environment, PUNICODE_STRING WindowTitle, PUNICODE_STRING DesktopInfo, PUNICODE_STRING ShellInfo, PUNICODE_STRING RuntimeInfo);
   NTSTATUS                                               RtlCreateUserProcess(                               PUNICODE_STRING ImageFileName, ULONG Attributes, PRTL_USER_PROCESS_PARAMETERS ProcessParameters, PSECURITY_DESCRIPTOR ProcessSecutityDescriptor, PSECURITY_DESCRIPTOR ThreadSecurityDescriptor, HANDLE ParentProcess, BOOLEAN CurrentDirectory, HANDLE DebugPort, HANDLE ExceptionPort, PRTL_USER_PROCESS_INFORMATION ProcessInfo);
-  NTSTATUS                                               RtlCreateUserThread(                                ProcessHandle ProcessHandle, PSECURITY_DESCRIPTOR SecurityDescriptor, BOOLEAN CreateSuspended, ULONG StackZeroBits, SIZE_T StackReserve, SIZE_T StackCommit, PTHREAD_START_ROUTINE StartAddress, PVOID Parameter, PHANDLE ThreadHandle, PCLIENT_ID ClientId);
+  NTSTATUS                                               RtlCreateUserThread(                                WINAPI_ProcessHandle ProcessHandle, PSECURITY_DESCRIPTOR SecurityDescriptor, BOOLEAN CreateSuspended, ULONG StackZeroBits, SIZE_T StackReserve, SIZE_T StackCommit, PTHREAD_START_ROUTINE StartAddress, PVOID Parameter, PHANDLE ThreadHandle, PCLIENT_ID ClientId);
   PRTL_USER_PROCESS_PARAMETERS                           RtlDeNormalizeProcessParams(                        PRTL_USER_PROCESS_PARAMETERS ProcessParameters);
   NTSTATUS                                               RtlDestroyProcessParameters(                        PRTL_USER_PROCESS_PARAMETERS ProcessParameters);
   VOID                                                   RtlExitUserThread(                                  NTSTATUS Status);
-  VOID                                                   RtlInitializeContext(                               ProcessHandle ProcessHandle, PCONTEXT ThreadContext, PVOID ThreadStartParam, PTHREAD_START_ROUTINE ThreadStartAddress, PINITIAL_TEB InitialTeb);
+  VOID                                                   RtlInitializeContext(                               WINAPI_ProcessHandle ProcessHandle, PCONTEXT ThreadContext, PVOID ThreadStartParam, PTHREAD_START_ROUTINE ThreadStartAddress, PINITIAL_TEB InitialTeb);
   PRTL_USER_PROCESS_PARAMETERS                           RtlNormalizeProcessParams(                          PRTL_USER_PROCESS_PARAMETERS ProcessParameters);
   VOID                                                   RtlReleasePebLock(                                  );
   NTSTATUS                                               RtlRemoteCall(                                      HANDLE Process, HANDLE Thread, PVOID CallSite, ULONG ArgumentCount, PULONG Arguments, BOOLEAN PassContext, BOOLEAN AlreadySuspended);
@@ -1759,7 +1759,7 @@ ffi.cdef[[
   NTSTATUS                                               RtlGetCompressionWorkSpaceSize(                     USHORT CompressionFormatAndEngine, PULONG CompressBufferWorkSpaceSize, PULONG CompressFragmentWorkSpaceSize);
   PRTL_DEBUG_INFORMATION                                 RtlCreateQueryDebugBuffer(                          ULONG Size, BOOLEAN EventPair);
   NTSTATUS                                               RtlDestroyQueryDebugBuffer(                         PRTL_DEBUG_INFORMATION DebugBuffer);
-  NTSTATUS                                               RtlQueryProcessDebugInformation(                    ULONG ProcessId, RTL_DEBUG_QUERY_FLAGS DebugInfoClassMask, PRTL_DEBUG_INFORMATION DebugBuffer);
+  NTSTATUS                                               RtlQueryProcessDebugInformation(                    ULONG ProcessId, WINAPI_RTL_DEBUG_QUERY_FLAGS DebugInfoClassMask, PRTL_DEBUG_INFORMATION DebugBuffer);
   BOOLEAN                                                RtlAreBitsClear(                                    PRTL_BITMAP BitMapHeader, ULONG StartingIndex, ULONG Length);
   BOOLEAN                                                RtlAreBitsSet(                                      PRTL_BITMAP BitMapHeader, ULONG StartingIndex, ULONG Length);
   VOID                                                   RtlClearBits(                                       PRTL_BITMAP BitMapHeader, ULONG StartingIndex, ULONG NumberToClear);
@@ -1793,8 +1793,8 @@ ffi.cdef[[
   ULONG                                                  RtlGetNtGlobalFlags(                                );
   PVOID                                                  RtlImageDirectoryEntryToData(                       PVOID BaseAddress, BOOLEAN MappedAsImage, USHORT Directory, PULONG Size);
   PVOID                                                  RtlImageRvaToVa(                                    PIMAGE_NT_HEADERS NtHeader, PVOID BaseAddress, ULONG Rva, PIMAGE_SECTION_HEADER* SectionHeader);
-  PIMAGE_NT_HEADERS                                      RtlImageNtHeader(                                   HMODULE_PVOID BaseAddress);
-  NTSTATUS                                               RtlImageNtHeaderEx(                                 ULONG Flags, HMODULE_PVOID BaseAddress, ULONGLONG Size, PIMAGE_NT_HEADERS* NtHeader);
+  PIMAGE_NT_HEADERS                                      RtlImageNtHeader(                                   WINAPI_HMODULE_PVOID BaseAddress);
+  NTSTATUS                                               RtlImageNtHeaderEx(                                 ULONG Flags, WINAPI_HMODULE_PVOID BaseAddress, ULONGLONG Size, PIMAGE_NT_HEADERS* NtHeader);
   PIMAGE_SECTION_HEADER                                  RtlImageRvaToSection(                               PIMAGE_NT_HEADERS NtHeader, PVOID BaseAddress, ULONG Rva);
   NTSTATUS                                               RtlActivateActivationContext(                       ULONG Unknown, HANDLE Handle, PULONG_PTR Cookie);
   VOID                                                   RtlAddRefActivationContext(                         PVOID Context);
@@ -1804,7 +1804,7 @@ ffi.cdef[[
   VOID                                                   RtlReleaseActivationContext(                        PVOID* Context);
   LONG                                                   RtlDeactivateActivationContext(                     DWORD dwFlags, ULONG_PTR ulCookie);
   NTSTATUS                                               RtlDosApplyFileIsolationRedirection_Ustr(           BOOLEAN Unknown, PUNICODE_STRING OriginalName, PUNICODE_STRING Extension, PUNICODE_STRING RedirectedName, PUNICODE_STRING RedirectedName2, PUNICODE_STRING* OriginalName2, PVOID Unknown1, PVOID Unknown2, PVOID Unknown3);
-  NTSTATUS                                               RtlFindActivationContextSectionString(              FIND_ACTCTX_SECTION_FLAGS dwFlags, GUID* ExtensionGuid, ACTIVATION_CONTEXT_SECTION SectionType, PUNICODE_STRING SectionName, PVOID ReturnedData);
+  NTSTATUS                                               RtlFindActivationContextSectionString(              WINAPI_FIND_ACTCTX_SECTION_FLAGS dwFlags, GUID* ExtensionGuid, WINAPI_ACTIVATION_CONTEXT_SECTION SectionType, PUNICODE_STRING SectionName, PVOID ReturnedData);
   NTSTATUS                                               RtlQueryInformationActivationContext(               DWORD dwFlags, PVOID Context, PVOID pvSubInstance, ULONG ulInfoClass, PVOID pvBuffer, SIZE_T cbBuffer, SIZE_T* pcbWrittenOrRequired);
   NTSTATUS                                               RtlZombifyActivationContext(                        PVOID Context);
   NTSTATUS                                               RtlCheckRegistryKey(                                ULONG RelativeTo, PWSTR Path);
@@ -1828,7 +1828,7 @@ ffi.cdef[[
   BOOLEAN                                                RtlTimeToSecondsSince1970(                          PLARGE_INTEGER Time, PULONG SecondsSince1970);
   VOID                                                   RtlTimeToTimeFields(                                PLARGE_INTEGER Time, PTIME_FIELDS TimeFields);
   NTSTATUS                                               RtlSystemTimeToLocalTime(                           PLARGE_INTEGER SystemTime, PLARGE_INTEGER LocalTime);
-  NTSTATUS                                               RtlVerifyVersionInfo(                               PRTL_OSVERSIONINFOEXW VersionInfo, NtVerType TypeMask, ULONGLONG ConditionMask);
+  NTSTATUS                                               RtlVerifyVersionInfo(                               PRTL_OSVERSIONINFOEXW VersionInfo, WINAPI_NtVerType TypeMask, ULONGLONG ConditionMask);
   NTSTATUS                                               RtlGetVersion(                                      PRTL_OSVERSIONINFOW lpVersionInformation);
   BOOLEAN                                                RtlGetNtProductType(                                PNT_PRODUCT_TYPE ProductType);
   NTSTATUS                                               RtlRegisterSecureMemoryCacheCallback(               PRTL_SECURE_MEMORY_CACHE_CALLBACK Callback);
@@ -1867,33 +1867,33 @@ ffi.cdef[[
   PVOID                                                  RtlEncodeSystemPointer(                             PVOID Pointer);
   PVOID                                                  RtlDecodeSystemPointer(                             PVOID Pointer);
   BOOLEAN                                                RtlDispatchException(                               PEXCEPTION_RECORD ExceptionRecord, PCONTEXT Context);
-  ERROR_CODE_ULONG                                       RtlNtStatusToDosError(                              NTSTATUS Status);
-  ERROR_CODE_ULONG                                       RtlNtStatusToDosErrorNoTeb(                         NTSTATUS Status);
+  WINAPI_ERROR_CODE_ULONG                                RtlNtStatusToDosError(                              NTSTATUS Status);
+  WINAPI_ERROR_CODE_ULONG                                RtlNtStatusToDosErrorNoTeb(                         NTSTATUS Status);
   VOID                                                   RtlSetLastWin32ErrorAndNtStatusFromNtStatus(        NTSTATUS Status);
   VOID                                                   RtlRaiseStatus(                                     NTSTATUS Status);
   LONG                                                   RtlUnhandledExceptionFilter(                        EXCEPTION_POINTERS* ExceptionInfo);
   ULONG                                                  RtlWalkFrameChain(                                  PVOID* Callers, ULONG Count, ULONG Flags);
   USHORT                                                 RtlLogStackBackTrace(                               );
-  PVOID                                                  RtlAllocateHeap(                                    HANDLE HeapHandle, HEAP_FLAGS_ULONG Flags, SIZE_T Size);
-  PVOID                                                  RtlCreateHeap(                                      HEAP_FLAGS_ULONG Flags, PVOID BaseAddress, SIZE_T SizeToReserve, SIZE_T SizeToCommit, PVOID Lock, PRTL_HEAP_PARAMETERS Parameters);
+  PVOID                                                  RtlAllocateHeap(                                    HANDLE HeapHandle, WINAPI_HEAP_FLAGS_ULONG Flags, SIZE_T Size);
+  PVOID                                                  RtlCreateHeap(                                      WINAPI_HEAP_FLAGS_ULONG Flags, PVOID BaseAddress, SIZE_T SizeToReserve, SIZE_T SizeToCommit, PVOID Lock, PRTL_HEAP_PARAMETERS Parameters);
   ULONG                                                  RtlCreateTagHeap(                                   HANDLE HeapHandle, ULONG Flags, PWSTR TagName, PWSTR TagSubName);
-  ULONG                                                  RtlCompactHeap(                                     HANDLE Heap, HEAP_FLAGS_ULONG Flags);
-  PVOID                                                  RtlDebugCreateHeap(                                 HEAP_FLAGS_ULONG Flags, PVOID BaseAddress, SIZE_T SizeToReserve, SIZE_T SizeToCommit, PVOID Lock, PRTL_HEAP_PARAMETERS Parameters);
+  ULONG                                                  RtlCompactHeap(                                     HANDLE Heap, WINAPI_HEAP_FLAGS_ULONG Flags);
+  PVOID                                                  RtlDebugCreateHeap(                                 WINAPI_HEAP_FLAGS_ULONG Flags, PVOID BaseAddress, SIZE_T SizeToReserve, SIZE_T SizeToCommit, PVOID Lock, PRTL_HEAP_PARAMETERS Parameters);
   HANDLE                                                 RtlDestroyHeap(                                     HANDLE Heap);
-  ULONG                                                  RtlExtendHeap(                                      HANDLE Heap, HEAP_FLAGS_ULONG Flags, PVOID P, SIZE_T Size);
-  BOOLEAN                                                RtlFreeHeap(                                        HANDLE HeapHandle, HEAP_FLAGS_ULONG Flags, PVOID HeapBase);
+  ULONG                                                  RtlExtendHeap(                                      HANDLE Heap, WINAPI_HEAP_FLAGS_ULONG Flags, PVOID P, SIZE_T Size);
+  BOOLEAN                                                RtlFreeHeap(                                        HANDLE HeapHandle, WINAPI_HEAP_FLAGS_ULONG Flags, PVOID HeapBase);
   ULONG                                                  RtlGetProcessHeaps(                                 ULONG HeapCount, HANDLE* HeapArray);
   BOOLEAN                                                RtlGetUserInfoHeap(                                 PVOID HeapHandle, ULONG Flags, PVOID BaseAddress, PVOID* UserValue, PULONG UserFlags);
   PVOID                                                  RtlProtectHeap(                                     PVOID HeapHandle, BOOLEAN Protect);
   PWSTR                                                  RtlQueryTagHeap(                                    PVOID HeapHandle, ULONG Flags, USHORT TagIndex, BOOLEAN ResetCounters, PRTL_HEAP_TAG_INFO HeapTagInfo);
-  PVOID                                                  RtlReAllocateHeap(                                  HANDLE Heap, HEAP_FLAGS_ULONG Flags, PVOID Ptr, SIZE_T Size);
+  PVOID                                                  RtlReAllocateHeap(                                  HANDLE Heap, WINAPI_HEAP_FLAGS_ULONG Flags, PVOID Ptr, SIZE_T Size);
   BOOLEAN                                                RtlLockHeap(                                        HANDLE Heap);
-  NTSTATUS                                               RtlUsageHeap(                                       HANDLE Heap, HEAP_FLAGS_ULONG Flags, PRTL_HEAP_USAGE Usage);
+  NTSTATUS                                               RtlUsageHeap(                                       HANDLE Heap, WINAPI_HEAP_FLAGS_ULONG Flags, PRTL_HEAP_USAGE Usage);
   BOOLEAN                                                RtlUnlockHeap(                                      HANDLE Heap);
   BOOLEAN                                                RtlSetUserValueHeap(                                PVOID HeapHandle, ULONG Flags, PVOID BaseAddress, PVOID UserValue);
   BOOLEAN                                                RtlSetUserFlagsHeap(                                PVOID HeapHandle, ULONG Flags, PVOID BaseAddress, ULONG UserFlags);
-  SIZE_T                                                 RtlSizeHeap(                                        PVOID HeapHandle, HEAP_FLAGS_ULONG Flags, PVOID MemoryPointer);
-  BOOLEAN                                                RtlValidateHeap(                                    HANDLE Heap, HEAP_FLAGS_ULONG Flags, PVOID P);
+  SIZE_T                                                 RtlSizeHeap(                                        PVOID HeapHandle, WINAPI_HEAP_FLAGS_ULONG Flags, PVOID MemoryPointer);
+  BOOLEAN                                                RtlValidateHeap(                                    HANDLE Heap, WINAPI_HEAP_FLAGS_ULONG Flags, PVOID P);
   NTSTATUS                                               RtlWalkHeap(                                        HANDLE HeapHandle, PVOID HeapEntry);
   PSLIST_ENTRY                                           RtlFirstEntrySList(                                 PSLIST_HEADER ListHead);
   void                                                   RtlInitializeSListHead(                             PSLIST_HEADER ListHead);
@@ -1915,25 +1915,25 @@ ffi.cdef[[
   NTSTATUS                                               RtlIpv6StringToAddress(                             PCTSTR String, PCTSTR* Terminator, IN6_ADDR* Addr);
   NTSTATUS                                               RtlIpv6StringToAddressEx(                           PCTSTR AddressString, IN6_ADDR* Address, PULONG ScopeId, PUSHORT Port);
   NTSTATUS                                               RtlGetLastNtStatus(                                 );
-  ERROR_CODE                                             RtlGetLastWin32Error(                               );
-  void                                                   RtlSetLastWin32Error(                               ERROR_CODE err);
+  WINAPI_ERROR_CODE                                      RtlGetLastWin32Error(                               );
+  void                                                   RtlSetLastWin32Error(                               WINAPI_ERROR_CODE err);
   NTSTATUS                                               NtAccessCheck(                                      PSECURITY_DESCRIPTOR SecurityDescriptor, HANDLE ClientToken, ACCESS_MASK DesiredAccess, PGENERIC_MAPPING GenericMapping, PPRIVILEGE_SET PrivilegeSet, PULONG ReturnLength, PACCESS_MASK GrantedAccess, PNTSTATUS AccessStatus);
   NTSTATUS                                               NtAccessCheckByType(                                PSECURITY_DESCRIPTOR SecurityDescriptor, PSID PrincipalSelfSid, HANDLE ClientToken, ACCESS_MASK DesiredAccess, POBJECT_TYPE_LIST ObjectTypeList, ULONG ObjectTypeLength, PGENERIC_MAPPING GenericMapping, PPRIVILEGE_SET PrivilegeSet, ULONG PrivilegeSetLength, PACCESS_MASK GrantedAccess, PNTSTATUS AccessStatus);
   NTSTATUS                                               NtAccessCheckByTypeResultList(                      PSECURITY_DESCRIPTOR SecurityDescriptor, PSID PrincipalSelfSid, HANDLE ClientToken, ACCESS_MASK DesiredAccess, POBJECT_TYPE_LIST ObjectTypeList, ULONG ObjectTypeLength, PGENERIC_MAPPING GenericMapping, PPRIVILEGE_SET PrivilegeSet, ULONG PrivilegeSetLength, PACCESS_MASK GrantedAccess, PNTSTATUS AccessStatus);
   NTSTATUS                                               NtAccessCheckAndAuditAlarm(                         PUNICODE_STRING SubsystemName, PVOID HandleId, PUNICODE_STRING ObjectTypeName, PUNICODE_STRING ObjectName, PSECURITY_DESCRIPTOR SecurityDescriptor, ACCESS_MASK DesiredAccess, PGENERIC_MAPPING GenericMapping, BOOLEAN ObjectCreation, PACCESS_MASK GrantedAccess, PNTSTATUS AccessStatus, PBOOLEAN GenerateOnClose);
-  NTSTATUS                                               NtOpenThreadToken(                                  ThreadHandle ThreadHandle, TOKEN_ACCESS_MASK DesiredAccess, BOOLEAN OpenAsSelf, PHANDLE TokenHandle);
-  NTSTATUS                                               NtOpenThreadTokenEx(                                ThreadHandle ThreadHandle, TOKEN_ACCESS_MASK DesiredAccess, BOOLEAN OpenAsSelf, ULONG HandleAttributes, PHANDLE TokenHandle);
+  NTSTATUS                                               NtOpenThreadToken(                                  WINAPI_ThreadHandle ThreadHandle, WINAPI_TOKEN_ACCESS_MASK DesiredAccess, BOOLEAN OpenAsSelf, PHANDLE TokenHandle);
+  NTSTATUS                                               NtOpenThreadTokenEx(                                WINAPI_ThreadHandle ThreadHandle, WINAPI_TOKEN_ACCESS_MASK DesiredAccess, BOOLEAN OpenAsSelf, ULONG HandleAttributes, PHANDLE TokenHandle);
   NTSTATUS                                               NtAdjustGroupsToken(                                HANDLE TokenHandle, BOOLEAN ResetToDefault, PTOKEN_GROUPS NewState, ULONG BufferLength, PTOKEN_GROUPS PreviousState, PULONG ReturnLength);
   NTSTATUS                                               NtAdjustPrivilegesToken(                            HANDLE TokenHandle, BOOLEAN DisableAllPrivileges, PTOKEN_PRIVILEGES NewState, ULONG BufferLength, PTOKEN_PRIVILEGES PreviousState, PULONG ReturnLength);
   NTSTATUS                                               NtCompareTokens(                                    HANDLE FirstTokenHandle, HANDLE SecondTokenHandle, PBOOLEAN Equal);
-  NTSTATUS                                               NtCreateToken(                                      PHANDLE TokenHandle, TOKEN_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, TOKEN_TYPE TokenType, PLUID AuthenticationId, PLARGE_INTEGER ExpirationTime, PTOKEN_USER TokenUser, PTOKEN_GROUPS TokenGroups, PTOKEN_PRIVILEGES TokenPrivileges, PTOKEN_OWNER TokenOwner, PTOKEN_PRIMARY_GROUP TokenPrimaryGroup, PTOKEN_DEFAULT_DACL TokenDefaultDacl, PTOKEN_SOURCE TokenSource);
-  NTSTATUS                                               NtDuplicateToken(                                   HANDLE ExistingTokenHandle, TOKEN_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, BOOLEAN EffectiveOnly, TOKEN_TYPE TokenType, PHANDLE NewTokenHandle);
+  NTSTATUS                                               NtCreateToken(                                      PHANDLE TokenHandle, WINAPI_TOKEN_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, TOKEN_TYPE TokenType, PLUID AuthenticationId, PLARGE_INTEGER ExpirationTime, PTOKEN_USER TokenUser, PTOKEN_GROUPS TokenGroups, PTOKEN_PRIVILEGES TokenPrivileges, PTOKEN_OWNER TokenOwner, PTOKEN_PRIMARY_GROUP TokenPrimaryGroup, PTOKEN_DEFAULT_DACL TokenDefaultDacl, PTOKEN_SOURCE TokenSource);
+  NTSTATUS                                               NtDuplicateToken(                                   HANDLE ExistingTokenHandle, WINAPI_TOKEN_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, BOOLEAN EffectiveOnly, TOKEN_TYPE TokenType, PHANDLE NewTokenHandle);
   NTSTATUS                                               NtImpersonateAnonymousToken(                        HANDLE Thread);
   NTSTATUS                                               NtOpenObjectAuditAlarm(                             PUNICODE_STRING SubsystemName, PVOID HandleId, PUNICODE_STRING ObjectTypeName, PUNICODE_STRING ObjectName, PSECURITY_DESCRIPTOR SecurityDescriptor, HANDLE ClientToken, ULONG DesiredAccess, ULONG GrantedAccess, PPRIVILEGE_SET Privileges, BOOLEAN ObjectCreation, BOOLEAN AccessGranted, PBOOLEAN GenerateOnClose);
   NTSTATUS                                               NtCloseObjectAuditAlarm(                            PUNICODE_STRING SubsystemName, PVOID HandleId, BOOLEAN GenerateOnClose);
   NTSTATUS                                               NtDeleteObjectAuditAlarm(                           PUNICODE_STRING SubsystemName, PVOID HandleId, BOOLEAN GenerateOnClose);
-  NTSTATUS                                               NtOpenProcessToken(                                 ProcessHandle ProcessHandle, TOKEN_ACCESS_MASK DesiredAccess, PHANDLE TokenHandle);
-  NTSTATUS                                               NtOpenProcessTokenEx(                               ProcessHandle ProcessHandle, TOKEN_ACCESS_MASK DesiredAccess, ULONG HandleAttributes, PHANDLE TokenHandle);
+  NTSTATUS                                               NtOpenProcessToken(                                 WINAPI_ProcessHandle ProcessHandle, WINAPI_TOKEN_ACCESS_MASK DesiredAccess, PHANDLE TokenHandle);
+  NTSTATUS                                               NtOpenProcessTokenEx(                               WINAPI_ProcessHandle ProcessHandle, WINAPI_TOKEN_ACCESS_MASK DesiredAccess, ULONG HandleAttributes, PHANDLE TokenHandle);
   NTSTATUS                                               NtPrivilegeCheck(                                   HANDLE ClientToken, PPRIVILEGE_SET RequiredPrivileges, PBOOLEAN Result);
   NTSTATUS                                               NtPrivilegedServiceAuditAlarm(                      PUNICODE_STRING SubsystemName, PUNICODE_STRING ServiceName, HANDLE ClientToken, PPRIVILEGE_SET Privileges, BOOLEAN AccessGranted);
   NTSTATUS                                               NtPrivilegeObjectAuditAlarm(                        PUNICODE_STRING SubsystemName, PVOID HandleId, HANDLE ClientToken, ULONG DesiredAccess, PPRIVILEGE_SET Privileges, BOOLEAN AccessGranted);
@@ -1942,66 +1942,66 @@ ffi.cdef[[
   NTSTATUS                                               NtAccessCheckByTypeResultListAndAuditAlarm(         PUNICODE_STRING SubsystemName, HANDLE HandleId, PUNICODE_STRING ObjectTypeName, PUNICODE_STRING ObjectName, PSECURITY_DESCRIPTOR SecurityDescriptor, PSID PrincipalSelfSid, ACCESS_MASK DesiredAccess, AUDIT_EVENT_TYPE AuditType, ULONG Flags, POBJECT_TYPE_LIST ObjectTypeList, ULONG ObjectTypeLength, PGENERIC_MAPPING GenericMapping, BOOLEAN ObjectCreation, PACCESS_MASK GrantedAccess, PNTSTATUS AccessStatus, PBOOLEAN GenerateOnClose);
   NTSTATUS                                               NtAccessCheckByTypeResultListAndAuditAlarmByHandle( PUNICODE_STRING SubsystemName, HANDLE HandleId, HANDLE ClientToken, PUNICODE_STRING ObjectTypeName, PUNICODE_STRING ObjectName, PSECURITY_DESCRIPTOR SecurityDescriptor, PSID PrincipalSelfSid, ACCESS_MASK DesiredAccess, AUDIT_EVENT_TYPE AuditType, ULONG Flags, POBJECT_TYPE_LIST ObjectTypeList, ULONG ObjectTypeLength, PGENERIC_MAPPING GenericMapping, BOOLEAN ObjectCreation, PACCESS_MASK GrantedAccess, PNTSTATUS AccessStatus, PBOOLEAN GenerateOnClose);
   NTSTATUS                                               NtSetInformationToken(                              HANDLE TokenHandle, TOKEN_INFORMATION_CLASS TokenInformationClass, PVOID TokenInformation, ULONG TokenInformationLength);
-  NTSTATUS                                               NtImpersonateThread(                                ThreadHandle ThreadHandle, HANDLE ThreadToImpersonate, PSECURITY_QUALITY_OF_SERVICE SecurityQualityOfService);
+  NTSTATUS                                               NtImpersonateThread(                                WINAPI_ThreadHandle ThreadHandle, HANDLE ThreadToImpersonate, PSECURITY_QUALITY_OF_SERVICE SecurityQualityOfService);
   NTSTATUS                                               NtCreateProcess(                                    PHANDLE ProcessHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, HANDLE ParentProcess, BOOLEAN InheritObjectTable, HANDLE SectionHandle, HANDLE DebugPort, HANDLE ExceptionPort);
   NTSTATUS                                               NtCreateProcessEx(                                  PHANDLE ProcessHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, HANDLE ParentProcess, ULONG Flags, HANDLE SectionHandle, HANDLE DebugPort, HANDLE ExceptionPort, BOOLEAN InJob);
-  NTSTATUS                                               NtCreateThread(                                     PHANDLE ThreadHandle, THREAD_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ProcessHandle ProcessHandle, PCLIENT_ID ClientId, PCONTEXT ThreadContext, PINITIAL_TEB UserStack, BOOLEAN CreateSuspended);
-  NTSTATUS                                               NtCreateThreadEx(                                   PHANDLE ThreadHandle, THREAD_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ProcessHandle ProcessHandle, PTHREAD_START_ROUTINE StartAddress, PVOID Parameter, BOOLEAN CreateSuspended, ULONG StackZeroBits, SIZE_T StackCommit, SIZE_T StackReserve, PTHREADEX_DATA pThreadExData);
+  NTSTATUS                                               NtCreateThread(                                     PHANDLE ThreadHandle, WINAPI_THREAD_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, WINAPI_ProcessHandle ProcessHandle, PCLIENT_ID ClientId, PCONTEXT ThreadContext, PINITIAL_TEB UserStack, BOOLEAN CreateSuspended);
+  NTSTATUS                                               NtCreateThreadEx(                                   PHANDLE ThreadHandle, WINAPI_THREAD_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, WINAPI_ProcessHandle ProcessHandle, PTHREAD_START_ROUTINE StartAddress, PVOID Parameter, BOOLEAN CreateSuspended, ULONG StackZeroBits, SIZE_T StackCommit, SIZE_T StackReserve, PTHREADEX_DATA pThreadExData);
   NTSTATUS                                               NtOpenJobObject(                                    PHANDLE JobHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
-  NTSTATUS                                               NtAssignProcessToJobObject(                         HANDLE JobHandle, ProcessHandle ProcessHandle);
+  NTSTATUS                                               NtAssignProcessToJobObject(                         HANDLE JobHandle, WINAPI_ProcessHandle ProcessHandle);
   NTSTATUS                                               NtCreateJobObject(                                  PHANDLE JobHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
   NTSTATUS                                               NtCreateJobSet(                                     ULONG NumJob, PJOB_SET_ARRAY UserJobSet, ULONG Flags);
   NTSTATUS                                               NtQueryInformationJobObject(                        HANDLE JobHandle, JOBOBJECTINFOCLASS JobInformationClass, PVOID JobInformation, ULONG JobInformationLength, PULONG ReturnLength);
-  NTSTATUS                                               NtQueryInformationProcess(                          ProcessHandle ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
-  NTSTATUS                                               NtQueryInformationThread(                           ThreadHandle ThreadHandle, THREADINFOCLASS ThreadInformationClass, PVOID ThreadInformation, ULONG ThreadInformationLength, PULONG ReturnLength);
+  NTSTATUS                                               NtQueryInformationProcess(                          WINAPI_ProcessHandle ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength, PULONG ReturnLength);
+  NTSTATUS                                               NtQueryInformationThread(                           WINAPI_ThreadHandle ThreadHandle, THREADINFOCLASS ThreadInformationClass, PVOID ThreadInformation, ULONG ThreadInformationLength, PULONG ReturnLength);
   NTSTATUS                                               NtSetInformationJobObject(                          HANDLE JobHandle, JOBOBJECTINFOCLASS JobInformationClass, PVOID JobInformation, ULONG JobInformationLength);
-  NTSTATUS                                               NtSetInformationProcess(                            ProcessHandle ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength);
-  NTSTATUS                                               NtSetInformationThread(                             ThreadHandle ThreadHandle, THREADINFOCLASS ThreadInformationClass, PVOID ThreadInformation, ULONG ThreadInformationLength);
-  NTSTATUS                                               NtSuspendProcess(                                   ProcessHandle ProcessHandle);
-  NTSTATUS                                               NtSuspendThread(                                    ThreadHandle ThreadHandle, PULONG PreviousSuspendCount);
-  NTSTATUS                                               NtTerminateThread(                                  ThreadHandle ThreadHandle, NTSTATUS ExitStatus);
+  NTSTATUS                                               NtSetInformationProcess(                            WINAPI_ProcessHandle ProcessHandle, PROCESSINFOCLASS ProcessInformationClass, PVOID ProcessInformation, ULONG ProcessInformationLength);
+  NTSTATUS                                               NtSetInformationThread(                             WINAPI_ThreadHandle ThreadHandle, THREADINFOCLASS ThreadInformationClass, PVOID ThreadInformation, ULONG ThreadInformationLength);
+  NTSTATUS                                               NtSuspendProcess(                                   WINAPI_ProcessHandle ProcessHandle);
+  NTSTATUS                                               NtSuspendThread(                                    WINAPI_ThreadHandle ThreadHandle, PULONG PreviousSuspendCount);
+  NTSTATUS                                               NtTerminateThread(                                  WINAPI_ThreadHandle ThreadHandle, NTSTATUS ExitStatus);
   NTSTATUS                                               NtTerminateJobObject(                               HANDLE JobHandle, NTSTATUS ExitStatus);
-  NTSTATUS                                               NtIsProcessInJob(                                   ProcessHandle ProcessHandle, HANDLE JobHandle);
-  NTSTATUS                                               NtOpenProcess(                                      PHANDLE ProcessHandle, PROCESS_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PCLIENT_ID ClientId);
-  NTSTATUS                                               NtOpenThread(                                       PHANDLE ThreadHandle, THREAD_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PCLIENT_ID ClientId);
-  NTSTATUS                                               NtResumeThread(                                     ThreadHandle ThreadHandle, PULONG SuspendCount);
-  NTSTATUS                                               NtResumeProcess(                                    ProcessHandle ProcessHandle);
+  NTSTATUS                                               NtIsProcessInJob(                                   WINAPI_ProcessHandle ProcessHandle, HANDLE JobHandle);
+  NTSTATUS                                               NtOpenProcess(                                      PHANDLE ProcessHandle, WINAPI_PROCESS_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PCLIENT_ID ClientId);
+  NTSTATUS                                               NtOpenThread(                                       PHANDLE ThreadHandle, WINAPI_THREAD_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PCLIENT_ID ClientId);
+  NTSTATUS                                               NtResumeThread(                                     WINAPI_ThreadHandle ThreadHandle, PULONG SuspendCount);
+  NTSTATUS                                               NtResumeProcess(                                    WINAPI_ProcessHandle ProcessHandle);
   NTSTATUS                                               NtDelayExecution(                                   BOOLEAN Alertable, PLARGE_INTEGER DelayInterval);
   NTSTATUS                                               NtYieldExecution(                                   );
-  NTSTATUS                                               NtAlertResumeThread(                                ThreadHandle ThreadHandle, PULONG SuspendCount);
-  NTSTATUS                                               NtAlertThread(                                      ThreadHandle ThreadHandle);
-  NTSTATUS                                               NtQueueApcThread(                                   ThreadHandle ThreadHandle, PIO_APC_ROUTINE ApcRoutine, PVOID ApcRoutineContext, PIO_STATUS_BLOCK ApcStatusBlock, ULONG ApcReserved);
+  NTSTATUS                                               NtAlertResumeThread(                                WINAPI_ThreadHandle ThreadHandle, PULONG SuspendCount);
+  NTSTATUS                                               NtAlertThread(                                      WINAPI_ThreadHandle ThreadHandle);
+  NTSTATUS                                               NtQueueApcThread(                                   WINAPI_ThreadHandle ThreadHandle, PIO_APC_ROUTINE ApcRoutine, PVOID ApcRoutineContext, PIO_STATUS_BLOCK ApcStatusBlock, ULONG ApcReserved);
   PTEB                                                   NtCurrentTeb(                                       );
   NTSTATUS                                               NtSetHighWaitLowThread(                             );
   NTSTATUS                                               NtSetLowWaitHighThread(                             );
   ULONG                                                  NtGetCurrentProcessorNumber(                        );
   NTSTATUS                                               NtTestAlert(                                        );
-  NTSTATUS                                               NtCreateUserProcess(                                PHANDLE ProcessHandle, PHANDLE ThreadHandle, PROCESS_ACCESS_MASK ProcessDesiredAccess, THREAD_ACCESS_MASK ThreadDesiredAccess, POBJECT_ATTRIBUTES ProcessObjectAttributes, POBJECT_ATTRIBUTES ThreadObjectAttributes, ULONG CreateProcessFlags, ULONG CreateThreadFlags, PRTL_USER_PROCESS_PARAMETERS ProcessParameters, PVOID Unknown, PVOID AttributeList);
+  NTSTATUS                                               NtCreateUserProcess(                                PHANDLE ProcessHandle, PHANDLE ThreadHandle, WINAPI_PROCESS_ACCESS_MASK ProcessDesiredAccess, WINAPI_THREAD_ACCESS_MASK ThreadDesiredAccess, POBJECT_ATTRIBUTES ProcessObjectAttributes, POBJECT_ATTRIBUTES ThreadObjectAttributes, ULONG CreateProcessFlags, ULONG CreateThreadFlags, PRTL_USER_PROCESS_PARAMETERS ProcessParameters, PVOID Unknown, PVOID AttributeList);
   NTSTATUS                                               NtEnumerateSystemEnvironmentValuesEx(               ULONG InformationClass, PVOID Buffer, ULONG BufferLength);
   NTSTATUS                                               NtQuerySystemEnvironmentValue(                      PUNICODE_STRING Name, PWSTR Value, ULONG Length, PULONG ReturnLength);
   NTSTATUS                                               NtQuerySystemEnvironmentValueEx(                    PUNICODE_STRING VariableName, LPGUID VendorGuid, PVOID Value, PULONG ReturnLength, PULONG Attributes);
   NTSTATUS                                               NtSetSystemEnvironmentValue(                        PUNICODE_STRING VariableName, PUNICODE_STRING Value);
   NTSTATUS                                               NtSetSystemEnvironmentValueEx(                      PUNICODE_STRING VariableName, LPGUID VendorGuid);
-  NTSTATUS                                               NtAllocateVirtualMemory(                            ProcessHandle ProcessHandle, PVOID* BaseAddress, ULONG_PTR ZeroBits, PSIZE_T RegionSize, MemoryAllocationFlags AllocationType, NtProtectionFlags Protect);
-  NTSTATUS                                               NtFlushVirtualMemory(                               ProcessHandle ProcessHandle, PVOID* BaseAddress, PSIZE_T RegionSize, PIO_STATUS_BLOCK IoStatus);
-  NTSTATUS                                               NtFreeVirtualMemory(                                ProcessHandle ProcessHandle, PVOID* BaseAddress, PSIZE_T RegionSize, MemoryAllocationFlags FreeType);
-  NTSTATUS                                               NtLockVirtualMemory(                                ProcessHandle ProcessHandle, PVOID BaseAddress, SIZE_T NumberOfBytesToLock, PSIZE_T NumberOfBytesLocked);
-  NTSTATUS                                               NtProtectVirtualMemory(                             ProcessHandle ProcessHandle, PVOID* BaseAddress, SIZE_T* NumberOfBytesToProtect, NtProtectionFlags NewAccessProtection, NtProtectionFlags* OldAccessProtection);
-  NTSTATUS                                               NtQueryVirtualMemory(                               ProcessHandle ProcessHandle, PVOID Address, MEMORY_INFORMATION_CLASS VirtualMemoryInformationClass, PVOID VirtualMemoryInformation, SIZE_T Length, PSIZE_T ResultLength);
-  NTSTATUS                                               NtReadVirtualMemory(                                ProcessHandle ProcessHandle, PVOID BaseAddress, PVOID Buffer, SIZE_T NumberOfBytesToRead, PSIZE_T NumberOfBytesRead);
-  NTSTATUS                                               NtUnlockVirtualMemory(                              ProcessHandle ProcessHandle, PVOID BaseAddress, SIZE_T NumberOfBytesToUnlock, PSIZE_T NumberOfBytesUnlocked);
-  NTSTATUS                                               NtWriteVirtualMemory(                               ProcessHandle ProcessHandle, PVOID BaseAddress, PVOID Buffer, SIZE_T NumberOfBytesToWrite, PSIZE_T NumberOfBytesWritten);
-  NTSTATUS                                               NtAllocateUserPhysicalPages(                        ProcessHandle ProcessHandle, PULONG_PTR NumberOfPages, PULONG_PTR UserPfnArray);
-  NTSTATUS                                               NtFreeUserPhysicalPages(                            ProcessHandle ProcessHandle, PULONG_PTR NumberOfPages, PULONG_PTR UserPfnArray);
+  NTSTATUS                                               NtAllocateVirtualMemory(                            WINAPI_ProcessHandle ProcessHandle, PVOID* BaseAddress, ULONG_PTR ZeroBits, PSIZE_T RegionSize, WINAPI_MemoryAllocationFlags AllocationType, WINAPI_NtProtectionFlags Protect);
+  NTSTATUS                                               NtFlushVirtualMemory(                               WINAPI_ProcessHandle ProcessHandle, PVOID* BaseAddress, PSIZE_T RegionSize, PIO_STATUS_BLOCK IoStatus);
+  NTSTATUS                                               NtFreeVirtualMemory(                                WINAPI_ProcessHandle ProcessHandle, PVOID* BaseAddress, PSIZE_T RegionSize, WINAPI_MemoryAllocationFlags FreeType);
+  NTSTATUS                                               NtLockVirtualMemory(                                WINAPI_ProcessHandle ProcessHandle, PVOID BaseAddress, SIZE_T NumberOfBytesToLock, PSIZE_T NumberOfBytesLocked);
+  NTSTATUS                                               NtProtectVirtualMemory(                             WINAPI_ProcessHandle ProcessHandle, PVOID* BaseAddress, SIZE_T* NumberOfBytesToProtect, WINAPI_NtProtectionFlags NewAccessProtection, WINAPI_NtProtectionFlags* OldAccessProtection);
+  NTSTATUS                                               NtQueryVirtualMemory(                               WINAPI_ProcessHandle ProcessHandle, PVOID Address, MEMORY_INFORMATION_CLASS VirtualMemoryInformationClass, PVOID VirtualMemoryInformation, SIZE_T Length, PSIZE_T ResultLength);
+  NTSTATUS                                               NtReadVirtualMemory(                                WINAPI_ProcessHandle ProcessHandle, PVOID BaseAddress, PVOID Buffer, SIZE_T NumberOfBytesToRead, PSIZE_T NumberOfBytesRead);
+  NTSTATUS                                               NtUnlockVirtualMemory(                              WINAPI_ProcessHandle ProcessHandle, PVOID BaseAddress, SIZE_T NumberOfBytesToUnlock, PSIZE_T NumberOfBytesUnlocked);
+  NTSTATUS                                               NtWriteVirtualMemory(                               WINAPI_ProcessHandle ProcessHandle, PVOID BaseAddress, PVOID Buffer, SIZE_T NumberOfBytesToWrite, PSIZE_T NumberOfBytesWritten);
+  NTSTATUS                                               NtAllocateUserPhysicalPages(                        WINAPI_ProcessHandle ProcessHandle, PULONG_PTR NumberOfPages, PULONG_PTR UserPfnArray);
+  NTSTATUS                                               NtFreeUserPhysicalPages(                            WINAPI_ProcessHandle ProcessHandle, PULONG_PTR NumberOfPages, PULONG_PTR UserPfnArray);
   NTSTATUS                                               NtMapUserPhysicalPages(                             PVOID VirtualAddresses, ULONG_PTR NumberOfPages, PULONG_PTR UserPfnArray);
   NTSTATUS                                               NtMapUserPhysicalPagesScatter(                      PVOID* VirtualAddresses, ULONG_PTR NumberOfPages, PULONG_PTR UserPfnArray);
-  NTSTATUS                                               NtGetWriteWatch(                                    ProcessHandle ProcessHandle, ULONG Flags, PVOID BaseAddress, SIZE_T RegionSize, PVOID* UserAddressArray, PULONG_PTR EntriesInUserAddressArray, PULONG Granularity);
-  NTSTATUS                                               NtResetWriteWatch(                                  ProcessHandle ProcessHandle, PVOID BaseAddress, SIZE_T RegionSize);
+  NTSTATUS                                               NtGetWriteWatch(                                    WINAPI_ProcessHandle ProcessHandle, ULONG Flags, PVOID BaseAddress, SIZE_T RegionSize, PVOID* UserAddressArray, PULONG_PTR EntriesInUserAddressArray, PULONG Granularity);
+  NTSTATUS                                               NtResetWriteWatch(                                  WINAPI_ProcessHandle ProcessHandle, PVOID BaseAddress, SIZE_T RegionSize);
   NTSTATUS                                               NtCancelIoFile(                                     HANDLE FileHandle, PIO_STATUS_BLOCK IoStatusBlock);
-  NTSTATUS                                               NtCreateFile(                                       PHANDLE FileHandle, FILE_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PIO_STATUS_BLOCK IoStatusBlock, PLARGE_INTEGER AllocationSize, FILE_ATTRIBUTES_ULONG FileAttributes, FileShareMode ShareAccess, NtCreateDisposition CreateDisposition, NtCreateOptions CreateOptions, PVOID EaBuffer, ULONG EaLength);
-  NTSTATUS                                               NtCreateIoCompletion(                               PHANDLE IoCompletionHandle, IO_COMPLETION_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG NumberOfConcurrentThreads);
-  NTSTATUS                                               NtOpenFile(                                         PHANDLE FileHandle, FILE_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PIO_STATUS_BLOCK IoStatusBlock, FileShareMode ShareAccess, NtCreateOptions OpenOptions);
-  NTSTATUS                                               NtOpenIoCompletion(                                 PHANDLE CompetionPort, IO_COMPLETION_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtCreateFile(                                       PHANDLE FileHandle, WINAPI_FILE_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PIO_STATUS_BLOCK IoStatusBlock, PLARGE_INTEGER AllocationSize, WINAPI_FILE_ATTRIBUTES_ULONG FileAttributes, WINAPI_FileShareMode ShareAccess, WINAPI_NtCreateDisposition CreateDisposition, WINAPI_NtCreateOptions CreateOptions, PVOID EaBuffer, ULONG EaLength);
+  NTSTATUS                                               NtCreateIoCompletion(                               PHANDLE IoCompletionHandle, WINAPI_IO_COMPLETION_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, ULONG NumberOfConcurrentThreads);
+  NTSTATUS                                               NtOpenFile(                                         PHANDLE FileHandle, WINAPI_FILE_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PIO_STATUS_BLOCK IoStatusBlock, WINAPI_FileShareMode ShareAccess, WINAPI_NtCreateOptions OpenOptions);
+  NTSTATUS                                               NtOpenIoCompletion(                                 PHANDLE CompetionPort, WINAPI_IO_COMPLETION_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
   NTSTATUS                                               NtQueryIoCompletion(                                HANDLE IoCompletionHandle, IO_COMPLETION_INFORMATION_CLASS IoCompletionInformationClass, PVOID IoCompletionInformation, ULONG IoCompletionInformationLength, PULONG ResultLength);
   NTSTATUS                                               NtRemoveIoCompletion(                               HANDLE IoCompletionHandle, PVOID* CompletionKey, PVOID* CompletionContext, PIO_STATUS_BLOCK IoStatusBlock, PLARGE_INTEGER Timeout);
   NTSTATUS                                               NtSetIoCompletion(                                  HANDLE IoCompletionPortHandle, PVOID CompletionKey, PVOID CompletionContext, NTSTATUS CompletionStatus, ULONG CompletionInformation);
@@ -2014,9 +2014,9 @@ ffi.cdef[[
   NTSTATUS                                               NtLockFile(                                         HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, PLARGE_INTEGER ByteOffset, PLARGE_INTEGER Length, ULONG Key, BOOLEAN FailImmediatedly, BOOLEAN ExclusiveLock);
   NTSTATUS                                               NtUnlockFile(                                       HANDLE FileHandle, PIO_STATUS_BLOCK IoStatusBlock, PLARGE_INTEGER ByteOffset, PLARGE_INTEGER Lenght, ULONG Key);
   NTSTATUS                                               NtWriteFile(                                        HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, PVOID Buffer, ULONG Length, PLARGE_INTEGER ByteOffset, PULONG Key);
-  NTSTATUS                                               NtWriteFileGather(                                  HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, FILE_SEGMENT_ELEMENT[] BufferDescription, ULONG BufferLength, PLARGE_INTEGER ByteOffset, PULONG Key);
+  NTSTATUS                                               NtWriteFileGather(                                  HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, FILE_SEGMENT_ELEMENT* BufferDescription, ULONG BufferLength, PLARGE_INTEGER ByteOffset, PULONG Key);
   NTSTATUS                                               NtReadFile(                                         HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE UserApcRoutine, PVOID UserApcContext, PIO_STATUS_BLOCK IoStatusBlock, PVOID Buffer, ULONG BufferLength, PLARGE_INTEGER ByteOffset, PULONG Key);
-  NTSTATUS                                               NtReadFileScatter(                                  HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE UserApcRoutine, PVOID UserApcContext, PIO_STATUS_BLOCK UserIoStatusBlock, FILE_SEGMENT_ELEMENT[] BufferDescription, ULONG BufferLength, PLARGE_INTEGER ByteOffset, PULONG Key);
+  NTSTATUS                                               NtReadFileScatter(                                  HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE UserApcRoutine, PVOID UserApcContext, PIO_STATUS_BLOCK UserIoStatusBlock, FILE_SEGMENT_ELEMENT* BufferDescription, ULONG BufferLength, PLARGE_INTEGER ByteOffset, PULONG Key);
   NTSTATUS                                               NtFlushBuffersFile(                                 HANDLE FileHandle, PIO_STATUS_BLOCK IoStatusBlock);
   NTSTATUS                                               NtSetInformationFile(                               HANDLE FileHandle, PIO_STATUS_BLOCK IoStatusBlock, PVOID FileInformation, ULONG Length, FILE_INFORMATION_CLASS FileInformationClass);
   NTSTATUS                                               NtQueryAttributesFile(                              POBJECT_ATTRIBUTES ObjectAttributes, PFILE_BASIC_INFORMATION FileInformation);
@@ -2026,20 +2026,20 @@ ffi.cdef[[
   NTSTATUS                                               NtSetQuotaInformationFile(                          HANDLE FileHandle, PIO_STATUS_BLOCK IoStatusBlock, PVOID Buffer, ULONG BufferLength);
   NTSTATUS                                               NtCreatePagingFile(                                 PUNICODE_STRING FileName, PLARGE_INTEGER InitialSize, PLARGE_INTEGER MaxiumSize, ULONG Reserved);
   NTSTATUS                                               NtTranslateFilePath(                                PFILE_PATH InputFilePath, ULONG OutputType, PFILE_PATH OutputFilePath, ULONG OutputFilePathLength);
-  NTSTATUS                                               NtCreateDirectoryObject(                            PHANDLE DirectoryHandle, DIRECTORY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
-  NTSTATUS                                               NtOpenDirectoryObject(                              PHANDLE FileHandle, DIRECTORY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtCreateDirectoryObject(                            PHANDLE DirectoryHandle, WINAPI_DIRECTORY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtOpenDirectoryObject(                              PHANDLE FileHandle, WINAPI_DIRECTORY_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
   NTSTATUS                                               NtQueryDirectoryObject(                             HANDLE DirectoryHandle, PVOID Buffer, ULONG BufferLength, BOOLEAN ReturnSingleEntry, BOOLEAN RestartScan, PULONG Context, PULONG ReturnLength);
-  NTSTATUS                                               NtNotifyChangeDirectoryFile(                        HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, PVOID Buffer, ULONG BufferSize, FILE_NOTIFY_CHANGE_FLAGS CompletionFilter, BOOLEAN WatchTree);
+  NTSTATUS                                               NtNotifyChangeDirectoryFile(                        HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, PVOID Buffer, ULONG BufferSize, WINAPI_FILE_NOTIFY_CHANGE_FLAGS CompletionFilter, BOOLEAN WatchTree);
   NTSTATUS                                               NtQueryDirectoryFile(                               HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, PVOID FileInformation, ULONG Length, FILE_INFORMATION_CLASS FileInformationClass, BOOLEAN ReturnSingleEntry, PUNICODE_STRING FileName, BOOLEAN RestartScan);
   NTSTATUS                                               NtQueryOleDirectoryFile(                            HANDLE FileHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, PVOID FileInformation, ULONG Length, FILE_INFORMATION_CLASS FileInformationClass, BOOLEAN ReturnSingleEntry, PUNICODE_STRING FileMask, BOOLEAN RestartScan);
   NTSTATUS                                               NtQueryVolumeInformationFile(                       HANDLE FileHandle, PIO_STATUS_BLOCK IoStatusBlock, PVOID FsInformation, ULONG Length, FS_INFORMATION_CLASS FsInformationClass);
   NTSTATUS                                               NtSetVolumeInformationFile(                         HANDLE FileHandle, PIO_STATUS_BLOCK IoStatusBlock, PVOID FsInformation, ULONG Length, FS_INFORMATION_CLASS FsInformationClass);
-  NTSTATUS                                               NtCreateSection(                                    PHANDLE SectionHandle, SECTION_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PLARGE_INTEGER MaximumSize, NtProtectionFlags SectionPageProtection, SECTION_ALLOCATION AllocationAttributes, HANDLE FileHandle);
+  NTSTATUS                                               NtCreateSection(                                    PHANDLE SectionHandle, WINAPI_SECTION_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PLARGE_INTEGER MaximumSize, WINAPI_NtProtectionFlags SectionPageProtection, WINAPI_SECTION_ALLOCATION AllocationAttributes, HANDLE FileHandle);
   NTSTATUS                                               NtExtendSection(                                    HANDLE SectionHandle, PLARGE_INTEGER NewMaximumSize);
-  NTSTATUS                                               NtMapViewOfSection(                                 HANDLE SectionHandle, ProcessHandle ProcessHandle, PVOID* BaseAddress, ULONG_PTR ZeroBits, SIZE_T CommitSize, PLARGE_INTEGER SectionOffset, PSIZE_T ViewSize, SECTION_INHERIT InheritDisposition, MemoryAllocationFlags AllocationType, NtProtectionFlags AccessProtection);
-  NTSTATUS                                               NtOpenSection(                                      PHANDLE SectionHandle, SECTION_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
+  NTSTATUS                                               NtMapViewOfSection(                                 HANDLE SectionHandle, WINAPI_ProcessHandle ProcessHandle, PVOID* BaseAddress, ULONG_PTR ZeroBits, SIZE_T CommitSize, PLARGE_INTEGER SectionOffset, PSIZE_T ViewSize, SECTION_INHERIT InheritDisposition, WINAPI_MemoryAllocationFlags AllocationType, WINAPI_NtProtectionFlags AccessProtection);
+  NTSTATUS                                               NtOpenSection(                                      PHANDLE SectionHandle, WINAPI_SECTION_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes);
   NTSTATUS                                               NtQuerySection(                                     HANDLE SectionHandle, SECTION_INFORMATION_CLASS SectionInformationClass, PVOID SectionInformation, SIZE_T Length, PSIZE_T ResultLength);
-  NTSTATUS                                               NtUnmapViewOfSection(                               ProcessHandle ProcessHandle, PVOID BaseAddress);
+  NTSTATUS                                               NtUnmapViewOfSection(                               WINAPI_ProcessHandle ProcessHandle, PVOID BaseAddress);
   NTSTATUS                                               NtAcceptConnectPort(                                PHANDLE PortHandle, PVOID PortContext, PPORT_MESSAGE ConnectionRequest, BOOLEAN AcceptConnection, PPORT_VIEW ServerView, PREMOTE_PORT_VIEW ClientView);
   NTSTATUS                                               NtCompleteConnectPort(                              HANDLE PortHandle);
   NTSTATUS                                               NtConnectPort(                                      PHANDLE PortHandle, PUNICODE_STRING PortName, PSECURITY_QUALITY_OF_SERVICE SecurityQos, PPORT_VIEW ClientView, PREMOTE_PORT_VIEW ServerView, PULONG MaxMessageLength, PVOID ConnectionInformation, PULONG ConnectionInformationLength);
@@ -2086,11 +2086,11 @@ ffi.cdef[[
   NTSTATUS                                               NtWaitForDebugEvent(                                HANDLE DebugObject, BOOLEAN Alertable, PLARGE_INTEGER Timeout, PDBGUI_WAIT_STATE_CHANGE StateChange);
   NTSTATUS                                               NtRemoveProcessDebug(                               HANDLE Process, HANDLE DebugObject);
   NTSTATUS                                               NtSetInformationDebugObject(                        HANDLE DebugObject, DEBUGOBJECTINFOCLASS InformationClass, PVOID Information, ULONG InformationLength, PULONG ReturnLength);
-  NTSTATUS                                               NtCreateDebugObject(                                PHANDLE DebugHandle, DEBUG_OBJECT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, BOOLEAN KillProcessOnExit);
-  NTSTATUS                                               NtGetContextThread(                                 ThreadHandle ThreadHandle, PCONTEXT pContext);
-  NTSTATUS                                               NtSetContextThread(                                 ThreadHandle ThreadHandle, PCONTEXT Context);
+  NTSTATUS                                               NtCreateDebugObject(                                PHANDLE DebugHandle, WINAPI_DEBUG_OBJECT_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, BOOLEAN KillProcessOnExit);
+  NTSTATUS                                               NtGetContextThread(                                 WINAPI_ThreadHandle ThreadHandle, PCONTEXT pContext);
+  NTSTATUS                                               NtSetContextThread(                                 WINAPI_ThreadHandle ThreadHandle, PCONTEXT Context);
   NTSTATUS                                               NtContinue(                                         PCONTEXT ThreadContext, BOOLEAN RaiseAlert);
-  NTSTATUS                                               NtFlushInstructionCache(                            ProcessHandle ProcessHandle, PVOID BaseAddress, ULONG NumberOfBytesToFlush);
+  NTSTATUS                                               NtFlushInstructionCache(                            WINAPI_ProcessHandle ProcessHandle, PVOID BaseAddress, ULONG NumberOfBytesToFlush);
   NTSTATUS                                               NtFlushWriteBuffer(                                 );
   NTSTATUS                                               NtSystemDebugControl(                               SYSDBG_COMMAND ControlCode, PVOID InputBuffer, ULONG InputBufferLength, PVOID OutputBuffer, ULONG OutputBufferLength, PULONG ReturnLength);
   NTSTATUS                                               NtQuerySystemTime(                                  PLARGE_INTEGER SystemTime);
@@ -2110,9 +2110,9 @@ ffi.cdef[[
   NTSTATUS                                               NtInitiatePowerAction(                              POWER_ACTION SystemAction, SYSTEM_POWER_STATE MinSystemState, ULONG Flags, BOOLEAN Asynchronous);
   NTSTATUS                                               NtQueryPerformanceCounter(                          PLARGE_INTEGER PerformanceCounter, PLARGE_INTEGER PerformanceFrequency);
   NTSTATUS                                               NtQueryTimerResolution(                             PULONG MinimumResolution, PULONG MaximumResolution, PULONG CurrentResolution);
-  NTSTATUS                                               NtCreateMailslotFile(                               PHANDLE MailSlotFileHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PIO_STATUS_BLOCK IoStatusBlock, ULONG FileAttributes, FileShareMode ShareAccess, ULONG MaxMessageSize, PLARGE_INTEGER TimeOut);
-  NTSTATUS                                               NtCreateNamedPipeFile(                              PHANDLE NamedPipeFileHandle, PIPE_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PIO_STATUS_BLOCK IoStatusBlock, FileShareMode ShareAccess, NtCreateDisposition CreateDisposition, NtCreateOptions CreateOptions, ULONG WriteModeMessage, ULONG ReadModeMessage, ULONG NonBlocking, ULONG MaxInstances, ULONG InBufferSize, ULONG OutBufferSize, PLARGE_INTEGER DefaultTimeOut);
-  NTSTATUS                                               NtDeviceIoControlFile(                              HANDLE DeviceHandle, HANDLE Event, PIO_APC_ROUTINE UserApcRoutine, PVOID UserApcContext, PIO_STATUS_BLOCK IoStatusBlock, IOCTL IoControlCode, PVOID InputBuffer, ULONG InputBufferSize, PVOID OutputBuffer, ULONG OutputBufferSize);
+  NTSTATUS                                               NtCreateMailslotFile(                               PHANDLE MailSlotFileHandle, ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PIO_STATUS_BLOCK IoStatusBlock, ULONG FileAttributes, WINAPI_FileShareMode ShareAccess, ULONG MaxMessageSize, PLARGE_INTEGER TimeOut);
+  NTSTATUS                                               NtCreateNamedPipeFile(                              PHANDLE NamedPipeFileHandle, WINAPI_PIPE_ACCESS_MASK DesiredAccess, POBJECT_ATTRIBUTES ObjectAttributes, PIO_STATUS_BLOCK IoStatusBlock, WINAPI_FileShareMode ShareAccess, WINAPI_NtCreateDisposition CreateDisposition, WINAPI_NtCreateOptions CreateOptions, ULONG WriteModeMessage, ULONG ReadModeMessage, ULONG NonBlocking, ULONG MaxInstances, ULONG InBufferSize, ULONG OutBufferSize, PLARGE_INTEGER DefaultTimeOut);
+  NTSTATUS                                               NtDeviceIoControlFile(                              HANDLE DeviceHandle, HANDLE Event, PIO_APC_ROUTINE UserApcRoutine, PVOID UserApcContext, PIO_STATUS_BLOCK IoStatusBlock, WINAPI_IOCTL IoControlCode, PVOID InputBuffer, ULONG InputBufferSize, PVOID OutputBuffer, ULONG OutputBufferSize);
   NTSTATUS                                               NtFsControlFile(                                    HANDLE DeviceHandle, HANDLE Event, PIO_APC_ROUTINE ApcRoutine, PVOID ApcContext, PIO_STATUS_BLOCK IoStatusBlock, ULONG IoControlCode, PVOID InputBuffer, ULONG InputBufferSize, PVOID OutputBuffer, ULONG OutputBufferSize);
   NTSTATUS                                               NtPlugPlayControl(                                  PLUGPLAY_CONTROL_CLASS PlugPlayControlClass, PVOID Buffer, ULONG BufferSize);
   NTSTATUS                                               NtGetPlugPlayEvent(                                 ULONG Reserved1, ULONG Reserved2, PPLUGPLAY_EVENT_BLOCK Buffer, ULONG BufferSize);
@@ -2122,7 +2122,7 @@ ffi.cdef[[
   NTSTATUS                                               NtSetSystemInformation(                             SYSTEM_INFORMATION_CLASS SystemInformationClass, PVOID SystemInformation, ULONG SystemInformationLength);
   NTSTATUS                                               NtRaiseHardError(                                   NTSTATUS ErrorStatus, ULONG NumberOfParameters, ULONG UnicodeStringParameterMask, PULONG_PTR Parameters, ULONG ValidResponseOptions, PULONG Response);
   NTSTATUS                                               NtClose(                                            HANDLE Handle);
-  NTSTATUS                                               NtDuplicateObject(                                  ProcessHandle SourceProcessHandle, HANDLE SourceHandle, ProcessHandle TargetProcessHandle, PHANDLE TargetHandle, ACCESS_MASK DesiredAccess, ULONG HandleAttributes, ULONG Options);
+  NTSTATUS                                               NtDuplicateObject(                                  WINAPI_ProcessHandle SourceProcessHandle, HANDLE SourceHandle, WINAPI_ProcessHandle TargetProcessHandle, PHANDLE TargetHandle, ACCESS_MASK DesiredAccess, ULONG HandleAttributes, ULONG Options);
   NTSTATUS                                               NtMakePermanentObject(                              HANDLE Object);
   NTSTATUS                                               NtMakeTemporaryObject(                              HANDLE Handle);
   NTSTATUS                                               NtQueryObject(                                      HANDLE ObjectHandle, OBJECT_INFORMATION_CLASS ObjectInformationClass, PVOID ObjectInformation, ULONG Length, PULONG ResultLength);
@@ -2135,7 +2135,7 @@ ffi.cdef[[
   VOID                                                   RtlDumpResource(                                    PRTL_RESOURCE pResource);
   VOID                                                   RtlInitializeResource(                              PRTL_RESOURCE pResource);
   NTSTATUS                                               RtlLockCurrentThread(                               );
-  NTSTATUS                                               RtlQueryElevationFlags(                             ElevationFlags* pFlags);
+  NTSTATUS                                               RtlQueryElevationFlags(                             WINAPI_ElevationFlags* pFlags);
   VOID                                                   RtlReleaseResource(                                 PRTL_RESOURCE pResource);
   BOOLEAN                                                RtlTraceDatabaseAdd(                                PRTL_TRACE_DATABASE pDatabase, ULONG numFrames, PVOID* ppFrames, PRTL_TRACE_BLOCK* ppBlock);
   PRTL_TRACE_DATABASE                                    RtlTraceDatabaseCreate(                             ULONG buckets, SIZE_T maximumSize, ULONG flags, ULONG tag, PRTL_TRACE_HASH_FUNCTION pfnHash);

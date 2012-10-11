@@ -18,60 +18,60 @@ ffi.cdef [[
   typedef struct BLUETOOTH_ADDRESS {
     BTH_ADDR ullLong;
   } BLUETOOTH_ADDRESS;
-  typedef USHORT BTH_MFG; //Alias
-  static const BTH_MFG BTH_MFG_ERICSSON = 0;
-  static const BTH_MFG BTH_MFG_NOKIA = 1;
-  static const BTH_MFG BTH_MFG_INTEL = 2;
-  static const BTH_MFG BTH_MFG_IBM = 3;
-  static const BTH_MFG BTH_MFG_TOSHIBA = 4;
-  static const BTH_MFG BTH_MFG_3COM = 5;
-  static const BTH_MFG BTH_MFG_MICROSOFT = 6;
-  static const BTH_MFG BTH_MFG_LUCENT = 7;
-  static const BTH_MFG BTH_MFG_MOTOROLA = 8;
-  static const BTH_MFG BTH_MFG_INFINEON = 9;
-  static const BTH_MFG BTH_MFG_CSR = 10;
-  static const BTH_MFG BTH_MFG_SILICONWAVE = 11;
-  static const BTH_MFG BTH_MFG_DIGIANSWER = 12;
-  static const BTH_MFG BTH_MFG_TI = 13;
-  static const BTH_MFG BTH_MFG_PARTHUS = 14;
-  static const BTH_MFG BTH_MFG_BROADCOM = 15;
-  static const BTH_MFG BTH_MFG_MITEL = 16;
-  static const BTH_MFG BTH_MFG_WIDCOMM = 17;
-  static const BTH_MFG BTH_MFG_ZEEVO = 18;
-  static const BTH_MFG BTH_MFG_ATMEL = 19;
-  static const BTH_MFG BTH_MFG_MITSIBUSHI = 20;
-  static const BTH_MFG BTH_MFG_RTX_TELECOM = 21;
-  static const BTH_MFG BTH_MFG_KC_TECHNOLOGY = 22;
-  static const BTH_MFG BTH_MFG_NEWLOGIC = 23;
-  static const BTH_MFG BTH_MFG_TRANSILICA = 24;
-  static const BTH_MFG BTH_MFG_ROHDE_SCHWARZ = 25;
-  static const BTH_MFG BTH_MFG_TTPCOM = 26;
-  static const BTH_MFG BTH_MFG_SIGNIA = 27;
-  static const BTH_MFG BTH_MFG_CONEXANT = 28;
-  static const BTH_MFG BTH_MFG_QUALCOMM = 29;
-  static const BTH_MFG BTH_MFG_INVENTEL = 30;
-  static const BTH_MFG BTH_MFG_AVM_BERLIN = 31;
-  static const BTH_MFG BTH_MFG_BANDSPEED = 32;
-  static const BTH_MFG BTH_MFG_MANSELLA = 33;
-  static const BTH_MFG BTH_MFG_NEC = 34;
-  static const BTH_MFG BTH_MFG_WAVEPLUS_TECHNOLOGY_CO = 35;
-  static const BTH_MFG BTH_MFG_ALCATEL = 36;
-  static const BTH_MFG BTH_MFG_PHILIPS_SEMICONDUCTOR = 37;
-  static const BTH_MFG BTH_MFG_C_TECHNOLOGIES = 38;
-  static const BTH_MFG BTH_MFG_OPEN_INTERFACE = 39;
-  static const BTH_MFG BTH_MFG_RF_MICRO_DEVICES = 40;
-  static const BTH_MFG BTH_MFG_HITACHI = 41;
-  static const BTH_MFG BTH_MFG_SYMBOL_TECHNOLOGIES = 42;
-  static const BTH_MFG BTH_MFG_TENOVIS = 43;
-  static const BTH_MFG BTH_MFG_MACRONIX_INTERNATIONAL = 44;
-  static const BTH_MFG BTH_MFG_INTERNAL_USE = 65535;
+  typedef USHORT WINAPI_BTH_MFG; //Alias
+  static const WINAPI_BTH_MFG BTH_MFG_ERICSSON = 0;
+  static const WINAPI_BTH_MFG BTH_MFG_NOKIA = 1;
+  static const WINAPI_BTH_MFG BTH_MFG_INTEL = 2;
+  static const WINAPI_BTH_MFG BTH_MFG_IBM = 3;
+  static const WINAPI_BTH_MFG BTH_MFG_TOSHIBA = 4;
+  static const WINAPI_BTH_MFG BTH_MFG_3COM = 5;
+  static const WINAPI_BTH_MFG BTH_MFG_MICROSOFT = 6;
+  static const WINAPI_BTH_MFG BTH_MFG_LUCENT = 7;
+  static const WINAPI_BTH_MFG BTH_MFG_MOTOROLA = 8;
+  static const WINAPI_BTH_MFG BTH_MFG_INFINEON = 9;
+  static const WINAPI_BTH_MFG BTH_MFG_CSR = 10;
+  static const WINAPI_BTH_MFG BTH_MFG_SILICONWAVE = 11;
+  static const WINAPI_BTH_MFG BTH_MFG_DIGIANSWER = 12;
+  static const WINAPI_BTH_MFG BTH_MFG_TI = 13;
+  static const WINAPI_BTH_MFG BTH_MFG_PARTHUS = 14;
+  static const WINAPI_BTH_MFG BTH_MFG_BROADCOM = 15;
+  static const WINAPI_BTH_MFG BTH_MFG_MITEL = 16;
+  static const WINAPI_BTH_MFG BTH_MFG_WIDCOMM = 17;
+  static const WINAPI_BTH_MFG BTH_MFG_ZEEVO = 18;
+  static const WINAPI_BTH_MFG BTH_MFG_ATMEL = 19;
+  static const WINAPI_BTH_MFG BTH_MFG_MITSIBUSHI = 20;
+  static const WINAPI_BTH_MFG BTH_MFG_RTX_TELECOM = 21;
+  static const WINAPI_BTH_MFG BTH_MFG_KC_TECHNOLOGY = 22;
+  static const WINAPI_BTH_MFG BTH_MFG_NEWLOGIC = 23;
+  static const WINAPI_BTH_MFG BTH_MFG_TRANSILICA = 24;
+  static const WINAPI_BTH_MFG BTH_MFG_ROHDE_SCHWARZ = 25;
+  static const WINAPI_BTH_MFG BTH_MFG_TTPCOM = 26;
+  static const WINAPI_BTH_MFG BTH_MFG_SIGNIA = 27;
+  static const WINAPI_BTH_MFG BTH_MFG_CONEXANT = 28;
+  static const WINAPI_BTH_MFG BTH_MFG_QUALCOMM = 29;
+  static const WINAPI_BTH_MFG BTH_MFG_INVENTEL = 30;
+  static const WINAPI_BTH_MFG BTH_MFG_AVM_BERLIN = 31;
+  static const WINAPI_BTH_MFG BTH_MFG_BANDSPEED = 32;
+  static const WINAPI_BTH_MFG BTH_MFG_MANSELLA = 33;
+  static const WINAPI_BTH_MFG BTH_MFG_NEC = 34;
+  static const WINAPI_BTH_MFG BTH_MFG_WAVEPLUS_TECHNOLOGY_CO = 35;
+  static const WINAPI_BTH_MFG BTH_MFG_ALCATEL = 36;
+  static const WINAPI_BTH_MFG BTH_MFG_PHILIPS_SEMICONDUCTOR = 37;
+  static const WINAPI_BTH_MFG BTH_MFG_C_TECHNOLOGIES = 38;
+  static const WINAPI_BTH_MFG BTH_MFG_OPEN_INTERFACE = 39;
+  static const WINAPI_BTH_MFG BTH_MFG_RF_MICRO_DEVICES = 40;
+  static const WINAPI_BTH_MFG BTH_MFG_HITACHI = 41;
+  static const WINAPI_BTH_MFG BTH_MFG_SYMBOL_TECHNOLOGIES = 42;
+  static const WINAPI_BTH_MFG BTH_MFG_TENOVIS = 43;
+  static const WINAPI_BTH_MFG BTH_MFG_MACRONIX_INTERNATIONAL = 44;
+  static const WINAPI_BTH_MFG BTH_MFG_INTERNAL_USE = 65535;
   typedef struct BLUETOOTH_RADIO_INFO {
     DWORD dwSize;
     BLUETOOTH_ADDRESS address;
     WCHAR szName[BLUETOOTH_MAX_NAME_SIZE];
     ULONG ulClassofDevice;
     USHORT lmpSubversion;
-    BTH_MFG manufacturer;
+    WINAPI_BTH_MFG manufacturer;
   } BLUETOOTH_RADIO_INFO;
   typedef BLUETOOTH_RADIO_INFO *PBLUETOOTH_RADIO_INFO; //Pointer
   typedef struct BLUETOOTH_DEVICE_INFO {
@@ -107,12 +107,12 @@ ffi.cdef [[
   typedef struct BLUETOOTH_PASSKEY_INFO {
     ULONG passkey;
   } BLUETOOTH_PASSKEY_INFO;
-  typedef union BLUETOOTH_AUTHENTICATE_RESPONSE_u {
+  typedef union WINAPI_BLUETOOTH_AUTHENTICATE_RESPONSE_u {
     BLUETOOTH_PIN_INFO pinInfo;
     BLUETOOTH_OOB_DATA_INFO oobInfo;
     BLUETOOTH_NUMERIC_COMPARISON_INFO numericCompInfo;
     BLUETOOTH_PASSKEY_INFO passkeyInfo;
-  } BLUETOOTH_AUTHENTICATE_RESPONSE_u;
+  } WINAPI_BLUETOOTH_AUTHENTICATE_RESPONSE_u;
   typedef UINT BLUETOOTH_AUTHENTICATION_METHOD; //Alias
   static const BLUETOOTH_AUTHENTICATION_METHOD BLUETOOTH_AUTHENTICATION_METHOD_LEGACY = 1;
   static const BLUETOOTH_AUTHENTICATION_METHOD BLUETOOTH_AUTHENTICATION_METHOD_OOB = 2;
@@ -122,7 +122,7 @@ ffi.cdef [[
   typedef struct BLUETOOTH_AUTHENTICATE_RESPONSE {
     BLUETOOTH_ADDRESS bthAddressRemote;
     BLUETOOTH_AUTHENTICATION_METHOD authMethod;
-    BLUETOOTH_AUTHENTICATE_RESPONSE_u ;
+    WINAPI_BLUETOOTH_AUTHENTICATE_RESPONSE_u ;
     UCHAR negativeResponse;
   } BLUETOOTH_AUTHENTICATE_RESPONSE;
   typedef BLUETOOTH_AUTHENTICATE_RESPONSE *PBLUETOOTH_AUTHENTICATE_RESPONSE; //Pointer
@@ -200,22 +200,22 @@ ffi.cdef [[
   static const SDP_SPECIFICTYPE SDP_ST_UUID16 = 0x0130;
   static const SDP_SPECIFICTYPE SDP_ST_UUID32 = 0x0220;
   static const SDP_SPECIFICTYPE SDP_ST_UUID128 = 0x0430;
-  typedef struct SDP_ELEMENT_DATA_u_s1 {
+  typedef struct WINAPI_SDP_ELEMENT_DATA_u_s1 {
     LPBYTE value;
     ULONG length;
-  } SDP_ELEMENT_DATA_u_s1;
-  typedef struct SDP_ELEMENT_DATA_u_s2 {
+  } WINAPI_SDP_ELEMENT_DATA_u_s1;
+  typedef struct WINAPI_SDP_ELEMENT_DATA_u_s2 {
     LPBYTE value;
     ULONG length;
-  } SDP_ELEMENT_DATA_u_s2;
-  typedef struct SDP_ELEMENT_DATA_u_s3 {
+  } WINAPI_SDP_ELEMENT_DATA_u_s2;
+  typedef struct WINAPI_SDP_ELEMENT_DATA_u_s3 {
     LPBYTE value;
     ULONG length;
-  } SDP_ELEMENT_DATA_u_s3;
-  typedef struct SDP_ELEMENT_DATA_u_s4 {
+  } WINAPI_SDP_ELEMENT_DATA_u_s3;
+  typedef struct WINAPI_SDP_ELEMENT_DATA_u_s4 {
     LPBYTE value;
     ULONG length;
-  } SDP_ELEMENT_DATA_u_s4;
+  } WINAPI_SDP_ELEMENT_DATA_u_s4;
   typedef struct SDP_LARGE_INTEGER_16 {
     ULONGLONG LowPart;
     LONGLONG HighPart;
@@ -224,7 +224,7 @@ ffi.cdef [[
     ULONGLONG LowPart;
     ULONGLONG HighPart;
   } SDP_ULARGE_INTEGER_16;
-  typedef union SDP_ELEMENT_DATA_u {
+  typedef union WINAPI_SDP_ELEMENT_DATA_u {
     SDP_LARGE_INTEGER_16 int128;
     LONGLONG int64;
     LONG int32;
@@ -239,15 +239,15 @@ ffi.cdef [[
     GUID uuid128;
     ULONG uuid32;
     USHORT uuid16;
-    SDP_ELEMENT_DATA_u_s1 string;
-    SDP_ELEMENT_DATA_u_s2 url;
-    SDP_ELEMENT_DATA_u_s3 sequence;
-    SDP_ELEMENT_DATA_u_s4 alternative;
-  } SDP_ELEMENT_DATA_u;
+    WINAPI_SDP_ELEMENT_DATA_u_s1 string;
+    WINAPI_SDP_ELEMENT_DATA_u_s2 url;
+    WINAPI_SDP_ELEMENT_DATA_u_s3 sequence;
+    WINAPI_SDP_ELEMENT_DATA_u_s4 alternative;
+  } WINAPI_SDP_ELEMENT_DATA_u;
   typedef struct SDP_ELEMENT_DATA {
     SDP_TYPE type;
     SDP_SPECIFICTYPE specificType;
-    SDP_ELEMENT_DATA_u data;
+    WINAPI_SDP_ELEMENT_DATA_u data;
   } SDP_ELEMENT_DATA;
   typedef SDP_ELEMENT_DATA *PSDP_ELEMENT_DATA; //Pointer
 ]]

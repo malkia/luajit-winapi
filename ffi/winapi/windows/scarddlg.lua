@@ -4,7 +4,7 @@ ffi.cdef [[
   typedef LPVOID LPOCNCHKPROC; //Alias
   typedef LPVOID LPOCNCONNPROC; //Alias
   typedef LPVOID LPOCNDSCPROC; //Alias
-  typedef DWORD SC_DLG_FLAGS; //Alias
+  typedef DWORD WINAPI_SC_DLG_FLAGS; //Alias
   typedef struct OPENCARDNAME {
     DWORD dwStructSize;
     HWND hwndOwner;
@@ -20,7 +20,7 @@ ffi.cdef [[
     LPTSTR lpstrCard;
     DWORD nMaxCard;
     LPCTSTR lpstrTitle;
-    SC_DLG_FLAGS dwFlags;
+    WINAPI_SC_DLG_FLAGS dwFlags;
     LPVOID pvUserData;
     DWORD dwShareMode;
     DWORD dwPreferredProtocols;
@@ -51,7 +51,7 @@ ffi.cdef [[
     DWORD dwStructSize;
     SCARDCONTEXT hSCardContext;
     HWND hwndOwner;
-    SC_DLG_FLAGS dwFlags;
+    WINAPI_SC_DLG_FLAGS dwFlags;
     LPCTSTR lpstrTitle;
     LPCTSTR lpstrSearchDesc;
     HICON hIcon;

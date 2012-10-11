@@ -26,18 +26,18 @@ ffi.cdef [[
   static const RASAPIVERSION RASAPIVERSION_501 = 2;
   static const RASAPIVERSION RASAPIVERSION_600 = 3;
   static const RASAPIVERSION RASAPIVERSION_601 = 4;
-  typedef union RASTUNNELENDPOINT_u {
+  typedef union WINAPI_RASTUNNELENDPOINT_u {
     RASIPV4ADDR ipv4;
     RASIPV6ADDR ipv6;
-  } RASTUNNELENDPOINT_u;
-  typedef DWORD RASTUNNELENDPOINT_TYPE; //Alias
-  static const RASTUNNELENDPOINT_TYPE RASTUNNELENDPOINT_UNKNOWN = 0;
-  static const RASTUNNELENDPOINT_TYPE RASTUNNELENDPOINT_IPv4 = 1;
-  static const RASTUNNELENDPOINT_TYPE RASTUNNELENDPOINT_IPv6 = 2;
+  } WINAPI_RASTUNNELENDPOINT_u;
+  typedef DWORD WINAPI_RASTUNNELENDPOINT_TYPE; //Alias
+  static const WINAPI_RASTUNNELENDPOINT_TYPE RASTUNNELENDPOINT_UNKNOWN = 0;
+  static const WINAPI_RASTUNNELENDPOINT_TYPE RASTUNNELENDPOINT_IPv4 = 1;
+  static const WINAPI_RASTUNNELENDPOINT_TYPE RASTUNNELENDPOINT_IPv6 = 2;
 # pragma pack( push, 4 )
   typedef struct RASTUNNELENDPOINT {
-    RASTUNNELENDPOINT_TYPE dwType;
-    RASTUNNELENDPOINT_u ;
+    WINAPI_RASTUNNELENDPOINT_TYPE dwType;
+    WINAPI_RASTUNNELENDPOINT_u ;
   } RASTUNNELENDPOINT;
 # pragma pack( pop )
 # pragma pack( push, 4 )
@@ -55,7 +55,7 @@ ffi.cdef [[
   } RASDIALPARAMS;
 # pragma pack( pop )
   typedef RASDIALPARAMS *LPRASDIALPARAMS; //Pointer
-  typedef DWORD RASCONN_FLAGS; //Alias
+  typedef DWORD WINAPI_RASCONN_FLAGS; //Alias
 # pragma pack( push, 4 )
   typedef struct RASCONN {
     DWORD dwSize;
@@ -66,7 +66,7 @@ ffi.cdef [[
     TCHAR szPhonebook[MAX_PATH];
     DWORD dwSubEntry;
     GUID guidEntry;
-    RASCONN_FLAGS dwFlags;
+    WINAPI_RASCONN_FLAGS dwFlags;
     LUID luid;
     GUID guidCorrelationId;
   } RASCONN;
@@ -80,12 +80,12 @@ ffi.cdef [[
   } RASDEVINFO;
 # pragma pack( pop )
   typedef RASDEVINFO *LPRASDEVINFO; //Pointer
-  typedef DWORD RASENTRYNAME_FLAGS; //Alias
+  typedef DWORD WINAPI_RASENTRYNAME_FLAGS; //Alias
 # pragma pack( push, 4 )
   typedef struct RASENTRYNAME {
     DWORD dwSize;
     TCHAR szEntryName[RAS_MaxEntryName_plus_1];
-    RASENTRYNAME_FLAGS dwFlags;
+    WINAPI_RASENTRYNAME_FLAGS dwFlags;
     TCHAR szPhonebookPath[MAX_PATH_plus_1];
   } RASENTRYNAME;
 # pragma pack( pop )
@@ -151,11 +151,11 @@ ffi.cdef [[
   } RASCONNSTATUS;
 # pragma pack( pop )
   typedef RASCONNSTATUS *LPRASCONNSTATUS; //Pointer
-  typedef DWORD RASCM_FLAGS; //Alias
+  typedef DWORD WINAPI_RASCM_FLAGS; //Alias
 # pragma pack( push, 4 )
   typedef struct RASCREDENTIALS {
     DWORD dwSize;
-    RASCM_FLAGS dwMask;
+    WINAPI_RASCM_FLAGS dwMask;
     TCHAR szUserName[UNLEN_plus_1];
     TCHAR szPassword[PWLEN_plus_1];
     TCHAR szDomain[DNLEN_plus_1];
@@ -178,41 +178,41 @@ ffi.cdef [[
     BYTE d;
   } RASIPADDR;
 # pragma pack( pop )
-  typedef DWORD RASEO_FLAGS; //Alias
-  typedef DWORD RASEO2_FLAGS; //Alias
-  typedef DWORD RASNP_FLAGS; //Alias
-  typedef DWORD RASFP_FLAGS; //Alias
-  typedef DWORD RASEDM_ENUM; //Alias
-  static const RASEDM_ENUM RASEDM_DialAll = 1;
-  static const RASEDM_ENUM RASEDM_DialAsNeeded = 2;
-  typedef DWORD RASET_ENUM; //Alias
-  static const RASET_ENUM RASET_Phone = 1;
-  static const RASET_ENUM RASET_Vpn = 2;
-  static const RASET_ENUM RASET_Direct = 3;
-  static const RASET_ENUM RASET_Internet = 4;
-  static const RASET_ENUM RASET_Broadband = 5;
-  typedef DWORD RAS_ENCRYPTION_TYPE; //Alias
-  static const RAS_ENCRYPTION_TYPE ET_None = 0;
-  static const RAS_ENCRYPTION_TYPE ET_Require = 1;
-  static const RAS_ENCRYPTION_TYPE ET_RequireMax = 2;
-  static const RAS_ENCRYPTION_TYPE ET_Optional = 3;
-  typedef DWORD RAS_VPN_STRATEGY; //Alias
-  static const RAS_VPN_STRATEGY VS_Default = 0;
-  static const RAS_VPN_STRATEGY VS_PptpOnly = 1;
-  static const RAS_VPN_STRATEGY VS_PptpFirst = 2;
-  static const RAS_VPN_STRATEGY VS_L2tpOnly = 3;
-  static const RAS_VPN_STRATEGY VS_L2tpFirst = 4;
-  static const RAS_VPN_STRATEGY VS_SstpOnly = 5;
-  static const RAS_VPN_STRATEGY VS_SstpFirst = 6;
-  static const RAS_VPN_STRATEGY VS_Ikev2Only = 7;
-  static const RAS_VPN_STRATEGY VS_Ikev2First = 8;
-  static const RAS_VPN_STRATEGY VS_PptpSstp = 12;
-  static const RAS_VPN_STRATEGY VS_L2tpSstp = 13;
-  static const RAS_VPN_STRATEGY VS_Ikev2Sstp = 14;
+  typedef DWORD WINAPI_RASEO_FLAGS; //Alias
+  typedef DWORD WINAPI_RASEO2_FLAGS; //Alias
+  typedef DWORD WINAPI_RASNP_FLAGS; //Alias
+  typedef DWORD WINAPI_RASFP_FLAGS; //Alias
+  typedef DWORD WINAPI_RASEDM_ENUM; //Alias
+  static const WINAPI_RASEDM_ENUM RASEDM_DialAll = 1;
+  static const WINAPI_RASEDM_ENUM RASEDM_DialAsNeeded = 2;
+  typedef DWORD WINAPI_RASET_ENUM; //Alias
+  static const WINAPI_RASET_ENUM RASET_Phone = 1;
+  static const WINAPI_RASET_ENUM RASET_Vpn = 2;
+  static const WINAPI_RASET_ENUM RASET_Direct = 3;
+  static const WINAPI_RASET_ENUM RASET_Internet = 4;
+  static const WINAPI_RASET_ENUM RASET_Broadband = 5;
+  typedef DWORD WINAPI_RAS_ENCRYPTION_TYPE; //Alias
+  static const WINAPI_RAS_ENCRYPTION_TYPE ET_None = 0;
+  static const WINAPI_RAS_ENCRYPTION_TYPE ET_Require = 1;
+  static const WINAPI_RAS_ENCRYPTION_TYPE ET_RequireMax = 2;
+  static const WINAPI_RAS_ENCRYPTION_TYPE ET_Optional = 3;
+  typedef DWORD WINAPI_RAS_VPN_STRATEGY; //Alias
+  static const WINAPI_RAS_VPN_STRATEGY VS_Default = 0;
+  static const WINAPI_RAS_VPN_STRATEGY VS_PptpOnly = 1;
+  static const WINAPI_RAS_VPN_STRATEGY VS_PptpFirst = 2;
+  static const WINAPI_RAS_VPN_STRATEGY VS_L2tpOnly = 3;
+  static const WINAPI_RAS_VPN_STRATEGY VS_L2tpFirst = 4;
+  static const WINAPI_RAS_VPN_STRATEGY VS_SstpOnly = 5;
+  static const WINAPI_RAS_VPN_STRATEGY VS_SstpFirst = 6;
+  static const WINAPI_RAS_VPN_STRATEGY VS_Ikev2Only = 7;
+  static const WINAPI_RAS_VPN_STRATEGY VS_Ikev2First = 8;
+  static const WINAPI_RAS_VPN_STRATEGY VS_PptpSstp = 12;
+  static const WINAPI_RAS_VPN_STRATEGY VS_L2tpSstp = 13;
+  static const WINAPI_RAS_VPN_STRATEGY VS_Ikev2Sstp = 14;
 # pragma pack( push, 4 )
   typedef struct RASENTRY {
     DWORD dwSize;
-    RASEO_FLAGS dwfOptions;
+    WINAPI_RASEO_FLAGS dwfOptions;
     DWORD dwCountryID;
     DWORD dwCountryCode;
     TCHAR szAreaCode[RAS_MaxAreaCode_plus_1];
@@ -224,8 +224,8 @@ ffi.cdef [[
     RASIPADDR ipaddrWins;
     RASIPADDR ipaddrWinsAlt;
     DWORD dwFrameSize;
-    RASNP_FLAGS dwfNetProtocols;
-    RASFP_FLAGS dwFramingProtocol;
+    WINAPI_RASNP_FLAGS dwfNetProtocols;
+    WINAPI_RASFP_FLAGS dwFramingProtocol;
     TCHAR szScript[MAX_PATH];
     TCHAR szAutodialDll[MAX_PATH];
     TCHAR szAutodialFunc[MAX_PATH];
@@ -239,19 +239,19 @@ ffi.cdef [[
     DWORD dwReserved1;
     DWORD dwReserved2;
     DWORD dwSubEntries;
-    RASEDM_ENUM dwDialMode;
+    WINAPI_RASEDM_ENUM dwDialMode;
     DWORD dwDialExtraPercent;
     DWORD dwDialExtraSampleSeconds;
     DWORD dwHangUpExtraPercent;
     DWORD dwHangUpExtraSampleSeconds;
     DWORD dwIdleDisconnectSeconds;
-    RASET_ENUM dwType;
-    RAS_ENCRYPTION_TYPE dwEncryptionType;
+    WINAPI_RASET_ENUM dwType;
+    WINAPI_RAS_ENCRYPTION_TYPE dwEncryptionType;
     DWORD dwCustomAuthKey;
     GUID guidId;
     TCHAR szCustomDialDll[MAX_PATH];
-    RAS_VPN_STRATEGY dwVpnStrategy;
-    RASEO2_FLAGS dwfOptions2;
+    WINAPI_RAS_VPN_STRATEGY dwVpnStrategy;
+    WINAPI_RASEO2_FLAGS dwfOptions2;
     DWORD dwfOptions3;
     TCHAR szDnsSuffix[RAS_MaxDnsSuffix];
     DWORD dwTcpWindowSize;
@@ -269,46 +269,46 @@ ffi.cdef [[
   } RASENTRY;
 # pragma pack( pop )
   typedef RASENTRY *LPRASENTRY; //Pointer
-  typedef DWORD RASIPO_OPTIONS; //Alias
-  typedef DWORD RASLCPAP; //Alias
-  static const RASLCPAP RASLCPAP_PAP = 0xC023;
-  static const RASLCPAP RASLCPAP_SPAP = 0xC027;
-  static const RASLCPAP RASLCPAP_CHAP = 0xC223;
-  static const RASLCPAP RASLCPAP_EAP = 0xC227;
-  typedef DWORD RASLCPAD; //Alias
-  static const RASLCPAD RASLCPAD_CHAP_MD5 = 0x05;
-  static const RASLCPAD RASLCPAD_CHAP_MS = 0x80;
-  static const RASLCPAD RASLCPAD_CHAP_MSV2 = 0x81;
-  typedef DWORD RASLCPO; //Alias
-  typedef DWORD RASCCPCA; //Alias
-  static const RASCCPCA RASCCPCA_MPPC = 0x00000006;
-  static const RASCCPCA RASCCPCA_STAC = 0x00000005;
-  typedef DWORD RASCCPO; //Alias
+  typedef DWORD WINAPI_RASIPO_OPTIONS; //Alias
+  typedef DWORD WINAPI_RASLCPAP; //Alias
+  static const WINAPI_RASLCPAP RASLCPAP_PAP = 0xC023;
+  static const WINAPI_RASLCPAP RASLCPAP_SPAP = 0xC027;
+  static const WINAPI_RASLCPAP RASLCPAP_CHAP = 0xC223;
+  static const WINAPI_RASLCPAP RASLCPAP_EAP = 0xC227;
+  typedef DWORD WINAPI_RASLCPAD; //Alias
+  static const WINAPI_RASLCPAD RASLCPAD_CHAP_MD5 = 0x05;
+  static const WINAPI_RASLCPAD RASLCPAD_CHAP_MS = 0x80;
+  static const WINAPI_RASLCPAD RASLCPAD_CHAP_MSV2 = 0x81;
+  typedef DWORD WINAPI_RASLCPO; //Alias
+  typedef DWORD WINAPI_RASCCPCA; //Alias
+  static const WINAPI_RASCCPCA RASCCPCA_MPPC = 0x00000006;
+  static const WINAPI_RASCCPCA RASCCPCA_STAC = 0x00000005;
+  typedef DWORD WINAPI_RASCCPO; //Alias
 # pragma pack( push, 4 )
   typedef struct RASPPP_PROJECTION_INFO {
     DWORD dwIPv4NegotiationError;
     RASIPV4ADDR ipv4Address;
     RASIPV4ADDR ipv4ServerAddress;
-    RASIPO_OPTIONS dwIPv4Options;
-    RASIPO_OPTIONS dwIPv4ServerOptions;
+    WINAPI_RASIPO_OPTIONS dwIPv4Options;
+    WINAPI_RASIPO_OPTIONS dwIPv4ServerOptions;
     DWORD dwIPv6NegotiationError;
     BYTE bInterfaceIdentifier[8];
     BYTE bServerInterfaceIdentifier[8];
     BOOL fBundled;
     BOOL fMultilink;
-    RASLCPAP dwAuthenticationProtocol;
-    RASLCPAD dwAuthenticationData;
-    RASLCPAP dwServerAuthenticationProtocol;
-    RASLCPAD dwServerAuthenticationData;
+    WINAPI_RASLCPAP dwAuthenticationProtocol;
+    WINAPI_RASLCPAD dwAuthenticationData;
+    WINAPI_RASLCPAP dwServerAuthenticationProtocol;
+    WINAPI_RASLCPAD dwServerAuthenticationData;
     DWORD dwEapTypeId;
     DWORD dwServerEapTypeId;
-    RASLCPO dwLcpOptions;
-    RASLCPO dwLcpServerOptions;
+    WINAPI_RASLCPO dwLcpOptions;
+    WINAPI_RASLCPO dwLcpServerOptions;
     DWORD dwCcpError;
-    RASCCPCA dwCcpCompressionAlgorithm;
-    RASCCPCA dwCcpServerCompressionAlgorithm;
-    RASCCPO dwCcpOptions;
-    RASCCPO dwCcpServerOptions;
+    WINAPI_RASCCPCA dwCcpCompressionAlgorithm;
+    WINAPI_RASCCPCA dwCcpServerCompressionAlgorithm;
+    WINAPI_RASCCPO dwCcpOptions;
+    WINAPI_RASCCPO dwCcpServerOptions;
   } RASPPP_PROJECTION_INFO;
 # pragma pack( pop )
   typedef UINT IPSEC_CIPHER_TYPE; //Alias
@@ -317,10 +317,10 @@ ffi.cdef [[
   static const IPSEC_CIPHER_TYPE IPSEC_CIPHER_TYPE_AES_128 = 3;
   static const IPSEC_CIPHER_TYPE IPSEC_CIPHER_TYPE_AES_192 = 4;
   static const IPSEC_CIPHER_TYPE IPSEC_CIPHER_TYPE_AES_256 = 5;
-  typedef DWORD RASIKEv2_FLAGS; //Alias
-  typedef DWORD RASIKEv2_AUTH; //Alias
-  static const RASIKEv2_AUTH RASIKEv2_AUTH_MACHINECERTIFICATES = 1;
-  static const RASIKEv2_AUTH RASIKEv2_AUTH_EAP = 2;
+  typedef DWORD WINAPI_RASIKEv2_FLAGS; //Alias
+  typedef DWORD WINAPI_RASIKEv2_AUTH; //Alias
+  static const WINAPI_RASIKEv2_AUTH RASIKEv2_AUTH_MACHINECERTIFICATES = 1;
+  static const WINAPI_RASIKEv2_AUTH RASIKEv2_AUTH_EAP = 2;
 # pragma pack( push, 4 )
   typedef struct RASIKEV2_PROJECTION_INFO {
     DWORD dwIPv4NegotiationError;
@@ -330,9 +330,9 @@ ffi.cdef [[
     RASIPV6ADDR ipv6Address;
     RASIPV6ADDR ipv6ServerAddress;
     DWORD dwPrefixLength;
-    RASIKEv2_AUTH dwAuthenticationProtocol;
+    WINAPI_RASIKEv2_AUTH dwAuthenticationProtocol;
     DWORD dwEapTypeId;
-    RASIKEv2_FLAGS dwFlags;
+    WINAPI_RASIKEv2_FLAGS dwFlags;
     IPSEC_CIPHER_TYPE dwEncryptionMethod;
     DWORD numIPv4ServerAddresses;
     RASIPV4ADDR* ipv4ServerAddresses;
@@ -340,10 +340,10 @@ ffi.cdef [[
     RASIPV6ADDR* ipv6ServerAddresses;
   } RASIKEV2_PROJECTION_INFO;
 # pragma pack( pop )
-  typedef union RAS_PROJECTION_INFO_u {
+  typedef union WINAPI_RAS_PROJECTION_INFO_u {
     RASPPP_PROJECTION_INFO ppp;
     RASIKEV2_PROJECTION_INFO ikev2;
-  } RAS_PROJECTION_INFO_u;
+  } WINAPI_RAS_PROJECTION_INFO_u;
   typedef UINT RASPROJECTION_INFO_TYPE; //Alias
   static const RASPROJECTION_INFO_TYPE PROJECTION_INFO_TYPE_PPP = 1;
   static const RASPROJECTION_INFO_TYPE PROJECTION_INFO_TYPE_IKEv2 = 2;
@@ -351,7 +351,7 @@ ffi.cdef [[
   typedef struct RAS_PROJECTION_INFO {
     RASAPIVERSION version;
     RASPROJECTION_INFO_TYPE type;
-    RAS_PROJECTION_INFO_u ;
+    WINAPI_RAS_PROJECTION_INFO_u ;
   } RAS_PROJECTION_INFO;
 # pragma pack( pop )
   typedef RAS_PROJECTION_INFO *PRAS_PROJECTION_INFO; //Pointer
@@ -444,11 +444,11 @@ ffi.cdef [[
   } RASNAPSTATE;
 # pragma pack( pop )
   typedef RASNAPSTATE *LPRASNAPSTATE; //Pointer
-  typedef DWORD RasConnNotifyFlags; //Alias
+  typedef DWORD WINAPI_RasConnNotifyFlags; //Alias
   typedef DWORD RASPROJECTION; //Alias
   DWORD RasClearConnectionStatistics( HRASCONN hRasConn);
   DWORD RasClearLinkStatistics(       HRASCONN hRasConn, DWORD dwSubEntry);
-  DWORD RasConnectionNotification(    HRASCONN hrasconn, HANDLE hEvent, RasConnNotifyFlags dwFlags);
+  DWORD RasConnectionNotification(    HRASCONN hrasconn, HANDLE hEvent, WINAPI_RasConnNotifyFlags dwFlags);
   DWORD RasCreatePhonebookEntry(      HWND hwnd, LPCTSTR lpszPhonebook);
   DWORD RasDeleteEntry(               LPCTSTR lpszPhonebook, LPCTSTR lpszEntry);
   DWORD RasDeleteSubEntry(            LPCTSTR lpszPhonebook, LPCTSTR lpszEntry, DWORD dwSubEntryId);

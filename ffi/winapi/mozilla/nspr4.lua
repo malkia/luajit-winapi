@@ -1,11 +1,11 @@
 require( 'ffi/winapi/mozilla/nspr' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef PRIntn PrAddressFamily; //Alias
-  static const PrAddressFamily PR_AF_UNSPEC = 0;
-  static const PrAddressFamily PR_AF_LOCAL = 1;
-  static const PrAddressFamily PR_AF_INET = 2;
-  static const PrAddressFamily PR_AF_INET6 = 100;
+  typedef PRIntn WINAPI_PrAddressFamily; //Alias
+  static const WINAPI_PrAddressFamily PR_AF_UNSPEC = 0;
+  static const WINAPI_PrAddressFamily PR_AF_LOCAL = 1;
+  static const WINAPI_PrAddressFamily PR_AF_INET = 2;
+  static const WINAPI_PrAddressFamily PR_AF_INET6 = 100;
   PRStatus         PR_JoinThread(                       PRThread* thread);
   PRThread*        PR_CreateThread(                     PRThreadType type, void *void* start, void* arg, PRThreadPriority priority, PRThreadScope scope, PRThreadState state, PRUint32 stackSize);
   PRThread*        PR_GetCurrentThread(                 );
@@ -66,9 +66,9 @@ ffi.cdef [[
   PRStatus         PR_CloseDir(                         PRDir* dir);
   PRStatus         PR_MkDir(                            char* name, PRIntn mode);
   PRStatus         PR_RmDir(                            char* name);
-  PRFileDesc*      PR_OpenUDPSocket(                    PrAddressFamily af);
+  PRFileDesc*      PR_OpenUDPSocket(                    WINAPI_PrAddressFamily af);
   PRFileDesc*      PR_NewUDPSocket(                     );
-  PRFileDesc*      PR_OpenTCPSocket(                    PrAddressFamily af);
+  PRFileDesc*      PR_OpenTCPSocket(                    WINAPI_PrAddressFamily af);
   PRFileDesc*      PR_NewTCPSocket(                     );
   PRStatus         PR_Connect(                          PRFileDesc* fd, PRNetAddr* addr, PRIntervalTime timeout);
   PRFileDesc*      PR_Accept(                           PRFileDesc* fd, PRNetAddr* addr, PRIntervalTime timeout);

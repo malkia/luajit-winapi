@@ -12,11 +12,11 @@ ffi.cdef [[
     ULONG Length;
     PUCHAR Buffer;
   } LSA_FOREST_TRUST_BINARY_DATA;
-  typedef union LSA_FOREST_TRUST_RECORD_u {
+  typedef union WINAPI_LSA_FOREST_TRUST_RECORD_u {
     LSA_UNICODE_STRING TopLevelName;
     LSA_FOREST_TRUST_DOMAIN_INFO DomainInfo;
     LSA_FOREST_TRUST_BINARY_DATA Data;
-  } LSA_FOREST_TRUST_RECORD_u;
+  } WINAPI_LSA_FOREST_TRUST_RECORD_u;
   typedef UINT LSA_FOREST_TRUST_RECORD_TYPE; //Alias
   static const LSA_FOREST_TRUST_RECORD_TYPE ForestTrustTopLevelName = 0;
   static const LSA_FOREST_TRUST_RECORD_TYPE ForestTrustTopLevelNameEx = 1;
@@ -25,7 +25,7 @@ ffi.cdef [[
     ULONG Flags;
     LSA_FOREST_TRUST_RECORD_TYPE ForestTrustType;
     LARGE_INTEGER Time;
-    LSA_FOREST_TRUST_RECORD_u ForestTrustData;
+    WINAPI_LSA_FOREST_TRUST_RECORD_u ForestTrustData;
   } LSA_FOREST_TRUST_RECORD;
   typedef LSA_FOREST_TRUST_RECORD *PLSA_FOREST_TRUST_RECORD; //Pointer
   typedef struct LSA_FOREST_TRUST_INFORMATION {

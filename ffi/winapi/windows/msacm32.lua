@@ -34,7 +34,7 @@ ffi.cdef [[
   } WAVEFILTER;
 # pragma pack( pop )
   typedef WAVEFILTER *LPWAVEFILTER; //Pointer
-  typedef DWORD ACMDRIVERDETAILS_SUPPORTF; //Alias
+  typedef DWORD WINAPI_ACMDRIVERDETAILS_SUPPORTF; //Alias
 # pragma pack( push, 1 )
   typedef struct ACMDRIVERDETAILS {
     DWORD cbStruct;
@@ -44,7 +44,7 @@ ffi.cdef [[
     WORD wPid;
     DWORD vdwACM;
     DWORD vdwDriver;
-    ACMDRIVERDETAILS_SUPPORTF fdwSupport;
+    WINAPI_ACMDRIVERDETAILS_SUPPORTF fdwSupport;
     DWORD cFormatTags;
     DWORD cFilterTags;
     HICON hicon;
@@ -61,19 +61,19 @@ ffi.cdef [[
     DWORD cbStruct;
     DWORD dwFilterIndex;
     DWORD dwFilterTag;
-    ACMDRIVERDETAILS_SUPPORTF fdwSupport;
+    WINAPI_ACMDRIVERDETAILS_SUPPORTF fdwSupport;
     LPWAVEFILTER pwfltr;
     DWORD cbwfltr;
     TCHAR szFilter[ACMFILTERDETAILS_FILTER_CHARS];
   } ACMFILTERDETAILS;
 # pragma pack( pop )
   typedef ACMFILTERDETAILS *LPACMFILTERDETAILS; //Pointer
-  typedef DWORD ACMFILTERCHOOSE_STYLEF; //Alias
-  typedef DWORD ACM_FILTERENUMF; //Alias
+  typedef DWORD WINAPI_ACMFILTERCHOOSE_STYLEF; //Alias
+  typedef DWORD WINAPI_ACM_FILTERENUMF; //Alias
 # pragma pack( push, 1 )
   typedef struct ACMFILTERCHOOSE {
     DWORD cbStruct;
-    ACMFILTERCHOOSE_STYLEF fdwStyle;
+    WINAPI_ACMFILTERCHOOSE_STYLEF fdwStyle;
     HWND hwndOwner;
     LPWAVEFILTER pwfltr;
     DWORD cbwfltr;
@@ -82,7 +82,7 @@ ffi.cdef [[
     TCHAR szFilter[ACMFILTERDETAILS_FILTER_CHARS];
     LPTSTR pszName;
     DWORD cchName;
-    ACM_FILTERENUMF fdwEnum;
+    WINAPI_ACM_FILTERENUMF fdwEnum;
     LPWAVEFILTER pwfltrEnum;
     HINSTANCE hInstance;
     LPCTSTR pszTemplateName;
@@ -97,18 +97,18 @@ ffi.cdef [[
     DWORD dwFilterTagIndex;
     DWORD dwFilterTag;
     DWORD cbFilterSize;
-    ACMDRIVERDETAILS_SUPPORTF fdwSupport;
+    WINAPI_ACMDRIVERDETAILS_SUPPORTF fdwSupport;
     DWORD cStandardFilters;
     TCHAR szFilterTag[ACMFILTERTAGDETAILS_FILTERTAG_CHARS];
   } ACMFILTERTAGDETAILS;
 # pragma pack( pop )
   typedef ACMFILTERTAGDETAILS *LPACMFILTERTAGDETAILS; //Pointer
-  typedef DWORD ACMFORMATCHOOSE_STYLEF; //Alias
-  typedef DWORD ACM_FORMATENUMF; //Alias
+  typedef DWORD WINAPI_ACMFORMATCHOOSE_STYLEF; //Alias
+  typedef DWORD WINAPI_ACM_FORMATENUMF; //Alias
 # pragma pack( push, 1 )
   typedef struct ACMFORMATCHOOSE {
     DWORD cbStruct;
-    ACMFORMATCHOOSE_STYLEF fdwStyle;
+    WINAPI_ACMFORMATCHOOSE_STYLEF fdwStyle;
     HWND hwndOwner;
     LPWAVEFORMATEX pwfx;
     DWORD cbwfx;
@@ -117,7 +117,7 @@ ffi.cdef [[
     TCHAR szFormat[ACMFORMATDETAILS_FORMAT_CHARS];
     LPTSTR pszName;
     DWORD cchName;
-    ACM_FORMATENUMF fdwEnum;
+    WINAPI_ACM_FORMATENUMF fdwEnum;
     LPWAVEFORMATEX pwfxEnum;
     HINSTANCE hInstance;
     LPCTSTR pszTemplateName;
@@ -131,7 +131,7 @@ ffi.cdef [[
     DWORD cbStruct;
     DWORD dwFormatIndex;
     DWORD dwFormatTag;
-    ACMDRIVERDETAILS_SUPPORTF fdwSupport;
+    WINAPI_ACMDRIVERDETAILS_SUPPORTF fdwSupport;
     LPWAVEFORMATEX pwfx;
     DWORD cbwfx;
     TCHAR szFormat[ACMFORMATDETAILS_FORMAT_CHARS];
@@ -144,13 +144,13 @@ ffi.cdef [[
     DWORD dwFormatTagIndex;
     DWORD dwFormatTag;
     DWORD cbFormatSize;
-    ACMDRIVERDETAILS_SUPPORTF fdwSupport;
+    WINAPI_ACMDRIVERDETAILS_SUPPORTF fdwSupport;
     DWORD cStandardFormats;
     TCHAR szFormatTag[ACMFORMATTAGDETAILS_FORMATTAG_CHARS];
   } ACMFORMATTAGDETAILS;
 # pragma pack( pop )
   typedef ACMFORMATTAGDETAILS *LPACMFORMATTAGDETAILS; //Pointer
-  typedef DWORD ACMSTREAMHEADER_STATUSF; //Alias
+  typedef DWORD WINAPI_ACMSTREAMHEADER_STATUSF; //Alias
 ]]
 if ffi.arch == 'x86' then ffi.cdef[[
   enum { _DRVRESERVED = 10 };
@@ -165,7 +165,7 @@ ffi.cdef[[
 # pragma pack( push, 1 )
   typedef struct ACMSTREAMHEADER {
     DWORD cbStruct;
-    ACMSTREAMHEADER_STATUSF fdwStatus;
+    WINAPI_ACMSTREAMHEADER_STATUSF fdwStatus;
     DWORD_PTR dwUser;
     LPBYTE pbSrc;
     DWORD cbSrcLength;
@@ -190,7 +190,7 @@ ffi.cdef[[
   MMRESULT acmDriverRemove(          HACMDRIVERID hadid, DWORD fdwRemove);
   MMRESULT acmFilterChoose(          LPACMFILTERCHOOSE pafltrc);
   MMRESULT acmFilterDetails(         HACMDRIVER had, LPACMFILTERDETAILS pafd, DWORD fdwDetails);
-  MMRESULT acmFilterEnum(            HACMDRIVER had, LPACMFILTERDETAILS pafd, ACMFILTERENUMCB fnCallback, DWORD_PTR dwInstance, ACM_FILTERENUMF fdwEnum);
+  MMRESULT acmFilterEnum(            HACMDRIVER had, LPACMFILTERDETAILS pafd, ACMFILTERENUMCB fnCallback, DWORD_PTR dwInstance, WINAPI_ACM_FILTERENUMF fdwEnum);
   MMRESULT acmFilterTagDetails(      HACMDRIVER had, LPACMFILTERTAGDETAILS paftd, DWORD_PTR fdwDetails);
   MMRESULT acmFilterTagEnum(         HACMDRIVER had, LPACMFILTERTAGDETAILS paftd, ACMFILTERTAGENUMCB fnCallback, DWORD_PTR dwInstance, DWORD fdwEnum);
   MMRESULT acmFormatChoose(          LPACMFORMATCHOOSE pfmtc);

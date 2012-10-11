@@ -78,7 +78,7 @@ ffi.cdef [[
     GUID Identity;
   } CLFS_INFORMATION;
   typedef CLFS_INFORMATION *PCLFS_INFORMATION; //Pointer
-  BOOL              AlignReservedLog(              PVOID pvMarshal, ULONG cReservedRecords, LONGLONG [] rgcbReservation, PLONGLONG pcbAlignReservation);
+  BOOL              AlignReservedLog(              PVOID pvMarshal, ULONG cReservedRecords, LONGLONG * rgcbReservation, PLONGLONG pcbAlignReservation);
   BOOL              AllocReservedLog(              PVOID pvMarshal, ULONG cReservedRecords, PLONGLONG pcbAdjustment);
   BOOL              CloseAndResetLogFile(          HANDLE hLog);
   HANDLE            CreateLogFile(                 LPCWSTR pszLogFileName, ACCESS_MASK fDesiredAccess, DWORD dwShareMode, LPSECURITY_ATTRIBUTES psaLogFile, ULONG fCreateDisposition, ULONG fFlagsAndAttributes);
@@ -88,8 +88,8 @@ ffi.cdef [[
   BOOL              FlushLogBuffers(               PVOID pvMarshal, LPOVERLAPPED pOverlapped);
   BOOL              FlushLogToLsn(                 PVOID pvMarshalContext, PCLFS_LSN plsnFlush, PCLFS_LSN plsnLastFlushed, LPOVERLAPPED pOverlapped);
   BOOL              FreeReservedLog(               PVOID pvMarshal, ULONG cReservedRecords, PLONGLONG pcbAdjustment);
-  BOOL              ReserveAndAppendLog(           PVOID pvMarshal, PCLFS_WRITE_ENTRY rgWriteEntries, ULONG cWriteEntries, PCLFS_LSN plsnUndoNext, PCLFS_LSN plsnPrevious, ULONG cReserveRecords, LONGLONG [] rgcbReservation, ULONG fFlags, PCLFS_LSN plsn, LPOVERLAPPED pOverlapped);
-  BOOL              ReserveAndAppendLogAligned(    PVOID pvMarshal, PCLFS_WRITE_ENTRY rgWriteEntries, ULONG cWriteEntries, ULONG cbEntryAlignment, PCLFS_LSN plsnUndoNext, PCLFS_LSN plsnPrevious, ULONG cReserveRecords, LONGLONG [] rgcbReservation, ULONG fFlags, PCLFS_LSN plsn, LPOVERLAPPED overlapped);
+  BOOL              ReserveAndAppendLog(           PVOID pvMarshal, PCLFS_WRITE_ENTRY rgWriteEntries, ULONG cWriteEntries, PCLFS_LSN plsnUndoNext, PCLFS_LSN plsnPrevious, ULONG cReserveRecords, LONGLONG * rgcbReservation, ULONG fFlags, PCLFS_LSN plsn, LPOVERLAPPED pOverlapped);
+  BOOL              ReserveAndAppendLogAligned(    PVOID pvMarshal, PCLFS_WRITE_ENTRY rgWriteEntries, ULONG cWriteEntries, ULONG cbEntryAlignment, PCLFS_LSN plsnUndoNext, PCLFS_LSN plsnPrevious, ULONG cReserveRecords, LONGLONG * rgcbReservation, ULONG fFlags, PCLFS_LSN plsn, LPOVERLAPPED overlapped);
   BOOL              GetLogFileInformation(         HANDLE hLog, PCLFS_INFORMATION pinfoBuffer, PULONG cbBuffer);
   BOOL              GetLogIoStatistics(            HANDLE hLog, PVOID pvStatsBuffer, ULONG cbStatsBuffer, CLFS_IOSTATS_CLASS eStatsClass, PULONG pcbStatsWritten);
   BOOL              ReadLogRecord(                 PVOID pvMarshal, PCLFS_LSN plsnFirst, CLFS_CONTEXT_MODE eContextMode, PVOID* ppvReadBuffer, PULONG pcbReadBuffer, PCLFS_RECORD_TYPE peRecordType, PCLFS_LSN plsnUndoNext, PCLFS_LSN plsnPrevious, PVOID* ppvReadContext, LPOVERLAPPED pOverlapped);
@@ -108,7 +108,7 @@ ffi.cdef [[
   BOOL              ReadLogRestartArea(            PVOID pvMarshal, PVOID* ppvRestartBuffer, PULONG pcbRestartBuffer, PCLFS_LSN plsn, PVOID* ppvContext, LPOVERLAPPED pOverlapped);
   BOOL              ReadPreviousLogRestartArea(    PVOID pvReadContext, PVOID* ppvRestartBuffer, PULONG pcbRestartBuffer, PCLFS_LSN plsnRestart, LPOVERLAPPED pOverlapped);
   BOOL              WriteLogRestartArea(           PVOID pvMarshal, PVOID pvRestartBuffer, ULONG cbRestartBuffer, PCLFS_LSN plsnBase, ULONG fFlags, PULONG pcbWritten, PCLFS_LSN plsnNext, LPOVERLAPPED pOverlapped);
-  BOOL              GetNextLogArchiveExtent(       CLFS_LOG_ARCHIVE_CONTEXT pvArchiveContext, CLFS_ARCHIVE_DESCRIPTOR [] rgadExtent, ULONG cDescriptors, PULONG pcDescriptorsReturned);
+  BOOL              GetNextLogArchiveExtent(       CLFS_LOG_ARCHIVE_CONTEXT pvArchiveContext, CLFS_ARCHIVE_DESCRIPTOR * rgadExtent, ULONG cDescriptors, PULONG pcDescriptorsReturned);
   BOOL              PrepareLogArchive(             HANDLE hLog, PWSTR pszBaseLogFileName, ULONG cLen, PCLFS_LSN plsnLow, PCLFS_LSN plsnHigh, PULONG pcActualLength, PULONGLONG poffBaseLogFileData, PULONGLONG pcbBaseLogFileLength, PCLFS_LSN plsnBase, PCLFS_LSN plsnLast, PCLFS_LSN plsnCurrentArchiveTail, PCLFS_LOG_ARCHIVE_CONTEXT ppvArchiveContext);
   BOOL              ReadLogArchiveMetadata(        CLFS_LOG_ARCHIVE_CONTEXT pvArchiveContext, ULONG cbOffset, ULONG cbBytesToRead, PBYTE pbReadBuffer, PULONG pcbBytesRead);
   BOOL              SetLogArchiveMode(             HANDLE hLog, CLFS_LOG_ARCHIVE_MODE eMode);

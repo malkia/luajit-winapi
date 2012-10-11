@@ -23,31 +23,31 @@ ffi.cdef [[
   static const HTTP_DATA_CHUNK_TYPE HttpDataChunkFromFileHandle = 1;
   static const HTTP_DATA_CHUNK_TYPE HttpDataChunkFromFragmentCache = 2;
   static const HTTP_DATA_CHUNK_TYPE HttpDataChunkFromFragmentCacheEx = 3;
-  typedef struct HTTP_DATA_CHUNK_u_s1 {
+  typedef struct WINAPI_HTTP_DATA_CHUNK_u_s1 {
     PVOID pBuffer;
     ULONG BufferLength;
-  } HTTP_DATA_CHUNK_u_s1;
-  typedef struct HTTP_DATA_CHUNK_u_s2 {
+  } WINAPI_HTTP_DATA_CHUNK_u_s1;
+  typedef struct WINAPI_HTTP_DATA_CHUNK_u_s2 {
     HTTP_BYTE_RANGE ByteRange;
     HANDLE FileHandle;
-  } HTTP_DATA_CHUNK_u_s2;
-  typedef struct HTTP_DATA_CHUNK_u_s3 {
+  } WINAPI_HTTP_DATA_CHUNK_u_s2;
+  typedef struct WINAPI_HTTP_DATA_CHUNK_u_s3 {
     USHORT FragmentNameLength;
     PCWSTR pFragmentName;
-  } HTTP_DATA_CHUNK_u_s3;
-  typedef struct HTTP_DATA_CHUNK_u_s4 {
+  } WINAPI_HTTP_DATA_CHUNK_u_s3;
+  typedef struct WINAPI_HTTP_DATA_CHUNK_u_s4 {
     HTTP_BYTE_RANGE ByteRange;
     PCWSTR pFragmentName;
-  } HTTP_DATA_CHUNK_u_s4;
-  typedef union HTTP_DATA_CHUNK_u {
-    HTTP_DATA_CHUNK_u_s1 FromMemory;
-    HTTP_DATA_CHUNK_u_s2 FromFileHandle;
-    HTTP_DATA_CHUNK_u_s3 FromFragmentCache;
-    HTTP_DATA_CHUNK_u_s4 FromFragmentCacheEx;
-  } HTTP_DATA_CHUNK_u;
+  } WINAPI_HTTP_DATA_CHUNK_u_s4;
+  typedef union WINAPI_HTTP_DATA_CHUNK_u {
+    WINAPI_HTTP_DATA_CHUNK_u_s1 FromMemory;
+    WINAPI_HTTP_DATA_CHUNK_u_s2 FromFileHandle;
+    WINAPI_HTTP_DATA_CHUNK_u_s3 FromFragmentCache;
+    WINAPI_HTTP_DATA_CHUNK_u_s4 FromFragmentCacheEx;
+  } WINAPI_HTTP_DATA_CHUNK_u;
   typedef struct HTTP_DATA_CHUNK {
     HTTP_DATA_CHUNK_TYPE DataChunkType;
-    HTTP_DATA_CHUNK_u ;
+    WINAPI_HTTP_DATA_CHUNK_u ;
   } HTTP_DATA_CHUNK;
   typedef HTTP_DATA_CHUNK *PHTTP_DATA_CHUNK; //Pointer
   typedef UINT HTTP_CACHE_POLICY_TYPE; //Alias
@@ -82,8 +82,8 @@ ffi.cdef [[
   static const HTTP_SERVER_PROPERTY HttpServerBindingProperty = 7;
   static const HTTP_SERVER_PROPERTY HttpServerExtendedAuthenticationProperty = 8;
   static const HTTP_SERVER_PROPERTY HttpServerListenEndpointProperty = 9;
-  typedef ULONG HttpInitializeFlags; //Alias
-  typedef ULONG HTTP_REQUEST_FLAG; //Alias
+  typedef ULONG WINAPI_HttpInitializeFlags; //Alias
+  typedef ULONG WINAPI_HTTP_REQUEST_FLAG; //Alias
   typedef struct HTTP_VERSION {
     USHORT MajorVersion;
     USHORT MinorVersion;
@@ -144,7 +144,7 @@ ffi.cdef [[
     HTTP_KNOWN_HEADER KnownHeaders[HttpHeaderRequestMaximum];
   } HTTP_REQUEST_HEADERS;
   typedef struct HTTP_SSL_CLIENT_CERT_INFO {
-    CERT_TRUST_Error CertFlags;
+    WINAPI_CERT_TRUST_Error CertFlags;
     ULONG CertEncodedSize;
     PUCHAR pCertEncoded;
     HANDLE Token;
@@ -163,7 +163,7 @@ ffi.cdef [[
   } HTTP_SSL_INFO;
   typedef HTTP_SSL_INFO *PHTTP_SSL_INFO; //Pointer
   typedef struct HTTP_REQUEST_V1 {
-    HTTP_REQUEST_FLAG Flags;
+    WINAPI_HTTP_REQUEST_FLAG Flags;
     HTTP_CONNECTION_ID ConnectionId;
     HTTP_REQUEST_ID RequestId;
     HTTP_URL_CONTEXT UrlContext;
@@ -197,7 +197,7 @@ ffi.cdef [[
     PHTTP_REQUEST_INFO pRequestInfo;
   } HTTP_REQUEST;
   typedef HTTP_REQUEST *PHTTP_REQUEST; //Pointer
-  typedef ULONG HTTP_RESPONSE_FLAG; //Alias
+  typedef ULONG WINAPI_HTTP_RESPONSE_FLAG; //Alias
   typedef struct HTTP_RESPONSE_HEADERS {
     USHORT UnknownHeaderCount;
     PHTTP_UNKNOWN_HEADER pUnknownHeaders;
@@ -206,7 +206,7 @@ ffi.cdef [[
     HTTP_KNOWN_HEADER KnownHeaders[HttpHeaderResponseMaximum];
   } HTTP_RESPONSE_HEADERS;
   typedef struct HTTP_RESPONSE_V1 {
-    HTTP_RESPONSE_FLAG Flags;
+    WINAPI_HTTP_RESPONSE_FLAG Flags;
     HTTP_VERSION Version;
     USHORT StatusCode;
     USHORT ReasonLength;
@@ -233,8 +233,8 @@ ffi.cdef [[
   } HTTP_RESPONSE;
   typedef HTTP_RESPONSE *PHTTP_RESPONSE; //Pointer
   ULONG HttpCreateHttpHandle(           PHANDLE pReqQueueHandle, ULONG Reserved);
-  ULONG HttpInitialize(                 HTTPAPI_VERSION Version, HttpInitializeFlags Flags, PVOID pReserved);
-  ULONG HttpTerminate(                  HttpInitializeFlags Flags, PVOID pReserved);
+  ULONG HttpInitialize(                 HTTPAPI_VERSION Version, WINAPI_HttpInitializeFlags Flags, PVOID pReserved);
+  ULONG HttpTerminate(                  WINAPI_HttpInitializeFlags Flags, PVOID pReserved);
   ULONG HttpAddFragmentToCache(         HANDLE ReqQueueHandle, PCWSTR pUrlPrefix, PHTTP_DATA_CHUNK pDataChunk, PHTTP_CACHE_POLICY pCachePolicy, LPOVERLAPPED pOverlapped);
   ULONG HttpFlushResponseCache(         HANDLE ReqQueueHandle, PCWSTR pUrlPrefix, ULONG Flags, LPOVERLAPPED pOverlapped);
   ULONG HttpReadFragmentFromCache(      HANDLE ReqQueueHandle, PCWSTR pUrlPrefix, PHTTP_BYTE_RANGE pByteRange, PVOID pBuffer, ULONG BufferLength, PULONG pBytesRead, LPOVERLAPPED pOverlapped);

@@ -49,5 +49,5 @@ ffi.cdef [[
     ULONG_PTR Flags;
   } PSAPI_WS_WATCH_INFORMATION_EX;
   typedef PSAPI_WS_WATCH_INFORMATION_EX *PPSAPI_WS_WATCH_INFORMATION_EX; //Pointer
-  typedef DWORD CreateProcessFlags; //Alias
+  typedef DWORD WINAPI_CreateProcessFlags; //Alias
 ]]

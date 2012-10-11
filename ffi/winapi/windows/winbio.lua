@@ -34,19 +34,19 @@ ffi.cdef [[
   static const WINBIO_IDENTITY_TYPE WINBIO_ID_TYPE_WILDCARD = 1;
   static const WINBIO_IDENTITY_TYPE WINBIO_ID_TYPE_GUID = 2;
   static const WINBIO_IDENTITY_TYPE WINBIO_ID_TYPE_SID = 3;
-  typedef struct WINBIO_IDENTITY_u_s {
+  typedef struct WINAPI_WINBIO_IDENTITY_u_s {
     ULONG Size;
     UCHAR Data[SECURITY_MAX_SID_SIZE];
-  } WINBIO_IDENTITY_u_s;
-  typedef union WINBIO_IDENTITY_u {
+  } WINAPI_WINBIO_IDENTITY_u_s;
+  typedef union WINAPI_WINBIO_IDENTITY_u {
     ULONG Null;
     ULONG Wildcard;
     GUID TemplateGuid;
-    WINBIO_IDENTITY_u_s AccountSid;
-  } WINBIO_IDENTITY_u;
+    WINAPI_WINBIO_IDENTITY_u_s AccountSid;
+  } WINAPI_WINBIO_IDENTITY_u;
   typedef struct WINBIO_IDENTITY {
     WINBIO_IDENTITY_TYPE Type;
-    WINBIO_IDENTITY_u Value;
+    WINAPI_WINBIO_IDENTITY_u Value;
   } WINBIO_IDENTITY;
   typedef ULONG WINBIO_CAPABILITIES; //Alias
   typedef struct WINBIO_UNIT_SCHEMA {
@@ -62,12 +62,12 @@ ffi.cdef [[
     WINBIO_STRING SerialNumber;
     WINBIO_VERSION FirmwareVersion;
   } WINBIO_UNIT_SCHEMA;
-  typedef ULONG WINBIO_DATABASE_ATTRIBUTES; //Alias
+  typedef ULONG WINAPI_WINBIO_DATABASE_ATTRIBUTES; //Alias
   typedef struct WINBIO_STORAGE_SCHEMA {
     WINBIO_BIOMETRIC_TYPE BiometricFactor;
     WINBIO_UUID DatabaseId;
     WINBIO_UUID DataFormat;
-    WINBIO_DATABASE_ATTRIBUTES Attributes;
+    WINAPI_WINBIO_DATABASE_ATTRIBUTES Attributes;
     WINBIO_STRING FilePath;
     WINBIO_STRING ConnectionString;
   } WINBIO_STORAGE_SCHEMA;

@@ -12,12 +12,12 @@ ffi.cdef [[
     COLOR16 Alpha;
   } TRIVERTEX;
   typedef TRIVERTEX *PTRIVERTEX; //Pointer
-  typedef ULONG GradientFillMode; //Alias
-  static const GradientFillMode GRADIENT_FILL_RECT_H = 0x00000000;
-  static const GradientFillMode GRADIENT_FILL_RECT_V = 0x00000001;
-  static const GradientFillMode GRADIENT_FILL_TRIANGLE = 0x00000002;
+  typedef ULONG WINAPI_GradientFillMode; //Alias
+  static const WINAPI_GradientFillMode GRADIENT_FILL_RECT_H = 0x00000000;
+  static const WINAPI_GradientFillMode GRADIENT_FILL_RECT_V = 0x00000001;
+  static const WINAPI_GradientFillMode GRADIENT_FILL_TRIANGLE = 0x00000002;
   BOOL AlphaBlend(     HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);
-  BOOL GradientFill(   HDC hdc, PTRIVERTEX pVertex, ULONG nVertex, PVOID pMesh, ULONG nMesh, GradientFillMode ulMode);
+  BOOL GradientFill(   HDC hdc, PTRIVERTEX pVertex, ULONG nVertex, PVOID pMesh, ULONG nMesh, WINAPI_GradientFillMode ulMode);
   BOOL TransparentBlt( HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, UINT crTransparent);
 ]]
 ffi.load( 'Msimg32.dll' )

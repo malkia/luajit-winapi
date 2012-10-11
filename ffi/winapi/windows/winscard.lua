@@ -1,12 +1,12 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef DWORD SCARD_STATE; //Alias
+  typedef DWORD WINAPI_SCARD_STATE; //Alias
   typedef struct SCARD_READERSTATE {
     LPCTSTR szReader;
     LPVOID pvUserData;
-    SCARD_STATE dwCurrentState;
-    SCARD_STATE dwEventState;
+    WINAPI_SCARD_STATE dwCurrentState;
+    WINAPI_SCARD_STATE dwEventState;
     DWORD cbAtr;
     BYTE rgbAtr[36];
   } SCARD_READERSTATE;
@@ -23,10 +23,10 @@ ffi.cdef [[
   } SCARD_IO_REQUEST;
   typedef SCARD_IO_REQUEST *LPSCARD_IO_REQUEST; //Pointer
   typedef SCARD_IO_REQUEST *LPCSCARD_IO_REQUEST; //Pointer
-  typedef DWORD SCardScope; //Alias
-  static const SCardScope SCARD_SCOPE_USER = 0;
-  static const SCardScope SCARD_SCOPE_TERMINAL = 1;
-  static const SCardScope SCARD_SCOPE_SYSTEM = 2;
+  typedef DWORD WINAPI_SCardScope; //Alias
+  static const WINAPI_SCardScope SCARD_SCOPE_USER = 0;
+  static const WINAPI_SCardScope SCARD_SCOPE_TERMINAL = 1;
+  static const WINAPI_SCardScope SCARD_SCOPE_SYSTEM = 2;
   HANDLE SCardAccessStartedEvent(      );
   LONG   SCardAddReaderToGroup(        SCARDCONTEXT hContext, LPCTSTR szReaderName, LPCTSTR szGroupName);
   LONG   SCardBeginTransaction(        SCARDHANDLE hCard);
@@ -35,7 +35,7 @@ ffi.cdef [[
   LONG   SCardControl(                 SCARDHANDLE hCard, DWORD dwControlCode, LPCVOID lpInBuffer, DWORD nInBufferSize, LPVOID lpOutBuffer, DWORD nOutBufferSize, LPDWORD lpBytesReturned);
   LONG   SCardDisconnect(              SCARDHANDLE hCard, DWORD dwDisposition);
   LONG   SCardEndTransaction(          SCARDHANDLE hCard, DWORD dwDisposition);
-  LONG   SCardEstablishContext(        SCardScope dwScope, LPCVOID pvReserved1, LPCVOID pvReserved2, LPSCARDCONTEXT phContext);
+  LONG   SCardEstablishContext(        WINAPI_SCardScope dwScope, LPCVOID pvReserved1, LPCVOID pvReserved2, LPSCARDCONTEXT phContext);
   LONG   SCardForgetCardType(          SCARDCONTEXT hContext, LPCTSTR szCardName);
   LONG   SCardForgetReader(            SCARDCONTEXT hContext, LPCTSTR szReaderName);
   LONG   SCardForgetReaderGroup(       SCARDCONTEXT hContext, LPCTSTR szGroupName);

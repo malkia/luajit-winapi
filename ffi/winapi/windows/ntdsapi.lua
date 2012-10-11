@@ -2,12 +2,12 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/rpc' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef DWORD ScheduleType; //Alias
-  static const ScheduleType SCHEDULE_INTERVAL = 0;
-  static const ScheduleType SCHEDULE_BANDWIDTH = 1;
-  static const ScheduleType SCHEDULE_PRIORITY = 2;
+  typedef DWORD WINAPI_ScheduleType; //Alias
+  static const WINAPI_ScheduleType SCHEDULE_INTERVAL = 0;
+  static const WINAPI_ScheduleType SCHEDULE_BANDWIDTH = 1;
+  static const WINAPI_ScheduleType SCHEDULE_PRIORITY = 2;
   typedef struct SCHEDULE_HEADER {
-    ScheduleType Type;
+    WINAPI_ScheduleType Type;
     ULONG Offset;
   } SCHEDULE_HEADER;
   typedef struct SCHEDULE {

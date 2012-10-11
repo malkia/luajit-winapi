@@ -30,11 +30,11 @@ ffi.cdef [[
     BYTE rgbRed;
     BYTE rgbReserved;
   } RGBQUAD;
-  typedef DWORD RegionType; //Alias
-  static const RegionType RDH_RECTANGLES = 1;
+  typedef DWORD WINAPI_RegionType; //Alias
+  static const WINAPI_RegionType RDH_RECTANGLES = 1;
   typedef struct RGNDATAHEADER {
     DWORD dwSize;
-    RegionType iType;
+    WINAPI_RegionType iType;
     DWORD nCount;
     DWORD nRgnSize;
     RECT rcBound;
@@ -54,97 +54,97 @@ ffi.cdef [[
   typedef SIZE* PSIZE; //Alias
   typedef SIZE SIZEL; //Alias
   typedef SIZEL *LPSIZEL; //Pointer
-  typedef DWORD ChooseColorFlags; //Alias
+  typedef DWORD WINAPI_ChooseColorFlags; //Alias
   typedef struct CHOOSECOLOR {
     DWORD lStructSize;
     HWND hwndOwner;
     HWND hInstance;
     COLORREF rgbResult;
     COLORREF* lpCustColors;
-    ChooseColorFlags Flags;
+    WINAPI_ChooseColorFlags Flags;
     LPARAM lCustData;
     LPCCHOOKPROC lpfnHook;
     LPCTSTR lpTemplateName;
   } CHOOSECOLOR;
   typedef CHOOSECOLOR *LPCHOOSECOLOR; //Pointer
-  typedef DWORD ChoooseFontFlags; //Alias
-  typedef WORD FontType; //Alias
-  typedef LONG FontWeight; //Alias
-  static const FontWeight FW_DONTCARE = 0;
-  static const FontWeight FW_THIN = 100;
-  static const FontWeight FW_EXTRALIGHT = 200;
-  static const FontWeight FW_LIGHT = 300;
-  static const FontWeight FW_NORMAL = 400;
-  static const FontWeight FW_MEDIUM = 500;
-  static const FontWeight FW_SEMIBOLD = 600;
-  static const FontWeight FW_BOLD = 700;
-  static const FontWeight FW_EXTRABOLD = 800;
-  static const FontWeight FW_HEAVY = 900;
-  typedef BYTE FontCharset; //Alias
-  static const FontCharset ANSI_CHARSET = 0;
-  static const FontCharset DEFAULT_CHARSET = 1;
-  static const FontCharset SYMBOL_CHARSET = 2;
-  static const FontCharset SHIFTJIS_CHARSET = 128;
-  static const FontCharset HANGEUL_CHARSET = 129;
-  static const FontCharset HANGUL_CHARSET = 129;
-  static const FontCharset GB2312_CHARSET = 134;
-  static const FontCharset CHINESEBIG5_CHARSET = 136;
-  static const FontCharset OEM_CHARSET = 255;
-  static const FontCharset JOHAB_CHARSET = 130;
-  static const FontCharset HEBREW_CHARSET = 177;
-  static const FontCharset ARABIC_CHARSET = 178;
-  static const FontCharset GREEK_CHARSET = 161;
-  static const FontCharset TURKISH_CHARSET = 162;
-  static const FontCharset VIETNAMESE_CHARSET = 163;
-  static const FontCharset THAI_CHARSET = 222;
-  static const FontCharset EASTEUROPE_CHARSET = 238;
-  static const FontCharset RUSSIAN_CHARSET = 204;
-  static const FontCharset MAC_CHARSET = 77;
-  static const FontCharset BALTIC_CHARSET = 186;
-  typedef BYTE FontOutputPrecision; //Alias
-  static const FontOutputPrecision OUT_DEFAULT_PRECIS = 0;
-  static const FontOutputPrecision OUT_STRING_PRECIS = 1;
-  static const FontOutputPrecision OUT_CHARACTER_PRECIS = 2;
-  static const FontOutputPrecision OUT_STROKE_PRECIS = 3;
-  static const FontOutputPrecision OUT_TT_PRECIS = 4;
-  static const FontOutputPrecision OUT_DEVICE_PRECIS = 5;
-  static const FontOutputPrecision OUT_RASTER_PRECIS = 6;
-  static const FontOutputPrecision OUT_TT_ONLY_PRECIS = 7;
-  static const FontOutputPrecision OUT_OUTLINE_PRECIS = 8;
-  static const FontOutputPrecision OUT_SCREEN_OUTLINE_PRECIS = 9;
-  static const FontOutputPrecision OUT_PS_ONLY_PRECIS = 10;
-  typedef BYTE FontClipPrecision; //Alias
-  static const FontClipPrecision CLIP_DEFAULT_PRECIS = 0;
-  static const FontClipPrecision CLIP_CHARACTER_PRECIS = 1;
-  static const FontClipPrecision CLIP_STROKE_PRECIS = 2;
-  static const FontClipPrecision CLIP_MASK = 0xf;
-  static const FontClipPrecision CLIP_LH_ANGLES = 0x10;
-  static const FontClipPrecision CLIP_TT_ALWAYS = 0x20;
-  static const FontClipPrecision CLIP_DFA_DISABLE = 0x40;
-  static const FontClipPrecision CLIP_EMBEDDED = 0x80;
-  typedef BYTE FontQuality; //Alias
-  static const FontQuality DEFAULT_QUALITY = 0;
-  static const FontQuality DRAFT_QUALITY = 1;
-  static const FontQuality PROOF_QUALITY = 2;
-  static const FontQuality NONANTIALIASED_QUALITY = 3;
-  static const FontQuality ANTIALIASED_QUALITY = 4;
-  static const FontQuality CLEARTYPE_QUALITY = 5;
-  static const FontQuality CLEARTYPE_NATURAL_QUALITY = 6;
-  typedef BYTE FontPitchAndFamily; //Alias
+  typedef DWORD WINAPI_ChoooseFontFlags; //Alias
+  typedef WORD WINAPI_FontType; //Alias
+  typedef LONG WINAPI_FontWeight; //Alias
+  static const WINAPI_FontWeight FW_DONTCARE = 0;
+  static const WINAPI_FontWeight FW_THIN = 100;
+  static const WINAPI_FontWeight FW_EXTRALIGHT = 200;
+  static const WINAPI_FontWeight FW_LIGHT = 300;
+  static const WINAPI_FontWeight FW_NORMAL = 400;
+  static const WINAPI_FontWeight FW_MEDIUM = 500;
+  static const WINAPI_FontWeight FW_SEMIBOLD = 600;
+  static const WINAPI_FontWeight FW_BOLD = 700;
+  static const WINAPI_FontWeight FW_EXTRABOLD = 800;
+  static const WINAPI_FontWeight FW_HEAVY = 900;
+  typedef BYTE WINAPI_FontCharset; //Alias
+  static const WINAPI_FontCharset ANSI_CHARSET = 0;
+  static const WINAPI_FontCharset DEFAULT_CHARSET = 1;
+  static const WINAPI_FontCharset SYMBOL_CHARSET = 2;
+  static const WINAPI_FontCharset SHIFTJIS_CHARSET = 128;
+  static const WINAPI_FontCharset HANGEUL_CHARSET = 129;
+  static const WINAPI_FontCharset HANGUL_CHARSET = 129;
+  static const WINAPI_FontCharset GB2312_CHARSET = 134;
+  static const WINAPI_FontCharset CHINESEBIG5_CHARSET = 136;
+  static const WINAPI_FontCharset OEM_CHARSET = 255;
+  static const WINAPI_FontCharset JOHAB_CHARSET = 130;
+  static const WINAPI_FontCharset HEBREW_CHARSET = 177;
+  static const WINAPI_FontCharset ARABIC_CHARSET = 178;
+  static const WINAPI_FontCharset GREEK_CHARSET = 161;
+  static const WINAPI_FontCharset TURKISH_CHARSET = 162;
+  static const WINAPI_FontCharset VIETNAMESE_CHARSET = 163;
+  static const WINAPI_FontCharset THAI_CHARSET = 222;
+  static const WINAPI_FontCharset EASTEUROPE_CHARSET = 238;
+  static const WINAPI_FontCharset RUSSIAN_CHARSET = 204;
+  static const WINAPI_FontCharset MAC_CHARSET = 77;
+  static const WINAPI_FontCharset BALTIC_CHARSET = 186;
+  typedef BYTE WINAPI_FontOutputPrecision; //Alias
+  static const WINAPI_FontOutputPrecision OUT_DEFAULT_PRECIS = 0;
+  static const WINAPI_FontOutputPrecision OUT_STRING_PRECIS = 1;
+  static const WINAPI_FontOutputPrecision OUT_CHARACTER_PRECIS = 2;
+  static const WINAPI_FontOutputPrecision OUT_STROKE_PRECIS = 3;
+  static const WINAPI_FontOutputPrecision OUT_TT_PRECIS = 4;
+  static const WINAPI_FontOutputPrecision OUT_DEVICE_PRECIS = 5;
+  static const WINAPI_FontOutputPrecision OUT_RASTER_PRECIS = 6;
+  static const WINAPI_FontOutputPrecision OUT_TT_ONLY_PRECIS = 7;
+  static const WINAPI_FontOutputPrecision OUT_OUTLINE_PRECIS = 8;
+  static const WINAPI_FontOutputPrecision OUT_SCREEN_OUTLINE_PRECIS = 9;
+  static const WINAPI_FontOutputPrecision OUT_PS_ONLY_PRECIS = 10;
+  typedef BYTE WINAPI_FontClipPrecision; //Alias
+  static const WINAPI_FontClipPrecision CLIP_DEFAULT_PRECIS = 0;
+  static const WINAPI_FontClipPrecision CLIP_CHARACTER_PRECIS = 1;
+  static const WINAPI_FontClipPrecision CLIP_STROKE_PRECIS = 2;
+  static const WINAPI_FontClipPrecision CLIP_MASK = 0xf;
+  static const WINAPI_FontClipPrecision CLIP_LH_ANGLES = 0x10;
+  static const WINAPI_FontClipPrecision CLIP_TT_ALWAYS = 0x20;
+  static const WINAPI_FontClipPrecision CLIP_DFA_DISABLE = 0x40;
+  static const WINAPI_FontClipPrecision CLIP_EMBEDDED = 0x80;
+  typedef BYTE WINAPI_FontQuality; //Alias
+  static const WINAPI_FontQuality DEFAULT_QUALITY = 0;
+  static const WINAPI_FontQuality DRAFT_QUALITY = 1;
+  static const WINAPI_FontQuality PROOF_QUALITY = 2;
+  static const WINAPI_FontQuality NONANTIALIASED_QUALITY = 3;
+  static const WINAPI_FontQuality ANTIALIASED_QUALITY = 4;
+  static const WINAPI_FontQuality CLEARTYPE_QUALITY = 5;
+  static const WINAPI_FontQuality CLEARTYPE_NATURAL_QUALITY = 6;
+  typedef BYTE WINAPI_FontPitchAndFamily; //Alias
   typedef struct LOGFONT {
     LONG lfHeight;
     LONG lfWidth;
     LONG lfEscapement;
     LONG lfOrientation;
-    FontWeight lfWeight;
+    WINAPI_FontWeight lfWeight;
     BYTE lfItalic;
     BYTE lfUnderline;
     BYTE lfStrikeOut;
-    FontCharset lfCharSet;
-    FontOutputPrecision lfOutPrecision;
-    FontClipPrecision lfClipPrecision;
-    FontQuality lfQuality;
-    FontPitchAndFamily lfPitchAndFamily;
+    WINAPI_FontCharset lfCharSet;
+    WINAPI_FontOutputPrecision lfOutPrecision;
+    WINAPI_FontClipPrecision lfClipPrecision;
+    WINAPI_FontQuality lfQuality;
+    WINAPI_FontPitchAndFamily lfPitchAndFamily;
     TCHAR lfFaceName[LF_FACESIZE];
   } LOGFONT;
   typedef LOGFONT *LPLOGFONT; //Pointer
@@ -153,15 +153,15 @@ ffi.cdef [[
     LONG lfWidth;
     LONG lfEscapement;
     LONG lfOrientation;
-    FontWeight lfWeight;
+    WINAPI_FontWeight lfWeight;
     BYTE lfItalic;
     BYTE lfUnderline;
     BYTE lfStrikeOut;
-    FontCharset lfCharSet;
-    FontOutputPrecision lfOutPrecision;
-    FontClipPrecision lfClipPrecision;
-    FontQuality lfQuality;
-    FontPitchAndFamily lfPitchAndFamily;
+    WINAPI_FontCharset lfCharSet;
+    WINAPI_FontOutputPrecision lfOutPrecision;
+    WINAPI_FontClipPrecision lfClipPrecision;
+    WINAPI_FontQuality lfQuality;
+    WINAPI_FontPitchAndFamily lfPitchAndFamily;
     WCHAR lfFaceName[LF_FACESIZE];
   } LOGFONTW;
   typedef struct CHOOSEFONT {
@@ -170,25 +170,25 @@ ffi.cdef [[
     HDC hDC;
     LPLOGFONT lpLogFont;
     INT iPointSize;
-    ChoooseFontFlags Flags;
+    WINAPI_ChoooseFontFlags Flags;
     COLORREF rgbColors;
     LPARAM lCustData;
     LPCFHOOKPROC lpfnHook;
     LPCTSTR lpTemplateName;
     HINSTANCE hInstance;
     LPTSTR lpszStyle;
-    FontType nFontType;
+    WINAPI_FontType nFontType;
     WORD ___MISSING_ALIGNMENT__;
     INT nSizeMin;
     INT nSizeMax;
   } CHOOSEFONT;
   typedef CHOOSEFONT *LPCHOOSEFONT; //Pointer
-  typedef DWORD FindReplaceFlags; //Alias
+  typedef DWORD WINAPI_FindReplaceFlags; //Alias
   typedef struct FINDREPLACE {
     DWORD lStructSize;
     HWND hwndOwner;
     HINSTANCE hInstance;
-    FindReplaceFlags Flags;
+    WINAPI_FindReplaceFlags Flags;
     LPTSTR lpstrFindWhat;
     LPTSTR lpstrReplaceWith;
     WORD wFindWhatLen;
@@ -198,8 +198,8 @@ ffi.cdef [[
     LPCTSTR lpTemplateName;
   } FINDREPLACE;
   typedef FINDREPLACE *LPFINDREPLACE; //Pointer
-  typedef DWORD OfnFlags; //Alias
-  typedef DWORD OfnFlagsEx; //Alias
+  typedef DWORD WINAPI_OfnFlags; //Alias
+  typedef DWORD WINAPI_OfnFlagsEx; //Alias
   typedef struct OPENFILENAME {
     DWORD lStructSize;
     HWND hwndOwner;
@@ -214,7 +214,7 @@ ffi.cdef [[
     DWORD nMaxFileTitle;
     LPCTSTR lpstrInitialDir;
     LPCTSTR lpstrTitle;
-    OfnFlags Flags;
+    WINAPI_OfnFlags Flags;
     WORD nFileOffset;
     WORD nFileExtension;
     LPCTSTR lpstrDefExt;
@@ -223,16 +223,16 @@ ffi.cdef [[
     LPCTSTR lpTemplateName;
     void* pvReserved;
     DWORD dwReserved;
-    OfnFlagsEx FlagsEx;
+    WINAPI_OfnFlagsEx FlagsEx;
   } OPENFILENAME;
   typedef OPENFILENAME *LPOPENFILENAME; //Pointer
-  typedef DWORD PageSetupDialogFlags; //Alias
+  typedef DWORD WINAPI_PageSetupDialogFlags; //Alias
   typedef struct PAGESETUPDLG {
     DWORD lStructSize;
     HWND hwndOwner;
     HGLOBAL hDevMode;
     HGLOBAL hDevNames;
-    PageSetupDialogFlags Flags;
+    WINAPI_PageSetupDialogFlags Flags;
     POINT ptPaperSize;
     RECT rtMinMargin;
     RECT rtMargin;
@@ -244,14 +244,14 @@ ffi.cdef [[
     HGLOBAL hPageSetupTemplate;
   } PAGESETUPDLG;
   typedef PAGESETUPDLG *LPPAGESETUPDLG; //Pointer
-  typedef DWORD PrintDlgFlags; //Alias
+  typedef DWORD WINAPI_PrintDlgFlags; //Alias
   typedef struct PRINTDLG {
     DWORD lStructSize;
     HWND hwndOwner;
     HGLOBAL hDevMode;
     HGLOBAL hDevNames;
     HDC hDC;
-    PrintDlgFlags Flags;
+    WINAPI_PrintDlgFlags Flags;
     WORD nFromPage;
     WORD nToPage;
     WORD nMinPage;
@@ -278,7 +278,7 @@ ffi.cdef [[
     HGLOBAL hDevMode;
     HGLOBAL hDevNames;
     HDC hDC;
-    PrintDlgFlags Flags;
+    WINAPI_PrintDlgFlags Flags;
     DWORD Flags2;
     DWORD ExclusionFlags;
     DWORD nPageRanges;
@@ -304,18 +304,18 @@ ffi.cdef [[
     UINT uiLengthDrawn;
   } DRAWTEXTPARAMS;
   typedef DRAWTEXTPARAMS *LPDRAWTEXTPARAMS; //Pointer
-  typedef DWORD TRACKMOUSEEVENT_Flags; //Alias
+  typedef DWORD WINAPI_TRACKMOUSEEVENT_Flags; //Alias
   typedef struct TRACKMOUSEEVENT {
     DWORD cbSize;
-    TRACKMOUSEEVENT_Flags dwFlags;
+    WINAPI_TRACKMOUSEEVENT_Flags dwFlags;
     HWND hwndTrack;
     DWORD dwHoverTime;
   } TRACKMOUSEEVENT;
   typedef TRACKMOUSEEVENT *LPTRACKMOUSEEVENT; //Pointer
-  typedef UINT SCROLLINFO_Flags; //Alias
+  typedef UINT WINAPI_SCROLLINFO_Flags; //Alias
   typedef struct SCROLLINFO {
     UINT cbSize;
-    SCROLLINFO_Flags fMask;
+    WINAPI_SCROLLINFO_Flags fMask;
     int nMin;
     int nMax;
     UINT nPage;
@@ -355,7 +355,7 @@ ffi.cdef [[
     RGBQUAD bmiColors[1];
   } BITMAPINFO;
   typedef BITMAPINFO *LPBITMAPINFO; //Pointer
-  typedef BYTE TEXTMETRIC_Pitch; //Alias
+  typedef BYTE WINAPI_TEXTMETRIC_Pitch; //Alias
 # pragma pack( push, 4 )
   typedef struct TEXTMETRIC {
     LONG tmHeight;
@@ -376,12 +376,12 @@ ffi.cdef [[
     BYTE tmItalic;
     BYTE tmUnderlined;
     BYTE tmStruckOut;
-    TEXTMETRIC_Pitch tmPitchAndFamily;
-    FontCharset tmCharSet;
+    WINAPI_TEXTMETRIC_Pitch tmPitchAndFamily;
+    WINAPI_FontCharset tmCharSet;
   } TEXTMETRIC;
 # pragma pack( pop )
   typedef TEXTMETRIC *LPTEXTMETRIC; //Pointer
-  typedef DWORD MONITORINFO_Flags; //Alias
+  typedef DWORD WINAPI_MONITORINFO_Flags; //Alias
   typedef struct VIDEOINFOHEADER {
     RECT rcSource;
     RECT rcTarget;
@@ -390,20 +390,20 @@ ffi.cdef [[
     REFERENCE_TIME AvgTimePerFrame;
     BITMAPINFOHEADER bmiHeader;
   } VIDEOINFOHEADER;
-  typedef DWORD AMINTERLACE_FLAGS; //Alias
-  typedef DWORD AMCOPYPROTECT_FLAGS; //Alias
-  typedef DWORD AMCONTROL_FLAGS; //Alias
+  typedef DWORD WINAPI_AMINTERLACE_FLAGS; //Alias
+  typedef DWORD WINAPI_AMCOPYPROTECT_FLAGS; //Alias
+  typedef DWORD WINAPI_AMCONTROL_FLAGS; //Alias
   typedef struct VIDEOINFOHEADER2 {
     RECT rcSource;
     RECT rcTarget;
     DWORD dwBitRate;
     DWORD dwBitErrorRate;
     REFERENCE_TIME AvgTimePerFrame;
-    AMINTERLACE_FLAGS dwInterlaceFlags;
-    AMCOPYPROTECT_FLAGS dwCopyProtectFlags;
+    WINAPI_AMINTERLACE_FLAGS dwInterlaceFlags;
+    WINAPI_AMCOPYPROTECT_FLAGS dwCopyProtectFlags;
     DWORD dwPictAspectRatioX;
     DWORD dwPictAspectRatioY;
-    AMCONTROL_FLAGS dwControlFlags;
+    WINAPI_AMCONTROL_FLAGS dwControlFlags;
     DWORD dwReserved2;
     BITMAPINFOHEADER bmiHeader;
   } VIDEOINFOHEADER2;

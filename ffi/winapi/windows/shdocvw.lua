@@ -2,12 +2,12 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef void* IEnumPrivacyRecords; //Interface
-  typedef DWORD SOFTDIST_Flags; //Alias
-  typedef DWORD SOFTDIST_AdState; //Alias
+  typedef DWORD WINAPI_SOFTDIST_Flags; //Alias
+  typedef DWORD WINAPI_SOFTDIST_AdState; //Alias
   typedef struct SOFTDISTINFO {
     ULONG cbSize;
-    SOFTDIST_Flags dwFlags;
-    SOFTDIST_AdState dwAdState;
+    WINAPI_SOFTDIST_Flags dwFlags;
+    WINAPI_SOFTDIST_AdState dwAdState;
     LPWSTR szTitle;
     LPWSTR szAbstract;
     LPWSTR szHREF;

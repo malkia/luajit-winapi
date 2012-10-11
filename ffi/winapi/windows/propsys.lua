@@ -12,8 +12,8 @@ ffi.cdef [[
   HRESULT   PSCreateMemoryPropertyStore(                 REFIID riid, void** ppv);
   HRESULT   PSCreateMultiplexPropertyStore(              IUnknown** prgpunkStores, DWORD cStores, REFIID riid, void** ppv);
   HRESULT   PSCreatePropertyChangeArray(                 PROPERTYKEY* rgpropkey, PKA_FLAGS* rgflags, PROPVARIANT* rgpropvar, UINT cChanges, REFIID riid, void** ppv);
-  HRESULT   PSCreatePropertyStoreFromObject(             IUnknown* punk, STGM_FLAGS grfMode, REFIID riid, void** ppv);
-  HRESULT   PSCreatePropertyStoreFromPropertySetStorage( IPropertySetStorage* ppss, STGM_FLAGS grfMode, REFIID riid, void** ppv);
+  HRESULT   PSCreatePropertyStoreFromObject(             IUnknown* punk, WINAPI_STGM_FLAGS grfMode, REFIID riid, void** ppv);
+  HRESULT   PSCreatePropertyStoreFromPropertySetStorage( IPropertySetStorage* ppss, WINAPI_STGM_FLAGS grfMode, REFIID riid, void** ppv);
   HRESULT   PSCreateSimplePropertyChange(                PKA_FLAGS flags, REFPROPERTYKEY key, REFPROPVARIANT propvar, REFIID riid, void** ppv);
   PSSTDAPI  PSEnumeratePropertyDescriptions(             PROPDESC_ENUMFILTER filterOn, REFIID riid, void** ppv);
   HRESULT   PSFormatForDisplay(                          REFPROPERTYKEY propkey, REFPROPVARIANT propvar, PROPDESC_FORMAT_FLAGS pdfFlags, LPWSTR pwszText, DWORD cchText);

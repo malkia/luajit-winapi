@@ -242,19 +242,19 @@ ffi.cdef [[
     float dRate;
   } MFBYTESTREAM_BUFFERING_PARAMS;
   typedef DWORD MFCLOCK_RELATIONAL_FLAGS; //Alias
-  typedef DWORD MFCLOCK_JITTER; //Alias
-  static const MFCLOCK_JITTER MFCLOCK_FREQUENCY_HNS = 10000000;
-  static const MFCLOCK_JITTER MFCLOCK_TOLERANCE_UNKNOWN = 50000;
-  static const MFCLOCK_JITTER MFCLOCK_JITTER_ISR = 1000;
-  static const MFCLOCK_JITTER MFCLOCK_JITTER_DPC = 4000;
-  static const MFCLOCK_JITTER MFCLOCK_JITTER_PASSIVE = 10000;
+  typedef DWORD WINAPI_MFCLOCK_JITTER; //Alias
+  static const WINAPI_MFCLOCK_JITTER MFCLOCK_FREQUENCY_HNS = 10000000;
+  static const WINAPI_MFCLOCK_JITTER MFCLOCK_TOLERANCE_UNKNOWN = 50000;
+  static const WINAPI_MFCLOCK_JITTER MFCLOCK_JITTER_ISR = 1000;
+  static const WINAPI_MFCLOCK_JITTER MFCLOCK_JITTER_DPC = 4000;
+  static const WINAPI_MFCLOCK_JITTER MFCLOCK_JITTER_PASSIVE = 10000;
   typedef struct MFCLOCK_PROPERTIES {
     unsigned __int64 qwCorrelationRate;
     GUID guidClockId;
     MFCLOCK_RELATIONAL_FLAGS dwClockFlags;
     unsigned __int64 qwClockFrequency;
     DWORD dwClockTolerance;
-    MFCLOCK_JITTER dwClockJitter;
+    WINAPI_MFCLOCK_JITTER dwClockJitter;
   } MFCLOCK_PROPERTIES;
   typedef struct MFINPUTTRUSTAUTHORITY_ACCESS_ACTION {
     MFPOLICYMANAGER_ACTION Action;
@@ -425,16 +425,16 @@ ffi.cdef [[
   static const MFNETSOURCE_PROTOCOL_TYPE MFNETSOURCE_RTSP = 0x2;
   static const MFNETSOURCE_PROTOCOL_TYPE MFNETSOURCE_FILE = 0x3;
   static const MFNETSOURCE_PROTOCOL_TYPE MFNETSOURCE_MULTICAST = 0x4;
-  typedef union MFTOPONODE_ATTRIBUTE_UPDATE_u {
+  typedef union WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u {
     UINT32 u32;
     UINT64 u64;
     double d;
-  } MFTOPONODE_ATTRIBUTE_UPDATE_u;
+  } WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u;
   typedef struct MFTOPONODE_ATTRIBUTE_UPDATE {
     TOPOID NodeId;
     GUID guidAttributeKey;
     MF_ATTRIBUTE_TYPE attrType;
-    MFTOPONODE_ATTRIBUTE_UPDATE_u ;
+    WINAPI_MFTOPONODE_ATTRIBUTE_UPDATE_u ;
   } MFTOPONODE_ATTRIBUTE_UPDATE;
   typedef UINT32 MFP_CREATION_OPTIONS; //Alias
   typedef UINT MFVideoInterlaceMode; //Alias
@@ -654,18 +654,18 @@ ffi.cdef [[
     UINT UABProtectionLevel;
     UINT Reserved;
   } DXVA2_VideoDesc;
-  typedef DWORD DXVA2_BufferType; //Alias
-  static const DXVA2_BufferType DXVA2_PictureParametersBufferType = 0;
-  static const DXVA2_BufferType DXVA2_MacroBlockControlBufferType = 1;
-  static const DXVA2_BufferType DXVA2_ResidualDifferenceBufferType = 2;
-  static const DXVA2_BufferType DXVA2_DeblockingControlBufferType = 3;
-  static const DXVA2_BufferType DXVA2_InverseQuantizationMatrixBufferType = 4;
-  static const DXVA2_BufferType DXVA2_SliceControlBufferType = 5;
-  static const DXVA2_BufferType DXVA2_BitStreamDateBufferType = 6;
-  static const DXVA2_BufferType DXVA2_MotionVectorBuffer = 7;
-  static const DXVA2_BufferType DXVA2_FilmGrainBuffer = 8;
+  typedef DWORD WINAPI_DXVA2_BufferType; //Alias
+  static const WINAPI_DXVA2_BufferType DXVA2_PictureParametersBufferType = 0;
+  static const WINAPI_DXVA2_BufferType DXVA2_MacroBlockControlBufferType = 1;
+  static const WINAPI_DXVA2_BufferType DXVA2_ResidualDifferenceBufferType = 2;
+  static const WINAPI_DXVA2_BufferType DXVA2_DeblockingControlBufferType = 3;
+  static const WINAPI_DXVA2_BufferType DXVA2_InverseQuantizationMatrixBufferType = 4;
+  static const WINAPI_DXVA2_BufferType DXVA2_SliceControlBufferType = 5;
+  static const WINAPI_DXVA2_BufferType DXVA2_BitStreamDateBufferType = 6;
+  static const WINAPI_DXVA2_BufferType DXVA2_MotionVectorBuffer = 7;
+  static const WINAPI_DXVA2_BufferType DXVA2_FilmGrainBuffer = 8;
   typedef struct DXVA2_DecodeBufferDesc {
-    DXVA2_BufferType CompressedBufferType;
+    WINAPI_DXVA2_BufferType CompressedBufferType;
     UINT BufferIndex;
     UINT DataOffset;
     UINT DataSize;
@@ -712,30 +712,30 @@ ffi.cdef [[
   static const DXVA2_SurfaceType DXVA2_SurfaceType_DecoderRenderTarget = 0;
   static const DXVA2_SurfaceType DXVA2_SurfaceType_ProcessorRenderTarget = 1;
   static const DXVA2_SurfaceType DXVA2_SurfaceType_D3DRenderTargetTexture = 2;
-  typedef UINT DXVA2_VPDev; //Alias
-  typedef UINT DXVA2_DeinterlaceTech; //Alias
-  typedef UINT DXVA2_ProcAmp; //Alias
-  typedef UINT DXVA2_VideoProcess; //Alias
-  typedef UINT DXVA2_NoiseFilterTech; //Alias
-  typedef UINT DXVA2_DetailFilterTech; //Alias
+  typedef UINT WINAPI_DXVA2_VPDev; //Alias
+  typedef UINT WINAPI_DXVA2_DeinterlaceTech; //Alias
+  typedef UINT WINAPI_DXVA2_ProcAmp; //Alias
+  typedef UINT WINAPI_DXVA2_VideoProcess; //Alias
+  typedef UINT WINAPI_DXVA2_NoiseFilterTech; //Alias
+  typedef UINT WINAPI_DXVA2_DetailFilterTech; //Alias
   typedef struct DXVA2_VideoProcessorCaps {
-    DXVA2_VPDev DeviceCaps;
+    WINAPI_DXVA2_VPDev DeviceCaps;
     D3DPOOL InputPool;
     UINT NumForwardRefSamples;
     UINT NumBackwardRefSamples;
     UINT Reserved;
-    DXVA2_DeinterlaceTech DeinterlaceTechnology;
-    DXVA2_ProcAmp ProcAmpControlCaps;
-    DXVA2_VideoProcess VideoProcessorOperations;
-    DXVA2_NoiseFilterTech NoiseFilterTechnology;
-    DXVA2_DetailFilterTech DetailFilterTechnology;
+    WINAPI_DXVA2_DeinterlaceTech DeinterlaceTechnology;
+    WINAPI_DXVA2_ProcAmp ProcAmpControlCaps;
+    WINAPI_DXVA2_VideoProcess VideoProcessorOperations;
+    WINAPI_DXVA2_NoiseFilterTech NoiseFilterTechnology;
+    WINAPI_DXVA2_DetailFilterTech DetailFilterTechnology;
   } DXVA2_VideoProcessorCaps;
-  typedef struct DXVA2_Fixed32_s {
+  typedef struct WINAPI_DXVA2_Fixed32_s {
     USHORT Fraction;
     SHORT Value;
-  } DXVA2_Fixed32_s;
+  } WINAPI_DXVA2_Fixed32_s;
   typedef union DXVA2_Fixed32 {
-    DXVA2_Fixed32_s ;
+    WINAPI_DXVA2_Fixed32_s ;
     LONG ll;
   } DXVA2_Fixed32;
   typedef struct DXVA2_ValueRange {
@@ -744,7 +744,7 @@ ffi.cdef [[
     DXVA2_Fixed32 DefaultValue;
     DXVA2_Fixed32 StepSize;
   } DXVA2_ValueRange;
-  typedef DWORD DXVA2_DestData; //Alias
+  typedef DWORD WINAPI_DXVA2_DestData; //Alias
   typedef struct DXVA2_AYUVSample16 {
     USHORT Cr;
     USHORT Cb;
@@ -775,7 +775,7 @@ ffi.cdef [[
     DXVA2_FilterValues NoiseFilterChroma;
     DXVA2_FilterValues DetailFilterLuma;
     DXVA2_FilterValues DetailFilterChroma;
-    DXVA2_DestData DestData;
+    WINAPI_DXVA2_DestData DestData;
   } DXVA2_VideoProcessBltParams;
   typedef struct DXVA2_AYUVSample8 {
     UCHAR Cr;
@@ -811,14 +811,14 @@ ffi.cdef [[
   static const AM_MPEG2Level AM_MPEG2Level_Main = 2;
   static const AM_MPEG2Level AM_MPEG2Level_High1440 = 3;
   static const AM_MPEG2Level AM_MPEG2Level_High = 4;
-  typedef DWORD AMMPEG2_FLAGS; //Alias
+  typedef DWORD WINAPI_AMMPEG2_FLAGS; //Alias
   typedef struct MPEG2VIDEOINFO {
     VIDEOINFOHEADER2 hdr;
     DWORD dwStartTimeCode;
     DWORD cbSequenceHeader;
     AM_MPEG2Profile dwProfile;
     AM_MPEG2Level dwLevel;
-    AMMPEG2_FLAGS dwFlags;
+    WINAPI_AMMPEG2_FLAGS dwFlags;
     DWORD dwSequenceHeader[1];
   } MPEG2VIDEOINFO;
   typedef UINT DXVAHD_FILTER; //Alias

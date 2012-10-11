@@ -20,7 +20,7 @@ if ffi.arch == 'x86' then ffi.cdef[[
     DWORD LockPrefixTable;
     DWORD MaximumAllocationSize;
     DWORD VirtualMemoryThreshold;
-    HEAP_FLAGS ProcessHeapFlags;
+    WINAPI_HEAP_FLAGS ProcessHeapFlags;
     DWORD ProcessAffinityMask;
     WORD CSDVersion;
     WORD Reserved1;
@@ -48,7 +48,7 @@ if ffi.arch == 'x64' then ffi.cdef[[
     ULONGLONG MaximumAllocationSize;
     ULONGLONG VirtualMemoryThreshold;
     ULONGLONG ProcessAffinityMask;
-    HEAP_FLAGS ProcessHeapFlags;
+    WINAPI_HEAP_FLAGS ProcessHeapFlags;
     WORD CSDVersion;
     WORD Reserved1;
     ULONGLONG EditList;
@@ -60,11 +60,11 @@ if ffi.arch == 'x64' then ffi.cdef[[
 end
 ffi.cdef[[
   typedef IMAGE_LOAD_CONFIG_DIRECTORY *PIMAGE_LOAD_CONFIG_DIRECTORY; //Pointer
-  typedef WORD WIN_CERT_TYPE; //Alias
+  typedef WORD WINAPI_WIN_CERT_TYPE; //Alias
   typedef struct WIN_CERTIFICATE {
     DWORD dwLength;
     WORD wRevision;
-    WIN_CERT_TYPE wCertificateType;
+    WINAPI_WIN_CERT_TYPE wCertificateType;
     BYTE bCertificate[ANYSIZE_ARRAY];
   } WIN_CERTIFICATE;
   typedef WIN_CERTIFICATE *LPWIN_CERTIFICATE; //Pointer
@@ -76,7 +76,7 @@ ffi.cdef[[
     PIMAGE_SECTION_HEADER LastRvaSection;
     ULONG NumberOfSections;
     PIMAGE_SECTION_HEADER Sections;
-    IMAGE_FILE_CHARACTERISTICS_ULONG Characteristics;
+    WINAPI_IMAGE_FILE_CHARACTERISTICS_ULONG Characteristics;
     BOOLEAN fSystemImage;
     BOOLEAN fDOSImage;
     BOOLEAN fReadOnly;

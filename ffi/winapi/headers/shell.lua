@@ -355,33 +355,33 @@ ffi.cdef [[
   typedef PCIDLIST_ABSOLUTE *PCIDLIST_ABSOLUTE_ARRAY; //Pointer
   typedef UINT STRRET_TYPE; //Alias
 # pragma pack( push, 8 )
-  typedef union STRRET_u {
+  typedef union WINAPI_STRRET_u {
     LPWSTR pOleStr;
     UINT uOffset;
     char cStr[260];
-  } STRRET_u;
+  } WINAPI_STRRET_u;
 # pragma pack( pop )
 # pragma pack( push, 8 )
   typedef struct STRRET {
     STRRET_TYPE uType;
-    STRRET_u ;
+    WINAPI_STRRET_u ;
   } STRRET;
 # pragma pack( pop )
   typedef STRRET *LPSTRRET; //Pointer
-  typedef UINT SHELLDETAILS_fmt; //Alias
+  typedef UINT WINAPI_SHELLDETAILS_fmt; //Alias
   typedef struct SHELLDETAILS {
-    SHELLDETAILS_fmt fmt;
+    WINAPI_SHELLDETAILS_fmt fmt;
     int cxChar;
     STRRET str;
   } SHELLDETAILS;
-  typedef UINT CSIDL; //Alias
+  typedef UINT WINAPI_CSIDL; //Alias
 # pragma pack( push, 8 )
   typedef struct PERSIST_FOLDER_TARGET_INFO {
     PIDLIST_ABSOLUTE pidlTargetFolder;
     WCHAR szTargetParsingName[260];
     WCHAR szNetworkProvider[260];
-    FileAttributes dwAttributes;
-    CSIDL csidl;
+    WINAPI_FileAttributes dwAttributes;
+    WINAPI_CSIDL csidl;
   } PERSIST_FOLDER_TARGET_INFO;
 # pragma pack( pop )
   typedef struct SHELL_ITEM_RESOURCE {
@@ -407,17 +407,17 @@ ffi.cdef [[
     CATEGORYINFO_FLAGS cif;
     WCHAR wszName[260];
   } CATEGORY_INFO;
-  typedef DWORD DBIM; //Alias
-  typedef DWORD DBIMF; //Alias
+  typedef DWORD WINAPI_DBIM; //Alias
+  typedef DWORD WINAPI_DBIMF; //Alias
 # pragma pack( push, 8 )
   typedef struct DESKBANDINFO {
-    DBIM dwMask;
+    WINAPI_DBIM dwMask;
     POINTL ptMinSize;
     POINTL ptMaxSize;
     POINTL ptIntegral;
     POINTL ptActual;
     WCHAR wszTitle[256];
-    DBIMF dwModeFlags;
+    WINAPI_DBIMF dwModeFlags;
     COLORREF crBkgnd;
   } DESKBANDINFO;
 # pragma pack( pop )
@@ -513,16 +513,16 @@ ffi.cdef [[
     DWORD dwStyle;
   } BANDSITEINFO;
 # pragma pack( pop )
-  typedef DWORD CMIC_Mask; //Alias
+  typedef DWORD WINAPI_CMIC_Mask; //Alias
 # pragma pack( push, 8 )
   typedef struct CMINVOKECOMMANDINFO {
     DWORD cbSize;
-    CMIC_Mask fMask;
+    WINAPI_CMIC_Mask fMask;
     HWND hwnd;
     LPCSTR lpVerb;
     LPCSTR lpParameters;
     LPCSTR lpDirectory;
-    ShowWindowCmd nShow;
+    WINAPI_ShowWindowCmd nShow;
     DWORD dwHotKey;
     HANDLE hIcon;
   } CMINVOKECOMMANDINFO;
@@ -536,10 +536,10 @@ ffi.cdef [[
   } SHDRAGIMAGE;
 # pragma pack( pop )
   typedef SHDRAGIMAGE *LPSHDRAGIMAGE; //Pointer
-  typedef DWORD SMDATA_Mask; //Alias
+  typedef DWORD WINAPI_SMDATA_Mask; //Alias
 # pragma pack( push, 8 )
   typedef struct SMDATA {
-    SMDATA_Mask dwMask;
+    WINAPI_SMDATA_Mask dwMask;
     DWORD dwFlags;
     HMENU hmenu;
     HWND hwnd;
@@ -763,51 +763,51 @@ ffi.cdef [[
   static const PERCEIVED PERCEIVED_TYPE_CONTACTS = 10;
   typedef DWORD PERCEIVEDFLAG; //Alias
   typedef WORD FILEOP_FLAGS; //Alias
-  typedef UINT GIL_INPUT_FLAGS; //Alias
-  typedef UINT GIL_OUTPUT_FLAGS; //Alias
-  typedef UINT MessageBoxType; //Alias
-  typedef int MessageBoxResult; //Alias
-  static const MessageBoxResult IDOK = 1;
-  static const MessageBoxResult IDCANCEL = 2;
-  static const MessageBoxResult IDABORT = 3;
-  static const MessageBoxResult IDRETRY = 4;
-  static const MessageBoxResult IDIGNORE = 5;
-  static const MessageBoxResult IDYES = 6;
-  static const MessageBoxResult IDNO = 7;
-  static const MessageBoxResult IDTRYAGAIN = 10;
-  static const MessageBoxResult IDCONTINUE = 11;
-  typedef union SHELLEXECUTEINFO_u {
+  typedef UINT WINAPI_GIL_INPUT_FLAGS; //Alias
+  typedef UINT WINAPI_GIL_OUTPUT_FLAGS; //Alias
+  typedef UINT WINAPI_MessageBoxType; //Alias
+  typedef int WINAPI_MessageBoxResult; //Alias
+  static const WINAPI_MessageBoxResult IDOK = 1;
+  static const WINAPI_MessageBoxResult IDCANCEL = 2;
+  static const WINAPI_MessageBoxResult IDABORT = 3;
+  static const WINAPI_MessageBoxResult IDRETRY = 4;
+  static const WINAPI_MessageBoxResult IDIGNORE = 5;
+  static const WINAPI_MessageBoxResult IDYES = 6;
+  static const WINAPI_MessageBoxResult IDNO = 7;
+  static const WINAPI_MessageBoxResult IDTRYAGAIN = 10;
+  static const WINAPI_MessageBoxResult IDCONTINUE = 11;
+  typedef union WINAPI_SHELLEXECUTEINFO_u {
     HANDLE hIcon;
     HANDLE hMonitor;
-  } SHELLEXECUTEINFO_u;
-  typedef ULONG SEE_MASK; //Alias
-  typedef UINT_PTR SEE_HINSTANCE; //Alias
-  static const SEE_HINSTANCE SE_ERR_FNF = 2;
-  static const SEE_HINSTANCE SE_ERR_PNF = 3;
-  static const SEE_HINSTANCE SE_ERR_ACCESSDENIED = 5;
-  static const SEE_HINSTANCE SE_ERR_OOM = 8;
-  static const SEE_HINSTANCE SE_ERR_DLLNOTFOUND = 32;
-  static const SEE_HINSTANCE SE_ERR_SHARE = 26;
-  static const SEE_HINSTANCE SE_ERR_ASSOCINCOMPLETE = 27;
-  static const SEE_HINSTANCE SE_ERR_DDETIMEOUT = 28;
-  static const SEE_HINSTANCE SE_ERR_DDEFAIL = 29;
-  static const SEE_HINSTANCE SE_ERR_DDEBUSY = 30;
-  static const SEE_HINSTANCE SE_ERR_NOASSOC = 31;
+  } WINAPI_SHELLEXECUTEINFO_u;
+  typedef ULONG WINAPI_SEE_MASK; //Alias
+  typedef UINT_PTR WINAPI_SEE_HINSTANCE; //Alias
+  static const WINAPI_SEE_HINSTANCE SE_ERR_FNF = 2;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_PNF = 3;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_ACCESSDENIED = 5;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_OOM = 8;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_DLLNOTFOUND = 32;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_SHARE = 26;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_ASSOCINCOMPLETE = 27;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_DDETIMEOUT = 28;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_DDEFAIL = 29;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_DDEBUSY = 30;
+  static const WINAPI_SEE_HINSTANCE SE_ERR_NOASSOC = 31;
   typedef struct SHELLEXECUTEINFO {
     DWORD cbSize;
-    SEE_MASK fMask;
+    WINAPI_SEE_MASK fMask;
     HWND hwnd;
     LPCTSTR lpVerb;
     LPCTSTR lpFile;
     LPCTSTR lpParameters;
     LPCTSTR lpDirectory;
-    ShowWindowCmd nShow;
-    SEE_HINSTANCE hInstApp;
+    WINAPI_ShowWindowCmd nShow;
+    WINAPI_SEE_HINSTANCE hInstApp;
     void* lpIDList;
     LPCTSTR lpClass;
     HKEY hkeyClass;
     DWORD dwHotKey;
-    SHELLEXECUTEINFO_u ;
+    WINAPI_SHELLEXECUTEINFO_u ;
     HANDLE hProcess;
   } SHELLEXECUTEINFO;
   typedef SHELLEXECUTEINFO *LPSHELLEXECUTEINFO; //Pointer
@@ -875,204 +875,204 @@ ffi.cdef [[
     BYTE rgbKey[16];
   } WTS_THUMBNAILID;
   typedef DWORD WTS_CACHEFLAGS; //Alias
-  typedef ULONG PROPSPEC_KIND; //Alias
-  static const PROPSPEC_KIND PRSPEC_LPWSTR = 0;
-  static const PROPSPEC_KIND PRSPEC_PROPID = 1;
-  typedef union PROPSPEC_u {
+  typedef ULONG WINAPI_PROPSPEC_KIND; //Alias
+  static const WINAPI_PROPSPEC_KIND PRSPEC_LPWSTR = 0;
+  static const WINAPI_PROPSPEC_KIND PRSPEC_PROPID = 1;
+  typedef union WINAPI_PROPSPEC_u {
     PROPID propid;
     LPOLESTR lpwstr;
-  } PROPSPEC_u;
+  } WINAPI_PROPSPEC_u;
   typedef struct PROPSPEC {
-    PROPSPEC_KIND ulKind;
-    PROPSPEC_u ;
+    WINAPI_PROPSPEC_KIND ulKind;
+    WINAPI_PROPSPEC_u ;
   } PROPSPEC;
   typedef PROPSPEC *PROPSPEC[]; //Pointer
-  typedef UINT SystemParametersInfoEnum; //Alias
-  static const SystemParametersInfoEnum SPI_GETBEEP = 0x0001;
-  static const SystemParametersInfoEnum SPI_SETBEEP = 0x0002;
-  static const SystemParametersInfoEnum SPI_GETMOUSE = 0x0003;
-  static const SystemParametersInfoEnum SPI_SETMOUSE = 0x0004;
-  static const SystemParametersInfoEnum SPI_GETBORDER = 0x0005;
-  static const SystemParametersInfoEnum SPI_SETBORDER = 0x0006;
-  static const SystemParametersInfoEnum SPI_GETKEYBOARDSPEED = 0x000A;
-  static const SystemParametersInfoEnum SPI_SETKEYBOARDSPEED = 0x000B;
-  static const SystemParametersInfoEnum SPI_LANGDRIVER = 0x000C;
-  static const SystemParametersInfoEnum SPI_ICONHORIZONTALSPACING = 0x000D;
-  static const SystemParametersInfoEnum SPI_GETSCREENSAVETIMEOUT = 0x000E;
-  static const SystemParametersInfoEnum SPI_SETSCREENSAVETIMEOUT = 0x000F;
-  static const SystemParametersInfoEnum SPI_GETSCREENSAVEACTIVE = 0x0010;
-  static const SystemParametersInfoEnum SPI_SETSCREENSAVEACTIVE = 0x0011;
-  static const SystemParametersInfoEnum SPI_GETGRIDGRANULARITY = 0x0012;
-  static const SystemParametersInfoEnum SPI_SETGRIDGRANULARITY = 0x0013;
-  static const SystemParametersInfoEnum SPI_SETDESKWALLPAPER = 0x0014;
-  static const SystemParametersInfoEnum SPI_SETDESKPATTERN = 0x0015;
-  static const SystemParametersInfoEnum SPI_GETKEYBOARDDELAY = 0x0016;
-  static const SystemParametersInfoEnum SPI_SETKEYBOARDDELAY = 0x0017;
-  static const SystemParametersInfoEnum SPI_ICONVERTICALSPACING = 0x0018;
-  static const SystemParametersInfoEnum SPI_GETICONTITLEWRAP = 0x0019;
-  static const SystemParametersInfoEnum SPI_SETICONTITLEWRAP = 0x001A;
-  static const SystemParametersInfoEnum SPI_GETMENUDROPALIGNMENT = 0x001B;
-  static const SystemParametersInfoEnum SPI_SETMENUDROPALIGNMENT = 0x001C;
-  static const SystemParametersInfoEnum SPI_SETDOUBLECLKWIDTH = 0x001D;
-  static const SystemParametersInfoEnum SPI_SETDOUBLECLKHEIGHT = 0x001E;
-  static const SystemParametersInfoEnum SPI_GETICONTITLELOGFONT = 0x001F;
-  static const SystemParametersInfoEnum SPI_SETDOUBLECLICKTIME = 0x0020;
-  static const SystemParametersInfoEnum SPI_SETMOUSEBUTTONSWAP = 0x0021;
-  static const SystemParametersInfoEnum SPI_SETICONTITLELOGFONT = 0x0022;
-  static const SystemParametersInfoEnum SPI_GETFASTTASKSWITCH = 0x0023;
-  static const SystemParametersInfoEnum SPI_SETFASTTASKSWITCH = 0x0024;
-  static const SystemParametersInfoEnum SPI_SETDRAGFULLWINDOWS = 0x0025;
-  static const SystemParametersInfoEnum SPI_GETDRAGFULLWINDOWS = 0x0026;
-  static const SystemParametersInfoEnum SPI_GETNONCLIENTMETRICS = 0x0029;
-  static const SystemParametersInfoEnum SPI_SETNONCLIENTMETRICS = 0x002A;
-  static const SystemParametersInfoEnum SPI_GETMINIMIZEDMETRICS = 0x002B;
-  static const SystemParametersInfoEnum SPI_SETMINIMIZEDMETRICS = 0x002C;
-  static const SystemParametersInfoEnum SPI_GETICONMETRICS = 0x002D;
-  static const SystemParametersInfoEnum SPI_SETICONMETRICS = 0x002E;
-  static const SystemParametersInfoEnum SPI_SETWORKAREA = 0x002F;
-  static const SystemParametersInfoEnum SPI_GETWORKAREA = 0x0030;
-  static const SystemParametersInfoEnum SPI_SETPENWINDOWS = 0x0031;
-  static const SystemParametersInfoEnum SPI_GETHIGHCONTRAST = 0x0042;
-  static const SystemParametersInfoEnum SPI_SETHIGHCONTRAST = 0x0043;
-  static const SystemParametersInfoEnum SPI_GETKEYBOARDPREF = 0x0044;
-  static const SystemParametersInfoEnum SPI_SETKEYBOARDPREF = 0x0045;
-  static const SystemParametersInfoEnum SPI_GETSCREENREADER = 0x0046;
-  static const SystemParametersInfoEnum SPI_SETSCREENREADER = 0x0047;
-  static const SystemParametersInfoEnum SPI_GETANIMATION = 0x0048;
-  static const SystemParametersInfoEnum SPI_SETANIMATION = 0x0049;
-  static const SystemParametersInfoEnum SPI_GETFONTSMOOTHING = 0x004A;
-  static const SystemParametersInfoEnum SPI_SETFONTSMOOTHING = 0x004B;
-  static const SystemParametersInfoEnum SPI_SETDRAGWIDTH = 0x004C;
-  static const SystemParametersInfoEnum SPI_SETDRAGHEIGHT = 0x004D;
-  static const SystemParametersInfoEnum SPI_SETHANDHELD = 0x004E;
-  static const SystemParametersInfoEnum SPI_GETLOWPOWERTIMEOUT = 0x004F;
-  static const SystemParametersInfoEnum SPI_GETPOWEROFFTIMEOUT = 0x0050;
-  static const SystemParametersInfoEnum SPI_SETLOWPOWERTIMEOUT = 0x0051;
-  static const SystemParametersInfoEnum SPI_SETPOWEROFFTIMEOUT = 0x0052;
-  static const SystemParametersInfoEnum SPI_GETLOWPOWERACTIVE = 0x0053;
-  static const SystemParametersInfoEnum SPI_GETPOWEROFFACTIVE = 0x0054;
-  static const SystemParametersInfoEnum SPI_SETLOWPOWERACTIVE = 0x0055;
-  static const SystemParametersInfoEnum SPI_SETPOWEROFFACTIVE = 0x0056;
-  static const SystemParametersInfoEnum SPI_SETCURSORS = 0x0057;
-  static const SystemParametersInfoEnum SPI_SETICONS = 0x0058;
-  static const SystemParametersInfoEnum SPI_GETDEFAULTINPUTLANG = 0x0059;
-  static const SystemParametersInfoEnum SPI_SETDEFAULTINPUTLANG = 0x005A;
-  static const SystemParametersInfoEnum SPI_SETLANGTOGGLE = 0x005B;
-  static const SystemParametersInfoEnum SPI_GETWINDOWSEXTENSION = 0x005C;
-  static const SystemParametersInfoEnum SPI_SETMOUSETRAILS = 0x005D;
-  static const SystemParametersInfoEnum SPI_GETMOUSETRAILS = 0x005E;
-  static const SystemParametersInfoEnum SPI_SETSCREENSAVERRUNNING = 0x0061;
-  static const SystemParametersInfoEnum SPI_GETFILTERKEYS = 0x0032;
-  static const SystemParametersInfoEnum SPI_SETFILTERKEYS = 0x0033;
-  static const SystemParametersInfoEnum SPI_GETTOGGLEKEYS = 0x0034;
-  static const SystemParametersInfoEnum SPI_SETTOGGLEKEYS = 0x0035;
-  static const SystemParametersInfoEnum SPI_GETMOUSEKEYS = 0x0036;
-  static const SystemParametersInfoEnum SPI_SETMOUSEKEYS = 0x0037;
-  static const SystemParametersInfoEnum SPI_GETSHOWSOUNDS = 0x0038;
-  static const SystemParametersInfoEnum SPI_SETSHOWSOUNDS = 0x0039;
-  static const SystemParametersInfoEnum SPI_GETSTICKYKEYS = 0x003A;
-  static const SystemParametersInfoEnum SPI_SETSTICKYKEYS = 0x003B;
-  static const SystemParametersInfoEnum SPI_GETACCESSTIMEOUT = 0x003C;
-  static const SystemParametersInfoEnum SPI_SETACCESSTIMEOUT = 0x003D;
-  static const SystemParametersInfoEnum SPI_GETSERIALKEYS = 0x003E;
-  static const SystemParametersInfoEnum SPI_SETSERIALKEYS = 0x003F;
-  static const SystemParametersInfoEnum SPI_GETSOUNDSENTRY = 0x0040;
-  static const SystemParametersInfoEnum SPI_SETSOUNDSENTRY = 0x0041;
-  static const SystemParametersInfoEnum SPI_GETSNAPTODEFBUTTON = 0x005F;
-  static const SystemParametersInfoEnum SPI_SETSNAPTODEFBUTTON = 0x0060;
-  static const SystemParametersInfoEnum SPI_GETMOUSEHOVERWIDTH = 0x0062;
-  static const SystemParametersInfoEnum SPI_SETMOUSEHOVERWIDTH = 0x0063;
-  static const SystemParametersInfoEnum SPI_GETMOUSEHOVERHEIGHT = 0x0064;
-  static const SystemParametersInfoEnum SPI_SETMOUSEHOVERHEIGHT = 0x0065;
-  static const SystemParametersInfoEnum SPI_GETMOUSEHOVERTIME = 0x0066;
-  static const SystemParametersInfoEnum SPI_SETMOUSEHOVERTIME = 0x0067;
-  static const SystemParametersInfoEnum SPI_GETWHEELSCROLLLINES = 0x0068;
-  static const SystemParametersInfoEnum SPI_SETWHEELSCROLLLINES = 0x0069;
-  static const SystemParametersInfoEnum SPI_GETMENUSHOWDELAY = 0x006A;
-  static const SystemParametersInfoEnum SPI_SETMENUSHOWDELAY = 0x006B;
-  static const SystemParametersInfoEnum SPI_GETWHEELSCROLLCHARS = 0x006C;
-  static const SystemParametersInfoEnum SPI_SETWHEELSCROLLCHARS = 0x006D;
-  static const SystemParametersInfoEnum SPI_GETSHOWIMEUI = 0x006E;
-  static const SystemParametersInfoEnum SPI_SETSHOWIMEUI = 0x006F;
-  static const SystemParametersInfoEnum SPI_GETMOUSESPEED = 0x0070;
-  static const SystemParametersInfoEnum SPI_SETMOUSESPEED = 0x0071;
-  static const SystemParametersInfoEnum SPI_GETSCREENSAVERRUNNING = 0x0072;
-  static const SystemParametersInfoEnum SPI_GETDESKWALLPAPER = 0x0073;
-  static const SystemParametersInfoEnum SPI_GETAUDIODESCRIPTION = 0x0074;
-  static const SystemParametersInfoEnum SPI_SETAUDIODESCRIPTION = 0x0075;
-  static const SystemParametersInfoEnum SPI_GETSCREENSAVESECURE = 0x0076;
-  static const SystemParametersInfoEnum SPI_SETSCREENSAVESECURE = 0x0077;
-  static const SystemParametersInfoEnum SPI_GETACTIVEWINDOWTRACKING = 0x1000;
-  static const SystemParametersInfoEnum SPI_SETACTIVEWINDOWTRACKING = 0x1001;
-  static const SystemParametersInfoEnum SPI_GETMENUANIMATION = 0x1002;
-  static const SystemParametersInfoEnum SPI_SETMENUANIMATION = 0x1003;
-  static const SystemParametersInfoEnum SPI_GETCOMBOBOXANIMATION = 0x1004;
-  static const SystemParametersInfoEnum SPI_SETCOMBOBOXANIMATION = 0x1005;
-  static const SystemParametersInfoEnum SPI_GETLISTBOXSMOOTHSCROLLING = 0x1006;
-  static const SystemParametersInfoEnum SPI_SETLISTBOXSMOOTHSCROLLING = 0x1007;
-  static const SystemParametersInfoEnum SPI_GETGRADIENTCAPTIONS = 0x1008;
-  static const SystemParametersInfoEnum SPI_SETGRADIENTCAPTIONS = 0x1009;
-  static const SystemParametersInfoEnum SPI_GETKEYBOARDCUES = 0x100A;
-  static const SystemParametersInfoEnum SPI_SETKEYBOARDCUES = 0x100B;
-  static const SystemParametersInfoEnum SPI_GETACTIVEWNDTRKZORDER = 0x100C;
-  static const SystemParametersInfoEnum SPI_SETACTIVEWNDTRKZORDER = 0x100D;
-  static const SystemParametersInfoEnum SPI_GETHOTTRACKING = 0x100E;
-  static const SystemParametersInfoEnum SPI_SETHOTTRACKING = 0x100F;
-  static const SystemParametersInfoEnum SPI_GETMENUFADE = 0x1012;
-  static const SystemParametersInfoEnum SPI_SETMENUFADE = 0x1013;
-  static const SystemParametersInfoEnum SPI_GETSELECTIONFADE = 0x1014;
-  static const SystemParametersInfoEnum SPI_SETSELECTIONFADE = 0x1015;
-  static const SystemParametersInfoEnum SPI_GETTOOLTIPANIMATION = 0x1016;
-  static const SystemParametersInfoEnum SPI_SETTOOLTIPANIMATION = 0x1017;
-  static const SystemParametersInfoEnum SPI_GETTOOLTIPFADE = 0x1018;
-  static const SystemParametersInfoEnum SPI_SETTOOLTIPFADE = 0x1019;
-  static const SystemParametersInfoEnum SPI_GETCURSORSHADOW = 0x101A;
-  static const SystemParametersInfoEnum SPI_SETCURSORSHADOW = 0x101B;
-  static const SystemParametersInfoEnum SPI_GETMOUSESONAR = 0x101C;
-  static const SystemParametersInfoEnum SPI_SETMOUSESONAR = 0x101D;
-  static const SystemParametersInfoEnum SPI_GETMOUSECLICKLOCK = 0x101E;
-  static const SystemParametersInfoEnum SPI_SETMOUSECLICKLOCK = 0x101F;
-  static const SystemParametersInfoEnum SPI_GETMOUSEVANISH = 0x1020;
-  static const SystemParametersInfoEnum SPI_SETMOUSEVANISH = 0x1021;
-  static const SystemParametersInfoEnum SPI_GETFLATMENU = 0x1022;
-  static const SystemParametersInfoEnum SPI_SETFLATMENU = 0x1023;
-  static const SystemParametersInfoEnum SPI_GETDROPSHADOW = 0x1024;
-  static const SystemParametersInfoEnum SPI_SETDROPSHADOW = 0x1025;
-  static const SystemParametersInfoEnum SPI_GETBLOCKSENDINPUTRESETS = 0x1026;
-  static const SystemParametersInfoEnum SPI_SETBLOCKSENDINPUTRESETS = 0x1027;
-  static const SystemParametersInfoEnum SPI_GETUIEFFECTS = 0x103E;
-  static const SystemParametersInfoEnum SPI_SETUIEFFECTS = 0x103F;
-  static const SystemParametersInfoEnum SPI_GETDISABLEOVERLAPPEDCONTENT = 0x1040;
-  static const SystemParametersInfoEnum SPI_SETDISABLEOVERLAPPEDCONTENT = 0x1041;
-  static const SystemParametersInfoEnum SPI_GETCLIENTAREAANIMATION = 0x1042;
-  static const SystemParametersInfoEnum SPI_SETCLIENTAREAANIMATION = 0x1043;
-  static const SystemParametersInfoEnum SPI_GETCLEARTYPE = 0x1048;
-  static const SystemParametersInfoEnum SPI_SETCLEARTYPE = 0x1049;
-  static const SystemParametersInfoEnum SPI_GETSPEECHRECOGNITION = 0x104A;
-  static const SystemParametersInfoEnum SPI_SETSPEECHRECOGNITION = 0x104B;
-  static const SystemParametersInfoEnum SPI_GETFOREGROUNDLOCKTIMEOUT = 0x2000;
-  static const SystemParametersInfoEnum SPI_SETFOREGROUNDLOCKTIMEOUT = 0x2001;
-  static const SystemParametersInfoEnum SPI_GETACTIVEWNDTRKTIMEOUT = 0x2002;
-  static const SystemParametersInfoEnum SPI_SETACTIVEWNDTRKTIMEOUT = 0x2003;
-  static const SystemParametersInfoEnum SPI_GETFOREGROUNDFLASHCOUNT = 0x2004;
-  static const SystemParametersInfoEnum SPI_SETFOREGROUNDFLASHCOUNT = 0x2005;
-  static const SystemParametersInfoEnum SPI_GETCARETWIDTH = 0x2006;
-  static const SystemParametersInfoEnum SPI_SETCARETWIDTH = 0x2007;
-  static const SystemParametersInfoEnum SPI_GETMOUSECLICKLOCKTIME = 0x2008;
-  static const SystemParametersInfoEnum SPI_SETMOUSECLICKLOCKTIME = 0x2009;
-  static const SystemParametersInfoEnum SPI_GETFONTSMOOTHINGTYPE = 0x200A;
-  static const SystemParametersInfoEnum SPI_SETFONTSMOOTHINGTYPE = 0x200B;
-  static const SystemParametersInfoEnum SPI_GETFONTSMOOTHINGCONTRAST = 0x200C;
-  static const SystemParametersInfoEnum SPI_SETFONTSMOOTHINGCONTRAST = 0x200D;
-  static const SystemParametersInfoEnum SPI_GETFOCUSBORDERWIDTH = 0x200E;
-  static const SystemParametersInfoEnum SPI_SETFOCUSBORDERWIDTH = 0x200F;
-  static const SystemParametersInfoEnum SPI_GETFOCUSBORDERHEIGHT = 0x2010;
-  static const SystemParametersInfoEnum SPI_SETFOCUSBORDERHEIGHT = 0x2011;
-  static const SystemParametersInfoEnum SPI_GETFONTSMOOTHINGORIENTATION = 0x2012;
-  static const SystemParametersInfoEnum SPI_SETFONTSMOOTHINGORIENTATION = 0x2013;
-  static const SystemParametersInfoEnum SPI_GETMINIMUMHITRADIUS = 0x2014;
-  static const SystemParametersInfoEnum SPI_SETMINIMUMHITRADIUS = 0x2015;
-  static const SystemParametersInfoEnum SPI_GETMESSAGEDURATION = 0x2016;
-  static const SystemParametersInfoEnum SPI_SETMESSAGEDURATION = 0x2017;
-  typedef UINT SystemParametersInfoFlags; //Alias
+  typedef UINT WINAPI_SystemParametersInfoEnum; //Alias
+  static const WINAPI_SystemParametersInfoEnum SPI_GETBEEP = 0x0001;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETBEEP = 0x0002;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSE = 0x0003;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSE = 0x0004;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETBORDER = 0x0005;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETBORDER = 0x0006;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETKEYBOARDSPEED = 0x000A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETKEYBOARDSPEED = 0x000B;
+  static const WINAPI_SystemParametersInfoEnum SPI_LANGDRIVER = 0x000C;
+  static const WINAPI_SystemParametersInfoEnum SPI_ICONHORIZONTALSPACING = 0x000D;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSCREENSAVETIMEOUT = 0x000E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSCREENSAVETIMEOUT = 0x000F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSCREENSAVEACTIVE = 0x0010;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSCREENSAVEACTIVE = 0x0011;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETGRIDGRANULARITY = 0x0012;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETGRIDGRANULARITY = 0x0013;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDESKWALLPAPER = 0x0014;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDESKPATTERN = 0x0015;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETKEYBOARDDELAY = 0x0016;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETKEYBOARDDELAY = 0x0017;
+  static const WINAPI_SystemParametersInfoEnum SPI_ICONVERTICALSPACING = 0x0018;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETICONTITLEWRAP = 0x0019;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETICONTITLEWRAP = 0x001A;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMENUDROPALIGNMENT = 0x001B;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMENUDROPALIGNMENT = 0x001C;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDOUBLECLKWIDTH = 0x001D;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDOUBLECLKHEIGHT = 0x001E;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETICONTITLELOGFONT = 0x001F;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDOUBLECLICKTIME = 0x0020;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSEBUTTONSWAP = 0x0021;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETICONTITLELOGFONT = 0x0022;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFASTTASKSWITCH = 0x0023;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFASTTASKSWITCH = 0x0024;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDRAGFULLWINDOWS = 0x0025;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETDRAGFULLWINDOWS = 0x0026;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETNONCLIENTMETRICS = 0x0029;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETNONCLIENTMETRICS = 0x002A;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMINIMIZEDMETRICS = 0x002B;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMINIMIZEDMETRICS = 0x002C;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETICONMETRICS = 0x002D;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETICONMETRICS = 0x002E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETWORKAREA = 0x002F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETWORKAREA = 0x0030;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETPENWINDOWS = 0x0031;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETHIGHCONTRAST = 0x0042;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETHIGHCONTRAST = 0x0043;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETKEYBOARDPREF = 0x0044;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETKEYBOARDPREF = 0x0045;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSCREENREADER = 0x0046;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSCREENREADER = 0x0047;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETANIMATION = 0x0048;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETANIMATION = 0x0049;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFONTSMOOTHING = 0x004A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFONTSMOOTHING = 0x004B;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDRAGWIDTH = 0x004C;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDRAGHEIGHT = 0x004D;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETHANDHELD = 0x004E;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETLOWPOWERTIMEOUT = 0x004F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETPOWEROFFTIMEOUT = 0x0050;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETLOWPOWERTIMEOUT = 0x0051;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETPOWEROFFTIMEOUT = 0x0052;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETLOWPOWERACTIVE = 0x0053;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETPOWEROFFACTIVE = 0x0054;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETLOWPOWERACTIVE = 0x0055;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETPOWEROFFACTIVE = 0x0056;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETCURSORS = 0x0057;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETICONS = 0x0058;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETDEFAULTINPUTLANG = 0x0059;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDEFAULTINPUTLANG = 0x005A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETLANGTOGGLE = 0x005B;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETWINDOWSEXTENSION = 0x005C;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSETRAILS = 0x005D;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSETRAILS = 0x005E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSCREENSAVERRUNNING = 0x0061;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFILTERKEYS = 0x0032;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFILTERKEYS = 0x0033;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETTOGGLEKEYS = 0x0034;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETTOGGLEKEYS = 0x0035;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSEKEYS = 0x0036;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSEKEYS = 0x0037;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSHOWSOUNDS = 0x0038;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSHOWSOUNDS = 0x0039;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSTICKYKEYS = 0x003A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSTICKYKEYS = 0x003B;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETACCESSTIMEOUT = 0x003C;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETACCESSTIMEOUT = 0x003D;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSERIALKEYS = 0x003E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSERIALKEYS = 0x003F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSOUNDSENTRY = 0x0040;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSOUNDSENTRY = 0x0041;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSNAPTODEFBUTTON = 0x005F;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSNAPTODEFBUTTON = 0x0060;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSEHOVERWIDTH = 0x0062;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSEHOVERWIDTH = 0x0063;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSEHOVERHEIGHT = 0x0064;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSEHOVERHEIGHT = 0x0065;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSEHOVERTIME = 0x0066;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSEHOVERTIME = 0x0067;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETWHEELSCROLLLINES = 0x0068;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETWHEELSCROLLLINES = 0x0069;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMENUSHOWDELAY = 0x006A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMENUSHOWDELAY = 0x006B;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETWHEELSCROLLCHARS = 0x006C;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETWHEELSCROLLCHARS = 0x006D;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSHOWIMEUI = 0x006E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSHOWIMEUI = 0x006F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSESPEED = 0x0070;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSESPEED = 0x0071;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSCREENSAVERRUNNING = 0x0072;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETDESKWALLPAPER = 0x0073;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETAUDIODESCRIPTION = 0x0074;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETAUDIODESCRIPTION = 0x0075;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSCREENSAVESECURE = 0x0076;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSCREENSAVESECURE = 0x0077;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETACTIVEWINDOWTRACKING = 0x1000;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETACTIVEWINDOWTRACKING = 0x1001;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMENUANIMATION = 0x1002;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMENUANIMATION = 0x1003;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETCOMBOBOXANIMATION = 0x1004;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETCOMBOBOXANIMATION = 0x1005;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETLISTBOXSMOOTHSCROLLING = 0x1006;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETLISTBOXSMOOTHSCROLLING = 0x1007;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETGRADIENTCAPTIONS = 0x1008;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETGRADIENTCAPTIONS = 0x1009;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETKEYBOARDCUES = 0x100A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETKEYBOARDCUES = 0x100B;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETACTIVEWNDTRKZORDER = 0x100C;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETACTIVEWNDTRKZORDER = 0x100D;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETHOTTRACKING = 0x100E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETHOTTRACKING = 0x100F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMENUFADE = 0x1012;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMENUFADE = 0x1013;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSELECTIONFADE = 0x1014;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSELECTIONFADE = 0x1015;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETTOOLTIPANIMATION = 0x1016;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETTOOLTIPANIMATION = 0x1017;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETTOOLTIPFADE = 0x1018;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETTOOLTIPFADE = 0x1019;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETCURSORSHADOW = 0x101A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETCURSORSHADOW = 0x101B;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSESONAR = 0x101C;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSESONAR = 0x101D;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSECLICKLOCK = 0x101E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSECLICKLOCK = 0x101F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSEVANISH = 0x1020;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSEVANISH = 0x1021;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFLATMENU = 0x1022;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFLATMENU = 0x1023;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETDROPSHADOW = 0x1024;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDROPSHADOW = 0x1025;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETBLOCKSENDINPUTRESETS = 0x1026;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETBLOCKSENDINPUTRESETS = 0x1027;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETUIEFFECTS = 0x103E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETUIEFFECTS = 0x103F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETDISABLEOVERLAPPEDCONTENT = 0x1040;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETDISABLEOVERLAPPEDCONTENT = 0x1041;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETCLIENTAREAANIMATION = 0x1042;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETCLIENTAREAANIMATION = 0x1043;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETCLEARTYPE = 0x1048;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETCLEARTYPE = 0x1049;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETSPEECHRECOGNITION = 0x104A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETSPEECHRECOGNITION = 0x104B;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFOREGROUNDLOCKTIMEOUT = 0x2000;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFOREGROUNDLOCKTIMEOUT = 0x2001;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETACTIVEWNDTRKTIMEOUT = 0x2002;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETACTIVEWNDTRKTIMEOUT = 0x2003;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFOREGROUNDFLASHCOUNT = 0x2004;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFOREGROUNDFLASHCOUNT = 0x2005;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETCARETWIDTH = 0x2006;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETCARETWIDTH = 0x2007;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMOUSECLICKLOCKTIME = 0x2008;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMOUSECLICKLOCKTIME = 0x2009;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFONTSMOOTHINGTYPE = 0x200A;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFONTSMOOTHINGTYPE = 0x200B;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFONTSMOOTHINGCONTRAST = 0x200C;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFONTSMOOTHINGCONTRAST = 0x200D;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFOCUSBORDERWIDTH = 0x200E;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFOCUSBORDERWIDTH = 0x200F;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFOCUSBORDERHEIGHT = 0x2010;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFOCUSBORDERHEIGHT = 0x2011;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETFONTSMOOTHINGORIENTATION = 0x2012;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETFONTSMOOTHINGORIENTATION = 0x2013;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMINIMUMHITRADIUS = 0x2014;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMINIMUMHITRADIUS = 0x2015;
+  static const WINAPI_SystemParametersInfoEnum SPI_GETMESSAGEDURATION = 0x2016;
+  static const WINAPI_SystemParametersInfoEnum SPI_SETMESSAGEDURATION = 0x2017;
+  typedef UINT WINAPI_SystemParametersInfoFlags; //Alias
 ]]

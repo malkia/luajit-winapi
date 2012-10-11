@@ -3,11 +3,11 @@ require( 'ffi/winapi/headers/network' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPWSTR LMSTR; //Alias
-  typedef ULONG DsDomainFlags; //Alias
+  typedef ULONG WINAPI_DsDomainFlags; //Alias
   typedef struct DS_DOMAIN_TRUSTS {
     LPTSTR NetbiosDomainName;
     LPTSTR DnsDomainName;
-    DsDomainFlags Flags;
+    WINAPI_DsDomainFlags Flags;
     ULONG ParentIndex;
     ULONG TrustType;
     ULONG TrustAttributes;
@@ -360,17 +360,17 @@ ffi.cdef [[
   static const DSROLE_PRIMARY_DOMAIN_INFO_LEVEL DsRolePrimaryDomainInfoBasic = 1;
   static const DSROLE_PRIMARY_DOMAIN_INFO_LEVEL DsRoleUpgradeStatus = 2;
   static const DSROLE_PRIMARY_DOMAIN_INFO_LEVEL DsRoleOperationState = 3;
-  typedef DWORD ServerType; //Alias
+  typedef DWORD WINAPI_ServerType; //Alias
   typedef UINT NETSETUP_JOIN_STATUS; //Alias
   typedef NETSETUP_JOIN_STATUS *PNETSETUP_JOIN_STATUS; //Pointer
-  typedef DWORD NetUserGetLocalGroupsFlags; //Alias
-  typedef ULONG DsGetDcNameFlags; //Alias
+  typedef DWORD WINAPI_NetUserGetLocalGroupsFlags; //Alias
+  typedef ULONG WINAPI_DsGetDcNameFlags; //Alias
   DWORD          DsAddressToSiteNames(              LPCTSTR ComputerName, DWORD EntryCount, PSOCKET_ADDRESS SocketAddresses, LPTSTR** SiteNames);
   DWORD          DsAddressToSiteNamesEx(            LPCTSTR ComputerName, DWORD EntryCount, PSOCKET_ADDRESS SocketAddresses, LPTSTR** SiteNames, LPTSTR** SubnetNames);
   DWORD          DsDeregisterDnsHostRecords(        LPTSTR ServerName, LPTSTR DnsDomainName, GUID* DomainGuid, GUID* DsaGuid, LPTSTR DnsHostName);
   DWORD          DsEnumerateDomainTrusts(           LPTSTR ServerName, ULONG Flags, PDS_DOMAIN_TRUSTS* Domains, PULONG DomainCount);
   void           DsGetDcCloseW(                     HANDLE GetDcContextHandle);
-  DWORD          DsGetDcName(                       LPCTSTR ComputerName, LPCTSTR DomainName, GUID* DomainGuid, LPCTSTR SiteName, DsGetDcNameFlags Flags, PDOMAIN_CONTROLLER_INFO* DomainControllerInfo);
+  DWORD          DsGetDcName(                       LPCTSTR ComputerName, LPCTSTR DomainName, GUID* DomainGuid, LPCTSTR SiteName, WINAPI_DsGetDcNameFlags Flags, PDOMAIN_CONTROLLER_INFO* DomainControllerInfo);
   DWORD          DsGetDcNext(                       HANDLE GetDcContextHandle, PULONG SockAddressCount, LPSOCKET_ADDRESS* SockAddresses, LPTSTR* DnsHostName);
   DWORD          DsGetDcOpen(                       LPCTSTR DnsName, ULONG OptionFlags, LPCTSTR SiteName, GUID* DomainGuid, LPCTSTR DnsForestName, ULONG DcFlags, PHANDLE RetGetDcContext);
   DWORD          DsGetDcSiteCoverage(               LPCTSTR ServerName, PULONG EntryCount, LPTSTR** SiteNames);
@@ -433,7 +433,7 @@ ffi.cdef [[
   NET_API_STATUS NetScheduleJobEnum(                LPCWSTR Servername, LPBYTE* PointerToBuffer, DWORD PreferredMaximumLength, LPDWORD EntriesRead, LPDWORD TotalEntries, LPDWORD ResumeHandle);
   NET_API_STATUS NetScheduleJobGetInfo(             LPCWSTR Servername, DWORD JobId, LPBYTE* PointerToBuffer);
   NET_API_STATUS NetServerDiskEnum(                 LPWSTR servername, DWORD level, LPBYTE* bufptr, DWORD prefmaxlen, LPDWORD entriesread, LPDWORD totalentries, LPDWORD resume_handle);
-  NET_API_STATUS NetServerEnum(                     LPCWSTR servername, DWORD level, LPBYTE* bufptr, DWORD prefmaxlen, LPDWORD entriesread, LPDWORD totalentries, ServerType servertype, LPCWSTR domain, LPDWORD resume_handle);
+  NET_API_STATUS NetServerEnum(                     LPCWSTR servername, DWORD level, LPBYTE* bufptr, DWORD prefmaxlen, LPDWORD entriesread, LPDWORD totalentries, WINAPI_ServerType servertype, LPCWSTR domain, LPDWORD resume_handle);
   NET_API_STATUS NetServerGetInfo(                  LPWSTR servername, DWORD level, LPBYTE* bufptr);
   NET_API_STATUS NetServerSetInfo(                  LPWSTR servername, DWORD level, LPBYTE buf, LPDWORD ParmError);
   NET_API_STATUS NetServerComputerNameAdd(          LPWSTR ServerName, LPWSTR EmulatedDomainName, LPWSTR EmulatedServerName);
@@ -453,7 +453,7 @@ ffi.cdef [[
   NET_API_STATUS NetUserEnum(                       LPCWSTR servername, DWORD level, DWORD filter, LPBYTE* bufptr, DWORD prefmaxlen, LPDWORD entriesread, LPDWORD totalentries, LPDWORD resume_handle);
   NET_API_STATUS NetUserGetGroups(                  LPCWSTR servername, LPCWSTR username, DWORD level, LPBYTE* bufptr, DWORD prefmaxlen, LPDWORD entriesread, LPDWORD totalentries);
   NET_API_STATUS NetUserGetInfo(                    LPCWSTR servername, LPCWSTR username, DWORD level, LPBYTE* bufptr);
-  NET_API_STATUS NetUserGetLocalGroups(             LPCWSTR servername, LPCWSTR username, DWORD level, NetUserGetLocalGroupsFlags flags, LPBYTE* bufptr, DWORD prefmaxlen, LPDWORD entriesread, LPDWORD totalentries);
+  NET_API_STATUS NetUserGetLocalGroups(             LPCWSTR servername, LPCWSTR username, DWORD level, WINAPI_NetUserGetLocalGroupsFlags flags, LPBYTE* bufptr, DWORD prefmaxlen, LPDWORD entriesread, LPDWORD totalentries);
   NET_API_STATUS NetUserSetGroups(                  LPCWSTR servername, LPCWSTR username, DWORD level, LPBYTE buf, DWORD num_entries);
   NET_API_STATUS NetUserSetInfo(                    LPCWSTR servername, LPCWSTR username, DWORD level, LPBYTE buf, LPDWORD parm_err);
   NET_API_STATUS NetUserModalsGet(                  LPCWSTR servername, DWORD level, LPBYTE* bufptr);

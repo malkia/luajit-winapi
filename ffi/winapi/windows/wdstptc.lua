@@ -1,13 +1,13 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef ULONG WdsAuthLevel; //Alias
-  static const WdsAuthLevel WDS_TRANSPORTCLIENT_AUTH = 0x1;
-  static const WdsAuthLevel WDS_TRANSPORTCLIENT_NO_AUTH = 0x2;
+  typedef ULONG WINAPI_WdsAuthLevel; //Alias
+  static const WINAPI_WdsAuthLevel WDS_TRANSPORTCLIENT_AUTH = 0x1;
+  static const WINAPI_WdsAuthLevel WDS_TRANSPORTCLIENT_NO_AUTH = 0x2;
   typedef struct WDS_TRANSPORTCLIENT_REQUEST {
     ULONG ulLength;
     ULONG ulApiVersion;
-    WdsAuthLevel ulAuthLevel;
+    WINAPI_WdsAuthLevel ulAuthLevel;
     LPCWSTR pwszServer;
     LPCWSTR pwszNamespace;
     LPCWSTR pwszObjectName;
@@ -23,17 +23,17 @@ ffi.cdef [[
   static const TRANSPORTCLIENT_CALLBACK_ID WDS_TRANSPORTCLIENT_SESSION_COMPLETE = 2;
   static const TRANSPORTCLIENT_CALLBACK_ID WDS_TRANSPORTCLIENT_RECEIVE_METADATA = 3;
   static const TRANSPORTCLIENT_CALLBACK_ID WDS_TRANSPORTCLIENT_SESSION_STARTEX = 4;
-  ERROR_CODE WdsTransportClientAddRefBuffer(      PVOID pvBuffer);
-  ERROR_CODE WdsTransportClientCancelSession(     HANDLE hSessionKey);
-  ERROR_CODE WdsTransportClientCloseSession(      HANDLE hSessionKey);
-  ERROR_CODE WdsTransportClientCompleteReceive(   HANDLE hSessionKey, HANDLE ulSize, PULARGE_INTEGER pullOffset);
-  ERROR_CODE WdsTransportClientInitialize(        );
-  ERROR_CODE WdsTransportClientInitializeSession( PWDS_TRANSPORTCLIENT_REQUEST pSessionRequest, PVOID pCallerData, PHANDLE hSessionKey);
-  ERROR_CODE WdsTransportClientQueryStatus(       HANDLE hSessionKey, PULONG puStatus, PULONG puErrorCode);
-  ERROR_CODE WdsTransportClientRegisterCallback(  HANDLE hSessionKey, TRANSPORTCLIENT_CALLBACK_ID CallbackId, PVOID pfnCallback);
-  ERROR_CODE WdsTransportClientReleaseBuffer(     PVOID pvBuffer);
-  ERROR_CODE WdsTransportClientShutdown(          );
-  ERROR_CODE WdsTransportClientStartSession(      HANDLE hSessionKey);
-  ERROR_CODE WdsTransportClientWaitForCompletion( HANDLE hSessionKey, ULONG uTimeout);
+  WINAPI_ERROR_CODE WdsTransportClientAddRefBuffer(      PVOID pvBuffer);
+  WINAPI_ERROR_CODE WdsTransportClientCancelSession(     HANDLE hSessionKey);
+  WINAPI_ERROR_CODE WdsTransportClientCloseSession(      HANDLE hSessionKey);
+  WINAPI_ERROR_CODE WdsTransportClientCompleteReceive(   HANDLE hSessionKey, HANDLE ulSize, PULARGE_INTEGER pullOffset);
+  WINAPI_ERROR_CODE WdsTransportClientInitialize(        );
+  WINAPI_ERROR_CODE WdsTransportClientInitializeSession( PWDS_TRANSPORTCLIENT_REQUEST pSessionRequest, PVOID pCallerData, PHANDLE hSessionKey);
+  WINAPI_ERROR_CODE WdsTransportClientQueryStatus(       HANDLE hSessionKey, PULONG puStatus, PULONG puErrorCode);
+  WINAPI_ERROR_CODE WdsTransportClientRegisterCallback(  HANDLE hSessionKey, TRANSPORTCLIENT_CALLBACK_ID CallbackId, PVOID pfnCallback);
+  WINAPI_ERROR_CODE WdsTransportClientReleaseBuffer(     PVOID pvBuffer);
+  WINAPI_ERROR_CODE WdsTransportClientShutdown(          );
+  WINAPI_ERROR_CODE WdsTransportClientStartSession(      HANDLE hSessionKey);
+  WINAPI_ERROR_CODE WdsTransportClientWaitForCompletion( HANDLE hSessionKey, ULONG uTimeout);
 ]]
 ffi.load( 'Wdstptc.dll' )

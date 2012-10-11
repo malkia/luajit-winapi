@@ -12,18 +12,18 @@ ffi.cdef [[
   static const DBKIND DBKIND_PGUID_PROPID = 4;
   static const DBKIND DBKIND_PROPID = 5;
   static const DBKIND DBKIND_GUID = 6;
-  typedef union DBID_u1 {
+  typedef union WINAPI_DBID_u1 {
     GUID guid;
     GUID* pguid;
-  } DBID_u1;
-  typedef union DBID_u2 {
+  } WINAPI_DBID_u1;
+  typedef union WINAPI_DBID_u2 {
     LPOLESTR pwszName;
     ULONG ulPropid;
-  } DBID_u2;
+  } WINAPI_DBID_u2;
   typedef struct DBID {
-    DBID_u1 uGuid;
+    WINAPI_DBID_u1 uGuid;
     DBKIND eKind;
-    DBID_u2 uName;
+    WINAPI_DBID_u2 uName;
   } DBID;
   typedef struct CIPROPERTYDEF {
     LPWSTR wcsFriendlyName;

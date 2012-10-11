@@ -29,14 +29,14 @@ ffi.cdef [[
     DWORD cbstgmedData;
     DWORD dwOptions;
     BINDINFO_OPTIONS dwOptionsFlags;
-    CodePageEnum dwCodePage;
+    WINAPI_CodePageEnum dwCodePage;
     SECURITY_ATTRIBUTES securityAttributes;
     IID iid;
     IUnknown* pUnk;
     DWORD dwReserved;
   } BINDINFO;
-  typedef DWORD CreateUriFlags; //Alias
-  typedef DWORD UriEncodingFlags; //Alias
+  typedef DWORD WINAPI_CreateUriFlags; //Alias
+  typedef DWORD WINAPI_UriEncodingFlags; //Alias
   typedef UINT INTERNETFEATURELIST; //Alias
   static const INTERNETFEATURELIST FEATURE_OBJECT_CACHING = 0;
   static const INTERNETFEATURELIST FEATURE_ZONE_ELEVATION = 1;
@@ -66,8 +66,8 @@ ffi.cdef [[
   static const INTERNETFEATURELIST FEATURE_DISABLE_TELNET_PROTOCOL = 25;
   static const INTERNETFEATURELIST FEATURE_FEEDS = 26;
   static const INTERNETFEATURELIST FEATURE_BLOCK_INPUT_PROMPTS = 27;
-  typedef DWORD GetFeatureFlag; //Alias
-  typedef DWORD UrlFlags; //Alias
+  typedef DWORD WINAPI_GetFeatureFlag; //Alias
+  typedef DWORD WINAPI_UrlFlags; //Alias
   typedef UINT QUERYOPTION; //Alias
   static const QUERYOPTION QUERY_EXPIRATION_DATE = 1;
   static const QUERYOPTION QUERY_TIME_OF_LAST_CHANGE = 2;
@@ -108,27 +108,27 @@ ffi.cdef [[
   static const PARSEACTION PARSE_SECURITY_DOMAIN = 17;
   static const PARSEACTION PARSE_ESCAPE = 18;
   static const PARSEACTION PARSE_UNESCAPE = 19;
-  typedef DWORD UrlMkSessionOption; //Alias
-  static const UrlMkSessionOption URLMON_OPTION_USERAGENT = 0x10000001;
-  static const UrlMkSessionOption URLMON_OPTION_USERAGENT_REFRESH = 0x10000002;
-  static const UrlMkSessionOption URLMON_OPTION_URL_ENCODING = 0x10000004;
-  static const UrlMkSessionOption URLMON_OPTION_USE_BINDSTRINGCREDS = 0x10000008;
-  static const UrlMkSessionOption URLMON_OPTION_USE_BROWSERAPPSDOCUMENTS = 0x10000010;
+  typedef DWORD WINAPI_UrlMkSessionOption; //Alias
+  static const WINAPI_UrlMkSessionOption URLMON_OPTION_USERAGENT = 0x10000001;
+  static const WINAPI_UrlMkSessionOption URLMON_OPTION_USERAGENT_REFRESH = 0x10000002;
+  static const WINAPI_UrlMkSessionOption URLMON_OPTION_URL_ENCODING = 0x10000004;
+  static const WINAPI_UrlMkSessionOption URLMON_OPTION_USE_BINDSTRINGCREDS = 0x10000008;
+  static const WINAPI_UrlMkSessionOption URLMON_OPTION_USE_BROWSERAPPSDOCUMENTS = 0x10000010;
   HRESULT CreateFormatEnumerator(                  UINT cfmtetc, FORMATETC* rgfmtetc, IEnumFORMATETC** ppenumfmtetc);
   HRESULT CoInternetCreateSecurityManager(         IServiceProvider* pSP, IInternetSecurityManager** ppSM, DWORD dwReserved);
   HRESULT CoInternetCreateZoneManager(             IServiceProvider* pSP, IInternetZoneManager** ppZM, DWORD dwReserved);
   HRESULT CoInternetGetSecurityUrl(                LPCWSTR pwzUrl, LPWSTR* ppwzSecUrl, PSUACTION psuAction, DWORD dwReserved);
   HRESULT CoInternetGetSecurityUrlEx(              IUri* pUri, IUri** ppSecUri, PSUACTION psuAction, DWORD_PTR dwReserved);
-  HRESULT CoInternetIsFeatureEnabled(              INTERNETFEATURELIST FeatureEntry, GetFeatureFlag dwFlags);
-  STDAPI  CoInternetIsFeatureEnabledForIUri(       INTERNETFEATURELIST FeatureEntry, GetFeatureFlag dwFlags, IUri* pIUri, IInternetSecurityManagerEx2* pSecMgr);
-  HRESULT CoInternetIsFeatureEnabledForUrl(        INTERNETFEATURELIST FeatureEntry, GetFeatureFlag dwFlags, LPCWSTR szURL, IInternetSecurityManager* pSecMgr);
+  HRESULT CoInternetIsFeatureEnabled(              INTERNETFEATURELIST FeatureEntry, WINAPI_GetFeatureFlag dwFlags);
+  STDAPI  CoInternetIsFeatureEnabledForIUri(       INTERNETFEATURELIST FeatureEntry, WINAPI_GetFeatureFlag dwFlags, IUri* pIUri, IInternetSecurityManagerEx2* pSecMgr);
+  HRESULT CoInternetIsFeatureEnabledForUrl(        INTERNETFEATURELIST FeatureEntry, WINAPI_GetFeatureFlag dwFlags, LPCWSTR szURL, IInternetSecurityManager* pSecMgr);
   HRESULT CoInternetIsFeatureZoneElevationEnabled( LPCWSTR szFromURL, LPCWSTR szToURL, IInternetSecurityManager* pSecMgr, DWORD dwFlags);
   HRESULT CoInternetSetFeatureEnabled(             INTERNETFEATURELIST FeatureEntry, DWORD dwFlags, BOOL fEnable);
   HRESULT AsyncInstallDistributionUnit(            LPCWSTR szDistUnit, LPCWSTR szTYPE, LPCWSTR szExt, DWORD dwFileVersionMS, DWORD dwFileVersionLS, LPCWSTR szURL, IBindCtx* pbc, LPVOID pvReserved, DWORD flags);
   HRESULT CoGetClassObjectFromURL(                 REFCLSID rclsid, LPCWSTR szCodeURL, DWORD dwFileVersionMS, DWORD dwFileVersionLS, LPCWSTR szContentType, LPBINDCTX pBindCtx, DWORD dwClsContext, LPVOID pvReserved, REFIID riid, VOID** ppv);
-  HRESULT CoInternetCombineIUri(                   IUri* pBaseUri, IUri* pRelativeUri, UrlFlags dwCombineFlags, IUri** ppCombinedUri, DWORD_PTR dwReserved);
-  HRESULT CoInternetCombineUrl(                    LPCWSTR pwzBaseUrl, LPCWSTR pwzRelativeUrl, UrlFlags dwCombineFlags, LPWSTR pwzResult, DWORD cchResult, DWORD* pcchResult, DWORD dwReserved);
-  HRESULT CoInternetCombineUrlEx(                  IUri* pBaseUri, LPCWSTR pwzRelativeUrl, UrlFlags dwCombineFlags, IUri** ppCombinedUri, DWORD_PTR dwReserved);
+  HRESULT CoInternetCombineIUri(                   IUri* pBaseUri, IUri* pRelativeUri, WINAPI_UrlFlags dwCombineFlags, IUri** ppCombinedUri, DWORD_PTR dwReserved);
+  HRESULT CoInternetCombineUrl(                    LPCWSTR pwzBaseUrl, LPCWSTR pwzRelativeUrl, WINAPI_UrlFlags dwCombineFlags, LPWSTR pwzResult, DWORD cchResult, DWORD* pcchResult, DWORD dwReserved);
+  HRESULT CoInternetCombineUrlEx(                  IUri* pBaseUri, LPCWSTR pwzRelativeUrl, WINAPI_UrlFlags dwCombineFlags, IUri** ppCombinedUri, DWORD_PTR dwReserved);
   HRESULT CoInternetCompareUrl(                    LPCWSTR pwzUrl1, LPCWSTR pwzUrl2, DWORD dwCompareFlags);
   STDAPI  CoInternetParseIUri(                     IUri* pIUri, PARSEACTION ParseAction, DWORD dwFlags, LPWSTR pwzResult, DWORD cchResult, DWORD* pcchResult, DWORD_PTR dwReserved);
   STDAPI  CoInternetParseUrl(                      LPCWSTR pwzUrl, PARSEACTION ParseAction, DWORD dwFlags, LPWSTR pszResult, DWORD cchResult, DWORD* pcchResult, DWORD dwReserved);
@@ -139,9 +139,9 @@ ffi.cdef [[
   HRESULT CreateAsyncBindCtx(                      DWORD dwReserved, IBindStatusCallback* pbsc, IEnumFORMATETC* penumfmtetc, IBindCtx** ppbc);
   HRESULT CreateAsyncBindCtxEx(                    IBindCtx* pbc, DWORD dwOptions, IBindStatusCallback* pBSCb, IEnumFORMATETC* pEnum, IBindCtx** ppBC, DWORD reserved);
   STDAPI  CreateIUriBuilder(                       IUri* pIUri, DWORD dwFlags, DWORD_PTR dwReserved, IUriBuilder** ppIUriBuilder);
-  STDAPI  CreateUri(                               LPCWSTR pwzURI, CreateUriFlags dwFlags, DWORD_PTR dwReserved, IUri** ppURI);
-  HRESULT CreateUriFromMultiByteString(            LPCSTR pszANSIInputUri, UriEncodingFlags dwEncodingFlags, DWORD dwCodePage, CreateUriFlags dwCreateFlags, DWORD_PTR dwReserved, IUri** ppURI);
-  STDAPI  CreateUriWithFragment(                   LPCWSTR pwzURI, LPCWSTR pwzFragment, CreateUriFlags dwFlags, DWORD_PTR dwReserved, IUri** ppURI);
+  STDAPI  CreateUri(                               LPCWSTR pwzURI, WINAPI_CreateUriFlags dwFlags, DWORD_PTR dwReserved, IUri** ppURI);
+  HRESULT CreateUriFromMultiByteString(            LPCSTR pszANSIInputUri, WINAPI_UriEncodingFlags dwEncodingFlags, DWORD dwCodePage, WINAPI_CreateUriFlags dwCreateFlags, DWORD_PTR dwReserved, IUri** ppURI);
+  STDAPI  CreateUriWithFragment(                   LPCWSTR pwzURI, LPCWSTR pwzFragment, WINAPI_CreateUriFlags dwFlags, DWORD_PTR dwReserved, IUri** ppURI);
   HRESULT CreateURLMoniker(                        IMoniker* pMkCtx, LPCWSTR szURL, IMoniker** ppmk);
   HRESULT CreateURLMonikerEx(                      IMoniker* pMkCtx, LPCWSTR szURL, IMoniker** ppmk, DWORD dwFlags);
   HRESULT CreateURLMonikerEx2(                     IMoniker* pMkCtx, IUri* pUri, IMoniker** ppmk, DWORD dwFlags);
@@ -165,8 +165,8 @@ ffi.cdef [[
   HRESULT RevokeFormatEnumerator(                  LPBC pbc, IEnumFORMATETC* pEFetc);
   HRESULT URLDownloadToCacheFile(                  LPUNKNOWN lpUnkcaller, LPCSTR szURL, LPTSTR szFileName, DWORD cchFileName, DWORD dwReserved, IBindStatusCallback* pBSC);
   HRESULT URLDownloadToFile(                       LPUNKNOWN pCaller, LPCTSTR szURL, LPCTSTR szFileName, DWORD dwReserved, LPBINDSTATUSCALLBACK lpfnCB);
-  HRESULT UrlMkGetSessionOption(                   UrlMkSessionOption dwOption, LPVOID pBuffer, DWORD dwBufferLength, DWORD* pdwBufferLengthOut, DWORD dwReserved);
-  HRESULT UrlMkSetSessionOption(                   UrlMkSessionOption dwOption, LPVOID pBuffer, DWORD dwBufferLength, DWORD dwReserved);
+  HRESULT UrlMkGetSessionOption(                   WINAPI_UrlMkSessionOption dwOption, LPVOID pBuffer, DWORD dwBufferLength, DWORD* pdwBufferLengthOut, DWORD dwReserved);
+  HRESULT UrlMkSetSessionOption(                   WINAPI_UrlMkSessionOption dwOption, LPVOID pBuffer, DWORD dwBufferLength, DWORD dwReserved);
   HRESULT URLOpenBlockingStream(                   LPUNKNOWN pCaller, LPCSTR szURL, LPSTREAM* ppStream, DWORD dwReserved, LPBINDSTATUSCALLBACK lpfnCB);
   HRESULT URLOpenPullStream(                       LPUNKNOWN pCaller, LPCSTR szURL, DWORD dwReserved, LPBINDSTATUSCALLBACK lpfnCB);
   HRESULT URLOpenStream(                           LPUNKNOWN pCaller, LPCSTR szURL, DWORD dwReserved, LPBINDSTATUSCALLBACK lpfnCB);

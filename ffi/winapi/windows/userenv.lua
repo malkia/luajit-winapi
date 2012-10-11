@@ -13,9 +13,9 @@ ffi.cdef [[
   static const GPO_LINK GPLinkSite = 2;
   static const GPO_LINK GPLinkDomain = 3;
   static const GPO_LINK GPLinkOrganizationalUnit = 4;
-  typedef DWORD GPO_FLAG; //Alias
+  typedef DWORD WINAPI_GPO_FLAG; //Alias
   typedef struct GROUP_POLICY_OBJECT {
-    GPO_FLAG dwOptions;
+    WINAPI_GPO_FLAG dwOptions;
     DWORD dwVersion;
     LPTSTR lpDSPath;
     LPTSTR lpFileSysPath;
@@ -56,7 +56,7 @@ ffi.cdef [[
     HANDLE hProfile;
   } PROFILEINFO;
   typedef PROFILEINFO *LPPROFILEINFO; //Pointer
-  typedef DWORD ProfileType; //Alias
+  typedef DWORD WINAPI_ProfileType; //Alias
   HANDLE  EnterCriticalPolicySection(      BOOL bMachine);
   BOOL    FreeGPOList(                     PGROUP_POLICY_OBJECT pGPOList);
   DWORD   GetAppliedGPOList(               DWORD dwFlags, LPCTSTR pMachineName, PSID pSidUser, GUID* pGuidExtension, PGROUP_POLICY_OBJECT* ppGPOList);
@@ -81,7 +81,7 @@ ffi.cdef [[
   BOOL    GetAllUsersProfileDirectory(     LPTSTR lpProfileDir, LPDWORD lpcchSize);
   BOOL    GetDefaultUserProfileDirectory(  LPTSTR lpProfileDir, LPDWORD lpcchSize);
   BOOL    GetProfilesDirectory(            LPTSTR lpProfilesDir, LPDWORD lpcchSize);
-  BOOL    GetProfileType(                  ProfileType* pdwFlags);
+  BOOL    GetProfileType(                  WINAPI_ProfileType* pdwFlags);
   BOOL    GetUserProfileDirectory(         HANDLE hToken, LPTSTR lpProfileDir, LPDWORD lpcchSize);
   BOOL    LoadUserProfile(                 HANDLE hToken, LPPROFILEINFO lpProfileInfo);
   BOOL    UnloadUserProfile(               HANDLE hToken, HANDLE hProfile);

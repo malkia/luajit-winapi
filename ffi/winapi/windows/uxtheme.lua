@@ -6,10 +6,10 @@ ffi.cdef [[
   typedef HANDLE HANIMATIONBUFFER; //Alias
   typedef HANDLE HPAINTBUFFER; //Alias
   typedef LPVOID DTT_CALLBACK_PROC; //Alias
-  typedef DWORD BPPF_Flags; //Alias
+  typedef DWORD WINAPI_BPPF_Flags; //Alias
   typedef struct BP_PAINTPARAMS {
     DWORD cbSize;
-    BPPF_Flags dwFlags;
+    WINAPI_BPPF_Flags dwFlags;
     RECT* prcExclude;
     BLENDFUNCTION* pBlendFunction;
   } BP_PAINTPARAMS;
@@ -24,20 +24,20 @@ ffi.cdef [[
     BP_ANIMATIONSTYLE style;
     DWORD dwDuration;
   } BP_ANIMATIONPARAMS;
-  typedef DWORD DTBG_Flags; //Alias
+  typedef DWORD WINAPI_DTBG_Flags; //Alias
   typedef struct DTBGOPTS {
     DWORD dwSize;
-    DTBG_Flags dwFlags;
+    WINAPI_DTBG_Flags dwFlags;
     RECT rcClip;
   } DTBGOPTS;
-  typedef DWORD DTT_Flags; //Alias
+  typedef DWORD WINAPI_DTT_Flags; //Alias
   typedef int TEXTSHADOWTYPE; //Alias
   static const TEXTSHADOWTYPE TST_NONE = 0;
   static const TEXTSHADOWTYPE TST_SINGLE = 1;
   static const TEXTSHADOWTYPE TST_CONTINUOUS = 2;
   typedef struct DTTOPTS {
     DWORD dwSize;
-    DTT_Flags dwFlags;
+    WINAPI_DTT_Flags dwFlags;
     COLORREF crText;
     COLORREF crBorder;
     COLORREF crShadow;
@@ -62,34 +62,34 @@ ffi.cdef [[
   static const PROPERTYORIGIN PO_CLASS = 2;
   static const PROPERTYORIGIN PO_GLOBAL = 3;
   static const PROPERTYORIGIN PO_NOTFOUND = 4;
-  typedef DWORD EnableThemeDialogTextureFlags; //Alias
-  typedef DWORD HitTestThemeBackgroundOptions; //Alias
-  typedef WORD HitTestReturnCode; //Alias
-  static const HitTestReturnCode HTERROR = -2;
-  static const HitTestReturnCode HTTRANSPARENT = -1;
-  static const HitTestReturnCode HTNOWHERE = 0;
-  static const HitTestReturnCode HTCLIENT = 1;
-  static const HitTestReturnCode HTCAPTION = 2;
-  static const HitTestReturnCode HTSYSMENU = 3;
-  static const HitTestReturnCode HTGROWBOX = 4;
-  static const HitTestReturnCode HTMENU = 5;
-  static const HitTestReturnCode HTHSCROLL = 6;
-  static const HitTestReturnCode HTVSCROLL = 7;
-  static const HitTestReturnCode HTMINBUTTON = 8;
-  static const HitTestReturnCode HTMAXBUTTON = 9;
-  static const HitTestReturnCode HTLEFT = 10;
-  static const HitTestReturnCode HTRIGHT = 11;
-  static const HitTestReturnCode HTTOP = 12;
-  static const HitTestReturnCode HTTOPLEFT = 13;
-  static const HitTestReturnCode HTTOPRIGHT = 14;
-  static const HitTestReturnCode HTBOTTOM = 15;
-  static const HitTestReturnCode HTBOTTOMLEFT = 16;
-  static const HitTestReturnCode HTBOTTOMRIGHT = 17;
-  static const HitTestReturnCode HTBORDER = 18;
-  static const HitTestReturnCode HTOBJECT = 19;
-  static const HitTestReturnCode HTCLOSE = 20;
-  static const HitTestReturnCode HTHELP = 21;
-  typedef DWORD DrawThemeParentBackgroundFlags; //Alias
+  typedef DWORD WINAPI_EnableThemeDialogTextureFlags; //Alias
+  typedef DWORD WINAPI_HitTestThemeBackgroundOptions; //Alias
+  typedef WORD WINAPI_HitTestReturnCode; //Alias
+  static const WINAPI_HitTestReturnCode HTERROR = -2;
+  static const WINAPI_HitTestReturnCode HTTRANSPARENT = -1;
+  static const WINAPI_HitTestReturnCode HTNOWHERE = 0;
+  static const WINAPI_HitTestReturnCode HTCLIENT = 1;
+  static const WINAPI_HitTestReturnCode HTCAPTION = 2;
+  static const WINAPI_HitTestReturnCode HTSYSMENU = 3;
+  static const WINAPI_HitTestReturnCode HTGROWBOX = 4;
+  static const WINAPI_HitTestReturnCode HTMENU = 5;
+  static const WINAPI_HitTestReturnCode HTHSCROLL = 6;
+  static const WINAPI_HitTestReturnCode HTVSCROLL = 7;
+  static const WINAPI_HitTestReturnCode HTMINBUTTON = 8;
+  static const WINAPI_HitTestReturnCode HTMAXBUTTON = 9;
+  static const WINAPI_HitTestReturnCode HTLEFT = 10;
+  static const WINAPI_HitTestReturnCode HTRIGHT = 11;
+  static const WINAPI_HitTestReturnCode HTTOP = 12;
+  static const WINAPI_HitTestReturnCode HTTOPLEFT = 13;
+  static const WINAPI_HitTestReturnCode HTTOPRIGHT = 14;
+  static const WINAPI_HitTestReturnCode HTBOTTOM = 15;
+  static const WINAPI_HitTestReturnCode HTBOTTOMLEFT = 16;
+  static const WINAPI_HitTestReturnCode HTBOTTOMRIGHT = 17;
+  static const WINAPI_HitTestReturnCode HTBORDER = 18;
+  static const WINAPI_HitTestReturnCode HTOBJECT = 19;
+  static const WINAPI_HitTestReturnCode HTCLOSE = 20;
+  static const WINAPI_HitTestReturnCode HTHELP = 21;
+  typedef DWORD WINAPI_DrawThemeParentBackgroundFlags; //Alias
   typedef DWORD BP_BUFFERFORMAT; //Alias
   static const BP_BUFFERFORMAT BPBF_COMPATIBLEBITMAP = 0;
   static const BP_BUFFERFORMAT BPBF_DIB = 1;
@@ -108,13 +108,13 @@ ffi.cdef [[
   HRESULT          CloseThemeData(                        HTHEME hTheme);
   HRESULT          DrawThemeBackground(                   HTHEME hTheme, HDC hdc, int iPartId, int iStateId, RECT* pRect, RECT* pClipRect);
   HRESULT          DrawThemeBackgroundEx(                 HTHEME hTheme, HDC hdc, int iPartId, int iStateId, RECT* pRect, DTBGOPTS* pOptions);
-  HRESULT          DrawThemeEdge(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pDestRect, BorderEdge uEdge, BorderFlag uFlags, LPRECT pContentRect);
+  HRESULT          DrawThemeEdge(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pDestRect, WINAPI_BorderEdge uEdge, WINAPI_BorderFlag uFlags, LPRECT pContentRect);
   HRESULT          DrawThemeIcon(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pRect, HIMAGELIST himl, int iImageIndex);
   HRESULT          DrawThemeParentBackground(             HWND hwnd, HDC hdc, RECT* prc);
-  HRESULT          DrawThemeParentBackgroundEx(           HWND hwnd, HDC hdc, DrawThemeParentBackgroundFlags dwFlags, RECT* prc);
-  HRESULT          DrawThemeText(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, DrawTextFlags dwTextFlags, DWORD dwTextFlags2, LPCRECT pRect);
-  HRESULT          DrawThemeTextEx(                       HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, DrawTextFlags dwFlags, LPRECT pRect, DTTOPTS* pOptions);
-  HRESULT          EnableThemeDialogTexture(              HWND hwnd, EnableThemeDialogTextureFlags dwFlags);
+  HRESULT          DrawThemeParentBackgroundEx(           HWND hwnd, HDC hdc, WINAPI_DrawThemeParentBackgroundFlags dwFlags, RECT* prc);
+  HRESULT          DrawThemeText(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwTextFlags, DWORD dwTextFlags2, LPCRECT pRect);
+  HRESULT          DrawThemeTextEx(                       HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwFlags, LPRECT pRect, DTTOPTS* pOptions);
+  HRESULT          EnableThemeDialogTexture(              HWND hwnd, WINAPI_EnableThemeDialogTextureFlags dwFlags);
   HRESULT          EnableTheming(                         BOOL fEnable);
   HRESULT          EndBufferedAnimation(                  HANIMATIONBUFFER hbpAnimation, BOOL fUpdateTarget);
   HRESULT          EndBufferedPaint(                      HPAINTBUFFER hBufferedPaint, BOOL fUpdateTarget);
@@ -145,17 +145,17 @@ ffi.cdef [[
   HRESULT          GetThemeStream(                        HTHEME hTheme, int iPartId, int iStateId, int iPropId, VOID** ppvStream, DWORD* pcbStream, HINSTANCE hInst);
   HRESULT          GetThemeString(                        HTHEME hTheme, int iPartId, int iStateId, int iPropId, LPWSTR pszBuff, int cchMaxBuffChars);
   BOOL             GetThemeSysBool(                       HTHEME hTheme, int iBoolID);
-  COLORREF         GetThemeSysColor(                      HTHEME hTheme, SysColorIndex iColorID);
+  COLORREF         GetThemeSysColor(                      HTHEME hTheme, WINAPI_SysColorIndex iColorID);
   HBRUSH           GetThemeSysColorBrush(                 HTHEME hTheme, int iColorID);
   HRESULT          GetThemeSysFont(                       HTHEME hTheme, int iFontID, LOGFONTW* plf);
   HRESULT          GetThemeSysInt(                        HTHEME hTheme, int iIntID, int* piValue);
   int              GetThemeSysSize(                       HTHEME hTheme, int iSizeID);
   HRESULT          GetThemeSysString(                     HTHEME hTheme, int iStringID, LPWSTR pszStringBuff, int cchMaxStringChars);
-  HRESULT          GetThemeTextExtent(                    HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, DrawTextFlags dwTextFlags, LPCRECT pBoundingRect, LPRECT pExtentRect);
+  HRESULT          GetThemeTextExtent(                    HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwTextFlags, LPCRECT pBoundingRect, LPRECT pExtentRect);
   HRESULT          GetThemeTextMetrics(                   HTHEME hTheme, HDC hdc, int iPartId, int iStateId, TEXTMETRIC* ptm);
   HRESULT          GetThemeTransitionDuration(            HTHEME hTheme, int iPartId, int iStateIdFrom, int iStateIdTo, int iPropId, DWORD* pdwDuration);
   HTHEME           GetWindowTheme(                        HWND hWnd);
-  HRESULT          HitTestThemeBackground(                HTHEME hTheme, HDC hdc, int iPartId, int iStateId, HitTestThemeBackgroundOptions dwOptions, LPCRECT pRect, HRGN hrgn, POINT ptTest, HitTestReturnCode* pwHitTestCode);
+  HRESULT          HitTestThemeBackground(                HTHEME hTheme, HDC hdc, int iPartId, int iStateId, WINAPI_HitTestThemeBackgroundOptions dwOptions, LPCRECT pRect, HRGN hrgn, POINT ptTest, WINAPI_HitTestReturnCode* pwHitTestCode);
   BOOL             IsAppThemed(                           );
   BOOL             IsCompositionActive(                   );
   BOOL             IsThemeActive(                         );

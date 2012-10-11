@@ -6,7 +6,7 @@ ffi.cdef [[
   enum { WLAN_MAX_NAME_LENGTH = 256 };
   enum { DOT11_SSID_MAX_LENGTH = 32 };
   enum { DOT11_RATE_SET_MAX_LENGTH = 126 };
-  typedef DWORD WlanProfileFlags; //Alias
+  typedef DWORD WINAPI_WlanProfileFlags; //Alias
   typedef UINT DOT11_BSS_TYPE; //Alias
   static const DOT11_BSS_TYPE dot11_BSS_type_infrastructure = 1;
   static const DOT11_BSS_TYPE dot11_BSS_type_independent = 2;
@@ -44,59 +44,59 @@ ffi.cdef [[
   static const DOT11_CIPHER_ALGORITHM DOT11_CIPHER_ALGO_WEP104 = 0x05;
   static const DOT11_CIPHER_ALGORITHM DOT11_CIPHER_ALGO_WPA_USE_GROUP = 0x100;
   static const DOT11_CIPHER_ALGORITHM DOT11_CIPHER_ALGO_WEP = 0x101;
-  typedef UCHAR NDIS_OBJECT_TYPE; //Alias
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_DEFAULT = 0x80;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_INIT_PARAMETERS = 0x81;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_SG_DMA_DESCRIPTION = 0x83;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_INTERRUPT = 0x84;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_DEVICE_OBJECT_ATTRIBUTES = 0x85;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_BIND_PARAMETERS = 0x86;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_OPEN_PARAMETERS = 0x87;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_RSS_CAPABILITIES = 0x88;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_RSS_PARAMETERS = 0x89;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_DRIVER_CHARACTERISTICS = 0x8A;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_DRIVER_CHARACTERISTICS = 0x8B;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_PARTIAL_CHARACTERISTICS = 0x8C;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_ATTRIBUTES = 0x8D;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CLIENT_CHIMNEY_OFFLOAD_GENERIC_CHARACTERISTICS = 0x8E;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PROVIDER_CHIMNEY_OFFLOAD_GENERIC_CHARACTERISTICS = 0x8F;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CO_PROTOCOL_CHARACTERISTICS = 0x90;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CO_MINIPORT_CHARACTERISTICS = 0x91;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_PNP_CHARACTERISTICS = 0x92;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CLIENT_CHIMNEY_OFFLOAD_CHARACTERISTICS = 0x93;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PROVIDER_CHIMNEY_OFFLOAD_CHARACTERISTICS = 0x94;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PROTOCOL_DRIVER_CHARACTERISTICS = 0x95;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_REQUEST_EX = 0x96;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_OID_REQUEST = 0x96;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_TIMER_CHARACTERISTICS = 0x97;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_STATUS_INDICATION = 0x98;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_ATTACH_PARAMETERS = 0x99;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_PAUSE_PARAMETERS = 0x9A;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_RESTART_PARAMETERS = 0x9B;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PORT_CHARACTERISTICS = 0x9C;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PORT_STATE = 0x9D;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_REGISTRATION_ATTRIBUTES = 0x9E;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_GENERAL_ATTRIBUTES = 0x9F;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_OFFLOAD_ATTRIBUTES = 0xA0;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_NATIVE_802_11_ATTRIBUTES = 0xA1;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_RESTART_GENERAL_ATTRIBUTES = 0xA2;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PROTOCOL_RESTART_PARAMETERS = 0xA3;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADD_DEVICE_REGISTRATION_ATTRIBUTES = 0xA4;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CO_CALL_MANAGER_OPTIONAL_HANDLERS = 0xA5;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CO_CLIENT_OPTIONAL_HANDLERS = 0xA6;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_OFFLOAD = 0xA7;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_OFFLOAD_ENCAPSULATION = 0xA8;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CONFIGURATION_OBJECT = 0xA9;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_DRIVER_WRAPPER_OBJECT = 0xAA;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_HD_SPLIT_ATTRIBUTES = 0xAB;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_NSI_NETWORK_RW_STRUCT = 0xAC;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_NSI_COMPARTMENT_RW_STRUCT = 0xAD;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_NSI_INTERFACE_PERSIST_RW_STRUCT = 0xAE;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_HARDWARE_ASSIST_ATTRIBUTES = 0xAF;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_SHARED_MEMORY_PROVIDER_CHARACTERISTICS = 0xB0;
-  static const NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_RSS_PROCESSOR_INFO = 0xB1;
+  typedef UCHAR WINAPI_NDIS_OBJECT_TYPE; //Alias
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_DEFAULT = 0x80;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_INIT_PARAMETERS = 0x81;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_SG_DMA_DESCRIPTION = 0x83;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_INTERRUPT = 0x84;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_DEVICE_OBJECT_ATTRIBUTES = 0x85;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_BIND_PARAMETERS = 0x86;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_OPEN_PARAMETERS = 0x87;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_RSS_CAPABILITIES = 0x88;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_RSS_PARAMETERS = 0x89;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_DRIVER_CHARACTERISTICS = 0x8A;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_DRIVER_CHARACTERISTICS = 0x8B;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_PARTIAL_CHARACTERISTICS = 0x8C;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_ATTRIBUTES = 0x8D;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CLIENT_CHIMNEY_OFFLOAD_GENERIC_CHARACTERISTICS = 0x8E;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PROVIDER_CHIMNEY_OFFLOAD_GENERIC_CHARACTERISTICS = 0x8F;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CO_PROTOCOL_CHARACTERISTICS = 0x90;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CO_MINIPORT_CHARACTERISTICS = 0x91;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_PNP_CHARACTERISTICS = 0x92;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CLIENT_CHIMNEY_OFFLOAD_CHARACTERISTICS = 0x93;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PROVIDER_CHIMNEY_OFFLOAD_CHARACTERISTICS = 0x94;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PROTOCOL_DRIVER_CHARACTERISTICS = 0x95;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_REQUEST_EX = 0x96;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_OID_REQUEST = 0x96;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_TIMER_CHARACTERISTICS = 0x97;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_STATUS_INDICATION = 0x98;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_ATTACH_PARAMETERS = 0x99;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_PAUSE_PARAMETERS = 0x9A;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_FILTER_RESTART_PARAMETERS = 0x9B;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PORT_CHARACTERISTICS = 0x9C;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PORT_STATE = 0x9D;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_REGISTRATION_ATTRIBUTES = 0x9E;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_GENERAL_ATTRIBUTES = 0x9F;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_OFFLOAD_ATTRIBUTES = 0xA0;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_NATIVE_802_11_ATTRIBUTES = 0xA1;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_RESTART_GENERAL_ATTRIBUTES = 0xA2;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_PROTOCOL_RESTART_PARAMETERS = 0xA3;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADD_DEVICE_REGISTRATION_ATTRIBUTES = 0xA4;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CO_CALL_MANAGER_OPTIONAL_HANDLERS = 0xA5;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CO_CLIENT_OPTIONAL_HANDLERS = 0xA6;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_OFFLOAD = 0xA7;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_OFFLOAD_ENCAPSULATION = 0xA8;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_CONFIGURATION_OBJECT = 0xA9;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_DRIVER_WRAPPER_OBJECT = 0xAA;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_HD_SPLIT_ATTRIBUTES = 0xAB;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_NSI_NETWORK_RW_STRUCT = 0xAC;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_NSI_COMPARTMENT_RW_STRUCT = 0xAD;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_NSI_INTERFACE_PERSIST_RW_STRUCT = 0xAE;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_MINIPORT_ADAPTER_HARDWARE_ASSIST_ATTRIBUTES = 0xAF;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_SHARED_MEMORY_PROVIDER_CHARACTERISTICS = 0xB0;
+  static const WINAPI_NDIS_OBJECT_TYPE NDIS_OBJECT_TYPE_RSS_PROCESSOR_INFO = 0xB1;
   typedef struct NDIS_OBJECT_HEADER {
-    NDIS_OBJECT_TYPE Type;
+    WINAPI_NDIS_OBJECT_TYPE Type;
     UCHAR Revision;
     USHORT Size;
   } NDIS_OBJECT_HEADER;
@@ -127,18 +127,18 @@ ffi.cdef [[
     WLAN_INTERFACE_INFO InterfaceInfo[1];
   } WLAN_INTERFACE_INFO_LIST;
   typedef WLAN_INTERFACE_INFO_LIST *PWLAN_INTERFACE_INFO_LIST; //Pointer
-  typedef struct WLAN_RAW_DATA_LIST_s {
+  typedef struct WINAPI_WLAN_RAW_DATA_LIST_s {
     DWORD dwDataOffset;
     DWORD dwDataSize;
-  } WLAN_RAW_DATA_LIST_s;
+  } WINAPI_WLAN_RAW_DATA_LIST_s;
   typedef struct WLAN_RAW_DATA_LIST {
     DWORD dwTotalSize;
     DWORD dwNumberOfItems;
-    WLAN_RAW_DATA_LIST_s DataList[1];
+    WINAPI_WLAN_RAW_DATA_LIST_s DataList[1];
   } WLAN_RAW_DATA_LIST;
   typedef WLAN_RAW_DATA_LIST *PWLAN_RAW_DATA_LIST; //Pointer
   typedef WLAN_RAW_DATA_LIST *PWLAN_RAW_DATA_LIST; //Pointer
-  typedef DWORD WLAN_AVAILABLE_NETWORK_FLAGS; //Alias
+  typedef DWORD WINAPI_WLAN_AVAILABLE_NETWORK_FLAGS; //Alias
   typedef struct WLAN_AVAILABLE_NETWORK {
     WCHAR strProfileName[WLAN_MAX_NAME_LENGTH];
     DOT11_SSID dot11Ssid;
@@ -153,7 +153,7 @@ ffi.cdef [[
     BOOL bSecurityEnabled;
     DOT11_AUTH_ALGORITHM dot11DefaultAuthAlgorithm;
     DOT11_CIPHER_ALGORITHM dot11DefaultCipherAlgorithm;
-    WLAN_AVAILABLE_NETWORK_FLAGS dwFlags;
+    WINAPI_WLAN_AVAILABLE_NETWORK_FLAGS dwFlags;
     DWORD dwReserved;
   } WLAN_AVAILABLE_NETWORK;
   typedef struct WLAN_AVAILABLE_NETWORK_LIST {
@@ -216,7 +216,7 @@ ffi.cdef [[
   typedef WLAN_BSS_LIST *PWLAN_BSS_LIST; //Pointer
   typedef struct WLAN_PROFILE_INFO {
     WCHAR strProfileName[WLAN_MAX_NAME_LENGTH];
-    WlanProfileFlags dwFlags;
+    WINAPI_WlanProfileFlags dwFlags;
   } WLAN_PROFILE_INFO;
   typedef struct WLAN_PROFILE_INFO_LIST {
     DWORD dwNumberOfItems;
@@ -257,14 +257,14 @@ ffi.cdef [[
   static const WLAN_CONNECTION_MODE wlan_connection_mode_discovery_unsecure = 3;
   static const WLAN_CONNECTION_MODE wlan_connection_mode_auto = 4;
   static const WLAN_CONNECTION_MODE wlan_connection_mode_invalid = 5;
-  typedef DWORD WlanConnectionFlags; //Alias
+  typedef DWORD WINAPI_WlanConnectionFlags; //Alias
   typedef struct WLAN_CONNECTION_PARAMETERS {
     WLAN_CONNECTION_MODE wlanConnectionMode;
     LPCWSTR strProfile;
     PDOT11_SSID pDot11Ssid;
     PDOT11_BSSID_LIST pDesiredBssidList;
     DOT11_BSS_TYPE dot11BssType;
-    WlanConnectionFlags dwFlags;
+    WINAPI_WlanConnectionFlags dwFlags;
   } WLAN_CONNECTION_PARAMETERS;
   typedef WLAN_CONNECTION_PARAMETERS *PWLAN_CONNECTION_PARAMETERS; //Pointer
   typedef UINT WLAN_OPCODE_VALUE_TYPE; //Alias
@@ -358,9 +358,9 @@ ffi.cdef [[
   static const WLAN_INTF_OPCODE wlan_intf_opcode_hosted_network_capable = 15;
   static const WLAN_INTF_OPCODE wlan_intf_opcode_statistics = 0x10000101;
   static const WLAN_INTF_OPCODE wlan_intf_opcode_rssi = 0x10000102;
-  typedef DWORD WlanNotificationSource; //Alias
-  typedef DWORD WlanAvailableFlags; //Alias
-  typedef DWORD WlanAccess; //Alias
+  typedef DWORD WINAPI_WlanNotificationSource; //Alias
+  typedef DWORD WINAPI_WlanAvailableFlags; //Alias
+  typedef DWORD WINAPI_WlanAccess; //Alias
   typedef struct EAP_TYPE {
     BYTE type;
     DWORD dwVendorId;
@@ -370,52 +370,52 @@ ffi.cdef [[
     EAP_TYPE eapType;
     DWORD dwAuthorId;
   } EAP_METHOD_TYPE;
-  PVOID      WlanAllocateMemory(                       DWORD dwMemorySize);
-  ERROR_CODE WlanCloseHandle(                          HANDLE hClientHandle, PVOID pReserved);
-  ERROR_CODE WlanConnect(                              HANDLE hClientHandle, GUID* pInterfaceGuid, PWLAN_CONNECTION_PARAMETERS pConnectionParameters, PVOID pReserved);
-  ERROR_CODE WlanDeleteProfile(                        HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, PVOID pReserved);
-  ERROR_CODE WlanDisconnect(                           HANDLE hClientHandle, GUID* pInterfaceGuid, PVOID pReserved);
-  ERROR_CODE WlanEnumInterfaces(                       HANDLE hClientHandle, PVOID pReserved, PWLAN_INTERFACE_INFO_LIST* ppInterfaceList);
-  ERROR_CODE WlanExtractPsdIEDataList(                 HANDLE hClientHandle, DWORD dwIeDataSize, PBYTE pRawIeData, LPCWSTR strFormat, PVOID pReserved, PWLAN_RAW_DATA_LIST* ppPsdIEDataList);
-  VOID       WlanFreeMemory(                           PVOID pMemory);
-  ERROR_CODE WlanGetAvailableNetworkList(              HANDLE hClientHandle, GUID* pInterfaceGuid, WlanAvailableFlags dwFlags, PVOID pReserved, PWLAN_AVAILABLE_NETWORK_LIST* ppAvailableNetworkList);
-  ERROR_CODE WlanGetFilterList(                        HANDLE hClientHandle, WLAN_FILTER_LIST_TYPE wlanFilterListType, PVOID pReserved, PDOT11_NETWORK_LIST* ppNetworkList);
-  ERROR_CODE WlanGetInterfaceCapability(               HANDLE hClientHandle, GUID* pInterfaceGuid, PVOID pReserved, PWLAN_INTERFACE_CAPABILITY* ppCapability);
-  ERROR_CODE WlanGetNetworkBssList(                    HANDLE hClientHandle, GUID* pInterfaceGuid, PDOT11_SSID pDot11Ssid, DOT11_BSS_TYPE dot11BssType, BOOL bSecurityEnabled, PVOID pReserved, PWLAN_BSS_LIST* ppWlanBssList);
-  ERROR_CODE WlanGetProfile(                           HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, PVOID pReserved, LPWSTR* pstrProfileXml, WlanProfileFlags* pdwFlags, WlanAccess* pdwGrantedAccess);
-  ERROR_CODE WlanGetProfileCustomUserData(             HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, PVOID pReserved, DWORD* pdwDataSize, PBYTE* ppData);
-  ERROR_CODE WlanGetProfileList(                       HANDLE hClientHandle, GUID* pInterfaceGuid, PVOID pReserved, PWLAN_PROFILE_INFO_LIST* ppProfileList);
-  ERROR_CODE WlanGetSecuritySettings(                  HANDLE hClientHandle, WLAN_SECURABLE_OBJECT SecurableObject, PWLAN_OPCODE_VALUE_TYPE pValueType, LPWSTR* pstrCurrentSDDL, WlanAccess* pdwGrantedAccess);
-  ERROR_CODE WlanHostedNetworkForceStart(              HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkForceStop(               HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkInitSettings(            HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkQueryProperty(           HANDLE hClientHandle, WLAN_HOSTED_NETWORK_OPCODE OpCode, PDWORD pdwDataSize, PVOID* ppvData, PWLAN_OPCODE_VALUE_TYPE* pWlanOpcodeValueType, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkQuerySecondaryKey(       HANDLE hClientHandle, DWORD pdwKeyLength, PUCHAR* ppucKeyData, PBOOL pbIsPassPhrase, PBOOL pbPersistent, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkQueryStatus(             HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_STATUS* ppWlanHostedNetworkStatus, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkRefreshSecuritySettings( HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkSetProperty(             HANDLE hClientHandle, WLAN_HOSTED_NETWORK_OPCODE OpCode, DWORD dwDataSize, PVOID pvData, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkSetSecondaryKey(         HANDLE hClientHandle, DWORD dwKeyLength, PUCHAR pucKeyData, BOOL bIsPassPhrase, BOOL bPersistent, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkStartUsing(              HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanHostedNetworkStopUsing(               HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
-  ERROR_CODE WlanIhvControl(                           HANDLE hClientHandle, GUID* pInterfaceGuid, WLAN_IHV_CONTROL_TYPE Type, DWORD dwInBufferSize, PVOID pInBuffer, DWORD dwOutBufferSize, PVOID pOutBuffer, PDWORD pdwBytesReturned);
-  ERROR_CODE WlanOpenHandle(                           DWORD dwClientVersion, PVOID pReserved, PDWORD pdwNegotiatedVersion, PHANDLE phClientHandle);
-  ERROR_CODE WlanQueryAutoConfigParameter(             HANDLE hClientHandle, WLAN_AUTOCONF_OPCODE OpCode, PVOID pReserved, PDWORD pdwDataSize, PVOID ppData, PWLAN_OPCODE_VALUE_TYPE pWlanOpcodeValueType);
-  ERROR_CODE WlanQueryInterface(                       HANDLE hClientHandle, GUID* pInterfaceGuid, WLAN_INTF_OPCODE OpCode, PVOID pReserved, PDWORD pdwDataSize, PVOID* ppData, PWLAN_OPCODE_VALUE_TYPE pWlanOpcodeValueType);
-  ERROR_CODE WlanReasonCodeToString(                   DWORD dwReasonCode, DWORD dwBufferSize, PWCHAR pStringBuffer, PVOID pReserved);
-  ERROR_CODE WlanRegisterNotification(                 HANDLE hClientHandle, WlanNotificationSource dwNotifSource, BOOL bIgnoreDuplicate, WLAN_NOTIFICATION_CALLBACK funcCallback, PVOID pCallbackContext, PVOID pReserved, WlanNotificationSource* pdwPrevNotifSource);
-  ERROR_CODE WlanRegisterVirtualStationNotification(   HANDLE hClientHandle, BOOL bRegister, PVOID pvReserved);
-  ERROR_CODE WlanSaveTemporaryProfile(                 HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, LPCWSTR strAllUserProfileSecurity, WlanProfileFlags dwFlags, BOOL bOverWrite, PVOID pReserved);
-  ERROR_CODE WlanScan(                                 HANDLE hClientHandle, GUID* pInterfaceGuid, PDOT11_SSID pDot11Ssid, PWLAN_RAW_DATA pIeData, PVOID pReserved);
-  ERROR_CODE WlanSetAutoConfigParameter(               HANDLE hClientHandle, WLAN_AUTOCONF_OPCODE OpCode, DWORD dwDataSize, PVOID pData, PVOID pReserved);
-  ERROR_CODE WlanSetFilterList(                        HANDLE hClientHandle, WLAN_FILTER_LIST_TYPE wlanFilterListType, PDOT11_NETWORK_LIST pNetworkList, PVOID pReserved);
-  ERROR_CODE WlanSetInterface(                         HANDLE hClientHandle, GUID* pInterfaceGuid, WLAN_INTF_OPCODE OpCode, DWORD dwDataSize, PVOID pData, PVOID pReserved);
-  ERROR_CODE WlanSetProfile(                           HANDLE hClientHandle, GUID* pInterfaceGuid, DWORD dwFlags, LPCWSTR strProfileXml, LPCWSTR strAllUserProfileSecurity, BOOL bOverwrite, PVOID pReserved, DWORD* pdwReasonCode);
-  ERROR_CODE WlanSetProfileCustomUserData(             HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, DWORD dwDataSize, PBYTE pData, PVOID pReserved);
-  ERROR_CODE WlanSetProfileEapUserData(                HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, EAP_METHOD_TYPE eapType, DWORD dwFlags, DWORD dwEapUserDataSize, LPBYTE pbEapUserData, PVOID pReserved);
-  ERROR_CODE WlanSetProfileEapXmlUserData(             HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, DWORD dwFlags, LPCWSTR strEapXmlUserData, PVOID pReserved);
-  ERROR_CODE WlanSetProfileList(                       HANDLE hClientHandle, GUID* pInterfaceGuid, DWORD dwItems, LPCWSTR* strProfileNames, PVOID pReserved);
-  ERROR_CODE WlanSetProfilePosition(                   HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, DWORD dwPosition, PVOID pReserved);
-  ERROR_CODE WlanSetPsdIEDataList(                     HANDLE hClientHandle, LPCWSTR strFormat, PWLAN_RAW_DATA_LIST pPsdIEDataList, PVOID pReserved);
-  ERROR_CODE WlanSetSecuritySettings(                  HANDLE hClientHandle, WLAN_SECURABLE_OBJECT SecurableObject, LPCWSTR strModifiedSDDL);
+  PVOID             WlanAllocateMemory(                       DWORD dwMemorySize);
+  WINAPI_ERROR_CODE WlanCloseHandle(                          HANDLE hClientHandle, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanConnect(                              HANDLE hClientHandle, GUID* pInterfaceGuid, PWLAN_CONNECTION_PARAMETERS pConnectionParameters, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanDeleteProfile(                        HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanDisconnect(                           HANDLE hClientHandle, GUID* pInterfaceGuid, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanEnumInterfaces(                       HANDLE hClientHandle, PVOID pReserved, PWLAN_INTERFACE_INFO_LIST* ppInterfaceList);
+  WINAPI_ERROR_CODE WlanExtractPsdIEDataList(                 HANDLE hClientHandle, DWORD dwIeDataSize, PBYTE pRawIeData, LPCWSTR strFormat, PVOID pReserved, PWLAN_RAW_DATA_LIST* ppPsdIEDataList);
+  VOID              WlanFreeMemory(                           PVOID pMemory);
+  WINAPI_ERROR_CODE WlanGetAvailableNetworkList(              HANDLE hClientHandle, GUID* pInterfaceGuid, WINAPI_WlanAvailableFlags dwFlags, PVOID pReserved, PWLAN_AVAILABLE_NETWORK_LIST* ppAvailableNetworkList);
+  WINAPI_ERROR_CODE WlanGetFilterList(                        HANDLE hClientHandle, WLAN_FILTER_LIST_TYPE wlanFilterListType, PVOID pReserved, PDOT11_NETWORK_LIST* ppNetworkList);
+  WINAPI_ERROR_CODE WlanGetInterfaceCapability(               HANDLE hClientHandle, GUID* pInterfaceGuid, PVOID pReserved, PWLAN_INTERFACE_CAPABILITY* ppCapability);
+  WINAPI_ERROR_CODE WlanGetNetworkBssList(                    HANDLE hClientHandle, GUID* pInterfaceGuid, PDOT11_SSID pDot11Ssid, DOT11_BSS_TYPE dot11BssType, BOOL bSecurityEnabled, PVOID pReserved, PWLAN_BSS_LIST* ppWlanBssList);
+  WINAPI_ERROR_CODE WlanGetProfile(                           HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, PVOID pReserved, LPWSTR* pstrProfileXml, WINAPI_WlanProfileFlags* pdwFlags, WINAPI_WlanAccess* pdwGrantedAccess);
+  WINAPI_ERROR_CODE WlanGetProfileCustomUserData(             HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, PVOID pReserved, DWORD* pdwDataSize, PBYTE* ppData);
+  WINAPI_ERROR_CODE WlanGetProfileList(                       HANDLE hClientHandle, GUID* pInterfaceGuid, PVOID pReserved, PWLAN_PROFILE_INFO_LIST* ppProfileList);
+  WINAPI_ERROR_CODE WlanGetSecuritySettings(                  HANDLE hClientHandle, WLAN_SECURABLE_OBJECT SecurableObject, PWLAN_OPCODE_VALUE_TYPE pValueType, LPWSTR* pstrCurrentSDDL, WINAPI_WlanAccess* pdwGrantedAccess);
+  WINAPI_ERROR_CODE WlanHostedNetworkForceStart(              HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkForceStop(               HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkInitSettings(            HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkQueryProperty(           HANDLE hClientHandle, WLAN_HOSTED_NETWORK_OPCODE OpCode, PDWORD pdwDataSize, PVOID* ppvData, PWLAN_OPCODE_VALUE_TYPE* pWlanOpcodeValueType, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkQuerySecondaryKey(       HANDLE hClientHandle, DWORD pdwKeyLength, PUCHAR* ppucKeyData, PBOOL pbIsPassPhrase, PBOOL pbPersistent, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkQueryStatus(             HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_STATUS* ppWlanHostedNetworkStatus, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkRefreshSecuritySettings( HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkSetProperty(             HANDLE hClientHandle, WLAN_HOSTED_NETWORK_OPCODE OpCode, DWORD dwDataSize, PVOID pvData, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkSetSecondaryKey(         HANDLE hClientHandle, DWORD dwKeyLength, PUCHAR pucKeyData, BOOL bIsPassPhrase, BOOL bPersistent, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkStartUsing(              HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanHostedNetworkStopUsing(               HANDLE hClientHandle, PWLAN_HOSTED_NETWORK_REASON pFailReason, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanIhvControl(                           HANDLE hClientHandle, GUID* pInterfaceGuid, WLAN_IHV_CONTROL_TYPE Type, DWORD dwInBufferSize, PVOID pInBuffer, DWORD dwOutBufferSize, PVOID pOutBuffer, PDWORD pdwBytesReturned);
+  WINAPI_ERROR_CODE WlanOpenHandle(                           DWORD dwClientVersion, PVOID pReserved, PDWORD pdwNegotiatedVersion, PHANDLE phClientHandle);
+  WINAPI_ERROR_CODE WlanQueryAutoConfigParameter(             HANDLE hClientHandle, WLAN_AUTOCONF_OPCODE OpCode, PVOID pReserved, PDWORD pdwDataSize, PVOID ppData, PWLAN_OPCODE_VALUE_TYPE pWlanOpcodeValueType);
+  WINAPI_ERROR_CODE WlanQueryInterface(                       HANDLE hClientHandle, GUID* pInterfaceGuid, WLAN_INTF_OPCODE OpCode, PVOID pReserved, PDWORD pdwDataSize, PVOID* ppData, PWLAN_OPCODE_VALUE_TYPE pWlanOpcodeValueType);
+  WINAPI_ERROR_CODE WlanReasonCodeToString(                   DWORD dwReasonCode, DWORD dwBufferSize, PWCHAR pStringBuffer, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanRegisterNotification(                 HANDLE hClientHandle, WINAPI_WlanNotificationSource dwNotifSource, BOOL bIgnoreDuplicate, WLAN_NOTIFICATION_CALLBACK funcCallback, PVOID pCallbackContext, PVOID pReserved, WINAPI_WlanNotificationSource* pdwPrevNotifSource);
+  WINAPI_ERROR_CODE WlanRegisterVirtualStationNotification(   HANDLE hClientHandle, BOOL bRegister, PVOID pvReserved);
+  WINAPI_ERROR_CODE WlanSaveTemporaryProfile(                 HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, LPCWSTR strAllUserProfileSecurity, WINAPI_WlanProfileFlags dwFlags, BOOL bOverWrite, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanScan(                                 HANDLE hClientHandle, GUID* pInterfaceGuid, PDOT11_SSID pDot11Ssid, PWLAN_RAW_DATA pIeData, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetAutoConfigParameter(               HANDLE hClientHandle, WLAN_AUTOCONF_OPCODE OpCode, DWORD dwDataSize, PVOID pData, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetFilterList(                        HANDLE hClientHandle, WLAN_FILTER_LIST_TYPE wlanFilterListType, PDOT11_NETWORK_LIST pNetworkList, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetInterface(                         HANDLE hClientHandle, GUID* pInterfaceGuid, WLAN_INTF_OPCODE OpCode, DWORD dwDataSize, PVOID pData, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetProfile(                           HANDLE hClientHandle, GUID* pInterfaceGuid, DWORD dwFlags, LPCWSTR strProfileXml, LPCWSTR strAllUserProfileSecurity, BOOL bOverwrite, PVOID pReserved, DWORD* pdwReasonCode);
+  WINAPI_ERROR_CODE WlanSetProfileCustomUserData(             HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, DWORD dwDataSize, PBYTE pData, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetProfileEapUserData(                HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, EAP_METHOD_TYPE eapType, DWORD dwFlags, DWORD dwEapUserDataSize, LPBYTE pbEapUserData, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetProfileEapXmlUserData(             HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, DWORD dwFlags, LPCWSTR strEapXmlUserData, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetProfileList(                       HANDLE hClientHandle, GUID* pInterfaceGuid, DWORD dwItems, LPCWSTR* strProfileNames, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetProfilePosition(                   HANDLE hClientHandle, GUID* pInterfaceGuid, LPCWSTR strProfileName, DWORD dwPosition, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetPsdIEDataList(                     HANDLE hClientHandle, LPCWSTR strFormat, PWLAN_RAW_DATA_LIST pPsdIEDataList, PVOID pReserved);
+  WINAPI_ERROR_CODE WlanSetSecuritySettings(                  HANDLE hClientHandle, WLAN_SECURABLE_OBJECT SecurableObject, LPCWSTR strModifiedSDDL);
 ]]
 ffi.load( 'Wlanapi.dll' )

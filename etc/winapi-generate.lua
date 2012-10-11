@@ -68,7 +68,7 @@ end
 local function filter_brackets(id,type,type2)
    if id:sub(1,1)=="[" and id:sub(-1)=="]" then 
       assert(type~="Set")
-      return id:sub(2,-2) 
+      return "WINAPI_"..id:sub(2,-2)
    end
    return id
 end
@@ -287,9 +287,17 @@ local function process(var, luafile)
 	 var.Base = "void"
 	 var.Name = "SID"
       end
+      if var.Base=="LPVOID" and	 var.Name=="MENUTEMPLATE*" and var.Type=="Alias" then
+	 var.Base = "void"
+	 var.Name = "MENUTEMPLATE"
+      end
       if var.Base=="LPVOID" and	 var.Name=="ACTIVATION_CONTEXT*" and var.Type=="Alias" then
 	 var.Base = "void"
 	 var.Name = "ACTIVATION_CONTEXT"
+      end
+      if var.Base=="PCONTEXT" and var.Name=="CONTEXT*" and var.Type=="Alias" then
+	 var.Base = "void"
+	 var.Name = "CONTEXT"
       end
       if var.Name:find("*",1,true)==nil then
 	 if builtin_types[var.Name] == nil then
@@ -335,7 +343,7 @@ local function process(var, luafile)
 	    Name = Name .. Type:sub(bracket+1)
 	    Type = Type:sub(1,bracket-1)
 	 end
-	 if Name == "Other values are currently unsupported" then
+	 if Name == "WINAPI_Other values are currently unsupported" then
 	    Name = "other_values_dummy"
 	 end
 --	 Name = filter_make_underscore(Name)
@@ -476,7 +484,9 @@ local function generate()
 		  api.Name .. "(" .. string.rep(" ", api_name_width - #api.Name + 1))
 	    local comma = ""
 	    for _, param in ipairs(api.Param or {}) do
-	       luafile:write( comma .. param.Type .. " " .. param.Name )
+	       local type = param.Type
+	       type = type:gsub("%[%]","*")
+	       luafile:write( comma .. type .. " " .. param.Name )
 	       comma = ", "
 	    end
 	    luafile:write( ");\n" )

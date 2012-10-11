@@ -38,7 +38,7 @@ ffi.cdef [[
   static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusLastErrorTime = 3;
   static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusNextRetryTime = 4;
   static const EC_SUBSCRIPTION_RUNTIME_STATUS_INFO_ID EcSubscriptionRunTimeStatusInfoIdEND = 5;
-  typedef union EC_VARIANT_u {
+  typedef union WINAPI_EC_VARIANT_u {
     BOOL BooleanVal;
     UINT32 UInt32Val;
     ULONGLONG DateTimeVal;
@@ -48,10 +48,10 @@ ffi.cdef [[
     INT32* Int32Arr;
     LPWSTR* StringArr;
     EC_OBJECT_ARRAY_PROPERTY_HANDLE PropertyHandleVal;
-  } EC_VARIANT_u;
+  } WINAPI_EC_VARIANT_u;
   typedef DWORD EC_VARIANT_TYPE; //Alias
   typedef struct EC_VARIANT {
-    EC_VARIANT_u ;
+    WINAPI_EC_VARIANT_u ;
     DWORD Count;
     EC_VARIANT_TYPE Type;
   } EC_VARIANT;

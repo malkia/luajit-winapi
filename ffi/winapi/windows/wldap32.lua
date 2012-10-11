@@ -2,14 +2,14 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID PLDAPSearch; //Alias
-  typedef struct LDAP_s {
+  typedef struct WINAPI_LDAP_s {
     UINT_PTR sb_sd;
     UCHAR Reserved1[41];
     ULONG_PTR sb_naddr;
     UCHAR Reserved2[24];
-  } LDAP_s;
+  } WINAPI_LDAP_s;
   typedef struct LDAP {
-    LDAP_s ld_sb;
+    WINAPI_LDAP_s ld_sb;
     PCHAR ld_host;
     ULONG ld_version;
     UCHAR ld_lberoptions;

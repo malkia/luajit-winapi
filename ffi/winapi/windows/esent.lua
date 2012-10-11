@@ -410,10 +410,10 @@ ffi.cdef[[
   static const JET_ERR JET_errFileIORetry = -4003;
   static const JET_ERR JET_errFileIOFail = -4004;
   static const JET_ERR JET_errFileCompressed = -4005;
-  typedef unsigned long JET_UNICODEINDEX_FLAGS; //Alias
+  typedef unsigned long WINAPI_JET_UNICODEINDEX_FLAGS; //Alias
   typedef struct JET_UNICODEINDEX {
     unsigned long lcid;
-    JET_UNICODEINDEX_FLAGS dwMapFlags;
+    WINAPI_JET_UNICODEINDEX_FLAGS dwMapFlags;
   } JET_UNICODEINDEX;
   typedef struct JET_COLUMNDEF {
     unsigned long cbStruct;
@@ -430,10 +430,10 @@ ffi.cdef[[
     TCHAR* szOldDll;
     unsigned long fFlags;
   } JET_CONVERT;
-  typedef union JET_INDEXCREATE_u1 {
+  typedef union WINAPI_JET_INDEXCREATE_u1 {
     unsigned long lcid;
     JET_UNICODEINDEX* pidxunicode;
-  } JET_INDEXCREATE_u1;
+  } WINAPI_JET_INDEXCREATE_u1;
   typedef struct JET_TUPLELIMITS {
     unsigned long chLengthMin;
     unsigned long chLengthMax;
@@ -441,10 +441,10 @@ ffi.cdef[[
     unsigned long cchIncrement;
     unsigned long ichStart;
   } JET_TUPLELIMITS;
-  typedef union JET_INDEXCREATE_u2 {
+  typedef union WINAPI_JET_INDEXCREATE_u2 {
     unsigned long cbVarSegMac;
     JET_TUPLELIMITS* ptuplelimits;
-  } JET_INDEXCREATE_u2;
+  } WINAPI_JET_INDEXCREATE_u2;
   typedef struct JET_CONDITIONALCOLUMN {
     unsigned long cbStruct;
     TCHAR* szColumnName;
@@ -457,8 +457,8 @@ ffi.cdef[[
     unsigned long cbKey;
     JET_GRBIT grbit;
     unsigned long ulDensity;
-    JET_INDEXCREATE_u1 ;
-    JET_INDEXCREATE_u2 ;
+    WINAPI_JET_INDEXCREATE_u1 ;
+    WINAPI_JET_INDEXCREATE_u2 ;
     JET_CONDITIONALCOLUMN* rgconditionalcolumn;
     unsigned long cConditionalColumn;
     JET_ERR err;
@@ -523,22 +523,22 @@ ffi.cdef[[
     unsigned long cbData;
     void* pvData;
   } JET_ENUMCOLUMNVALUE;
-  typedef struct JET_ENUMCOLUMN_u_s1 {
+  typedef struct WINAPI_JET_ENUMCOLUMN_u_s1 {
     unsigned long cEnumColumnValue;
     JET_ENUMCOLUMNVALUE* rgEnumColumnValue;
-  } JET_ENUMCOLUMN_u_s1;
-  typedef struct JET_ENUMCOLUMN_u_s2 {
+  } WINAPI_JET_ENUMCOLUMN_u_s1;
+  typedef struct WINAPI_JET_ENUMCOLUMN_u_s2 {
     unsigned long cbData;
     void* pvData;
-  } JET_ENUMCOLUMN_u_s2;
-  typedef union JET_ENUMCOLUMN_u {
-    JET_ENUMCOLUMN_u_s1 ;
-    JET_ENUMCOLUMN_u_s2 ;
-  } JET_ENUMCOLUMN_u;
+  } WINAPI_JET_ENUMCOLUMN_u_s2;
+  typedef union WINAPI_JET_ENUMCOLUMN_u {
+    WINAPI_JET_ENUMCOLUMN_u_s1 ;
+    WINAPI_JET_ENUMCOLUMN_u_s2 ;
+  } WINAPI_JET_ENUMCOLUMN_u;
   typedef struct JET_ENUMCOLUMN {
     JET_COLUMNID columnid;
     JET_ERR err;
-    JET_ENUMCOLUMN_u ;
+    WINAPI_JET_ENUMCOLUMN_u ;
   } JET_ENUMCOLUMN;
   typedef struct JET_LOGINFO {
     unsigned long cbSize;
@@ -650,91 +650,91 @@ ffi.cdef[[
     unsigned long itagSequence;
     JET_ERR err;
   } JET_SETCOLUMN;
-  typedef long JetMoveRow; //Alias
-  static const JetMoveRow JET_MoveFirst = 0x80000000;
-  static const JetMoveRow JET_MovePrevious = -1;
-  static const JetMoveRow JET_MoveNext = 1;
-  static const JetMoveRow JET_MoveLast = 0x7fffffff;
-  typedef JET_GRBIT JetMoveFlags; //Alias
-  typedef JET_GRBIT JetMakeKeyFlags; //Alias
-  typedef JET_GRBIT JetSeekFlags; //Alias
-  typedef JET_GRBIT JetCommitTransactionFlags; //Alias
-  typedef JET_GRBIT JetSetIndexRangeFlags; //Alias
-  typedef JET_GRBIT JetGetLockFlags; //Alias
-  typedef JET_GRBIT JetGotoSecondaryIndexBookmarkFlags; //Alias
-  typedef JET_GRBIT JetCreateIndexFlags; //Alias
-  typedef JET_GRBIT JetOpenTableFlags; //Alias
-  typedef JET_GRBIT JetOpenTempTableFlags; //Alias
-  typedef JET_GRBIT JetSetColumnFlags; //Alias
-  typedef JET_GRBIT JetBackupFlags; //Alias
-  typedef JET_GRBIT JetOpenDatabaseFlags; //Alias
-  typedef JET_GRBIT JetDetachDatabase2Flags; //Alias
-  typedef JET_GRBIT JetCreateDatabaseFlags; //Alias
-  typedef JET_GRBIT JetBeginTransaction2Flags; //Alias
-  typedef JET_GRBIT JetCompactFlags; //Alias
-  typedef JET_GRBIT JetDefragmentFlags; //Alias
-  typedef JET_GRBIT JetEndExternalBackupInstance2Flags; //Alias
-  typedef JET_GRBIT JetEnumerateColumnsFlags; //Alias
-  typedef JET_GRBIT JetEscrowUpdateFlags; //Alias
-  typedef JET_GRBIT JetGetLSFlags; //Alias
-  typedef JET_GRBIT JetIdleFlags; //Alias
-  typedef JET_GRBIT JetInitFlags; //Alias
-  typedef JET_GRBIT JetTerm2Flags; //Alias
-  typedef JET_GRBIT JetRetrieveColumnFlags; //Alias
-  typedef JET_GRBIT JetRollbackFlags; //Alias
-  typedef JET_GRBIT JetSetCurrentIndexFlags; //Alias
-  typedef JET_GRBIT JetUpdateFlags; //Alias
-  typedef unsigned long JetPrepareUpdateOption; //Alias
-  static const JetPrepareUpdateOption JET_prepInsert = 0;
-  static const JetPrepareUpdateOption JET_prepReplace = 2;
-  static const JetPrepareUpdateOption JET_prepCancel = 3;
-  static const JetPrepareUpdateOption JET_prepReplaceNoLock = 4;
-  static const JetPrepareUpdateOption JET_prepInsertCopy = 5;
-  static const JetPrepareUpdateOption JET_prepInsertCopyDeleteOriginal = 7;
+  typedef long WINAPI_JetMoveRow; //Alias
+  static const WINAPI_JetMoveRow JET_MoveFirst = 0x80000000;
+  static const WINAPI_JetMoveRow JET_MovePrevious = -1;
+  static const WINAPI_JetMoveRow JET_MoveNext = 1;
+  static const WINAPI_JetMoveRow JET_MoveLast = 0x7fffffff;
+  typedef JET_GRBIT WINAPI_JetMoveFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetMakeKeyFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetSeekFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetCommitTransactionFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetSetIndexRangeFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetGetLockFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetGotoSecondaryIndexBookmarkFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetCreateIndexFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetOpenTableFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetOpenTempTableFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetSetColumnFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetBackupFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetOpenDatabaseFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetDetachDatabase2Flags; //Alias
+  typedef JET_GRBIT WINAPI_JetCreateDatabaseFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetBeginTransaction2Flags; //Alias
+  typedef JET_GRBIT WINAPI_JetCompactFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetDefragmentFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetEndExternalBackupInstance2Flags; //Alias
+  typedef JET_GRBIT WINAPI_JetEnumerateColumnsFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetEscrowUpdateFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetGetLSFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetIdleFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetInitFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetTerm2Flags; //Alias
+  typedef JET_GRBIT WINAPI_JetRetrieveColumnFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetRollbackFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetSetCurrentIndexFlags; //Alias
+  typedef JET_GRBIT WINAPI_JetUpdateFlags; //Alias
+  typedef unsigned long WINAPI_JetPrepareUpdateOption; //Alias
+  static const WINAPI_JetPrepareUpdateOption JET_prepInsert = 0;
+  static const WINAPI_JetPrepareUpdateOption JET_prepReplace = 2;
+  static const WINAPI_JetPrepareUpdateOption JET_prepCancel = 3;
+  static const WINAPI_JetPrepareUpdateOption JET_prepReplaceNoLock = 4;
+  static const WINAPI_JetPrepareUpdateOption JET_prepInsertCopy = 5;
+  static const WINAPI_JetPrepareUpdateOption JET_prepInsertCopyDeleteOriginal = 7;
   JET_ERR JetAddColumn(                     JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szColumnName, JET_COLUMNDEF* pcolumndef, void* pvDefault, unsigned long cbDefault, JET_COLUMNID* pcolumnid);
-  JET_ERR JetAttachDatabase(                JET_SESID sesid, JET_PCTSTR szFilename, JetOpenDatabaseFlags grbit);
-  JET_ERR JetAttachDatabase2(               JET_SESID sesid, JET_PCTSTR szFilename, unsigned long cpgDatabaseSizeMax, JetOpenDatabaseFlags grbit);
-  JET_ERR JetBackup(                        JET_PCSTR szBackupPath, JetBackupFlags grbit, JET_PFNSTATUS pfnStatus);
-  JET_ERR JetBackupInstance(                JET_INSTANCE instance, JET_PCSTR szBackupPath, JetBackupFlags grbit, JET_PFNSTATUS pfnStatus);
-  JET_ERR JetBeginExternalBackup(           JetBackupFlags grbit);
-  JET_ERR JetBeginExternalBackupInstance(   JET_INSTANCE instance, JetBackupFlags grbit);
+  JET_ERR JetAttachDatabase(                JET_SESID sesid, JET_PCTSTR szFilename, WINAPI_JetOpenDatabaseFlags grbit);
+  JET_ERR JetAttachDatabase2(               JET_SESID sesid, JET_PCTSTR szFilename, unsigned long cpgDatabaseSizeMax, WINAPI_JetOpenDatabaseFlags grbit);
+  JET_ERR JetBackup(                        JET_PCSTR szBackupPath, WINAPI_JetBackupFlags grbit, JET_PFNSTATUS pfnStatus);
+  JET_ERR JetBackupInstance(                JET_INSTANCE instance, JET_PCSTR szBackupPath, WINAPI_JetBackupFlags grbit, JET_PFNSTATUS pfnStatus);
+  JET_ERR JetBeginExternalBackup(           WINAPI_JetBackupFlags grbit);
+  JET_ERR JetBeginExternalBackupInstance(   JET_INSTANCE instance, WINAPI_JetBackupFlags grbit);
   JET_ERR JetBeginSession(                  JET_INSTANCE instance, JET_SESID* psesid, JET_PCSTR szUserName, JET_PCSTR szPassword);
   JET_ERR JetBeginTransaction(              JET_SESID sesid);
-  JET_ERR JetBeginTransaction2(             JET_SESID sesid, JetBeginTransaction2Flags grbit);
+  JET_ERR JetBeginTransaction2(             JET_SESID sesid, WINAPI_JetBeginTransaction2Flags grbit);
   JET_ERR JetCloseDatabase(                 JET_SESID sesid, JET_DBID dbid, JET_GRBIT grbit);
   JET_ERR JetCloseFile(                     JET_HANDLE hfFile);
   JET_ERR JetCloseFileInstance(             JET_INSTANCE instance, JET_HANDLE hfFile);
   JET_ERR JetCloseTable(                    JET_SESID sesid, JET_TABLEID tableid);
-  JET_ERR JetCommitTransaction(             JET_SESID sesid, JetCommitTransactionFlags grbit);
-  JET_ERR JetCompact(                       JET_SESID sesid, JET_PCSTR szDatabaseSrc, JET_PCSTR szDatabaseDest, JET_PFNSTATUS pfnStatus, JET_CONVERT* pconvert, JetCompactFlags grbit);
+  JET_ERR JetCommitTransaction(             JET_SESID sesid, WINAPI_JetCommitTransactionFlags grbit);
+  JET_ERR JetCompact(                       JET_SESID sesid, JET_PCSTR szDatabaseSrc, JET_PCSTR szDatabaseDest, JET_PFNSTATUS pfnStatus, JET_CONVERT* pconvert, WINAPI_JetCompactFlags grbit);
   JET_ERR JetComputeStats(                  JET_SESID sesid, JET_TABLEID tableid);
-  JET_ERR JetCreateDatabase(                JET_SESID sesid, JET_PCSTR szFilename, JET_PCSTR szConnect, JET_DBID* pdbid, JetCreateDatabaseFlags grbit);
-  JET_ERR JetCreateDatabase2(               JET_SESID sesid, JET_PCTSTR szFilename, unsigned long cpgDatabaseSizeMax, JET_DBID* pdbid, JetCreateDatabaseFlags grbit);
-  JET_ERR JetCreateIndex(                   JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName, JetCreateIndexFlags grbit, JET_PCTSTR szKey, unsigned long cbKey, unsigned long lDensity);
+  JET_ERR JetCreateDatabase(                JET_SESID sesid, JET_PCSTR szFilename, JET_PCSTR szConnect, JET_DBID* pdbid, WINAPI_JetCreateDatabaseFlags grbit);
+  JET_ERR JetCreateDatabase2(               JET_SESID sesid, JET_PCTSTR szFilename, unsigned long cpgDatabaseSizeMax, JET_DBID* pdbid, WINAPI_JetCreateDatabaseFlags grbit);
+  JET_ERR JetCreateIndex(                   JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName, WINAPI_JetCreateIndexFlags grbit, JET_PCTSTR szKey, unsigned long cbKey, unsigned long lDensity);
   JET_ERR JetCreateIndex2(                  JET_SESID sesid, JET_TABLEID tableid, JET_INDEXCREATE* pindexcreate, unsigned long cIndexCreate);
   JET_ERR JetCreateInstance(                JET_INSTANCE* pinstance, JET_PCTSTR szInstanceName);
   JET_ERR JetCreateInstance2(               JET_INSTANCE* pinstance, JET_PCTSTR szInstanceName, JET_PCTSTR szDisplayName, JET_GRBIT grbit);
   JET_ERR JetCreateTable(                   JET_SESID sesid, JET_DBID dbid, JET_PCTSTR szTableName, unsigned long lPages, unsigned long lDensity, JET_TABLEID* ptableid);
   JET_ERR JetCreateTableColumnIndex(        JET_SESID sesid, JET_DBID dbid, JET_TABLECREATE* ptablecreate);
   JET_ERR JetCreateTableColumnIndex2(       JET_SESID sesid, JET_DBID dbid, JET_TABLECREATE2* ptablecreate);
-  JET_ERR JetDefragment(                    JET_SESID sesid, JET_DBID dbid, JET_PCSTR szTableName, unsigned long* pcPasses, unsigned long* pcSeconds, JetDefragmentFlags grbit);
-  JET_ERR JetDefragment2(                   JET_SESID sesid, JET_DBID dbid, JET_PCSTR szTableName, unsigned long* pcPasses, unsigned long* pcSeconds, JET_CALLBACK callback, JetDefragmentFlags grbit);
+  JET_ERR JetDefragment(                    JET_SESID sesid, JET_DBID dbid, JET_PCSTR szTableName, unsigned long* pcPasses, unsigned long* pcSeconds, WINAPI_JetDefragmentFlags grbit);
+  JET_ERR JetDefragment2(                   JET_SESID sesid, JET_DBID dbid, JET_PCSTR szTableName, unsigned long* pcPasses, unsigned long* pcSeconds, JET_CALLBACK callback, WINAPI_JetDefragmentFlags grbit);
   JET_ERR JetDelete(                        JET_SESID sesid, JET_TABLEID tableid);
   JET_ERR JetDeleteColumn(                  JET_SESID sesid, JET_TABLEID tableid, JET_PCTSTR szColumnName);
   JET_ERR JetDeleteColumn2(                 JET_SESID sesid, JET_TABLEID tableid, JET_PCTSTR szColumnName, JET_GRBIT grbit);
   JET_ERR JetDeleteIndex(                   JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName);
   JET_ERR JetDeleteTable(                   JET_SESID sesid, JET_DBID dbid, JET_PCTSTR szTableName);
   JET_ERR JetDetachDatabase(                JET_SESID sesid, JET_PCTSTR szFilename);
-  JET_ERR JetDetachDatabase2(               JET_SESID sesid, JET_PCTSTR szFilename, JetDetachDatabase2Flags grbit);
+  JET_ERR JetDetachDatabase2(               JET_SESID sesid, JET_PCTSTR szFilename, WINAPI_JetDetachDatabase2Flags grbit);
   JET_ERR JetDupCursor(                     JET_SESID sesid, JET_TABLEID tableid, JET_TABLEID* ptableid, JET_GRBIT grbit);
   JET_ERR JetDupSession(                    JET_SESID sesid, JET_SESID* psesid);
   JET_ERR JetEnableMultiInstance(           JET_SETSYSPARAM* psetsysparam, unsigned long csetsysparam, unsigned long* pcsetsucceed);
   JET_ERR JetEndExternalBackup(             );
   JET_ERR JetEndExternalBackupInstance(     JET_INSTANCE instance);
-  JET_ERR JetEndExternalBackupInstance2(    JET_INSTANCE instance, JetEndExternalBackupInstance2Flags grbit);
+  JET_ERR JetEndExternalBackupInstance2(    JET_INSTANCE instance, WINAPI_JetEndExternalBackupInstance2Flags grbit);
   JET_ERR JetEndSession(                    JET_SESID sesid, JET_GRBIT grbit);
-  JET_ERR JetEnumerateColumns(              JET_SESID sesid, JET_TABLEID tableid, unsigned long cEnumColumnId, JET_ENUMCOLUMNID* rgEnumColumnId, unsigned long* pcEnumColumn, JET_ENUMCOLUMN** prgEnumColumn, JET_PFNREALLOC pfnRealloc, void* pvReallocContext, unsigned long cbDataMost, JetEnumerateColumnsFlags grbit);
-  JET_ERR JetEscrowUpdate(                  JET_SESID sesid, JET_TABLEID tableid, JET_COLUMNID columnid, void* pv, unsigned long cbMax, void* pvOld, unsigned long cbOldMax, unsigned long* pcbOldActual, JetEscrowUpdateFlags grbit);
+  JET_ERR JetEnumerateColumns(              JET_SESID sesid, JET_TABLEID tableid, unsigned long cEnumColumnId, JET_ENUMCOLUMNID* rgEnumColumnId, unsigned long* pcEnumColumn, JET_ENUMCOLUMN** prgEnumColumn, JET_PFNREALLOC pfnRealloc, void* pvReallocContext, unsigned long cbDataMost, WINAPI_JetEnumerateColumnsFlags grbit);
+  JET_ERR JetEscrowUpdate(                  JET_SESID sesid, JET_TABLEID tableid, JET_COLUMNID columnid, void* pv, unsigned long cbMax, void* pvOld, unsigned long cbOldMax, unsigned long* pcbOldActual, WINAPI_JetEscrowUpdateFlags grbit);
   JET_ERR JetExternalRestore(               JET_PSTR szCheckpointFilePath, JET_PSTR szLogPath, JET_RSTMAP* rgrstmap, long crstfilemap, JET_PSTR szBackupLogPath, long genLow, long genHigh, JET_PFNSTATUS pfn);
   JET_ERR JetExternalRestore2(              JET_PSTR szCheckpointFilePath, JET_PSTR szLogPath, JET_RSTMAP* rgrstmap, long crstfilemap, JET_PSTR szBackupLogPath, JET_LOGINFO* pLogInfo, JET_PSTR szTargetInstanceName, JET_PSTR szTargetInstanceLogPath, JET_PSTR szTargetInstanceCheckpointPath, JET_PFNSTATUS pfn);
   JET_ERR JetFreeBuffer(                    char* pbBuf);
@@ -749,11 +749,11 @@ ffi.cdef[[
   JET_ERR JetGetIndexInfo(                  JET_SESID sesid, JET_DBID dbid, JET_PCTSTR szTableName, JET_PCTSTR szIndexName, void* pvResult, unsigned long cbResult, unsigned long InfoLevel);
   JET_ERR JetGetInstanceInfo(               unsigned long* pcInstanceInfo, JET_INSTANCE_INFO** paInstanceInfo);
   JET_ERR JetGetInstanceMiscInfo(           JET_INSTANCE instance, void* pvResult, unsigned long cbMax, unsigned long InfoLevel);
-  JET_ERR JetGetLock(                       JET_SESID sesid, JET_TABLEID tableid, JetGetLockFlags grbit);
+  JET_ERR JetGetLock(                       JET_SESID sesid, JET_TABLEID tableid, WINAPI_JetGetLockFlags grbit);
   JET_ERR JetGetLogInfo(                    tchar* szz, unsigned long cbMax, unsigned long* pcbActual);
   JET_ERR JetGetLogInfoInstance(            JET_INSTANCE instance, tchar* szz, unsigned long cbMax, unsigned long* pcbActual);
   JET_ERR JetGetLogInfoInstance2(           JET_INSTANCE instance, tchar* szz, unsigned long cbMax, unsigned long* pcbActual, JET_LOGINFO* pLogInfo);
-  JET_ERR JetGetLS(                         JET_SESID sesid, JET_TABLEID tableid, JET_LS* pls, JetGetLSFlags grbit);
+  JET_ERR JetGetLS(                         JET_SESID sesid, JET_TABLEID tableid, JET_LS* pls, WINAPI_JetGetLSFlags grbit);
   JET_ERR JetGetObjectInfo(                 JET_SESID sesid, JET_DBID dbid, JET_OBJTYP objtyp, JET_PCTSTR szContainerName, JET_PCTSTR szObjectName, void* pvResult, unsigned long cbMax, unsigned long InfoLevel);
   JET_ERR JetGetRecordPosition(             JET_SESID sesid, JET_TABLEID tableid, JET_RECPOS* precpos, unsigned long cbRecpos);
   JET_ERR JetGetRecordSize(                 JET_SESID sesid, JET_TABLEID tableid, JET_RECSIZE* precsize, JET_GRBIT grbit);
@@ -767,24 +767,24 @@ ffi.cdef[[
   JET_ERR JetGetVersion(                    JET_SESID sesid, unsigned long* pwVersion);
   JET_ERR JetGotoBookmark(                  JET_SESID sesid, JET_TABLEID tableid, void* pvBookmark, unsigned long cbBookmark);
   JET_ERR JetGotoPosition(                  JET_SESID sesid, JET_TABLEID tableid, JET_RECPOS* precpos);
-  JET_ERR JetGotoSecondaryIndexBookmark(    JET_SESID sesid, JET_TABLEID tableid, void* pvSecondaryKey, unsigned long cbSecondaryKey, void* pvPrimaryBookmark, unsigned long cbPrimaryBookmark, JetGotoSecondaryIndexBookmarkFlags grbit);
+  JET_ERR JetGotoSecondaryIndexBookmark(    JET_SESID sesid, JET_TABLEID tableid, void* pvSecondaryKey, unsigned long cbSecondaryKey, void* pvPrimaryBookmark, unsigned long cbPrimaryBookmark, WINAPI_JetGotoSecondaryIndexBookmarkFlags grbit);
   JET_ERR JetGrowDatabase(                  JET_SESID sesid, JET_DBID dbid, unsigned long cpg, unsigned long* pcpgReal);
-  JET_ERR JetIdle(                          JET_SESID sesid, JetIdleFlags grbit);
+  JET_ERR JetIdle(                          JET_SESID sesid, WINAPI_JetIdleFlags grbit);
   JET_ERR JetIndexRecordCount(              JET_SESID sesid, JET_TABLEID tableid, unsigned long* pcrec, unsigned long crecMax);
   JET_ERR JetInit(                          JET_INSTANCE* pinstance);
-  JET_ERR JetInit2(                         JET_INSTANCE* pinstance, JetInitFlags grbit);
-  JET_ERR JetInit3(                         JET_INSTANCE* pinstance, JET_RSTINFO* prstInfo, JetInitFlags grbit);
+  JET_ERR JetInit2(                         JET_INSTANCE* pinstance, WINAPI_JetInitFlags grbit);
+  JET_ERR JetInit3(                         JET_INSTANCE* pinstance, JET_RSTINFO* prstInfo, WINAPI_JetInitFlags grbit);
   JET_ERR JetIntersectIndexes(              JET_SESID sesid, JET_INDEXRANGE* rgindexrange, unsigned long cindexrange, JET_RECORDLIST* precordlist, JET_GRBIT grbit);
-  JET_ERR JetMakeKey(                       JET_SESID sesid, JET_TABLEID tableid, void* pvData, unsigned long cbData, JetMakeKeyFlags grbit);
-  JET_ERR JetMove(                          JET_SESID sesid, JET_TABLEID tableid, JetMoveRow cRow, JetMoveFlags grbit);
-  JET_ERR JetOpenDatabase(                  JET_SESID sesid, JET_PCTSTR szFilename, JET_PCTSTR szConnect, JET_DBID* pdbid, JetOpenDatabaseFlags grbit);
+  JET_ERR JetMakeKey(                       JET_SESID sesid, JET_TABLEID tableid, void* pvData, unsigned long cbData, WINAPI_JetMakeKeyFlags grbit);
+  JET_ERR JetMove(                          JET_SESID sesid, JET_TABLEID tableid, WINAPI_JetMoveRow cRow, WINAPI_JetMoveFlags grbit);
+  JET_ERR JetOpenDatabase(                  JET_SESID sesid, JET_PCTSTR szFilename, JET_PCTSTR szConnect, JET_DBID* pdbid, WINAPI_JetOpenDatabaseFlags grbit);
   JET_ERR JetOpenFile(                      JET_PCTSTR szFileName, JET_HANDLE* phfFile, unsigned long* pulFileSizeLow, unsigned long* pulFileSizeHigh);
   JET_ERR JetOpenFileInstance(              JET_INSTANCE instance, JET_PCSTR szFileName, JET_HANDLE* phfFile, unsigned long* pulFileSizeLow, unsigned long* pulFileSizeHigh);
-  JET_ERR JetOpenTable(                     JET_SESID sesid, JET_DBID dbid, JET_PCTSTR szTableName, void* pvParameters, unsigned long cbParameters, JetOpenTableFlags grbit, JET_TABLEID* ptableid);
+  JET_ERR JetOpenTable(                     JET_SESID sesid, JET_DBID dbid, JET_PCTSTR szTableName, void* pvParameters, unsigned long cbParameters, WINAPI_JetOpenTableFlags grbit, JET_TABLEID* ptableid);
   JET_ERR JetOpenTemporaryTable(            JET_SESID sesid, JET_OPENTEMPORARYTABLE* popentemporarytable);
-  JET_ERR JetOpenTempTable(                 JET_SESID sesid, JET_COLUMNDEF* prgcolumndef, unsigned long ccolumn, JetOpenTempTableFlags grbit, JET_TABLEID* ptableid, JET_COLUMNID* prgcolumnid);
-  JET_ERR JetOpenTempTable2(                JET_SESID sesid, JET_COLUMNDEF* prgcolumndef, unsigned long ccolumn, unsigned long lcid, JetOpenTempTableFlags grbit, JET_TABLEID* ptableid, JET_COLUMNID* prgcolumnid);
-  JET_ERR JetOpenTempTable3(                JET_SESID sesid, JET_COLUMNDEF* prgcolumndef, unsigned long ccolumn, JET_UNICODEINDEX* pidxunicode, JetOpenTempTableFlags grbit, JET_TABLEID* ptableid, JET_COLUMNID* prgcolumnid);
+  JET_ERR JetOpenTempTable(                 JET_SESID sesid, JET_COLUMNDEF* prgcolumndef, unsigned long ccolumn, WINAPI_JetOpenTempTableFlags grbit, JET_TABLEID* ptableid, JET_COLUMNID* prgcolumnid);
+  JET_ERR JetOpenTempTable2(                JET_SESID sesid, JET_COLUMNDEF* prgcolumndef, unsigned long ccolumn, unsigned long lcid, WINAPI_JetOpenTempTableFlags grbit, JET_TABLEID* ptableid, JET_COLUMNID* prgcolumnid);
+  JET_ERR JetOpenTempTable3(                JET_SESID sesid, JET_COLUMNDEF* prgcolumndef, unsigned long ccolumn, JET_UNICODEINDEX* pidxunicode, WINAPI_JetOpenTempTableFlags grbit, JET_TABLEID* ptableid, JET_COLUMNID* prgcolumnid);
   JET_ERR JetOSSnapshotAbort(               JET_OSSNAPID snapId, JET_GRBIT grbit);
   JET_ERR JetOSSnapshotEnd(                 JET_OSSNAPID snapId, JET_GRBIT grbit);
   JET_ERR JetOSSnapshotFreeze(              JET_OSSNAPID snapId, unsigned long* pcInstanceInfo, JET_INSTANCE_INFO** paInstanceInfo, JET_GRBIT grbit);
@@ -794,7 +794,7 @@ ffi.cdef[[
   JET_ERR JetOSSnapshotThaw(                JET_OSSNAPID snapId, JET_GRBIT grbit);
   JET_ERR JetOSSnapshotTruncateLog(         JET_OSSNAPID snapId, JET_GRBIT grbit);
   JET_ERR JetOSSnapshotTruncateLogInstance( JET_OSSNAPID snapId, JET_INSTANCE instance, JET_GRBIT grbit);
-  JET_ERR JetPrepareUpdate(                 JET_SESID sesid, JET_TABLEID tableid, JetPrepareUpdateOption prep);
+  JET_ERR JetPrepareUpdate(                 JET_SESID sesid, JET_TABLEID tableid, WINAPI_JetPrepareUpdateOption prep);
   JET_ERR JetReadFile(                      JET_HANDLE hfFile, void* pv, unsigned long cb, unsigned long* pcbActual);
   JET_ERR JetReadFileInstance(              JET_INSTANCE instance, JET_HANDLE hfFile, void* pv, unsigned long cb, unsigned long* pcb);
   JET_ERR JetRegisterCallback(              JET_SESID sesid, JET_TABLEID tableid, JET_CBTYP cbtyp, JET_CALLBACK pCallback, void* pvContext, JET_HANDLE* phCallbackId);
@@ -805,20 +805,20 @@ ffi.cdef[[
   JET_ERR JetRestore(                       JET_PCSTR sz, JET_PFNSTATUS pfn);
   JET_ERR JetRestore2(                      JET_PCSTR sz, JET_PCSTR szDest, JET_PFNSTATUS pfn);
   JET_ERR JetRestoreInstance(               JET_INSTANCE instance, JET_PCSTR sz, JET_PCSTR szDest, JET_PFNSTATUS pfn);
-  JET_ERR JetRetrieveColumn(                JET_SESID sesid, JET_TABLEID tableid, JET_COLUMNID columnid, void* pvData, unsigned long cbData, unsigned long* pcbActual, JetRetrieveColumnFlags grbit, JET_RETINFO* pretinfo);
+  JET_ERR JetRetrieveColumn(                JET_SESID sesid, JET_TABLEID tableid, JET_COLUMNID columnid, void* pvData, unsigned long cbData, unsigned long* pcbActual, WINAPI_JetRetrieveColumnFlags grbit, JET_RETINFO* pretinfo);
   JET_ERR JetRetrieveColumns(               JET_SESID sesid, JET_TABLEID tableid, JET_RETRIEVECOLUMN* pretrievecolumn, unsigned long cretrievecolumn);
   JET_ERR JetRetrieveKey(                   JET_SESID sesid, JET_TABLEID tableid, void* pvData, unsigned long cbMax, unsigned long* pcbActual, JET_GRBIT grbit);
-  JET_ERR JetRollback(                      JET_SESID sesid, JetRollbackFlags grbit);
-  JET_ERR JetSeek(                          JET_SESID sesid, JET_TABLEID tableid, JetSeekFlags grbit);
-  JET_ERR JetSetColumn(                     JET_SESID sesid, JET_TABLEID tableid, JET_COLUMNID columnid, void* pvData, unsigned long cbData, JetSetColumnFlags grbit, JET_SETINFO* psetinfo);
+  JET_ERR JetRollback(                      JET_SESID sesid, WINAPI_JetRollbackFlags grbit);
+  JET_ERR JetSeek(                          JET_SESID sesid, JET_TABLEID tableid, WINAPI_JetSeekFlags grbit);
+  JET_ERR JetSetColumn(                     JET_SESID sesid, JET_TABLEID tableid, JET_COLUMNID columnid, void* pvData, unsigned long cbData, WINAPI_JetSetColumnFlags grbit, JET_SETINFO* psetinfo);
   JET_ERR JetSetColumnDefaultValue(         JET_SESID sesid, JET_DBID dbid, JET_PCSTR szTableName, JET_PCSTR szColumnName, void* pvData, unsigned long cbData, JET_GRBIT grbit);
   JET_ERR JetSetColumns(                    JET_SESID sesid, JET_TABLEID tableid, JET_SETCOLUMN* psetcolumn, unsigned long csetcolumn);
   JET_ERR JetSetCurrentIndex(               JET_SESID sesid, JET_TABLEID tableid, JET_PCTSTR szIndexName);
-  JET_ERR JetSetCurrentIndex2(              JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName, JetSetCurrentIndexFlags grbit);
-  JET_ERR JetSetCurrentIndex3(              JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName, JetSetCurrentIndexFlags grbit, unsigned long itagSequence);
-  JET_ERR JetSetCurrentIndex4(              JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName, JET_INDEXID* pindexid, JetSetCurrentIndexFlags grbit, unsigned long itagSequence);
+  JET_ERR JetSetCurrentIndex2(              JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName, WINAPI_JetSetCurrentIndexFlags grbit);
+  JET_ERR JetSetCurrentIndex3(              JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName, WINAPI_JetSetCurrentIndexFlags grbit, unsigned long itagSequence);
+  JET_ERR JetSetCurrentIndex4(              JET_SESID sesid, JET_TABLEID tableid, JET_PCSTR szIndexName, JET_INDEXID* pindexid, WINAPI_JetSetCurrentIndexFlags grbit, unsigned long itagSequence);
   JET_ERR JetSetDatabaseSize(               JET_SESID sesid, JET_PCSTR szDatabaseName, unsigned long cpg, unsigned long* pcpgReal);
-  JET_ERR JetSetIndexRange(                 JET_SESID sesid, JET_TABLEID tableidSrc, JetSetIndexRangeFlags grbit);
+  JET_ERR JetSetIndexRange(                 JET_SESID sesid, JET_TABLEID tableidSrc, WINAPI_JetSetIndexRangeFlags grbit);
   JET_ERR JetSetLS(                         JET_SESID sesid, JET_TABLEID tableid, JET_LS ls, JET_GRBIT grbit);
   JET_ERR JetSetSessionContext(             JET_SESID sesid, JET_API_PTR ulContext);
   JET_ERR JetSetSystemParameter(            JET_INSTANCE* pinstance, JET_SESID sesid, unsigned long paramid, JET_API_PTR lParam, JET_PCSTR szParam);
@@ -828,11 +828,11 @@ ffi.cdef[[
   JET_ERR JetStopService(                   );
   JET_ERR JetStopServiceInstance(           JET_INSTANCE instance);
   JET_ERR JetTerm(                          JET_INSTANCE instance);
-  JET_ERR JetTerm2(                         JET_INSTANCE instance, JetTerm2Flags grbit);
+  JET_ERR JetTerm2(                         JET_INSTANCE instance, WINAPI_JetTerm2Flags grbit);
   JET_ERR JetTruncateLog(                   );
   JET_ERR JetTruncateLogInstance(           JET_INSTANCE instance);
   JET_ERR JetUnregisterCallback(            JET_SESID sesid, JET_TABLEID tableid, JET_CBTYP cbtyp, JET_HANDLE hCallbackId);
   JET_ERR JetUpdate(                        JET_SESID sesid, JET_TABLEID tableid, void* pvBookmark, unsigned long cbBookmark, unsigned long* pcbActual);
-  JET_ERR JetUpdate2(                       JET_SESID sesid, JET_TABLEID tableid, void* pvBookmark, unsigned long cbBookmark, unsigned long* pcbActual, JetUpdateFlags grbit);
+  JET_ERR JetUpdate2(                       JET_SESID sesid, JET_TABLEID tableid, void* pvBookmark, unsigned long cbBookmark, unsigned long* pcbActual, WINAPI_JetUpdateFlags grbit);
 ]]
 ffi.load( 'esent.dll' )

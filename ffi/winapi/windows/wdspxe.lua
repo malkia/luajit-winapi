@@ -11,14 +11,14 @@ ffi.cdef [[
     ULONG uIndex;
   } PXE_PROVIDER;
   typedef PXE_PROVIDER *PPXE_PROVIDER; //Pointer
-  typedef union PXE_ADDRESS_u {
+  typedef union WINAPI_PXE_ADDRESS_u {
     BYTE bAddress[PXE_MAX_ADDRESS];
     ULONG uIpAddress;
-  } PXE_ADDRESS_u;
-  typedef ULONG PXE_ADDR_FLAGS; //Alias
+  } WINAPI_PXE_ADDRESS_u;
+  typedef ULONG WINAPI_PXE_ADDR_FLAGS; //Alias
   typedef struct PXE_ADDRESS {
-    PXE_ADDR_FLAGS uFlags;
-    PXE_ADDRESS_u ;
+    WINAPI_PXE_ADDR_FLAGS uFlags;
+    WINAPI_PXE_ADDRESS_u ;
     ULONG uAddrLen;
     USHORT uPort;
   } PXE_ADDRESS;

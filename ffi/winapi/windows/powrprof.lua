@@ -4,12 +4,12 @@ require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID PWRSCHEMESENUMPROC; //Alias
-  typedef DWORD POWER_ACTION; //Alias
-  typedef DWORD POWER_LEVEL; //Alias
+  typedef DWORD WINAPI_POWER_ACTION; //Alias
+  typedef DWORD WINAPI_POWER_LEVEL; //Alias
   typedef struct POWER_ACTION_POLICY {
     POWER_ACTION Action;
-    POWER_ACTION Flags;
-    POWER_LEVEL EventCode;
+    WINAPI_POWER_ACTION Flags;
+    WINAPI_POWER_LEVEL EventCode;
   } POWER_ACTION_POLICY;
   typedef struct USER_POWER_POLICY {
     ULONG Revision;
@@ -170,17 +170,17 @@ ffi.cdef [[
   DWORD               PowerEnumerate(                              HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, POWER_DATA_ACCESSOR AccessFlags, ULONG Index, UCHAR* Buffer, DWORD* BufferSize);
   DWORD               PowerImportPowerScheme(                      HKEY RootPowerKey, LPCWSTR ImportFileNamePath, GUID** DestinationSchemeGuid);
   DWORD               PowerReadACDefaultIndex(                     HKEY RootPowerKey, GUID* SchemePersonalityGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, LPDWORD AcDefaultIndex);
-  DWORD               PowerReadACValue(                            HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, RegType_PULONG Type, LPBYTE Buffer, LPDWORD BufferSize);
+  DWORD               PowerReadACValue(                            HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, WINAPI_RegType_PULONG Type, LPBYTE Buffer, LPDWORD BufferSize);
   DWORD               PowerReadACValueIndex(                       HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, LPDWORD AcValueIndex);
   DWORD               PowerReadDCDefaultIndex(                     HKEY RootPowerKey, GUID* SchemePersonalityGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, LPDWORD DcDefaultIndex);
-  DWORD               PowerReadDCValue(                            HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, RegType_PULONG Type, PUCHAR Buffer, LPDWORD BufferSize);
+  DWORD               PowerReadDCValue(                            HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, WINAPI_RegType_PULONG Type, PUCHAR Buffer, LPDWORD BufferSize);
   DWORD               PowerReadDCValueIndex(                       HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, LPDWORD DcValueIndex);
   DWORD               PowerReadDescription(                        HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, LPWSTR Buffer, LPDWORD BufferSize);
   DWORD               PowerReadFriendlyName(                       HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, LPWSTR Buffer, LPDWORD BufferSize);
   DWORD               PowerReadIconResourceSpecifier(              HKEY RootPowerKey, GUID* SchemeGuid, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, PUCHAR Buffer, LPDWORD BufferSize);
   DWORD               PowerReadPossibleDescription(                HKEY RootPowerKey, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, ULONG PossibleSettingIndex, PUCHAR Buffer, LPDWORD BufferSize);
   DWORD               PowerReadPossibleFriendlyName(               HKEY RootPowerKey, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, ULONG PossibleSettingIndex, PUCHAR Buffer, LPDWORD BufferSize);
-  DWORD               PowerReadPossibleValue(                      HKEY RootPowerKey, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, RegType_PULONG Type, ULONG PossibleSettingIndex, PUCHAR Buffer, LPDWORD BufferSize);
+  DWORD               PowerReadPossibleValue(                      HKEY RootPowerKey, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, WINAPI_RegType_PULONG Type, ULONG PossibleSettingIndex, PUCHAR Buffer, LPDWORD BufferSize);
   DWORD               PowerReadSettingAttributes(                  GUID* SubGroupGuid, GUID* PowerSettingGuid);
   DWORD               PowerReadValueIncrement(                     HKEY RootPowerKey, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, LPDWORD ValueIncrement);
   DWORD               PowerReadValueMax(                           HKEY RootPowerKey, GUID* SubGroupOfPowerSettingsGuid, GUID* PowerSettingGuid, LPDWORD ValueMaximum);

@@ -199,12 +199,12 @@ ffi.cdef [[
     LONG width[6];
   } OLEMENUGROUPWIDTHS;
   typedef OLEMENUGROUPWIDTHS *LPOLEMENUGROUPWIDTHS; //Pointer
-  typedef BYTE PALETTEENTRY_Flags; //Alias
+  typedef BYTE WINAPI_PALETTEENTRY_Flags; //Alias
   typedef struct PALETTEENTRY {
     BYTE peRed;
     BYTE peGreen;
     BYTE peBlue;
-    PALETTEENTRY_Flags peFlags;
+    WINAPI_PALETTEENTRY_Flags peFlags;
   } PALETTEENTRY;
   typedef PALETTEENTRY *LPPALETTEENTRY; //Pointer
   typedef struct LOGPALETTE {
@@ -213,23 +213,23 @@ ffi.cdef [[
     PALETTEENTRY palPalEntry[1];
   } LOGPALETTE;
   typedef unsigned short VARTYPE; //Alias
-  typedef struct BRECORD {
+  typedef struct WINAPI_BRECORD {
     PVOID* pvRecord;
     IRecordInfo* pRecInfo;
-  } BRECORD;
-  typedef union VARIANT_s_u {
+  } WINAPI_BRECORD;
+  typedef union WINAPI_VARIANT_s_u {
     LONG lVal;
-    BRECORD ;
-  } VARIANT_s_u;
-  typedef struct VARIANT_s {
+    WINAPI_BRECORD ;
+  } WINAPI_VARIANT_s_u;
+  typedef struct WINAPI_VARIANT_s {
     VARTYPE vt;
     WORD wReserved1;
     WORD wReserved2;
     WORD wReserved3;
-    VARIANT_s_u ;
-  } VARIANT_s;
+    WINAPI_VARIANT_s_u ;
+  } WINAPI_VARIANT_s;
   typedef union VARIANT {
-    VARIANT_s ;
+    WINAPI_VARIANT_s ;
     ULONGLONG other_values_dummy;
   } VARIANT;
   typedef VARIANT *LPVARIANT; //Pointer
@@ -279,7 +279,7 @@ ffi.cdef [[
     IUnknown* pItf;
     HRESULT hr;
   } MULTI_QI;
-  typedef DWORD STGM_FLAGS; //Alias
+  typedef DWORD WINAPI_STGM_FLAGS; //Alias
   typedef UINT THDTYPE; //Alias
   static const THDTYPE THDTYPE_BLOCKMESSAGES = 0;
   static const THDTYPE THDTYPE_PROCESSMESSAGES = 1;
@@ -487,24 +487,24 @@ ffi.cdef [[
     LPOLESTR pstrName;
     CLSID clsid;
   } PROPBAG2;
-  typedef DWORD CLSCTX; //Alias
-  typedef struct uCLSSPEC_u_s1 {
+  typedef DWORD WINAPI_CLSCTX; //Alias
+  typedef struct WINAPI_uCLSSPEC_u_s1 {
     LPOLESTR pPackageName;
     GUID PolicyId;
-  } uCLSSPEC_u_s1;
-  typedef struct uCLSSPEC_u_s2 {
+  } WINAPI_uCLSSPEC_u_s1;
+  typedef struct WINAPI_uCLSSPEC_u_s2 {
     GUID ObjectId;
     GUID PolicyId;
-  } uCLSSPEC_u_s2;
-  typedef union uCLSSPEC_u {
+  } WINAPI_uCLSSPEC_u_s2;
+  typedef union WINAPI_uCLSSPEC_u {
     CLSID clsid;
     LPOLESTR pFileExt;
     LPOLESTR pMimeType;
     LPOLESTR pProgId;
     LPOLESTR pFileName;
-    uCLSSPEC_u_s1 ByName;
-    uCLSSPEC_u_s2 ByObjectId;
-  } uCLSSPEC_u;
+    WINAPI_uCLSSPEC_u_s1 ByName;
+    WINAPI_uCLSSPEC_u_s2 ByObjectId;
+  } WINAPI_uCLSSPEC_u;
   typedef DWORD TYSPEC; //Alias
   static const TYSPEC TYSPEC_CLSID = 0;
   static const TYSPEC TYSPEC_FILEEXT = 1;
@@ -515,9 +515,9 @@ ffi.cdef [[
   static const TYSPEC TYSPEC_OBJECTID = 6;
   typedef struct uCLSSPEC {
     TYSPEC tyspec;
-    uCLSSPEC_u tagged_union;
+    WINAPI_uCLSSPEC_u tagged_union;
   } uCLSSPEC;
-  typedef union STGMEDIUM_u {
+  typedef union WINAPI_STGMEDIUM_u {
     HBITMAP hBitmap;
     HMETAFILEPICT hMetaFilePict;
     HENHMETAFILE hEnhMetaFile;
@@ -525,22 +525,22 @@ ffi.cdef [[
     LPOLESTR lpszFileName;
     IStream* pstm;
     IStorage* pstg;
-  } STGMEDIUM_u;
+  } WINAPI_STGMEDIUM_u;
   typedef struct STGMEDIUM {
     TYMED tymed;
-    STGMEDIUM_u u;
+    WINAPI_STGMEDIUM_u u;
     IUnknown* pUnkForRelease;
   } STGMEDIUM;
   typedef STGMEDIUM *LPSTGMEDIUM; //Pointer
-  typedef DWORD COINIT_FLAG; //Alias
-  typedef USHORT FADF_FLAGS; //Alias
+  typedef DWORD WINAPI_COINIT_FLAG; //Alias
+  typedef USHORT WINAPI_FADF_FLAGS; //Alias
   typedef struct SAFEARRAYBOUND {
     ULONG cElements;
     LONG lLbound;
   } SAFEARRAYBOUND;
   typedef struct SAFEARRAY {
     USHORT cDims;
-    FADF_FLAGS fFeatures;
+    WINAPI_FADF_FLAGS fFeatures;
     ULONG cbElements;
     ULONG cLocks;
     PVOID pvData;
@@ -557,7 +557,7 @@ ffi.cdef [[
     LPCUSTDATAITEM prgCustData;
   } CUSTDATA;
   typedef CUSTDATA *LPCUSTDATA; //Pointer
-  typedef WORD InvokeFlags; //Alias
+  typedef WORD WINAPI_InvokeFlags; //Alias
   typedef UINT CALLCONV; //Alias
   static const CALLCONV CC_FASTCALL = 0;
   static const CALLCONV CC_CDECL = 1;

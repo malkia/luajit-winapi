@@ -9,7 +9,7 @@ ffi.cdef [[
     DWORD cbStruct;
     WCHAR wszCatalogFile[MAX_PATH];
   } CATALOG_INFO;
-  typedef DWORD WintrustPolicyFlags; //Alias
+  typedef DWORD WINAPI_WintrustPolicyFlags; //Alias
   BOOL                     OpenPersonalTrustDBDialog(             HWND hwndParent);
   BOOL                     OpenPersonalTrustDBDialogEx(           HWND hwndParent, DWORD dwFlags, PVOID* pvReserved);
   BOOL                     CryptCATCDFClose(                      CRYPTCATCDF* pCDF);
@@ -35,11 +35,11 @@ ffi.cdef [[
   CRYPTCATMEMBER*          CryptCATGetMemberInfo(                 HANDLE hCatalog, LPWSTR pwszReferenceTag);
   BOOL                     IsCatalogFile(                         HANDLE hFile, WCHAR* pwszFileName);
   BOOL                     WintrustAddActionID(                   GUID* pgActionID, DWORD fdwFlags, CRYPT_REGISTER_ACTIONID* psProvInfo);
-  void                     WintrustGetRegPolicyFlags(             WintrustPolicyFlags* pdwPolicyFlags);
+  void                     WintrustGetRegPolicyFlags(             WINAPI_WintrustPolicyFlags* pdwPolicyFlags);
   BOOL                     WintrustLoadFunctionPointers(          GUID* pgActionID, CRYPT_PROVIDER_FUNCTIONS* pPfns);
   BOOL                     WintrustRemoveActionID(                GUID* pgActionID);
   void                     WintrustSetDefaultIncludePEPageHashes( BOOL fIncludePEPageHashes);
-  BOOL                     WintrustSetRegPolicyFlags(             WintrustPolicyFlags dwPolicyFlags);
+  BOOL                     WintrustSetRegPolicyFlags(             WINAPI_WintrustPolicyFlags dwPolicyFlags);
   LONG                     WinVerifyTrust(                        HWND hWnd, GUID* pgActionID, LPVOID pWVTData);
   HRESULT                  WinVerifyTrustEx(                      HWND hwnd, GUID* pgActionID, WINTRUST_DATA* pWinTrustData);
   HRESULT                  WTHelperCertCheckValidSignature(       CRYPT_PROVIDER_DATA* pProvData);

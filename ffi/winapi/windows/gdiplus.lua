@@ -13,19 +13,19 @@ ffi.cdef [[
   typedef UINT GraphicsState; //Alias
   typedef UINT GraphicsContainer; //Alias
   typedef DWORD ARGB; //Alias
-  typedef WORD PropertyTagType; //Alias
-  static const PropertyTagType PropertyTagTypeByte = 1;
-  static const PropertyTagType PropertyTagTypeASCII = 2;
-  static const PropertyTagType PropertyTagTypeShort = 3;
-  static const PropertyTagType PropertyTagTypeLong = 4;
-  static const PropertyTagType PropertyTagTypeRational = 5;
-  static const PropertyTagType PropertyTagTypeUndefined = 7;
-  static const PropertyTagType PropertyTagTypeSLONG = 9;
-  static const PropertyTagType PropertyTagTypeSRational = 10;
+  typedef WORD WINAPI_PropertyTagType; //Alias
+  static const WINAPI_PropertyTagType PropertyTagTypeByte = 1;
+  static const WINAPI_PropertyTagType PropertyTagTypeASCII = 2;
+  static const WINAPI_PropertyTagType PropertyTagTypeShort = 3;
+  static const WINAPI_PropertyTagType PropertyTagTypeLong = 4;
+  static const WINAPI_PropertyTagType PropertyTagTypeRational = 5;
+  static const WINAPI_PropertyTagType PropertyTagTypeUndefined = 7;
+  static const WINAPI_PropertyTagType PropertyTagTypeSLONG = 9;
+  static const WINAPI_PropertyTagType PropertyTagTypeSRational = 10;
   typedef struct PropertyItem {
     PROPID id;
     ULONG length;
-    PropertyTagType type;
+    WINAPI_PropertyTagType type;
     VOID* value;
   } PropertyItem;
 # pragma pack( push, 2 )
@@ -56,10 +56,10 @@ ffi.cdef [[
     SIZEL szlDevice;
     SIZEL szlMillimeters;
   } ENHMETAHEADER3;
-  typedef union MetafileHeader_u {
+  typedef union WINAPI_MetafileHeader_u {
     METAHEADER WmfHeader;
     ENHMETAHEADER3 EmfHeader;
-  } MetafileHeader_u;
+  } WINAPI_MetafileHeader_u;
   typedef UINT MetafileType; //Alias
   static const MetafileType MetafileTypeInvalid = 0;
   static const MetafileType MetafileTypeWmf = 1;
@@ -67,19 +67,19 @@ ffi.cdef [[
   static const MetafileType MetafileTypeEmf = 3;
   static const MetafileType MetafileTypeEmfPlusOnly = 4;
   static const MetafileType MetafileTypeEmfPlusDual = 5;
-  typedef UINT GDIP_EMFPLUSFLAGS; //Alias
+  typedef UINT WINAPI_GDIP_EMFPLUSFLAGS; //Alias
   typedef struct MetafileHeader {
     MetafileType Type;
     UINT Size;
     UINT Version;
-    GDIP_EMFPLUSFLAGS EmfPlusFlags;
+    WINAPI_GDIP_EMFPLUSFLAGS EmfPlusFlags;
     REAL DpiX;
     REAL DpiY;
     INT X;
     INT Y;
     INT Width;
     INT Height;
-    MetafileHeader_u Height;
+    WINAPI_MetafileHeader_u Height;
     INT EmfPlusHeaderSize;
     INT LogicalDpiX;
     INT LogicalDpiY;
@@ -423,6 +423,9 @@ ffi.cdef [[
   static const GpMatrixOrder MatrixOrderPrepend = 0;
   static const GpMatrixOrder MatrixOrderAppend = 1;
   typedef UINT ImageType; //Alias
+  static const ImageType ImageTypeUnknown = 0;
+  static const ImageType ImageTypeBitmap = 1;
+  static const ImageType ImageTypeMetafile = 2;
   typedef UINT ColorAdjustType; //Alias
   static const ColorAdjustType ColorAdjustTypeDefault = 0;
   static const ColorAdjustType ColorAdjustTypeBitmap = 1;
@@ -479,20 +482,20 @@ ffi.cdef [[
   static const GpStatus PropertyNotFound = 19;
   static const GpStatus PropertyNotSupported = 20;
   static const GpStatus ProfileNotFound = 21;
-  typedef INT FontStyle; //Alias
-  static const FontStyle FontStyleRegular = 0;
-  static const FontStyle FontStyleBold = 1;
-  static const FontStyle FontStyleItalic = 2;
-  static const FontStyle FontStyleBoldItalic = 3;
-  static const FontStyle FontStyleUnderline = 4;
-  static const FontStyle FontStyleStrikeout = 8;
-  typedef UINT StringFormatFlags; //Alias
-  typedef UINT ImageLockMode; //Alias
-  typedef INT HotkeyPrefix; //Alias
-  static const HotkeyPrefix HotkeyPrefixNone = 0;
-  static const HotkeyPrefix HotkeyPrefixShow = 1;
-  static const HotkeyPrefix HotkeyPrefixHide = 2;
-  typedef UINT DriverStringOptions; //Alias
+  typedef INT WINAPI_FontStyle; //Alias
+  static const WINAPI_FontStyle FontStyleRegular = 0;
+  static const WINAPI_FontStyle FontStyleBold = 1;
+  static const WINAPI_FontStyle FontStyleItalic = 2;
+  static const WINAPI_FontStyle FontStyleBoldItalic = 3;
+  static const WINAPI_FontStyle FontStyleUnderline = 4;
+  static const WINAPI_FontStyle FontStyleStrikeout = 8;
+  typedef UINT WINAPI_StringFormatFlags; //Alias
+  typedef UINT WINAPI_ImageLockMode; //Alias
+  typedef INT WINAPI_HotkeyPrefix; //Alias
+  static const WINAPI_HotkeyPrefix HotkeyPrefixNone = 0;
+  static const WINAPI_HotkeyPrefix HotkeyPrefixShow = 1;
+  static const WINAPI_HotkeyPrefix HotkeyPrefixHide = 2;
+  typedef UINT WINAPI_DriverStringOptions; //Alias
   GpStatus GdiplusStartup(                                   ULONG_PTR* token, GdiplusStartupInput* input, GdiplusStartupOutput* output);
   void     GdiplusShutdown(                                  ULONG_PTR token);
   GpStatus GdipCreatePath(                                   GpFillMode brushMode, GpPath** path);
@@ -847,7 +850,7 @@ ffi.cdef [[
   GpStatus GdipCreateBitmapFromResource(                     HINSTANCE hInstance, GDIPCONST WCHAR* lpBitmapName, GpBitmap** bitmap);
   GpStatus GdipCloneBitmapArea(                              REAL x, REAL y, REAL width, REAL height, PixelFormat format, GpBitmap* srcBitmap, GpBitmap** dstBitmap);
   GpStatus GdipCloneBitmapAreaI(                             INT x, INT y, INT width, INT height, PixelFormat format, GpBitmap* srcBitmap, GpBitmap** dstBitmap);
-  GpStatus GdipBitmapLockBits(                               GpBitmap* bitmap, GDIPCONST GpRect* rect, ImageLockMode flags, PixelFormat format, BitmapData* lockedBitmapData);
+  GpStatus GdipBitmapLockBits(                               GpBitmap* bitmap, GDIPCONST GpRect* rect, WINAPI_ImageLockMode flags, PixelFormat format, BitmapData* lockedBitmapData);
   GpStatus GdipBitmapUnlockBits(                             GpBitmap* bitmap, BitmapData* lockedBitmapData);
   GpStatus GdipBitmapGetPixel(                               GpBitmap* bitmap, INT x, INT y, ARGB* color);
   GpStatus GdipBitmapSetPixel(                               GpBitmap* bitmap, INT x, INT y, ARGB color);
@@ -1055,17 +1058,17 @@ ffi.cdef [[
   GpStatus GdipIsStyleAvailable(                             GDIPCONST GpFontFamily* family, INT style, BOOL* IsStyleAvailable);
   GpStatus GdipFontCollectionEnumerable(                     GpFontCollection* fontCollection, GpGraphics* graphics, INT* numFound);
   GpStatus GdipFontCollectionEnumerate(                      GpFontCollection* fontCollection, INT numSought, GpFontFamily* gpfamilies, INT* numFound, GpGraphics* graphics);
-  GpStatus GdipGetEmHeight(                                  GDIPCONST GpFontFamily* family, FontStyle style, UINT16* EmHeight);
+  GpStatus GdipGetEmHeight(                                  GDIPCONST GpFontFamily* family, WINAPI_FontStyle style, UINT16* EmHeight);
   GpStatus GdipGetCellAscent(                                GDIPCONST GpFontFamily* family, INT style, UINT16* CellAscent);
   GpStatus GdipGetCellDescent(                               GDIPCONST GpFontFamily* family, INT style, UINT16* CellDescent);
-  GpStatus GdipGetLineSpacing(                               GDIPCONST GpFontFamily* family, FontStyle style, UINT16* LineSpacing);
+  GpStatus GdipGetLineSpacing(                               GDIPCONST GpFontFamily* family, WINAPI_FontStyle style, UINT16* LineSpacing);
   GpStatus GdipCreateFontFromDC(                             HDC hdc, GpFont** font);
   GpStatus GdipCreateFontFromLogfont(                        HDC hdc, GDIPCONST LOGFONT* logfont, GpFont** font);
-  GpStatus GdipCreateFont(                                   GDIPCONST GpFontFamily* fontFamily, REAL emSize, FontStyle style, Unit unit, GpFont** font);
+  GpStatus GdipCreateFont(                                   GDIPCONST GpFontFamily* fontFamily, REAL emSize, WINAPI_FontStyle style, Unit unit, GpFont** font);
   GpStatus GdipCloneFont(                                    GpFont* font, GpFont** cloneFont);
   GpStatus GdipDeleteFont(                                   GpFont* font);
   GpStatus GdipGetFamily(                                    GpFont* font, GpFontFamily** family);
-  GpStatus GdipGetFontStyle(                                 GpFont* font, FontStyle* style);
+  GpStatus GdipGetFontStyle(                                 GpFont* font, WINAPI_FontStyle* style);
   GpStatus GdipGetFontSize(                                  GpFont* font, REAL* size);
   GpStatus GdipGetFontUnit(                                  GpFont* font, Unit* unit);
   GpStatus GdipGetFontHeight(                                GDIPCONST GpFont* font, GDIPCONST GpGraphics* graphics, REAL* height);
@@ -1081,23 +1084,23 @@ ffi.cdef [[
   GpStatus GdipDrawString(                                   GpGraphics* graphics, GDIPCONST WCHAR* string, INT length, GDIPCONST GpFont* font, GDIPCONST RectF* layoutRect, GDIPCONST GpStringFormat* stringFormat, GDIPCONST GpBrush* brush);
   GpStatus GdipMeasureString(                                GpGraphics* graphics, GDIPCONST WCHAR* string, INT length, GDIPCONST GpFont* font, GDIPCONST RectF* layoutRect, GDIPCONST GpStringFormat* stringFormat, RectF* boundingBox, INT* codepointsFitted, INT* linesFilled);
   GpStatus GdipMeasureCharacterRanges(                       GpGraphics* graphics, GDIPCONST WCHAR* string, INT length, GDIPCONST GpFont* font, GDIPCONST GpStringFormat* stringFormat, INT regionCount, GpRegion** regions);
-  GpStatus GdipDrawDriverString(                             GpGraphics* graphics, GDIPCONST UINT16* text, INT length, GDIPCONST GpFont* font, GDIPCONST GpBrush* brush, GDIPCONST PointF* positions, DriverStringOptions flags, GDIPCONST GpMatrix* matrix);
-  GpStatus GdipMeasureDriverString(                          GpGraphics* graphics, GDIPCONST UINT16* text, INT length, GDIPCONST GpFont* font, GDIPCONST PointF* positions, DriverStringOptions flags, GDIPCONST GpMatrix* matrix, RectF* boundingBox);
-  GpStatus GdipCreateStringFormat(                           StringFormatFlags formatAttributes, LANGID language, GpStringFormat** format);
+  GpStatus GdipDrawDriverString(                             GpGraphics* graphics, GDIPCONST UINT16* text, INT length, GDIPCONST GpFont* font, GDIPCONST GpBrush* brush, GDIPCONST PointF* positions, WINAPI_DriverStringOptions flags, GDIPCONST GpMatrix* matrix);
+  GpStatus GdipMeasureDriverString(                          GpGraphics* graphics, GDIPCONST UINT16* text, INT length, GDIPCONST GpFont* font, GDIPCONST PointF* positions, WINAPI_DriverStringOptions flags, GDIPCONST GpMatrix* matrix, RectF* boundingBox);
+  GpStatus GdipCreateStringFormat(                           WINAPI_StringFormatFlags formatAttributes, LANGID language, GpStringFormat** format);
   GpStatus GdipStringFormatGetGenericDefault(                GpStringFormat** format);
   GpStatus GdipStringFormatGetGenericTypographic(            GpStringFormat** format);
   GpStatus GdipDeleteStringFormat(                           GpStringFormat* format);
   GpStatus GdipCloneStringFormat(                            GDIPCONST GpStringFormat* format, GpStringFormat** newFormat);
-  GpStatus GdipSetStringFormatFlags(                         GpStringFormat* format, StringFormatFlags flags);
-  GpStatus GdipGetStringFormatFlags(                         GDIPCONST GpStringFormat* format, StringFormatFlags* flags);
+  GpStatus GdipSetStringFormatFlags(                         GpStringFormat* format, WINAPI_StringFormatFlags flags);
+  GpStatus GdipGetStringFormatFlags(                         GDIPCONST GpStringFormat* format, WINAPI_StringFormatFlags* flags);
   GpStatus GdipSetStringFormatAlign(                         GpStringFormat* format, StringAlignment align);
   GpStatus GdipGetStringFormatAlign(                         GDIPCONST GpStringFormat* format, StringAlignment* align);
   GpStatus GdipSetStringFormatLineAlign(                     GpStringFormat* format, StringAlignment align);
   GpStatus GdipGetStringFormatLineAlign(                     GDIPCONST GpStringFormat* format, StringAlignment* align);
   GpStatus GdipSetStringFormatTrimming(                      GpStringFormat* format, StringTrimming trimming);
   GpStatus GdipGetStringFormatTrimming(                      GDIPCONST GpStringFormat* format, StringTrimming* trimming);
-  GpStatus GdipSetStringFormatHotkeyPrefix(                  GpStringFormat* format, HotkeyPrefix hotkeyPrefix);
-  GpStatus GdipGetStringFormatHotkeyPrefix(                  GDIPCONST GpStringFormat* format, HotkeyPrefix* hotkeyPrefix);
+  GpStatus GdipSetStringFormatHotkeyPrefix(                  GpStringFormat* format, WINAPI_HotkeyPrefix hotkeyPrefix);
+  GpStatus GdipGetStringFormatHotkeyPrefix(                  GDIPCONST GpStringFormat* format, WINAPI_HotkeyPrefix* hotkeyPrefix);
   GpStatus GdipSetStringFormatTabStops(                      GpStringFormat* format, REAL firstTabOffset, INT count, GDIPCONST REAL* tabStops);
   GpStatus GdipGetStringFormatTabStops(                      GDIPCONST GpStringFormat* format, INT count, REAL* firstTabOffset, REAL* tabStops);
   GpStatus GdipGetStringFormatTabStopCount(                  GDIPCONST GpStringFormat* format, INT* count);
