@@ -102,6 +102,7 @@ ffi.cdef [[
     BYTE* pbClosedLowerBound;
     BYTE* pbClosedUpperBound;
   } SYNC_RANGE;
+  typedef SYNC_RANGE *const SYNC_RANGE*; //Pointer
   typedef struct SYNC_SESSION_STATISTICS {
     DWORD dwChangesApplied;
     DWORD dwChangesFailed;
@@ -114,4 +115,5 @@ ffi.cdef [[
     DWORD dwLastUpdatingReplicaKey;
     ULONGLONG ullTickCount;
   } SYNC_VERSION;
+  typedef SYNC_VERSION *const SYNC_VERSION*; //Pointer
 ]]

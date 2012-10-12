@@ -6,6 +6,7 @@ ffi.cdef [[
   typedef HANDLE HANIMATIONBUFFER; //Alias
   typedef HANDLE HPAINTBUFFER; //Alias
   typedef LPVOID DTT_CALLBACK_PROC; //Alias
+//typedef LPVOID INTLIST*; //Alias
   typedef DWORD WINAPI_BPPF_Flags; //Alias
   typedef struct BP_PAINTPARAMS {
     DWORD cbSize;

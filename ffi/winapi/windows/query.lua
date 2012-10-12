@@ -4,6 +4,12 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef void* ICommand; //Interface
   typedef WORD DBCOMMANDOP; //Alias
+//typedef TCHAR* TCHAR*; //Alias
+//typedef WCHAR** WCHAR**; //Alias
+//typedef PROPVARIANT* PROPVARIANT*; //Alias
+//typedef LPVOID DBCOMMANDTREE*; //Alias
+//typedef DBCOMMANDTREE* DBCOMMANDTREE*; //Alias
+//typedef DBCOMMANDTREE** DBCOMMANDTREE**; //Alias
   typedef DWORD DBKIND; //Alias
   static const DBKIND DBKIND_GUID_NAME = 0;
   static const DBKIND DBKIND_GUID_PROPID = 1;

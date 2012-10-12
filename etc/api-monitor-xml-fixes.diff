@@ -1,3 +1,6 @@
+diff -r E:\apps\API Monitor (rohitab.com)\API/Headers/ntstatus.h.xml C:\Program Files\rohitab.com\API Monitor\API/Headers/ntstatus.h.xml
+6a7
+>     <Include Filename="Headers\common.h.xml" />
 diff -r E:\apps\API Monitor (rohitab.com)\API/Interfaces/CoreAudio/IAudioSessionControl.xml C:\Program Files\rohitab.com\API Monitor\API/Interfaces/CoreAudio/IAudioSessionControl.xml
 51,100d50
 < <!--

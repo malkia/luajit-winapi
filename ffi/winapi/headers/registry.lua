@@ -12,6 +12,7 @@ ffi.cdef [[
   static const HKEY HKEY_CURRENT_CONFIG = -2147483643;
   static const HKEY HKEY_DYN_DATA = -2147483642;
   typedef HKEY* PHKEY; //Alias
+//typedef HKEY* HKEY*; //Alias
   typedef DWORD REGSAM; //Alias
   typedef DWORD WINAPI_RegType; //Alias
   static const WINAPI_RegType REG_NONE = 0;

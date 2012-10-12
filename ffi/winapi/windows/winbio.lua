@@ -18,6 +18,7 @@ ffi.cdef [[
   typedef LPVOID PWINBIO_VERIFY_CALLBACK; //Alias
   typedef UUID WINBIO_UUID; //Alias
   typedef ULONG WINBIO_BIOMETRIC_SENSOR_SUBTYPE; //Alias
+  typedef WCHAR WINBIO_STRING[256];
   enum { SECURITY_MAX_SID_SIZE = 68 };
   typedef ULONG WINBIO_BIOMETRIC_TYPE; //Alias
   typedef ULONG WINBIO_POOL_TYPE; //Alias

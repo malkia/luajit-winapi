@@ -2,6 +2,7 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID LPCPROPSHEETPAGE; //Alias
+//typedef LPVOID PROPSHEETHEADER*; //Alias
   typedef LPVOID LPCPROPSHEETHEADER; //Alias
   typedef LPVOID LPPROPSHEETHEADER; //Alias
   typedef void* IUnknown; //Interface
@@ -139,8 +140,9 @@ ffi.cdef [[
   typedef LPVOID HPROPSHEETPAGE; //Alias
   typedef LPCWSTR LPCOLESTR; //Alias
   typedef LPCWSTR LPOLESTR; //Alias
-  typedef LPOLESTR LPOLESTR; //Alias
+//typedef LPOLESTR LPOLESTR; //Alias
   typedef WCHAR OLECHAR; //Alias
+//typedef OLECHAR* OLECHAR*; //Alias
   typedef ULONG PROPID; //Alias
   typedef IOleObject* LPOLEOBJECT; //Alias
   typedef IMalloc* LPMALLOC; //Alias
@@ -155,8 +157,10 @@ ffi.cdef [[
   typedef IMoniker* LPMONIKER; //Alias
   typedef IStream* LPSTREAM; //Alias
   typedef IDataObject* LPDATAOBJECT; //Alias
+//typedef IStorage* struct IStorage*; //Alias
   typedef DWORD CPFLAGS; //Alias
   typedef LPOLESTR* SNB; //Alias
+//typedef LPVOID ALLOCATEMORE*; //Alias
   typedef HANDLE HTASK; //Alias
   typedef LPCRECT LPCBORDERWIDTHS; //Alias
   typedef HGLOBAL HOLEMENU; //Alias
@@ -235,6 +239,7 @@ ffi.cdef [[
   typedef VARIANT *LPVARIANT; //Pointer
   typedef VARIANT VARIANTARG; //Alias
   typedef VARIANT PROPVARIANT; //Alias
+//typedef PROPVARIANT* PROPVARIANT*; //Alias
   typedef PROPVARIANT* REFPROPVARIANT; //Alias
   typedef DWORD TYMED; //Alias
   static const TYMED TYMED_HGLOBAL = 1;
@@ -260,7 +265,7 @@ ffi.cdef [[
     DWORD pid;
   } PROPERTYKEY;
   typedef PROPERTYKEY *REFPROPERTYKEY; //Pointer
-  typedef PROPERTYKEY PROPERTYKEY; //Alias
+//typedef PROPERTYKEY PROPERTYKEY; //Alias
   typedef struct CSPLATFORM {
     DWORD dwPlatformId;
     DWORD dwVersionHi;

@@ -116,6 +116,7 @@ ffi.cdef [[
     void* pvValue;
     ULONG cbValue;
   } CRYPT_XML_PROPERTY;
+//typedef CRYPT_XML_PROPERTY* CRYPT_XML_PROPERTY*; //Alias
   typedef struct CRYPT_XML_REFERENCE {
     ULONG cbSize;
     HCRYPTXML hReference;
@@ -200,6 +201,7 @@ ffi.cdef [[
     PCRYPT_XML_OBJECT* rgpObject;
   } CRYPT_XML_SIGNATURE;
   typedef CRYPT_XML_SIGNATURE *PCRYPT_XML_SIGNATURE; //Pointer
+  typedef PCRYPT_XML_SIGNATURE *CRYPT_XML_SIGNATURE**; //Pointer
   typedef struct CRYPT_XML_DOC_CTXT {
     ULONG cbSize;
     HCRYPTXML hDocCtxt;

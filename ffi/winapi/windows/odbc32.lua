@@ -15,7 +15,9 @@ ffi.cdef [[
   typedef SQLHANDLE SQLHSTMT; //Alias
   typedef SQLHANDLE SQLHDESC; //Alias
   typedef unsigned char SQLCHAR; //Alias
+//typedef LPSTR SQLCHAR*; //Alias
   typedef TCHAR SQLTCHAR; //Alias
+  typedef LPTSTR *SQLTCHAR*; //Pointer
   typedef SQLSMALLINT SQLRETURN; //Alias
   static const SQLRETURN SQL_SUCCESS = 0;
   static const SQLRETURN SQL_SUCCESS_WITH_INFO = 1;

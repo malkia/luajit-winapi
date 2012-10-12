@@ -4,6 +4,9 @@ require( 'ffi/winapi/headers/rpc' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+//typedef LPVOID IMemoryAllocator*; //Alias
+//typedef IEnumFORMATETC** LPENUMFORMATETC*; //Alias
+//typedef IEnumOLEVERB** LPENUMOLEVERB*; //Alias
   typedef IPersistStorage* LPPERSISTSTORAGE; //Alias
   typedef IPersistStream* LPPERSISTSTREAM; //Alias
   typedef IOleInPlaceFrame* LPOLEINPLACEFRAME; //Alias

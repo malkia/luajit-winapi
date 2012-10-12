@@ -2,6 +2,7 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/rpc' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+//typedef WCHAR** LPCWCH*; //Alias
   typedef DWORD WINAPI_ScheduleType; //Alias
   static const WINAPI_ScheduleType SCHEDULE_INTERVAL = 0;
   static const WINAPI_ScheduleType SCHEDULE_BANDWIDTH = 1;

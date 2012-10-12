@@ -20,6 +20,7 @@ ffi.cdef [[
   typedef void* IPropertySystem; //Interface
   typedef void* IPropertyUI; //Interface
   typedef HRESULT PSSTDAPI; //Alias
+//typedef LPVOID SERIALIZEDPROPSTORAGE*; //Alias
   typedef LPVOID PCUSERIALIZEDPROPSTORAGE; //Alias
   typedef UINT PROPENUMTYPE; //Alias
   static const PROPENUMTYPE PET_DISCRETEVALUE = 0;

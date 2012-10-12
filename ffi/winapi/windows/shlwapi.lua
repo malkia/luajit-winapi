@@ -133,7 +133,7 @@ ffi.cdef [[
   static const SHGLOBALCOUNTER GLOBALCOUNTER_APP_ITEMS_STATE_STORE_CACHE = 53;
   static const SHGLOBALCOUNTER GLOBALCOUNTER_IMMERSIVE_SCALE_CACHE = 54;
   static const SHGLOBALCOUNTER GLOBALCOUNTER_SETTINGSYNC_ENABLED = 55;
-  typedef SHGLOBALCOUNTER SHGLOBALCOUNTER; //Alias
+//typedef SHGLOBALCOUNTER SHGLOBALCOUNTER; //Alias
   HANDLE                  SHAllocShared(                       void* pvData, DWORD dwSize, DWORD dwDestinationProcessId);
   WINAPI_MessageBoxResult ShellMessageBox(                     HINSTANCE hInst, HWND hWnd, LPCTSTR pszMsg, LPCTSTR pszTitle, WINAPI_MessageBoxType fuStyle);
   HRESULT                 SHGetViewStatePropertyBag(           PCIDLIST_ABSOLUTE pidl, LPCWSTR pszBagName, DWORD dwFlags, REFIID riid, void** ppv);

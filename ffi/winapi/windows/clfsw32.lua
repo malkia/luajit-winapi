@@ -52,7 +52,8 @@ ffi.cdef [[
   } CLS_LSN;
   typedef CLS_LSN CLFS_LSN; //Alias
   typedef CLFS_LSN *PCLFS_LSN; //Pointer
-  typedef PCLFS_LSN PCLFS_LSN; //Alias
+//typedef PCLFS_LSN PCLFS_LSN; //Alias
+//typedef PCLFS_LSN CLFS_LSN*; //Alias
   typedef struct CLFS_WRITE_ENTRY {
     PVOID Buffer;
     ULONG ByteLength;

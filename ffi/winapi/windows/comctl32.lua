@@ -4,7 +4,7 @@ require( 'ffi/winapi/headers/registry' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID HDPA; //Alias
-  typedef HDPA HDPA; //Alias
+//typedef HDPA HDPA; //Alias
   typedef LPVOID SUBCLASSPROC; //Alias
   typedef LPVOID PFNDPAENUMCALLBACK; //Alias
   typedef LPVOID PFNDPASTREAM; //Alias

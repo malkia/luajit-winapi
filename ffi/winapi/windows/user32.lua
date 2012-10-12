@@ -20,7 +20,7 @@ ffi.cdef [[
   typedef LPVOID PFNCALLBACK; //Alias
   typedef HANDLE HHOOK; //Alias
   typedef LPVOID HOOKPROC; //Alias
-  typedef void MENUTEMPLATE; //Alias
+//typedef LPVOID MENUTEMPLATE*; //Alias
   typedef LPVOID MONITORENUMPROC; //Alias
   typedef LPVOID DRAWSTATEPROC; //Alias
   typedef LPVOID GRAYSTRINGPROC; //Alias

@@ -1,6 +1,7 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+//typedef WCHAR* DHCP_CONST WCHAR*; //Alias
   typedef DWORD DHCP_IP_ADDRESS; //Alias
   typedef DHCP_IP_ADDRESS *LPDHCP_IP_ADDRESS; //Pointer
   typedef DWORD DHCP_IP_MASK; //Alias
@@ -111,6 +112,7 @@ ffi.cdef [[
     DHCP_SUBNET_ELEMENT_TYPE ElementType;
     DHCP_SUBNET_ELEMENT_UNION_V5 Element;
   } DHCP_SUBNET_ELEMENT_DATA_V5;
+  typedef DHCP_SUBNET_ELEMENT_DATA_V5 *DHCP_CONST DHCP_SUBNET_ELEMENT_DATA_V5*; //Pointer
   typedef UINT DHCP_SEARCH_INFO_TYPE; //Alias
   static const DHCP_SEARCH_INFO_TYPE DhcpClientIpAddress = 0;
   static const DHCP_SEARCH_INFO_TYPE DhcpClientHardwareAddress = 1;
@@ -125,6 +127,7 @@ ffi.cdef [[
     DHCP_CLIENT_SEARCH_UNION SearchInfo;
   } DHCP_SEARCH_INFO;
   typedef DHCP_SEARCH_INFO *LPDHCP_SEARCH_INFO; //Pointer
+  typedef DHCP_SEARCH_INFO *DHCP_CONST DHCP_SEARCH_INFO*; //Pointer
   typedef struct DHCP_RESERVED_SCOPE {
     DHCP_IP_ADDRESS ReservedIpAddress;
     DHCP_IP_ADDRESS ReservedIpSubnetAddress;
@@ -147,6 +150,7 @@ ffi.cdef [[
     DHCP_OPTION_SCOPE_UNION ScopeInfo;
   } DHCP_OPTION_SCOPE_INFO;
   typedef DHCP_OPTION_SCOPE_INFO *LPDHCP_OPTION_SCOPE_INFO; //Pointer
+  typedef DHCP_OPTION_SCOPE_INFO *DHCP_CONST DHCP_OPTION_SCOPE_INFO*; //Pointer
   typedef struct DHCP_OPTION_DATA {
     DWORD NumElements;
     LPDHCP_OPTION_DATA_ELEMENT Elements;
@@ -173,6 +177,7 @@ ffi.cdef [[
     DWORD NumElements;
     WINAPI_DHCP_ALL_OPTION_VALUES_s* Options;
   } DHCP_ALL_OPTION_VALUES;
+  typedef DHCP_ALL_OPTION_VALUES *LPDHCP_ALL_OPTION_VALUES*; //Pointer
   typedef struct DHCP_IP_RESERVATION {
     DHCP_IP_ADDRESS ReservedIpAddress;
     DHCP_CLIENT_UID* ReservedForClient;
@@ -217,6 +222,7 @@ ffi.cdef [[
     DHCP_CLIENT_SEARCH_UNION_V6 SearchInfo;
   } DHCP_SEARCH_INFO_V6;
   typedef DHCP_SEARCH_INFO_V6 *LPDHCP_SEARCH_INFO_V6; //Pointer
+  typedef DHCP_SEARCH_INFO_V6 *DHCP_CONST DHCP_SEARCH_INFO_V6*; //Pointer
   typedef struct DHCP_RESERVED_SCOPE6 {
     DHCP_IPV6_ADDRESS ReservedIpAddress;
     DHCP_IPV6_ADDRESS ReservedIpSubnetAddress;
@@ -299,6 +305,7 @@ ffi.cdef [[
     DATE_TIME ClientLeaseExpires;
     DHCP_HOST_INFO OwnerHost;
   } DHCP_CLIENT_INFO;
+  typedef DHCP_CLIENT_INFO *DHCP_CONST DHCP_CLIENT_INFO*; //Pointer
   typedef DHCP_CLIENT_INFO *LPDHCP_CLIENT_INFO; //Pointer
   typedef struct DHCP_CLIENT_INFO_V4 {
     DHCP_IP_ADDRESS ClientIpAddress;
@@ -310,6 +317,8 @@ ffi.cdef [[
     DHCP_HOST_INFO OwnerHost;
     BYTE bClientType;
   } DHCP_CLIENT_INFO_V4;
+  typedef DHCP_CLIENT_INFO_V4 *DHCP_CONST DHCP_CLIENT_INFO_V4*; //Pointer
+  typedef DHCP_CLIENT_INFO_V4 *LPDHCP_CLIENT_INFO_V4*; //Pointer
   typedef UINT QuarantineStatus; //Alias
   static const QuarantineStatus NOQUARANTINE = 0;
   static const QuarantineStatus RESTRICTEDACCESS = 1;
@@ -347,6 +356,7 @@ ffi.cdef [[
     DHCP_HOST_INFO PrimaryHost;
     DHCP_SUBNET_STATE SubnetState;
   } DHCP_SUBNET_INFO;
+  typedef DHCP_SUBNET_INFO *DHCP_CONST DHCP_SUBNET_INFO*; //Pointer
   typedef DHCP_SUBNET_INFO *LPDHCP_SUBNET_INFO; //Pointer
   typedef struct DHCP_SUBNET_INFO_VQ {
     DHCP_IP_ADDRESS SubnetAddress;
@@ -361,6 +371,7 @@ ffi.cdef [[
     INT64 Reserved3;
     INT64 Reserved4;
   } DHCP_SUBNET_INFO_VQ;
+  typedef DHCP_SUBNET_INFO_VQ *DHCP_CONST DHCP_SUBNET_INFO_VQ*; //Pointer
   typedef DHCP_SUBNET_INFO_VQ *LPDHCP_SUBNET_INFO_VQ; //Pointer
   typedef UINT DHCP_FORCE_FLAG; //Alias
   static const DHCP_FORCE_FLAG DhcpFullForce = 0;

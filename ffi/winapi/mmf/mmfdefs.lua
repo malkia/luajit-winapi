@@ -132,11 +132,14 @@ ffi.cdef [[
   typedef void* IMFWorkQueueServices; //Interface
   typedef void* IDirect3DDevice9; //Interface
   typedef void* IDirect3DSurface9; //Interface
+  typedef UINT8 *const UINT8*; //Pointer
   typedef ULONGLONG QWORD; //Alias
   typedef LONGLONG MFTIME; //Alias
   typedef unsigned __int64 TOPOID; //Alias
   typedef unsigned __int64 MFWORKITEM_KEY; //Alias
   typedef LPVOID MFPERIODICCALLBACK; //Alias
+  typedef VIDEOINFOHEADER *const KS_VIDEOINFOHEADER*; //Pointer
+  typedef VIDEOINFOHEADER2 *const KS_VIDEOINFOHEADER2*; //Pointer
   typedef DWORD MFSequencerElementId; //Alias
   static const MFSequencerElementId MFSEQUENCER_INVALID_ELEMENT_ID = 0xffffffff;
   typedef UINT MF_ATTRIBUTE_TYPE; //Alias
@@ -276,6 +279,7 @@ ffi.cdef [[
     GUID guidMajorType;
     GUID guidSubtype;
   } MFT_REGISTER_TYPE_INFO;
+  typedef MFT_REGISTER_TYPE_INFO *const MFT_REGISTER_TYPE_INFO*; //Pointer
   typedef struct MFT_REGISTRATION_INFO {
     CLSID clsid;
     GUID guidCategory;
@@ -550,6 +554,7 @@ ffi.cdef [[
     MFVideoCompressedInfo compressedInfo;
     MFVideoSurfaceInfo surfaceInfo;
   } MFVIDEOFORMAT;
+  typedef MFVIDEOFORMAT *const MFVIDEOFORMAT*; //Pointer
   typedef struct ASF_INDEX_IDENTIFIER {
     GUID guidIndexType;
     WORD wStreamNumber;
@@ -616,6 +621,7 @@ ffi.cdef [[
     float right;
     float bottom;
   } MFVideoNormalizedRect;
+  typedef MFVideoNormalizedRect *const MFVideoNormalizedRect*; //Pointer
   typedef UINT MFP_EVENT_TYPE; //Alias
   static const MFP_EVENT_TYPE MFP_EVENT_TYPE_PLAY = 0;
   static const MFP_EVENT_TYPE MFP_EVENT_TYPE_PAUSE = 1;
@@ -654,6 +660,7 @@ ffi.cdef [[
     UINT UABProtectionLevel;
     UINT Reserved;
   } DXVA2_VideoDesc;
+  typedef DXVA2_VideoDesc *const DXVA2_VideoDesc*; //Pointer
   typedef DWORD WINAPI_DXVA2_BufferType; //Alias
   static const WINAPI_DXVA2_BufferType DXVA2_PictureParametersBufferType = 0;
   static const WINAPI_DXVA2_BufferType DXVA2_MacroBlockControlBufferType = 1;
@@ -689,6 +696,7 @@ ffi.cdef [[
     DXVA2_DecodeBufferDesc* pCompressedBuffers;
     DXVA2_DecodeExtensionData* pExtensionData;
   } DXVA2_DecodeExecuteParams;
+  typedef DXVA2_DecodeExecuteParams *const DXVA2_DecodeExecuteParams*; //Pointer
   typedef struct DXVA2_ConfigPictureDecode {
     GUID guidConfigBitstreamEncryption;
     GUID guidConfigMBcontrolEncryption;
@@ -708,6 +716,7 @@ ffi.cdef [[
     USHORT ConfigMinRenderTargetBuffCount;
     USHORT ConfigDecoderSpecific;
   } DXVA2_ConfigPictureDecode;
+  typedef DXVA2_ConfigPictureDecode *const DXVA2_ConfigPictureDecode*; //Pointer
   typedef UINT DXVA2_SurfaceType; //Alias
   static const DXVA2_SurfaceType DXVA2_SurfaceType_DecoderRenderTarget = 0;
   static const DXVA2_SurfaceType DXVA2_SurfaceType_ProcessorRenderTarget = 1;
@@ -777,6 +786,7 @@ ffi.cdef [[
     DXVA2_FilterValues DetailFilterChroma;
     WINAPI_DXVA2_DestData DestData;
   } DXVA2_VideoProcessBltParams;
+  typedef DXVA2_VideoProcessBltParams *const DXVA2_VideoProcessBltParams*; //Pointer
   typedef struct DXVA2_AYUVSample8 {
     UCHAR Cr;
     UCHAR Cb;
@@ -794,12 +804,14 @@ ffi.cdef [[
     DXVA2_Fixed32 PlanarAlpha;
     DWORD SampleData;
   } DXVA2_VideoSample;
+  typedef DXVA2_VideoSample *const DXVA2_VideoSample*; //Pointer
   typedef struct MPEG1VIDEOINFO {
     VIDEOINFOHEADER hdr;
     DWORD dwStartTimeCode;
     DWORD cbSequenceHeader;
     BYTE bSequenceHeader[1];
   } MPEG1VIDEOINFO;
+  typedef MPEG1VIDEOINFO *const MPEG1VIDEOINFO*; //Pointer
   typedef DWORD AM_MPEG2Profile; //Alias
   static const AM_MPEG2Profile AM_MPEG2Profile_Simple = 1;
   static const AM_MPEG2Profile AM_MPEG2Profile_Main = 2;
@@ -821,6 +833,7 @@ ffi.cdef [[
     WINAPI_AMMPEG2_FLAGS dwFlags;
     DWORD dwSequenceHeader[1];
   } MPEG2VIDEOINFO;
+  typedef MPEG2VIDEOINFO *const MPEG2VIDEOINFO*; //Pointer
   typedef UINT DXVAHD_FILTER; //Alias
   static const DXVAHD_FILTER DXVAHD_FILTER_BRIGHTNESS = 0;
   static const DXVAHD_FILTER DXVAHD_FILTER_CONTRAST = 1;
@@ -913,4 +926,5 @@ ffi.cdef [[
     IDirect3DSurface9* pInputSurface;
     IDirect3DSurface9** ppFutureSurfaces;
   } DXVAHD_STREAM_DATA;
+  typedef DXVAHD_STREAM_DATA *const DXVAHD_STREAM_DATA*; //Pointer
 ]]

@@ -1,3 +1,4 @@
+require( 'ffi/winapi/headers/common' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef ULONG NTSTATUS; //Alias

@@ -5,6 +5,7 @@ ffi.cdef [[
   typedef LPVOID PLHashComparator; //Alias
   typedef LPVOID PLHashEnumerator; //Alias
   typedef PRUint32 PLHashNumber; //Alias
+//typedef LPVOID PLHashAllocOps*; //Alias
   typedef struct PLHashEntry {
     LPVOID next;
     PLHashNumber keyHash;

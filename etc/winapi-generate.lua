@@ -87,13 +87,15 @@ end
 
 local T = true
 local builtin_types = {
-   ["bool"]    = T, ["size_t"]           = T,
-   ["float"]   = T, ["double"]           = T,
-   ["time_t"]  = T, ["va_list"]          = T,
+   ["wchar_t"] = T, ["ptrdiff_t"]        = T, ["_Bool"]          = T,
+   ["bool"]    = T, ["size_t"]           = T, ["void"]           = T,
+   ["float"]   = T, ["double"]           = T, ["va_list"]        = T,
    ["char"]    = T, ["unsigned char"]    = T, ["signed char"]    = T,
    ["short"]   = T, ["unsigned short"]   = T, ["signed short"]   = T,
    ["int"]     = T, ["unsigned int"]     = T, ["signed int"]     = T,
    ["long"]    = T, ["unsigned long"]    = T, ["signed long"]    = T,
+   ["__int8"]  = T, ["unsigned __int8"]  = T, ["signed __int8"]  = T,
+   ["__int16"] = T, ["unsigned __int16"] = T, ["signed __int16"] = T,
    ["__int32"] = T, ["unsigned __int32"] = T, ["signed __int32"] = T,
    ["__int64"] = T, ["unsigned __int64"] = T, ["signed __int64"] = T,
 }
@@ -293,30 +295,23 @@ local function process(var, luafile)
       else
 	 emit_untyped_enum(var, f)
       end
-   elseif var.Type == "Pointer" or var.Type == "Alias" then
-      if var.Base=="LPVOID" and	 var.Name=="SID*" and var.Type=="Alias" then
-	 var.Base = "void"
-	 var.Name = "SID"
-      end
-      if var.Base=="LPVOID" and	 var.Name=="MENUTEMPLATE*" and var.Type=="Alias" then
-	 var.Base = "void"
-	 var.Name = "MENUTEMPLATE"
-      end
-      if var.Base=="LPVOID" and	 var.Name=="ACTIVATION_CONTEXT*" and var.Type=="Alias" then
-	 var.Base = "void"
-	 var.Name = "ACTIVATION_CONTEXT"
-      end
-      if var.Base=="PCONTEXT" and var.Name=="CONTEXT*" and var.Type=="Alias" then
-	 var.Base = "void"
-	 var.Name = "CONTEXT"
-      end
-      if var.Name:find("*",1,true)==nil then
-	 if builtin_types[var.Name] == nil then
-	    luafile:write(
-	       "  typedef " .. var.Base .. 
-		  ((var.Type == "Pointer") and " *" or " ") ..
-		  var.Name .. "; //" .. var.Type .. "\n" )
+   elseif var.Type == "Pointer" then
+      if var.Base.."*" ~= var.Name then
+	 local Base = var.Base
+	 local Name = var.Name --, Ptrs = var.Name:match("([^*]*)(%**)")
+--	 assert( Ptrs )
+--	 if Ptrs ~= "" then
+--	    Base = "void"
+--	 end
+	 if builtin_types[Name] == nil and var.Base ~= Name and Name:sub(1,7)~="struct " then
+	    f:write( "  typedef " .. Base .. " *" .. Name .. "; //" .. var.Type .. "\n" )
 	 end
+      end
+   elseif var.Type == "Alias" then
+      if var.Base ~= var.Name and var.Name:find("*",1,true)==nil and builtin_types[var.Name]==nil then
+	 f:write( "  typedef " .. var.Base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+      else
+	 f:write( "//typedef " .. var.Base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
       end
    elseif var.Type == "Interface" then
       luafile:write( "  typedef void* " .. var.Name .. "; //" .. var.Type .. "\n" )
@@ -337,11 +332,17 @@ local function process(var, luafile)
 	    --		     luafile:write(
 	    --			"  typedef " .. var.Base .. " " ..
 	    --			   var.Name .. "; //" .. var.Type .. " [" .. before_space .. "] [" .. after_space .. "] " .. var.Count .. "\n" )
+	 elseif validate_id(var.Name) then
+	    f:write( "  typedef " .. var.Base .. " " .. var.Name .. "[" .. var.Count .. "];\n" )
 	 end
       end
    elseif var.Type == "Struct" or var.Type == "Union" then
       if var.Pack then
 	 luafile:write("# pragma pack( push, " .. var.Pack .. " )\n")
+      end
+      if var.Name:sub(1,7)=="struct " then
+	 assert(var.Type=="Struct")
+	 var.Name = var.Name:sub(8)
       end
       luafile:write( "  typedef " .. var.Type:lower() .. " " .. var.Name .. " {\n");
       for _, enum in ipairs( var.Field ) do
@@ -474,6 +475,7 @@ local function generate()
 	 local return_type_width = 0
 	 local api_name_width = 0
 	 for _, api in ipairs(module.Api) do
+	    api.Return[1].Type = api.Return[1].Type:gsub("%[.*","*")
 	    local return_type = api.Return[1].Type
 	    return_type_width = math.max( #return_type, return_type_width )
 	    api_name_width = math.max( #api.Name, api_name_width )

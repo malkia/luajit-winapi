@@ -10,6 +10,8 @@ ffi.cdef [[
   typedef BCryptBufferDesc NCryptBufferDesc; //Alias
   typedef NCryptBufferDesc *PNCryptBufferDesc; //Pointer
   typedef WCHAR* WCHAR[NCRYPT_SSL_MAX_NAME_SIZE]; //Alias
+//typedef LPVOID NCRYPT_SSL_CIPHER_SUITE*; //Alias
+//typedef LPVOID NCRYPT_SSL_CIPHER_LENGTHS*; //Alias
   typedef struct NCryptAlgorithmName {
     LPWSTR pszName;
     DWORD dwClass;

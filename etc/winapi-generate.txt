@@ -720,26 +720,14 @@ invalid	Variable/Name	<struct berval*>
 invalid	Variable/Name	<struct berval**>
 invalid	Variable/Name	<struct l_timeval>
 invalid	Variable/Name	<struct l_timeval*>
-ffi/winapi/mozilla/nspr
-E:\p\luajit-winapi\\ffi/winapi/mozilla/nspr.lua:233: declaration specifier expected near 'PK11SlotInfo' at line 66
-
-ffi/winapi/headers/sockets
-E:\p\luajit-winapi\\ffi/winapi/headers/sockets.lua:28: declaration specifier expected near 'WINAPI_LPVOID_char' at line 8
-
 ffi/winapi/headers/patch
 E:\p\luajit-winapi\\ffi/winapi/headers/patch.lua:60: ';' expected near ']' at line 10
 
 ffi/winapi/interfaces/coreaudio/iksjackdescription
 ...it-winapi\\ffi/winapi/interfaces/coreaudio/coreaudio.lua:223: '<identifier>' expected near 'float' at line 54
 
-ffi/winapi/windows/shell32
-E:\p\luajit-winapi\\ffi/winapi/windows/shell32.lua:600: declaration specifier expected near 'CABINETSTATE' at line 399
-
 ffi/winapi/interfaces/directinput/idirectinputdevice2a
 E:\p\luajit-winapi\\ffi/winapi/headers/dinput.lua:477: invalid C type at line 417
-
-ffi/winapi/windows/ntdll
-E:\p\luajit-winapi\\ffi/winapi/windows/ntdll.lua:7: loop or previous error loading module 'ffi/winapi/headers/sockets'
 
 ffi/winapi/interfaces/coreaudio/immdevicecollection
 ...\ffi/winapi/interfaces/coreaudio/immdevicecollection.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
@@ -756,9 +744,6 @@ E:\p\luajit-winapi\\ffi/winapi/mmf/mfplat.lua:112: declaration specifier expecte
 
 ffi/winapi/interfaces/coreaudio/iaudiostreamvolume
 ...\\ffi/winapi/interfaces/coreaudio/iaudiostreamvolume.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
-
-ffi/winapi/windows/advapi32
-E:\p\luajit-winapi\\ffi/winapi/windows/advapi32.lua:790: declaration specifier expected near 'PAUDIT_POLICY_INFORMATION' at line 700
 
 ffi/winapi/windows/wdsbp
 cannot load module 'Wdsbp.dll': The specified module could not be found.
@@ -785,9 +770,6 @@ ffi/winapi/interfaces/coreaudio/iaudiosessionnotification
 ffi/winapi/interfaces/coreaudio/ichannelaudiovolume
 ...\ffi/winapi/interfaces/coreaudio/ichannelaudiovolume.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
 
-ffi/winapi/windows/winmm
-E:\p\luajit-winapi\\ffi/winapi/windows/winmm.lua:647: declaration specifier expected near 'WINAPI_LPVOID_char' at line 598
-
 ffi/winapi/windows/vhdmount
 cannot load module 'VHDMount.dll': The specified module could not be found.
 
@@ -798,17 +780,11 @@ ffi/winapi/interfaces/coreaudio/iaudiosessionenumerator
 ffi/winapi/windows/mspatcha
 E:\p\luajit-winapi\\ffi/winapi/windows/mspatcha.lua:2: loop or previous error loading module 'ffi/winapi/headers/patch'
 
-ffi/winapi/windows/winbio
-E:\p\luajit-winapi\\ffi/winapi/windows/winbio.lua:175: declaration specifier expected near 'WINBIO_STRING' at line 48
-
 ffi/winapi/interfaces/debugger/dbgeng
 ...luajit-winapi\\ffi/winapi/interfaces/debugger/dbgeng.lua:514: invalid C type at line 102
 
 ffi/winapi/interfaces/directinput/idirectinputdevice7a
 ...i/winapi/interfaces/directinput/idirectinputdevice7a.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinputdevice2a'
-
-ffi/winapi/windows/rpcrt4
-E:\p\luajit-winapi\\ffi/winapi/windows/rpcrt4.lua:187: declaration specifier expected near 'WINAPI_LPVOID_char' at line 41
 
 ffi/winapi/interfaces/coreaudio/ipart
 ...luajit-winapi\\ffi/winapi/interfaces/coreaudio/ipart.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
@@ -816,35 +792,14 @@ ffi/winapi/interfaces/coreaudio/ipart
 ffi/winapi/headers/dinput
 loop or previous error loading module 'ffi/winapi/headers/dinput'
 
-ffi/winapi/interfaces/directsound/dsound
-...jit-winapi\\ffi/winapi/interfaces/directsound/dsound.lua:321: declaration specifier expected near 'IDirectSoundCapture8' at line 28
-
 ffi/winapi/windows/iphlpapi
-E:\p\luajit-winapi\\ffi/winapi/windows/iphlpapi.lua:3: loop or previous error loading module 'ffi/winapi/headers/sockets'
-
-ffi/winapi/windows/traffic
-E:\p\luajit-winapi\\ffi/winapi/windows/traffic.lua:91: declaration specifier expected near 'FLOWSPEC' at line 49
-
-ffi/winapi/windows/mswsock
-E:\p\luajit-winapi\\ffi/winapi/windows/mswsock.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+E:\p\luajit-winapi\\ffi/winapi/windows/iphlpapi.lua:1223: declaration specifier expected near 'time_t' at line 334
 
 ffi/winapi/interfaces/coreaudio/immdevice
 ...it-winapi\\ffi/winapi/interfaces/coreaudio/immdevice.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
 
-ffi/winapi/windows/wsock32
-E:\p\luajit-winapi\\ffi/winapi/windows/wsock32.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
-
 ffi/winapi/interfaces/coreaudio/iaudiosessionmanager2
 ...ffi/winapi/interfaces/coreaudio/iaudiosessionmanager.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
-
-ffi/winapi/windows/ws2_32
-E:\p\luajit-winapi\\ffi/winapi/windows/ws2_32.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
-
-ffi/winapi/windows/wldap32
-E:\p\luajit-winapi\\ffi/winapi/windows/wldap32.lua:244: declaration specifier expected near 'BERVAL' at line 91
-
-ffi/winapi/windows/winspool
-E:\p\luajit-winapi\\ffi/winapi/windows/winspool.lua:220: declaration specifier expected near 'PrintAsyncNotificationType' at line 195
 
 ffi/winapi/windows/winfax
 cannot load module 'WinFax.dll': The specified module could not be found.
@@ -859,7 +814,8 @@ cannot load module 'WdsClientAPI.dll': The specified module could not be found.
 
 
 ffi/winapi/windows/wab32
-E:\p\luajit-winapi\\ffi/winapi/windows/wab32.lua:18: declaration specifier expected near 'ALLOCATEBUFFER' at line 13
+cannot load module 'wab32.dll': The specified module could not be found.
+
 
 ffi/winapi/windows/usp10
 E:\p\luajit-winapi\\ffi/winapi/windows/usp10.lua:113: declaration specifier expected near 'WINAPI_ExtTextOutFlags' at line 100
@@ -868,25 +824,13 @@ ffi/winapi/interfaces/directx/dxgi/dxgi
 ...ajit-winapi\\ffi/winapi/interfaces/directx/dxgi/dxgi.lua:8: declaration specifier expected near 'WINAPI_DXGI_HRESULT'
 
 ffi/winapi/windows/secur32
-E:\p\luajit-winapi\\ffi/winapi/windows/secur32.lua:226: declaration specifier expected near 'SEC_TCHAR' at line 59
-
-ffi/winapi/windows/rasapi32
-E:\p\luajit-winapi\\ffi/winapi/windows/rasapi32.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
-
-ffi/winapi/windows/query
-E:\p\luajit-winapi\\ffi/winapi/windows/query.lua:67: declaration specifier expected near 'DBCOMMANDTREE' at line 53
+E:\p\luajit-winapi\\ffi/winapi/windows/secur32.lua:230: '<identifier>' expected near 'void' at line 4
 
 ffi/winapi/vss/vssapi
-E:\p\luajit-winapi\\ffi/winapi/vss/vssapi.lua:19: declaration specifier expected near 'CVssWriter' at line 4
-
-ffi/winapi/mozilla/nss3
-E:\p\luajit-winapi\\ffi/winapi/mozilla/nss3.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
+E:\p\luajit-winapi\\ffi/winapi/vss/vssapi.lua:19: '<identifier>' expected near '?' at line 12
 
 ffi/winapi/windows/oleaut32
-E:\p\luajit-winapi\\ffi/winapi/windows/oleaut32.lua:508: declaration specifier expected near 'DECIMAL' at line 169
-
-ffi/winapi/windows/ole32
-E:\p\luajit-winapi\\ffi/winapi/windows/ole32.lua:263: declaration specifier expected near 'LPENUMFORMATETC' at line 205
+E:\p\luajit-winapi\\ffi/winapi/windows/oleaut32.lua:510: declaration specifier expected near 'ITypeInfo' at line 465
 
 ffi/winapi/windows/ntdsbcli
 cannot load module 'Ntdsbcli.dll': The specified module could not be found.
@@ -896,16 +840,10 @@ ffi/winapi/interfaces/coreaudio/iaudiorenderclient
 ...\\ffi/winapi/interfaces/coreaudio/iaudiorenderclient.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
 
 ffi/winapi/windows/netapi32
-E:\p\luajit-winapi\\ffi/winapi/windows/netapi32.lua:493: invalid C type at line 352
-
-ffi/winapi/windows/ndfapi
-E:\p\luajit-winapi\\ffi/winapi/windows/ndfapi.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+E:\p\luajit-winapi\\ffi/winapi/windows/netapi32.lua:494: invalid C type at line 353
 
 ffi/winapi/windows/ncrypt
-E:\p\luajit-winapi\\ffi/winapi/windows/ncrypt.lua:88: unexpected symbol near 'NCRYPT_SSL_MAX_NAME_SIZE' at line 7
-
-ffi/winapi/windows/httpapi
-E:\p\luajit-winapi\\ffi/winapi/windows/httpapi.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+E:\p\luajit-winapi\\ffi/winapi/windows/ncrypt.lua:90: unexpected symbol near 'NCRYPT_SSL_MAX_NAME_SIZE' at line 7
 
 ffi/winapi/windows/mspatchc
 E:\p\luajit-winapi\\ffi/winapi/windows/mspatchc.lua:2: loop or previous error loading module 'ffi/winapi/headers/patch'
@@ -917,14 +855,11 @@ ffi/winapi/windows/legitlib
 cannot load module 'LegitLib.dll': The specified module could not be found.
 
 
-ffi/winapi/mozilla/ssl3
-E:\p\luajit-winapi\\ffi/winapi/mozilla/ssl3.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
-
 ffi/winapi/windows/irprops
 E:\p\luajit-winapi\\ffi/winapi/headers/bluetooth.lua:253: invalid C type at line 14
 
 ffi/winapi/windows/gdiplus
-E:\p\luajit-winapi\\ffi/winapi/windows/gdiplus.lua:1122: declaration specifier expected near 'GpPath' at line 497
+E:\p\luajit-winapi\\ffi/winapi/windows/gdiplus.lua:1189: ';' expected near 'LOGFONT' at line 3
 
 ffi/winapi/windows/fxsutility
 cannot load module 'FxsUtility.dll': The specified module could not be found.
@@ -934,33 +869,21 @@ ffi/winapi/windows/fxsapi
 cannot load module 'FxsApi.dll': The specified module could not be found.
 
 
-ffi/winapi/windows/fwpuclnt
-E:\p\luajit-winapi\\ffi/winapi/windows/fwpuclnt.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
-
-ffi/winapi/windows/esent
-E:\p\luajit-winapi\\ffi/winapi/windows/esent.lua:837: declaration specifier expected near 'tchar' at line 688
-
 ffi/winapi/headers/bluetooth
 loop or previous error loading module 'ffi/winapi/headers/bluetooth'
 
 ffi/winapi/windows/dhcpsapi
-E:\p\luajit-winapi\\ffi/winapi/windows/dhcpsapi.lua:753: ';' expected near 'DHCP_IP_ADDRESS' at line 5
+E:\p\luajit-winapi\\ffi/winapi/windows/dhcpsapi.lua:764: ';' expected near 'WCHAR'
 
 ffi/winapi/windows/csrsrv
 cannot load module 'CsrSrv.dll': The specified module could not be found.
 
-
-ffi/winapi/windows/cscapi
-E:\p\luajit-winapi\\ffi/winapi/windows/cscapi.lua:7: declaration specifier expected near 'CCscSearchApiInterface'
 
 ffi/winapi/interfaces/coreaudio/iaudioinputselector
 ...\ffi/winapi/interfaces/coreaudio/iaudioinputselector.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
 
 ffi/winapi/windows/crypt32
 E:\p\luajit-winapi\\ffi/winapi/windows/crypt32.lua:240: invalid C type at line 2
-
-ffi/winapi/windows/ntdsapi
-E:\p\luajit-winapi\\ffi/winapi/windows/ntdsapi.lua:148: declaration specifier expected near 'LPCWCH' at line 110
 
 ffi/winapi/interfaces/coreaudio/iksformatsupport
 ...pi\\ffi/winapi/interfaces/coreaudio/iksformatsupport.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
@@ -972,9 +895,6 @@ ffi/winapi/windows/certadm
 cannot load module 'Certadm.dll': The specified module could not be found.
 
 
-ffi/winapi/mozilla/plc4
-E:\p\luajit-winapi\\ffi/winapi/mozilla/plc4.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
-
 ffi/winapi/interfaces/directinput/idirectinputdevice2w
 ...i/winapi/interfaces/directinput/idirectinputdevice2w.lua:1: loop or previous error loading module 'ffi/winapi/interfaces/directinput/idirectinputdevicew'
 
@@ -985,7 +905,7 @@ ffi/winapi/interfaces/coreaudio/iaudiotreble
 ...\\ffi/winapi/interfaces/coreaudio/iperchanneldblevel.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
 
 ffi/winapi/microsoft
-E:\p\luajit-winapi\\ffi/winapi/microsoft.lua:36: declaration specifier expected near 'AssemblyConfig' at line 21
+E:\p\luajit-winapi\\ffi/winapi/microsoft.lua:37: declaration specifier expected near 'ASM_CACHE_FLAGS' at line 29
 
 ffi/winapi/interfaces/coreaudio/iaudiochannelconfig
 ...\ffi/winapi/interfaces/coreaudio/iaudiochannelconfig.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
@@ -1007,9 +927,6 @@ loop or previous error loading module 'ffi/winapi/microsoft'
 
 ffi/winapi/microsoft
 loop or previous error loading module 'ffi/winapi/microsoft'
-
-ffi/winapi/windows/uxtheme
-E:\p\luajit-winapi\\ffi/winapi/windows/uxtheme.lua:173: declaration specifier expected near 'INTLIST' at line 133
 
 ffi/winapi/windows/wdspxe
 cannot load module 'WdsPxe.dll': The specified module could not be found.
@@ -1038,9 +955,6 @@ ffi/winapi/interfaces/coreaudio/iaudiobass
 
 ffi/winapi/interfaces/coreaudio/iaudiocaptureclient
 ...\ffi/winapi/interfaces/coreaudio/iaudiocaptureclient.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
-
-ffi/winapi/mozilla/plds4
-E:\p\luajit-winapi\\ffi/winapi/mozilla/plds4.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
 
 ffi/winapi/interfaces/coreaudio/iaudiopeakmeter
 ...api\\ffi/winapi/interfaces/coreaudio/iaudiopeakmeter.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
@@ -1076,7 +990,8 @@ ffi/winapi/interfaces/coreaudio/iaudiosessioncontrol
 ...ffi/winapi/interfaces/coreaudio/iaudiosessioncontrol.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
 
 ffi/winapi/windows/qosname
-E:\p\luajit-winapi\\ffi/winapi/windows/qosname.lua:2: loop or previous error loading module 'ffi/winapi/headers/sockets'
+cannot load module 'Qosname.dll': The specified module could not be found.
+
 
 ffi/winapi/interfaces/directx/11/d3dx/d3dcsx_43
 ...api\\ffi/winapi/interfaces/directx/11/d3dx/d3dx11_43.lua:34: declaration specifier expected near 'D3D10_SHADER_MACRO'
@@ -1117,7 +1032,8 @@ cannot load module 'Wdstptc.dll': The specified module could not be found.
 
 
 ffi/winapi/mapi/msmapi32
-E:\p\luajit-winapi\\ffi/winapi/mapi/msmapi32.lua:110: declaration specifier expected near 'LPABPROVIDER' at line 2
+cannot load module 'MsMapi32.dll': The specified module could not be found.
+
 
 ffi/winapi/interfaces/coreaudio/iaudiosessionevents
 ...\ffi/winapi/interfaces/coreaudio/iaudiosessionevents.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
@@ -1156,7 +1072,7 @@ ffi/winapi/microsoft
 loop or previous error loading module 'ffi/winapi/microsoft'
 
 ffi/winapi/windows/msvcrxx
-E:\p\luajit-winapi\\ffi/winapi/windows/msvcrxx.lua:1816: '<identifier>' expected near ';' at line 2
+E:\p\luajit-winapi\\ffi/winapi/windows/msvcrxx.lua:1822: '<identifier>' expected near ';' at line 4
 
 ffi/winapi/interfaces/directx/11/d3dx/d3dx11_43
 loop or previous error loading module 'ffi/winapi/interfaces/directx/11/d3dx/d3dx11_43'
@@ -1186,15 +1102,15 @@ ffi/winapi/interfaces/coreaudio/iaudioclock2
 ...winapi\\ffi/winapi/interfaces/coreaudio/iaudioclock2.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
 
 ffi/winapi/windows/wlanapi
-E:\p\luajit-winapi\\ffi/winapi/windows/wlanapi.lua:420: declaration specifier expected near 'DOT11_MAC_ADDRESS' at line 104
+table overflow
 
 ffi/winapi/interfaces/coreaudio/idevicetopology
 ...api\\ffi/winapi/interfaces/coreaudio/idevicetopology.lua:2: loop or previous error loading module 'ffi/winapi/interfaces/coreaudio/coreaudio'
 
 ffi/winapi/mozilla/nspr4
-E:\p\luajit-winapi\\ffi/winapi/mozilla/nspr4.lua:1: loop or previous error loading module 'ffi/winapi/mozilla/nspr'
+E:\p\luajit-winapi\\ffi/winapi/mozilla/nspr4.lua:187: '<identifier>' expected near 'void'
 
 total	1646
-good	1493
-bad	138
-missing	15	Mqrt.dll Wdsbp.dll VHDMount.dll WinFax.dll Wdsmc.dll WdsClientAPI.dll Ntdsbcli.dll LegitLib.dll FxsUtility.dll FxsApi.dll CsrSrv.dll Certadm.dll WdsPxe.dll Sfcfiles.dll Wdstptc.dll
+good	1522
+bad	106
+missing	18	Mqrt.dll Wdsbp.dll VHDMount.dll WinFax.dll Wdsmc.dll WdsClientAPI.dll wab32.dll Ntdsbcli.dll LegitLib.dll FxsUtility.dll FxsApi.dll CsrSrv.dll Certadm.dll WdsPxe.dll Qosname.dll Sfcfiles.dll Wdstptc.dll MsMapi32.dll

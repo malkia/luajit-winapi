@@ -48,6 +48,8 @@ ffi.cdef [[
     PCHAR bv_val;
   } berval;
   typedef berval struct berval; //Alias
+  typedef berval *BERVAL*; //Pointer
+  typedef berval *BERVAL*; //Pointer
   typedef berval *PBERVAL; //Pointer
   typedef struct LDAPControl {
     PTCHAR ldctl_oid;
@@ -55,6 +57,7 @@ ffi.cdef [[
     BOOLEAN ldctl_iscritical;
   } LDAPControl;
   typedef LDAPControl *PLDAPControl; //Pointer
+  typedef LDAPControl** *PLDAPControl**; //Pointer
   typedef struct LDAP_TIMEVAL {
     LONG tv_sec;
     LONG tv_usec;

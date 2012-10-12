@@ -6,6 +6,7 @@ ffi.cdef [[
   enum { WLAN_MAX_NAME_LENGTH = 256 };
   enum { DOT11_SSID_MAX_LENGTH = 32 };
   enum { DOT11_RATE_SET_MAX_LENGTH = 126 };
+  typedef UCHAR DOT11_MAC_ADDRESS[6];
   typedef DWORD WINAPI_WlanProfileFlags; //Alias
   typedef UINT DOT11_BSS_TYPE; //Alias
   static const DOT11_BSS_TYPE dot11_BSS_type_infrastructure = 1;

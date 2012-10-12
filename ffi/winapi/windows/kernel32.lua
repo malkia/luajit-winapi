@@ -66,7 +66,7 @@ ffi.cdef [[
   typedef PRTL_CRITICAL_SECTION LPCRITICAL_SECTION; //Alias
   typedef PRTL_CRITICAL_SECTION PCRITICAL_SECTION; //Alias
   typedef DWORD TP_VERSION; //Alias
-  typedef void ACTIVATION_CONTEXT; //Alias
+//typedef LPVOID ACTIVATION_CONTEXT*; //Alias
   enum { MAX_DEFAULTCHAR = 2 };
   enum { MAX_LEADBYTES = 12 };
   enum { WOW64_MAXIMUM_SUPPORTED_EXTENSION = 512 };
@@ -803,6 +803,7 @@ ffi.cdef [[
     BOOL bVisible;
   } CONSOLE_CURSOR_INFO;
   typedef CONSOLE_CURSOR_INFO *PCONSOLE_CURSOR_INFO; //Pointer
+//typedef PCONSOLE_CURSOR_INFO CONSOLE_CURSOR_INFO*; //Alias
   typedef struct CONSOLE_HISTORY_INFO {
     UINT cbSize;
     UINT HistoryBufferSize;
@@ -853,7 +854,7 @@ ffi.cdef [[
     ULONG Tick;
   } CALDATETIME;
   typedef CALDATETIME *LPCALDATETIME; //Pointer
-  typedef LPCALDATETIME LPCALDATETIME; //Alias
+//typedef LPCALDATETIME LPCALDATETIME; //Alias
   typedef struct NLSVERSIONINFO {
     DWORD dwNLSVersionInfoSize;
     DWORD dwNLSVersion;

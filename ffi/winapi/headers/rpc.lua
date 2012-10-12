@@ -8,9 +8,13 @@ ffi.cdef [[
   typedef void* RPC_AUTHZ_HANDLE; //Alias
   typedef void* RPC_AUTH_IDENTITY_HANDLE; //Alias
   typedef void* RPC_EP_INQ_HANDLE; //Alias
+//typedef LPVOID RPC_CLIENT_ALLOC*; //Alias
+//typedef LPVOID RPC_CLIENT_FREE*; //Alias
   typedef LPVOID RPC_MGMT_AUTHORIZATION_FN; //Alias
   typedef LPVOID RPC_OBJECT_INQ_FN; //Alias
+//typedef void* RPC_MGR_EPV*; //Alias
   typedef LPVOID RPC_AUTH_KEY_RETRIEVAL_FN; //Alias
+//typedef LPVOID RPC_IF_CALLBACK_FN*; //Alias
   typedef void* RPC_SS_THREAD_HANDLE; //Alias
   typedef LPVOID PFN_RPCNOTIFICATION_ROUTINE; //Alias
   typedef struct RPC_PROTSEQ_VECTOR {

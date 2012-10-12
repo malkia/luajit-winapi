@@ -8,6 +8,7 @@ ffi.cdef [[
   typedef NET_IFINDEX *PNET_IFINDEX; //Pointer
   typedef NET_IFINDEX IF_INDEX; //Alias
   typedef ULONG IPMask; //Alias
+//typedef CHAR* CHAR*; //Alias
   typedef LPVOID PTEREDO_PORT_CHANGE_CALLBACK; //Alias
   typedef LPVOID PUNICAST_IPADDRESS_CHANGE_CALLBACK; //Alias
   typedef LPVOID PIPFORWARD_CHANGE_CALLBACK; //Alias
@@ -258,13 +259,13 @@ ffi.cdef [[
     IN_ADDR sin_addr;
     CHAR sin_zero[8];
   } SOCKADDR_IN;
-  typedef struct struct sockaddr_in6 {
+  typedef struct sockaddr_in6 {
     ADDRESS_FAMILY sin6_family;
     USHORT sin6_port;
     ULONG sin6_flowinfo;
     IN6_ADDR sin6_addr;
     ULONG sin6_scope_id;
-  } struct sockaddr_in6;
+  } sockaddr_in6;
   typedef struct sockaddr_in6 SOCKADDR_IN6; //Alias
   typedef SOCKADDR_IN6 *PSOCKADDR_IN6; //Pointer
   typedef SOCKADDR_IN6 *PSOCKADDR_IN6; //Pointer

@@ -1,7 +1,9 @@
 require( 'ffi/winapi/headers/ole' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+//typedef LPVOID DECIMAL*; //Alias
   typedef LPVOID LPDECIMAL; //Alias
+//typedef LPVOID DECIMAL*; //Alias
   typedef DWORD OLE_COLOR; //Alias
   typedef BSTR *LPBSTR; //Pointer
   typedef struct WINAPI_PICTDESC_u_s1 {

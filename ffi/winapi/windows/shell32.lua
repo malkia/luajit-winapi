@@ -7,6 +7,7 @@ ffi.cdef [[
   typedef UINT RESTRICTIONS; //Alias
   typedef LPVOID LPSHELLSTATE; //Alias
   typedef LPVOID LPSHELLFLAGSTATE; //Alias
+//typedef LPVOID CABINETSTATE*; //Alias
   typedef void* IShellFolder; //Interface
   typedef void* IContextMenu; //Interface
   typedef void* IDataObject; //Interface
@@ -141,6 +142,7 @@ ffi.cdef [[
     BOOL fRecursive;
   } SHChangeNotifyEntry;
 # pragma pack( pop )
+//typedef SHChangeNotifyEntry* SHChangeNotifyEntry*; //Alias
   typedef struct APPBARDATA {
     DWORD cbSize;
     HWND hWnd;

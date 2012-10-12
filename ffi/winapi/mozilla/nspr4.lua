@@ -1,6 +1,7 @@
 require( 'ffi/winapi/mozilla/nspr' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+//typedef LPVOID void *void*; //Alias
   typedef PRIntn WINAPI_PrAddressFamily; //Alias
   static const WINAPI_PrAddressFamily PR_AF_UNSPEC = 0;
   static const WINAPI_PrAddressFamily PR_AF_LOCAL = 1;

@@ -108,6 +108,7 @@ ffi.cdef [[
     UINT cPoints;
     WICRawToneCurvePoint aPoints[1];
   } WICRawToneCurve;
+  typedef WICRawToneCurve *const WICRawToneCurve*; //Pointer
   typedef REFGUID REFWICPixelFormatGUID; //Alias
   typedef GUID WICPixelFormatGUID; //Alias
   typedef LPVOID PFNProgressNotification; //Alias
@@ -215,6 +216,7 @@ ffi.cdef [[
     INT Width;
     INT Height;
   } WICRect;
+  typedef WICRect *const WICRect*; //Pointer
   typedef struct WICBitmapPattern {
     ULARGE_INTEGER Position;
     ULONG Length;

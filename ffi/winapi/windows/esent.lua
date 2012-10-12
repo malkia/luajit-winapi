@@ -2,7 +2,7 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef unsigned long JET_GRBIT; //Alias
-  typedef JET_GRBIT JET_GRBIT; //Alias
+//typedef JET_GRBIT JET_GRBIT; //Alias
   typedef LPCTSTR JET_PCSTR; //Alias
   typedef LPCTSTR JET_PSTR; //Alias
   typedef LPCTSTR JET_PCTSTR; //Alias
@@ -19,9 +19,10 @@ ffi.cdef [[
   typedef unsigned long JET_CBTYP; //Alias
   typedef unsigned long JET_OBJTYP; //Alias
   typedef JET_API_PTR JET_OSSNAPID; //Alias
-  typedef JET_OSSNAPID JET_OSSNAPID; //Alias
+//typedef JET_OSSNAPID JET_OSSNAPID; //Alias
   typedef LPVOID JET_PFNREALLOC; //Alias
   typedef unsigned long JET_COLTYP; //Alias
+//typedef TCHAR* TCHAR*; //Alias
   enum { JET_BASE_NAME_LENGTH_plus_1 = 4 };
 ]]
 if ffi.arch == 'x86' then ffi.cdef[[

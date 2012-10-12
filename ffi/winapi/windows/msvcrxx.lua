@@ -2,8 +2,16 @@ require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef LPVOID _locale_t; //Alias
+//typedef LPVOID _CrtMemState*; //Alias
+//typedef LPVOID _CrtMemState*; //Alias
+//typedef LPVOID struct _stati64*; //Alias
+//typedef LPVOID struct _finddata_t*; //Alias
+//typedef LPVOID struct _finddatai64_t*; //Alias
+//typedef LPVOID struct _wfinddata_t*; //Alias
+//typedef LPVOID struct _wfinddatai64_t*; //Alias
   typedef unsigned int unsigned; //Alias
   typedef long long int; //Alias
+//typedef LPVOID FILE*; //Alias
   typedef unsigned short wint_t; //Alias
   typedef LPVOID _CRT_ALLOC_HOOK; //Alias
   typedef LPVOID _CRT_DUMP_CLIENT; //Alias
@@ -25,6 +33,9 @@ ffi.cdef [[
   typedef LPVOID _HANDLE_MATH_ERROR; //Alias
   typedef LPVOID _invalid_parameter_handler; //Alias
   typedef LPVOID PEXCEPTION_REGISTRATION; //Alias
+//typedef LPVOID EHExceptionRecord*; //Alias
+//typedef LPVOID EHRegistrationNode*; //Alias
+//typedef LPVOID DispatcherContext*; //Alias
   typedef unsigned int _dev_t; //Alias
   typedef unsigned short _ino_t; //Alias
   typedef long _off_t; //Alias
@@ -118,12 +129,12 @@ ffi.cdef [[
   static const errno_t ETIMEDOUT = 138;
   static const errno_t ETXTBSY = 139;
   static const errno_t EWOULDBLOCK = 140;
-  typedef struct struct _diskfree_t {
+  typedef struct _diskfree_t {
     unsigned total_clusters;
     unsigned avail_clusters;
     unsigned sectors_per_cluster;
     unsigned bytes_per_sector;
-  } struct _diskfree_t;
+  } _diskfree_t;
   typedef struct _startupinfo {
     int newmode;
   } _startupinfo;
@@ -154,7 +165,7 @@ ffi.cdef [[
   static const WINAPI_C_APP_TYPE _CONSOLE_APP = 1;
   static const WINAPI_C_APP_TYPE _GUI_APP = 2;
   typedef unsigned short WINAPI_ST_MODE; //Alias
-  typedef struct struct _stat {
+  typedef struct _stat {
     _dev_t st_dev;
     _ino_t st_ino;
     WINAPI_ST_MODE st_mode;
@@ -166,8 +177,8 @@ ffi.cdef [[
     time_t st_atime;
     time_t st_mtime;
     time_t st_ctime;
-  } struct _stat;
-  typedef struct struct _stat32 {
+  } _stat;
+  typedef struct _stat32 {
     _dev_t st_dev;
     _ino_t st_ino;
     WINAPI_ST_MODE st_mode;
@@ -179,8 +190,8 @@ ffi.cdef [[
     __time32_t st_atime;
     __time32_t st_mtime;
     __time32_t st_ctime;
-  } struct _stat32;
-  typedef struct struct _stat64 {
+  } _stat32;
+  typedef struct _stat64 {
     _dev_t st_dev;
     _ino_t st_ino;
     WINAPI_ST_MODE st_mode;
@@ -192,8 +203,8 @@ ffi.cdef [[
     __time64_t st_atime;
     __time64_t st_mtime;
     __time64_t st_ctime;
-  } struct _stat64;
-  typedef struct struct _stat32i64 {
+  } _stat64;
+  typedef struct _stat32i64 {
     _dev_t st_dev;
     _ino_t st_ino;
     WINAPI_ST_MODE st_mode;
@@ -205,8 +216,8 @@ ffi.cdef [[
     __time32_t st_atime;
     __time32_t st_mtime;
     __time32_t st_ctime;
-  } struct _stat32i64;
-  typedef struct struct _stat64i32 {
+  } _stat32i64;
+  typedef struct _stat64i32 {
     _dev_t st_dev;
     _ino_t st_ino;
     WINAPI_ST_MODE st_mode;
@@ -218,18 +229,18 @@ ffi.cdef [[
     __time64_t st_atime;
     __time64_t st_mtime;
     __time64_t st_ctime;
-  } struct _stat64i32;
-  typedef struct struct _complex {
+  } _stat64i32;
+  typedef struct _complex {
     double x;
     double y;
-  } struct _complex;
+  } _complex;
   typedef struct _CRT_DOUBLE {
     double x;
   } _CRT_DOUBLE;
   typedef struct _CRT_FLOAT {
     float f;
   } _CRT_FLOAT;
-  typedef struct struct tm {
+  typedef struct tm {
     int tm_sec;
     int tm_min;
     int tm_hour;
@@ -239,7 +250,7 @@ ffi.cdef [[
     int tm_wday;
     int tm_yday;
     int tm_isdst;
-  } struct tm;
+  } tm;
   typedef int WINAPI_HEAP_RESULT; //Alias
   static const WINAPI_HEAP_RESULT _HEAPEMPTY = -1;
   static const WINAPI_HEAP_RESULT _HEAPOK = -2;
@@ -255,101 +266,101 @@ ffi.cdef [[
     size_t _size;
     WINAPI_HEAP_USE_FLAG _useflag;
   } _HEAPINFO;
-  typedef struct struct _timeb {
+  typedef struct _timeb {
     time_t time;
     unsigned short millitm;
     short timezone;
     short dstflag;
-  } struct _timeb;
-  typedef struct struct __timeb32 {
+  } _timeb;
+  typedef struct __timeb32 {
     __time32_t time;
     unsigned short millitm;
     short timezone;
     short dstflag;
-  } struct __timeb32;
-  typedef struct struct __timeb64 {
+  } __timeb32;
+  typedef struct __timeb64 {
     __time64_t time;
     unsigned short millitm;
     short timezone;
     short dstflag;
-  } struct __timeb64;
-  typedef struct struct _utimbuf {
+  } __timeb64;
+  typedef struct _utimbuf {
     time_t actime;
     time_t modtime;
-  } struct _utimbuf;
-  typedef struct struct __utimbuf32 {
+  } _utimbuf;
+  typedef struct __utimbuf32 {
     __time32_t actime;
     __time32_t modtime;
-  } struct __utimbuf32;
-  typedef struct struct __utimbuf64 {
+  } __utimbuf32;
+  typedef struct __utimbuf64 {
     __time64_t actime;
     __time64_t modtime;
-  } struct __utimbuf64;
+  } __utimbuf64;
   typedef unsigned WINAPI_FINDDATA_ATTRIB; //Alias
-  typedef struct struct _finddata32_t {
+  typedef struct _finddata32_t {
     WINAPI_FINDDATA_ATTRIB attrib;
     __time32_t time_create;
     __time32_t time_access;
     __time32_t time_write;
     _fsize_t size;
     char name[260];
-  } struct _finddata32_t;
-  typedef struct struct _finddata32i64_t {
+  } _finddata32_t;
+  typedef struct _finddata32i64_t {
     WINAPI_FINDDATA_ATTRIB attrib;
     __time32_t time_create;
     __time32_t time_access;
     __time32_t time_write;
     __int64 size;
     char name[260];
-  } struct _finddata32i64_t;
-  typedef struct struct _finddata64i32_t {
+  } _finddata32i64_t;
+  typedef struct _finddata64i32_t {
     WINAPI_FINDDATA_ATTRIB attrib;
     __time64_t time_create;
     __time64_t time_access;
     __time64_t time_write;
     _fsize_t size;
     char name[260];
-  } struct _finddata64i32_t;
-  typedef struct struct __finddata64_t {
+  } _finddata64i32_t;
+  typedef struct __finddata64_t {
     WINAPI_FINDDATA_ATTRIB attrib;
     __time64_t time_create;
     __time64_t time_access;
     __time64_t time_write;
     __int64 size;
     char name[260];
-  } struct __finddata64_t;
-  typedef struct struct _wfinddata32_t {
+  } __finddata64_t;
+  typedef struct _wfinddata32_t {
     WINAPI_FINDDATA_ATTRIB attrib;
     __time32_t time_create;
     __time32_t time_access;
     __time32_t time_write;
     _fsize_t size;
     wchar_t name[260];
-  } struct _wfinddata32_t;
-  typedef struct struct _wfinddata32i64_t {
+  } _wfinddata32_t;
+  typedef struct _wfinddata32i64_t {
     WINAPI_FINDDATA_ATTRIB attrib;
     __time32_t time_create;
     __time32_t time_access;
     __time32_t time_write;
     __int64 size;
     wchar_t name[260];
-  } struct _wfinddata32i64_t;
-  typedef struct struct _wfinddata64i32_t {
+  } _wfinddata32i64_t;
+  typedef struct _wfinddata64i32_t {
     WINAPI_FINDDATA_ATTRIB attrib;
     __time64_t time_create;
     __time64_t time_access;
     __time64_t time_write;
     _fsize_t size;
     wchar_t name[260];
-  } struct _wfinddata64i32_t;
-  typedef struct struct _wfinddata64_t {
+  } _wfinddata64i32_t;
+  typedef struct _wfinddata64_t {
     WINAPI_FINDDATA_ATTRIB attrib;
     __time64_t time_create;
     __time64_t time_access;
     __time64_t time_write;
     __int64 size;
     wchar_t name[260];
-  } struct _wfinddata64_t;
+  } _wfinddata64_t;
   typedef unsigned short wctype_t; //Alias
   typedef wctype_t _ctype_t; //Alias
   typedef int WINAPI_exception_type; //Alias
@@ -359,13 +370,13 @@ ffi.cdef [[
   static const WINAPI_exception_type _UNDERFLOW = 4;
   static const WINAPI_exception_type _TLOSS = 5;
   static const WINAPI_exception_type _PLOSS = 6;
-  typedef struct struct _exception {
+  typedef struct _exception {
     WINAPI_exception_type type;
     char* name;
     double arg1;
     double arg2;
     double retval;
-  } struct _exception;
+  } _exception;
   typedef struct div_t {
     int quot;
     int rem;
@@ -381,7 +392,7 @@ ffi.cdef [[
 # pragma pack( pop )
   typedef UINT8 WINAPI_lconv_val; //Alias
   static const WINAPI_lconv_val CHAR_MAX = 127;
-  typedef struct struct lconv {
+  typedef struct lconv {
     char* decimal_point;
     char* thousands_sep;
     char* grouping;
@@ -408,7 +419,7 @@ ffi.cdef [[
     wchar_t* _W_mon_thousands_sep;
     wchar_t* _W_positive_sign;
     wchar_t* _W_negative_sign;
-  } struct lconv;
+  } lconv;
   typedef int WINAPI_LOCK_NUM; //Alias
   static const WINAPI_LOCK_NUM _SIGNAL_LOCK = 0;
   static const WINAPI_LOCK_NUM _IOB_SCAN_LOCK = 1;

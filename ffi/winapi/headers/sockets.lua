@@ -1,6 +1,8 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
+//typedef LPVOID SOCKET_PEER_TARGET_NAME*; //Alias
+//typedef LPVOID SOCKET_SECURITY_QUERY_TEMPLATE*; //Alias
   typedef OVERLAPPED WSAOVERLAPPED; //Alias
   typedef WSAOVERLAPPED *LPWSAOVERLAPPED; //Pointer
   typedef LPVOID LPWSAOVERLAPPED_COMPLETION_ROUTINE; //Alias
@@ -188,12 +190,13 @@ ffi.cdef[[
   static const WINAPI_SocketProtocol IPPROTO_L2TP = 115;
   static const WINAPI_SocketProtocol IPPROTO_SCTP = 132;
   static const WINAPI_SocketProtocol IPPROTO_RAW = 255;
-  typedef struct struct sockaddr {
+  typedef struct sockaddr {
     ADDRESS_FAMILY sa_family;
     CHAR sa_data[14];
-  } struct sockaddr;
+  } sockaddr;
+  typedef struct sockaddr *sockaddr*; //Pointer
   typedef UINT WINAPI_AI_FLAGS; //Alias
-  typedef struct struct addrinfo {
+  typedef struct addrinfo {
     WINAPI_AI_FLAGS ai_flags;
     WINAPI_AddressFamily ai_family;
     WINAPI_SocketType ai_socktype;
@@ -202,7 +205,7 @@ ffi.cdef[[
     char* ai_canonname;
     struct sockaddr* ai_addr;
     LPVOID ai_next;
-  } struct addrinfo;
+  } addrinfo;
   typedef struct ADDRINFOW {
     WINAPI_AI_FLAGS ai_flags;
     WINAPI_AddressFamily ai_family;
@@ -320,27 +323,28 @@ ffi.cdef[[
     SOCKET_SECURITY_PROTOCOL SecurityProtocol;
     WINAPI_SocketSecurityFlags SecurityFlags;
   } SOCKET_SECURITY_SETTINGS;
-  typedef struct struct timeval {
+  typedef struct timeval {
     long tv_sec;
     long tv_usec;
-  } struct timeval;
-  typedef struct struct hostent {
+  } timeval;
+  typedef struct hostent {
     char* h_name;
     char** h_aliases;
     WINAPI_ADDRESS_FAMILY_short h_addrtype;
     short h_length;
     char** h_addr_list;
-  } struct hostent;
-  typedef struct struct PROTOENT {
+  } hostent;
+  typedef struct PROTOENT {
     char* p_name;
     char** p_aliases;
     short p_proto;
-  } struct PROTOENT;
+  } PROTOENT;
   typedef struct SOCKET_ADDRESS {
     LPSOCKADDR lpSockaddr;
     INT iSockaddrLength;
   } SOCKET_ADDRESS;
   typedef SOCKET_ADDRESS *PSOCKET_ADDRESS; //Pointer
+  typedef PSOCKET_ADDRESS *LPSOCKET_ADDRESS*; //Pointer
   typedef struct SOCKET_ADDRESS_LIST {
     INT iAddressCount;
     SOCKET_ADDRESS Address[1];

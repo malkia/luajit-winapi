@@ -3,7 +3,18 @@ require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef void* IDirectDrawSurface7; //Interface
+//typedef LPLOGFONT LOGFONT*; //Alias
+//typedef LOGFONT* GDIPCONST LOGFONT*; //Alias
+//typedef GUID* GDIPCONST GUID*; //Alias
+//typedef WCHAR* GDIPCONST WCHAR*; //Alias
   typedef float REAL; //Alias
+//typedef REAL* GDIPCONST REAL*; //Alias
+//typedef UINT16* GDIPCONST UINT16*; //Alias
+//typedef void* GDIPCONST void*; //Alias
+  typedef BITMAPINFO *GDIPCONST BITMAPINFO*; //Pointer
+//typedef CLSID* GDIPCONST CLSID*; //Alias
+//typedef BYTE* GDIPCONST BYTE*; //Alias
+//typedef LPVOID GdiplusAbort*; //Alias
   typedef LPVOID DebugEventProc; //Alias
   typedef LPVOID NotificationHookProc; //Alias
   typedef LPVOID NotificationUnhookProc; //Alias
@@ -13,6 +24,43 @@ ffi.cdef [[
   typedef UINT GraphicsState; //Alias
   typedef UINT GraphicsContainer; //Alias
   typedef DWORD ARGB; //Alias
+//typedef ARGB* GDIPCONST ARGB*; //Alias
+  typedef EncoderParameters *GDIPCONST EncoderParameters*; //Pointer
+//typedef LPVOID GpCachedBitmap*; //Alias
+//typedef LPVOID GpPath*; //Alias
+//typedef LPVOID GDIPCONST GpPath*; //Alias
+//typedef LPVOID GpPathIterator*; //Alias
+//typedef LPVOID GpPathGradient*; //Alias
+//typedef LPVOID GpFontFamily*; //Alias
+//typedef LPVOID GDIPCONST GpFontFamily*; //Alias
+//typedef LPVOID GpPen*; //Alias
+//typedef LPVOID GDIPCONST GpPen*; //Alias
+//typedef LPVOID GpGraphics*; //Alias
+//typedef GpGraphics* GDIPCONST GpGraphics*; //Alias
+//typedef GpGraphics* GpGraphics*; //Alias
+//typedef LPVOID GpRegion*; //Alias
+//typedef LPVOID GpBrush*; //Alias
+//typedef GpBrush* GDIPCONST GpBrush*; //Alias
+//typedef LPVOID GpHatch*; //Alias
+//typedef LPVOID GpImage*; //Alias
+//typedef LPVOID GpTexture*; //Alias
+//typedef LPVOID GpImageAttributes*; //Alias
+//typedef GpImageAttributes* GDIPCONST GpImageAttributes*; //Alias
+//typedef LPVOID GpSolidFill*; //Alias
+//typedef LPVOID GpLineGradient*; //Alias
+//typedef LPVOID GpCustomLineCap*; //Alias
+//typedef LPVOID GpAdjustableArrowCap*; //Alias
+//typedef LPVOID GpBitmap*; //Alias
+//typedef LPVOID CGpEffect*; //Alias
+//typedef LPVOID GpMetafile*; //Alias
+//typedef GpMetafile* GDIPCONST GpMetafile*; //Alias
+//typedef LPVOID GpFontCollection*; //Alias
+//typedef LPVOID GpFont*; //Alias
+//typedef GpFont* GDIPCONST GpFont*; //Alias
+//typedef LPVOID GpStringFormat*; //Alias
+//typedef GpStringFormat* GDIPCONST GpStringFormat*; //Alias
+//typedef LPVOID GpMatrix*; //Alias
+//typedef LPVOID GDIPCONST GpMatrix*; //Alias
   typedef WORD WINAPI_PropertyTagType; //Alias
   static const WINAPI_PropertyTagType PropertyTagTypeByte = 1;
   static const WINAPI_PropertyTagType PropertyTagTypeASCII = 2;
@@ -28,6 +76,7 @@ ffi.cdef [[
     WINAPI_PropertyTagType type;
     VOID* value;
   } PropertyItem;
+  typedef PropertyItem *GDIPCONST PropertyItem*; //Pointer
 # pragma pack( push, 2 )
   typedef struct METAHEADER {
     WORD mtType;
@@ -102,6 +151,7 @@ ffi.cdef [[
     INT16 Checksum;
   } WmfPlaceableFileHeader;
 # pragma pack( pop )
+  typedef WmfPlaceableFileHeader *GDIPCONST WmfPlaceableFileHeader*; //Pointer
   typedef struct BitmapData {
     UINT Width;
     UINT Height;
@@ -117,9 +167,11 @@ ffi.cdef [[
     Color oldColor;
     Color newColor;
   } ColorMap;
+  typedef ColorMap *GDIPCONST ColorMap*; //Pointer
   typedef struct ColorMatrix {
     REAL m[5][5];
   } ColorMatrix;
+  typedef ColorMatrix *GDIPCONST ColorMatrix*; //Pointer
   typedef struct ImageItemData {
     UINT Size;
     UINT Position;
@@ -135,6 +187,7 @@ ffi.cdef [[
     UINT Count;
     ARGB Entries[1];
   } ColorPalette;
+  typedef ColorPalette *GDIPCONST ColorPalette*; //Pointer
   typedef struct GdiplusStartupOutput {
     NotificationHookProc NotificationHook;
     NotificationUnhookProc NotificationUnhook;
@@ -165,31 +218,45 @@ ffi.cdef [[
     INT X;
     INT Y;
   } Point;
+  typedef Point *GDIPCONST Point*; //Pointer
+  typedef Point *GpPoint*; //Pointer
+  typedef Point *GDIPCONST GpPoint*; //Pointer
   typedef struct PointF {
     REAL X;
     REAL Y;
   } PointF;
+  typedef PointF *GDIPCONST PointF*; //Pointer
+  typedef PointF *GpPointF*; //Pointer
+  typedef PointF *GDIPCONST GpPointF*; //Pointer
   typedef struct PathData {
     INT Count;
     PointF* Points;
     BYTE* Types;
   } PathData;
+  typedef PathData *GpPathData*; //Pointer
   typedef struct Rect {
     INT X;
     INT Y;
     INT Width;
     INT Height;
   } Rect;
+  typedef Rect *GDIPCONST Rect*; //Pointer
+  typedef Rect *GpRect*; //Pointer
+  typedef Rect *GDIPCONST GpRect*; //Pointer
   typedef struct RectF {
     REAL X;
     REAL Y;
     REAL Width;
     REAL Height;
   } RectF;
+  typedef RectF *GDIPCONST RectF*; //Pointer
+  typedef RectF *GpRectF*; //Pointer
+  typedef RectF *GDIPCONST GpRectF*; //Pointer
   typedef struct CharacterRange {
     INT First;
     INT Length;
   } CharacterRange;
+  typedef CharacterRange *GDIPCONST CharacterRange*; //Pointer
   typedef UINT DitherType; //Alias
   static const DitherType DitherTypeNone = 0;
   static const DitherType DitherTypeSolid = 1;

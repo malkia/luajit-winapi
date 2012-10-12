@@ -98,6 +98,7 @@ ffi.cdef [[
     BYTE_BLOB* pblobID;
     BYTE_BLOB* pblobExtra;
   } SYNCMGR_CONFLICT_ID_INFO;
+  typedef SYNCMGR_CONFLICT_ID_INFO *const SYNCMGR_CONFLICT_ID_INFO*; //Pointer
   typedef DWORD SYNCMGR_CONTROL_FLAGS; //Alias
   typedef DWORD SYNCMGR_ITEM_CAPABILITIES; //Alias
 ]]

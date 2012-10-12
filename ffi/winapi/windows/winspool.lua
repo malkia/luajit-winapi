@@ -5,6 +5,7 @@ ffi.cdef [[
   typedef void* IPrintAsyncNotifyCallback; //Interface
   typedef void* IPrintAsyncNotifyChannel; //Interface
   typedef LPVOID PCORE_PRINTER_DRIVER; //Alias
+//typedef GUID* PrintAsyncNotificationType*; //Alias
   typedef WORD WINAPI_PrinterNotifyType; //Alias
   typedef struct WINAPI_PRINTER_NOTIFY_INFO_DATA_u_s {
     DWORD cbBuf;
