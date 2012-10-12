@@ -4,9 +4,6 @@ require( 'ffi/winapi/headers/rpc' )
 require( 'ffi/winapi/headers/gdi' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-//typedef LPVOID IMemoryAllocator*; //Alias
-//typedef IEnumFORMATETC** LPENUMFORMATETC*; //Alias
-//typedef IEnumOLEVERB** LPENUMOLEVERB*; //Alias
   typedef IPersistStorage* LPPERSISTSTORAGE; //Alias
   typedef IPersistStream* LPPERSISTSTREAM; //Alias
   typedef IOleInPlaceFrame* LPOLEINPLACEFRAME; //Alias
@@ -226,40 +223,40 @@ ffi.cdef [[
   HRESULT                  RevokeDragDrop(                        HWND hwnd);
   WINOLEAPI                CreateILockBytesOnHGlobal(             HGLOBAL hGlobal, BOOL fDeleteOnRelease, ILockBytes** ppLkbyt);
   WINOLEAPI                CreateStreamOnHGlobal(                 HGLOBAL hGlobal, BOOL fDeleteOnRelease, LPSTREAM* ppstm);
-  HRESULT                  FmtIdToPropStgName(                    FMTID* pfmtid, LPOLESTR oszName);
+  HRESULT                  FmtIdToPropStgName(                    const FMTID* pfmtid, LPOLESTR oszName);
   WINOLEAPI                FreePropVariantArray(                  ULONG cVariants, PROPVARIANT* rgvars);
   WINOLEAPI                GetConvertStg(                         IStorage* pStg);
   WINOLEAPI                GetHGlobalFromILockBytes(              ILockBytes* pLkbyt, HGLOBAL* phglobal);
   WINOLEAPI                GetHGlobalFromStream(                  IStream* pstm, HGLOBAL* phglobal);
   WINOLEAPI                OleConvertIStorageToOLESTREAM(         IStorage* pStg, LPOLESTREAM lpolestream);
   WINOLEAPI                OleConvertIStorageToOLESTREAMEx(       IStorage* pStg, CLIPFORMAT cfFormat, LONG lWidth, LONG lHeight, DWORD dwSize, LPSTGMEDIUM pmedium, LPOLESTREAM lpolestm);
-  WINOLEAPI                OleConvertOLESTREAMToIStorage(         LPOLESTREAM lpolestream, IStorage* pstg, DVTARGETDEVICE* ptd);
+  WINOLEAPI                OleConvertOLESTREAMToIStorage(         LPOLESTREAM lpolestream, IStorage* pstg, const DVTARGETDEVICE* ptd);
   WINOLEAPI                OleConvertOLESTREAMToIStorageEx(       LPOLESTREAM lpolestm, IStorage* pstg, CLIPFORMAT* pcfFormat, LONG* plWidth, LONG* plHeight, DWORD* pdwSize, LPSTGMEDIUM pmedium);
-  HRESULT                  PropStgNameToFmtId(                    LPOLESTR oszName, FMTID* pfmtid);
+  HRESULT                  PropStgNameToFmtId(                    const LPOLESTR oszName, FMTID* pfmtid);
   WINOLEAPI                PropVariantClear(                      PROPVARIANT* pvar);
-  WINOLEAPI                PropVariantCopy(                       PROPVARIANT* pvarDest, PROPVARIANT* pvarSrc);
+  WINOLEAPI                PropVariantCopy(                       PROPVARIANT* pvarDest, const PROPVARIANT* pvarSrc);
   WINOLEAPI                ReadClassStg(                          IStorage* pStg, CLSID* pclsid);
   WINOLEAPI                ReadClassStm(                          IStream* pStm, CLSID* pclsid);
   WINOLEAPI                ReadFmtUserTypeStg(                    IStorage* pStg, CLIPFORMAT* pcf, LPWSTR* lplpszUserType);
   BOOLEAN                  StgConvertPropertyToVariant(           SERIALIZEDPROPERTYVALUE* prop, USHORT CodePage, PROPVARIANT* pvar, IMemoryAllocator* pma);
   WINOLEAPI                SetConvertStg(                         IStorage* pStg, BOOL fConvert);
   SERIALIZEDPROPERTYVALUE* StgConvertVariantToProperty(           PROPVARIANT* pvar, USHORT CodePage, SERIALIZEDPROPERTYVALUE* pprop, ULONG* pcb, PROPID pid, BOOLEAN fReserved, ULONG* pcIndirect);
-  HRESULT                  StgCreateDocfile(                      WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, DWORD reserved, IStorage** ppstgOpen);
+  HRESULT                  StgCreateDocfile(                      const WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, DWORD reserved, IStorage** ppstgOpen);
   WINOLEAPI                StgCreateDocfileOnILockBytes(          ILockBytes* plkbyt, WINAPI_STGM_FLAGS grfMode, DWORD reserved, IStorage** ppstgOpen);
   HRESULT                  StgCreatePropSetStg(                   IStorage* pStorage, DWORD dwReserved, IPropertySetStorage** ppPropSetStg);
-  HRESULT                  StgCreatePropStg(                      IUnknown* pUnk, REFFMTID fmtid, CLSID* pclsid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage** ppPropStg);
-  WINOLEAPI                StgCreateStorageEx(                    WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, STGFMT stgfmt, DWORD grfAttrs, STGOPTIONS* pStgOptions, PSECURITY_DESCRIPTOR* pSecurityDescriptor, REFIID riid, void** ppObjectOpen);
+  HRESULT                  StgCreatePropStg(                      IUnknown* pUnk, REFFMTID fmtid, const CLSID* pclsid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage** ppPropStg);
+  WINOLEAPI                StgCreateStorageEx(                    const WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, STGFMT stgfmt, DWORD grfAttrs, STGOPTIONS* pStgOptions, PSECURITY_DESCRIPTOR* pSecurityDescriptor, REFIID riid, void** ppObjectOpen);
   WINOLEAPI                StgGetIFillLockBytesOnFile(            OLECHAR* pwcsName, IFillLockBytes** ppflb);
   WINOLEAPI                StgGetIFillLockBytesOnILockBytes(      ILockBytes* pilb, IFillLockBytes** ppflb);
-  WINOLEAPI                StgIsStorageFile(                      WCHAR* pwcsName);
+  WINOLEAPI                StgIsStorageFile(                      const WCHAR* pwcsName);
   WINOLEAPI                StgIsStorageILockBytes(                ILockBytes* plkbyt);
   WINOLEAPI                StgOpenAsyncDocfileOnIFillLockBytes(   IFillLockBytes* ppflb, DWORD grfmode, DWORD asyncFlags, IStorage** ppstgOpen);
   HRESULT                  StgOpenPropStg(                        IUnknown* pUnk, REFFMTID fmtid, DWORD grfFlags, DWORD dwReserved, IPropertyStorage** ppPropStg);
-  HRESULT                  StgOpenStorage(                        WCHAR* pwcsName, IStorage* pstgPriority, WINAPI_STGM_FLAGS grfMode, SNB snbExclude, DWORD reserved, IStorage** ppstgOpen);
-  HRESULT                  StgOpenStorageEx(                      WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, STGFMT stgfmt, DWORD grfAttrs, STGOPTIONS* pStgOptions, void* reserved2, REFIID riid, void** ppObjectOpen);
+  HRESULT                  StgOpenStorage(                        const WCHAR* pwcsName, IStorage* pstgPriority, WINAPI_STGM_FLAGS grfMode, SNB snbExclude, DWORD reserved, IStorage** ppstgOpen);
+  HRESULT                  StgOpenStorageEx(                      const WCHAR* pwcsName, WINAPI_STGM_FLAGS grfMode, STGFMT stgfmt, DWORD grfAttrs, STGOPTIONS* pStgOptions, void* reserved2, REFIID riid, void** ppObjectOpen);
   WINOLEAPI                StgOpenStorageOnILockBytes(            ILockBytes* plkbyt, IStorage* pStgPriority, DWORD grfMode, SNB snbExclude, DWORD reserved, IStorage** ppstgOpen);
   ULONG                    StgPropertyLengthAsVariant(            SERIALIZEDPROPERTYVALUE* pProp, ULONG cbProp, USHORT CodePage, BYTE bReserved);
-  WINOLEAPI                StgSetTimes(                           WCHAR* lpszName, FILETIME* pctime, FILETIME* patime, FILETIME* pmtime);
+  WINOLEAPI                StgSetTimes(                           WCHAR const* lpszName, FILETIME const* pctime, FILETIME const* patime, FILETIME const* pmtime);
   WINOLEAPI                WriteClassStg(                         IStorage* pStg, REFCLSID rclsid);
   WINOLEAPI                WriteClassStm(                         IStream* pStm, REFCLSID rclsid);
   WINOLEAPI                WriteFmtUserTypeStg(                   IStorage* pStg, CLIPFORMAT cf, LPWSTR* lpszUserType);

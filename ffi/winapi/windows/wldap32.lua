@@ -48,8 +48,8 @@ ffi.cdef [[
     PCHAR bv_val;
   } berval;
   typedef berval struct berval; //Alias
-  typedef berval *BERVAL*; //Pointer
-  typedef berval *BERVAL*; //Pointer
+  typedef berval BERVAL; //Pointer
+  typedef berval BERVAL; //Pointer
   typedef berval *PBERVAL; //Pointer
   typedef struct LDAPControl {
     PTCHAR ldctl_oid;
@@ -57,7 +57,7 @@ ffi.cdef [[
     BOOLEAN ldctl_iscritical;
   } LDAPControl;
   typedef LDAPControl *PLDAPControl; //Pointer
-  typedef LDAPControl** *PLDAPControl**; //Pointer
+  typedef LDAPControl** PLDAPControl*; //Pointer
   typedef struct LDAP_TIMEVAL {
     LONG tv_sec;
     LONG tv_usec;
@@ -94,8 +94,8 @@ ffi.cdef [[
   ULONG           ldap_simple_bind(           LDAP* ld, PTCHAR dn, PTCHAR passwd);
   ULONG           ldap_simple_bind_s(         LDAP* ld, PCHAR dn, PCHAR passwd);
   ULONG           ldap_simple_bind_s(         LDAP* ld, PTCHAR dn, PTCHAR passwd);
-  ULONG           ldap_sasl_bind(             LDAP* ExternalHandle, PCHAR DistName, PCHAR AuthMechanism, BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, int* MessageNumber);
-  ULONG           ldap_sasl_bind_s(           LDAP* ExternalHandle, PCHAR DistName, PCHAR AuthMechanism, BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, PBERVAL* ServerData);
+  ULONG           ldap_sasl_bind(             LDAP* ExternalHandle, const PCHAR DistName, const PCHAR AuthMechanism, const BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, int* MessageNumber);
+  ULONG           ldap_sasl_bind_s(           LDAP* ExternalHandle, const PCHAR DistName, const PCHAR AuthMechanism, const BERVAL* cred, PLDAPControl* ServerCtrls, PLDAPControl* ClientCtrls, PBERVAL* ServerData);
   ULONG           ldap_connect(               LDAP* ld, LDAP_TIMEVAL* timeout);
   LDAP*           ldap_init(                  PCHAR HostName, ULONG PortNumber);
   LDAP*           ldap_init(                  PTCHAR HostName, ULONG PortNumber);

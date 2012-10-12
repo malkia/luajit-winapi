@@ -4,7 +4,6 @@ local ffi = require( 'ffi' )
 ffi.cdef [[
   typedef void* IAddrBook; //Interface
   typedef void* IWABObject; //Interface
-//typedef IWABObject** LPWABOBJECT*; //Alias
   typedef ULONG WINAPI_WAB_PARAM_Flags; //Alias
   typedef struct WAB_PARAM {
     ULONG cbSize;

@@ -193,7 +193,7 @@ ffi.cdef [[
   PCCERT_CONTEXT CryptUIDlgSelectCertificate(          PCCRYPTUI_SELECTCERTIFICATE_STRUCT pcsc);
   PCCERT_CONTEXT CryptUIDlgSelectCertificateFromStore( HCERTSTORE hCertStore, HWND hwnd, LPCWSTR pwszTitle, LPCWSTR pwszDisplayString, DWORD dwDontUseColumn, DWORD dwFlags, void* pvReserved);
   BOOL           CryptUIDlgViewCertificate(            PCCRYPTUI_VIEWCERTIFICATE_STRUCT pCertViewInfo, BOOL* pfPropertiesChanged);
-  BOOL           CryptUIDlgViewContext(                DWORD dwContextType, void* pvContext, HWND hwnd, LPCWSTR pwszTitle, DWORD dwFlags, void* pvReserved);
+  BOOL           CryptUIDlgViewContext(                DWORD dwContextType, const void* pvContext, HWND hwnd, LPCWSTR pwszTitle, DWORD dwFlags, void* pvReserved);
   BOOL           CryptUIDlgViewSignerInfo(             CRYPTUI_VIEWSIGNERINFO_STRUCT* pcvsi);
 ]]
 return ffi.load( 'Cryptui.dll' )

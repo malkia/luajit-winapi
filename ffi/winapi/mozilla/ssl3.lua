@@ -132,9 +132,9 @@ ffi.cdef [[
   SECStatus        SSL_CipherPrefSetDefault(       WINAPI_SSLCipher cipher, PRBool enabled);
   SECStatus        SSL_CipherPrefGetDefault(       WINAPI_SSLCipher cipher, PRBool* enabled);
   void             SSL_ClearSessionCache(          );
-  SECStatus        SSL_ConfigServerSessionIDCache( int maxCacheEntries, PRUint32 timeout, PRUint32 ssl3_timeout, char* directory);
-  SECStatus        SSL_ConfigMPServerSIDCache(     int maxCacheEntries, PRUint32 timeout, PRUint32 ssl3_timeout, char* directory);
-  SECStatus        SSL_InheritMPServerSIDCache(    char* envString);
+  SECStatus        SSL_ConfigServerSessionIDCache( int maxCacheEntries, PRUint32 timeout, PRUint32 ssl3_timeout, const char* directory);
+  SECStatus        SSL_ConfigMPServerSIDCache(     int maxCacheEntries, PRUint32 timeout, PRUint32 ssl3_timeout, const char* directory);
+  SECStatus        SSL_InheritMPServerSIDCache(    const char* envString);
   SECStatus        NSS_SetDomesticPolicy(          );
   SECStatus        NSS_SetExportPolicy(            );
   SECStatus        NSS_SetFrancePolicy(            );

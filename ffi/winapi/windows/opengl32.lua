@@ -50,11 +50,11 @@ ffi.cdef [[
   BOOL  wglDescribeLayerPlane(     HDC hdc, int iPixelFormat, int iLayerPlane, UINT nBytes, LPLAYERPLANEDESCRIPTOR plpd);
   HGLRC wglGetCurrentContext(      );
   HDC   wglGetCurrentDC(           );
-  int   wglGetLayerPaletteEntries( HDC hdc, int iLayerPlane, int iStart, int cEntries, COLORREF* pcr);
+  int   wglGetLayerPaletteEntries( HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF* pcr);
   PROC  wglGetProcAddress(         LPCSTR lpszProc);
   BOOL  wglMakeCurrent(            HDC hdc, HGLRC hglrc);
   BOOL  wglRealizeLayerPalette(    HDC hdc, int iLayerPlane, BOOL bRealize);
-  int   wglSetLayerPaletteEntries( HDC hdc, int iLayerPlane, int iStart, int cEntries, COLORREF* pcr);
+  int   wglSetLayerPaletteEntries( HDC hdc, int iLayerPlane, int iStart, int cEntries, const COLORREF* pcr);
   BOOL  wglShareLists(             HGLRC hglrc1, HGLRC hglrc2);
   BOOL  wglSwapLayerBuffers(       HDC hdc, UINT fuPlanes);
   BOOL  wglUseFontBitmaps(         HDC hdc, DWORD first, DWORD count, DWORD listBase);

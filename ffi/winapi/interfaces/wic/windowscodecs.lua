@@ -108,7 +108,6 @@ ffi.cdef [[
     UINT cPoints;
     WICRawToneCurvePoint aPoints[1];
   } WICRawToneCurve;
-  typedef WICRawToneCurve *const WICRawToneCurve*; //Pointer
   typedef REFGUID REFWICPixelFormatGUID; //Alias
   typedef GUID WICPixelFormatGUID; //Alias
   typedef LPVOID PFNProgressNotification; //Alias
@@ -216,7 +215,6 @@ ffi.cdef [[
     INT Width;
     INT Height;
   } WICRect;
-  typedef WICRect *const WICRect*; //Pointer
   typedef struct WICBitmapPattern {
     ULARGE_INTEGER Position;
     ULONG Length;
@@ -272,8 +270,8 @@ ffi.cdef [[
   WINAPI_WIC_HRESULT WICGetMetadataContentSize(    REFGUID guidContainerFormat, IWICMetadataWriter* pIWriter, ULARGE_INTEGER* pcbSize);
   WINAPI_WIC_HRESULT WICMapSchemaToName(           REFGUID guidMetadataFormat, LPWSTR pwzSchema, UINT cchName, WCHAR* wzName, UINT pcchActual);
   WINAPI_WIC_HRESULT WICMapGuidToShortName(        REFGUID guid, UINT cchName, WCHAR* wzName, UINT* pcchActual);
-  WINAPI_WIC_HRESULT WICMapShortNameToGuid(        WCHAR* wzName, GUID* pguid);
-  WINAPI_WIC_HRESULT WICMatchMetadataContent(      REFGUID guidContainerFormat, GUID* pguidVendor, IStream* pIStream, GUID* pguidMetadataFormat);
+  WINAPI_WIC_HRESULT WICMapShortNameToGuid(        const WCHAR* wzName, GUID* pguid);
+  WINAPI_WIC_HRESULT WICMatchMetadataContent(      REFGUID guidContainerFormat, const GUID* pguidVendor, IStream* pIStream, GUID* pguidMetadataFormat);
   WINAPI_WIC_HRESULT WICSerializeMetadataContent(  REFGUID guidContainerFormat, IWICMetadataWriter* pIWriter, DWORD dwPersistOptions, IStream* pIStream);
 ]]
 return ffi.load( 'WindowsCodecs.dll' )

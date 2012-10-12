@@ -94,10 +94,10 @@ ffi.cdef [[
   } WSD_SOAP_FAULT;
   void*   WSDAllocateLinkedMemory(           void* pParent, size_t cbSize);
   void    WSDAttachLinkedMemory(             void* pParent, void* pChild);
-  HRESULT WSDCreateDeviceHost(               WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceHost** ppDeviceHost);
-  HRESULT WSDCreateDeviceHostAdvanced(       WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDAddress** ppHostAddresses, DWORD dwHostAddressCount, IWSDDeviceHost** ppDeviceHost);
-  HRESULT WSDCreateDeviceProxy(              WCHAR* pszDeviceId, WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
-  HRESULT WSDCreateDeviceProxyAdvanced(      WCHAR* pszDeviceId, IWSDAddress* pDeviceAddress, WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
+  HRESULT WSDCreateDeviceHost(               const WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceHost** ppDeviceHost);
+  HRESULT WSDCreateDeviceHostAdvanced(       const WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDAddress** ppHostAddresses, DWORD dwHostAddressCount, IWSDDeviceHost** ppDeviceHost);
+  HRESULT WSDCreateDeviceProxy(              const WCHAR* pszDeviceId, const WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
+  HRESULT WSDCreateDeviceProxyAdvanced(      const WCHAR* pszDeviceId, IWSDAddress* pDeviceAddress, const WCHAR* pszLocalId, IWSDXMLContext* pContext, IWSDDeviceProxy** ppDeviceProxy);
   HRESULT WSDCreateDiscoveryProvider(        IWSDXMLContext* pContext, IWSDiscoveryProvider** ppProvider);
   HRESULT WSDCreateDiscoveryProvider2(       IWSDXMLContext* pContext, WSD_CONFIG_PARAM* pConfigParams, DWORD dwConfigParamCount, IWSDiscoveryProvider** ppProvider);
   HRESULT WSDCreateDiscoveryPublisher(       IWSDXMLContext* pContext, IWSDiscoveryPublisher** ppPublisher);
@@ -121,6 +121,6 @@ ffi.cdef [[
   HRESULT WSDXMLCleanupElement(              WSDXML_ELEMENT* pAny);
   HRESULT WSDXMLCreateContext(               IWSDXMLContext** ppContext);
   HRESULT WSDXMLGetNameFromBuiltinNamespace( LPCWSTR pszNamespace, LPCWSTR pszName, WSDXML_NAME** ppName);
-  HRESULT WSDXMLGetValueFromAny(             WCHAR* pszNamespace, WCHAR* pszName, WSDXML_ELEMENT* pAny, LPCWSTR* ppszValue);
+  HRESULT WSDXMLGetValueFromAny(             const WCHAR* pszNamespace, const WCHAR* pszName, WSDXML_ELEMENT* pAny, LPCWSTR* ppszValue);
 ]]
 return ffi.load( 'Wsdapi.dll' )

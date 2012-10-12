@@ -2,7 +2,6 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/rpc' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-//typedef WCHAR** LPCWCH*; //Alias
   typedef DWORD WINAPI_ScheduleType; //Alias
   static const WINAPI_ScheduleType SCHEDULE_INTERVAL = 0;
   static const WINAPI_ScheduleType SCHEDULE_BANDWIDTH = 1;
@@ -113,7 +112,7 @@ ffi.cdef [[
   void  DsFreeSpnArray(                 DWORD cSpn, LPTSTR* rpszSpn);
   DWORD DsGetDomainControllerInfo(      HANDLE hDs, LPTSTR DomainName, DWORD InfoLevel, DWORD* pcOut, VOID** ppInfo);
   DWORD DsGetRdnW(                      LPCWCH* ppDN, DWORD* pcDN, LPCWCH* ppKey, DWORD* pcKey, LPCWCH* ppVal, DWORD* pcVal);
-  DWORD DsGetSpn(                       DS_SPN_NAME_TYPE ServiceType, LPCTSTR ServiceClass, LPCTSTR ServiceName, USHORT InstancePort, USHORT cInstanceNames, LPCTSTR* pInstanceNames, USHORT* pInstancePorts, DWORD* pcSpn, LPTSTR** prpszSpn);
+  DWORD DsGetSpn(                       DS_SPN_NAME_TYPE ServiceType, LPCTSTR ServiceClass, LPCTSTR ServiceName, USHORT InstancePort, USHORT cInstanceNames, LPCTSTR* pInstanceNames, const USHORT* pInstancePorts, DWORD* pcSpn, LPTSTR** prpszSpn);
   DWORD DsInheritSecurityIdentity(      HANDLE hDS, DWORD Flags, LPCTSTR SrcPrincipal, LPCTSTR DstPrincipal);
   BOOL  DsIsMangledDn(                  LPCTSTR pszDn, DS_MANGLE_FOR eDsMangleFor);
   BOOL  DsIsMangledRdnValue(            LPCTSTR pszRdn, DWORD cRdn, DS_MANGLE_FOR eDsMangleForDesired);
@@ -131,17 +130,17 @@ ffi.cdef [[
   DWORD DsQuoteRdnValue(                DWORD cUnquotedRdnValueLength, LPCTCH psUnquotedRdnValue, DWORD* pcQuotedRdnValueLength, LPTCH psQuotedRdnValue);
   DWORD DsRemoveDsDomain(               HANDLE hDs, LPTSTR DomainDN);
   DWORD DsRemoveDsServer(               HANDLE hDs, LPTSTR ServerDN, LPTSTR DomainDN, BOOL* fLastDcInDomain, BOOL fCommit);
-  DWORD DsReplicaAdd(                   HANDLE hDS, LPCTSTR NameContext, LPCTSTR SourceDsaDn, LPCTSTR TransportDn, LPCTSTR SourceDsaAddress, PSCHEDULE pSchedule, DWORD Options);
+  DWORD DsReplicaAdd(                   HANDLE hDS, LPCTSTR NameContext, LPCTSTR SourceDsaDn, LPCTSTR TransportDn, LPCTSTR SourceDsaAddress, const PSCHEDULE pSchedule, DWORD Options);
   DWORD DsReplicaConsistencyCheck(      HANDLE hDS, DS_KCC_TASKID TaskID, DWORD dwFlags);
   DWORD DsReplicaDel(                   HANDLE hDS, LPCTSTR NameContext, LPCTSTR DsaSrc, ULONG Options);
   void  DsReplicaFreeInfo(              DS_REPL_INFO_TYPE InfoType, VOID* pInfo);
   DWORD DsReplicaGetInfoW(              HANDLE hDS, DS_REPL_INFO_TYPE InfoType, LPCWSTR pszObject, UUID* puuidForSourceDsaObjGuid, VOID** ppInfo);
   DWORD DsReplicaGetInfo2W(             HANDLE hDS, DS_REPL_INFO_TYPE InfoType, LPCWSTR pszObject, UUID* puuidForSourceDsaObjGuid, LPCWSTR pszAttributeName, LPCWSTR pszValue, DWORD dwFlags, DWORD dwEnumerationContext, VOID** ppInfo);
-  DWORD DsReplicaModify(                HANDLE hDS, LPCTSTR NameContext, UUID* pUuidSourceDsa, LPCTSTR TransportDn, LPCTSTR SourceDsaAddress, PSCHEDULE pSchedule, DWORD ReplicaFlags, DWORD ModifyFields, DWORD Options);
-  DWORD DsReplicaSync(                  HANDLE hDS, LPCTSTR NameContext, UUID* pUuidDsaSrc, ULONG Options);
+  DWORD DsReplicaModify(                HANDLE hDS, LPCTSTR NameContext, const UUID* pUuidSourceDsa, LPCTSTR TransportDn, LPCTSTR SourceDsaAddress, const PSCHEDULE pSchedule, DWORD ReplicaFlags, DWORD ModifyFields, DWORD Options);
+  DWORD DsReplicaSync(                  HANDLE hDS, LPCTSTR NameContext, const UUID* pUuidDsaSrc, ULONG Options);
   DWORD DsReplicaSyncAll(               HANDLE hDS, LPTSTR pszNameContext, ULONG ulFlags, LPVOID pCallbackData, PDS_REPSYNCALL_ERRINFO** pErrors);
-  DWORD DsReplicaUpdateRefs(            HANDLE hDS, LPCTSTR NameContext, LPCTSTR DsaDest, UUID* pUuidDsaDest, ULONG Options);
-  DWORD DsReplicaVerifyObjects(         HANDLE hDS, LPCTSTR NameContext, UUID* pUuidDsaSrc, ULONG ulOptions);
+  DWORD DsReplicaUpdateRefs(            HANDLE hDS, LPCTSTR NameContext, LPCTSTR DsaDest, const UUID* pUuidDsaDest, ULONG Options);
+  DWORD DsReplicaVerifyObjects(         HANDLE hDS, LPCTSTR NameContext, const UUID* pUuidDsaSrc, ULONG ulOptions);
   DWORD DsServerRegisterSpn(            DS_SPN_WRITE_OP Operation, LPCTSTR ServiceClass, LPCTSTR UserObjectDN);
   DWORD DsUnBind(                       HANDLE* phDS);
   DWORD DsUnquoteRdnValue(              DWORD cQuotedRdnValueLength, LPCTCH psQuotedRdnValue, DWORD* pcUnquotedRdnValueLength, LPTCH psUnquotedRdnValue);

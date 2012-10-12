@@ -72,7 +72,7 @@ ffi.cdef [[
   HRESULT MQDeleteQueue(                   LPCWSTR lpwcsFormatName);
   VOID    MQFreeMemory(                    PVOID pvMemory);
   VOID    MQFreeSecurityContext(           HANDLE hSecurityContext);
-  HRESULT MQGetMachineProperties(          LPCWSTR lpwcsMachineName, GUID* pguidMachineID, MQQMPROPS* pQMProps);
+  HRESULT MQGetMachineProperties(          LPCWSTR lpwcsMachineName, const GUID* pguidMachineID, MQQMPROPS* pQMProps);
   HRESULT MQGetOverlappedResult(           LPOVERLAPPED lpOverlapped);
   HRESULT MQGetPrivateComputerInformation( LPCWSTR lpwcsComputerName, MQPRIVATEPROPS* pPrivateProps);
   HRESULT MQGetQueueProperties(            LPCWSTR lpwcsFormatName, MQQUEUEPROPS* pQueueProps);

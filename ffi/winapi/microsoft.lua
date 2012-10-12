@@ -1,7 +1,6 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-//typedef IAssemblyName* AssemblyConfig*; //Alias
   typedef UINT HOST_TYPE; //Alias
   static const HOST_TYPE HOST_TYPE_DEFAULT = 0;
   static const HOST_TYPE HOST_TYPE_APPLAUNCH = 0x1;

@@ -1,8 +1,6 @@
 require( 'ffi/winapi/headers/windows' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-//typedef LPVOID SOCKET_PEER_TARGET_NAME*; //Alias
-//typedef LPVOID SOCKET_SECURITY_QUERY_TEMPLATE*; //Alias
   typedef OVERLAPPED WSAOVERLAPPED; //Alias
   typedef WSAOVERLAPPED *LPWSAOVERLAPPED; //Pointer
   typedef LPVOID LPWSAOVERLAPPED_COMPLETION_ROUTINE; //Alias
@@ -194,7 +192,7 @@ ffi.cdef[[
     ADDRESS_FAMILY sa_family;
     CHAR sa_data[14];
   } sockaddr;
-  typedef struct sockaddr *sockaddr*; //Pointer
+  typedef struct sockaddr sockaddr; //Pointer
   typedef UINT WINAPI_AI_FLAGS; //Alias
   typedef struct addrinfo {
     WINAPI_AI_FLAGS ai_flags;
@@ -344,7 +342,7 @@ ffi.cdef[[
     INT iSockaddrLength;
   } SOCKET_ADDRESS;
   typedef SOCKET_ADDRESS *PSOCKET_ADDRESS; //Pointer
-  typedef PSOCKET_ADDRESS *LPSOCKET_ADDRESS*; //Pointer
+  typedef PSOCKET_ADDRESS LPSOCKET_ADDRESS; //Pointer
   typedef struct SOCKET_ADDRESS_LIST {
     INT iAddressCount;
     SOCKET_ADDRESS Address[1];

@@ -191,7 +191,7 @@ ffi.cdef [[
   DWORD                    InternetSetFilePointer(                 HINTERNET hFile, LONG lDistanceToMove, PVOID pReserved, DWORD dwMoveMethod, DWORD_PTR dwContext);
   BOOL                     InternetSetOption(                      HINTERNET hInternet, WINAPI_InternetOption dwOption, LPVOID lpBuffer, DWORD dwBufferLength);
   INTERNET_STATUS_CALLBACK InternetSetStatusCallback(              HINTERNET hInternet, INTERNET_STATUS_CALLBACK lpfnInternetCallback);
-  BOOL                     InternetTimeFromSystemTime(             SYSTEMTIME* pst, DWORD dwRFC, LPTSTR lpszTime, DWORD cbTime);
+  BOOL                     InternetTimeFromSystemTime(             const SYSTEMTIME* pst, DWORD dwRFC, LPTSTR lpszTime, DWORD cbTime);
   BOOL                     InternetTimeToSystemTime(               LPCTSTR lpszTime, SYSTEMTIME* pst, DWORD dwReserved);
   BOOLAPI                  InternetUnlockRequestFile(              HANDLE hLockRequestInfo);
   BOOL                     InternetWriteFile(                      HINTERNET hFile, LPCVOID lpBuffer, DWORD dwNumberOfBytesToWrite, LPDWORD lpdwNumberOfBytesWritten);

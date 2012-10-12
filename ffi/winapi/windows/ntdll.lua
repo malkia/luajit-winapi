@@ -8,7 +8,6 @@ require( 'ffi/winapi/headers/sockets' )
 require( 'ffi/winapi/headers/ioctl' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-//typedef LPVOID CSR_API_MESSAGE*; //Alias
   typedef LPVOID PPLUGPLAY_EVENT_BLOCK; //Alias
   typedef LPVOID PDBGUI_WAIT_STATE_CHANGE; //Alias
   typedef LPVOID PRTL_TRACE_DATABASE; //Alias
@@ -1686,7 +1685,7 @@ ffi.cdef[[
   BOOLEAN                      RtlEqualUnicodeString(                              PCUNICODE_STRING String1, PCUNICODE_STRING String2, BOOLEAN CaseInsensitive);
   NTSTATUS                     RtlFindCharInUnicodeString(                         ULONG Flags, PUNICODE_STRING SearchString, PCUNICODE_STRING MatchString, PUSHORT Position);
   VOID                         RtlFreeUnicodeString(                               PUNICODE_STRING UnicodeString);
-  NTSTATUS                     RtlHashUnicodeString(                               UNICODE_STRING* String, BOOLEAN CaseInSensitive, ULONG HashAlgorithm, PULONG HashValue);
+  NTSTATUS                     RtlHashUnicodeString(                               CONST UNICODE_STRING* String, BOOLEAN CaseInSensitive, ULONG HashAlgorithm, PULONG HashValue);
   VOID                         RtlInitUnicodeString(                               PUNICODE_STRING DestinationString, PCWSTR SourceString);
   NTSTATUS                     RtlInitUnicodeStringEx(                             PUNICODE_STRING DestinationString, PCWSTR SourceString);
   BOOLEAN                      RtlIsTextUnicode(                                   PVOID Buffer, INT Length, WINAPI_IsTextUnicodeFlags* Flags);
@@ -1807,7 +1806,7 @@ ffi.cdef[[
   VOID                         RtlReleaseActivationContext(                        PVOID* Context);
   LONG                         RtlDeactivateActivationContext(                     DWORD dwFlags, ULONG_PTR ulCookie);
   NTSTATUS                     RtlDosApplyFileIsolationRedirection_Ustr(           BOOLEAN Unknown, PUNICODE_STRING OriginalName, PUNICODE_STRING Extension, PUNICODE_STRING RedirectedName, PUNICODE_STRING RedirectedName2, PUNICODE_STRING* OriginalName2, PVOID Unknown1, PVOID Unknown2, PVOID Unknown3);
-  NTSTATUS                     RtlFindActivationContextSectionString(              WINAPI_FIND_ACTCTX_SECTION_FLAGS dwFlags, GUID* ExtensionGuid, WINAPI_ACTIVATION_CONTEXT_SECTION SectionType, PUNICODE_STRING SectionName, PVOID ReturnedData);
+  NTSTATUS                     RtlFindActivationContextSectionString(              WINAPI_FIND_ACTCTX_SECTION_FLAGS dwFlags, const GUID* ExtensionGuid, WINAPI_ACTIVATION_CONTEXT_SECTION SectionType, PUNICODE_STRING SectionName, PVOID ReturnedData);
   NTSTATUS                     RtlQueryInformationActivationContext(               DWORD dwFlags, PVOID Context, PVOID pvSubInstance, ULONG ulInfoClass, PVOID pvBuffer, SIZE_T cbBuffer, SIZE_T* pcbWrittenOrRequired);
   NTSTATUS                     RtlZombifyActivationContext(                        PVOID Context);
   NTSTATUS                     RtlCheckRegistryKey(                                ULONG RelativeTo, PWSTR Path);
@@ -1841,7 +1840,7 @@ ffi.cdef[[
   BOOLEAN                      RtlDeleteElementGenericTableAvl(                    PRTL_AVL_TABLE Table, PVOID Buffer);
   PVOID                        RtlLookupElementGenericTableAvl(                    PRTL_AVL_TABLE Table, PVOID Buffer);
   PVOID                        RtlEnumerateGenericTableWithoutSplayingAvl(         PRTL_AVL_TABLE Table, PVOID* RestartKey);
-  NTSTATUS                     RtlAppendStringToString(                            PSTRING Destination, STRING* Source);
+  NTSTATUS                     RtlAppendStringToString(                            PSTRING Destination, const STRING* Source);
   USHORT                       RtlCaptureStackBackTrace(                           ULONG FramesToSkip, ULONG FramesToCapture, PVOID* BackTrace, PULONG BackTraceHash);
   SIZE_T                       RtlCompareMemoryUlong(                              PVOID Source, SIZE_T Length, ULONG Pattern);
   NTSTATUS                     RtlCompressChunks(                                  PUCHAR UncompressedBuffer, ULONG UncompressedBufferSize, PUCHAR CompressedBuffer, ULONG CompressedBufferSize, PCOMPRESSED_DATA_INFO CompressedDataInfo, ULONG CompressedDataInfoLength, PVOID WorkSpace);
@@ -1909,12 +1908,12 @@ ffi.cdef[[
   VOID                         RtlSetCurrentEnvironment(                           PVOID NewEnvironment, PVOID* OldEnvironment);
   BOOLEAN                      RtlValidateProcessHeaps(                            );
   NTSTATUS                     RtlLocalTimeToSystemTime(                           PLARGE_INTEGER LocalTime, PLARGE_INTEGER SystemTime);
-  LPTSTR                       RtlIpv4AddressToString(                             IN_ADDR* Addr, LPTSTR S);
-  NTSTATUS                     RtlIpv4AddressToStringEx(                           IN_ADDR* Address, USHORT Port, LPTSTR AddressString, PULONG AddressStringLength);
+  LPTSTR                       RtlIpv4AddressToString(                             const IN_ADDR* Addr, LPTSTR S);
+  NTSTATUS                     RtlIpv4AddressToStringEx(                           const IN_ADDR* Address, USHORT Port, LPTSTR AddressString, PULONG AddressStringLength);
   NTSTATUS                     RtlIpv4StringToAddress(                             PCTSTR String, BOOLEAN Strict, LPTSTR* Terminator, IN_ADDR* Addr);
   NTSTATUS                     RtlIpv4StringToAddressEx(                           PCTSTR AddressString, BOOLEAN Strict, IN_ADDR* Address, PUSHORT Port);
-  LPTSTR                       RtlIpv6AddressToString(                             IN6_ADDR* Addr, LPTSTR S);
-  NTSTATUS                     RtlIpv6AddressToStringEx(                           IN6_ADDR* Address, ULONG ScopeId, USHORT Port, LPTSTR AddressString, PULONG AddressStringLength);
+  LPTSTR                       RtlIpv6AddressToString(                             const IN6_ADDR* Addr, LPTSTR S);
+  NTSTATUS                     RtlIpv6AddressToStringEx(                           const IN6_ADDR* Address, ULONG ScopeId, USHORT Port, LPTSTR AddressString, PULONG AddressStringLength);
   NTSTATUS                     RtlIpv6StringToAddress(                             PCTSTR String, PCTSTR* Terminator, IN6_ADDR* Addr);
   NTSTATUS                     RtlIpv6StringToAddressEx(                           PCTSTR AddressString, IN6_ADDR* Address, PULONG ScopeId, PUSHORT Port);
   NTSTATUS                     RtlGetLastNtStatus(                                 );

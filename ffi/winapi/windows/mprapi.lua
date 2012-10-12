@@ -18,10 +18,10 @@ ffi.cdef [[
   DWORD MprAdminPortReset(                         RAS_SERVER_HANDLE hRasServer, HANDLE hPort);
   DWORD MprAdminPortDisconnect(                    RAS_SERVER_HANDLE hRasServer, HANDLE hPort);
   DWORD MprAdminConnectionRemoveQuarantine(        HANDLE hRasServer, HANDLE hRasConnection, BOOL fIsIpAddress);
-  DWORD MprAdminUserGetInfo(                       WCHAR* lpszServer, WCHAR* lpszUser, DWORD dwLevel, LPBYTE lpbBuffer);
-  DWORD MprAdminUserSetInfo(                       WCHAR* lpszServer, WCHAR* lpszUser, DWORD dwLevel, LPBYTE lpbBuffer);
+  DWORD MprAdminUserGetInfo(                       const WCHAR* lpszServer, const WCHAR* lpszUser, DWORD dwLevel, LPBYTE lpbBuffer);
+  DWORD MprAdminUserSetInfo(                       const WCHAR* lpszServer, const WCHAR* lpszUser, DWORD dwLevel, const LPBYTE lpbBuffer);
   DWORD MprAdminSendUserMessage(                   MPR_SERVER_HANDLE hMprServer, HANDLE hConnection, LPWSTR lpwszMessage);
-  DWORD MprAdminGetPDCServer(                      WCHAR* lpszDomain, WCHAR* lpszServer, LPWSTR lpszPDCServer);
+  DWORD MprAdminGetPDCServer(                      const WCHAR* lpszDomain, const WCHAR* lpszServer, LPWSTR lpszPDCServer);
   BOOL  MprAdminIsServiceRunning(                  LPWSTR lpwsServerName);
   DWORD MprAdminServerConnect(                     LPWSTR lpwsServerName, MPR_SERVER_HANDLE* phMprServer);
   VOID  MprAdminServerDisconnect(                  MPR_SERVER_HANDLE hMprServer);

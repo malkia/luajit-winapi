@@ -8,13 +8,13 @@ ffi.cdef [[
   static const SLDATATYPE SL_DATA_BINARY = 3;
   static const SLDATATYPE SL_DATA_MULTI_SZ = 7;
   static const SLDATATYPE SL_DATA_SUM = 100;
-  HRESULT SLGetGenuineInformation(              SLID* pAppId, PCWSTR pwszValueName, SLDATATYPE* peDataType, UINT* pcbValue, BYTE** ppbValue);
+  HRESULT SLGetGenuineInformation(              const SLID* pAppId, PCWSTR pwszValueName, SLDATATYPE* peDataType, UINT* pcbValue, BYTE** ppbValue);
   HRESULT SLGetInstalledSAMLicenseApplications( UINT* pnReturnedAppIds, SLID** ppReturnedAppIds);
-  HRESULT SLInstallSAMLicense(                  SLID* pApplicationId, UINT cbXmlLicenseData, BYTE* pbXmlLicenseData);
-  HRESULT SLGetSAMLicense(                      SLID* pApplicationId, UINT* pcbXmlLicenseData, PBYTE* ppbXmlLicenseData);
+  HRESULT SLInstallSAMLicense(                  const SLID* pApplicationId, UINT cbXmlLicenseData, const BYTE* pbXmlLicenseData);
+  HRESULT SLGetSAMLicense(                      const SLID* pApplicationId, UINT* pcbXmlLicenseData, PBYTE* ppbXmlLicenseData);
   HRESULT SLGetWindowsInformation(              PCWSTR pwszValueName, SLDATATYPE* peDataType, UINT* pcbValue, PBYTE* ppbValue);
   HRESULT SLGetWindowsInformationDWORD(         PCWSTR pwszValueName, DWORD* pdwValue);
-  HRESULT SLSetGenuineInformation(              SLID* pAppId, PCWSTR pwszValueName, SLDATATYPE eDataType, UINT cbValue, BYTE* pbValue);
-  HRESULT SLUninstallSAMLicense(                SLID* pApplicationId);
+  HRESULT SLSetGenuineInformation(              const SLID* pAppId, PCWSTR pwszValueName, SLDATATYPE eDataType, UINT cbValue, const BYTE* pbValue);
+  HRESULT SLUninstallSAMLicense(                const SLID* pApplicationId);
 ]]
 return ffi.load( 'Slc.dll' )

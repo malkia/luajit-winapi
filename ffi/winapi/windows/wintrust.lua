@@ -17,7 +17,7 @@ ffi.cdef [[
   CRYPTCATATTRIBUTE*       CryptCATCDFEnumCatAttributes(          CRYPTCATCDF* pCDF, CRYPTCATATTRIBUTE* pPrevAttr, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError);
   LPWSTR                   CryptCATCDFEnumMembersByCDFTagEx(      CRYPTCATCDF* pCDF, LPWSTR pwszPrevCDFTag, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError, CRYPTCATMEMBER** ppMember, BOOL fContinueOnError, LPVOID pvReserved);
   CRYPTCATCDF*             CryptCATCDFOpen(                       LPWSTR pwszFilePath, PFN_CDF_PARSE_ERROR_CALLBACK pfnParseError);
-  BOOL                     CryptCATAdminAcquireContext(           HCATADMIN* phCatAdmin, GUID* pgSubsystem, DWORD dwFlags);
+  BOOL                     CryptCATAdminAcquireContext(           HCATADMIN* phCatAdmin, const GUID* pgSubsystem, DWORD dwFlags);
   HCATINFO                 CryptCATAdminAddCatalog(               HCATADMIN hCatAdmin, WCHAR* pwszCatalogFile, WCHAR* pwszSelectBaseName, DWORD dwFlags);
   HCATINFO                 CryptCATAdminEnumCatalogFromHash(      HCATADMIN hCatAdmin, BYTE* pbHash, DWORD cbHash, DWORD dwFlags, HCATINFO* phPrevCatInfo);
   BOOL                     CryptCATAdminRemoveCatalog(            HCATADMIN hCatAdmin, LPCWSTR pwszCatalogFile, DWORD dwFlags);

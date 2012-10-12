@@ -25,16 +25,10 @@ ffi.cdef [[
   typedef void* IDWriteTextLayout; //Interface
   typedef void* IDWriteTextRenderer; //Interface
   typedef void* IDWriteTypography; //Interface
-//typedef IDWriteFontFile** IDWriteFontFile**; //Alias
   typedef void* IDWriteTextAnalysisSource; //Interface
   typedef void* IDWriteNumberSubstitution; //Interface
   typedef void* IDWriteGeometrySink; //Interface
   typedef void* IDWriteTextAnalysisSink; //Interface
-//typedef LPVOID DWRITE_CLUSTER_METRICS*; //Alias
-//typedef LPVOID DWRITE_SHAPING_TEXT_PROPERTIES*; //Alias
-//typedef LPVOID DWRITE_SHAPING_GLYPH_PROPERTIES*; //Alias
-//typedef LPVOID DWRITE_SHAPING_GLYPH_PROPERTIES*; //Alias
-//typedef LOGFONTW* LOGFONTW*; //Alias
   typedef struct DWRITE_GLYPH_OFFSET {
     FLOAT advanceOffset;
     FLOAT ascenderOffset;

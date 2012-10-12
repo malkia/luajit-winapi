@@ -134,8 +134,8 @@ ffi.cdef [[
   STDAPI  CoInternetParseUrl(                      LPCWSTR pwzUrl, PARSEACTION ParseAction, DWORD dwFlags, LPWSTR pszResult, DWORD cchResult, DWORD* pcchResult, DWORD dwReserved);
   HRESULT CoInternetQueryInfo(                     LPCWSTR pwzUrl, QUERYOPTION QueryOption, DWORD dwQueryFlags, LPVOID pvBuffer, DWORD cbBuffer, DWORD* pcbBuffer, DWORD dwReserved);
   HRESULT CompareSecurityIds(                      BYTE* pbSecurityId1, DWORD dwLen1, BYTE* pbSecurityId2, DWORD dwLen2, DWORD dwReserved);
-  HRESULT CopyBindInfo(                            BINDINFO* pcbiSrc, BINDINFO* pcbiDest);
-  HRESULT CopyStgMedium(                           STGMEDIUM* pcstgmedSrc, STGMEDIUM* pstgmedDest);
+  HRESULT CopyBindInfo(                            const BINDINFO* pcbiSrc, BINDINFO* pcbiDest);
+  HRESULT CopyStgMedium(                           const STGMEDIUM* pcstgmedSrc, STGMEDIUM* pstgmedDest);
   HRESULT CreateAsyncBindCtx(                      DWORD dwReserved, IBindStatusCallback* pbsc, IEnumFORMATETC* penumfmtetc, IBindCtx** ppbc);
   HRESULT CreateAsyncBindCtxEx(                    IBindCtx* pbc, DWORD dwOptions, IBindStatusCallback* pBSCb, IEnumFORMATETC* pEnum, IBindCtx** ppBC, DWORD reserved);
   STDAPI  CreateIUriBuilder(                       IUri* pIUri, DWORD dwFlags, DWORD_PTR dwReserved, IUriBuilder** ppIUriBuilder);

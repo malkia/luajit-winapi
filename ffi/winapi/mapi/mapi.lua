@@ -49,8 +49,6 @@ ffi.cdef [[
   typedef void* IXPLogon; //Interface
   typedef void* IXPProvider; //Interface
   typedef void* IWABObject; //Interface
-//typedef ITnef** LPITNEF*; //Alias
-//typedef IXPProvider** LPXPPROVIDER*; //Alias
   typedef IWABObject* LPWABOBJECT; //Alias
   typedef IMAPIProgress* LPMAPIPROGRESS; //Alias
   typedef IMAPITable* LPMAPITABLE; //Alias
@@ -71,23 +69,13 @@ ffi.cdef [[
   typedef IProviderAdmin* LPPROVIDERADMIN; //Alias
   typedef IMSLogon* LPMSLOGON; //Alias
   typedef IMailUser* LPMAILUSER; //Alias
-//typedef IXPLogon** LPXPLOGON*; //Alias
   typedef IMAPIProp* LPMAPIPROP; //Alias
   typedef IMAPISession* LPMAPISESSION; //Alias
-//typedef IABProvider* LPABPROVIDER*; //Alias
-//typedef IPropData* LPPROPDATA*; //Alias
-//typedef ITableData** LPTABLEDATA*; //Alias
-//typedef IStorage* LPSTORAGE*; //Alias
   typedef IMAPIAdviseSink* LPMAPIADVISESINK; //Alias
-//typedef IProfAdmin** LPPROFADMIN*; //Alias
-//typedef IMAPIFormMgr** LPMAPIFORMMGR*; //Alias
-//typedef IMAPIFormContainer** LPMAPIFORMCONTAINER*; //Alias
-//typedef IMSProvider** LPMSPROVIDER*; //Alias
   typedef IMessage* LPMESSAGE; //Alias
   typedef LPVOID LPFNABSDI; //Alias
   typedef LPVOID LPFNDISMISS; //Alias
   typedef LPVOID LPFNBUTTON; //Alias
-//typedef LPVOID CALLERRELEASE*; //Alias
   typedef LPVOID LPALLOCATEBUFFER; //Alias
   typedef LPVOID FTG; //Alias
   typedef LPVOID LPMSGSESS; //Alias
@@ -97,7 +85,6 @@ ffi.cdef [[
   typedef LPVOID LPNOTIFCALLBACK; //Alias
   typedef LPVOID LPFREEBUFFER; //Alias
   typedef ULONG *LPULONG; //Pointer
-//typedef LPVOID MSGCALLRELEASE*; //Alias
   enum { MAPI_DIM = 1 };
   typedef GUID MAPIUID; //Alias
   typedef MAPIUID *LPMAPIUID; //Pointer
@@ -249,7 +236,7 @@ ffi.cdef [[
     ULONG cProblem;
     SPropProblem aProblem[MAPI_DIM];
   } SPropProblemArray;
-  typedef SPropProblemArray *LPSPropProblemArray*; //Pointer
+  typedef SPropProblemArray LPSPropProblemArray; //Pointer
   typedef struct STnefProblem {
     ULONG ulComponent;
     ULONG ulAttribute;
@@ -260,7 +247,7 @@ ffi.cdef [[
     ULONG cProblem;
     STnefProblem aProblem[MAPI_DIM];
   } STnefProblemArray;
-  typedef STnefProblemArray *LPSTnefProblemArray*; //Pointer
+  typedef STnefProblemArray LPSTnefProblemArray; //Pointer
   typedef UINT METHODS; //Alias
   typedef ULONG WINAPI_MapiObjType; //Alias
   static const WINAPI_MapiObjType MAPI_STORE = 0x00000001;
@@ -343,7 +330,7 @@ ffi.cdef [[
     ULONG cOptionsProps;
     LPSPropValue lpOptionsProps;
   } OPTIONDATA;
-  typedef OPTIONDATA *LPOPTIONDATA*; //Pointer
+  typedef OPTIONDATA LPOPTIONDATA; //Pointer
   typedef struct SBinary {
     ULONG cb;
     LPBYTE lpb;

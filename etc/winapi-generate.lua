@@ -6,6 +6,20 @@ local outdir = "../ffi/winapi/"
 
 print()
 
+-- Replaces \ with /, removes duplicate /, and lowercases the name
+local function fixpath(name)
+   if type(name) ~= "string" then return name end
+   local fixed, pb = {}
+   for i = 1, #name do
+      local b = name:byte(i)
+      if b == 92             then b = 47 end
+      if b >= 65 and b <= 90 then b = b + 32 end
+      if b ~= pb or pb ~= 47 then fixed[#fixed+1] = string.char(b) end
+      pb = b
+   end
+   return table.concat(fixed)
+end
+
 if ffi.os == "Windows" then
    xmldir = (os.getenv("ProgramW6432") or os.getenv("ProgramFiles")).."/rohitab.com/API Monitor/API/"
 else
@@ -19,19 +33,6 @@ local function dirname(filename)
       if filename:byte(i) == 47 then p = i end
    end
    return filename:sub(1, p)
-end
-
--- Replaces \ with /, removes duplicate /, and lowercases the name
-local function fixpath(name)
-   local fixed, pb = {}
-   for i = 1, #name do
-      local b = name:byte(i)
-      if b == 92             then b = 47 end
-      if b >= 65 and b <= 90 then b = b + 32 end
-      if b ~= pb or pb ~= 47 then fixed[#fixed+1] = string.char(b) end
-      pb = b
-   end
-   return table.concat(fixed)
 end
 
 local function validate_id(id)
@@ -50,6 +51,7 @@ local function filter_const(id,type,type2)
    id = id:gsub("^[Cc][Oo][Nn][Ss][Tt] ","")
    if o ~= id then
       assert(type~="Set")
+      print('no const',o,id)
    end
    return id
 end
@@ -59,8 +61,9 @@ local function filter_dash_slash(id,type)
    id = id:gsub("[-/]","_")
    id = id:gsub(" %+ ","_plus_")
    id = id:gsub(" %* ","_mult_")
-   id = id:gsub("%(","")
-   id = id:gsub("%)","")
+   id = id:gsub("%(%)","_func_")
+   id = id:gsub("%(","_")
+   id = id:gsub("%)","_")
    return id
 end
 
@@ -69,6 +72,14 @@ local function filter_brackets(id,type,type2)
    if id:sub(1,1)=="[" and id:sub(-1)=="]" then 
       assert(type~="Set")
       return "WINAPI_"..id:sub(2,-2)
+   end
+   return id
+end
+
+-- Removes opening and closing square stars
+local function filter_stars(id)
+   if id:sub(1,1)=="*" and id:sub(-1)=="*" then 
+      return id:sub(2,-2)
    end
    return id
 end
@@ -123,39 +134,35 @@ local filters = {
 
 local fixednames = {}
 local function fixname(oid, type, type2)
-   if fixednames[oid] then
-      return fixednames[oid]
-   end
-   fixednames[oid] = oid
-   if filters[type]==T or filters[type][type2]==T then
+   -- Don't memoize these passthrough ones
+   if filters[type]==T or filters[type][type2]==T or tonumber(oid)~= nil then
       return oid
    end
-   local num = tonumber(oid)
-   if num ~= nil then
-      return oid
-   end
-   if validate_id_ptr(oid) then
-      return oid
+
+   fixednames[type] = fixednames[type] or {}
+   fixednames[type][type2] = fixednames[type][type2] or {}
+   if fixednames[type][type2][oid] then
+      return fixednames[type][type2][oid]
    end
 
    local id = oid
-
-   for _, filter in ipairs(filters[type][type2] or filters[type]) do
-      id = filter(id,type,type2)
-   end
-
-   if id ~= oid then
-      local id = id:gsub("%*","") --temp
-      if validate_id_ptr(id) == false then
-	 print('changed',type..'/'..type2,'\n','<'..oid..'>\n','<'..id..'>')
+   if not validate_id_ptr(id) then
+      for _, filter in ipairs(filters[type][type2] or filters[type]) do
+	 id = filter(id,type,type2)
       end
-   else
-      if validate_id_ptr(id) == false then
-	 print('invalid',type..'/'..type2,'<'..oid..'>')
+
+      if id ~= oid then
+	 local id = id:gsub("%*","") --temp
+	 if validate_id_ptr(id) == false then
+	    print('changed',type..'/'..type2,'\n','<'..oid..'>\n','<'..id..'>')
+	 end
+      else
+	 if validate_id_ptr(id) == false then
+	    print('invalid',type..'/'..type2,'<'..oid..'>')
+	 end
       end
    end
-   
-   fixednames[oid] = id
+   fixednames[type][type2][oid] = id
    return id
 end
 
@@ -276,19 +283,19 @@ local function process(var, luafile)
 	 emit_typed_enum(var, f)
       elseif var.Type=="Alias" or var.Base then
 	 assert(var.Type=="Alias" and var.Base)
-	 local base = var.Base
-	 if base == "LPCTSTR" then
-	    base = "uintptr_t"
+	 local Base, Name = var.Base, var.Name
+	 if Base == "LPCTSTR" then
+	    Base = "uintptr_t"
 	 end
 	 luafile:write(
-	    "  typedef " .. base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+	    "  typedef " .. Base .. " " .. Name .. "; //" .. var.Type .. "\n" )
 	 --	 assert(defined[var.Name]==nil)
-	 defined[var.Name] = true
+	 defined[Name] = true
 	 for _, enum in ipairs( var.Enum[1].Set ) do
 	    local Comment = defined[enum.Name] and "//" or "  "
 	    defined[enum.Name]=true
 	    if enum.Name:find("(",1,true)==nil then
-	       f:write( Comment .. "static const " .. var.Name .. " " ..
+	       f:write( Comment .. "static const " .. Name .. " " ..
 			enum.Name .. " = " .. enum.Value .. ";\n" )
 	    end
 	 end
@@ -296,22 +303,19 @@ local function process(var, luafile)
 	 emit_untyped_enum(var, f)
       end
    elseif var.Type == "Pointer" then
-      if var.Base.."*" ~= var.Name then
-	 local Base = var.Base
-	 local Name = var.Name --, Ptrs = var.Name:match("([^*]*)(%**)")
---	 assert( Ptrs )
---	 if Ptrs ~= "" then
---	    Base = "void"
---	 end
-	 if builtin_types[Name] == nil and var.Base ~= Name and Name:sub(1,7)~="struct " then
-	    f:write( "  typedef " .. Base .. " *" .. Name .. "; //" .. var.Type .. "\n" )
-	 end
+      local Base, Name = var.Base, var.Name
+      if Base.."*" ~= Name and Base ~= Name and builtin_types[Name] == nil and Name:sub(1,7)~="struct " then
+	 Name = filter_stars("*"..Name)
+	 f:write( "  typedef " .. Base .. " " .. Name .. "; //" .. var.Type .. "\n" )
       end
    elseif var.Type == "Alias" then
-      if var.Base ~= var.Name and var.Name:find("*",1,true)==nil and builtin_types[var.Name]==nil then
-	 f:write( "  typedef " .. var.Base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
-      else
-	 f:write( "//typedef " .. var.Base .. " " .. var.Name .. "; //" .. var.Type .. "\n" )
+      local Base, Name = var.Base, var.Name
+      if Name == "SID*" and Base == "LPVOID" then
+	 Base = "void"
+	 Name = "SID"
+      end
+      if Base ~= Name and Name:find("*",1,true)==nil and builtin_types[Name]==nil then
+	 f:write( "  typedef " .. Base .. " " .. Name .. "; //" .. var.Type .. "\n" )
       end
    elseif var.Type == "Interface" then
       luafile:write( "  typedef void* " .. var.Name .. "; //" .. var.Type .. "\n" )
@@ -515,6 +519,7 @@ local function test(cdefs)
    for filename, _ in pairs(cdefs) do
       local lib = "ffi/winapi/" .. fixpath(filename):gsub("%..*$", "")
       local status, error = pcall(require,lib)
+      error = fixpath(error)
       if status ~= true then
 	 print(lib.."\n"..(error==true and "OK" or error).."\n")
 	 local missing_module = error:match("cannot load module '(.*)': The specified module could not be found.")

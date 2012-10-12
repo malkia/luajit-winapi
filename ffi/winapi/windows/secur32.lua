@@ -2,10 +2,6 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/security' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-//typedef CHAR* SEC_CHAR*; //Alias
-//typedef WCHAR* SEC_WCHAR*; //Alias
-//typedef TCHAR* SEC_TCHAR*; //Alias
-//typedef LPVOID void SEC_FAR*; //Alias
   typedef UNICODE_STRING SECURITY_STRING; //Alias
   typedef SECURITY_STRING *PSECURITY_STRING; //Pointer
   typedef STRING LSA_STRING; //Alias

@@ -9,17 +9,16 @@ ffi.cdef [[
   typedef LONG_PTR LRESULT; //Alias
   typedef WORD LANGID; //Alias
   typedef WCHAR* BSTR; //Alias
-//typedef BSTR BSTR; //Alias
   typedef PVOID HDEVINFO; //Alias
   typedef LPVOID PIO_APC_ROUTINE; //Alias
   typedef LPVOID FARPROC; //Alias
-//typedef LPVOID SID*; //Alias
+  typedef void SID; //Alias
   typedef PVOID PSID; //Alias
   typedef LPVOID PVECTORED_EXCEPTION_HANDLER; //Alias
   typedef WORD ATOM; //Alias
   typedef LPVOID PSLIST_ENTRY; //Alias
   typedef ULONG_PTR KAFFINITY; //Alias
-  typedef VOID STDAPI_VOID; //Alias
+  typedef VOID STDAPI__VOID_; //Alias
   enum { OFS_MAXPATHNAME = 128 };
   enum { CCHDEVICENAME = 32 };
   enum { CCHFORMNAME = 32 };
@@ -31,13 +30,10 @@ ffi.cdef [[
   typedef SCARDHANDLE *LPSCARDHANDLE; //Pointer
   typedef void* IAddrBook; //Interface
   typedef IAddrBook* LPADRBOOK; //Alias
-//typedef LPVOID ALLOCATEBUFFER*; //Alias
-//typedef LPVOID FREEBUFFER*; //Alias
   typedef DWORD WLAN_REASON_CODE; //Alias
   typedef WLAN_REASON_CODE *PWLAN_REASON_CODE; //Pointer
   typedef void* IUnknown; //Interface
   typedef IUnknown* LPUNKNOWN; //Alias
-//typedef IUnknown* IUnknown*; //Alias
   typedef DWORD LCID; //Alias
   static const LCID LOCALE_SYSTEM_DEFAULT = 0x0800;
   static const LCID LOCALE_USER_DEFAULT = 0x0400;
@@ -54,14 +50,10 @@ ffi.cdef [[
   typedef LIST_ENTRY *PLIST_ENTRY; //Pointer
   typedef LPVOID PSLIST_HEADER; //Alias
   typedef LPVOID PCONTEXT; //Alias
-//typedef PCONTEXT CONTEXT*; //Alias
   typedef struct POINT {
     LONG x;
     LONG y;
   } POINT;
-//typedef POINT POINT; //Alias
-//typedef POINT* POINT*; //Alias
-//typedef POINT* POINT*; //Alias
   typedef POINT* LPPOINT; //Alias
   typedef POINT POINTL; //Alias
   typedef short WINAPI_DMORIENT; //Alias
@@ -326,9 +318,9 @@ ffi.cdef [[
   typedef HANDLE HBITMAP; //Alias
   typedef HANDLE HENHMETAFILE; //Alias
   typedef HANDLE WINAPI_ProcessHandle; //Alias
-  static const WINAPI_ProcessHandle GetCurrentProcess = -1;
+  static const WINAPI_ProcessHandle GetCurrentProcess_func_ = -1;
   typedef HANDLE WINAPI_ThreadHandle; //Alias
-  static const WINAPI_ThreadHandle GetCurrentThread = -2;
+  static const WINAPI_ThreadHandle GetCurrentThread_func_ = -2;
   typedef int32_t HRESULT; //Integer
   static const HRESULT S_OK = 0;
   static const HRESULT S_FALSE = 1;
@@ -354,8 +346,6 @@ ffi.cdef [[
     LONGLONG QuadPart;
   } LARGE_INTEGER;
   typedef LARGE_INTEGER *PLARGE_INTEGER; //Pointer
-//typedef PLARGE_INTEGER LARGE_INTEGER*; //Alias
-//typedef LARGE_INTEGER* LARGE_INTEGER*; //Alias
   typedef struct WINAPI_ULARGE_INTEGER_s {
     DWORD LowPart;
     LONG HighPart;
@@ -371,24 +361,16 @@ ffi.cdef [[
   } FILETIME;
   typedef FILETIME* PFILETIME; //Alias
   typedef FILETIME* LPFILETIME; //Alias
-//typedef FILETIME* FILETIME*; //Alias
-//typedef FILETIME* FILETIME*; //Alias
   typedef struct GUID { DWORD Data1; WORD Data2, Data3; BYTE Data4[8]; } GUID;
   typedef GUID* PGUID; //Alias
-//typedef GUID* GUID*; //Alias
   typedef GUID* LPCGUID; //Alias
-//typedef GUID* GUID*; //Alias
   typedef GUID *LPGUID; //Pointer
-//typedef LPGUID LPGUID; //Alias
   typedef GUID* REFGUID; //Alias
   typedef GUID CLSID; //Alias
   typedef CLSID* LPCLSID; //Alias
-//typedef CLSID* CLSID*; //Alias
   typedef CLSID *REFCLSID; //Pointer
   typedef GUID UUID; //Alias
-//typedef UUID* UUID*; //Alias
   typedef GUID IID; //Alias
-//typedef IID* IID*; //Alias
   typedef IID *REFIID; //Pointer
   typedef IID *LPIID; //Pointer
   typedef struct LUID {
@@ -414,8 +396,6 @@ ffi.cdef [[
     WORD wSecond;
     WORD wMilliseconds;
   } SYSTEMTIME;
-//typedef SYSTEMTIME SYSTEMTIME; //Alias
-//typedef SYSTEMTIME* SYSTEMTIME*; //Alias
   typedef SYSTEMTIME* PSYSTEMTIME; //Alias
   typedef PSYSTEMTIME LPSYSTEMTIME; //Alias
   typedef UINT JOBOBJECTINFOCLASS; //Alias
@@ -841,7 +821,6 @@ ffi.cdef [[
     DWORD time;
     POINT pt;
   } MSG;
-//typedef MSG* MSG*; //Alias
   typedef MSG* LPMSG; //Alias
   typedef UINT WINAPI_ImageType; //Alias
   static const WINAPI_ImageType IMAGE_BITMAP = 0;
@@ -898,11 +877,7 @@ ffi.cdef [[
     LONG bottom;
   } RECT;
   typedef RECT *LPRECT; //Pointer
-//typedef LPRECT LPRECT; //Alias
-//typedef LPRECT RECT*; //Alias
   typedef LPRECT LPCRECT; //Alias
-//typedef LPRECT RECT*; //Alias
-//typedef LPRECT RECT*; //Alias
   typedef RECT RECTL; //Alias
   typedef RECTL *LPCRECTL; //Pointer
   typedef UINT WINAPI_CodePageEnum; //Alias
@@ -913,7 +888,7 @@ ffi.cdef [[
   static const WINAPI_CodePageEnum CP_SYMBOL = 42;
   static const WINAPI_CodePageEnum MS_DOS_Latin_US = 437;
   static const WINAPI_CodePageEnum Thai = 874;
-  static const WINAPI_CodePageEnum Japanese_Shift_JIS = 932;
+  static const WINAPI_CodePageEnum Japanese__Shift_JIS_ = 932;
   static const WINAPI_CodePageEnum Chinese_Simplified = 936;
   static const WINAPI_CodePageEnum Korean = 949;
   static const WINAPI_CodePageEnum Chinese_Traditional = 950;

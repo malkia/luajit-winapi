@@ -8,10 +8,10 @@ ffi.cdef [[
   WINOLEAPI StgSerializePropVariant(                     PROPVARIANT* pVar, SERIALIZEDPROPERTYVALUE** ppProp, SERIALIZEDPROPERTYVALUE* pcb);
   HRESULT   PSCoerceToCanonicalValue(                    REFPROPERTYKEY key, PROPVARIANT* ppropvar);
   HRESULT   PSCreateAdapterFromPropertyStore(            IPropertyStore* pps, REFIID riid, void** ppv);
-  HRESULT   PSCreateDelayedMultiplexPropertyStore(       GETPROPERTYSTOREFLAGS flags, IDelayedPropertyStoreFactory* pdpsf, DWORD* rgStoreIds, DWORD cStores, REFIID riid, void** ppv);
+  HRESULT   PSCreateDelayedMultiplexPropertyStore(       GETPROPERTYSTOREFLAGS flags, IDelayedPropertyStoreFactory* pdpsf, const DWORD* rgStoreIds, DWORD cStores, REFIID riid, void** ppv);
   HRESULT   PSCreateMemoryPropertyStore(                 REFIID riid, void** ppv);
   HRESULT   PSCreateMultiplexPropertyStore(              IUnknown** prgpunkStores, DWORD cStores, REFIID riid, void** ppv);
-  HRESULT   PSCreatePropertyChangeArray(                 PROPERTYKEY* rgpropkey, PKA_FLAGS* rgflags, PROPVARIANT* rgpropvar, UINT cChanges, REFIID riid, void** ppv);
+  HRESULT   PSCreatePropertyChangeArray(                 const PROPERTYKEY* rgpropkey, const PKA_FLAGS* rgflags, const PROPVARIANT* rgpropvar, UINT cChanges, REFIID riid, void** ppv);
   HRESULT   PSCreatePropertyStoreFromObject(             IUnknown* punk, WINAPI_STGM_FLAGS grfMode, REFIID riid, void** ppv);
   HRESULT   PSCreatePropertyStoreFromPropertySetStorage( IPropertySetStorage* ppss, WINAPI_STGM_FLAGS grfMode, REFIID riid, void** ppv);
   HRESULT   PSCreateSimplePropertyChange(                PKA_FLAGS flags, REFPROPERTYKEY key, REFPROPVARIANT propvar, REFIID riid, void** ppv);

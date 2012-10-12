@@ -61,7 +61,7 @@ ffi.cdef [[
     PWSTR pszError;
   } ADSPROPERROR;
   typedef ADSPROPERROR *PADSPROPERROR; //Pointer
-  BOOL    ADsPropCheckIfWritable(  PWSTR pwzAttr, PADS_ATTR_INFO pWritableAttrs);
+  BOOL    ADsPropCheckIfWritable(  const PWSTR pwzAttr, const PADS_ATTR_INFO pWritableAttrs);
   HRESULT ADsPropCreateNotifyObj(  LPDATAOBJECT pAppThdDataObj, PWSTR pwzADsObjName, HWND* phNotifyObj);
   BOOL    ADsPropGetInitInfo(      HWND hNotifyObject, PADSPROPINITPARAMS pInitParams);
   BOOL    ADsPropSendErrorMessage( HWND hNotifyObject, PADSPROPERROR pError);

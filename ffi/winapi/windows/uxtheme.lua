@@ -6,7 +6,6 @@ ffi.cdef [[
   typedef HANDLE HANIMATIONBUFFER; //Alias
   typedef HANDLE HPAINTBUFFER; //Alias
   typedef LPVOID DTT_CALLBACK_PROC; //Alias
-//typedef LPVOID INTLIST*; //Alias
   typedef DWORD WINAPI_BPPF_Flags; //Alias
   typedef struct BP_PAINTPARAMS {
     DWORD cbSize;
@@ -98,23 +97,23 @@ ffi.cdef [[
   static const BP_BUFFERFORMAT BPBF_TOPDOWNMONODIB = 3;
   typedef DWORD WINDOWTHEMEATTRIBUTETYPE; //Alias
   static const WINDOWTHEMEATTRIBUTETYPE WTA_NONCLIENT = 1;
-  HANIMATIONBUFFER BeginBufferedAnimation(                HWND hwnd, HDC hdcTarget, RECT* rcTarget, BP_BUFFERFORMAT dwFormat, BP_PAINTPARAMS* pPaintParams, BP_ANIMATIONPARAMS* pAnimationParams, HDC* phdcFrom, HDC* phdcTo);
-  HPAINTBUFFER     BeginBufferedPaint(                    HDC hdcTarget, RECT* prcTarget, BP_BUFFERFORMAT dwFormat, BP_PAINTPARAMS* pPaintParams, HDC* phdc);
-  HRESULT          BufferedPaintClear(                    HPAINTBUFFER hBufferedPaint, RECT* prc);
+  HANIMATIONBUFFER BeginBufferedAnimation(                HWND hwnd, HDC hdcTarget, const RECT* rcTarget, BP_BUFFERFORMAT dwFormat, BP_PAINTPARAMS* pPaintParams, BP_ANIMATIONPARAMS* pAnimationParams, HDC* phdcFrom, HDC* phdcTo);
+  HPAINTBUFFER     BeginBufferedPaint(                    HDC hdcTarget, const RECT* prcTarget, BP_BUFFERFORMAT dwFormat, BP_PAINTPARAMS* pPaintParams, HDC* phdc);
+  HRESULT          BufferedPaintClear(                    HPAINTBUFFER hBufferedPaint, const RECT* prc);
   HRESULT          BufferedPaintInit(                     );
   BOOL             BufferedPaintRenderAnimation(          HWND hwnd, HDC hdcTarget);
-  HRESULT          BufferedPaintSetAlpha(                 HPAINTBUFFER hBufferedPaint, RECT* prc, BYTE alpha);
+  HRESULT          BufferedPaintSetAlpha(                 HPAINTBUFFER hBufferedPaint, const RECT* prc, BYTE alpha);
   HRESULT          BufferedPaintStopAllAnimations(        HWND hwnd);
   HRESULT          BufferedPaintUnInit(                   );
   HRESULT          CloseThemeData(                        HTHEME hTheme);
-  HRESULT          DrawThemeBackground(                   HTHEME hTheme, HDC hdc, int iPartId, int iStateId, RECT* pRect, RECT* pClipRect);
-  HRESULT          DrawThemeBackgroundEx(                 HTHEME hTheme, HDC hdc, int iPartId, int iStateId, RECT* pRect, DTBGOPTS* pOptions);
+  HRESULT          DrawThemeBackground(                   HTHEME hTheme, HDC hdc, int iPartId, int iStateId, const RECT* pRect, const RECT* pClipRect);
+  HRESULT          DrawThemeBackgroundEx(                 HTHEME hTheme, HDC hdc, int iPartId, int iStateId, const RECT* pRect, const DTBGOPTS* pOptions);
   HRESULT          DrawThemeEdge(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pDestRect, WINAPI_BorderEdge uEdge, WINAPI_BorderFlag uFlags, LPRECT pContentRect);
   HRESULT          DrawThemeIcon(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCRECT pRect, HIMAGELIST himl, int iImageIndex);
-  HRESULT          DrawThemeParentBackground(             HWND hwnd, HDC hdc, RECT* prc);
-  HRESULT          DrawThemeParentBackgroundEx(           HWND hwnd, HDC hdc, WINAPI_DrawThemeParentBackgroundFlags dwFlags, RECT* prc);
+  HRESULT          DrawThemeParentBackground(             HWND hwnd, HDC hdc, const RECT* prc);
+  HRESULT          DrawThemeParentBackgroundEx(           HWND hwnd, HDC hdc, WINAPI_DrawThemeParentBackgroundFlags dwFlags, const RECT* prc);
   HRESULT          DrawThemeText(                         HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwTextFlags, DWORD dwTextFlags2, LPCRECT pRect);
-  HRESULT          DrawThemeTextEx(                       HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwFlags, LPRECT pRect, DTTOPTS* pOptions);
+  HRESULT          DrawThemeTextEx(                       HTHEME hTheme, HDC hdc, int iPartId, int iStateId, LPCWSTR pszText, int iCharCount, WINAPI_DrawTextFlags dwFlags, LPRECT pRect, const DTTOPTS* pOptions);
   HRESULT          EnableThemeDialogTexture(              HWND hwnd, WINAPI_EnableThemeDialogTextureFlags dwFlags);
   HRESULT          EnableTheming(                         BOOL fEnable);
   HRESULT          EndBufferedAnimation(                  HANIMATIONBUFFER hbpAnimation, BOOL fUpdateTarget);

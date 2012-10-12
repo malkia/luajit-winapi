@@ -2,7 +2,7 @@ require( 'ffi/winapi/headers/windows' )
 require( 'ffi/winapi/headers/network' )
 local ffi = require( 'ffi' )
 ffi.cdef [[
-  typedef PWSTR *PZPWSTR*; //Pointer
+  typedef PWSTR PZPWSTR; //Pointer
   typedef LPWSTR LMSTR; //Alias
   typedef ULONG WINAPI_DsDomainFlags; //Alias
   typedef struct DS_DOMAIN_TRUSTS {

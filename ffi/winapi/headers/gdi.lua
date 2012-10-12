@@ -23,7 +23,6 @@ ffi.cdef [[
   typedef LPVOID LPPRINTHOOKPROC; //Alias
   typedef LPVOID LPSETUPHOOKPROC; //Alias
   typedef LONGLONG REFERENCE_TIME; //Alias
-//typedef REFERENCE_TIME* REFERENCE_TIME*; //Alias
   enum { LF_FACESIZE = 32 };
   typedef struct RGBQUAD {
     BYTE rgbBlue;
@@ -47,13 +46,11 @@ ffi.cdef [[
   typedef RGNDATA *LPRGNDATA; //Pointer
   typedef DWORD COLORREF; //Alias
   static const COLORREF CLR_INVALID = 0xFFFFFFFF;
-//typedef COLORREF* COLORREF*; //Alias
   typedef struct SIZE {
     LONG cx;
     LONG cy;
   } SIZE;
   typedef SIZE* LPSIZE; //Alias
-//typedef SIZE* SIZE*; //Alias
   typedef SIZE* PSIZE; //Alias
   typedef SIZE SIZEL; //Alias
   typedef SIZEL *LPSIZEL; //Pointer

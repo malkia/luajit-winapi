@@ -65,8 +65,8 @@ ffi.cdef [[
   static const InputScope IS_XML = -4;
   static const InputScope IS_ENUMSTRING = -5;
   HRESULT SetInputScope(                      HWND hwnd, InputScope inputscope);
-  HRESULT SetInputScopes(                     HWND hwnd, InputScope* pInputScopes, UINT cInputScopes, WCHAR** ppszPhraseList, UINT cPhrases, WCHAR* pszRegExp, WCHAR* pszSRGS);
-  HRESULT SetInputScopes2(                    HWND hwnd, InputScope* pInputScopes, UINT cInputScopes, IEnumString* pEnumString, WCHAR* pszRegExp, WCHAR* pszSRGS);
+  HRESULT SetInputScopes(                     HWND hwnd, const InputScope* pInputScopes, UINT cInputScopes, WCHAR** ppszPhraseList, UINT cPhrases, WCHAR* pszRegExp, WCHAR* pszSRGS);
+  HRESULT SetInputScopes2(                    HWND hwnd, const InputScope* pInputScopes, UINT cInputScopes, IEnumString* pEnumString, WCHAR* pszRegExp, WCHAR* pszSRGS);
   void    SetInputScopeXML(                   );
   HRESULT TF_CreateCategoryMgr(               ITfCategoryMgr** ppcat);
   HRESULT TF_CreateDisplayAttributeMgr(       ITfDisplayAttributeMgr** ppdam);

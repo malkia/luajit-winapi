@@ -307,7 +307,6 @@ ffi.cdef [[
   typedef void* IPropertyStore; //Interface
   typedef HANDLE HDWP; //Alias
   typedef GUID SHELLVIEWID; //Alias
-//typedef SHELLVIEWID* SHELLVIEWID*; //Alias
   typedef GUID KNOWNFOLDERID; //Alias
   typedef KNOWNFOLDERID *REFKNOWNFOLDERID; //Pointer
   typedef GUID TASKOWNERID; //Alias

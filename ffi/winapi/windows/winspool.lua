@@ -5,7 +5,6 @@ ffi.cdef [[
   typedef void* IPrintAsyncNotifyCallback; //Interface
   typedef void* IPrintAsyncNotifyChannel; //Interface
   typedef LPVOID PCORE_PRINTER_DRIVER; //Alias
-//typedef GUID* PrintAsyncNotificationType*; //Alias
   typedef WORD WINAPI_PrinterNotifyType; //Alias
   typedef struct WINAPI_PRINTER_NOTIFY_INFO_DATA_u_s {
     DWORD cbBuf;
@@ -184,7 +183,7 @@ ffi.cdef [[
   BOOL              SetPrinter(                           HANDLE hPrinter, DWORD Level, LPBYTE pPrinter, WINAPI_PrinterControl Command);
   WINAPI_ERROR_CODE SetPrinterData(                       HANDLE hPrinter, LPTSTR pValueName, WINAPI_RegType Type, LPBYTE pData, DWORD cbData);
   WINAPI_ERROR_CODE SetPrinterDataEx(                     HANDLE hPrinter, LPCTSTR pKeyName, LPCTSTR pValueName, WINAPI_RegType Type, LPBYTE pData, DWORD cbData);
-  DWORD             DeviceCapabilities(                   LPCTSTR pDevice, LPCTSTR pPort, WINAPI_DeviceCapability fwCapability, LPTSTR pOutput, DEVMODE* pDevMode);
+  DWORD             DeviceCapabilities(                   LPCTSTR pDevice, LPCTSTR pPort, WINAPI_DeviceCapability fwCapability, LPTSTR pOutput, const DEVMODE* pDevMode);
   HRESULT           CorePrinterDriverInstalled(           LPCTSTR pszServer, LPCTSTR pszEnvironment, GUID CoreDriverGUID, FILETIME ftDriverDate, DWORDLONG dwlDriverVersion, BOOL* pbDriverInstalled);
   HRESULT           DeletePrinterDriverPackage(           LPCTSTR pszServer, LPCTSTR pszInfPath, LPCTSTR pszEnvironment);
   HRESULT           GetCorePrinterDrivers(                LPCTSTR pszServer, LPCTSTR pszEnvironment, LPCTSTR pszzCoreDriverDependencies, DWORD cCorePrinterDrivers, PCORE_PRINTER_DRIVER pCorePrinterDrivers);

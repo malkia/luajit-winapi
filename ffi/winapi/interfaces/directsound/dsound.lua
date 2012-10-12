@@ -25,8 +25,6 @@ ffi.cdef [[
   typedef void* IDirectSoundNotify; //Interface
   typedef void* IKsPropertySet; //Interface
   typedef void* IReferenceClock; //Interface
-//typedef IDirectSoundCapture* IDirectSoundCapture8*; //Alias
-//typedef IDirectSoundCapture** IDirectSoundCapture8**; //Alias
   typedef IDirectSound* LPDIRECTSOUND; //Alias
   typedef IDirectSound8* LPDIRECTSOUND8; //Alias
   typedef IDirectSoundCapture* LPDIRECTSOUNDCAPTURE; //Alias
@@ -37,7 +35,6 @@ ffi.cdef [[
   typedef IDirectSoundBuffer8* LPDIRECTSOUNDBUFFER8; //Alias
   typedef IDirectSoundBuffer8** LPLPDIRECTSOUNDBUFFER8; //Alias
   typedef IDirectSoundBuffer* LPDIRECTSOUNDBUFFER; //Alias
-//typedef IDirectSoundCaptureBuffer** LPDIRECTSOUNDCAPTUREBUFFER*; //Alias
   typedef LPVOID LPDSENUMCALLBACK; //Alias
   typedef float D3DVALUE; //Alias
   typedef HRESULT WINAPI_DS_HRESULT; //Alias

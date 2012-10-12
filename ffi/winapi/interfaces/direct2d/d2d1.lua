@@ -304,10 +304,10 @@ ffi.cdef [[
   static const D2D1_DC_INITIALIZE_MODE D2D1_DC_INITIALIZE_MODE_COPY = 0;
   static const D2D1_DC_INITIALIZE_MODE D2D1_DC_INITIALIZE_MODE_CLEAR = 1;
   typedef UINT D2D1_DRAW_TEXT_OPTIONS; //Alias
-  WINAPI_D2D_HRESULT D2D1CreateFactory(      D2D1_FACTORY_TYPE factoryType, REFIID riid, D2D1_FACTORY_OPTIONS* pFactoryOptions, void** ppIFactory);
+  WINAPI_D2D_HRESULT D2D1CreateFactory(      D2D1_FACTORY_TYPE factoryType, REFIID riid, CONST D2D1_FACTORY_OPTIONS* pFactoryOptions, void** ppIFactory);
   void               D2D1MakeRotateMatrix(   FLOAT angle, D2D1_POINT_2F center, D2D1_MATRIX_3X2_F* matrix);
   void               D2D1MakeSkewMatrix(     FLOAT angleX, FLOAT angleY, D2D1_POINT_2F center, D2D1_MATRIX_3X2_F* matrix);
-  BOOL               D2D1IsMatrixInvertible( D2D1_MATRIX_3X2_F* matrix);
+  BOOL               D2D1IsMatrixInvertible( CONST D2D1_MATRIX_3X2_F* matrix);
   BOOL               D2D1InvertMatrix(       D2D1_MATRIX_3X2_F* matrix);
 ]]
 return ffi.load( 'd2d1.dll' )
